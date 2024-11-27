@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城</title>
+    <style>
+        .shop-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .item-name {
+            cursor: pointer;
+            margin-right: 20px;
+            min-width: 100px;
+        }
+        .item-price {
+            margin-right: 20px;
+            color: #f60;
+            min-width: 80px;
+        }
+        .quantity-input {
+            width: 60px;
+            margin-right: 10px;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <h1>商城</h1>
+    <p>当前银两: {{ player.money }}</p>
+    {% if message %}
+    <p style="color: {% if success %}green{% else %}red{% endif %}">{{ message }}</p>
+    {% endif %}
+    
+    <div class="shop-items">
+        {% for item_id, item in shop_items.items() %}
+        <div class="shop-item">
+            <span class="item-name" onmouseover="showTooltip(event, '{{ item.description }}')" onmouseout="hideTooltip()">
+                {{ item.name }}
+            </span>
+            <span class="item-price">{{ item.price }}银两</span>
+            <form action="{{ url_for('buy_item') }}" method="post" style="display: inline;">
+                <input type="hidden" name="item_id" value="{{ item_id }}">
+                <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                <button type="submit">购买</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div id="tooltip" class="tooltip"></div>
+    
+    <a href="{{ url_for('scene') }}">返回场景</a>
+
+    <script>
+        function showTooltip(event, text) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.textContent = text;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (event.pageX + 10) + 'px';
+            tooltip.style.top = (event.pageY + 10) + 'px';
+        }
+
+        function hideTooltip() {
+            document.getElementById('tooltip').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

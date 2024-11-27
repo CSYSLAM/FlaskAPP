@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录/注册</title>
+    <style>
+        .form-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 400px;
+        }
+        .message {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>登录</h2>
+        {% if message %}
+        <p class="message">{{ message }}</p>
+        {% endif %}
+        <form action="{{ url_for('login_page') }}" method="post">
+            <div>
+                <label>账号：</label>
+                <input type="text" name="username" required>
+            </div>
+            <div>
+                <label>密码：</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">登录</button>
+        </form>
+    </div>
+    
+    <div class="form-container">
+        <h2>注册</h2>
+        <form method="post" action="{{ url_for('register') }}">
+            <input type="text" name="username" placeholder="账号" required>
+            <input type="password" name="password" placeholder="密码" required>
+            <input type="text" name="nickname" placeholder="昵称" required>
+            <select name="player_class" required>
+                <option value="术士">术士</option>
+                <option value="战士">战士</option>
+                <option value="刺客">刺客</option>
+            </select>
+            <button type="submit">注册</button>
+        </form>
+        
+    </div>
+</body>
+</html>

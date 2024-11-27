@@ -1,0 +1,260 @@
+{
+    "exp_large": {
+        "name": "大经验丹",
+        "type": "other",
+        "description": "使用后增加5万经验",
+        "price": 500,
+        "is_usable": true,
+        "is_permanent_buff": false,
+        "usage_effect": {
+            "stat_changes": {
+                "experience": 50000
+            }
+        }
+    },
+    "exp_small": {
+        "name": "小经验丹",
+        "type": "other", 
+        "description": "使用后增加1万经验",
+        "price": 200,
+        "is_usable": true,
+        "is_permanent_buff": false,
+        "usage_effect": {
+            "stat_changes": {
+                "experience": 10000
+            }
+        }
+    },
+    "money_small": {
+        "name": "小银两包",
+        "type": "material",
+        "description": "使用后获得5万银两",
+        "is_usable": true,
+        "usage_effect": {
+            "stat_changes": {
+                "money": 50000
+            },
+            "effect_description": "获得了{money}银两"
+        }
+    },
+    "potion_heal": {
+        "name": "止血草",
+        "type": "potion",
+        "description": "恢复50点生命值",
+        "price": 50,
+        "is_usable": true,
+        "usage_effect": {
+            "stat_changes": {
+                "health": 50
+            }
+        }
+    },
+    "potion_mana": {
+        "name": "凝魔草",
+        "type": "potion",
+        "description": "恢复30点魔法值",
+        "price": 50,
+        "is_usable": true,
+        "usage_effect": {
+            "stat_changes": {
+                "mana": 30
+            }
+        }
+    },
+    "pill_attack": {
+        "name": "攻击金丹",
+        "type": "other",
+        "description": "永久增加5点攻击力",
+        "price": 80,
+        "is_usable": true,
+        "is_permanent_buff": true,
+        "usage_effect": {
+            "stat_changes": {
+                "pill_attack": 5
+            }
+        }
+    },
+    "pill_defense": {
+        "name": "防御金丹",
+        "type": "other",
+        "description": "永久增加3点防御力",
+        "price": 80,
+        "is_usable": true,
+        "is_permanent_buff": true,
+        "usage_effect": {
+            "stat_changes": {
+                "pill_defense": 3
+            }
+        }
+    },
+    "pill_health": {
+        "name": "生命金丹",
+        "type": "other",
+        "description": "永久增加100点生命上限",
+        "price": 100,
+        "is_usable": true,
+        "is_permanent_buff": true,
+        "usage_effect": {
+            "stat_changes": {
+                "pill_max_health": 100
+            }
+        }
+    },
+    "pill_mana": {
+        "name": "魔法金丹",
+        "type": "other",
+        "description": "永久增加50点魔法上限",
+        "price": 100,
+        "is_usable": true,
+        "is_permanent_buff": true,
+        "usage_effect": {
+            "stat_changes": {
+                "pill_max_mana": 50
+            }
+        }
+    },
+    "potion_revive": {
+        "name": "续命灯",
+        "type": "potion",
+        "description": "可以满血复活",
+        "price": 100,
+        "is_usable": true,
+        "usage_effect": {
+            "stat_changes": {
+                "health": 999999
+            }
+        }
+    },
+    "chest_iron": {
+        "name": "铁质宝匣",
+        "type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "price": 100,
+        "is_usable": true,
+        "usage_condition": {
+            "required_items": {
+                "chest_key": 1
+            }
+        },
+        "usage_effect": {
+            "item_changes": {
+                "chest_key": -1
+            },
+            "random_items": [
+                {
+                    "item_id": "potion_heal",
+                    "max_count": 3,
+                    "chance": 0.8,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "potion_mana",
+                    "max_count": 2,
+                    "chance": 0.6,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "pill_attack",
+                    "max_count": 1,
+                    "chance": 0.3,
+                    "guaranteed_count": 0
+                }
+            ]
+        }
+    },
+    "chest_silver": {
+        "name": "银质宝匣",
+        "type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "price": 200,
+        "is_usable": true,
+        "usage_condition": {
+            "level_required": 10,
+            "required_items": {
+                "chest_key": 1
+            }
+        },
+        "usage_effect": {
+            "item_changes": {
+                "chest_key": -1
+            },
+            "random_items": [
+                {
+                    "item_id": "potion_heal",
+                    "max_count": 4,
+                    "chance": 0.8,
+                    "guaranteed_count": 2
+                },
+                {
+                    "item_id": "potion_mana",
+                    "max_count": 3,
+                    "chance": 0.7,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "pill_attack",
+                    "max_count": 2,
+                    "chance": 0.4,
+                    "guaranteed_count": 0
+                },
+                {
+                    "item_id": "pill_defense",
+                    "max_count": 1,
+                    "chance": 0.3,
+                    "guaranteed_count": 0
+                }
+            ]
+        }
+    },
+    "chest_gold": {
+        "name": "金质宝匣",
+        "type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "price": 500,
+        "is_usable": true,
+        "usage_condition": {
+            "level_required": 20,
+            "required_items": {
+                "chest_key": 1
+            }
+        },
+        "usage_effect": {
+            "item_changes": {
+                "chest_key": -1
+            },
+            "random_items": [
+                {
+                    "item_id": "potion_heal",
+                    "max_count": 5,
+                    "chance": 0.9,
+                    "guaranteed_count": 2
+                },
+                {
+                    "item_id": "potion_mana",
+                    "max_count": 4,
+                    "chance": 0.8,
+                    "guaranteed_count": 2
+                },
+                {
+                    "item_id": "pill_attack",
+                    "max_count": 2,
+                    "chance": 0.5,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "pill_defense",
+                    "max_count": 2,
+                    "chance": 0.5,
+                    "guaranteed_count": 1
+                }
+            ]
+        }
+    },
+    "chest_key": {
+        "name": "宝匣钥匙",
+        "type": "material",
+        "description": "用于打开宝匣",
+        "price": 50,
+        "is_usable": false
+    }
+}

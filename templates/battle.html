@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战斗页面</title>
+    <style>
+        .battle-controls {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .health-bar {
+            letter-spacing: 2px;
+        }
+        .battle-info {
+            margin: 10px 0;
+            padding: 5px;
+            background-color: #f5f5f5;
+        }
+        .battle-message {
+            color: #666;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="battle-controls">
+        <form action="{{ url_for('fight') }}" method="post">
+            <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">
+                {% if player.shortcuts.skill1 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill1 }}{% endif %}
+            </button>
+            <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">
+                {% if player.shortcuts.skill2 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill2 }}{% endif %}
+            </button>
+            <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">
+                {% if player.shortcuts.skill3 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill3 }}{% endif %}
+            </button>
+            <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">
+                {% if player.shortcuts.skill4 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill4 }}{% endif %}
+            </button>
+        </form>
+        <a href="{{ url_for('shortcuts') }}">设置快捷键</a>
+    </div>
+
+    <div class="battle-info">
+        <p>生命: {{ player.health }}/{{ player.max_health }} {% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}</p>
+        <p>魔法: {{ player.mana }}/{{ player.max_mana }} {% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}</p>
+        
+        <p>【{{ monster.name }}】</p>
+        <p>生命: {{ monster.health }}/{{ monster.max_health }} {% if monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}</p>
+        <div class="health-bar">
+            {% set health_percent = (monster.health / monster.max_health * 10) | round | int %}
+            {% for i in range(10) %}
+                {% if i < health_percent %}●{% else %}○{% endif %}
+            {% endfor %}
+        </div>
+        
+        <h3>【战斗信息】</h3>
+        {% if player.last_action %}
+            <p>【我方】{{ player.last_action }}
+            {% if player.last_mana_cost %}，消耗{{ player.last_mana_cost }}点魔法值{% endif %}
+            {% if player.last_damage_dealt %}
+                {% if player.last_damage_dealt == "闪避" %}
+                    ，被闪避了
+                {% else %}
+                    ，造成{{ player.last_damage_dealt }}点伤害
+                {% endif %}
+            {% endif %}
+            </p>
+        {% endif %}
+
+        {% if monster.last_action %}
+            <p>【敌方】{{ monster.name }}使用了{{ monster.last_skill }}
+            {% if monster.last_damage_dealt == "闪避" %}
+                ，被闪避了
+            {% else %}
+                ，造成{{ monster.last_damage_dealt }}点伤害
+            {% endif %}
+            </p>
+        {% endif %}
+        
+        <p>{{ now.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+    </div>
+
+    <div class="battle-controls">
+        <form action="{{ url_for('fight') }}" method="post">
+            {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
+                <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">
+                    {{ player.inventory[player.shortcuts.potion1].item.name }}
+                </button>
+            {% endif %}
+            {% if player.shortcuts.potion2 and player.shortcuts.potion2 in player.inventory %}
+                <button type="submit" name="action" value="use:{{ player.shortcuts.potion2 }}">
+                    {{ player.inventory[player.shortcuts.potion2].item.name }}
+                </button>
+            {% endif %}
+        </form>
+        <a href="{{ url_for('scene') }}">逃跑</a>
+    </div>    
+</body>
+</html>

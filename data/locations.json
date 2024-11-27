@@ -1,0 +1,94 @@
+{
+    "outdoor": {
+        "name": "户外区域",
+        "scenes": {
+            "skill_hall": {
+                "name": "技能馆",
+                "monster_type": "monster_village_trainer",
+                "exits": {
+                    "north": "outdoor.village"
+                }
+            },
+            "village": {
+                "name": "村庄",
+                "monster_type": "monster_village_slime",
+                "exits": {
+                    "north": "outdoor.forest",
+                    "east": "outdoor.valley", 
+                    "west": "outdoor.lake",
+                    "south": "outdoor.skill_hall"
+                }
+            },
+            "forest": {
+                "name": "森林",
+                "monster_type": "monster_forest_goblin",
+                "exits": {
+                    "south": "outdoor.village",
+                    "east": "outdoor.mountain",
+                    "west": "outdoor.swamp"
+                }
+            },
+            "valley": {
+                "name": "山谷",
+                "monster_type": "monster_valley_wolf",
+                "exits": {
+                    "west": "outdoor.village",
+                    "north": "outdoor.mountain"
+                }
+            },
+            "lake": {
+                "name": "湖泊", 
+                "monster_type": "monster_lake_nymph",
+                "exits": {
+                    "east": "outdoor.village",
+                    "north": "outdoor.swamp"
+                }
+            },
+            "mountain": {
+                "name": "山脉",
+                "monster_type": "monster_mountain_bandit",
+                "exits": {
+                    "west": "outdoor.forest",
+                    "south": "outdoor.valley"
+                }
+            },
+            "swamp": {
+                "name": "沼泽",
+                "monster_type": "monster_swamp_creature",
+                "exits": {
+                    "west": "dungeon.entrance",
+                    "east": "outdoor.forest",
+                    "south": "outdoor.lake"
+                }
+            }
+        }
+    },
+    "dungeon": {
+        "name": "地下城",
+        "scenes": {
+            "entrance": {
+                "name": "地下城入口",
+                "monster_type": "monster_dungeon_skeleton",
+                "exits": {
+                    "east": "outdoor.swamp",
+                    "south": "outdoor.village"
+                }
+            },
+            "hall": {
+                "name": "地下大厅",
+                "monster_type": "monster_dungeon_guard",
+                "exits": {
+                    "south": "dungeon.entrance",
+                    "east": "dungeon.treasury"
+                }
+            },
+            "treasury": {
+                "name": "宝库",
+                "monster_type": "monster_dungeon_guardian",
+                "exits": {
+                    "west": "dungeon.hall"
+                }
+            }
+        }
+    }
+}

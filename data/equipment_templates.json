@@ -1,0 +1,235 @@
+{
+    "bronze_sword": {
+        "name": "青铜剑",
+        "description": "由青铜打造的标准长剑，适合初学者使用",
+        "slot": "weapon",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "战士",
+        "base_price": 1000,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 50
+        },
+        "max_extra_stats": {
+            "max_health": 250,
+            "max_mana": 150,
+            "attack": 25,
+            "defense": 25,
+            "crit_rate": 0.1,
+            "dodge_rate": 0.1
+        }
+    },
+    "training_dagger": {
+        "name": "训练匕首",
+        "description": "轻巧锋利的匕首，便于刺客快速出手",
+        "slot": "weapon",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "刺客",
+        "base_price": 1000,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 40
+        },
+        "max_extra_stats": {
+            "max_health": 200,
+            "max_mana": 150,
+            "attack": 30,
+            "crit_rate": 0.15,
+            "dodge_rate": 0.15
+        }
+    },
+    "apprentice_staff": {
+        "name": "学徒法杖",
+        "description": "蕴含魔力的木制法杖，适合术士修行",
+        "slot": "weapon",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "术士",
+        "base_price": 1000,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 45,
+            "max_mana": 50
+        },
+        "max_extra_stats": {
+            "max_health": 200,
+            "max_mana": 200,
+            "attack": 25,
+            "crit_rate": 0.12
+        }
+    },
+    "novice_sword": {
+        "name": "新手剑",
+        "description": "简单的铁剑，各职业都可以使用",
+        "slot": "weapon",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": null,
+        "base_price": 800,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 35
+        },
+        "max_extra_stats": {
+            "max_health": 200,
+            "attack": 20,
+            "crit_rate": 0.1
+        }
+    },
+    "leather_armor": {
+        "name": "皮革护甲",
+        "description": "用兽皮制成的轻便护甲，提供基础防护",
+        "slot": "armor",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": null,
+        "base_price": 1000,
+        "is_artifact": false,
+        "base_stats": {
+            "defense": 30,
+            "max_health": 100
+        },
+        "max_extra_stats": {
+            "max_health": 300,
+            "defense": 30,
+            "dodge_rate": 0.1
+        }
+    },
+    "cloth_robe": {
+        "name": "布质长袍",
+        "description": "附魔布料制成的法袍，增强魔力",
+        "slot": "armor",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "术士",
+        "base_price": 1000,
+        "is_artifact": false,
+        "base_stats": {
+            "defense": 20,
+            "max_mana": 50
+        },
+        "max_extra_stats": {
+            "max_health": 200,
+            "max_mana": 200,
+            "defense": 20
+        }
+    },
+    "training_helmet": {
+        "name": "训练头盔",
+        "description": "标准的金属头盔，保护头部要害",
+        "slot": "helmet",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": null,
+        "base_price": 800,
+        "is_artifact": false,
+        "base_stats": {
+            "defense": 20
+        },
+        "max_extra_stats": {
+            "max_health": 200,
+            "defense": 20,
+            "dodge_rate": 0.08
+        }
+    },
+    "leather_boots": {
+        "name": "皮革战靴",
+        "description": "柔韧的皮靴，提供灵活性",
+        "slot": "shoes",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": null,
+        "base_price": 800,
+        "is_artifact": false,
+        "base_stats": {
+            "defense": 15
+        },
+        "max_extra_stats": {
+            "max_health": 150,
+            "defense": 15,
+            "dodge_rate": 0.12
+        }
+    },
+    "warrior_ring": {
+        "name": "战士戒指",
+        "description": "蕴含战士意志的戒指，增强力量",
+        "slot": "accessory",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "战士",
+        "base_price": 1200,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 15,
+            "max_health": 100
+        },
+        "max_extra_stats": {
+            "max_health": 250,
+            "attack": 20,
+            "defense": 20
+        }
+    },
+    "assassin_ring": {
+        "name": "刺客戒指",
+        "description": "暗影加持的戒指，提升敏捷",
+        "slot": "accessory",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "刺客",
+        "base_price": 1200,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 20,
+            "crit_rate": 0.05
+        },
+        "max_extra_stats": {
+            "attack": 25,
+            "crit_rate": 0.15,
+            "dodge_rate": 0.15
+        }
+    },
+    "mage_ring": {
+        "name": "法师戒指",
+        "description": "注入魔力的戒指，增强法术",
+        "slot": "accessory",
+        "is_bound": false,
+        "level_required": 1,
+        "class_required": "术士",
+        "base_price": 1200,
+        "is_artifact": false,
+        "base_stats": {
+            "attack": 15,
+            "max_mana": 50
+        },
+        "max_extra_stats": {
+            "max_mana": 200,
+            "attack": 20,
+            "crit_rate": 0.12
+        }
+    },
+    "ancient_blade": {
+        "name": "远古之刃",
+        "description": "传说中远古神明使用过的神器，蕴含着强大的力量",
+        "slot": "weapon",
+        "is_bound": true,
+        "level_required": 1,
+        "class_required": null,
+        "base_price": 5000,
+        "is_artifact": true,
+        "base_stats": {
+            "attack": 100,
+            "max_health": 200,
+            "max_mana": 100
+        },
+        "max_extra_stats": {
+            "max_health": 500,
+            "max_mana": 300,
+            "attack": 50,
+            "defense": 50,
+            "crit_rate": 0.2,
+            "dodge_rate": 0.2
+        }
+    }
+}

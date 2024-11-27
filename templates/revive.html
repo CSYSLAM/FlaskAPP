@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复活</title>
+</head>
+<body>
+    <h1>你已经死亡，选择复活方式：</h1>
+    <p>{{ player.last_battle_result }}</p>
+    {% if has_revive_item %}
+    <a href="{{ url_for('revive_action', method='item') }}">使用续命灯复活</a><br>
+    {% endif %}
+    <a href="{{ url_for('revive_action', method='weak') }}">虚弱复活</a><br>
+</body>
+</html>

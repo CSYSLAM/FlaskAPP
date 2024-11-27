@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>背包</title>
+    <style>
+        .inventory-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .item-name {
+            cursor: pointer;
+            margin-right: 20px;
+            min-width: 150px;
+        }
+        .item-quantity {
+            margin-right: 20px;
+            color: #666;
+            min-width: 80px;
+        }
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .btn-equip {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-use {
+            background-color: #2196F3;
+            color: white;
+        }
+        .btn-destroy {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>背包</h1>
+    <p>当前银两: {{ player.money }}</p>
+    {% if player.item_effect %}
+    <p style="color: green;">{{ player.item_effect }}</p>
+    {% endif %}
+
+    <div class="inventory-container">
+        {% for item_id, item_data in player.inventory.items() %}
+            {% if item_id.startswith('equipment_') %}
+                <div class="inventory-item">
+                    <a href="{{ url_for('view_equipment', item_id=item_id) }}" class="item-name">
+                        {{ item_data.name }}
+                    </a>
+                    <div class="item-actions">
+                        <a href="{{ url_for('equip_item', item_id=item_id) }}" class="btn btn-equip">装备</a>
+                        <a href="{{ url_for('destroy_item', item_id=item_id) }}" class="btn btn-destroy">销毁</a>
+                    </div>
+                </div>
+            {% elif item_data is mapping and 'item' in item_data and item_data.quantity > 0 %}
+                <div class="inventory-item">
+                    <a href="{{ url_for('view_item', item_id=item_id) }}" class="item-name">
+                        {{ item_data.item.name }}
+                    </a>
+                    <span class="item-quantity">x{{ item_data.quantity }}</span>
+                    <div class="item-actions">
+                        {% if item_data.item.is_usable %}
+                            <a href="{{ url_for('use_item', item=item_id) }}" class="btn btn-use">使用</a>
+                        {% endif %}
+                        <a href="{{ url_for('destroy_item', item_id=item_id) }}" class="btn btn-destroy">销毁</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <a href="{{ url_for('scene') }}">返回场景</a>
+</body>
+</html>

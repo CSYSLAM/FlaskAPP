@@ -1,0 +1,269 @@
+{
+    "monster_village_trainer": {
+        "name": "技能教官",
+        "level": 50,
+        "killable": false,
+        "immortal": true,
+        "is_elite": false,
+        "description": "技能馆的训练师，可以教授你各种战斗技能",
+        "base_stats": {
+            "health": 999,
+            "mana": 999,
+            "attack": 100,
+            "defense": 100,
+            "crit_rate": 0.1,
+            "dodge_rate": 0.1
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": [],
+            "items": {},
+            "money": {"min": 0, "max": 0},
+            "experience": 0
+        }
+    },
+    "monster_village_slime": {
+        "name": "村庄史莱姆",
+        "level": 1,
+        "killable": true,
+        "immortal": false,
+        "is_elite": false,
+        "description": "在村庄附近游荡的史莱姆，最基础的魔物",
+        "base_stats": {
+            "health": 50,
+            "mana": 20,
+            "attack": 10,
+            "defense": 2,
+            "crit_rate": 0.03,
+            "dodge_rate": 0.03
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["novice_sword", "leather_armor", "training_helmet"],
+            "items": {
+                "potion_heal": 0.3,
+                "potion_mana": 0.2,
+                "chest_iron": 0.1,
+                "chest_key": 0.05
+            },
+            "money": {"min": 10, "max": 30},
+            "experience": 20
+        }
+    },
+    "monster_forest_goblin": {
+        "name": "森林哥布林",
+        "level": 5,
+        "killable": true,
+        "immortal": false,
+        "is_elite": false,
+        "description": "森林中常见的哥布林，喜欢收集闪亮的物品",
+        "base_stats": {
+            "health": 80,
+            "mana": 30,
+            "attack": 15,
+            "defense": 5,
+            "crit_rate": 0.04,
+            "dodge_rate": 0.04
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["bronze_sword", "training_dagger", "apprentice_staff", "leather_boots"],
+            "items": {
+                "potion_strength": 0.2,
+                "chest_iron": 0.15,
+                "chest_key": 0.1
+            },
+            "money": {"min": 20, "max": 40},
+            "experience": 30
+        }
+    },
+    "monster_valley_wolf": {
+        "name": "山谷巨狼",
+        "level": 8,
+        "killable": true,
+        "immortal": false,
+        "is_elite": false,
+        "description": "山谷中的凶猛巨狼，速度极快",
+        "base_stats": {
+            "health": 100,
+            "mana": 40,
+            "attack": 20,
+            "defense": 8,
+            "crit_rate": 0.06,
+            "dodge_rate": 0.08
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["warrior_ring", "assassin_ring", "mage_ring", "leather_boots"],
+            "items": {
+                "potion_agility": 0.3,
+                "chest_silver": 0.1,
+                "chest_key": 0.15
+            },
+            "money": {"min": 30, "max": 50},
+            "experience": 40
+        }
+    },
+    "monster_lake_nymph": {
+        "name": "湖泊水妖",
+        "level": 6,
+        "killable": true,
+        "immortal": false,
+        "is_elite": false,
+        "description": "栖息在湖泊中的水妖，擅长魔法攻击",
+        "base_stats": {
+            "health": 70,
+            "mana": 80,
+            "attack": 12,
+            "defense": 4,
+            "crit_rate": 0.05,
+            "dodge_rate": 0.06
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["apprentice_staff", "cloth_robe", "mage_ring"],
+            "items": {
+                "potion_mana": 0.4,
+                "chest_iron": 0.2,
+                "chest_key": 0.1
+            },
+            "money": {"min": 25, "max": 45},
+            "experience": 35
+        }
+    },
+    "monster_mountain_bandit": {
+        "name": "山贼",
+        "level": 10,
+        "killable": true,
+        "immortal": false,
+        "is_elite": true,
+        "description": "盘踞在山脉中的强盗，装备精良",
+        "base_stats": {
+            "health": 120,
+            "mana": 50,
+            "attack": 25,
+            "defense": 12,
+            "crit_rate": 0.07,
+            "dodge_rate": 0.07
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["training_dagger", "leather_armor", "assassin_ring", "leather_boots"],
+            "items": {
+                "potion_strength": 0.3,
+                "chest_silver": 0.2,
+                "chest_key": 0.2
+            },
+            "money": {"min": 50, "max": 80},
+            "experience": 50
+        }
+    },
+    "monster_swamp_creature": {
+        "name": "沼泽怪",
+        "level": 12,
+        "killable": true,
+        "immortal": false,
+        "is_elite": true,
+        "description": "沼泽中的神秘生物，力大无穷",
+        "base_stats": {
+            "health": 150,
+            "mana": 60,
+            "attack": 30,
+            "defense": 15,
+            "crit_rate": 0.08,
+            "dodge_rate": 0.05
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "items": {
+                "potion_strength": 0.4,
+                "chest_silver": 0.25,
+                "chest_key": 0.2
+            },
+            "money": {"min": 60, "max": 100},
+            "experience": 60
+        }
+    },
+    "monster_dungeon_skeleton": {
+        "name": "骷髅战士",
+        "level": 15,
+        "killable": true,
+        "immortal": false,
+        "is_elite": true,
+        "description": "地下城入口的不死卫兵",
+        "base_stats": {
+            "health": 180,
+            "mana": 70,
+            "attack": 35,
+            "defense": 18,
+            "crit_rate": 0.08,
+            "dodge_rate": 0.08
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "items": {
+                "potion_strength": 0.3,
+                "chest_gold": 0.1,
+                "chest_key": 0.25
+            },
+            "money": {"min": 80, "max": 120},
+            "experience": 70
+        }
+    },
+    "monster_dungeon_guard": {
+        "name": "地下守卫",
+        "level": 18,
+        "killable": true,
+        "immortal": false,
+        "is_elite": true,
+        "description": "守护地下大厅的精英战士",
+        "base_stats": {
+            "health": 200,
+            "mana": 80,
+            "attack": 40,
+            "defense": 20,
+            "crit_rate": 0.09,
+            "dodge_rate": 0.09
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "items": {
+                "potion_strength": 0.4,
+                "chest_gold": 0.15,
+                "chest_key": 0.3
+            },
+            "money": {"min": 100, "max": 150},
+            "experience": 80
+        }
+    },
+    "monster_dungeon_guardian": {
+        "name": "宝库守卫",
+        "level": 20,
+        "killable": true,
+        "immortal": false,
+        "is_elite": true,
+        "description": "守护宝库的最强战士",
+        "base_stats": {
+            "health": 250,
+            "mana": 100,
+            "attack": 45,
+            "defense": 25,
+            "crit_rate": 0.1,
+            "dodge_rate": 0.1
+        },
+        "skills": [],
+        "drops": {
+            "equipment_templates": ["ancient_blade", "bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "items": {
+                "potion_strength": 0.5,
+                "chest_gold": 0.2,
+                "chest_key": 0.4
+            },
+            "money": {"min": 150, "max": 200},
+            "experience": 100
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>角色页面</title>
+</head>
+<body>
+    <h1>角色信息</h1>
+    <p>名字: {{ player.name }}</p>
+    <p>职业: {{ player.player_class }}</p>
+    <p>等级: {{ player.level }}</p>
+    <p>生命值: {{ player.health }}/{{ player.max_health }}</p>
+    <p>魔法值: {{ player.mana }}/{{ player.max_mana }}</p>
+    <p>攻击: {{ player.attack }}</p>
+    <p>防御: {{ player.defense }}</p>
+    <p>暴击率: {{ "%.1f"|format(player.crit_rate * 100) }}%</p>
+    <p>闪避率: {{ "%.1f"|format(player.dodge_rate * 100) }}%</p>
+    <p>经验: {{ player.experience }}/{{ player.exp_to_next_level }}</p>
+    {% if can_level_up %}
+    <a href="{{ url_for('level_up') }}">升级</a>
+    {% else %}
+    <p>需要更多经验才能升级。</p>
+    {% endif %}
+    <a href="{{ url_for('scene') }}">返回场景</a>
+    
+    <!-- 在角色信息后添加装备栏 -->
+    <h2>装备</h2>
+    {% for slot, equipment in player.equipment.items() %}
+    <div>
+        <h3>{{ Equipment.SLOTS[slot] }}</h3>
+        {% if equipment %}
+            <p>{{ equipment.name }}</p>
+            {% for stat, value in equipment.base_stats.items() %}
+                <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }}</p>
+            {% endfor %}
+            {% for stat, (value, stars) in equipment.extra_stats.items() %}
+                <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }} ({{ stars }}星)</p>
+            {% endfor %}
+            <a href="{{ url_for('unequip', slot=slot) }}">卸下</a>
+        {% else %}
+            <p>未装备</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+</body>
+</html>

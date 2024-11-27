@@ -1,0 +1,346 @@
+{
+  "name": "陈思远",
+  "player_class": "术士",
+  "level": 24,
+  "experience": 454172,
+  "exp_to_next_level": 558099,
+  "money": 58571,
+  "last_damage_taken": "闪避",
+  "last_damage_dealt": "1002.0(暴击!)",
+  "last_battle_result": "你击败了【精】骷髅战士！获得了【精良】青铜剑(4星)(1级)，经验增加了20，获得103银两。",
+  "item_effect": "装备了 【普通】新手剑(3星)(1级)\n攻击力: +7.0",
+  "current_location": "dungeon.entrance",
+  "learned_skills": [],
+  "equipment": {
+    "weapon": {
+      "equipment_id": "34c17cd9-8d88-45c0-8a4b-2913481cf2cf",
+      "template_id": "novice_sword",
+      "name": "【普通】新手剑(3星)(1级)",
+      "slot": "weapon",
+      "rarity": "普通",
+      "stars": 3,
+      "level_required": 1,
+      "class_required": null,
+      "description": "简单的铁剑，各职业都可以使用",
+      "is_bound": true,
+      "base_stats": {
+        "attack": 21
+      },
+      "extra_stats": {
+        "attack": [
+          8.0,
+          2
+        ]
+      }
+    },
+    "accessory": null,
+    "armor": {
+      "equipment_id": "3180be77-33ef-4a1b-b4c3-8e1f37a5f970",
+      "template_id": "leather_armor",
+      "name": "【普通】皮革护甲(5星)(1级)",
+      "slot": "armor",
+      "rarity": "普通",
+      "stars": 5,
+      "level_required": 1,
+      "class_required": null,
+      "description": "用兽皮制成的轻便护甲，提供基础防护",
+      "is_bound": true,
+      "base_stats": {
+        "defense": 30,
+        "max_health": 100
+      },
+      "extra_stats": {
+        "defense": [
+          24.0,
+          4
+        ]
+      }
+    },
+    "helmet": null,
+    "pants": null,
+    "shoes": null
+  },
+  "inventory": {
+    "chest_iron": {
+      "item": {
+        "item_id": "chest_iron",
+        "name": "铁质宝匣",
+        "item_type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "is_usable": true,
+        "price": 100,
+        "usage_condition": {
+          "level_required": 0,
+          "required_items": {
+            "chest_key": 1
+          }
+        },
+        "usage_effect": {
+          "stat_changes": {},
+          "item_changes": {
+            "chest_key": -1
+          },
+          "random_items": [
+            {
+              "item_id": "potion_heal",
+              "max_count": 3,
+              "chance": 0.8,
+              "guaranteed_count": 1
+            },
+            {
+              "item_id": "potion_mana",
+              "max_count": 2,
+              "chance": 0.6,
+              "guaranteed_count": 1
+            },
+            {
+              "item_id": "pill_attack",
+              "max_count": 1,
+              "chance": 0.3,
+              "guaranteed_count": 0
+            }
+          ]
+        }
+      },
+      "quantity": 9
+    },
+    "potion_heal": {
+      "item": {
+        "item_id": "potion_heal",
+        "name": "止血草",
+        "item_type": "potion",
+        "description": "恢复50点生命值",
+        "is_usable": true,
+        "price": 50,
+        "usage_condition": null,
+        "usage_effect": {
+          "stat_changes": {
+            "health": 50
+          },
+          "item_changes": {},
+          "random_items": []
+        }
+      },
+      "quantity": 276
+    },
+    "potion_mana": {
+      "item": {
+        "item_id": "potion_mana",
+        "name": "凝魔草",
+        "item_type": "potion",
+        "description": "恢复30点魔法值",
+        "is_usable": true,
+        "price": 50,
+        "usage_condition": null,
+        "usage_effect": {
+          "stat_changes": {
+            "mana": 30
+          },
+          "item_changes": {},
+          "random_items": []
+        }
+      },
+      "quantity": 188
+    },
+    "exp_small": {
+      "item": {
+        "item_id": "exp_small",
+        "name": "小经验丹",
+        "item_type": "other",
+        "description": "使用后增加1万经验",
+        "is_usable": true,
+        "price": 200,
+        "usage_condition": null,
+        "usage_effect": {
+          "stat_changes": {
+            "experience": 10000
+          },
+          "item_changes": {},
+          "random_items": []
+        }
+      },
+      "quantity": 18
+    },
+    "chest_gold": {
+      "item": {
+        "item_id": "chest_gold",
+        "name": "金质宝匣",
+        "item_type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "is_usable": true,
+        "price": 500,
+        "usage_condition": {
+          "level_required": 20,
+          "required_items": {
+            "chest_key": 1
+          }
+        },
+        "usage_effect": {
+          "stat_changes": {},
+          "item_changes": {
+            "chest_key": -1
+          },
+          "random_items": [
+            {
+              "item_id": "potion_heal",
+              "max_count": 5,
+              "chance": 0.9,
+              "guaranteed_count": 2
+            },
+            {
+              "item_id": "potion_mana",
+              "max_count": 4,
+              "chance": 0.8,
+              "guaranteed_count": 2
+            },
+            {
+              "item_id": "pill_attack",
+              "max_count": 2,
+              "chance": 0.5,
+              "guaranteed_count": 1
+            },
+            {
+              "item_id": "pill_defense",
+              "max_count": 2,
+              "chance": 0.5,
+              "guaranteed_count": 1
+            }
+          ]
+        }
+      },
+      "quantity": 0
+    },
+    "chest_silver": {
+      "item": {
+        "item_id": "chest_silver",
+        "name": "银质宝匣",
+        "item_type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "is_usable": true,
+        "price": 200,
+        "usage_condition": {
+          "level_required": 10,
+          "required_items": {
+            "chest_key": 1
+          }
+        },
+        "usage_effect": {
+          "stat_changes": {},
+          "item_changes": {
+            "chest_key": -1
+          },
+          "random_items": [
+            {
+              "item_id": "potion_heal",
+              "max_count": 4,
+              "chance": 0.8,
+              "guaranteed_count": 2
+            },
+            {
+              "item_id": "potion_mana",
+              "max_count": 3,
+              "chance": 0.7,
+              "guaranteed_count": 1
+            },
+            {
+              "item_id": "pill_attack",
+              "max_count": 2,
+              "chance": 0.4,
+              "guaranteed_count": 0
+            },
+            {
+              "item_id": "pill_defense",
+              "max_count": 1,
+              "chance": 0.3,
+              "guaranteed_count": 0
+            }
+          ]
+        }
+      },
+      "quantity": 0
+    },
+    "pill_attack": {
+      "item": {
+        "item_id": "pill_attack",
+        "name": "攻击金丹",
+        "item_type": "other",
+        "description": "永久增加5点攻击力",
+        "is_usable": true,
+        "price": 80,
+        "usage_condition": null,
+        "usage_effect": {
+          "stat_changes": {
+            "pill_attack": 5
+          },
+          "item_changes": {},
+          "random_items": []
+        }
+      },
+      "quantity": 68
+    },
+    "chest_key": {
+      "item": {
+        "item_id": "chest_key",
+        "name": "宝匣钥匙",
+        "item_type": "material",
+        "description": "用于打开宝匣",
+        "is_usable": false,
+        "price": 50,
+        "usage_condition": null,
+        "usage_effect": null
+      },
+      "quantity": 1
+    }
+  },
+  "base_stats": {
+    "max_health": 80,
+    "max_mana": 100,
+    "attack": 20,
+    "defense": 3,
+    "crit_rate": 0.03,
+    "dodge_rate": 0.03
+  },
+  "max_health": 2020,
+  "health": 1920,
+  "max_mana": 2400,
+  "mana": 2400,
+  "attack": 519.0,
+  "defense": 126.0,
+  "crit_rate": 0.72,
+  "dodge_rate": 0.72,
+  "growth_stats": {
+    "max_health": 1920,
+    "max_mana": 2400,
+    "attack": 480,
+    "defense": 72,
+    "crit_rate": 0.72,
+    "dodge_rate": 0.72
+  },
+  "equipment_stats": {
+    "max_health": 100,
+    "max_mana": 0,
+    "attack": 29.0,
+    "defense": 54.0,
+    "crit_rate": 0,
+    "dodge_rate": 0
+  },
+  "pill_stats": {
+    "max_health": 0,
+    "max_mana": 0,
+    "attack": 10,
+    "defense": 0
+  },
+  "shortcuts": {
+    "skill1": "attack",
+    "skill2": "attack",
+    "skill3": "attack",
+    "skill4": "attack",
+    "potion1": null,
+    "potion2": null
+  },
+  "username": "csy",
+  "password": "123",
+  "last_action": "使用了普通攻击",
+  "last_mana_cost": 0,
+  "last_skill": "普通攻击"
+}

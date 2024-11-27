@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>装备详情</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        .stat-section {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>装备详情</h1>
+    <div>
+        <p>装备名称：{{ equipment.name }}</p>
+        <p>描述: {{ equipment.description }}</p>
+        <p>部位: {{ Equipment.SLOTS[equipment.slot] }}</p>
+        <p>品质: {{ equipment.rarity }}</p>
+        <p>星级: {{ equipment.stars }}星</p>
+        
+        <div class="stat-section">
+            <p>基础属性:</p>
+            {% for stat, value in equipment.base_stats.items() %}
+                <p>{{ Equipment.STAT_NAMES[stat] }}: 
+                    {% if stat in ['crit_rate', 'dodge_rate'] %}
+                        +{{ "%.1f"|format(value * 100) }}%
+                    {% else %}
+                        +{{ value }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+        
+        <div class="stat-section">
+            <p>附加属性:</p>
+            {% for stat, (value, stars) in equipment.extra_stats.items() %}
+                <p>{{ Equipment.STAT_NAMES[stat] }}: 
+                    {% if stat in ['crit_rate', 'dodge_rate'] %}
+                        +{{ "%.1f"|format(value * 100) }}% ({{ stars }}星)
+                    {% else %}
+                        +{{ value|int }} ({{ stars }}星)
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+        
+        <div class="stat-section">
+            <p>预计出售价格: {{ (50 * equipment.stars * {'普通': 1, '精良': 2, '卓越': 3, '史诗': 4, '神器': 5}[equipment.rarity]) }}银两</p>
+        </div>
+        
+        <div class="actions">
+            <a href="{{ url_for('equip_item', item_id=item_id) }}">装备</a>
+            <a href="{{ url_for('sell_item', item_id=item_id) }}">出售</a>
+            <a href="{{ url_for('inventory') }}">返回背包</a>
+        </div>
+    </div>
+</body>
+</html>

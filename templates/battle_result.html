@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战斗结算</title>
+</head>
+<body>
+    <h1>战斗结算</h1>
+    <p>{{ result }}</p>
+    {% if lost_experience > 0 %}
+    <p>你失去了 {{ lost_experience }} 经验。</p>
+    {% endif %}
+    {% if lost_experience > 0 %}
+    <p>你失去了 {{ lost_experience }} 经验。</p>
+    {% endif %}
+    <h3>选择接下来的行动：</h3>
+    <a href="{{ url_for('continue_battle') }}">继续挑战怪物</a><br>
+    <a href="{{ url_for('scene') }}">返回场景</a>
+</body>
+</html>
