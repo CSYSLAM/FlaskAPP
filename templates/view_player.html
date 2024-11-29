@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查看角色</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div style="background-color: #e8f5e9; padding: 10px; margin-bottom: 10px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div style="margin-bottom: 20px;">
+        <form action="{{ url_for('send_message', to_username=target_player.username) }}" method="post">
+            <input type="text" name="message" placeholder="输入私聊内容..." required>
+            <button type="submit">发送私聊</button>
+        </form>
+    </div>
+    
+    <h1>角色信息</h1>
+    <p>名字: {{ target_player.name }}</p>
+    <p>职业: {{ target_player.player_class }}</p>
+    <p>等级: {{ target_player.level }}</p>
+    <p>生命值: {{ target_player.health }}/{{ target_player.max_health }}</p>
+    <p>魔法值: {{ target_player.mana }}/{{ target_player.max_mana }}</p>
+    <p>攻击: {{ target_player.attack }}</p>
+    <p>防御: {{ target_player.defense }}</p>
+    <p>暴击率: {{ "%.1f"|format(target_player.crit_rate * 100) }}%</p>
+    <p>闪避率: {{ "%.1f"|format(target_player.dodge_rate * 100) }}%</p>
+    
+    <h2>装备</h2>
+    {% for slot, equipment in target_player.equipment.items() %}
+    <div>
+        <h3>{{ Equipment.SLOTS[slot] }}</h3>
+        {% if equipment %}
+            <p>{{ equipment.name }}</p>
+        {% else %}
+            <p>未装备</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+    
+    <a href="{{ url_for('scene') }}">返回场景</a>
+</body>
+</html>

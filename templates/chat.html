@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>聊天记录</title>
+    <style>
+        .chat-container {
+            margin: 20px;
+            padding: 10px;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        .message a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .message a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>聊天记录</h1>
+    <div class="chat-container">
+        {% for username, messages in player.chat_history.items() %}
+            {% for msg in messages %}
+                <div class="message">
+                    {% if msg.sender == player.username %}
+                        你对<a href="{{ url_for('view_player', username=username) }}">{{ msg.receiver_name }}</a>说：
+                    {% else %}
+                        <a href="{{ url_for('view_player', username=msg.sender) }}">{{ msg.sender_name }}</a>对你说：
+                    {% endif %}
+                    {{ msg.content }}
+                    <small>({{ msg.time }})</small>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('scene') }}">返回场景</a>
+</body>
+</html>

@@ -1,6 +1,7 @@
 import random
 from models.equipment import Equipment
 from models.item import Item, ItemType
+from datetime import datetime
 
 class Player:
     SKILLS = {
@@ -90,6 +91,9 @@ class Player:
         self.learned_skills = []
         self.equipment = {slot: None for slot in Equipment.SLOTS}
         self.inventory = {}
+        self.last_chat_message = None  # 最后收到的聊天消息
+        self.chat_refresh_count = 0    # 场景刷新计数
+        self.chat_history = {}         # 聊天历史记录 {username: [messages]}
 
         # 基础属性(每级成长)
         self.base_stats = self.CLASSES[player_class]["base_stats"].copy()
@@ -345,6 +349,16 @@ class Player:
 
     def to_dict(self):
         data = self.__dict__.copy()
+        # 处理聊天历史中的datetime
+        if 'chat_history' in data:
+            for username in data['chat_history']:
+                for message in data['chat_history'][username]:
+                    if isinstance(message['time'], datetime):
+                        message['time'] = message['time'].strftime('%Y-%m-%d %H:%M:%S')
+        
+        # 处理最新消息中的datetime
+        if data.get('last_chat_message') and isinstance(data['last_chat_message'].get('time'), datetime):
+            data['last_chat_message']['time'] = data['last_chat_message']['time'].strftime('%Y-%m-%d %H:%M:%S')
         # Convert inventory items to serializable format
         inventory_data = {}
         for item_id, item_data in self.inventory.items():
