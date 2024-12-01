@@ -470,14 +470,22 @@ def revive():
 @login_required
 def revive_action(method):
     player = get_current_player()
+    
     if method == "item":
-        if player.use_revive_item():
+        # Check if the player has the revive item
+        if "potion_revive" in player.inventory and player.inventory["potion_revive"]["quantity"] > 0:
+            player.use_revive_item()  # This method should handle the revival logic
             save_player_data(session["username"], player)
+            flash("使用续命灯复活成功，生命值已满！")
             return redirect(url_for("scene"))
-        return "没有续命灯，无法复活！"
+        else:
+            # Redirect back to the revive page with a message
+            return render_template("revive.html", player=player, revive_message="缺少一个续命灯，无法满血复活！")
+
     elif method == "weak":
         player.weak_revive()
         save_player_data(session["username"], player)
+        flash("虚弱复活成功，生命值恢复到10%！")
         return redirect(url_for("scene"))
 
 @app.route("/inventory")

@@ -413,13 +413,14 @@ class Player:
                 }
 
     def use_revive_item(self):
-        if "续命灯" in self.inventory and self.inventory["续命灯"] > 0:
-            self.inventory["续命灯"] -= 1
-            if self.inventory["续命灯"] <= 0:
-                del self.inventory["续命灯"]
+        if "potion_revive" in self.inventory and self.inventory["potion_revive"]["quantity"] > 0:
+            self.inventory["potion_revive"]["quantity"] -= 1
+            if self.inventory["potion_revive"]["quantity"] <= 0:
+                del self.inventory["potion_revive"]
             self.health = self.max_health
             return True
         return False
+
 
     def weak_revive(self):
         self.health = max(10, self.max_health // 10)
