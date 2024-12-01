@@ -4,15 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>复活</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0066cc;
+            margin-right: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
+        .section {
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .error-message {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>你已经死亡，选择复活方式：</h1>
-    <p>{{ player.last_battle_result }}</p>
+    <div class="section">
+        <h2>你已经死亡，选择复活方式：</h2>
+        <p>{{ player.last_battle_result }}</p>
+    </div>
     
     {% if revive_message %}
-        <p style="color: red;">{{ revive_message }}</p>
+        <p class="error-message">{{ revive_message }}</p>
     {% endif %}
-    <a href="{{ url_for('revive_action', method='item') }}">满血复活(续命灯X1)</a><br>
-    <a href="{{ url_for('revive_action', method='weak') }}">虚弱复活(10%血量)</a><br>
+
+    <div class="section">
+        <a href="{{ url_for('revive_action', method='item') }}">满血复活(续命灯X1)</a>
+        <a href="{{ url_for('revive_action', method='weak') }}">虚弱复活(10%血量)</a>
+    </div>
 </body>
 </html>

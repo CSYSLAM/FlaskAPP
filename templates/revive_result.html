@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>战斗结算</title>
+    <title>复活结果</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,39 +33,16 @@
             text-decoration: underline;
             color: #003366;
         }
-        .win {
-            background-color: #e8f5e9;
-        }
-        .lose {
-            background-color: #ffebee;
-        }
     </style>
 </head>
 <body>
     <div class="section">
-        <h2>战斗结算</h2>
-        {% if is_pk %}
-            <div class="{% if winner.username == player.username %}win{% else %}lose{% endif %}">
-                <p>{{ result }}</p>
-                <p>胜者: {{ winner.name }}</p>
-                <p>败者: {{ loser.name }}</p>
-            </div>
-        {% else %}
-            <p>{{ result }}</p>
-            {% if lost_experience > 0 %}
-                <p>你失去了 {{ lost_experience }} 经验</p>
-            {% endif %}
-        {% endif %}
+        <h2>复活结果</h2>
+        <p>{{ revive_message }}</p>
     </div>
 
     <div class="section">
-        <h2>选择行动</h2>
-        {% if is_pk %}
-            <a href="{{ url_for('scene') }}">返回场景</a>
-        {% else %}
-            <a href="{{ url_for('continue_battle') }}">继续挑战</a>
-            <a href="{{ url_for('scene') }}">返回场景</a>
-        {% endif %}
+        <a href="{{ url_for('scene') }}">返回场景</a>
     </div>
 </body>
 </html>
