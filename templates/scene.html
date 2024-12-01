@@ -20,7 +20,6 @@
         }
         a {
             display: inline-block;
-            margin-top: 10px;
             text-decoration: none;
             color: #0066cc;
         }
@@ -28,11 +27,56 @@
             text-decoration: underline;
             color: #003366;
         }
+        .section {
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .map-container {
+            margin: 8px 0;
+            padding: 3px;
+            background: #f5f5f5;
+            border-radius: 3px;
+            width: 240px;
+        }
+        .map-grid {
+            display: grid;
+            grid-template-columns: 70px 70px 70px;
+            gap: 1px;
+            text-align: center;
+            font-size: 11px;
+        }
+        .map-cell {
+            padding: 1px 2px;
+            min-height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .map-cell.current {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 2px;
+            font-weight: bold;
+            padding: 1px 3px;
+        }
+        .map-cell.exit {
+            color: #0066cc;
+            font-size: 10px;
+        }
+        .chat-message {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     {% if player.last_chat_message %}
-        <div style="background-color: #f0f0f0; padding: 10px; margin-bottom: 20px;">
+        <div class="chat-message">
             {% if player.last_chat_message.is_gift %}
                 【赠送】{{ player.last_chat_message.sender }}{{ player.last_chat_message.content }}
             {% else %}
@@ -40,12 +84,82 @@
             {% endif %}
         </div>
     {% endif %}
-    <a href="{{ url_for('scene') }}" class="refresh-btn">刷新</a>
-    <a href="{{ url_for('shop') }}">商城</a>
+
+    <div class="section">
+        <a href="{{ url_for('scene') }}" class="refresh-btn">刷新</a>
+        <a href="{{ url_for('shop') }}">商城</a>
+    </div>
 
     <h1>{{ location.name }}（{{ location.area_name }}）</h1>
 
-    <div>
+    <div style="margin: 5px 0;">
+        <a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle">关地图</a>
+    </div>
+
+    <div class="map-container" id="mapContainer">
+        <div class="map-grid">
+            <!-- 北方区域及其延伸出口 -->
+            <div class="map-cell exit">
+                {% if location.north_exit and locations[location.north_exit].west_exit %}
+                    {{ locations[locations[location.north_exit].west_exit].name }}
+                {% endif %}
+            </div>
+            <div class="map-cell exit">
+                {% if location.north_exit %}
+                    {{ locations[location.north_exit].name }}
+                    {% if locations[location.north_exit].north_exit %}
+                        <br>{{ locations[locations[location.north_exit].north_exit].name }}
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="map-cell exit">
+                {% if location.north_exit and locations[location.north_exit].east_exit %}
+                    {{ locations[locations[location.north_exit].east_exit].name }}
+                {% endif %}
+            </div>
+            
+            <!-- 中间区域（西-当前-东） -->
+            <div class="map-cell exit">
+                {% if location.west_exit %}
+                    {{ locations[location.west_exit].name }}
+                    {% if locations[location.west_exit].west_exit %}
+                        <br>{{ locations[locations[location.west_exit].west_exit].name }}
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="map-cell current">{{ location.name }}</div>
+            <div class="map-cell exit">
+                {% if location.east_exit %}
+                    {{ locations[location.east_exit].name }}
+                    {% if locations[location.east_exit].east_exit %}
+                        <br>{{ locations[locations[location.east_exit].east_exit].name }}
+                    {% endif %}
+                {% endif %}
+            </div>
+            
+            <!-- 南方区域及其延伸出口 -->
+            <div class="map-cell exit">
+                {% if location.south_exit and locations[location.south_exit].west_exit %}
+                    {{ locations[locations[location.south_exit].west_exit].name }}
+                {% endif %}
+            </div>
+            <div class="map-cell exit">
+                {% if location.south_exit %}
+                    {{ locations[location.south_exit].name }}
+                    {% if locations[location.south_exit].south_exit %}
+                        <br>{{ locations[locations[location.south_exit].south_exit].name }}
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="map-cell exit">
+                {% if location.south_exit and locations[location.south_exit].east_exit %}
+                    {{ locations[locations[location.south_exit].east_exit].name }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
         {% if location.north_exit %}
             北:↑ <a href="{{ url_for('move', direction='north') }}">{{ locations[location.north_exit].name }}</a><br>
         {% endif %}
@@ -63,14 +177,13 @@
         {% if location.south_exit %}
             南:↓ <a href="{{ url_for('move', direction='south') }}">{{ locations[location.south_exit].name }}</a>
         {% endif %}
-    
     </div>
 
-    <div>
+    <div class="section">
         怪物：<a href="{{ url_for('battle') }}">{{ monster.name }}({{ monster.level }}级)</a>
     </div>
 
-    <div>
+    <div class="section">
         {% if location.ground_items %}
             地上物品：
             {% for item_id in location.ground_items %}
@@ -81,7 +194,7 @@
         {% endif %}
     </div>
 
-    <div>
+    <div class="section">
         <p>玩家：{% if other_players %}
             {% for other_player in other_players %}
                 <a href="{{ url_for('view_player', username=other_player.username) }}">{{ other_player.name }}</a>{% if not loop.last %},{% endif %}
@@ -91,18 +204,32 @@
         {% endif %}</p>
     </div>
 
-    <div style="margin-top: 20px;">
+    <div class="section">
         <a href="{{ url_for('character') }}">角色</a>
         <a href="{{ url_for('inventory') }}">背包</a>
         <a href="{{ url_for('chat') }}">聊天</a>
     </div>
 
-    <div style="margin-top: 20px;">
+    <div class="section">
         三国时间：{{ now.strftime('%Y-%m-%d %H:%M:%S') }}
     </div>
 
-    <div style="margin-top: 20px;">
+    <div>
         <a href="{{ url_for('logout') }}">退出游戏</a>
     </div>
+
+    <script>
+        function toggleMap() {
+            const mapContainer = document.getElementById('mapContainer');
+            const mapToggle = document.getElementById('mapToggle');
+            if (mapContainer.style.display === 'none') {
+                mapContainer.style.display = 'block';
+                mapToggle.textContent = '关地图';
+            } else {
+                mapContainer.style.display = 'none';
+                mapToggle.textContent = '开地图';
+            }
+        }
+    </script>
 </body>
 </html>
