@@ -98,6 +98,11 @@ class Player:
         self.current_view = "chat"  
         self.enhance_bonus_rate = 0  # 添加全局强化成功率加成
 
+        self.in_battle = False  # Add this line
+        self.in_pk = False
+        self.pk_opponent = None
+        self.last_attack_time = 0
+
         # 基础属性(每级成长)
         self.base_stats = self.CLASSES[player_class]["base_stats"].copy()
 
@@ -151,6 +156,12 @@ class Player:
             'potion1': None,
             'potion2': None
         }
+
+    def enter_battle(self):
+        self.in_battle = True
+
+    def exit_battle(self):
+        self.in_battle = False
 
     def can_equip(self, equipment: Equipment) -> tuple[bool, str]:
         if self.level < equipment.level_required:

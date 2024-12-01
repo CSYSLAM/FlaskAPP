@@ -68,6 +68,14 @@
     </div>
 
     <div class="section">
+        {% if player.current_location == target_player.current_location and not target_player.in_pk %}
+            <form action="{{ url_for('start_pk', username=target_player.username) }}" method="post">
+                <button type="submit">发起PK</button>
+            </form>
+        {% endif %}
+    </div>
+    
+    <div class="section">
         <h2>角色信息</h2>
         <p>名字: {{ target_player.name }}</p>
         <p>职业: {{ target_player.player_class }}</p>

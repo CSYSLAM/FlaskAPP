@@ -56,8 +56,18 @@
     </style>
 </head>
 <body>
+    {% if remaining %}
+        <div class="alert alert-warning">
+            还需等待 {{ remaining }} 秒才能再次攻击。
+        </div>
+    {% endif %}
+
     <div class="battle-controls">
-        <form action="{{ url_for('fight') }}" method="post">
+        {% if is_pk %}
+            <form action="{{ url_for('pk_fight') }}" method="post">
+        {% else %}
+            <form action="{{ url_for('fight') }}" method="post">
+        {% endif %}    
             <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">
                 {% if player.shortcuts.skill1 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill1 }}{% endif %}
             </button>

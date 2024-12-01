@@ -122,15 +122,10 @@
     },
     "potion_revive": {
         "name": "续命灯",
-        "type": "potion",
+        "type": "material",
         "description": "可以满血复活",
         "price": 100,
-        "is_usable": true,
-        "usage_effect": {
-            "stat_changes": {
-                "health": 999999
-            }
-        }
+        "is_usable": false
     },
     "chest_iron": {
         "name": "铁质宝匣",

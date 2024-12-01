@@ -9,13 +9,20 @@
     <h1>战斗结算</h1>
     <p>{{ result }}</p>
     {% if lost_experience > 0 %}
-    <p>你失去了 {{ lost_experience }} 经验。</p>
+        <p>你失去了 {{ lost_experience }} 经验。</p>
     {% endif %}
-    {% if lost_experience > 0 %}
-    <p>你失去了 {{ lost_experience }} 经验。</p>
-    {% endif %}
+
     <h3>选择接下来的行动：</h3>
-    <a href="{{ url_for('continue_battle') }}">继续挑战怪物</a><br>
-    <a href="{{ url_for('scene') }}">返回场景</a>
+    {% if is_pk %}
+        {% if winner and loser %}
+            <p>PK战斗结果:</p>
+            <p>胜者: {{ winner.name }}</p>
+            <p>败者: {{ loser.name }}</p>
+        {% endif %}
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    {% else %}
+        <a href="{{ url_for('continue_battle') }}">继续挑战怪物</a><br>
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    {% endif %}
 </body>
 </html>

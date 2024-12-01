@@ -29,6 +29,24 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def check_pk_status(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        player = get_current_player()
+        if player.in_pk:
+            return redirect(url_for('pk_battle', opponent=player.pk_opponent))
+        return f(*args, **kwargs)
+    return decorated_function
+
+def check_health_status(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        player = get_current_player()
+        if player and player.health <= 0:
+            return redirect(url_for("revive"))
+        return f(*args, **kwargs)
+    return decorated_function
+
 def save_player_data(username, player):
     file_path = SAVE_DIR / f"{username}.json"
     with open(file_path, 'w', encoding='utf-8') as f:
@@ -67,6 +85,7 @@ def index():
     return redirect(url_for("login_page"))
 
 @app.route("/login", methods=["GET", "POST"])
+@check_health_status
 def login_page():
     if request.method == "POST":
         username = request.form.get("username")
@@ -103,6 +122,8 @@ def register():
 
 @app.route("/equip/<item_id>")
 @login_required
+@check_pk_status
+@check_health_status
 def equip_item(item_id):
     player = get_current_player()
     if item_id in player.inventory:
@@ -133,6 +154,8 @@ def equip_item(item_id):
 
 @app.route("/pickup/<item_id>")
 @login_required
+@check_health_status
+@check_pk_status
 def pickup_item(item_id):
     player = get_current_player()
     current_location = locations[player.current_location]
@@ -150,12 +173,16 @@ def logout():
 
 @app.route("/shop")
 @login_required
+@check_health_status
+@check_pk_status
 def shop():
     player = get_current_player()
     return render_template("shop.html", player=player, shop_items=shop_items)
 
 @app.route("/buy_item", methods=["POST"])
 @login_required
+@check_health_status
+@check_pk_status
 def buy_item():
     player = get_current_player()
     item_id = request.form.get("item_id")
@@ -201,6 +228,8 @@ def buy_item():
 
 @app.route("/unequip/<slot>")
 @login_required
+@check_health_status
+@check_pk_status
 def unequip(slot):
     player = get_current_player()
     equipment = player.unequip(slot)
@@ -212,11 +241,18 @@ def unequip(slot):
 
 @app.route("/scene")
 @login_required
+@check_health_status
+@check_pk_status
 def scene():
     global current_monster
     player = get_current_player()
     if not player:
         return redirect(url_for("login_page"))
+    
+    # Reset battle status
+    player.in_battle = False
+    player.in_pk = False
+    player.pk_opponent = None
     
     if player.last_chat_message:
         player.chat_refresh_count += 1
@@ -242,6 +278,8 @@ def scene():
                 if other_player["current_location"] == player.current_location:
                     other_players.append(other_player)
     
+    save_player_data(session["username"], player)
+    
     return render_template("scene.html", 
                          player=player, 
                          monster=current_monster,
@@ -253,6 +291,8 @@ def scene():
 
 @app.route("/character")
 @login_required
+@check_health_status
+@check_pk_status
 def character():
     player = get_current_player()
     player.update_stats()  # 添加这行来更新属性
@@ -265,6 +305,8 @@ def character():
 
 @app.route("/level_up")
 @login_required
+@check_health_status
+@check_pk_status
 def level_up():
     player = get_current_player()
     if player.level_up():
@@ -273,6 +315,8 @@ def level_up():
 
 @app.route("/battle")
 @login_required
+@check_health_status
+@check_pk_status
 def battle():
     player = get_current_player()
     # Only reset battle information if coming from scene (not during battle)
@@ -288,6 +332,10 @@ def battle():
         current_monster.last_damage_dealt = None
         current_monster.last_damage_taken = None
         current_monster.last_skill = None
+        
+    # Set battle status
+    player.in_battle = True
+    save_player_data(session["username"], player)
     
     return render_template("battle.html", 
                          player=player, 
@@ -296,6 +344,8 @@ def battle():
 
 @app.route("/fight", methods=["POST"])
 @login_required
+@check_health_status
+@check_pk_status
 def fight():
     player = get_current_player()
     action = request.form.get("action")
@@ -365,23 +415,55 @@ def handle_monster_defeat(player):
     
     generate_new_monster(player)
 
-
 @app.route("/battle_result")
 @login_required
+@check_health_status
 def battle_result():
     player = get_current_player()
     result = player.last_battle_result
     lost_experience = 0
+    
     if player.health <= 0 and player.experience > 0:
         lost_experience = max(0, int(player.experience * 0.1))
         player.experience -= lost_experience
-    return render_template("battle_result.html", result=result, lost_experience=lost_experience)
+
+    # Check if this was a PK battle
+    is_pk = player.pk_opponent is not None
+    
+    if not is_pk:
+        return render_template("battle_result.html", 
+                           result=result, 
+                           lost_experience=lost_experience,
+                           is_pk=False)
+    
+    # Handle PK battle result
+    opponent_data = load_player_data(player.pk_opponent)
+    if not opponent_data:
+        flash("无法加载对手数据")
+        return redirect(url_for('scene'))
+        
+    winner = player if player.health > 0 else Player.from_dict(opponent_data)
+    loser = Player.from_dict(opponent_data) if winner == player else player
+
+    # Reset PK status
+    player.in_pk = False
+    player.pk_opponent = None
+    save_player_data(session["username"], player)
+
+    return render_template("battle_result.html", 
+                       result=result, 
+                       lost_experience=lost_experience,
+                       is_pk=True,
+                       winner=winner,
+                       loser=loser)
+
+
 
 @app.route("/revive")
 @login_required
 def revive():
     player = get_current_player()
-    has_revive_item = "续命灯" in player.inventory
+    has_revive_item = "续命灯" in player.inventory and player.inventory["续命灯"]["quantity"] > 0
     return render_template("revive.html", player=player, has_revive_item=has_revive_item)
 
 @app.route("/revive_action/<method>")
@@ -400,12 +482,16 @@ def revive_action(method):
 
 @app.route("/inventory")
 @login_required
+@check_health_status
+@check_pk_status
 def inventory():
     player = get_current_player()
     return render_template("inventory.html", player=player)
 
 @app.route("/use_item/<item>")
 @login_required
+@check_health_status
+@check_pk_status
 def use_item(item):
     player = get_current_player()
     if item in player.inventory:
@@ -416,6 +502,8 @@ def use_item(item):
 
 @app.route("/move/<direction>")
 @login_required
+@check_health_status
+@check_pk_status
 def move(direction):
     player = get_current_player()
     current_loc = locations[player.current_location]
@@ -481,6 +569,8 @@ def set_shortcut():
 
 @app.route("/equipment/<item_id>")
 @login_required
+@check_health_status
+@check_pk_status
 def view_equipment(item_id):
     player = get_current_player()
     if item_id in player.inventory:
@@ -526,6 +616,8 @@ def sell_item(item_id):
 
 @app.route("/view_item/<item_id>")
 @login_required
+@check_health_status
+@check_pk_status
 def view_item(item_id):
     player = get_current_player()
     if item_id in player.inventory:
@@ -544,6 +636,8 @@ def view_item(item_id):
 
 @app.route("/destroy_item/<item_id>")
 @login_required
+@check_health_status
+@check_pk_status
 def destroy_item(item_id):
     player = get_current_player()
     if item_id in player.inventory:
@@ -553,7 +647,10 @@ def destroy_item(item_id):
 
 @app.route("/view_player/<username>")
 @login_required
+@check_health_status
+@check_pk_status
 def view_player(username):
+    player = get_current_player()  # Get current player
     target_player_data = load_player_data(username)
     if not target_player_data:
         return redirect(url_for("scene"))
@@ -571,11 +668,14 @@ def view_player(username):
     target_player.update_stats()
     
     return render_template("view_player.html", 
+                         player=player,  # Add this line
                          target_player=target_player,
                          Equipment=Equipment)
 
 @app.route("/send_message/<to_username>", methods=["POST"])
 @login_required
+@check_health_status
+@check_pk_status
 def send_message(to_username):
     player = get_current_player()
     message = request.form.get("message")
@@ -619,12 +719,16 @@ def send_message(to_username):
 
 @app.route("/chat")
 @login_required
+@check_health_status
+@check_pk_status
 def chat():
     player = get_current_player()
     return render_template("chat.html", player=player)
 
 @app.route("/gift/<username>")
 @login_required
+@check_health_status
+@check_pk_status
 def gift_page(username):
     player = get_current_player()
     target_player_data = load_player_data(username)
@@ -648,6 +752,8 @@ def gift_page(username):
 
 @app.route("/send_gift/<username>", methods=["POST"])
 @login_required
+@check_health_status
+@check_pk_status
 def send_gift(username):
     player = get_current_player()
     target_player_data = load_player_data(username)
@@ -744,6 +850,8 @@ def send_gift(username):
 
 @app.route("/toggle_view/<view_type>")
 @login_required
+@check_health_status
+@check_pk_status
 def toggle_view(view_type):
     player = get_current_player()
     player.current_view = view_type
@@ -752,6 +860,8 @@ def toggle_view(view_type):
 
 @app.route("/enhance/<item_id>")
 @login_required
+@check_health_status
+@check_pk_status
 def enhance_page(item_id):
     player = get_current_player()
     if item_id not in player.inventory:
@@ -776,6 +886,8 @@ def enhance_page(item_id):
 
 @app.route("/enhance/<item_id>", methods=["POST"])
 @login_required
+@check_health_status
+@check_pk_status
 def enhance_equipment(item_id):
     player = get_current_player()
     if item_id not in player.inventory:
@@ -845,7 +957,164 @@ def enhance_equipment(item_id):
                          success=success,
                          Equipment=Equipment)
 
+@app.route("/start_pk/<username>", methods=["POST"])
+@login_required
+@check_health_status
+@check_pk_status
+def start_pk(username):
+    player = get_current_player()
+    target_player = Player.from_dict(load_player_data(username))
+    
+    # Check conditions
+    if not target_player:
+        flash("找不到目标玩家")
+        return redirect(url_for('scene'))
+        
+    # Check if target player is alive
+    if target_player.health <= 0:
+        flash("对方处于死亡状态，无法发起PK")
+        return redirect(url_for('view_player', username=username))
+        
+    # Check if target player is in battle
+    if hasattr(target_player, 'in_battle') and target_player.in_battle:
+        flash("对方正在战斗中，无法发起PK")
+        return redirect(url_for('view_player', username=username))
+        
+    # Check if target player is already in PK
+    if target_player.in_pk:
+        flash("对方正在PK中，无法发起PK")
+        return redirect(url_for('view_player', username=username))
+    
+    # Check if players are in the same location
+    if player.current_location != target_player.current_location:
+        flash("需要在同一场景才能PK")
+        return redirect(url_for('view_player', username=username))
+    
+    # Start PK if all conditions are met
+    player.in_pk = True
+    player.pk_opponent = username
+    target_player.in_pk = True
+    target_player.pk_opponent = player.username
+    
+    save_player_data(session["username"], player)
+    save_player_data(username, target_player)
+    
+    return redirect(url_for('pk_battle', opponent=username))
 
+@app.route("/pk_battle/<opponent>")
+@login_required
+@check_health_status
+def pk_battle(opponent):
+    player = get_current_player()
+    opponent_player = Player.from_dict(load_player_data(opponent))
+    
+    # Check if the opponent is in PK mode
+    if not opponent_player.in_pk or not player.in_pk:
+        flash("对方已退出PK状态")
+        return redirect(url_for('scene'))
+    
+    remaining = request.args.get('remaining', None)  # Get remaining time if exists
+    return render_template("battle.html", 
+                         player=player, 
+                         monster=opponent_player,  # Use opponent as monster
+                         is_pk=True,
+                         remaining=remaining,  # Pass remaining time
+                         now=datetime.now())
+
+def handle_pk_victory(winner, loser):
+    # Randomly select a non-bound item from the loser's inventory
+    non_bound_items = [
+        item_id for item_id, item_data in loser.inventory.items()
+        if (item_id.startswith('equipment_') and 
+            not Equipment.from_dict(item_data).is_bound)
+    ]
+    
+    lost_item_name = None
+    if non_bound_items and random.random() < 0.3:  # 30% chance to lose an item
+        item_id = random.choice(non_bound_items)
+        lost_item_name = loser.inventory[item_id]["item"]["name"]  # Get item name
+        winner.inventory[item_id] = loser.inventory[item_id]  # Transfer item to winner
+        del loser.inventory[item_id]  # Remove item from loser's inventory
+        
+    # Update battle results
+    winner.last_battle_result = f"你击败了{loser.name}！"
+    if lost_item_name:
+        winner.last_battle_result += f" 获得了 {lost_item_name}。"
+    
+    loser.last_battle_result = f"你被{winner.name}击败了。"
+    if lost_item_name:
+        loser.last_battle_result += f" 失去了 {lost_item_name}。"
+    
+    # Reset PK status
+    winner.in_pk = False
+    winner.pk_opponent = None
+    loser.in_pk = False
+    loser.pk_opponent = None
+    
+    save_player_data(winner.username, winner)
+    save_player_data(loser.username, loser)
+
+@app.route("/pk_fight", methods=["POST"])
+@login_required
+def pk_fight():
+    player = get_current_player()
+    
+    # Check if player is actually in PK
+    if not player.in_pk or not player.pk_opponent:
+        return redirect(url_for('scene'))
+        
+    opponent_data = load_player_data(player.pk_opponent)
+    if not opponent_data:
+        # Reset player's PK state if opponent data is not found
+        player.in_pk = False
+        player.pk_opponent = None
+        save_player_data(session["username"], player)
+        flash("对方玩家数据未找到，无法继续战斗。")
+        return redirect(url_for('scene'))
+        
+    opponent = Player.from_dict(opponent_data)
+    
+    # Check if the player is dead
+    if player.health <= 0:
+        flash("你已被击败，无法继续战斗。")
+        return redirect(url_for('revive'))
+
+    # Check if the opponent is dead
+    if opponent.health <= 0:
+        handle_pk_victory(player, opponent)
+        save_player_data(session["username"], player)
+        save_player_data(opponent.username, opponent)
+        return redirect(url_for('battle_result'))
+
+    current_time = time.time()
+    
+    # Check if the player is within the cooldown period
+    if current_time - player.last_attack_time < 2:
+        remaining = 2 - (current_time - player.last_attack_time)
+        return redirect(url_for('pk_battle', opponent=opponent.username, remaining=remaining))
+    
+    action = request.form.get("action")
+    player.last_attack_time = current_time
+    
+    # Perform the attack
+    if action == "attack":
+        player.attack_monster(opponent)
+    else:
+        player.use_skill(opponent, action)
+
+    # Save the states immediately after attack
+    save_player_data(session["username"], player)
+    save_player_data(opponent.username, opponent)
+
+    # Check if the opponent died from this attack
+    if opponent.health <= 0:
+        handle_pk_victory(player, opponent)
+        save_player_data(session["username"], player)
+        save_player_data(opponent.username, opponent)
+        return redirect(url_for('battle_result'))
+
+    # Continue battle if opponent is still alive
+    return redirect(url_for('pk_battle', opponent=opponent.username))
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -9,8 +9,8 @@
     <h1>你已经死亡，选择复活方式：</h1>
     <p>{{ player.last_battle_result }}</p>
     {% if has_revive_item %}
-    <a href="{{ url_for('revive_action', method='item') }}">使用续命灯复活</a><br>
+        <a href="{{ url_for('revive_action', method='item') }}">使用续命灯满血复活</a><br>
     {% endif %}
-    <a href="{{ url_for('revive_action', method='weak') }}">虚弱复活</a><br>
+    <a href="{{ url_for('revive_action', method='weak') }}">虚弱复活(10%血量)</a><br>
 </body>
 </html>
