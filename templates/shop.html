@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商城</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
         .shop-item {
             display: flex;
             align-items: center;
@@ -12,34 +34,48 @@
             border-bottom: 1px solid #eee;
         }
         .item-name {
-            cursor: pointer;
             margin-right: 20px;
-            min-width: 100px;
+            min-width: 150px;
         }
         .item-price {
             margin-right: 20px;
-            color: #f60;
+            color: #666;
             min-width: 80px;
         }
         .quantity-input {
             width: 60px;
             margin-right: 10px;
+            padding: 3px;
+        }
+        button {
+            padding: 3px 10px;
         }
         .tooltip {
-            display: none;
             position: absolute;
             background: #f9f9f9;
             border: 1px solid #ddd;
             padding: 10px;
             z-index: 100;
+            display: none;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error {
+            color: red;
         }
     </style>
 </head>
 <body>
     <h1>商城</h1>
     <p>当前银两: {{ player.money }}</p>
+    
     {% if message %}
-    <p style="color: {% if success %}green{% else %}red{% endif %}">{{ message }}</p>
+    <p class="message {% if success %}success{% else %}error{% endif %}">{{ message }}</p>
     {% endif %}
     
     <div class="shop-items">
@@ -60,7 +96,9 @@
     
     <div id="tooltip" class="tooltip"></div>
     
-    <a href="{{ url_for('scene') }}">返回场景</a>
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    </div>
 
     <script>
         function showTooltip(event, text) {

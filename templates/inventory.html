@@ -3,6 +3,28 @@
 <head>
     <title>背包</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
         .inventory-item {
             display: flex;
             align-items: center;
@@ -10,7 +32,6 @@
             border-bottom: 1px solid #eee;
         }
         .item-name {
-            cursor: pointer;
             margin-right: 20px;
             min-width: 150px;
         }
@@ -25,19 +46,13 @@
         }
         .btn {
             padding: 5px 10px;
-            cursor: pointer;
+            text-decoration: none;
+            color: #0066cc;
+            margin-right: 10px;
         }
-        .btn-equip {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .btn-use {
-            background-color: #2196F3;
-            color: white;
-        }
-        .btn-destroy {
-            background-color: #f44336;
-            color: white;
+        .btn:hover {
+            text-decoration: underline;
+            color: #003366;
         }
     </style>
 </head>
@@ -56,8 +71,8 @@
                         {{ item_data.name }}
                     </a>
                     <div class="item-actions">
-                        <a href="{{ url_for('equip_item', item_id=item_id) }}" class="btn btn-equip">装备</a>
-                        <a href="{{ url_for('destroy_item', item_id=item_id) }}" class="btn btn-destroy">销毁</a>
+                        <a href="{{ url_for('equip_item', item_id=item_id) }}" class="btn">装备</a>
+                        <a href="{{ url_for('destroy_item', item_id=item_id) }}" class="btn">销毁</a>
                     </div>
                 </div>
             {% elif item_data is mapping and 'item' in item_data and item_data.quantity > 0 %}
@@ -68,15 +83,17 @@
                     <span class="item-quantity">x{{ item_data.quantity }}</span>
                     <div class="item-actions">
                         {% if item_data.item.is_usable %}
-                            <a href="{{ url_for('use_item', item=item_id) }}" class="btn btn-use">使用</a>
+                            <a href="{{ url_for('use_item', item=item_id) }}" class="btn">使用</a>
                         {% endif %}
-                        <a href="{{ url_for('destroy_item', item_id=item_id) }}" class="btn btn-destroy">销毁</a>
+                        <a href="{{ url_for('destroy_item', item_id=item_id) }}" class="btn">销毁</a>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
     
-    <a href="{{ url_for('scene') }}">返回场景</a>
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    </div>
 </body>
 </html>

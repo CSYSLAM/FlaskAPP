@@ -16,8 +16,24 @@
             font-size: 16px;
             text-align: left;
         }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
         .stat-section {
             margin-top: 10px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .actions a {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -71,8 +87,11 @@
             <a href="{{ url_for('enhance_page', item_id=item_id) }}">强化</a>
             <a href="{{ url_for('equip_item', item_id=item_id) }}">装备</a>
             <a href="{{ url_for('sell_item', item_id=item_id) }}">出售</a>
+        </div>
+        <div style="margin-top: 10px;">
             <a href="{{ url_for('inventory') }}">返回背包</a>
         </div>
+        
     </div>
 </body>
 </html>

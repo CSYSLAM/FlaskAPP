@@ -4,44 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>角色页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
+        .section {
+            margin-top: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .equipment-slot {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <h1>角色信息</h1>
-    <p>名字: {{ player.name }}</p>
-    <p>职业: {{ player.player_class }}</p>
-    <p>等级: {{ player.level }}</p>
-    <p>生命值: {{ player.health }}/{{ player.max_health }}</p>
-    <p>魔法值: {{ player.mana }}/{{ player.max_mana }}</p>
-    <p>攻击: {{ player.attack }}</p>
-    <p>防御: {{ player.defense }}</p>
-    <p>暴击率: {{ "%.1f"|format(player.crit_rate * 100) }}%</p>
-    <p>闪避率: {{ "%.1f"|format(player.dodge_rate * 100) }}%</p>
-    <p>经验: {{ player.experience }}/{{ player.exp_to_next_level }}</p>
-    {% if can_level_up %}
-    <a href="{{ url_for('level_up') }}">升级</a>
-    {% else %}
-    <p>需要更多经验才能升级。</p>
-    {% endif %}
-    <a href="{{ url_for('scene') }}">返回场景</a>
     
-    <!-- 在角色信息后添加装备栏 -->
-    <h2>装备</h2>
-    {% for slot, equipment in player.equipment.items() %}
-    <div>
-        <h3>{{ Equipment.SLOTS[slot] }}</h3>
-        {% if equipment %}
-            <p>{{ equipment.name }}</p>
-            {% for stat, value in equipment.base_stats.items() %}
-                <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }}</p>
-            {% endfor %}
-            {% for stat, (value, stars) in equipment.extra_stats.items() %}
-                <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }} ({{ stars }}星)</p>
-            {% endfor %}
-            <a href="{{ url_for('unequip', slot=slot) }}">卸下</a>
+    <div class="section">
+        <p>名字: {{ player.name }}</p>
+        <p>职业: {{ player.player_class }}</p>
+        <p>等级: {{ player.level }}</p>
+        <p>生命值: {{ player.health }}/{{ player.max_health }}</p>
+        <p>魔法值: {{ player.mana }}/{{ player.max_mana }}</p>
+        <p>攻击: {{ player.attack }}</p>
+        <p>防御: {{ player.defense }}</p>
+        <p>暴击率: {{ "%.1f"|format(player.crit_rate * 100) }}%</p>
+        <p>闪避率: {{ "%.1f"|format(player.dodge_rate * 100) }}%</p>
+        <p>经验: {{ player.experience }}/{{ player.exp_to_next_level }}</p>
+        {% if can_level_up %}
+            <a href="{{ url_for('level_up') }}">升级</a>
         {% else %}
-            <p>未装备</p>
+            <p>需要更多经验才能升级。</p>
         {% endif %}
     </div>
-    {% endfor %}
+    
+    <div class="section">
+        <h2>装备</h2>
+        {% for slot, equipment in player.equipment.items() %}
+        <div class="equipment-slot">
+            <h3>{{ Equipment.SLOTS[slot] }}</h3>
+            {% if equipment %}
+                <p>{{ equipment.name }}</p>
+                {% for stat, value in equipment.base_stats.items() %}
+                    <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }}</p>
+                {% endfor %}
+                {% for stat, (value, stars) in equipment.extra_stats.items() %}
+                    <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }} ({{ stars }}星)</p>
+                {% endfor %}
+                <a href="{{ url_for('unequip', slot=slot) }}">卸下</a>
+            {% else %}
+                <p>未装备</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="margin-top: 10px;">
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    </div>
 </body>
 </html>

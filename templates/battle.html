@@ -5,18 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>战斗页面</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
+        .section {
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
         .battle-controls {
             display: flex;
             gap: 10px;
             margin: 10px 0;
         }
+        .battle-controls button {
+            padding: 5px 10px;
+        }
         .health-bar {
             letter-spacing: 2px;
+            margin: 5px 0;
         }
         .battle-info {
-            margin: 10px 0;
-            padding: 5px;
             background-color: #f5f5f5;
+            padding: 10px;
+            margin: 10px 0;
         }
         .battle-message {
             color: #666;
@@ -44,41 +75,47 @@
     </div>
 
     <div class="battle-info">
-        <p>生命: {{ player.health }}/{{ player.max_health }} {% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}</p>
-        <p>魔法: {{ player.mana }}/{{ player.max_mana }} {% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}</p>
-        
-        <p>【{{ monster.name }}】</p>
-        <p>生命: {{ monster.health }}/{{ monster.max_health }} {% if monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}</p>
-        <div class="health-bar">
-            {% set health_percent = (monster.health / monster.max_health * 10) | round | int %}
-            {% for i in range(10) %}
-                {% if i < health_percent %}●{% else %}○{% endif %}
-            {% endfor %}
+        <div class="section">
+            <p>生命: {{ player.health }}/{{ player.max_health }} {% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}</p>
+            <p>魔法: {{ player.mana }}/{{ player.max_mana }} {% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}</p>
         </div>
         
-        <h3>【战斗信息】</h3>
-        {% if player.last_action %}
-            <p>【我方】{{ player.last_action }}
-            {% if player.last_mana_cost %}，消耗{{ player.last_mana_cost }}点魔法值{% endif %}
-            {% if player.last_damage_dealt %}
-                {% if player.last_damage_dealt == "闪避" %}
+        <div class="section">
+            <p>【{{ monster.name }}】</p>
+            <p>生命: {{ monster.health }}/{{ monster.max_health }} {% if monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}</p>
+            <div class="health-bar">
+                {% set health_percent = (monster.health / monster.max_health * 10) | round | int %}
+                {% for i in range(10) %}
+                    {% if i < health_percent %}●{% else %}○{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>【战斗信息】</h3>
+            {% if player.last_action %}
+                <p>【我方】{{ player.last_action }}
+                {% if player.last_mana_cost %}，消耗{{ player.last_mana_cost }}点魔法值{% endif %}
+                {% if player.last_damage_dealt %}
+                    {% if player.last_damage_dealt == "闪避" %}
+                        ，被闪避了
+                    {% else %}
+                        ，造成{{ player.last_damage_dealt }}点伤害
+                    {% endif %}
+                {% endif %}
+                </p>
+            {% endif %}
+
+            {% if monster.last_action %}
+                <p>【敌方】{{ monster.name }}使用了{{ monster.last_skill }}
+                {% if monster.last_damage_dealt == "闪避" %}
                     ，被闪避了
                 {% else %}
-                    ，造成{{ player.last_damage_dealt }}点伤害
+                    ，造成{{ monster.last_damage_dealt }}点伤害
                 {% endif %}
+                </p>
             {% endif %}
-            </p>
-        {% endif %}
-
-        {% if monster.last_action %}
-            <p>【敌方】{{ monster.name }}使用了{{ monster.last_skill }}
-            {% if monster.last_damage_dealt == "闪避" %}
-                ，被闪避了
-            {% else %}
-                ，造成{{ monster.last_damage_dealt }}点伤害
-            {% endif %}
-            </p>
-        {% endif %}
+        </div>
         
         <p>{{ now.strftime('%Y-%m-%d %H:%M:%S') }}</p>
     </div>
