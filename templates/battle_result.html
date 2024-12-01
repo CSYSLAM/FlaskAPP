@@ -63,7 +63,9 @@
         {% if is_pk %}
             <a href="{{ url_for('scene') }}">返回场景</a>
         {% else %}
-            <a href="{{ url_for('continue_battle') }}">继续挑战</a>
+            {% if winner and not is_pk and not winner.pk_opponent %}
+                <a href="{{ url_for('continue_battle') }}">继续挑战</a>
+            {% endif %}
             <a href="{{ url_for('scene') }}">返回场景</a>
         {% endif %}
     </div>

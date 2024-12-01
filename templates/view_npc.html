@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>查看NPC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .section {
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h2>{{ monster.name }}</h2>
+        <p>等级: {{ monster.level }}</p>
+        <p>描述: {{ monster.description }}</p>
+    </div>
+
+    <div class="section">
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    </div>
+</body>
+</html>

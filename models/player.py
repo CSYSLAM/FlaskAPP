@@ -1,23 +1,10 @@
 import random
 from models.equipment import Equipment
+from models.skill import Skill
 from models.item import Item, ItemType
 from datetime import datetime
 
 class Player:
-    SKILLS = {
-        "术士": ["天雷术", "地火术"],
-        "战士": ["十刃斩", "暴风杀"],
-        "刺客": ["破甲刺", "二连击"]
-    }
-    
-    SKILL_EFFECTS = {
-        "天雷术": {"damage_multiplier": 2.0, "mana_cost": 30},
-        "地火术": {"damage_multiplier": 1.8, "mana_cost": 25},
-        "十刃斩": {"damage_multiplier": 1.9, "mana_cost": 25},
-        "暴风杀": {"damage_multiplier": 1.7, "mana_cost": 20},
-        "破甲刺": {"damage_multiplier": 2.2, "mana_cost": 35},
-        "二连击": {"damage_multiplier": 1.6, "mana_cost": 15, "hits": 2}
-    }
     CLASSES = {
         "术士": {
             "base_stats": {
@@ -88,7 +75,6 @@ class Player:
         self.last_battle_result = ""
         self.item_effect = ""
         self.current_location = "outdoor.village"
-        self.learned_skills = []
         self.equipment = {slot: None for slot in Equipment.SLOTS}
         self.inventory = {}
         self.last_chat_message = None  # 最后收到的聊天消息
@@ -102,6 +88,8 @@ class Player:
         self.in_pk = False
         self.pk_opponent = None
         self.last_attack_time = 0
+        self.learned_skills = {}  # 改为字典存储 {skill_id: skill_level}
+        self.skill_exp = {}  # 技能经验值 {skill_id: exp}
 
         # 基础属性(每级成长)
         self.base_stats = self.CLASSES[player_class]["base_stats"].copy()
@@ -246,9 +234,13 @@ class Player:
         return "\n".join(changes)
 
     def update_stats(self):
-        # 计算成长属性 = 基础属性 * 等级
-        for stat, value in self.base_stats.items():
-            self.growth_stats[stat] = value * self.level
+        # 获取职业的等级成长属性
+        level_up_stats = self.CLASSES[self.player_class]["level_up_stats"]
+        
+        # 计算成长属性 = 基础属性 + (等级-1) * 等级成长值
+        for stat, base_value in self.base_stats.items():
+            growth = level_up_stats[stat] * (self.level - 1)
+            self.growth_stats[stat] = base_value + growth
         
         # 计算装备属性
         self.equipment_stats = {stat: 0 for stat in self.growth_stats}
@@ -305,23 +297,69 @@ class Player:
             monster.last_damage_taken = 0
             return 0
 
-    def learn_skill(self, skill_name):
-        if skill_name in self.SKILLS[self.player_class]:
-            if skill_name not in self.learned_skills:
-                self.learned_skills.append(skill_name)
-                return True
-        return False
+    def learn_skill(self, skill_id):
+        """学习新技能"""
+        skills = Skill.load_skills()
+        if skill_id not in skills:
+            return False, "技能不存在"
+            
+        skill = skills[skill_id]
+        if skill.class_required and skill.class_required != self.player_class:
+            return False, "职业不符合要求"
+            
+        if skill_id in self.learned_skills:
+            return False, "已经学习过该技能"
+            
+        exp_cost, money_cost = skill.level_up_cost()
+        if self.experience < exp_cost:
+            return False, f"经验不足,需要{exp_cost}点经验"
+            
+        if self.money < money_cost:
+            return False, f"银两不足,需要{money_cost}银两"
+            
+        self.experience -= exp_cost
+        self.money -= money_cost
+        self.learned_skills[skill_id] = 1  # 初始等级为1
+        self.skill_exp[skill_id] = 0
+        return True, f"成功学习技能【{skill.name}】"
+    
+    def upgrade_skill(self, skill_id):
+        """升级已学技能"""
+        if skill_id not in self.learned_skills:
+            return False, "未学习该技能"
+            
+        skills = Skill.load_skills()
+        skill = skills[skill_id]
+        current_level = self.learned_skills[skill_id]
+        
+        if current_level >= skill.max_level:
+            return False, "技能已达到最高等级"
+            
+        exp_cost, money_cost = skill.level_up_cost()
+        if self.experience < exp_cost:
+            return False, f"经验不足,需要{exp_cost}点经验"
+            
+        if self.money < money_cost:
+            return False, f"银两不足,需要{money_cost}银两"
+            
+        self.experience -= exp_cost
+        self.money -= money_cost
+        self.learned_skills[skill_id] += 1
+        return True, f"成功将【{skill.name}】升级到{self.learned_skills[skill_id]}级"
 
-    def use_skill(self, monster, skill_name):
-        if skill_name not in self.learned_skills and skill_name != "attack":
+    def use_skill(self, monster, skill_id):
+        """使用技能"""
+        if skill_id == "attack":
+            return self.attack_monster(monster)
+            
+        if skill_id not in self.learned_skills:
             self.last_action = "技能未学习"
             return 0
             
-        if skill_name == "attack":
-            return self.attack_monster(monster)
-            
-        skill = self.SKILL_EFFECTS[skill_name]
-        mana_cost = skill["mana_cost"]
+        skills = Skill.load_skills()
+        skill = skills[skill_id]
+        skill.level = self.learned_skills[skill_id]  # 设置技能等级
+        mana_cost = skill.get_current_mana_cost()
         
         if self.mana < mana_cost:
             self.last_action = f"魔法值不足，需要{mana_cost}点魔法值"
@@ -331,15 +369,15 @@ class Player:
             
         self.mana -= mana_cost
         self.last_mana_cost = mana_cost
-        self.last_skill = skill_name
-        self.last_action = f"使用了{skill_name}"
+        self.last_skill = skill.name
+        self.last_action = f"使用了{skill.name}"
         
         if random.random() >= monster.dodge_rate:
-            base_damage = max(0, self.attack * skill["damage_multiplier"] - monster.defense)
+            base_damage = max(0, self.attack * skill.get_current_damage_rate() - monster.defense)
             
-            if "hits" in skill:
+            if skill.hits > 1:
                 total_damage = 0
-                for _ in range(skill["hits"]):
+                for _ in range(skill.hits):
                     damage = base_damage
                     if random.random() <= self.crit_rate:
                         damage *= 2

@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, session, f
 from models.player import Player
 from models.monster import Monster
 from models.item import Item
+from models.skill import Skill
 from models.equipment import Equipment
 import json
 import time
@@ -195,6 +196,31 @@ def logout():
         session.pop("username", None)
     return redirect(url_for("login_page"))
 
+####   NPC相关逻辑#####
+@app.route("/npc/<monster_id>")
+@login_required
+@check_health_status
+@check_pk_status
+def view_npc(monster_id):
+    player = get_current_player()
+    monster = Monster.create_monster(monster_id)
+    
+    if not monster or monster.killable:
+        return redirect(url_for("scene"))
+        
+    # 如果是技能教官,显示技能学习界面
+    if monster_id == "monster_village_trainer":
+        skills = Skill.load_skills()  # 加载所有技能
+        return render_template("skill_hall.html", 
+                             player=player,
+                             monster=monster,
+                             skills=skills)  # 传入skills变量
+                             
+    # 其他NPC的查看界面
+    return render_template("view_npc.html",
+                         player=player, 
+                         monster=monster)
+
 #####  battle start 战斗相关逻辑#####
 @app.route("/battle")
 @login_required
@@ -202,6 +228,9 @@ def logout():
 @check_pk_status
 def battle():
     player = get_current_player()
+    # 检查怪物是否可以战斗
+    if not current_monster.killable:
+        return redirect(url_for("view_npc", monster_id=current_monster.monster_id))
     # Only reset battle information if coming from scene (not during battle)
     referrer = request.referrer
     if referrer and 'scene' in referrer:
@@ -347,41 +376,34 @@ def battle_result():
     result = player.last_battle_result
     lost_experience = 0
     
-    # 只有PVE战斗失败才会损失经验
     if not player.pk_opponent and player.health <= 0 and player.experience > 0:
         lost_experience = max(0, int(player.experience * 0.1))
         player.experience -= lost_experience
     
-    # 检查是否是PK战斗
     is_pk = player.pk_opponent is not None
+    winner = None
+    loser = None
     
-    if not is_pk:
-        return render_template("battle_result.html", 
-                           result=result, 
-                           lost_experience=lost_experience,
-                           is_pk=False)
-    
-    # 处理PK战斗结果
-    opponent_data = load_player_data(player.pk_opponent)
-    if not opponent_data:
-        flash("无法加载对手数据")
-        return redirect(url_for('scene'))
-        
-    winner = player if player.health > 0 else Player.from_dict(opponent_data)
-    loser = Player.from_dict(opponent_data) if winner == player else player
+    if is_pk:
+        opponent_data = load_player_data(player.pk_opponent)
+        if opponent_data:
+            if player.health > 0:
+                winner = player
+                loser = Player.from_dict(opponent_data)
+            else:
+                winner = Player.from_dict(opponent_data)
+                loser = player
+    else:
+        winner = player.health > 0
 
-    # 重置PK状态
-    player.in_pk = False
-    player.pk_opponent = None
     save_player_data(session["username"], player)
 
     return render_template("battle_result.html", 
                        result=result, 
                        lost_experience=lost_experience,
-                       is_pk=True,
+                       is_pk=is_pk,
                        winner=winner,
-                       loser=loser,
-                       player=player)
+                       loser=loser)
 
 @app.route("/start_pk/<username>", methods=["POST"])
 @login_required
@@ -736,10 +758,25 @@ def destroy_item(item_id):
 @login_required
 def learn_skill(skill):
     player = get_current_player()
-    if player.learn_skill(skill):
+    success, message = player.learn_skill(skill)
+    if success:
         save_player_data(session["username"], player)
-        return redirect(url_for("scene"))
-    return "无法学习该技能"
+        flash(message, "success")
+    else:
+        flash(message, "error")
+    return redirect(url_for("view_npc", monster_id="monster_village_trainer"))
+
+@app.route("/upgrade_skill/<skill>")
+@login_required
+def upgrade_skill(skill):
+    player = get_current_player()
+    success, message = player.upgrade_skill(skill)
+    if success:
+        save_player_data(session["username"], player)
+        flash(message, "success")
+    else:
+        flash(message, "error")
+    return redirect(url_for("view_npc", monster_id="monster_village_trainer"))
 
 @app.route("/skill_hall")
 @login_required

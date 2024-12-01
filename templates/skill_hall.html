@@ -2,30 +2,102 @@
 <html>
 <head>
     <title>技能馆</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #003366;
+        }
+        .section {
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .alert {
+            margin: 10px 0;
+            padding: 10px 0;
+            color: #666;
+        }
+        .alert-success {
+            color: #3c763d;
+        }
+        .alert-error {
+            color: #a94442;
+        }
+    </style>
 </head>
 <body>
     <h1>技能馆</h1>
-    <h2>可学习的技能:</h2>
-    {% for skill in player.SKILLS[player.player_class] %}
-        {% if skill not in player.learned_skills %}
-            <div>
-                <p>{{ skill }}</p>
-                <p>魔法消耗: {{ player.SKILL_EFFECTS[skill].mana_cost }}</p>
-                <p>伤害倍率: {{ player.SKILL_EFFECTS[skill].damage_multiplier }}</p>
-                <a href="{{ url_for('learn_skill', skill=skill) }}">学习</a>
-            </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endif %}
-    {% endfor %}
+    {% endwith %}
     
-    <h2>已学习的技能:</h2>
-    {% for skill in player.learned_skills %}
-        <div>
-            <p>{{ skill }}</p>
-            <p>魔法消耗: {{ player.SKILL_EFFECTS[skill].mana_cost }}</p>
-            <p>伤害倍率: {{ player.SKILL_EFFECTS[skill].damage_multiplier }}</p>
-        </div>
-    {% endfor %}
+    <div class="section">
+        <h2>可学习的技能:</h2>
+        {% for skill in skills.values() %}
+            {% if skill.class_required in [None, player.player_class] and skill.skill_id not in player.learned_skills %}
+                <div class="section">
+                    <p>{{ skill.name }}</p>
+                    <p>描述: {{ skill.description }}</p>
+                    <p>基础伤害倍率: {{ "%.1f"|format(skill.base_damage_rate) }}</p>
+                    <p>基础魔法消耗: {{ skill.base_mana_cost }}</p>
+                    {% if skill.effect_description %}
+                        <p>特殊效果: {{ skill.effect_description }}</p>
+                    {% endif %}
+                    {% set exp_cost, money_cost = skill.level_up_cost() %}
+                    <p>学习需要: {{ exp_cost }}经验值, {{ money_cost }}银两</p>
+                    <a href="{{ url_for('learn_skill', skill=skill.skill_id) }}">学习</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
     
-    <a href="{{ url_for('scene') }}">返回场景</a>
+    <div class="section">
+        <h2>已学习的技能:</h2>
+        {% for skill_id in player.learned_skills %}
+            {% set skill = skills[skill_id] %}
+            <div class="section">
+                <p>{{ skill.name }} (等级:{{ skill.level }}/{{ skill.max_level }})</p>
+                <p>当前伤害倍率: {{ "%.1f"|format(skill.get_current_damage_rate()) }}</p>
+                <p>当前魔法消耗: {{ skill.get_current_mana_cost() }}</p>
+                {% if skill.effect_description %}
+                    <p>特殊效果: {{ skill.effect_description }}</p>
+                {% endif %}
+                {% if skill.level < skill.max_level %}
+                    {% set exp_cost, money_cost = skill.level_up_cost() %}
+                    <p>升级需要: {{ exp_cost }}经验值, {{ money_cost }}银两</p>
+                    <a href="{{ url_for('upgrade_skill', skill=skill.skill_id) }}">升级</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <a href="{{ url_for('scene') }}">返回场景</a>
+    </div>
 </body>
 </html>

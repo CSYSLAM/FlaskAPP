@@ -180,7 +180,12 @@
     </div>
 
     <div class="section">
-        怪物：<a href="{{ url_for('battle') }}">{{ monster.name }}({{ monster.level }}级)</a>
+        怪物：
+        {% if monster.killable %}
+            <a href="{{ url_for('battle') }}">{{ monster.name }}({{ monster.level }}级)</a>
+        {% else %}
+            <a href="{{ url_for('view_npc', monster_id=monster.monster_id) }}">{{ monster.name }}({{ monster.level }}级)</a>
+        {% endif %}
     </div>
 
     <div class="section">
