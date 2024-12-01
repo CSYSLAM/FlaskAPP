@@ -1,28 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>聊天记录</title>
+    <title>聊天与通知</title>
     <style>
-        .chat-container {
-            margin: 20px;
-            padding: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2, h3, p, ul {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        .view-toggle {
+            margin: 20px 0;
+        }
+        .view-toggle a {
+            margin-right: 10px;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #0066cc;
+            border: 1px solid #ccc;
+        }
+        .view-toggle a.active {
+            background-color: #eee;
         }
         .message {
             margin: 10px 0;
             padding: 5px;
+            border-bottom: 1px solid #eee;
         }
-        .message a {
-            color: inherit;
+        .notification {
+            background-color: #f5f5f5;
+        }
+        a {
             text-decoration: none;
+            color: #0066cc;
         }
-        .message a:hover {
+        a:hover {
             text-decoration: underline;
+            color: #003366;
         }
     </style>
 </head>
 <body>
-    <h1>聊天记录</h1>
-    <div class="chat-container">
+    <div class="view-toggle">
+        <a href="{{ url_for('toggle_view', view_type='chat') }}" 
+           class="{{ 'active' if player.current_view == 'chat' }}">私聊记录</a>
+        <a href="{{ url_for('toggle_view', view_type='notifications') }}"
+           class="{{ 'active' if player.current_view == 'notifications' }}">通知记录</a>
+    </div>
+
+    {% if player.current_view == 'chat' %}
+        <h2>私聊记录</h2>
         {% for username, messages in player.chat_history.items() %}
             {% for msg in messages %}
                 <div class="message">
@@ -36,7 +70,20 @@
                 </div>
             {% endfor %}
         {% endfor %}
-    </div>
+    {% else %}
+        <h2>通知记录</h2>
+        {% for notification in player.notifications|reverse %}
+            <div class="message notification">
+                {% if notification.type == 'gift_received' %}
+                    【通知】<a href="{{ url_for('view_player', username=notification.sender_username) }}">{{ notification.sender_name }}</a>赠送给你{{ notification.item_name }} x{{ notification.quantity }}
+                {% elif notification.type == 'gift_sent' %}
+                    【赠送成功】你成功赠送{{ notification.item_name }} x{{ notification.quantity }}给<a href="{{ url_for('view_player', username=notification.receiver_username) }}">{{ notification.receiver_name }}</a>
+                {% endif %}
+                <small>({{ notification.time }})</small>
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <a href="{{ url_for('scene') }}">返回场景</a>
 </body>
 </html>

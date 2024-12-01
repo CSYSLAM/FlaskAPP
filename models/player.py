@@ -94,6 +94,9 @@ class Player:
         self.last_chat_message = None  # 最后收到的聊天消息
         self.chat_refresh_count = 0    # 场景刷新计数
         self.chat_history = {}         # 聊天历史记录 {username: [messages]}
+        self.notifications = []  # Add this line
+        self.current_view = "chat"  
+        self.enhance_bonus_rate = 0  # 添加全局强化成功率加成
 
         # 基础属性(每级成长)
         self.base_stats = self.CLASSES[player_class]["base_stats"].copy()
@@ -174,6 +177,7 @@ class Player:
         
         # 更换装备
         old_equipment = self.equipment[equipment.slot]
+        equipment.update_name()  # 更新装备名称
         self.equipment[equipment.slot] = equipment
         
         if not equipment.is_bound:
@@ -194,6 +198,7 @@ class Player:
             old_stats = self.get_current_stats()
             
             equipment = self.equipment[slot]
+            equipment.update_name()  # 更新装备名称
             self.equipment[slot] = None
             
             # 更新属性并生成变化信息
@@ -519,15 +524,30 @@ class Player:
             if key != "inventory" and key != "equipment":
                 setattr(player, key, value)
         
-        # Convert inventory data back to objects
+        # 正确加载装备数据
+        if "equipment" in data:
+            equipment_data = data["equipment"]
+            player.equipment = {
+                slot: Equipment.from_dict(equip_data) if equip_data else None
+                for slot, equip_data in equipment_data.items()
+            }
+        
+        # 正确加载背包数据，保持原有数据结构
+        if "inventory" in data:
+            player.inventory = data["inventory"]
+            
+        # 保持原有的物品加载逻辑
         items = Item.load_items()
         for item_id, item_data in data.get("inventory", {}).items():
             if isinstance(item_data, dict) and "quantity" in item_data:
-                if item_id in items:
+                if item_id in items and not item_id.startswith('equipment_'):
                     player.inventory[item_id] = {
-                        "item": items[item_id],
+                        "item": items[item_id].to_dict(),
                         "quantity": item_data["quantity"]
                     }
+                    
         return player
+
+
 
 

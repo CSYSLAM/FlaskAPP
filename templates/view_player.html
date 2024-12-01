@@ -22,6 +22,11 @@
             <button type="submit">发送私聊</button>
         </form>
     </div>
+    <!-- Add this after the chat form -->
+    <div style="margin-bottom: 20px;">
+        <a href="{{ url_for('gift_page', username=target_player.username) }}">赠送物品</a>
+    </div>
+
     
     <h1>角色信息</h1>
     <p>名字: {{ target_player.name }}</p>

@@ -479,13 +479,13 @@ def set_shortcut():
     save_player_data(session["username"], player)
     return redirect(url_for('battle'))
 
-
 @app.route("/equipment/<item_id>")
 @login_required
 def view_equipment(item_id):
     player = get_current_player()
     if item_id in player.inventory:
-        equipment = player.inventory[item_id]
+        equipment_data = player.inventory[item_id]
+        equipment = Equipment.from_dict(equipment_data)  # Convert dict to Equipment object
         return render_template('equipment_view.html', 
                              equipment=equipment, 
                              item_id=item_id,
@@ -622,6 +622,229 @@ def send_message(to_username):
 def chat():
     player = get_current_player()
     return render_template("chat.html", player=player)
+
+@app.route("/gift/<username>")
+@login_required
+def gift_page(username):
+    player = get_current_player()
+    target_player_data = load_player_data(username)
+    if not target_player_data:
+        return redirect(url_for("scene"))
+    
+    # Filter non-bound items
+    giftable_items = {}
+    for item_id, item_data in player.inventory.items():
+        if item_id.startswith('equipment_'):
+            equipment = Equipment.from_dict(item_data)
+            if not equipment.is_bound:
+                giftable_items[item_id] = item_data
+        else:
+            giftable_items[item_id] = item_data
+            
+    return render_template("gift.html", 
+                         player=player,
+                         target_player=target_player_data,
+                         giftable_items=giftable_items)
+
+@app.route("/send_gift/<username>", methods=["POST"])
+@login_required
+def send_gift(username):
+    player = get_current_player()
+    target_player_data = load_player_data(username)
+    if not target_player_data:
+        return redirect(url_for("scene"))
+        
+    item_id = request.form.get("item_id")
+    quantity = int(request.form.get("quantity", 1))
+    
+    if item_id not in player.inventory:
+        flash("物品不存在")
+        return redirect(url_for("gift_page", username=username))
+        
+    item_data = player.inventory[item_id]
+    
+    # Get item name for notification
+    if item_id.startswith('equipment_'):
+        item_name = item_data["name"]
+    else:
+        item_name = item_data["item"]["name"]
+    
+    # Handle equipment
+    if item_id.startswith('equipment_'):
+        equipment = Equipment.from_dict(item_data)
+        if equipment.is_bound:
+            flash("绑定装备无法赠送")
+            return redirect(url_for("gift_page", username=username))
+        
+        # 重新加载接收者最新数据
+        target_player_data = load_player_data(username)
+        target_player = Player.from_dict(target_player_data)
+        
+        # 生成新ID并添加装备
+        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
+        target_player.inventory[new_id] = equipment.to_dict()
+        
+        # 从赠送者背包中删除装备
+        del player.inventory[item_id]
+
+    # Handle stackable items
+    else:
+        if quantity > item_data["quantity"]:
+            flash("数量不足")
+            return redirect(url_for("gift_page", username=username))
+            
+        item_data["quantity"] -= quantity
+        if item_data["quantity"] <= 0:
+            del player.inventory[item_id]
+            
+        target_player = Player.from_dict(target_player_data)
+        if item_id in target_player.inventory:
+            target_player.inventory[item_id]["quantity"] += quantity
+        else:
+            target_player.inventory[item_id] = {
+                "item": item_data["item"],
+                "quantity": quantity
+            }
+
+    # Add notification for sender
+    player.notifications.append({
+        "type": "gift_sent",
+        "content": f"【赠送成功】你成功赠送{item_name} x{quantity}给{target_player_data['name']}",
+        "time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        "item_name": item_name,
+        "quantity": quantity,
+        "receiver_name": target_player_data['name'],
+        "receiver_username": target_player_data['username']
+    })
+    
+    # Add notification for receiver
+    target_player.last_chat_message = {
+        "sender": player.name,
+        "content": f"赠送给你{item_name} x{quantity}",
+        "time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        "is_gift": True
+    }
+    target_player.chat_refresh_count = 0
+    
+    target_player.notifications.append({
+        "type": "gift_received",
+        "content": f"【通知】{player.name}赠送给你{item_name} x{quantity}",
+        "time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        "item_name": item_name,
+        "quantity": quantity,
+        "sender_name": player.name,
+        "sender_username": player.username
+    })
+    
+    save_player_data(username, target_player)
+    save_player_data(session["username"], player)
+    flash(f"【赠送成功】你成功赠送{item_name} x{quantity}给{target_player_data['name']}")
+    return redirect(url_for("view_player", username=username))
+
+
+@app.route("/toggle_view/<view_type>")
+@login_required
+def toggle_view(view_type):
+    player = get_current_player()
+    player.current_view = view_type
+    save_player_data(session["username"], player)
+    return redirect(url_for("chat"))
+
+@app.route("/enhance/<item_id>")
+@login_required
+def enhance_page(item_id):
+    player = get_current_player()
+    if item_id not in player.inventory:
+        return redirect(url_for('inventory'))
+        
+    equipment = Equipment.from_dict(player.inventory[item_id])
+    
+    # 检查是否可以强化
+    can_enhance = (
+        player.money >= 5000 and
+        equipment.enhance_level < 50 and
+        'enhance_gem' in player.inventory and
+        player.inventory['enhance_gem']['quantity'] > 0
+    )
+    
+    return render_template('enhance.html',
+                         player=player,
+                         equipment=equipment,
+                         item_id=item_id,
+                         can_enhance=can_enhance,
+                         Equipment=Equipment)
+
+@app.route("/enhance/<item_id>", methods=["POST"])
+@login_required
+def enhance_equipment(item_id):
+    player = get_current_player()
+    if item_id not in player.inventory:
+        return redirect(url_for('inventory'))
+        
+    equipment = Equipment.from_dict(player.inventory[item_id])
+    
+    # 检查条件
+    if (equipment.enhance_level >= 50 or
+        player.money < 5000 or
+        'enhance_gem' not in player.inventory or
+        player.inventory['enhance_gem']['quantity'] < 1):
+        return render_template('enhance.html',
+                             player=player,
+                             equipment=equipment,
+                             item_id=item_id,
+                             message="强化条件不足",
+                             success=False,
+                             Equipment=Equipment)
+    
+    # 扣除材料
+    player.money -= 5000
+    player.inventory['enhance_gem']['quantity'] -= 1
+    if player.inventory['enhance_gem']['quantity'] <= 0:
+        del player.inventory['enhance_gem']
+    
+    # 尝试强化
+    success_rate = equipment.get_enhance_success_rate(player.enhance_bonus_rate)
+    if random.random() < success_rate:
+        equipment.enhance_level += 1
+        player.enhance_bonus_rate = 0
+        
+        # 计算总强化加成基于初始属性
+        for stat, initial_value in equipment.initial_stats.items():
+            total_bonus = int(initial_value * 0.1 * equipment.enhance_level)
+            equipment.base_stats[stat] = initial_value + total_bonus
+        
+        base_name = f"【{equipment.rarity}】{equipment.template['name']}({equipment.stars}星)({equipment.level_required}级)"
+        equipment.name = f"{base_name}+{equipment.enhance_level}"
+        
+        message = f"强化成功!装备等级提升至+{equipment.enhance_level}"
+        success = True
+    else:
+        equipment.enhance_level = max(0, equipment.enhance_level - 1)
+        player.enhance_bonus_rate += 0.05
+        
+        # 失败后重新计算总强化加成
+        for stat, initial_value in equipment.initial_stats.items():
+            total_bonus = int(initial_value * 0.1 * equipment.enhance_level)
+            equipment.base_stats[stat] = initial_value + total_bonus
+        
+        base_name = f"【{equipment.rarity}】{equipment.template['name']}({equipment.stars}星)({equipment.level_required}级)"
+        equipment.name = f"{base_name}+{equipment.enhance_level}" if equipment.enhance_level > 0 else base_name
+        
+        message = f"强化失败!装备等级降至+{equipment.enhance_level},下次强化成功率+5%"
+        success = False
+
+    # 更新装备数据
+    player.inventory[item_id] = equipment.to_dict()
+    save_player_data(session["username"], player)
+    
+    return render_template('enhance.html',
+                         player=player,
+                         equipment=equipment,
+                         item_id=item_id,
+                         message=message,
+                         success=success,
+                         Equipment=Equipment)
+
 
 
 if __name__ == "__main__":

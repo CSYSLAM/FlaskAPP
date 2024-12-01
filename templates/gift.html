@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>赠送物品</title>
+    <style>
+        .item-list {
+            margin: 20px 0;
+        }
+        .item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>赠送物品给 {{ target_player.name }}</h1>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: red;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="item-list">
+        {% for item_id, item_data in giftable_items.items() %}
+            <div class="item">
+                <form action="{{ url_for('send_gift', username=target_player.username) }}" method="post">
+                    <input type="hidden" name="item_id" value="{{ item_id }}">
+                    {% if item_id.startswith('equipment_') %}
+                        <p>{{ item_data.name }}</p>
+                        <button type="submit">赠送</button>
+                    {% else %}
+                        <p>{{ item_data.item.name }} (拥有: {{ item_data.quantity }})</p>
+                        <input type="number" name="quantity" value="1" min="1" max="{{ item_data.quantity }}">
+                        <button type="submit">赠送</button>
+                    {% endif %}
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <a href="{{ url_for('view_player', username=target_player.username) }}">返回</a>
+</body>
+</html>

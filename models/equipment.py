@@ -35,10 +35,17 @@ class Equipment:
         self.is_bound = self.template.get("is_bound", False)
         self.name = f"【{self.rarity}】{self.template['name']}({self.stars}星)({self.level_required}级)"
         self.description = self.template['description']
-        
-        self.base_stats = self._calculate_base_stats()
+        self.enhance_level = 0  # 强化等级
+
+        # Calculate and store initial stats
+        self.initial_stats = self._calculate_base_stats()
+        self.base_stats = self.initial_stats.copy()
         self.extra_stats = self._generate_extra_stats()
         self.sell_price = self._calculate_sell_price()
+
+    def update_name(self):
+        base_name = f"【{self.rarity}】{self.template['name']}({self.stars}星)({self.level_required}级)"
+        self.name = f"{base_name}+{self.enhance_level}" if self.enhance_level > 0 else base_name
 
     def _calculate_sell_price(self) -> int:
         base_price = self.template.get('base_price', 1000)
@@ -57,6 +64,17 @@ class Equipment:
             stat: int(value * ratio)
             for stat, value in self.template["base_stats"].items()
         }
+
+    def get_enhance_bonus_stats(self) -> Dict[str, float]:
+        bonus_stats = {}
+        template_stats = self.template["base_stats"]
+        for stat, value in template_stats.items():
+            bonus_stats[stat] = value * 0.1 * self.enhance_level
+        return bonus_stats
+
+    def get_total_stats(self) -> Dict[str, float]:
+        total_stats = self.base_stats.copy()
+        return total_stats
 
     def _generate_extra_stats(self) -> Dict[str, tuple]:
         extra_stats = {}
@@ -119,7 +137,34 @@ class Equipment:
                     else:
                         changes.append(f"{name}: {diff:+d}")
         return "\n".join(changes)
-
+    
+    def get_enhance_success_rate(self, player_bonus_rate: float = 0) -> float:
+        base_rate = 1.0
+        if self.enhance_level < 1:
+            base_rate = 1.0
+        elif self.enhance_level < 10:
+            base_rate = 0.95
+        elif self.enhance_level < 18:
+            base_rate = 0.90
+        elif self.enhance_level < 25:
+            base_rate = 0.80
+        elif self.enhance_level < 30:
+            base_rate = 0.75
+        elif self.enhance_level < 35:
+            base_rate = 0.60
+        elif self.enhance_level < 40:
+            base_rate = 0.55
+        elif self.enhance_level < 42:
+            base_rate = 0.50
+        elif self.enhance_level < 45:
+            base_rate = 0.40
+        elif self.enhance_level < 48:
+            base_rate = 0.35
+        else:
+            base_rate = 0.30
+            
+        return min(1.0, base_rate + player_bonus_rate)
+        
     def to_dict(self):
         return {
             "equipment_id": self.equipment_id,
@@ -133,7 +178,9 @@ class Equipment:
             "description": self.description,
             "is_bound": self.is_bound,
             "base_stats": self.base_stats,
-            "extra_stats": self.extra_stats
+            "extra_stats": self.extra_stats,
+            "enhance_level": self.enhance_level,
+            "initial_stats": self.initial_stats
         }
 
     @classmethod
@@ -144,9 +191,12 @@ class Equipment:
             stars=data["stars"]
         )
         equipment.equipment_id = data["equipment_id"]
-        equipment.base_stats = data["base_stats"]
-        equipment.extra_stats = data["extra_stats"]
-        equipment.is_bound = data["is_bound"]
+        equipment.initial_stats = data.get("initial_stats", {})
+        equipment.base_stats = data.get("base_stats", {})
+        equipment.extra_stats = data.get("extra_stats", {})
+        equipment.is_bound = data.get("is_bound", False)
+        equipment.enhance_level = data.get("enhance_level", 0)
+        equipment.name = data.get("name", equipment.name)
         return equipment
 
     @staticmethod

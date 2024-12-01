@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>装备强化</title>
+</head>
+<body>
+    <h1>装备强化</h1>
+    
+    <div>
+        <p>装备名称: {{ equipment.name }}</p>
+        <p>当前强化等级: +{{ equipment.enhance_level }}</p>
+        <p>下一级: +{{ equipment.enhance_level + 1 }}</p>
+        <p>强化成功率: {{ "%.1f"|format(equipment.get_enhance_success_rate(player.enhance_bonus_rate) * 100) }}%
+            {% if player.enhance_bonus_rate > 0 %}(含失败加成{{ "%.1f"|format(player.enhance_bonus_rate * 100) }}%){% endif %}</p>
+            
+    </div>
+
+    <div>
+        <p>强化需要:</p>
+        <p>银两: 5000 (当前拥有: {{ player.money }})</p>
+        <p>强化宝玉: 1 (当前拥有: {{ player.inventory.get('enhance_gem', {}).get('quantity', 0) }})</p>
+    </div>
+
+    <div>
+        <p>强化后属性增加:</p>
+        {% for stat, initial_value in equipment.initial_stats.items() %}
+            <p>{{ Equipment.STAT_NAMES[stat] }}: 
+            {% if stat in ['crit_rate', 'dodge_rate'] %}
+                +{{ "%.1f"|format(initial_value * 0.1 * 100) }}%
+            {% else %}
+                +{{ "%.1f"|format(initial_value * 0.1) }}
+            {% endif %}
+            </p>
+        {% endfor %}
+    </div>
+    
+    {% if message %}
+        <p style="color: {% if success %}green{% else %}red{% endif %}">{{ message }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('enhance_equipment', item_id=item_id) }}" method="post">
+        <button type="submit" {% if equipment.enhance_level >= 50 or player.money < 5000 or player.inventory.get('enhance_gem', {}).get('quantity', 0) < 1 %}disabled{% endif %}>强化</button>
+    </form>
+    
+
+    <a href="{{ url_for('view_equipment', item_id=item_id) }}">返回装备详情</a>
+</body>
+</html>

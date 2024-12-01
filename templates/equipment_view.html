@@ -29,6 +29,7 @@
         <p>部位: {{ Equipment.SLOTS[equipment.slot] }}</p>
         <p>品质: {{ equipment.rarity }}</p>
         <p>星级: {{ equipment.stars }}星</p>
+        <p>绑定状态: {% if equipment.is_bound %}已绑定{% else %}未绑定{% endif %}</p>
         
         <div class="stat-section">
             <p>基础属性:</p>
@@ -36,8 +37,14 @@
                 <p>{{ Equipment.STAT_NAMES[stat] }}: 
                     {% if stat in ['crit_rate', 'dodge_rate'] %}
                         +{{ "%.1f"|format(value * 100) }}%
+                        {% if equipment.enhance_level > 0 %}
+                            (含强化加成{{ "%.1f"|format(equipment.initial_stats[stat] * 0.1 * equipment.enhance_level * 100) }}%)
+                        {% endif %}
                     {% else %}
                         +{{ value }}
+                        {% if equipment.enhance_level > 0 %}
+                            (含强化加成{{ (equipment.initial_stats[stat] * 0.1 * equipment.enhance_level)|int }})
+                        {% endif %}
                     {% endif %}
                 </p>
             {% endfor %}
@@ -61,6 +68,7 @@
         </div>
         
         <div class="actions">
+            <a href="{{ url_for('enhance_page', item_id=item_id) }}">强化</a>
             <a href="{{ url_for('equip_item', item_id=item_id) }}">装备</a>
             <a href="{{ url_for('sell_item', item_id=item_id) }}">出售</a>
             <a href="{{ url_for('inventory') }}">返回背包</a>

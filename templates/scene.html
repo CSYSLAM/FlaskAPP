@@ -33,7 +33,11 @@
 <body>
     {% if player.last_chat_message %}
         <div style="background-color: #f0f0f0; padding: 10px; margin-bottom: 20px;">
-            【私聊】{{ player.last_chat_message.sender }}对你说：{{ player.last_chat_message.content }}
+            {% if player.last_chat_message.is_gift %}
+                【赠送】{{ player.last_chat_message.sender }}{{ player.last_chat_message.content }}
+            {% else %}
+                【私聊】{{ player.last_chat_message.sender }}对你说：{{ player.last_chat_message.content }}
+            {% endif %}
         </div>
     {% endif %}
     <a href="{{ url_for('scene') }}" class="refresh-btn">刷新</a>

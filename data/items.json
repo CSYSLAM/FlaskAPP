@@ -1,4 +1,11 @@
 {
+    "enhance_gem": {
+        "name": "强化宝玉",
+        "type": "material",
+        "description": "用于强化装备的宝玉",
+        "price": 1000,
+        "is_usable": false
+    },
     "exp_large": {
         "name": "大经验丹",
         "type": "other",
