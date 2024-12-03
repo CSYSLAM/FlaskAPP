@@ -590,6 +590,30 @@ def character():
                          can_level_up=can_level_up,
                          Equipment=Equipment)
 
+@app.route("/equipment_list")
+@login_required
+@check_health_status
+@check_pk_status
+def equipment_list():
+    player = get_current_player()
+    return render_template("equipment_list.html", 
+                         player=player,
+                         Equipment=Equipment)
+
+@app.route("/view_equipped/<slot>")
+@login_required
+@check_health_status
+@check_pk_status
+def view_equipped(slot):
+    player = get_current_player()
+    if slot in player.equipment and player.equipment[slot]:
+        equipment = player.equipment[slot]
+        return render_template('equipment_view.html', 
+                             equipment=equipment, 
+                             item_id=f'equipped_{slot}',
+                             Equipment=Equipment)
+    return redirect(url_for('equipment_list'))
+
 @app.route("/level_up")
 @login_required
 @check_health_status

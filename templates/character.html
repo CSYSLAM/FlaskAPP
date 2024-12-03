@@ -41,6 +41,10 @@
     <h1>角色信息</h1>
     
     <div class="section">
+        <a href="{{ url_for('equipment_list') }}">装备</a>
+    </div>
+
+    <div class="section">
         <p>名字: {{ player.name }}</p>
         <p>职业: {{ player.player_class }}</p>
         <p>等级: {{ player.level }}</p>
@@ -58,27 +62,6 @@
         {% endif %}
     </div>
     
-    <div class="section">
-        <h2>装备</h2>
-        {% for slot, equipment in player.equipment.items() %}
-        <div class="equipment-slot">
-            <h3>{{ Equipment.SLOTS[slot] }}</h3>
-            {% if equipment %}
-                <p>{{ equipment.name }}</p>
-                {% for stat, value in equipment.base_stats.items() %}
-                    <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }}</p>
-                {% endfor %}
-                {% for stat, (value, stars) in equipment.extra_stats.items() %}
-                    <p>{{ Equipment.STAT_NAMES[stat] }}: +{{ value }} ({{ stars }}星)</p>
-                {% endfor %}
-                <a href="{{ url_for('unequip', slot=slot) }}">卸下</a>
-            {% else %}
-                <p>未装备</p>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-
     <div style="margin-top: 10px;">
         <a href="{{ url_for('scene') }}">返回场景</a>
     </div>
