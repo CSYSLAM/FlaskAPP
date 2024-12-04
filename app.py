@@ -625,7 +625,8 @@ def character():
     return render_template("character.html", 
                          player=player, 
                          can_level_up=can_level_up,
-                         Equipment=Equipment)
+                         Equipment=Equipment,
+                         now=datetime.now())
 
 @app.route("/equipment_list")
 @login_required

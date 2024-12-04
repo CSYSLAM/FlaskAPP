@@ -68,6 +68,30 @@
             <p>需要更多经验才能升级。</p>
         {% endif %}
     </div>
+
+    <div class="section">
+        <h2>状态</h2>
+        {% if player.temp_effects %}
+            {% for stat, effects in player.temp_effects.items() %}
+                {% if effects %}
+                    {% for effect in effects %}
+                        <p class="buff-effect">
+                            {{ player.STAT_NAMES[stat] }}提升:
+                            {% if effect.rate %}
+                                {{ effect.rate * 100 }}%
+                            {% endif %}
+                            {% if effect.value %}
+                                {{ effect.value }}点
+                            {% endif %}
+                            (剩余{{ (effect.expire_time - now.timestamp())|int }}秒)
+                        </p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>无状态效果</p>
+        {% endif %}
+    </div>
     
     <div style="margin-top: 10px;">
         <a href="{{ url_for('scene') }}">返回场景</a>

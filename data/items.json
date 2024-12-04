@@ -1,4 +1,147 @@
 {
+    "potion_health": {
+        "name": "生命秘药",
+        "type": "other",
+        "description": "使用后临时提升5%生命上限,持续2分钟",
+        "price": 200,
+        "is_usable": true,
+        "usage_effect": {
+            "temp_effects": [
+                {
+                    "stat": "max_health",
+                    "rate": 0.05,
+                    "duration": 120
+                }
+            ]
+        }
+    },
+    "potion_mana_temp": {
+        "name": "魔法秘药",
+        "type": "other", 
+        "description": "使用后临时提升5%魔法上限,持续2分钟",
+        "price": 200,
+        "is_usable": true,
+        "usage_effect": {
+            "temp_effects": [
+                {
+                    "stat": "max_mana",
+                    "rate": 0.05,
+                    "duration": 120
+                }
+            ]
+        }
+    },
+    "potion_crit": {
+        "name": "暴击秘药",
+        "type": "other",
+        "description": "使用后临时提升3%暴击率,持续2分钟",
+        "price": 200,
+        "is_usable": true,
+        "usage_effect": {
+            "temp_effects": [
+                {
+                    "stat": "crit_rate",
+                    "rate": 0.03,
+                    "duration": 120
+                }
+            ]
+        }
+    },
+    "potion_dodge": {
+        "name": "闪避秘药",
+        "type": "other",
+        "description": "使用后临时提升3%闪避率,持续2分钟", 
+        "price": 200,
+        "is_usable": true,
+        "usage_effect": {
+            "temp_effects": [
+                {
+                    "stat": "dodge_rate",
+                    "rate": 0.03,
+                    "duration": 120
+                }
+            ]
+        }
+    },
+    "potion_package": {
+        "name": "秘药礼包",
+        "type": "other",
+        "description": "使用后随机获得一种秘药",
+        "price": 150,
+        "is_usable": true,
+        "usage_effect": {
+            "random_items": [
+                {
+                    "item_id": "potion_attack",
+                    "max_count": 1,
+                    "chance": 0.2,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "potion_defense",
+                    "max_count": 1,
+                    "chance": 0.2,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "potion_health",
+                    "max_count": 1,
+                    "chance": 0.2,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "potion_mana_temp",
+                    "max_count": 1,
+                    "chance": 0.2,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "potion_crit",
+                    "max_count": 1,
+                    "chance": 0.1,
+                    "guaranteed_count": 1
+                },
+                {
+                    "item_id": "potion_dodge",
+                    "max_count": 1,
+                    "chance": 0.1,
+                    "guaranteed_count": 1
+                }
+            ]
+        }
+    },
+    "potion_attack": {
+        "name": "攻击秘药",
+        "type": "other",
+        "description": "使用后临时提升5%攻击力,持续2分钟",
+        "price": 200,
+        "is_usable": true,
+        "usage_effect": {
+            "temp_effects": [
+                {
+                    "stat": "attack",
+                    "rate": 0.05,
+                    "duration": 120
+                }
+            ]
+        }
+    },
+    "potion_defense": {
+        "name": "防御秘药", 
+        "type": "other",
+        "description": "使用后临时提升5%防御力,持续2分钟",
+        "price": 200,
+        "is_usable": true,
+        "usage_effect": {
+            "temp_effects": [
+                {
+                    "stat": "defense",
+                    "rate": 0.05,
+                    "duration": 120
+                }
+            ]
+        }
+    },
     "honor_scroll": {
         "name": "荣誉卷轴",
         "item_type": "material",

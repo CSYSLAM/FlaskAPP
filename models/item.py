@@ -34,16 +34,19 @@ class ItemUsageEffect:
     def __init__(self, 
                  stat_changes: Dict[str, int] = None,
                  item_changes: Dict[str, int] = None,
-                 random_items: List[Dict[str, int]] = None):
+                 random_items: List[Dict[str, int]] = None,
+                 temp_effects = None):
         self.stat_changes = stat_changes or {}
         self.item_changes = item_changes or {}
         self.random_items = random_items or []
+        self.temp_effects = temp_effects or []  # 新增临时效果
         
     def to_dict(self):
         return {
             "stat_changes": self.stat_changes,
             "item_changes": self.item_changes,
-            "random_items": self.random_items
+            "random_items": self.random_items,
+            "temp_effects": self.temp_effects
         }
     
     @classmethod
@@ -51,7 +54,8 @@ class ItemUsageEffect:
         return cls(
             stat_changes=data.get("stat_changes", {}),
             item_changes=data.get("item_changes", {}),
-            random_items=data.get("random_items", [])
+            random_items=data.get("random_items", []),
+            temp_effects=data.get("temp_effects", [])
         )
 
 

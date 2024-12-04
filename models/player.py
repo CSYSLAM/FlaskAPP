@@ -1,10 +1,19 @@
 import random
+import time
 from models.equipment import Equipment
 from models.skill import Skill
 from models.item import Item, ItemType
 from datetime import datetime
 
 class Player:
+    STAT_NAMES = {
+        "max_health": "生命值",
+        "max_mana": "魔法值", 
+        "attack": "攻击力",
+        "defense": "防御力",
+        "crit_rate": "暴击率",
+        "dodge_rate": "闪避率"
+    }
     # 在 Player 类开头添加军衔配置
     MILITARY_RANKS = {
         "十夫长": {"level": 20, "attack": 20, "honor": 0},
@@ -152,6 +161,16 @@ class Player:
             "defense": 0
         }
 
+        # 临时属性
+        self.temp_effects = {
+            "max_health": [],  # [{value: 100, rate: 0.05, expire_time: timestamp}]
+            "max_mana": [],
+            "attack": [],
+            "defense": [], 
+            "crit_rate": [],
+            "dodge_rate": []
+        }
+
         self.update_stats()
         self.health = self.max_health  # Set initial health
         self.mana = self.max_mana     # Set initial mana
@@ -287,6 +306,50 @@ class Player:
                 else:
                     changes.append(f"{name}: {diff:+.1f}")  # Changed from +d to +.1f
         return "\n".join(changes)
+    
+    def add_temp_effect(self, stat, value=0, rate=0, duration=0):
+        """添加临时属性效果,同类效果延长持续时间"""
+        if stat not in self.temp_effects:
+            return False
+            
+        # 查找是否存在相同数值的效果
+        for effect in self.temp_effects[stat]:
+            if effect["value"] == value and effect["rate"] == rate:
+                # 找到相同效果,延长持续时间
+                current_time = time.time()
+                remaining_time = max(0, effect["expire_time"] - current_time)
+                effect["expire_time"] = current_time + remaining_time + duration
+                self.update_stats()
+                return True
+        
+        # 没有找到相同效果,添加新效果        
+        expire_time = time.time() + duration
+        self.temp_effects[stat].append({
+            "value": value,
+            "rate": rate,
+            "expire_time": expire_time
+        })
+        self.update_stats()
+        return True
+            
+    def clear_expired_effects(self):
+        """清理过期的临时效果"""
+        now = time.time()
+        for stat in self.temp_effects:
+            self.temp_effects[stat] = [
+                effect for effect in self.temp_effects[stat]
+                if effect["expire_time"] > now
+            ]
+            
+    def get_temp_stat_bonus(self, stat):
+        """获取某个属性的临时加成总和"""
+        self.clear_expired_effects()
+        
+        base_stat = getattr(self, stat, 0)
+        flat_bonus = sum(effect["value"] for effect in self.temp_effects[stat])
+        rate_bonus = sum(effect["rate"] for effect in self.temp_effects[stat])
+        
+        return flat_bonus + base_stat * rate_bonus
 
     def update_stats(self):
         # 获取职业的等级成长属性
@@ -320,6 +383,14 @@ class Player:
 
         self.update_military_rank()  # 更新军衔
         self.attack += self.rank_attack  # 加上军衔攻击加成
+
+        # 临时属性
+        self.max_health += self.get_temp_stat_bonus("max_health") 
+        self.max_mana += self.get_temp_stat_bonus("max_mana")
+        self.attack += self.get_temp_stat_bonus("attack")
+        self.defense += self.get_temp_stat_bonus("defense")
+        self.crit_rate += self.get_temp_stat_bonus("crit_rate")
+        self.dodge_rate += self.get_temp_stat_bonus("dodge_rate")
 
     def level_up(self):
         if self.experience >= self.exp_to_next_level:
@@ -544,6 +615,24 @@ class Player:
             # Apply usage effects
             if item.usage_effect:
                 effect_description = []
+
+                # 处理临时效果
+                if item.usage_effect.temp_effects:
+                    for effect in item.usage_effect.temp_effects:
+                        stat = effect.get("stat")
+                        rate = effect.get("rate", 0)
+                        value = effect.get("value", 0)
+                        duration = effect.get("duration", 0)
+                            
+                        if self.add_temp_effect(stat, value, rate, duration):
+                            if rate:
+                                effect_description.append(
+                                    f"获得{rate*100}%{self.STAT_NAMES[stat]}提升,持续{duration}秒"
+                                )
+                            if value:
+                                effect_description.append(
+                                    f"获得{value}点{self.STAT_NAMES[stat]}提升,持续{duration}秒"
+                                )
                 
                 # Apply stat changes
                 for stat, value in item.usage_effect.stat_changes.items():
