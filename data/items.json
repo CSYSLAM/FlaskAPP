@@ -1,4 +1,17 @@
 {
+    "honor_scroll": {
+        "name": "荣誉卷轴",
+        "item_type": "material",
+        "description": "使用后可获得1点荣誉值",
+        "price": 10,
+        "is_usable": true,
+        "can_bulk_use": true,
+        "usage_effect": {
+            "stat_changes": {
+                "honor": 1
+            }
+        }
+    },
     "enhance_gem": {
         "name": "强化宝玉",
         "type": "material",

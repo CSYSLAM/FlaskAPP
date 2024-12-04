@@ -54,6 +54,7 @@ class ItemUsageEffect:
             random_items=data.get("random_items", [])
         )
 
+
 class Item:
     def __init__(self,
                  item_id: str,
@@ -61,8 +62,9 @@ class Item:
                  item_type: ItemType,
                  description: str,
                  is_usable: bool = True,
+                 can_bulk_use: bool = False,  # 新增属性
                  price: int = 0,
-                 is_permanent_buff: bool = False,  # 新增属性
+                 is_permanent_buff: bool = False,
                  usage_condition: Optional[ItemUsageCondition] = None,
                  usage_effect: Optional[ItemUsageEffect] = None):
         self.item_id = item_id
@@ -70,6 +72,7 @@ class Item:
         self.item_type = item_type
         self.description = description
         self.is_usable = is_usable
+        self.can_bulk_use = can_bulk_use  # 新增属性
         self.price = price
         self.is_permanent_buff = is_permanent_buff
         self.usage_condition = usage_condition
@@ -82,6 +85,7 @@ class Item:
             "item_type": self.item_type.value,
             "description": self.description,
             "is_usable": self.is_usable,
+            "can_bulk_use": self.can_bulk_use,  # 新增属性
             "price": self.price,
             "usage_condition": self.usage_condition.to_dict() if self.usage_condition else None,
             "usage_effect": self.usage_effect.to_dict() if self.usage_effect else None

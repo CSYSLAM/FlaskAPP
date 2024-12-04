@@ -35,6 +35,7 @@
         <p>{{ item.name }}</p>
         <p>类型: {{ item.item_type }}</p>
         <p>描述: {{ item.description }}</p>
+        <p>数量: {{ quantity }}</p>
         
         <p>物品属性:</p>
         <ul>
@@ -45,24 +46,25 @@
                 {% if item.usage_condition.level_required > 0 %}
                 <li>需要等级: {{ item.usage_condition.level_required }}</li>
                 {% endif %}
-                
-                {% if item.usage_condition.required_items %}
-                <li>需要物品:
-                    <ul>
-                    {% for req_item, req_count in item.usage_condition.required_items.items() %}
-                        <li>{{ req_item }}: {{ req_count }}个</li>
-                    {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
             {% endif %}
         </ul>
 
         {% if item.is_usable %}
-            <a href="{{ url_for('use_item', item=item_id) }}">使用</a>
+        <div class="item-actions">
+            <a href="{{ url_for('use_item', item=item_id) }}" class="btn">使用</a>
+            
+            {% if item.can_bulk_use %}
+            <div class="bulk-use">
+                <form action="{{ url_for('bulk_use_item', item_id=item_id) }}" method="post">
+                    <input type="number" name="quantity" value="1" min="1" max="{{ quantity }}" style="width: 60px;">
+                    <button type="submit" class="btn">一键使用</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
         {% endif %}
     </div>
     
-    <a href="{{ url_for('inventory') }}">返回背包</a>
+    <a href="{{ url_for('inventory') }}" class="btn">返回背包</a>
 </body>
 </html>

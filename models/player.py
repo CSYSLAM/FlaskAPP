@@ -5,6 +5,21 @@ from models.item import Item, ItemType
 from datetime import datetime
 
 class Player:
+    # 在 Player 类开头添加军衔配置
+    MILITARY_RANKS = {
+        "十夫长": {"level": 20, "attack": 20, "honor": 0},
+        "百夫长": {"level": 25, "attack": 50, "honor": 30},
+        "校尉": {"level": 30, "attack": 100, "honor": 240},
+        "都尉": {"level": 35, "attack": 150, "honor": 1020},
+        "裨将": {"level": 40, "attack": 200, "honor": 3120},
+        "偏将": {"level": 45, "attack": 300, "honor": 7770},
+        "中郎将": {"level": 50, "attack": 400, "honor": 16800},
+        "车骑将军": {"level": 55, "attack": 500, "honor": 32760},
+        "骠骑将军": {"level": 60, "attack": 620, "honor": 59040},
+        "大司马": {"level": 65, "attack": 700, "honor": 100000},
+        "大都督": {"level": 70, "attack": 1000, "honor": 161050}
+    }
+
     CLASSES = {
         "术士": {
             "base_stats": {
@@ -91,6 +106,11 @@ class Player:
         self.learned_skills = {}  # 改为字典存储 {skill_id: skill_level}
         self.skill_exp = {}  # 技能经验值 {skill_id: exp}
 
+        self.gender = "男"  # 默认性别
+        self.honor = 0  # 荣誉值
+        self.military_rank = "十夫长"  # 默认军衔
+        self.rank_attack = 0  # 军衔加成攻击力
+
         # 基础属性(每级成长)
         self.base_stats = self.CLASSES[player_class]["base_stats"].copy()
 
@@ -144,6 +164,41 @@ class Player:
             'potion1': None,
             'potion2': None
         }
+
+    def update_military_rank(self):
+        """更新军衔"""
+        current_rank = "士兵"
+        rank_attack = 0
+        
+        for rank, requirements in self.MILITARY_RANKS.items():
+            if (self.level >= requirements["level"] and 
+                self.honor >= requirements["honor"]):
+                current_rank = rank
+                rank_attack = requirements["attack"]
+        
+        self.military_rank = current_rank
+        self.rank_attack = rank_attack
+
+    def get_avatar_path(self):
+        # 获取军衔等级(1-11)
+        rank_level = 1
+        for i, (rank, _) in enumerate(self.MILITARY_RANKS.items(), 1):
+            if rank == self.military_rank:
+                rank_level = i
+                break
+        
+        # 格式化等级为两位数字
+        rank_str = f"{rank_level:02d}"
+        
+        # 根据性别、职业确定图片前缀
+        if self.player_class == "刺客":
+            prefix = "b" if self.gender == "女" else "a"
+        elif self.player_class == "战士":
+            prefix = "q" if self.gender == "女" else "c"
+        elif self.player_class == "术士":
+            prefix = "q" if self.gender == "女" else "f"
+            
+        return f"images/rongyu/{prefix}{rank_str}.png"
 
     def enter_battle(self):
         self.in_battle = True
@@ -236,7 +291,7 @@ class Player:
     def update_stats(self):
         # 获取职业的等级成长属性
         level_up_stats = self.CLASSES[self.player_class]["level_up_stats"]
-        
+
         # 计算成长属性 = 基础属性 + (等级-1) * 等级成长值
         for stat, base_value in self.base_stats.items():
             growth = level_up_stats[stat] * (self.level - 1)
@@ -262,6 +317,9 @@ class Player:
         self.defense = self.growth_stats["defense"] + self.equipment_stats["defense"] + self.pill_stats["defense"]
         self.crit_rate = self.growth_stats["crit_rate"] + self.equipment_stats["crit_rate"]
         self.dodge_rate = self.growth_stats["dodge_rate"] + self.equipment_stats["dodge_rate"]
+
+        self.update_military_rank()  # 更新军衔
+        self.attack += self.rank_attack  # 加上军衔攻击加成
 
     def level_up(self):
         if self.experience >= self.exp_to_next_level:
@@ -489,6 +547,10 @@ class Player:
                 
                 # Apply stat changes
                 for stat, value in item.usage_effect.stat_changes.items():
+                    if stat == "honor":
+                        self.honor += value
+                        self.update_military_rank()  # 更新军衔
+                        effect_description.append(f"获得了{value}点荣誉值")
                     if stat.startswith('pill_'):
                         # 处理金丹属性
                         stat_name = stat.replace('pill_', '')
@@ -513,7 +575,7 @@ class Player:
                                 effect_description.append(f"恢复了{actual_change}点魔法值")
                             else:
                                 effect_description.append(f"{stat}增加了{actual_change}")
-                
+
                 # Apply item changes and random items
                 if item.usage_effect.item_changes or item.usage_effect.random_items:
                     items_gained = []

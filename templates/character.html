@@ -45,9 +45,16 @@
     </div>
 
     <div class="section">
+        <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" alt="角色头像" style="width: auto; height: 100px; object-fit: contain;">
+    </div>
+
+    <div class="section">
         <p>名字: {{ player.name }}</p>
         <p>职业: {{ player.player_class }}</p>
         <p>等级: {{ player.level }}</p>
+        <p>性别: {{ player.gender }}</p>
+        <p>荣誉值: {{ player.honor }}</p>
+        <p>军衔: <a href="{{ url_for('military_ranks') }}">{{ player.military_rank }}</a></p>
         <p>生命值: {{ player.health }}/{{ player.max_health }}</p>
         <p>魔法值: {{ player.mana }}/{{ player.max_mana }}</p>
         <p>攻击: {{ player.attack }}</p>

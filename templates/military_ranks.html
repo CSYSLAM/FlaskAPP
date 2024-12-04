@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>军衔系统</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .rank-item {
+            margin: 10px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .current-rank {
+            font-weight: bold;
+            color: #4CAF50; /* 绿色 */
+        }
+    </style>
+</head>
+<body>
+    <h1>军衔系统</h1>
+    
+    <div class="section">
+        <p>当前军衔: <span class="current-rank">{{ player.military_rank }}</span></p>
+        <p>当前荣誉值: {{ player.honor }}</p>
+        <p>当前等级: {{ player.level }}</p>
+    </div>
+
+    <div class="section">
+        <h2>军衔说明</h2>
+        <p>军衔达到所需条件将自动变更</p>
+        
+        {% for rank, req in player.MILITARY_RANKS.items() %}
+        <div class="rank-item {% if player.military_rank == rank %}current-rank{% endif %}">
+            {{ rank }} - 等级要求: {{ req.level }} | 攻击加成: +{{ req.attack }} | 荣誉值要求: {{ req.honor }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('character') }}">返回角色</a>
+    </div>
+</body>
+</html>

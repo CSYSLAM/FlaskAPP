@@ -15,6 +15,8 @@ from pathlib import Path
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
+app.static_folder = '.'
+
 SAVE_DIR = Path("player_data")
 SAVE_DIR.mkdir(exist_ok=True)
 
@@ -51,6 +53,8 @@ def get_current_player():
     player_data_copy.pop('equipment', None)
     player.__dict__.update(player_data_copy)
     player.update_stats()
+    player.update_military_rank()  # 更新军衔
+    player.get_avatar_path()  # 更新头像
     return player
 
 def generate_new_monster(player):
@@ -181,9 +185,11 @@ def register():
     if player_class not in Player.CLASSES:
         return render_template("login.html", message="无效的职业选择")
     
+    gender = request.form.get("gender")
     player = Player(nickname, player_class)
     player.username = username
     player.password = password
+    player.gender = gender
     player.current_location = "outdoor.village"
     
     save_player_data(username, player)
@@ -532,6 +538,37 @@ def pk_fight():
     return redirect(url_for('pk_battle', opponent=opponent.username))
 
 #####  player start  玩家功能（查看角色、物品管理等）#####
+@app.route("/bulk_use/<item_id>", methods=["POST"])
+@login_required
+@check_health_status
+def bulk_use_item(item_id):
+    player = get_current_player()
+    if item_id not in player.inventory:
+        return redirect(url_for('inventory'))
+        
+    quantity = int(request.form.get('quantity', 1))
+    item_data = player.inventory[item_id]
+    
+    if quantity > item_data["quantity"]:
+        quantity = item_data["quantity"]
+    
+    # 批量使用物品
+    success_count = 0
+    for _ in range(quantity):
+        if player.use_item(item_id):
+            success_count += 1
+    
+    # 确保更新军衔
+    player.update_military_rank()
+    save_player_data(session["username"], player)
+    
+    flash(f"成功使用{success_count}个{item_data['item']['name']}")
+    
+    if item_id in player.inventory:
+        return redirect(url_for('view_item', item_id=item_id))
+    return redirect(url_for('inventory'))
+
+
 @app.route("/equip/<item_id>")
 @login_required
 @check_pk_status
@@ -613,6 +650,13 @@ def view_equipped(slot):
                              item_id=f'equipped_{slot}',
                              Equipment=Equipment)
     return redirect(url_for('equipment_list'))
+
+@app.route("/military_ranks")
+@login_required
+@check_health_status
+def military_ranks():
+    player = get_current_player()
+    return render_template("military_ranks.html", player=player)
 
 @app.route("/level_up")
 @login_required
