@@ -1,6 +1,9 @@
 import random
 import time
 from models.equipment import Equipment
+from services import db
+from datetime import datetime as _dt
+import json as _json
 from models.skill import Skill
 from models.item import Item, ItemType
 from datetime import datetime
@@ -752,3 +755,22 @@ class Player:
 
 
 
+
+class PlayerModel(db.Model):
+    __tablename__ = 'players'
+
+    username = db.Column(db.String(64), primary_key=True)
+    player_data = db.Column(db.Text, nullable=False)
+    last_login = db.Column(db.DateTime, default=_dt.utcnow)
+
+    # Flask-Login 兼容（若未来使用）
+    def get_id(self):
+        return self.username
+
+    @property
+    def data(self):
+        return _json.loads(self.player_data)
+
+    @data.setter
+    def data(self, value):
+        self.player_data = _json.dumps(value, ensure_ascii=False)

@@ -1,6 +1,7 @@
 from flask import Flask
 from config import Config
 from services.data_service import DataService
+from services import db
 from blueprints.auth import auth_bp
 from blueprints.game import game_bp
 from blueprints.player import player_bp
@@ -12,6 +13,9 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     
+    # Init DB
+    db.init_app(app)
+
     # Initialize services
     DataService.init_app(app)
     
@@ -31,6 +35,8 @@ def create_app():
             return redirect(url_for("game.scene"))
         return redirect(url_for("auth.login_page"))
     
+    with app.app_context():
+        db.create_all()
     return app
 
 if __name__ == "__main__":
