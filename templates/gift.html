@@ -27,7 +27,7 @@
     <div class="item-list">
         {% for item_id, item_data in giftable_items.items() %}
             <div class="item">
-                <form action="{{ url_for('send_gift', username=target_player.username) }}" method="post">
+                <form action="{{ url_for('social.send_gift', username=target_player.username) }}" method="post">
                     <input type="hidden" name="item_id" value="{{ item_id }}">
                     {% if item_id.startswith('equipment_') %}
                         <p>{{ item_data.name }}</p>
@@ -42,6 +42,6 @@
         {% endfor %}
     </div>
     
-    <a href="{{ url_for('view_player', username=target_player.username) }}">返回</a>
+    <a href="{{ url_for('player.view_player', username=target_player.username) }}">返回</a>
 </body>
 </html>

@@ -93,12 +93,12 @@
         </div>
         
         <div class="actions">
-            <a href="{{ url_for('enhance_page', item_id=item_id) }}">强化</a>
-            <a href="{{ url_for('equip_item', item_id=item_id) }}">装备</a>
-            <a href="{{ url_for('sell_item', item_id=item_id) }}">出售</a>
+            <a href="{{ url_for('player.enhance_page', item_id=item_id) }}">强化</a>
+            <a href="{{ url_for('player.equip_item', item_id=item_id) }}">装备</a>
+            <a href="{{ url_for('player.sell_item', item_id=item_id) }}">出售</a>
         </div>
         <div style="margin-top: 10px;">
-            <a href="{{ url_for('inventory') }}">返回背包</a>
+            <a href="{{ url_for('player.inventory') }}">返回背包</a>
         </div>
         
     </div>

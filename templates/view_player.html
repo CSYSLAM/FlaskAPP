@@ -60,16 +60,16 @@
     {% endwith %}
 
     <div class="section">
-        <form action="{{ url_for('send_message', to_username=target_player.username) }}" method="post" class="chat-form">
+        <form action="{{ url_for('social.send_message', to_username=target_player.username) }}" method="post" class="chat-form">
             <input type="text" name="message" placeholder="输入私聊内容..." required class="chat-input">
             <button type="submit">发送私聊</button>
         </form>
-        <a href="{{ url_for('gift_page', username=target_player.username) }}">赠送物品</a>
+        <a href="{{ url_for('social.gift_page', username=target_player.username) }}">赠送物品</a>
     </div>
 
     <div class="section">
         {% if player.current_location == target_player.current_location and not target_player.in_pk %}
-            <form action="{{ url_for('start_pk', username=target_player.username) }}" method="post">
+            <form action="{{ url_for('battle.start_pk', username=target_player.username) }}" method="post">
                 <button type="submit">发起PK</button>
             </form>
         {% endif %}
@@ -107,7 +107,7 @@
     </div>
     
     <div style="margin-top: 10px;">
-        <a href="{{ url_for('scene') }}">返回场景</a>
+        <a href="{{ url_for('game.scene') }}">返回场景</a>
     </div>
 </body>
 </html>

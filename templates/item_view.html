@@ -51,11 +51,11 @@
 
         {% if item.is_usable %}
         <div class="item-actions">
-            <a href="{{ url_for('use_item', item=item_id) }}" class="btn">使用</a>
+            <a href="{{ url_for('player.use_item', item=item_id) }}" class="btn">使用</a>
             
             {% if item.can_bulk_use %}
             <div class="bulk-use">
-                <form action="{{ url_for('bulk_use_item', item_id=item_id) }}" method="post">
+                <form action="{{ url_for('player.bulk_use_item', item_id=item_id) }}" method="post">
                     <input type="number" name="quantity" value="1" min="1" max="{{ quantity }}" style="width: 60px;">
                     <button type="submit" class="btn">一键使用</button>
                 </form>
@@ -65,6 +65,6 @@
         {% endif %}
     </div>
     
-    <a href="{{ url_for('inventory') }}" class="btn">返回背包</a>
+    <a href="{{ url_for('player.inventory') }}" class="btn">返回背包</a>
 </body>
 </html>

@@ -70,7 +70,7 @@
                     {% endif %}
                     {% set exp_cost, money_cost = skill.level_up_cost() %}
                     <p>学习需要: {{ exp_cost }}经验值, {{ money_cost }}银两</p>
-                    <a href="{{ url_for('learn_skill', skill=skill.skill_id) }}">学习</a>
+                    <a href="{{ url_for('player.learn_skill', skill=skill.skill_id) }}">学习</a>
                 </div>
             {% endif %}
         {% endfor %}
@@ -90,14 +90,14 @@
                 {% if skill.level < skill.max_level %}
                     {% set exp_cost, money_cost = skill.level_up_cost() %}
                     <p>升级需要: {{ exp_cost }}经验值, {{ money_cost }}银两</p>
-                    <a href="{{ url_for('upgrade_skill', skill=skill.skill_id) }}">升级</a>
+                    <a href="{{ url_for('player.upgrade_skill', skill=skill.skill_id) }}">升级</a>
                 {% endif %}
             </div>
         {% endfor %}
     </div>
 
     <div class="section">
-        <a href="{{ url_for('scene') }}">返回场景</a>
+        <a href="{{ url_for('game.scene') }}">返回场景</a>
     </div>
 </body>
 </html>

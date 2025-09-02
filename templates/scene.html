@@ -86,8 +86,8 @@
     {% endif %}
 
     <div class="section">
-        <a href="{{ url_for('scene') }}" class="refresh-btn">刷新</a>
-        <a href="{{ url_for('shop') }}">商城</a>
+        <a href="{{ url_for('game.scene') }}" class="refresh-btn">刷新</a>
+        <a href="{{ url_for('shop.shop') }}">商城</a>
     </div>
 
     <h1>{{ location.name }}（{{ location.area_name }}）</h1>
@@ -161,30 +161,30 @@
 
     <div class="section">
         {% if location.north_exit %}
-            北:↑ <a href="{{ url_for('move', direction='north') }}">{{ locations[location.north_exit].name }}</a><br>
+            北:↑ <a href="{{ url_for('game.move', direction='north') }}">{{ locations[location.north_exit].name }}</a><br>
         {% endif %}
         
         {% if location.west_exit or location.east_exit %}
             {% if location.west_exit %}
-                西:← <a href="{{ url_for('move', direction='west') }}">{{ locations[location.west_exit].name }}</a>
+                西:← <a href="{{ url_for('game.move', direction='west') }}">{{ locations[location.west_exit].name }}</a>
             {% endif %}
             {% if location.east_exit %}
-                东:→ <a href="{{ url_for('move', direction='east') }}">{{ locations[location.east_exit].name }}</a>
+                东:→ <a href="{{ url_for('game.move', direction='east') }}">{{ locations[location.east_exit].name }}</a>
             {% endif %}
             <br>
         {% endif %}
         
         {% if location.south_exit %}
-            南:↓ <a href="{{ url_for('move', direction='south') }}">{{ locations[location.south_exit].name }}</a>
+            南:↓ <a href="{{ url_for('game.move', direction='south') }}">{{ locations[location.south_exit].name }}</a>
         {% endif %}
     </div>
 
     <div class="section">
         怪物：
         {% if monster.killable %}
-            <a href="{{ url_for('battle') }}">{{ monster.name }}({{ monster.level }}级)</a>
+            <a href="{{ url_for('battle.battle') }}">{{ monster.name }}({{ monster.level }}级)</a>
         {% else %}
-            <a href="{{ url_for('view_npc', monster_id=monster.monster_id) }}">{{ monster.name }}({{ monster.level }}级)</a>
+            <a href="{{ url_for('game.view_npc', monster_id=monster.monster_id) }}">{{ monster.name }}({{ monster.level }}级)</a>
         {% endif %}
     </div>
 
@@ -192,7 +192,7 @@
         {% if location.ground_items %}
             地上物品：
             {% for item_id in location.ground_items %}
-                <a href="{{ url_for('pickup_item', item_id=item_id) }}">
+                <a href="{{ url_for('game.pickup_item', item_id=item_id) }}">
                     {{ Item.load_items()[item_id].name }}
                 </a>
             {% endfor %}
@@ -202,7 +202,7 @@
     <div class="section">
         <p>玩家：{% if other_players %}
             {% for other_player in other_players %}
-                <a href="{{ url_for('view_player', username=other_player.username) }}">{{ other_player.name }}</a>{% if not loop.last %},{% endif %}
+                <a href="{{ url_for('player.view_player', username=other_player.username) }}">{{ other_player.name }}</a>{% if not loop.last %},{% endif %}
             {% endfor %}
         {% else %}
             无
@@ -210,9 +210,9 @@
     </div>
 
     <div class="section">
-        <a href="{{ url_for('character') }}">角色</a>
-        <a href="{{ url_for('inventory') }}">背包</a>
-        <a href="{{ url_for('chat') }}">聊天</a>
+        <a href="{{ url_for('player.character') }}">角色</a>
+        <a href="{{ url_for('player.inventory') }}">背包</a>
+        <a href="{{ url_for('social.chat') }}">聊天</a>
     </div>
 
     <div class="section">
@@ -220,7 +220,7 @@
     </div>
 
     <div>
-        <a href="{{ url_for('logout') }}">退出游戏</a>
+        <a href="{{ url_for('auth.logout') }}">退出游戏</a>
     </div>
 
     <script>

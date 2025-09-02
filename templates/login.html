@@ -23,7 +23,7 @@
         {% if message %}
         <p class="message">{{ message }}</p>
         {% endif %}
-        <form action="{{ url_for('login_page') }}" method="post">
+        <form action="{{ url_for('auth.login_page') }}" method="post">
             <div>
                 <label>账号：</label>
                 <input type="text" name="username" required>
@@ -38,7 +38,7 @@
     
     <div class="form-container">
         <h2>注册</h2>
-        <form method="post" action="{{ url_for('register') }}">
+        <form method="post" action="{{ url_for('auth.register') }}">
             <input type="text" name="username" placeholder="账号" required>
             <input type="password" name="password" placeholder="密码" required>
             <input type="text" name="nickname" placeholder="昵称" required>

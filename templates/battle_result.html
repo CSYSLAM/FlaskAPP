@@ -61,12 +61,12 @@
     <div class="section">
         <h2>选择行动</h2>
         {% if is_pk %}
-            <a href="{{ url_for('scene') }}">返回场景</a>
+            <a href="{{ url_for('game.scene') }}">返回场景</a>
         {% else %}
             {% if winner and not is_pk and not winner.pk_opponent %}
-                <a href="{{ url_for('continue_battle') }}">继续挑战</a>
+                <a href="{{ url_for('battle.continue_battle') }}">继续挑战</a>
             {% endif %}
-            <a href="{{ url_for('scene') }}">返回场景</a>
+            <a href="{{ url_for('game.scene') }}">返回场景</a>
         {% endif %}
     </div>
 </body>

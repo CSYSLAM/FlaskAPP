@@ -85,7 +85,7 @@
                 {{ item.name }}
             </span>
             <span class="item-price">{{ item.price }}银两</span>
-            <form action="{{ url_for('buy_item') }}" method="post" style="display: inline;">
+            <form action="{{ url_for('shop.buy_item') }}" method="post" style="display: inline;">
                 <input type="hidden" name="item_id" value="{{ item_id }}">
                 <input type="number" name="quantity" value="1" min="1" class="quantity-input">
                 <button type="submit">购买</button>
@@ -97,7 +97,7 @@
     <div id="tooltip" class="tooltip"></div>
     
     <div style="margin-top: 20px;">
-        <a href="{{ url_for('scene') }}">返回场景</a>
+        <a href="{{ url_for('game.scene') }}">返回场景</a>
     </div>
 
     <script>

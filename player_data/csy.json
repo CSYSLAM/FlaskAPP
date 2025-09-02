@@ -1,0 +1,400 @@
+{
+  "name": "陈思远",
+  "player_class": "术士",
+  "level": 4,
+  "experience": 123,
+  "exp_to_next_level": 168,
+  "money": 2094,
+  "last_damage_taken": 0,
+  "last_damage_dealt": "87.0",
+  "last_battle_result": "你击败了蔡逸珂！获得了0银两",
+  "item_effect": "需要刺客职业才能装备",
+  "current_location": "outdoor.village",
+  "equipment": {
+    "weapon": {
+      "equipment_id": "638e18e5-217f-4f57-8142-e677c631a888",
+      "template_id": "novice_sword",
+      "name": "【普通】新手剑(5星)(1级)",
+      "slot": "weapon",
+      "rarity": "普通",
+      "stars": 5,
+      "level_required": 1,
+      "class_required": null,
+      "description": "简单的铁剑，各职业都可以使用",
+      "is_bound": true,
+      "base_stats": {
+        "attack": 35
+      },
+      "extra_stats": {
+        "attack": [
+          16.0,
+          4
+        ]
+      },
+      "enhance_level": 0,
+      "initial_stats": {
+        "attack": 35
+      }
+    },
+    "accessory": null,
+    "armor": {
+      "equipment_id": "32362a4a-6b10-4000-a89a-8f02deae6d30",
+      "template_id": "leather_armor",
+      "name": "【普通】皮革护甲(4星)(1级)",
+      "slot": "armor",
+      "rarity": "普通",
+      "stars": 4,
+      "level_required": 1,
+      "class_required": null,
+      "description": "用兽皮制成的轻便护甲，提供基础防护",
+      "is_bound": true,
+      "base_stats": {
+        "defense": 24,
+        "max_health": 80
+      },
+      "extra_stats": {
+        "defense": [
+          18.0,
+          3
+        ]
+      },
+      "enhance_level": 0,
+      "initial_stats": {
+        "defense": 24,
+        "max_health": 80
+      }
+    },
+    "helmet": {
+      "equipment_id": "3054e16d-2367-432b-8285-10d1381f0ba5",
+      "template_id": "training_helmet",
+      "name": "【普通】训练头盔(4星)(1级)",
+      "slot": "helmet",
+      "rarity": "普通",
+      "stars": 4,
+      "level_required": 1,
+      "class_required": null,
+      "description": "标准的金属头盔，保护头部要害",
+      "is_bound": true,
+      "base_stats": {
+        "defense": 16
+      },
+      "extra_stats": {
+        "defense": [
+          16.0,
+          4
+        ]
+      },
+      "enhance_level": 0,
+      "initial_stats": {
+        "defense": 16
+      }
+    },
+    "pants": null,
+    "shoes": null
+  },
+  "inventory": {
+    "potion_mana": {
+      "item": {
+        "item_id": "potion_mana",
+        "name": "凝魔草",
+        "item_type": "potion",
+        "description": "恢复30点魔法值",
+        "is_usable": true,
+        "can_bulk_use": false,
+        "price": 50,
+        "usage_condition": null,
+        "usage_effect": {
+          "stat_changes": {
+            "mana": 30
+          },
+          "item_changes": {},
+          "random_items": [],
+          "temp_effects": []
+        }
+      },
+      "quantity": 1
+    },
+    "chest_silver": {
+      "item": {
+        "item_id": "chest_silver",
+        "name": "银质宝匣",
+        "item_type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "is_usable": true,
+        "can_bulk_use": false,
+        "price": 200,
+        "usage_condition": {
+          "level_required": 10,
+          "required_items": {
+            "chest_key": 1
+          }
+        },
+        "usage_effect": {
+          "stat_changes": {},
+          "item_changes": {
+            "chest_key": -1
+          },
+          "random_items": [
+            {
+              "item_id": "potion_heal",
+              "max_count": 4,
+              "chance": 0.8,
+              "guaranteed_count": 2
+            },
+            {
+              "item_id": "potion_mana",
+              "max_count": 3,
+              "chance": 0.7,
+              "guaranteed_count": 1
+            },
+            {
+              "item_id": "pill_attack",
+              "max_count": 2,
+              "chance": 0.4,
+              "guaranteed_count": 0
+            },
+            {
+              "item_id": "pill_defense",
+              "max_count": 1,
+              "chance": 0.3,
+              "guaranteed_count": 0
+            }
+          ],
+          "temp_effects": []
+        }
+      },
+      "quantity": 1
+    },
+    "equipment_1756634931_9471": {
+      "equipment_id": "fe78b763-4651-4dc9-8421-9f176209126e",
+      "template_id": "bronze_sword",
+      "name": "【卓越】青铜剑(4星)(1级)",
+      "slot": "weapon",
+      "rarity": "卓越",
+      "stars": 4,
+      "level_required": 1,
+      "class_required": "战士",
+      "description": "由青铜打造的标准长剑，适合初学者使用",
+      "is_bound": false,
+      "base_stats": {
+        "attack": 40
+      },
+      "extra_stats": {
+        "attack": [
+          25.0,
+          5
+        ],
+        "max_health": [
+          250.0,
+          5
+        ],
+        "crit_rate": [
+          0.1,
+          5
+        ]
+      },
+      "enhance_level": 0,
+      "initial_stats": {
+        "attack": 40
+      }
+    },
+    "chest_gold": {
+      "item": {
+        "item_id": "chest_gold",
+        "name": "金质宝匣",
+        "item_type": "chest",
+        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+        "is_usable": true,
+        "can_bulk_use": false,
+        "price": 500,
+        "usage_condition": {
+          "level_required": 20,
+          "required_items": {
+            "chest_key": 1
+          }
+        },
+        "usage_effect": {
+          "stat_changes": {},
+          "item_changes": {
+            "chest_key": -1
+          },
+          "random_items": [
+            {
+              "item_id": "potion_heal",
+              "max_count": 5,
+              "chance": 0.9,
+              "guaranteed_count": 2
+            },
+            {
+              "item_id": "potion_mana",
+              "max_count": 4,
+              "chance": 0.8,
+              "guaranteed_count": 2
+            },
+            {
+              "item_id": "pill_attack",
+              "max_count": 2,
+              "chance": 0.5,
+              "guaranteed_count": 1
+            },
+            {
+              "item_id": "pill_defense",
+              "max_count": 2,
+              "chance": 0.5,
+              "guaranteed_count": 1
+            }
+          ],
+          "temp_effects": []
+        }
+      },
+      "quantity": 1
+    },
+    "potion_health": {
+      "item": {
+        "item_id": "potion_health",
+        "name": "生命秘药",
+        "item_type": "other",
+        "description": "使用后临时提升5%生命上限,持续2分钟",
+        "is_usable": true,
+        "can_bulk_use": false,
+        "price": 200,
+        "usage_condition": null,
+        "usage_effect": {
+          "stat_changes": {},
+          "item_changes": {},
+          "random_items": [],
+          "temp_effects": [
+            {
+              "stat": "max_health",
+              "rate": 0.05,
+              "duration": 120
+            }
+          ]
+        }
+      },
+      "quantity": 1
+    },
+    "chest_key": {
+      "item": {
+        "item_id": "chest_key",
+        "name": "宝匣钥匙",
+        "item_type": "material",
+        "description": "用于打开宝匣",
+        "is_usable": false,
+        "can_bulk_use": false,
+        "price": 50,
+        "usage_condition": null,
+        "usage_effect": null
+      },
+      "quantity": 3
+    },
+    "equipment_1756635163_4207": {
+      "equipment_id": "8a9a9f4a-7152-4e58-9531-88fd19d3fb66",
+      "template_id": "training_helmet",
+      "name": "【卓越】训练头盔(2星)(1级)",
+      "slot": "helmet",
+      "rarity": "卓越",
+      "stars": 2,
+      "level_required": 1,
+      "class_required": null,
+      "description": "标准的金属头盔，保护头部要害",
+      "is_bound": false,
+      "base_stats": {
+        "defense": 8
+      },
+      "extra_stats": {
+        "defense": [
+          4.0,
+          1
+        ],
+        "max_health": [
+          120.0,
+          3
+        ],
+        "max_mana": [
+          0.0,
+          3
+        ]
+      },
+      "enhance_level": 0,
+      "initial_stats": {
+        "defense": 8
+      }
+    }
+  },
+  "last_chat_message": null,
+  "chat_refresh_count": 0,
+  "chat_history": {},
+  "notifications": [],
+  "current_view": "chat",
+  "enhance_bonus_rate": 0,
+  "in_battle": false,
+  "in_pk": false,
+  "pk_opponent": null,
+  "last_attack_time": 1756807167.7935731,
+  "learned_skills": {},
+  "skill_exp": {},
+  "gender": "男",
+  "honor": 2,
+  "military_rank": "士兵",
+  "rank_attack": 0,
+  "base_stats": {
+    "max_health": 80,
+    "max_mana": 100,
+    "attack": 20,
+    "defense": 3,
+    "crit_rate": 0.03,
+    "dodge_rate": 0.03
+  },
+  "max_health": 205,
+  "health": 205,
+  "max_mana": 160,
+  "mana": 160,
+  "attack": 95.0,
+  "defense": 83.0,
+  "crit_rate": 0.045,
+  "dodge_rate": 0.045,
+  "growth_stats": {
+    "max_health": 125,
+    "max_mana": 160,
+    "attack": 44,
+    "defense": 9,
+    "crit_rate": 0.045,
+    "dodge_rate": 0.045
+  },
+  "equipment_stats": {
+    "max_health": 80,
+    "max_mana": 0,
+    "attack": 51.0,
+    "defense": 74.0,
+    "crit_rate": 0,
+    "dodge_rate": 0
+  },
+  "pill_stats": {
+    "max_health": 0,
+    "max_mana": 0,
+    "attack": 0,
+    "defense": 0
+  },
+  "temp_effects": {
+    "max_health": [],
+    "max_mana": [],
+    "attack": [],
+    "defense": [],
+    "crit_rate": [],
+    "dodge_rate": []
+  },
+  "shortcuts": {
+    "skill1": "attack",
+    "skill2": "attack",
+    "skill3": "attack",
+    "skill4": "attack",
+    "potion1": null,
+    "potion2": null
+  },
+  "username": "csy",
+  "password": "123",
+  "last_action": "使用了普通攻击",
+  "last_mana_cost": 0,
+  "last_skill": "普通攻击"
+}

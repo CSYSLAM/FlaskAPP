@@ -52,10 +52,10 @@
     <div class="equipment-slot">
         <span class="slot-name">{{ Equipment.SLOTS[slot] }}</span>
         {% if equipment %}
-            <a href="{{ url_for('view_equipped', slot=slot) }}" class="equipment-name">
+            <a href="{{ url_for('player.view_equipped', slot=slot) }}" class="equipment-name">
                 {{ equipment.name }}
             </a>
-            <a href="{{ url_for('unequip', slot=slot) }}" class="unequip-btn">卸下</a>
+            <a href="{{ url_for('player.unequip', slot=slot) }}" class="unequip-btn">卸下</a>
         {% else %}
             <span class="equipment-name">未装备</span>
         {% endif %}
@@ -63,7 +63,7 @@
     {% endfor %}
     
     <div style="margin-top: 20px;">
-        <a href="{{ url_for('character') }}">返回角色</a>
+        <a href="{{ url_for('player.character') }}">返回角色</a>
     </div>
 </body>
 </html>

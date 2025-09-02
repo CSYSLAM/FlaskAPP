@@ -1,0 +1,61 @@
+import json
+from pathlib import Path
+from models.player import Player
+from models.equipment import Equipment
+from config import Config
+
+class DataService:
+    _app = None
+    
+    @classmethod
+    def init_app(cls, app):
+        cls._app = app
+    
+    @staticmethod
+    def save_player_data(username, player):
+        file_path = Config.SAVE_DIR / f"{username}.json"
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(player.to_dict(), f, ensure_ascii=False, indent=2)
+
+    @staticmethod
+    def load_player_data(username):
+        file_path = Config.SAVE_DIR / f"{username}.json"
+        if file_path.exists():
+            with open(file_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return None
+
+    @staticmethod
+    def get_current_player(session):
+        if "username" not in session:
+            return None
+        player_data = DataService.load_player_data(session["username"])
+        if not player_data:
+            return None
+        
+        player = Player(player_data["name"], player_data["player_class"])
+        if "equipment" in player_data:
+            equipment_data = player_data["equipment"]
+            player.equipment = {
+                slot: Equipment.from_dict(equip_data) if equip_data else None
+                for slot, equip_data in equipment_data.items()
+            }
+        player_data_copy = player_data.copy()
+        player_data_copy.pop('equipment', None)
+        player.__dict__.update(player_data_copy)
+        player.update_stats()
+        player.update_military_rank()
+        player.get_avatar_path()
+        return player
+
+    @staticmethod
+    def get_all_players_in_location(location_id, exclude_username=None):
+        other_players = []
+        for file in Config.SAVE_DIR.glob("*.json"):
+            if exclude_username and file.stem == exclude_username:
+                continue
+            with open(file, 'r', encoding='utf-8') as f:
+                other_player = json.load(f)
+                if other_player["current_location"] == location_id:
+                    other_players.append(other_player)
+        return other_players

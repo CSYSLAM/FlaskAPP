@@ -64,9 +64,9 @@
 
     <div class="battle-controls">
         {% if is_pk %}
-            <form action="{{ url_for('pk_fight') }}" method="post">
+            <form action="{{ url_for('battle.pk_fight') }}" method="post">
         {% else %}
-            <form action="{{ url_for('fight') }}" method="post">
+            <form action="{{ url_for('battle.fight') }}" method="post">
         {% endif %}    
             <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">
                 {% if player.shortcuts.skill1 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill1 }}{% endif %}
@@ -81,7 +81,7 @@
                 {% if player.shortcuts.skill4 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill4 }}{% endif %}
             </button>
         </form>
-        <a href="{{ url_for('shortcuts') }}">设置快捷键</a>
+        <a href="{{ url_for('battle.shortcuts') }}">设置快捷键</a>
     </div>
 
     <div class="battle-info">
@@ -131,7 +131,7 @@
     </div>
 
     <div class="battle-controls">
-        <form action="{{ url_for('fight') }}" method="post">
+        <form action="{{ url_for('battle.fight') }}" method="post">
             {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
                 <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">
                     {{ player.inventory[player.shortcuts.potion1].item.name }}
@@ -143,7 +143,7 @@
                 </button>
             {% endif %}
         </form>
-        <a href="{{ url_for('scene') }}">逃跑</a>
+        <a href="{{ url_for('game.scene') }}">逃跑</a>
     </div>    
 </body>
 </html>
