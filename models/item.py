@@ -139,3 +139,58 @@ class Item:
             if item.price > 0:
                 shop_items[item_id] = item
         return shop_items
+
+    @classmethod
+    def get_shop_items_by_ids(cls, item_ids, page=1, per_page=10):
+        """根据物品ID列表获取商城物品，支持分页"""
+        all_items = cls.load_items()
+        shop_items = {}
+        
+        for item_id in item_ids:
+            if item_id in all_items and all_items[item_id].price > 0:
+                shop_items[item_id] = all_items[item_id]
+        
+        # 分页处理
+        total_items = len(shop_items)
+        start_index = (page - 1) * per_page
+        end_index = start_index + per_page
+        
+        paginated_items = dict(list(shop_items.items())[start_index:end_index])
+        
+        return {
+            'items': paginated_items,
+            'total': total_items,
+            'page': page,
+            'per_page': per_page,
+            'total_pages': (total_items + per_page - 1) // per_page,
+            'has_prev': page > 1,
+            'has_next': page < (total_items + per_page - 1) // per_page
+        }
+
+    @classmethod
+    def get_shop_items_by_category(cls, category, page=1, per_page=10):
+        """根据分类获取商城物品，支持分页"""
+        all_items = cls.load_items()
+        shop_items = {}
+        
+        for item_id, item in all_items.items():
+            if item.price > 0:
+                if category == "all" or item.item_type.value == category:
+                    shop_items[item_id] = item
+        
+        # 分页处理
+        total_items = len(shop_items)
+        start_index = (page - 1) * per_page
+        end_index = start_index + per_page
+        
+        paginated_items = dict(list(shop_items.items())[start_index:end_index])
+        
+        return {
+            'items': paginated_items,
+            'total': total_items,
+            'page': page,
+            'per_page': per_page,
+            'total_pages': (total_items + per_page - 1) // per_page,
+            'has_prev': page > 1,
+            'has_next': page < (total_items + per_page - 1) // per_page
+        }

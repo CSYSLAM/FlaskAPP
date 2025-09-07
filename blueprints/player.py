@@ -381,3 +381,9 @@ def upgrade_skill(skill):
 def skill_hall():
     player = DataService.get_current_player(session)
     return render_template("skill_hall.html", player=player)
+
+@player_bp.route("/temp_effects")
+@login_required
+def temp_effects():
+    player = DataService.get_current_player(session)
+    return render_template("temp_effects.html", player=player)

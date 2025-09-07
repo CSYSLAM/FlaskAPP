@@ -3,20 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商城</title>
+    <title>{{ shop_name }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
             line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .shop-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         h1, h2, h3, p, ul {
             margin: 0;
             padding: 0;
             font-size: 16px;
             text-align: left;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .money-display {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e8f5e8;
+            border-radius: 5px;
+        }
+        .shop-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .shop-nav a {
+            padding: 8px 15px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .shop-nav a:hover, .shop-nav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .per-page-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .per-page-selector select {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
         }
         a {
             display: inline-block;
@@ -30,73 +90,219 @@
         .shop-item {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 15px;
             border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        .shop-item:hover {
+            background-color: #f9f9f9;
         }
         .item-name {
             margin-right: 20px;
-            min-width: 150px;
+            min-width: 180px;
+            font-weight: bold;
+            color: #333;
+        }
+        .item-description {
+            flex: 1;
+            color: #666;
+            font-size: 14px;
+            margin-right: 20px;
         }
         .item-price {
             margin-right: 20px;
-            color: #666;
+            color: #d32f2f;
             min-width: 80px;
+            font-weight: bold;
         }
         .quantity-input {
             width: 60px;
             margin-right: 10px;
-            padding: 3px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
         }
         button {
-            padding: 3px 10px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #45a049;
         }
         .tooltip {
             position: absolute;
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+            background: #333;
+            color: white;
             padding: 10px;
+            border-radius: 5px;
             z-index: 100;
             display: none;
+            max-width: 300px;
+            font-size: 12px;
         }
         .message {
             margin: 10px 0;
-            padding: 5px;
+            padding: 10px;
+            border-radius: 5px;
         }
         .message.success {
-            color: green;
+            color: #2e7d32;
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
         }
         .message.error {
-            color: red;
+            color: #d32f2f;
+            background-color: #ffebee;
+            border: 1px solid #f44336;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .pagination a, .pagination span {
+            padding: 8px 12px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            color: #333;
+            border-radius: 3px;
+        }
+        .pagination a:hover {
+            background-color: #f0f0f0;
+        }
+        .pagination .current {
+            background-color: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .pagination .disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        .no-items {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
         }
     </style>
 </head>
 <body>
-    <h1>商城</h1>
-    <p>当前银两: {{ player.money }}</p>
-    
-    {% if message %}
-    <p class="message {% if success %}success{% else %}error{% endif %}">{{ message }}</p>
-    {% endif %}
-    
-    <div class="shop-items">
-        {% for item_id, item in shop_items.items() %}
-        <div class="shop-item">
-            <span class="item-name" onmouseover="showTooltip(event, '{{ item.description }}')" onmouseout="hideTooltip()">
-                {{ item.name }}
-            </span>
-            <span class="item-price">{{ item.price }}银两</span>
-            <form action="{{ url_for('shop.buy_item') }}" method="post" style="display: inline;">
-                <input type="hidden" name="item_id" value="{{ item_id }}">
-                <input type="number" name="quantity" value="1" min="1" class="quantity-input">
-                <button type="submit">购买</button>
-            </form>
+    <div class="shop-container">
+        <h1>商城</h1>
+        <div class="money-display">
+            💰 当前银两: {{ player.money }}
         </div>
-        {% endfor %}
+        
+        <!-- 商店导航 -->
+        <div class="shop-nav">
+            <a href="{{ url_for('shop.shop', shop_type='default') }}" 
+               class="{% if shop_type == 'default' %}active{% endif %}">
+                通用商城
+            </a>
+            <a href="{{ url_for('shop.shop', shop_type='potions') }}" 
+               class="{% if shop_type == 'potions' %}active{% endif %}">
+                药水商店
+            </a>
+            <a href="{{ url_for('shop.shop', shop_type='pills') }}" 
+               class="{% if shop_type == 'pills' %}active{% endif %}">
+                金丹商店
+            </a>
+            <a href="{{ url_for('shop.shop', shop_type='materials') }}" 
+               class="{% if shop_type == 'materials' %}active{% endif %}">
+                材料商店
+            </a>
+            <a href="{{ url_for('shop.shop', shop_type='experience') }}" 
+               class="{% if shop_type == 'experience' %}active{% endif %}">
+                经验商店
+            </a>
+        </div>
+        
+        <!-- 控制面板 -->
+        <div class="controls">
+            <div class="per-page-selector">
+                <label for="per_page">每页显示:</label>
+                <select id="per_page" onchange="changePerPage()">
+                    <option value="5" {% if shop_data.per_page == 5 %}selected{% endif %}>5</option>
+                    <option value="10" {% if shop_data.per_page == 10 %}selected{% endif %}>10</option>
+                    <option value="20" {% if shop_data.per_page == 20 %}selected{% endif %}>20</option>
+                    <option value="50" {% if shop_data.per_page == 50 %}selected{% endif %}>50</option>
+                </select>
+            </div>
+            <div>
+                共 {{ shop_data.total }} 个商品，第 {{ shop_data.page }}/{{ shop_data.total_pages }} 页
+            </div>
+        </div>
+        
+        <!-- 商品列表 -->
+        <div class="shop-items">
+            {% if shop_data.shop_items %}
+                {% for item_id, item in shop_data.shop_items.items() %}
+                <div class="shop-item">
+                    <span class="item-name" onmouseover="showTooltip(event, '{{ item.description }}')" onmouseout="hideTooltip()">
+                        {{ item.name }}
+                    </span>
+                    <span class="item-description">{{ item.description }}</span>
+                    <span class="item-price">{{ item.price }}银两</span>
+                    <form action="{{ url_for('shop.buy_item') }}" method="post" style="display: inline;">
+                        <input type="hidden" name="item_id" value="{{ item_id }}">
+                        <input type="hidden" name="shop_type" value="{{ shop_type }}">
+                        <input type="hidden" name="page" value="{{ shop_data.page }}">
+                        <input type="hidden" name="per_page" value="{{ shop_data.per_page }}">
+                        <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                        <button type="submit">购买</button>
+                    </form>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-items">
+                    暂无商品
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- 分页导航 -->
+        {% if shop_data.total_pages > 1 %}
+        <div class="pagination">
+            {% if shop_data.has_prev %}
+                <a href="{{ url_for('shop.shop', shop_type=shop_type, page=1, per_page=shop_data.per_page) }}">首页</a>
+                <a href="{{ url_for('shop.shop', shop_type=shop_type, page=shop_data.page-1, per_page=shop_data.per_page) }}">上一页</a>
+            {% else %}
+                <span class="disabled">首页</span>
+                <span class="disabled">上一页</span>
+            {% endif %}
+            
+            {% set start_page = (shop_data.page - 2) if (shop_data.page - 2) > 0 else 1 %}
+            {% set end_page = (shop_data.page + 3) if (shop_data.page + 3) <= (shop_data.total_pages + 1) else (shop_data.total_pages + 1) %}
+            {% for page_num in range(start_page, end_page) %}
+                {% if page_num == shop_data.page %}
+                    <span class="current">{{ page_num }}</span>
+                {% else %}
+                    <a href="{{ url_for('shop.shop', shop_type=shop_type, page=page_num, per_page=shop_data.per_page) }}">{{ page_num }}</a>
+                {% endif %}
+            {% endfor %}
+            
+            {% if shop_data.has_next %}
+                <a href="{{ url_for('shop.shop', shop_type=shop_type, page=shop_data.page+1, per_page=shop_data.per_page) }}">下一页</a>
+                <a href="{{ url_for('shop.shop', shop_type=shop_type, page=shop_data.total_pages, per_page=shop_data.per_page) }}">末页</a>
+            {% else %}
+                <span class="disabled">下一页</span>
+                <span class="disabled">末页</span>
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
     
     <div id="tooltip" class="tooltip"></div>
     
-    <div style="margin-top: 20px;">
+    <div style="margin-top: 20px; text-align: center;">
         <a href="{{ url_for('game.scene') }}">返回场景</a>
     </div>
 
@@ -111,6 +317,14 @@
 
         function hideTooltip() {
             document.getElementById('tooltip').style.display = 'none';
+        }
+        
+        function changePerPage() {
+            const perPage = document.getElementById('per_page').value;
+            const url = new URL(window.location);
+            url.searchParams.set('per_page', perPage);
+            url.searchParams.set('page', '1'); // 重置到第一页
+            window.location.href = url.toString();
         }
     </script>
 </body>

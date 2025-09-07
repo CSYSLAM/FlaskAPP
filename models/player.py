@@ -308,31 +308,46 @@ class Player:
                     changes.append(f"{name}: {diff:+.1f}")  # Changed from +d to +.1f
         return "\n".join(changes)
     
-    def add_temp_effect(self, stat, value=0, rate=0, duration=0):
-        """添加临时属性效果,同类效果延长持续时间"""
+    def add_temp_effect(self, stat, value=0, rate=0, duration=0, item_id=None, effect_name=None):
+        """添加临时属性效果
+        
+        Args:
+            stat: 属性名称
+            value: 绝对值加成
+            rate: 百分比加成
+            duration: 持续时间（秒）
+            item_id: 物品ID，用于标识效果来源
+            effect_name: 效果名称，用于显示
+        """
         if stat not in self.temp_effects:
             return False
-            
-        # 查找是否存在相同数值的效果
-        for effect in self.temp_effects[stat]:
-            if effect["value"] == value and effect["rate"] == rate:
-                # 找到相同效果,延长持续时间
-                current_time = time.time()
-                remaining_time = max(0, effect["expire_time"] - current_time)
-                effect["expire_time"] = current_time + remaining_time + duration
-                self.update_stats()
-                return True
         
-        # 没有找到相同效果,添加新效果        
-        expire_time = time.time() + duration
-        self.temp_effects[stat].append({
+        current_time = time.time()
+        expire_time = current_time + duration
+        
+        # 如果提供了item_id，查找相同物品的效果进行时间延长
+        if item_id:
+            for effect in self.temp_effects[stat]:
+                if effect.get("item_id") == item_id:
+                    # 找到相同物品的效果，延长持续时间
+                    remaining_time = max(0, effect["expire_time"] - current_time)
+                    effect["expire_time"] = current_time + remaining_time + duration
+                    self.update_stats()
+                    return True
+        
+        # 添加新效果
+        new_effect = {
             "value": value,
             "rate": rate,
-            "expire_time": expire_time
-        })
+            "expire_time": expire_time,
+            "item_id": item_id,
+            "effect_name": effect_name or f"{stat}_effect"
+        }
+        
+        self.temp_effects[stat].append(new_effect)
         self.update_stats()
         return True
-            
+
     def clear_expired_effects(self):
         """清理过期的临时效果"""
         now = time.time()
@@ -341,17 +356,82 @@ class Player:
                 effect for effect in self.temp_effects[stat]
                 if effect["expire_time"] > now
             ]
-            
+
     def get_temp_stat_bonus(self, stat):
         """获取某个属性的临时加成总和"""
         self.clear_expired_effects()
+        
+        if stat not in self.temp_effects:
+            return 0
         
         base_stat = getattr(self, stat, 0)
         flat_bonus = sum(effect["value"] for effect in self.temp_effects[stat])
         rate_bonus = sum(effect["rate"] for effect in self.temp_effects[stat])
         
         return flat_bonus + base_stat * rate_bonus
-    
+
+    def get_temp_effects_description(self, stat):
+        """获取某个属性的临时效果描述"""
+        self.clear_expired_effects()
+        
+        if stat not in self.temp_effects or not self.temp_effects[stat]:
+            return []
+        
+        descriptions = []
+        current_time = time.time()
+        
+        for effect in self.temp_effects[stat]:
+            remaining_time = max(0, effect["expire_time"] - current_time)
+            minutes = int(remaining_time // 60)
+            seconds = int(remaining_time % 60)
+            
+            effect_parts = []
+            if effect["value"] > 0:
+                effect_parts.append(f"+{effect['value']}")
+            if effect["rate"] > 0:
+                effect_parts.append(f"+{effect['rate']*100:.1f}%")
+            
+            if effect_parts:
+                time_str = f"{minutes}分{seconds}秒" if minutes > 0 else f"{seconds}秒"
+                effect_name = effect.get("effect_name", "")
+                descriptions.append(f"{effect_name}({'+'.join(effect_parts)})剩余{time_str}")
+        
+        return descriptions
+
+    def apply_temp_effects_from_item(self, item_id, temp_effects):
+        """从物品应用临时效果，支持模板化处理"""
+        effect_descriptions = []
+        
+        for effect in temp_effects:
+            stat = effect.get("stat")
+            value = effect.get("value", 0)
+            rate = effect.get("rate", 0)
+            duration = effect.get("duration", 0)
+            effect_name = effect.get("effect_name", "")
+            
+            if not stat or stat not in self.temp_effects:
+                continue
+                
+            if self.add_temp_effect(stat, value, rate, duration, item_id, effect_name):
+                # 生成效果描述
+                effect_parts = []
+                if value > 0:
+                    effect_parts.append(f"{value}点")
+                if rate > 0:
+                    effect_parts.append(f"{rate*100:.1f}%")
+                
+                if effect_parts:
+                    stat_name = self.STAT_NAMES.get(stat, stat)
+                    minutes = int(duration // 60)
+                    seconds = int(duration % 60)
+                    time_str = f"{minutes}分{seconds}秒" if minutes > 0 else f"{seconds}秒"
+                    
+                    effect_descriptions.append(
+                        f"{effect_name or stat_name}提升{'+'.join(effect_parts)}，持续{time_str}"
+                    )
+        
+        return effect_descriptions
+
     def modify_health_and_mana(self):
         if self.health > self.max_health:
             self.health = self.max_health
@@ -624,23 +704,12 @@ class Player:
             if item.usage_effect:
                 effect_description = []
 
-                # 处理临时效果
+                # 处理临时效果 - 使用新的模板化方法
                 if item.usage_effect.temp_effects:
-                    for effect in item.usage_effect.temp_effects:
-                        stat = effect.get("stat")
-                        rate = effect.get("rate", 0)
-                        value = effect.get("value", 0)
-                        duration = effect.get("duration", 0)
-                            
-                        if self.add_temp_effect(stat, value, rate, duration):
-                            if rate:
-                                effect_description.append(
-                                    f"获得{rate*100}%{self.STAT_NAMES[stat]}提升,持续{duration}秒"
-                                )
-                            if value:
-                                effect_description.append(
-                                    f"获得{value}点{self.STAT_NAMES[stat]}提升,持续{duration}秒"
-                                )
+                    temp_effect_descriptions = self.apply_temp_effects_from_item(
+                        item_id, item.usage_effect.temp_effects
+                    )
+                    effect_description.extend(temp_effect_descriptions)
                 
                 # Apply stat changes
                 for stat, value in item.usage_effect.stat_changes.items():
@@ -668,7 +737,7 @@ class Player:
                     # Handle random rewards
                     if item.usage_effect.random_items:
                         for item_info in item.usage_effect.random_items:
-                            item_id = item_info["item_id"]
+                            item_id_reward = item_info["item_id"]
                             max_count = item_info["max_count"]
                             chance = item_info["chance"]
                             guaranteed_count = item_info["guaranteed_count"]
@@ -684,9 +753,9 @@ class Player:
                                         total_count += 1
                             
                             if total_count > 0:
-                                items_gained.append(f"{Item.load_items()[item_id].name}x{total_count}")
+                                items_gained.append(f"{Item.load_items()[item_id_reward].name}x{total_count}")
                                 for _ in range(total_count):
-                                    self.add_item(item_id)
+                                    self.add_item(item_id_reward)
                     
                     if items_gained:
                         effect_description.append(f"获得了: {', '.join(items_gained)}")

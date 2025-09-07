@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>临时效果状态</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .effect-category {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .effect-category h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .effect-item {
+            background: #f9f9f9;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 3px;
+            border-left: 4px solid #4CAF50;
+        }
+        .no-effects {
+            color: #666;
+            font-style: italic;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>临时效果状态</h1>
+    
+    {% for stat, stat_name in player.STAT_NAMES.items() %}
+        <div class="effect-category">
+            <h3>{{ stat_name }}</h3>
+            {% set effects = player.get_temp_effects_description(stat) %}
+            {% if effects %}
+                {% for effect in effects %}
+                    <div class="effect-item">{{ effect }}</div>
+                {% endfor %}
+            {% else %}
+                <div class="no-effects">暂无临时效果</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('game.scene') }}">返回场景</a>
+    </div>
+</body>
+</html>

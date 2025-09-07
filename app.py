@@ -8,10 +8,14 @@ from blueprints.player import player_bp
 from blueprints.battle import battle_bp
 from blueprints.shop import shop_bp
 from blueprints.social import social_bp
+from flask import flash, redirect, url_for
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    
+    # 添加 flash 消息支持
+    app.secret_key = 'your-secret-key-here'  # 在生产环境中应该使用更安全的密钥
     
     # Init DB
     db.init_app(app)
