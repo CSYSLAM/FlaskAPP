@@ -35,18 +35,21 @@ class ItemUsageEffect:
                  stat_changes: Dict[str, int] = None,
                  item_changes: Dict[str, int] = None,
                  random_items: List[Dict[str, int]] = None,
-                 temp_effects = None):
+                 temp_effects = None,
+                 effect_descriptions: Dict[str, str] = None): 
         self.stat_changes = stat_changes or {}
         self.item_changes = item_changes or {}
         self.random_items = random_items or []
-        self.temp_effects = temp_effects or []  # 新增临时效果
+        self.temp_effects = temp_effects or []
+        self.effect_descriptions = effect_descriptions or {} # 新增临时效果
         
     def to_dict(self):
         return {
             "stat_changes": self.stat_changes,
             "item_changes": self.item_changes,
             "random_items": self.random_items,
-            "temp_effects": self.temp_effects
+            "temp_effects": self.temp_effects,
+            "effect_descriptions": self.effect_descriptions
         }
     
     @classmethod
@@ -55,7 +58,8 @@ class ItemUsageEffect:
             stat_changes=data.get("stat_changes", {}),
             item_changes=data.get("item_changes", {}),
             random_items=data.get("random_items", []),
-            temp_effects=data.get("temp_effects", [])
+            temp_effects=data.get("temp_effects", []),
+            effect_descriptions=data.get("effect_descriptions", {}) 
         )
 
 

@@ -46,7 +46,7 @@
                 "chest_iron": 0.1,
                 "chest_key": 0.05
             },
-            "money": {"min": 10, "max": 30},
+            "money": {"min": 100000, "max": 300000},
             "experience": 20
         }
     },

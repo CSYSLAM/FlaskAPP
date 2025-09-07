@@ -152,6 +152,9 @@
         "usage_effect": {
             "stat_changes": {
                 "honor": 1
+            },
+            "effect_descriptions": {
+                "honor": "获得{value}点荣誉值"
             }
         }
     },
@@ -172,6 +175,9 @@
         "usage_effect": {
             "stat_changes": {
                 "experience": 50000
+            },
+            "effect_descriptions": {
+                "experience": "获得{value}点经验值"
             }
         }
     },
@@ -185,6 +191,9 @@
         "usage_effect": {
             "stat_changes": {
                 "experience": 10000
+            },
+            "effect_descriptions": {
+                "experience": "获得{value}点经验值"
             }
         }
     },
@@ -197,7 +206,9 @@
             "stat_changes": {
                 "money": 50000
             },
-            "effect_description": "获得了{money}银两"
+            "effect_descriptions": {
+                "money": "获得{value}点银两"
+            }
         }
     },
     "potion_heal": {
@@ -209,6 +220,9 @@
         "usage_effect": {
             "stat_changes": {
                 "health": 50
+            },
+            "effect_descriptions": {
+                "health": "恢复{value}点生命值"
             }
         }
     },
@@ -221,6 +235,9 @@
         "usage_effect": {
             "stat_changes": {
                 "mana": 30
+            },
+            "effect_descriptions": {
+                "mana": "恢复{value}点魔法值"
             }
         }
     },
@@ -234,6 +251,9 @@
         "usage_effect": {
             "stat_changes": {
                 "pill_attack": 5
+            },
+            "effect_descriptions": {
+                "pill_attack": "永久增加{value}点攻击力"
             }
         }
     },
@@ -247,6 +267,9 @@
         "usage_effect": {
             "stat_changes": {
                 "pill_defense": 3
+            },
+            "effect_descriptions": {
+                "pill_defense": "永久增加{value}点防御力"
             }
         }
     },
@@ -260,6 +283,9 @@
         "usage_effect": {
             "stat_changes": {
                 "pill_max_health": 100
+            },
+            "effect_descriptions": {
+                "pill_max_health": "永久增加{value}点生命上限"
             }
         }
     },
@@ -273,6 +299,9 @@
         "usage_effect": {
             "stat_changes": {
                 "pill_max_mana": 50
+            },
+            "effect_descriptions": {
+                "pill_max_mana": "永久增加{value}点魔法上限"
             }
         }
     },

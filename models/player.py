@@ -157,12 +157,10 @@ class Player:
         }
         
         # 金丹属性
-        self.pill_stats = {
-            "max_health": 0,
-            "max_mana": 0,
-            "attack": 0,
-            "defense": 0
-        }
+        self.pill_defense = 0
+        self.pill_attack = 0
+        self.pill_max_health = 0
+        self.pill_max_mana = 0
 
         # 临时属性
         self.temp_effects = {
@@ -353,6 +351,12 @@ class Player:
         rate_bonus = sum(effect["rate"] for effect in self.temp_effects[stat])
         
         return flat_bonus + base_stat * rate_bonus
+    
+    def modify_health_and_mana(self):
+        if self.health > self.max_health:
+            self.health = self.max_health
+        if self.mana > self.max_mana:
+            self.mana = self.max_mana
 
     def update_stats(self):
         # 获取职业的等级成长属性
@@ -377,15 +381,16 @@ class Player:
                     self.equipment_stats[stat] += value
         
         # 最终属性 = 成长属性 + 装备属性 + 金丹属性
-        self.max_health = self.growth_stats["max_health"] + self.equipment_stats["max_health"] + self.pill_stats["max_health"]
-        self.max_mana = self.growth_stats["max_mana"] + self.equipment_stats["max_mana"] + self.pill_stats["max_mana"]
-        self.attack = self.growth_stats["attack"] + self.equipment_stats["attack"] + self.pill_stats["attack"]
-        self.defense = self.growth_stats["defense"] + self.equipment_stats["defense"] + self.pill_stats["defense"]
+        self.max_health = self.growth_stats["max_health"] + self.equipment_stats["max_health"] + self.pill_max_health
+        self.max_mana = self.growth_stats["max_mana"] + self.equipment_stats["max_mana"] + self.pill_max_mana
+        self.attack = self.growth_stats["attack"] + self.equipment_stats["attack"] + self.pill_attack
+        self.defense = self.growth_stats["defense"] + self.equipment_stats["defense"] + self.pill_defense
         self.crit_rate = self.growth_stats["crit_rate"] + self.equipment_stats["crit_rate"]
         self.dodge_rate = self.growth_stats["dodge_rate"] + self.equipment_stats["dodge_rate"]
 
         self.update_military_rank()  # 更新军衔
         self.attack += self.rank_attack  # 加上军衔攻击加成
+        self.modify_health_and_mana()
 
         # 临时属性
         self.max_health += self.get_temp_stat_bonus("max_health") 
@@ -639,34 +644,15 @@ class Player:
                 
                 # Apply stat changes
                 for stat, value in item.usage_effect.stat_changes.items():
-                    if stat == "honor":
-                        self.honor += value
-                        self.update_military_rank()  # 更新军衔
-                        effect_description.append(f"获得了{value}点荣誉值")
-                    if stat.startswith('pill_'):
-                        # 处理金丹属性
-                        stat_name = stat.replace('pill_', '')
-                        self.pill_stats[stat_name] += value
-                        effect_description.append(f"永久{Equipment.STAT_NAMES[stat_name]}增加了{value}")
-                    elif hasattr(self, stat):
-                        # 处理临时属性(如生命值、魔法值恢复)
+                    if hasattr(self, stat):
                         old_value = getattr(self, stat)
-                        if stat == "health":
-                            new_value = min(self.max_health, old_value + value)
-                        elif stat == "mana":
-                            new_value = min(self.max_mana, old_value + value)
-                        else:
-                            new_value = old_value + value
+                        setattr(self, stat, old_value + value)
                         
-                        setattr(self, stat, new_value)
-                        actual_change = new_value - old_value
-                        if actual_change > 0:
-                            if stat == "health":
-                                effect_description.append(f"恢复了{actual_change}点生命值")
-                            elif stat == "mana":
-                                effect_description.append(f"恢复了{actual_change}点魔法值")
-                            else:
-                                effect_description.append(f"{stat}增加了{actual_change}")
+                        # 获取效果描述
+                        description = item.usage_effect.effect_descriptions.get(stat)
+                        if description:
+                            effect_description.append(description.format(value=value))
+                        self.update_stats()
 
                 # Apply item changes and random items
                 if item.usage_effect.item_changes or item.usage_effect.random_items:
