@@ -4,6 +4,7 @@ from models.player import Player
 from models.equipment import Equipment
 from services.data_service import DataService
 from utils.decorators import login_required, check_health_status, check_pk_status
+from services.public_chat import broadcast_player, list_latest
 import random
 import time
 
@@ -59,7 +60,30 @@ def send_message(to_username):
 @check_pk_status
 def chat():
     player = DataService.get_current_player(session)
-    return render_template("chat.html", player=player)
+    public_messages = list_latest(50)
+    return render_template("chat.html", player=player, public_messages=public_messages)
+
+@social_bp.route("/shout", methods=["POST"])
+@login_required
+@check_health_status
+@check_pk_status
+def shout():
+    player = DataService.get_current_player(session)
+    content = request.form.get("content", "").strip()
+    if not content:
+        flash("内容不能为空")
+        return redirect(url_for("social.chat"))
+    # 消耗大喇叭
+    if 'megaphone' not in player.inventory or player.inventory['megaphone']['quantity'] <= 0:
+        flash("需要一个大喇叭道具")
+        return redirect(url_for("social.chat"))
+    player.inventory['megaphone']['quantity'] -= 1
+    if player.inventory['megaphone']['quantity'] <= 0:
+        del player.inventory['megaphone']
+    DataService.save_player_data(session["username"], player)
+    broadcast_player(player.username, player.name, content)
+    flash("已在公共频道发言")
+    return redirect(url_for("social.chat"))
 
 @social_bp.route("/toggle_view/<view_type>")
 @login_required

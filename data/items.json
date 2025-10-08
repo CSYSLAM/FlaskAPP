@@ -16,6 +16,13 @@
             ]
         }
     },
+    "megaphone": {
+        "name": "大喇叭",
+        "type": "other",
+        "description": "在公共频道发言一次",
+        "price": 100,
+        "is_usable": false
+    },
     "chest_lv1_weapon": {
         "name": "1级武器宝箱",
         "type": "chest",

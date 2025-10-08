@@ -53,7 +53,25 @@
            class="{{ 'active' if player.current_view == 'chat' }}">私聊记录</a>
         <a href="{{ url_for('social.toggle_view', view_type='notifications') }}"
            class="{{ 'active' if player.current_view == 'notifications' }}">通知记录</a>
+        <a href="#" class="active">公共聊天</a>
     </div>
+
+    <h2>公共频道</h2>
+    <form action="{{ url_for('social.shout') }}" method="post" style="margin: 10px 0;">
+        <input type="text" name="content" placeholder="使用大喇叭发言（消耗1个）" style="width: 70%; padding: 5px;">
+        <button type="submit">发送</button>
+    </form>
+    {% if public_messages %}
+        {% for msg in public_messages|reverse %}
+            <div class="message">
+                {% if msg.type == 'system' %}
+                    【系统】{{ msg.content }} <small>({{ msg.time }})</small>
+                {% else %}
+                    【公共】{{ msg.player_name }}：{{ msg.content }} <small>({{ msg.time }})</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     {% if player.current_view == 'chat' %}
         <h2>私聊记录</h2>

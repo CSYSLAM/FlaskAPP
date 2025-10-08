@@ -4,6 +4,7 @@ from pathlib import Path
 from models.equipment import Equipment
 from models.equipment_template import EquipmentTemplate
 from services.equipment_generator import EquipmentGenerator, EquipmentSource
+from services.public_chat import broadcast_system
 
 class Monster:
     def __init__(self, monster_id: str, data: dict):

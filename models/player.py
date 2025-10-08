@@ -8,6 +8,7 @@ import json as _json
 from models.skill import Skill
 from models.item import Item, ItemType
 from services.item_reward_registry import handle_reward
+from services.public_chat import broadcast_system
 from datetime import datetime
 
 class Player:
@@ -873,6 +874,9 @@ class Player:
         equip = Equipment(roll['template_id'], roll['rarity'], roll['stars'])
         new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
         self.inventory[new_id] = equip.to_dict()
+        # 系统广播：开出神器
+        if equip.rarity == "神器":
+            broadcast_system(f"恭喜{self.name}开启礼盒获得神器{equip.name}")
         return True
 
     def _grant_random_equipment_lv1(self, weapon_only: bool):

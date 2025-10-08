@@ -6,6 +6,7 @@ from models.monster import Monster
 from services.data_service import DataService
 from services.game_service import GameService
 from utils.decorators import login_required, check_health_status, check_pk_status
+from services.public_chat import list_latest
 
 game_bp = Blueprint('game', __name__)
 
@@ -50,6 +51,7 @@ def scene():
     
     DataService.save_player_data(session["username"], player)
     
+    public_messages = list_latest(10)
     return render_template("scene.html", 
                          player=player, 
                          monster=current_monster,
@@ -57,6 +59,7 @@ def scene():
                          locations=locations,
                          other_players=other_players,
                          Item=Item,
+                         public_messages=public_messages,
                          now=datetime.now())
 
 @game_bp.route("/move/<direction>")

@@ -7,6 +7,7 @@ from models.equipment import Equipment
 from models.skill import Skill
 from services.data_service import DataService
 from utils.decorators import login_required, check_health_status, check_pk_status
+from services.public_chat import broadcast_system
 
 player_bp = Blueprint('player', __name__)
 
@@ -324,6 +325,8 @@ def enhance_equipment(item_id):
         
         message = f"强化成功!装备等级提升至+{equipment.enhance_level}"
         success = True
+        # 公共广播：强化成功
+        broadcast_system(f"{player.name}成功将{equipment.template['name']}强化至+{equipment.enhance_level}")
     else:
         equipment.enhance_level = max(0, equipment.enhance_level - 1)
         player.enhance_bonus_rate += 0.05

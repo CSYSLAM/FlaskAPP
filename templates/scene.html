@@ -75,14 +75,20 @@
     </style>
 </head>
 <body>
-    {% if player.last_chat_message %}
-        <div class="chat-message">
-            {% if player.last_chat_message.is_gift %}
-                【赠送】{{ player.last_chat_message.sender }}{{ player.last_chat_message.content }}
-            {% else %}
-                【私聊】{{ player.last_chat_message.sender }}对你说：{{ player.last_chat_message.content }}
+    {% set public_messages = [] %}
+    {% if public_messages is not defined %}{% set public_messages = [] %}{% endif %}
+    {% if public_messages %}
+        {% for msg in public_messages|reverse %}
+            {% if loop.index0 < 3 %}
+            <div class="chat-message">
+                {% if msg.type == 'system' %}
+                    【系统】{{ msg.content }} <small>({{ msg.time }})</small>
+                {% else %}
+                    【公共】{{ msg.player_name }}：{{ msg.content }} <small>({{ msg.time }})</small>
+                {% endif %}
+            </div>
             {% endif %}
-        </div>
+        {% endfor %}
     {% endif %}
 
     <div class="section">
