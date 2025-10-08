@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from models.equipment import Equipment
 from models.equipment_template import EquipmentTemplate
+from services.equipment_generator import EquipmentGenerator, EquipmentSource
 
 class Monster:
     def __init__(self, monster_id: str, data: dict):
@@ -62,33 +63,31 @@ class Monster:
             return 0
 
     def get_loot(self):
-        if random.random() < 0.4:  # 30% chance for equipment
-            if self.drops["equipment_templates"]:
-                template_id = random.choice(self.drops["equipment_templates"])
-                template = Equipment.load_template(template_id)
-                
-                if template.get("is_artifact", False):
-                    rarity = "神器"
-                else:
-                    if self.is_elite:
-                        rarity_chances = {
-                            "普通": 0.4,
-                            "精良": 0.3,
-                            "卓越": 0.2,
-                            "史诗": 0.1
-                        }
-                    else:
-                        rarity_chances = {"普通": 1.0}
-                        
-                    rarity = random.choices(
-                        list(rarity_chances.keys()),
-                        list(rarity_chances.values())
-                    )[0]
-                
-                stars = random.randint(1, 5)
-                return Equipment(template_id, rarity, stars)
-        
-        # Then try to drop items based on drop rates
+        # 先尝试装备掉落
+        equip_cfg = self.drops.get("equipment_drop", {})
+        drop_rate = equip_cfg.get("drop_rate", 0.0)
+        if random.random() < drop_rate:
+            pool = equip_cfg.get("templates", self.drops.get("equipment_templates", []))
+            template_weights = equip_cfg.get("template_weights")
+            rarity_weights = equip_cfg.get("rarity_weights_elite" if self.is_elite else "rarity_weights")
+            star_range = None
+            if "star_min" in equip_cfg or "star_max" in equip_cfg:
+                star_range = (equip_cfg.get("star_min", 1), equip_cfg.get("star_max", 5))
+            star_weights = equip_cfg.get("star_weights")
+
+            roll = EquipmentGenerator.generate_from_pool(
+                source=EquipmentSource.MONSTER,
+                template_pool=pool,
+                template_weights=template_weights,
+                template_loader=Equipment.load_template,
+                rarity_weights=rarity_weights,
+                star_range=star_range,
+                star_weights=star_weights,
+            )
+            if roll:
+                return Equipment(roll["template_id"], roll["rarity"], roll["stars"])
+
+        # 物品掉落
         for item_id, chance in self.drops["items"].items():
             if random.random() < chance:
                 return item_id

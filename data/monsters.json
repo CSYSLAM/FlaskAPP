@@ -40,6 +40,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["novice_sword", "leather_armor", "training_helmet"],
+            "equipment_drop": {
+                "drop_rate": 0.25,
+                "templates": ["novice_sword", "leather_armor", "training_helmet"],
+                "rarity_weights": {"普通": 1.0},
+                "star_weights": {"1": 0.4, "2": 0.35, "3": 0.2, "4": 0.04, "5": 0.01}
+            },
             "items": {
                 "potion_heal": 0.3,
                 "potion_mana": 0.2,
@@ -68,6 +74,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["bronze_sword", "training_dagger", "apprentice_staff", "leather_boots"],
+            "equipment_drop": {
+                "drop_rate": 0.3,
+                "templates": ["bronze_sword", "training_dagger", "apprentice_staff", "leather_boots"],
+                "rarity_weights": {"普通": 1.0},
+                "star_weights": {"1": 0.35, "2": 0.35, "3": 0.22, "4": 0.06, "5": 0.02}
+            },
             "items": {
                 "potion_strength": 0.2,
                 "chest_iron": 0.15,
@@ -95,6 +107,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["warrior_ring", "assassin_ring", "mage_ring", "leather_boots"],
+            "equipment_drop": {
+                "drop_rate": 0.28,
+                "templates": ["warrior_ring", "assassin_ring", "mage_ring", "leather_boots"],
+                "rarity_weights": {"普通": 1.0},
+                "star_weights": {"1": 0.3, "2": 0.36, "3": 0.24, "4": 0.08, "5": 0.02}
+            },
             "items": {
                 "potion_agility": 0.3,
                 "chest_silver": 0.1,
@@ -122,6 +140,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["apprentice_staff", "cloth_robe", "mage_ring"],
+            "equipment_drop": {
+                "drop_rate": 0.27,
+                "templates": ["apprentice_staff", "cloth_robe", "mage_ring"],
+                "rarity_weights": {"普通": 1.0},
+                "star_weights": {"1": 0.32, "2": 0.36, "3": 0.22, "4": 0.08, "5": 0.02}
+            },
             "items": {
                 "potion_mana": 0.4,
                 "chest_iron": 0.2,
@@ -149,6 +173,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["training_dagger", "leather_armor", "assassin_ring", "leather_boots"],
+            "equipment_drop": {
+                "drop_rate": 0.45,
+                "templates": ["training_dagger", "leather_armor", "assassin_ring", "leather_boots"],
+                "rarity_weights_elite": {"普通": 0.4, "精良": 0.3, "卓越": 0.2, "史诗": 0.1},
+                "star_weights": {"2": 0.25, "3": 0.35, "4": 0.25, "5": 0.15}
+            },
             "items": {
                 "potion_strength": 0.3,
                 "chest_silver": 0.2,
@@ -176,6 +206,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "equipment_drop": {
+                "drop_rate": 0.46,
+                "templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+                "rarity_weights_elite": {"普通": 0.4, "精良": 0.3, "卓越": 0.2, "史诗": 0.1},
+                "star_weights": {"2": 0.25, "3": 0.35, "4": 0.25, "5": 0.15}
+            },
             "items": {
                 "potion_strength": 0.4,
                 "chest_silver": 0.25,
@@ -203,6 +239,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "equipment_drop": {
+                "drop_rate": 0.47,
+                "templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+                "rarity_weights_elite": {"普通": 0.4, "精良": 0.3, "卓越": 0.2, "史诗": 0.1},
+                "star_weights": {"2": 0.22, "3": 0.36, "4": 0.26, "5": 0.16}
+            },
             "items": {
                 "potion_strength": 0.3,
                 "chest_gold": 0.1,
@@ -230,6 +272,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "equipment_drop": {
+                "drop_rate": 0.48,
+                "templates": ["bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+                "rarity_weights_elite": {"普通": 0.4, "精良": 0.3, "卓越": 0.2, "史诗": 0.1},
+                "star_weights": {"2": 0.2, "3": 0.35, "4": 0.28, "5": 0.17}
+            },
             "items": {
                 "potion_strength": 0.4,
                 "chest_gold": 0.15,
@@ -257,6 +305,12 @@
         "skills": [],
         "drops": {
             "equipment_templates": ["ancient_blade", "bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+            "equipment_drop": {
+                "drop_rate": 0.5,
+                "templates": ["ancient_blade", "bronze_sword", "leather_armor", "warrior_ring", "training_helmet"],
+                "rarity_weights_elite": {"普通": 0.4, "精良": 0.3, "卓越": 0.2, "史诗": 0.1},
+                "star_weights": {"2": 0.15, "3": 0.35, "4": 0.3, "5": 0.2}
+            },
             "items": {
                 "potion_strength": 0.5,
                 "chest_gold": 0.2,
