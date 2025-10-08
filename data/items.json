@@ -23,8 +23,17 @@
         "price": 300,
         "is_usable": true,
         "usage_effect": {
-            "random_items": [
-                {"item_id": "__EQUIP_FROM_POOL_WEAPON_LV1__", "max_count": 1, "chance": 1.0, "guaranteed_count": 1}
+            "equipment_generators": [
+                {
+                    "count": 1,
+                    "chance": 1.0,
+                    "level_min": 1,
+                    "level_max": 1,
+                    "slots": ["weapon"],
+                    "exclude_artifact": true,
+                    "rarity_weights": {"普通": 0.7, "精良": 0.2, "卓越": 0.09, "史诗": 0.01},
+                    "star_weights": {"1": 0.35, "2": 0.35, "3": 0.2, "4": 0.08, "5": 0.02}
+                }
             ]
         }
     },
@@ -35,8 +44,17 @@
         "price": 300,
         "is_usable": true,
         "usage_effect": {
-            "random_items": [
-                {"item_id": "__EQUIP_FROM_POOL_GEAR_LV1__", "max_count": 1, "chance": 1.0, "guaranteed_count": 1}
+            "equipment_generators": [
+                {
+                    "count": 1,
+                    "chance": 1.0,
+                    "level_min": 1,
+                    "level_max": 1,
+                    "slots": ["weapon","armor","helmet","pants","shoes","accessory"],
+                    "exclude_artifact": true,
+                    "rarity_weights": {"普通": 0.7, "精良": 0.2, "卓越": 0.09, "史诗": 0.01},
+                    "star_weights": {"1": 0.35, "2": 0.35, "3": 0.2, "4": 0.08, "5": 0.02}
+                }
             ]
         }
     },
@@ -47,9 +65,16 @@
         "price": 800,
         "is_usable": true,
         "usage_effect": {
-            "stat_changes": {"experience": 2000, "money": 5000},
-            "random_items": [
-                {"item_id": "__EQUIP_ARTIFACT_LV1__", "max_count": 1, "chance": 0.1, "guaranteed_count": 0}
+            "stat_changes_rng": {"experience": [1500, 3000], "money": [4000, 8000]},
+            "equipment_generators": [
+                {
+                    "count": 1,
+                    "chance": 0.1,
+                    "template_ids": ["artifact_all_class_lv1"],
+                    "include_artifact": true,
+                    "rarity_weights": null,
+                    "star_weights": {"1": 0.35, "2": 0.35, "3": 0.2, "4": 0.08, "5": 0.02}
+                }
             ],
             "effect_descriptions": {
                 "experience": "获得{value}点经验值",

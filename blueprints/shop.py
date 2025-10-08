@@ -1,57 +1,16 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from models.item import Item
+import json
+from pathlib import Path
 from services.data_service import DataService
 from utils.decorators import login_required, check_health_status, check_pk_status
 
 shop_bp = Blueprint('shop', __name__)
 
-# 商城配置 - 可以轻松修改这里来改变显示的商品
-SHOP_CONFIGS = {
-    'default': {
-        'name': '通用商城',
-        'item_ids': None,  # None表示显示所有有价格的物品
-        'category': 'all'
-    },
-    'potions': {
-        'name': '药水商店',
-        'item_ids': [
-            'potion_heal', 'potion_mana', 'potion_health', 'potion_mana_temp',
-            'potion_attack', 'potion_defense', 'potion_crit', 'potion_dodge',
-            'potion_attack_absolute', 'potion_defense_absolute', 'potion_attack_mixed',
-            'potion_crit_absolute', 'potion_dodge_absolute', 'potion_health_absolute',
-            'potion_mana_absolute', 'potion_combo_attack', 'potion_elite'
-        ],
-        'category': None
-    },
-    'pills': {
-        'name': '金丹商店',
-        'item_ids': [
-            'pill_attack', 'pill_defense', 'pill_health', 'pill_mana'
-        ],
-        'category': None
-    },
-    'materials': {
-        'name': '材料商店',
-        'item_ids': [
-            'honor_scroll', 'enhance_gem', 'chest_key', 'money_small'
-        ],
-        'category': None
-    },
-    'chests': {
-        'name': '宝箱礼盒',
-        'item_ids': [
-            'chest_lv1_weapon', 'chest_lv1_gear', 'gift_lv1_artifact'
-        ],
-        'category': None
-    },
-    'experience': {
-        'name': '经验商店',
-        'item_ids': [
-            'exp_small', 'exp_large'
-        ],
-        'category': None
-    }
-}
+def load_shop_configs():
+    shops_file = Path("data/shops.json")
+    with open(shops_file, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 @shop_bp.route("/")
 @shop_bp.route("/<shop_type>")
@@ -60,6 +19,7 @@ SHOP_CONFIGS = {
 @check_pk_status
 def shop(shop_type='default'):
     player = DataService.get_current_player(session)
+    SHOP_CONFIGS = load_shop_configs()
     
     # 获取分页参数
     page = request.args.get('page', 1, type=int)

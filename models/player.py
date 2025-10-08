@@ -725,6 +725,35 @@ class Player:
                             effect_description.append(description.format(value=value))
                         self.update_stats()
 
+                # Apply rng stat changes
+                if getattr(item.usage_effect, 'stat_changes_rng', None):
+                    for stat, rng in item.usage_effect.stat_changes_rng.items():
+                        if not hasattr(self, stat):
+                            continue
+                        try:
+                            low, high = int(rng[0]), int(rng[1])
+                        except Exception:
+                            continue
+                        delta = random.randint(low, high)
+                        setattr(self, stat, getattr(self, stat) + delta)
+                        description = item.usage_effect.effect_descriptions.get(stat)
+                        if description:
+                            effect_description.append(description.format(value=delta))
+                        self.update_stats()
+
+                # 数据驱动：装备生成器（完全由 items.json 配置）
+                if getattr(item.usage_effect, 'equipment_generators', None):
+                    for rule in item.usage_effect.equipment_generators:
+                        count = int(rule.get('count', 1))
+                        chance = float(rule.get('chance', 1.0))
+                        awarded = 0
+                        for _ in range(count):
+                            if random.random() <= chance:
+                                if self._apply_equipment_generator_rule(rule):
+                                    awarded += 1
+                        if awarded > 0:
+                            effect_description.append(f"获得装备x{awarded}")
+
                 # Apply item changes and random items
                 if item.usage_effect.item_changes or item.usage_effect.random_items:
                     items_gained = []
@@ -778,6 +807,73 @@ class Player:
                 del self.inventory[item_id]
             
             return True
+
+    def _apply_equipment_generator_rule(self, rule: dict) -> bool:
+        from models.equipment import Equipment
+        import json as _json
+        # 构造模板池
+        with open("data/equipment_templates.json", "r", encoding="utf-8") as f:
+            templates = _json.load(f)
+        explicit_ids = rule.get('template_ids') or []
+        pool = []
+        if explicit_ids:
+            pool = [tid for tid in explicit_ids if tid in templates]
+        else:
+            level_min = int(rule.get('level_min', 1))
+            level_max = int(rule.get('level_max', 999))
+            slots = set(rule.get('slots', [])) if rule.get('slots') else None
+            slot_prefixes = rule.get('slot_prefixes', []) or []
+            class_required = rule.get('class_required')  # 单值或数组
+            class_set = set(class_required) if isinstance(class_required, list) else ({class_required} if class_required else None)
+            include_artifact = rule.get('include_artifact', True)
+            exclude_artifact = rule.get('exclude_artifact', False)
+            for tid, t in templates.items():
+                lv = t.get('level_required', 1)
+                if lv < level_min or lv > level_max:
+                    continue
+                slot_val = t.get('slot')
+                if slots and slot_val not in slots:
+                    continue
+                if slot_prefixes and not any(str(slot_val).startswith(pref) for pref in slot_prefixes):
+                    continue
+                if class_set is not None:
+                    tpl_cls = t.get('class_required')
+                    if isinstance(tpl_cls, list):
+                        if not (set(tpl_cls) & class_set):
+                            continue
+                    else:
+                        if tpl_cls not in class_set:
+                            continue
+                is_art = t.get('is_artifact', False)
+                if exclude_artifact and is_art:
+                    continue
+                if not include_artifact and is_art:
+                    continue
+                pool.append(tid)
+        if not pool:
+            return False
+        # 生成
+        rarity_weights = rule.get('rarity_weights')
+        star_range = None
+        if 'star_range' in rule and isinstance(rule['star_range'], list) and len(rule['star_range']) == 2:
+            star_range = (int(rule['star_range'][0]), int(rule['star_range'][1]))
+        star_weights = rule.get('star_weights')
+        template_weights = rule.get('template_weights')
+        roll = EquipmentGenerator.generate_from_pool(
+            source=EquipmentSource.CHEST,
+            template_pool=pool,
+            template_weights=template_weights,
+            template_loader=Equipment.load_template,
+            rarity_weights=rarity_weights,
+            star_range=star_range,
+            star_weights=star_weights,
+        )
+        if not roll:
+            return False
+        equip = Equipment(roll['template_id'], roll['rarity'], roll['stars'])
+        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
+        self.inventory[new_id] = equip.to_dict()
+        return True
 
     def _grant_random_equipment_lv1(self, weapon_only: bool):
         from models.equipment import Equipment

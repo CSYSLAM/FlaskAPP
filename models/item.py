@@ -33,33 +33,53 @@ class ItemUsageCondition:
 class ItemUsageEffect:
     def __init__(self, 
                  stat_changes: Dict[str, int] = None,
+                 stat_changes_rng: Dict[str, list] = None,
                  item_changes: Dict[str, int] = None,
                  random_items: List[Dict[str, int]] = None,
                  temp_effects = None,
-                 effect_descriptions: Dict[str, str] = None): 
+                 effect_descriptions: Dict[str, str] = None,
+                 equipment_generators: List[Dict[str, any]] = None): 
         self.stat_changes = stat_changes or {}
+        # 区间随机，如 {"experience": [1000,3000], "money": [1000,5000]}
+        self.stat_changes_rng = stat_changes_rng or {}
         self.item_changes = item_changes or {}
         self.random_items = random_items or []
         self.temp_effects = temp_effects or []
         self.effect_descriptions = effect_descriptions or {} # 新增临时效果
+        # 完全数据驱动的装备生成规则列表（可选）
+        # 每个规则支持：
+        # {
+        #   "count": 1, "chance": 1.0,
+        #   "template_ids": [..] 或 通过筛选字段构造池：
+        #   "level_min": 1, "level_max": 5, "slots": ["weapon","armor",...],
+        #   "include_artifact": false, "exclude_artifact": true,
+        #   "template_weights": {tid: weight},
+        #   "rarity_weights": {"普通":..,"精良":..,"卓越":..,"史诗":..},
+        #   "star_range": [1,5] 或 "star_weights": {1:..,2:..}
+        # }
+        self.equipment_generators = equipment_generators or []
         
     def to_dict(self):
         return {
             "stat_changes": self.stat_changes,
+            "stat_changes_rng": self.stat_changes_rng,
             "item_changes": self.item_changes,
             "random_items": self.random_items,
             "temp_effects": self.temp_effects,
-            "effect_descriptions": self.effect_descriptions
+            "effect_descriptions": self.effect_descriptions,
+            "equipment_generators": self.equipment_generators
         }
     
     @classmethod
     def from_dict(cls, data):
         return cls(
             stat_changes=data.get("stat_changes", {}),
+            stat_changes_rng=data.get("stat_changes_rng", {}),
             item_changes=data.get("item_changes", {}),
             random_items=data.get("random_items", []),
             temp_effects=data.get("temp_effects", []),
-            effect_descriptions=data.get("effect_descriptions", {}) 
+            effect_descriptions=data.get("effect_descriptions", {}),
+            equipment_generators=data.get("equipment_generators", []) 
         )
 
 

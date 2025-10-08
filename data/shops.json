@@ -1,0 +1,39 @@
+{
+  "default": {
+    "name": "通用商城",
+    "item_ids": null,
+    "category": "all"
+  },
+  "potions": {
+    "name": "药水商店",
+    "item_ids": [
+      "potion_heal", "potion_mana", "potion_health", "potion_mana_temp",
+      "potion_attack", "potion_defense", "potion_crit", "potion_dodge",
+      "potion_attack_absolute", "potion_defense_absolute", "potion_attack_mixed",
+      "potion_crit_absolute"
+    ],
+    "category": null
+  },
+  "pills": {
+    "name": "金丹商店",
+    "item_ids": ["pill_attack", "pill_defense", "pill_health", "pill_mana"],
+    "category": null
+  },
+  "materials": {
+    "name": "材料商店",
+    "item_ids": ["honor_scroll", "enhance_gem", "chest_key", "money_small"],
+    "category": null
+  },
+  "chests": {
+    "name": "宝箱礼盒",
+    "item_ids": ["chest_lv1_weapon", "chest_lv1_gear", "gift_lv1_artifact"],
+    "category": null
+  },
+  "experience": {
+    "name": "经验商店",
+    "item_ids": ["exp_small", "exp_large"],
+    "category": null
+  }
+}
+
+
