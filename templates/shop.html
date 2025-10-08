@@ -219,6 +219,10 @@
                class="{% if shop_type == 'materials' %}active{% endif %}">
                 材料商店
             </a>
+            <a href="{{ url_for('shop.shop', shop_type='chests') }}" 
+               class="{% if shop_type == 'chests' %}active{% endif %}">
+                宝箱礼盒
+            </a>
             <a href="{{ url_for('shop.shop', shop_type='experience') }}" 
                class="{% if shop_type == 'experience' %}active{% endif %}">
                 经验商店

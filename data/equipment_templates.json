@@ -20,6 +20,32 @@
             "dodge_rate": 0.1
         }
     },
+    "artifact_all_class_lv1": {
+        "name": "起源之印",
+        "description": "远古文明的符印，赐予持有者非凡的力量",
+        "slot": "accessory",
+        "is_bound": true,
+        "level_required": 1,
+        "class_required": null,
+        "base_price": 6000,
+        "is_artifact": true,
+        "base_stats": {
+            "attack": 30,
+            "defense": 20,
+            "max_health": 150,
+            "max_mana": 80,
+            "crit_rate": 0.05,
+            "dodge_rate": 0.05
+        },
+        "max_extra_stats": {
+            "max_health": 400,
+            "max_mana": 250,
+            "attack": 40,
+            "defense": 40,
+            "crit_rate": 0.15,
+            "dodge_rate": 0.15
+        }
+    },
     "training_dagger": {
         "name": "训练匕首",
         "description": "轻巧锋利的匕首，便于刺客快速出手",

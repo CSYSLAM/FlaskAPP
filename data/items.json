@@ -16,6 +16,47 @@
             ]
         }
     },
+    "chest_lv1_weapon": {
+        "name": "1级武器宝箱",
+        "type": "chest",
+        "description": "开启可获得随机1星-5星的1级武器（普通-史诗）",
+        "price": 300,
+        "is_usable": true,
+        "usage_effect": {
+            "random_items": [
+                {"item_id": "__EQUIP_FROM_POOL_WEAPON_LV1__", "max_count": 1, "chance": 1.0, "guaranteed_count": 1}
+            ]
+        }
+    },
+    "chest_lv1_gear": {
+        "name": "1级装备宝箱",
+        "type": "chest",
+        "description": "开启可获得随机1星-5星的1级装备（普通-史诗）",
+        "price": 300,
+        "is_usable": true,
+        "usage_effect": {
+            "random_items": [
+                {"item_id": "__EQUIP_FROM_POOL_GEAR_LV1__", "max_count": 1, "chance": 1.0, "guaranteed_count": 1}
+            ]
+        }
+    },
+    "gift_lv1_artifact": {
+        "name": "1级神器礼盒",
+        "type": "other",
+        "description": "开启有小概率获得1级神器，且必得经验与银两",
+        "price": 800,
+        "is_usable": true,
+        "usage_effect": {
+            "stat_changes": {"experience": 2000, "money": 5000},
+            "random_items": [
+                {"item_id": "__EQUIP_ARTIFACT_LV1__", "max_count": 1, "chance": 0.1, "guaranteed_count": 0}
+            ],
+            "effect_descriptions": {
+                "experience": "获得{value}点经验值",
+                "money": "获得{value}点银两"
+            }
+        }
+    },
     "potion_mana_temp": {
         "name": "魔法秘药",
         "type": "other", 

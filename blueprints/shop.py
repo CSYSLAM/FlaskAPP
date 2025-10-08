@@ -37,6 +37,13 @@ SHOP_CONFIGS = {
         ],
         'category': None
     },
+    'chests': {
+        'name': '宝箱礼盒',
+        'item_ids': [
+            'chest_lv1_weapon', 'chest_lv1_gear', 'gift_lv1_artifact'
+        ],
+        'category': None
+    },
     'experience': {
         'name': '经验商店',
         'item_ids': [

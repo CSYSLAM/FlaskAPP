@@ -1,11 +1,13 @@
 import random
 import time
 from models.equipment import Equipment
+from services.equipment_generator import EquipmentGenerator, EquipmentSource
 from services import db
 from datetime import datetime as _dt
 import json as _json
 from models.skill import Skill
 from models.item import Item, ItemType
+from services.item_reward_registry import handle_reward
 from datetime import datetime
 
 class Player:
@@ -753,9 +755,13 @@ class Player:
                                         total_count += 1
                             
                             if total_count > 0:
-                                items_gained.append(f"{Item.load_items()[item_id_reward].name}x{total_count}")
-                                for _ in range(total_count):
-                                    self.add_item(item_id_reward)
+                                handled = handle_reward(self, item_id_reward, total_count)
+                                if handled:
+                                    items_gained.extend(handled)
+                                else:
+                                    items_gained.append(f"{Item.load_items()[item_id_reward].name}x{total_count}")
+                                    for _ in range(total_count):
+                                        self.add_item(item_id_reward)
                     
                     if items_gained:
                         effect_description.append(f"获得了: {', '.join(items_gained)}")
@@ -772,6 +778,48 @@ class Player:
                 del self.inventory[item_id]
             
             return True
+
+    def _grant_random_equipment_lv1(self, weapon_only: bool):
+        from models.equipment import Equipment
+        # 选取1级模板池
+        from models.equipment import Equipment as _E
+        import json as _json
+        with open("data/equipment_templates.json", "r", encoding="utf-8") as f:
+            templates = _json.load(f)
+        pool = []
+        for tid, t in templates.items():
+            if t.get("level_required", 1) == 1 and not t.get("is_artifact", False):
+                if weapon_only and t.get("slot") != "weapon":
+                    continue
+                pool.append(tid)
+        if not pool:
+            return False
+        roll = EquipmentGenerator.generate_from_pool(
+            source=EquipmentSource.CHEST,
+            template_pool=pool,
+            template_weights=None,
+            template_loader=Equipment.load_template,
+            rarity_weights={"普通": 0.7, "精良": 0.2, "卓越": 0.09, "史诗": 0.01},
+            star_weights={1: 0.35, 2: 0.35, 3: 0.2, 4: 0.08, 5: 0.02}
+        )
+        if not roll:
+            return False
+        equip = Equipment(roll["template_id"], roll["rarity"], roll["stars"])
+        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
+        self.inventory[new_id] = equip.to_dict()
+        return True
+
+    def _grant_artifact_lv1(self):
+        from models.equipment import Equipment
+        roll = EquipmentGenerator.generate(
+            source=EquipmentSource.EVENT,
+            template_id="artifact_all_class_lv1",
+            template_loader=Equipment.load_template,
+        )
+        equip = Equipment(roll["template_id"], roll["rarity"], roll["stars"])
+        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
+        self.inventory[new_id] = equip.to_dict()
+        return True
 
 
 
