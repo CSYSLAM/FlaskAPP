@@ -1,59 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登录/注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>风云三国(登录)</title>
     <style>
-        .form-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            max-width: 400px;
-        }
-        .message {
-            color: red;
-            margin: 10px 0;
-        }
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .message { color: red; margin: 5px 0; }
     </style>
 </head>
-<body>
-    <div class="form-container">
-        <h2>登录</h2>
-        {% if message %}
-        <p class="message">{{ message }}</p>
-        {% endif %}
-        <form action="{{ url_for('auth.login_page') }}" method="post">
-            <div>
-                <label>账号：</label>
-                <input type="text" name="username" required>
-            </div>
-            <div>
-                <label>密码：</label>
-                <input type="password" name="password" required>
-            </div>
-            <button type="submit">登录</button>
-        </form>
-    </div>
-    
-    <div class="form-container">
-        <h2>注册</h2>
-        <form method="post" action="{{ url_for('auth.register') }}">
-            <input type="text" name="username" placeholder="账号" required>
-            <input type="password" name="password" placeholder="密码" required>
-            <input type="text" name="nickname" placeholder="昵称" required>
-            <select name="player_class" required>
-                <option value="术士">术士</option>
-                <option value="战士">战士</option>
-                <option value="刺客">刺客</option>
-            </select>
-            <select name="gender" required>
-                <option value="男">男</option>
-                <option value="女">女</option>
-            </select>
-            <button type="submit">注册</button>
-        </form>
-        
-    </div>
+<body style='margin-left:10px;margin-right:10px'>
+    <b>登录到风云三国</b><br/>
+
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('auth.login_page') }}" method="post">
+    账号：<br/><input type="text" name="username" title="账号" maxlength="32" required><br/>
+    密码：<br/><input type="password" name="password" placeholder="忘记密码请联系客服" title="密码" maxlength="32" required><br/>
+    <input type="submit" value="马上登录"><br/>
+    </form>
+    <br/>
+    还没有账号？<a href="#register">账号注册</a><br/>
+
+    <a name="register"></a><br/>
+    <b>账号注册</b><br/>
+    <form method="post" action="{{ url_for('auth.register') }}">
+    账号：<br/><input type="text" name="username" placeholder="账号" maxlength="32" required><br/>
+    密码：<br/><input type="password" name="password" placeholder="密码" maxlength="32" required><br/>
+    昵称：<br/><input type="text" name="nickname" placeholder="昵称" required><br/>
+    国家：<br/><select name="country" required>
+        <option value="魏">魏</option>
+        <option value="蜀">蜀</option>
+        <option value="吴">吴</option>
+    </select><br/>
+    职业：<br/><select name="player_class" required>
+        <option value="术士">术士</option>
+        <option value="战士">战士</option>
+        <option value="刺客">刺客</option>
+    </select><br/>
+    性别：<br/><select name="gender" required>
+        <option value="男">男</option>
+        <option value="女">女</option>
+    </select><br/>
+    <input type="submit" value="注册"><br/>
+    </form>
 </body>
 </html>

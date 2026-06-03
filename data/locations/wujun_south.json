@@ -1,0 +1,63 @@
+{
+  "name": "吴郡南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "wujun_center.南城楼",
+        "south": "wujun_south.乌伤地"
+      }
+    },
+    "乌伤地": {
+      "name": "乌伤地",
+      "exits": {
+        "north": "wujun_south.南桥",
+        "south": "wujun_south.飞虎台"
+      },
+      "monster_type": "monster_wujun_south_土匪"
+    },
+    "南桥": {
+      "name": "南桥",
+      "exits": {
+        "south": "wujun_south.乌伤地"
+      }
+    },
+    "飞虎台": {
+      "name": "飞虎台",
+      "exits": {
+        "north": "wujun_south.乌伤地",
+        "west": "wujun_south.钱塘江",
+        "east": "wujun_south.龙井"
+      }
+    },
+    "龙井": {
+      "name": "龙井",
+      "exits": {
+        "west": "wujun_south.飞虎台"
+      }
+    },
+    "钱塘江": {
+      "name": "钱塘江",
+      "exits": {
+        "west": "wujun_south.西塘坡",
+        "east": "wujun_south.飞虎台",
+        "south": "wujun_south.金华山"
+      },
+      "monster_type": "monster_wujun_south_青花蛇"
+    },
+    "金华山": {
+      "name": "金华山",
+      "exits": {
+        "north": "wujun_south.钱塘江"
+      },
+      "monster_type": "monster_wujun_south_岩怪"
+    },
+    "西塘坡": {
+      "name": "西塘坡",
+      "exits": {
+        "east": "wujun_south.钱塘江"
+      },
+      "monster_type": "monster_wujun_south_苗人龙"
+    }
+  }
+}

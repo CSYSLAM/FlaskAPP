@@ -1,0 +1,185 @@
+{
+  "name": "许昌中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "xuchang_center.皇宫",
+        "west": "xuchang_center.校军场",
+        "east": "xuchang_center.军营",
+        "south": "xuchang_center.驿站"
+      },
+      "npcs": [
+        "npc_xuchang_center_任务使者"
+      ]
+    },
+    "皇宫": {
+      "name": "皇宫",
+      "exits": {
+        "north": "xuchang_center.玄武街",
+        "west": "xuchang_center.战场",
+        "south": "xuchang_center.广场"
+      },
+      "npcs": [
+        "npc_xuchang_center_曹操荣誉",
+        "npc_xuchang_center_小公主"
+      ]
+    },
+    "玄武街": {
+      "name": "玄武街",
+      "exits": {
+        "north": "xuchang_center.北城楼",
+        "west": "xuchang_center.铁匠铺",
+        "east": "xuchang_center.药铺",
+        "south": "xuchang_center.皇宫"
+      }
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "xuchang_north.北门",
+        "south": "xuchang_center.玄武街"
+      },
+      "monster_type": "monster_xuchang_center_许昌卫兵"
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "east": "xuchang_center.玄武街"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "west": "xuchang_center.玄武街"
+      }
+    },
+    "战场": {
+      "name": "战场",
+      "exits": {
+        "east": "xuchang_center.皇宫"
+      },
+      "npcs": [
+        "npc_xuchang_center_军团使者"
+      ],
+      "monster_type": "monster_xuchang_center_魏军护兵"
+    },
+    "校军场": {
+      "name": "校军场",
+      "exits": {
+        "west": "xuchang_center.白虎街",
+        "east": "xuchang_center.广场"
+      },
+      "npcs": [
+        "npc_xuchang_center_曹昂副本"
+      ]
+    },
+    "白虎街": {
+      "name": "白虎街",
+      "exits": {
+        "north": "xuchang_center.太子殿",
+        "east": "xuchang_center.校军场",
+        "south": "xuchang_center.洛神殿"
+      },
+      "monster_type": "monster_xuchang_center_太子守卫"
+    },
+    "洛神殿": {
+      "name": "洛神殿",
+      "exits": {
+        "north": "xuchang_center.白虎街"
+      }
+    },
+    "太子殿": {
+      "name": "太子殿",
+      "exits": {
+        "west": "xuchang_center.西城楼",
+        "south": "xuchang_center.白虎街"
+      },
+      "monster_type": "monster_xuchang_center_许昌卫兵"
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "xuchang_west.西门",
+        "east": "xuchang_center.太子殿"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "xuchang_center.广场",
+        "west": "xuchang_center.钱庄",
+        "south": "xuchang_center.朱雀街"
+      },
+      "npcs": [
+        "npc_xuchang_center_许昌车夫"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "east": "xuchang_center.驿站"
+      }
+    },
+    "朱雀街": {
+      "name": "朱雀街",
+      "exits": {
+        "north": "xuchang_center.驿站",
+        "west": "xuchang_center.客栈",
+        "east": "xuchang_center.技能馆",
+        "south": "xuchang_center.南城楼"
+      }
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "east": "xuchang_center.朱雀街"
+      }
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "west": "xuchang_center.朱雀街"
+      }
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "xuchang_center.朱雀街",
+        "south": "xuchang_south.南门"
+      }
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "west": "xuchang_center.广场",
+        "east": "xuchang_center.青龙街"
+      },
+      "npcs": [
+        "npc_xuchang_center_副将统领"
+      ]
+    },
+    "青龙街": {
+      "name": "青龙街",
+      "exits": {
+        "north": "xuchang_center.武宣殿",
+        "west": "xuchang_center.军营",
+        "south": "xuchang_center.青梅村"
+      },
+      "monster_type": "monster_xuchang_center_青蛇"
+    },
+    "武宣殿": {
+      "name": "武宣殿",
+      "exits": {
+        "south": "xuchang_center.青龙街"
+      }
+    },
+    "青梅村": {
+      "name": "青梅村",
+      "exits": {
+        "north": "xuchang_center.青龙街",
+        "east": "xuchang_east.东城楼"
+      }
+    }
+  }
+}

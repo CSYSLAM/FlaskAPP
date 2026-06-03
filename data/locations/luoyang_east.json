@@ -1,0 +1,45 @@
+{
+  "name": "洛阳东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "luoyang_center.东城楼",
+        "east": "luoyang_east.孟津关"
+      },
+      "monster_type": "monster_luoyang_east_洛阳劫匪"
+    },
+    "孟津关": {
+      "name": "孟津关",
+      "exits": {
+        "north": "luoyang_east.邙岭",
+        "west": "luoyang_east.东门",
+        "east": "luoyang_east.洛阳东界",
+        "south": "luoyang_east.大石山"
+      },
+      "monster_type": "monster_luoyang_east_张济"
+    },
+    "大石山": {
+      "name": "大石山",
+      "exits": {
+        "north": "luoyang_east.孟津关"
+      },
+      "monster_type": "monster_luoyang_east_孙礼"
+    },
+    "邙岭": {
+      "name": "邙岭",
+      "exits": {
+        "north": "ice_tower.寒冰塔入口",
+        "south": "luoyang_east.孟津关"
+      },
+      "monster_type": "monster_luoyang_east_曹纯"
+    },
+    "洛阳东界": {
+      "name": "洛阳东界",
+      "exits": {
+        "west": "luoyang_east.孟津关",
+        "east": "xiapi_west.下邳西界"
+      }
+    }
+  }
+}

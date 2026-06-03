@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>世界地图</title>
+<style>
+body { font-size: 16px; }
+a:link { color: #136ec2; text-decoration: none; }
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body style="margin-left:10px;margin-right:10px">
+
+<div id="loading"><span></span></div>
+
+<a href="{{ url_for('map.index') }}">返回地图</a><br/>
+<h3>世界地图</h3>
+
+<font color="#00FFFF">青色</font>为所在区域<br/>
+<font color="#0000FF">蓝色</font>为魏国区域<br/>
+<font color="#A52A2A">棕色</font>为蜀国区域<br/>
+<font color="#25bf01">绿色</font>为吴国区域<br/>
+白色为中立区域<br/>
+<br/>
+
+<img src="{{ url_for('static', filename='map/world_map.jpg') }}" alt="世界地图" border="0" style="max-width:100%;height:auto;"><br/>
+<br/>
+
+<a href="{{ url_for('map.index') }}">返回上级</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
+</body>
+</html>

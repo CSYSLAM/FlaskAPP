@@ -1,0 +1,261 @@
+{
+  "categories": ["成长", "战斗", "探索", "收集", "社交", "特权"],
+  "achievements": {
+    "level_10": {
+      "name": "初入江湖",
+      "category": "成长",
+      "description": "达到10级",
+      "condition_type": "level",
+      "condition_value": 10,
+      "reward": {"max_health": 50, "max_mana": 20}
+    },
+    "level_20": {
+      "name": "小有名气",
+      "category": "成长",
+      "description": "达到20级",
+      "condition_type": "level",
+      "condition_value": 20,
+      "reward": {"max_health": 100, "max_mana": 40}
+    },
+    "level_30": {
+      "name": "名震一方",
+      "category": "成长",
+      "description": "达到30级",
+      "condition_type": "level",
+      "condition_value": 30,
+      "reward": {"max_health": 200, "max_mana": 80}
+    },
+    "enhance_5": {
+      "name": "初试锋芒",
+      "category": "成长",
+      "description": "装备强化达到5级",
+      "condition_type": "enhance",
+      "condition_value": 5,
+      "reward": {"attack": 3}
+    },
+    "enhance_10": {
+      "name": "百炼成钢",
+      "category": "成长",
+      "description": "装备强化达到10级",
+      "condition_type": "enhance",
+      "condition_value": 10,
+      "reward": {"attack": 8}
+    },
+    "enhance_20": {
+      "name": "神工鬼斧",
+      "category": "成长",
+      "description": "装备强化达到20级",
+      "condition_type": "enhance",
+      "condition_value": 20,
+      "reward": {"attack": 15}
+    },
+    "kill_50": {
+      "name": "初出茅庐",
+      "category": "战斗",
+      "description": "击败怪物50次",
+      "condition_type": "kill",
+      "condition_value": 50,
+      "reward": {"attack": 5}
+    },
+    "kill_200": {
+      "name": "战功赫赫",
+      "category": "战斗",
+      "description": "击败怪物200次",
+      "condition_type": "kill",
+      "condition_value": 200,
+      "reward": {"attack": 12}
+    },
+    "kill_500": {
+      "name": "杀敌如麻",
+      "category": "战斗",
+      "description": "击败怪物500次",
+      "condition_type": "kill",
+      "condition_value": 500,
+      "reward": {"attack": 25}
+    },
+    "elite_1": {
+      "name": "首斩精英",
+      "category": "战斗",
+      "description": "击败精英怪1次",
+      "condition_type": "elite_kill",
+      "condition_value": 1,
+      "reward": {"crit_rate": 0.02}
+    },
+    "elite_10": {
+      "name": "精英猎手",
+      "category": "战斗",
+      "description": "击败精英怪10次",
+      "condition_type": "elite_kill",
+      "condition_value": 10,
+      "reward": {"crit_rate": 0.05}
+    },
+    "pk_1": {
+      "name": "初次交锋",
+      "category": "战斗",
+      "description": "PK胜利1次",
+      "condition_type": "pk_win",
+      "condition_value": 1,
+      "reward": {"defense": 5}
+    },
+    "pk_10": {
+      "name": "常胜将军",
+      "category": "战斗",
+      "description": "PK胜利10次",
+      "condition_type": "pk_win",
+      "condition_value": 10,
+      "reward": {"defense": 15}
+    },
+    "visit_5": {
+      "name": "初探四方",
+      "category": "探索",
+      "description": "探索5个场景",
+      "condition_type": "visit",
+      "condition_value": 5,
+      "reward": {"dodge_rate": 0.02}
+    },
+    "visit_15": {
+      "name": "行走江湖",
+      "category": "探索",
+      "description": "探索15个场景",
+      "condition_type": "visit",
+      "condition_value": 15,
+      "reward": {"dodge_rate": 0.04}
+    },
+    "visit_30": {
+      "name": "踏遍天下",
+      "category": "探索",
+      "description": "探索30个场景",
+      "condition_type": "visit",
+      "condition_value": 30,
+      "reward": {"dodge_rate": 0.06}
+    },
+    "equip_full": {
+      "name": "全副武装",
+      "category": "收集",
+      "description": "穿齐7件装备",
+      "condition_type": "equip_full",
+      "condition_value": 7,
+      "reward": {"max_health": 80}
+    },
+    "gold_10000": {
+      "name": "小有积蓄",
+      "category": "收集",
+      "description": "累计获得10000金币",
+      "condition_type": "gold_earned",
+      "condition_value": 10000,
+      "reward": {"max_mana": 30}
+    },
+    "gold_50000": {
+      "name": "富甲一方",
+      "category": "收集",
+      "description": "累计获得50000金币",
+      "condition_type": "gold_earned",
+      "condition_value": 50000,
+      "reward": {"max_mana": 60}
+    },
+    "gift_1": {
+      "name": "初次赠礼",
+      "category": "社交",
+      "description": "赠送1次",
+      "condition_type": "gift",
+      "condition_value": 1,
+      "reward": {"defense": 3}
+    },
+    "gift_10": {
+      "name": "慷慨解囊",
+      "category": "社交",
+      "description": "赠送10次",
+      "condition_type": "gift",
+      "condition_value": 10,
+      "reward": {"defense": 8}
+    },
+    "chat_10": {
+      "name": "能言善辩",
+      "category": "社交",
+      "description": "聊天10次",
+      "condition_type": "chat",
+      "condition_value": 10,
+      "reward": {"max_mana": 10}
+    },
+    "title_newbie": {
+      "name": "迷茫新手",
+      "category": "成长",
+      "description": "达到5级",
+      "condition_type": "level",
+      "condition_value": 5,
+      "reward": {"title": "prefix迷茫"}
+    },
+    "title_warrior": {
+      "name": "真正的勇士",
+      "category": "战斗",
+      "description": "击败怪物100次",
+      "condition_type": "kill",
+      "condition_value": 100,
+      "reward": {"title": "prefix真正"}
+    },
+    "title_vip": {
+      "name": "尊贵用户",
+      "category": "收集",
+      "description": "累计获得20000金币",
+      "condition_type": "gold_earned",
+      "condition_value": 20000,
+      "reward": {"title": "prefix被厚待"}
+    },
+    "title_suffix_newbie": {
+      "name": "小白成长",
+      "category": "成长",
+      "description": "达到5级",
+      "condition_type": "level",
+      "condition_value": 5,
+      "reward": {"title": "suffix小白"}
+    },
+    "title_suffix_warrior": {
+      "name": "勇士之路",
+      "category": "战斗",
+      "description": "击败怪物100次",
+      "condition_type": "kill",
+      "condition_value": 100,
+      "reward": {"title": "suffix勇士"}
+    },
+    "vip1": {
+      "name": "三国特权VIP1",
+      "category": "特权",
+      "description": "达到VIP1等级",
+      "condition_type": "vip_level",
+      "condition_value": 1,
+      "reward": {"attack": 5, "defense": 5}
+    },
+    "vip2": {
+      "name": "三国特权VIP2",
+      "category": "特权",
+      "description": "达到VIP2等级",
+      "condition_type": "vip_level",
+      "condition_value": 2,
+      "reward": {"attack": 10, "defense": 10, "title": "suffixVIP用户"}
+    },
+    "vip3": {
+      "name": "三国特权VIP3",
+      "category": "特权",
+      "description": "达到VIP3等级",
+      "condition_type": "vip_level",
+      "condition_value": 3,
+      "reward": {"attack": 20, "defense": 20, "max_health": 100}
+    },
+    "vip4": {
+      "name": "三国特权VIP4",
+      "category": "特权",
+      "description": "达到VIP4等级",
+      "condition_type": "vip_level",
+      "condition_value": 4,
+      "reward": {"attack": 30, "defense": 30, "max_health": 200}
+    },
+    "vip5": {
+      "name": "三国特权VIP5",
+      "category": "特权",
+      "description": "达到VIP5等级",
+      "condition_type": "vip_level",
+      "condition_value": 5,
+      "reward": {"attack": 50, "defense": 50, "max_health": 500}
+    }
+  }
+}

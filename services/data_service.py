@@ -1,86 +1,493 @@
 import json
+import time
+import random
 from pathlib import Path
-from models.player import Player, PlayerModel
-from models.equipment import Equipment
-from config import Config
-from services import db
+from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+from services import db, ConcurrentModificationError
+from models.player import (
+    PlayerModel, EquipmentInstance, InventoryItem,
+    EquipmentSlot, PlayerSkill, TempEffect, ChatMessage
+)
+
 
 class DataService:
     _app = None
-    
+    _cache = {}
+    _ground_items = {}  # location_id -> {"items": [...], "next_refresh": timestamp}
+    GROUND_REFRESH_INTERVAL = 60  # seconds
+
     @classmethod
     def init_app(cls, app):
         cls._app = app
-    
-    @staticmethod
-    def save_player_data(username, player):
-        # 保存到数据库
-        model = PlayerModel.query.filter_by(username=username).first()
-        if not model:
-            model = PlayerModel(username=username)
-            db.session.add(model)
-        model.player_data = json.dumps(player.to_dict(), ensure_ascii=False)
-        db.session.commit()
+        cls._load_all_data()
 
-    @staticmethod
-    def load_player_data(username):
-        # 先从数据库取
-        model = PlayerModel.query.filter_by(username=username).first()
-        if model:
-            try:
-                return json.loads(model.player_data)
-            except Exception:
-                pass
-        # 兜底：从本地 JSON 读取（迁移兼容）
-        file_path = Config.SAVE_DIR / f"{username}.json"
-        if file_path.exists():
-            with open(file_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
+    @classmethod
+    def _load_all_data(cls):
+        data_dir = Path("data")
+        files = {
+            'items': 'items.json',
+            'monsters': 'monsters.json',
+            'equipment_templates': 'equipment_templates.json',
+            'shops': 'shops.json',
+            'skills': 'skills.json',
+            'game_config': 'game_config.json',
+            'achievements': 'achievements.json',
+            'titles': 'titles.json',
+            'guides': 'guides.json',
+        }
+        for key, filename in files.items():
+            filepath = data_dir / filename
+            if filepath.exists():
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    cls._cache[key] = json.load(f)
+            else:
+                cls._cache[key] = {}
+
+        # Load locations from data/locations/ directory (one file per area)
+        loc_dir = data_dir / "locations"
+        raw_locations = {}
+        if loc_dir.exists():
+            for fp in sorted(loc_dir.glob("*.json")):
+                with open(fp, 'r', encoding='utf-8') as f:
+                    area_data = json.load(f)
+                    area_key = fp.stem
+                    raw_locations[area_key] = area_data
+        # Load equipment sets from data/equipment_sets/ directory
+        sets_dir = data_dir / "equipment_sets"
+        if sets_dir.exists():
+            for fp in sorted(sets_dir.glob("*.json")):
+                with open(fp, 'r', encoding='utf-8') as f:
+                    set_data = json.load(f)
+                    cls._cache['equipment_templates'].update(set_data)
+
+        cls._cache['locations_raw'] = raw_locations
+        cls._cache['locations_flat'] = cls._flatten_locations(raw_locations)
+
+    @classmethod
+    def _flatten_locations(cls, raw_locations):
+        flat = {}
+        if not raw_locations:
+            return flat
+        for area_key, area_data in raw_locations.items():
+            if isinstance(area_data, dict) and 'scenes' in area_data:
+                area_name = area_data.get('name', area_key)
+                for scene_key, scene_data in area_data['scenes'].items():
+                    full_id = f"{area_key}.{scene_key}"
+                    entry = dict(scene_data)
+                    entry['area_id'] = area_key
+                    entry['area_name'] = area_name
+                    entry['scene_id'] = scene_key
+                    if 'monster_type' in entry and 'monsters' not in entry:
+                        entry['monsters'] = [entry['monster_type']]
+                    # Convert exits dict to directional keys
+                    exits = entry.get('exits', {})
+                    entry['north_exit'] = exits.get('north')
+                    entry['south_exit'] = exits.get('south')
+                    entry['east_exit'] = exits.get('east')
+                    entry['west_exit'] = exits.get('west')
+                    flat[full_id] = entry
+            elif isinstance(area_data, dict) and 'monster_type' in area_data:
+                entry = dict(area_data)
+                exits = entry.get('exits', {})
+                entry['north_exit'] = exits.get('north')
+                entry['south_exit'] = exits.get('south')
+                entry['east_exit'] = exits.get('east')
+                entry['west_exit'] = exits.get('west')
+                flat[area_key] = entry
+        return flat
+
+    @classmethod
+    def get_items(cls):
+        return cls._cache.get('items', {})
+
+    @classmethod
+    def get_item(cls, item_id):
+        return cls._cache.get('items', {}).get(item_id)
+
+    @classmethod
+    def get_monsters(cls):
+        return cls._cache.get('monsters', {})
+
+    @classmethod
+    def get_monster(cls, monster_id):
+        return cls._cache.get('monsters', {}).get(monster_id)
+
+    @classmethod
+    def get_locations(cls):
+        return cls._cache.get('locations_flat', {})
+
+    @classmethod
+    def get_location(cls, location_id):
+        return cls._cache.get('locations_flat', {}).get(location_id)
+
+    @classmethod
+    def get_equipment_templates(cls):
+        return cls._cache.get('equipment_templates', {})
+
+    @classmethod
+    def get_equipment_template(cls, template_id):
+        return cls._cache.get('equipment_templates', {}).get(template_id)
+
+    @classmethod
+    def get_shops(cls):
+        return cls._cache.get('shops', {})
+
+    @classmethod
+    def get_skills(cls):
+        skills_data = cls._cache.get('skills', {})
+        all_skills = {}
+        all_skills.update(skills_data.get('active', {}))
+        all_skills.update(skills_data.get('passive', {}))
+        return all_skills
+
+    @classmethod
+    def get_skill(cls, skill_id):
+        return cls.get_skills().get(skill_id)
+
+    @classmethod
+    def get_active_skills(cls):
+        return cls._cache.get('skills', {}).get('active', {})
+
+    @classmethod
+    def get_passive_skills(cls):
+        return cls._cache.get('skills', {}).get('passive', {})
+
+    @classmethod
+    def get_shops(cls):
+        return cls._cache.get('shops', {})
+
+    @classmethod
+    def get_game_config(cls):
+        return cls._cache.get('game_config', {})
+
+    @classmethod
+    def get_achievements(cls):
+        return cls._cache.get('achievements', {}).get('achievements', {})
+
+    @classmethod
+    def get_achievement_categories(cls):
+        return cls._cache.get('achievements', {}).get('categories', [])
+
+    # --- Title methods ---
+    @classmethod
+    def get_titles(cls):
+        return cls._cache.get('titles', {})
+
+    @classmethod
+    def get_title_prefixes(cls):
+        return cls._cache.get('titles', {}).get('prefixes', {})
+
+    @classmethod
+    def get_title_suffixes(cls):
+        return cls._cache.get('titles', {}).get('suffixes', {})
+
+    @classmethod
+    def get_title(cls, title_id, title_type):
+        """Get a specific title by ID and type ('prefix' or 'suffix')."""
+        titles = cls._cache.get('titles', {})
+        if title_type == 'prefix':
+            return titles.get('prefixes', {}).get(title_id)
+        elif title_type == 'suffix':
+            return titles.get('suffixes', {}).get(title_id)
         return None
 
-    @staticmethod
-    def get_current_player(session):
-        if "username" not in session:
-            return None
-        player_data = DataService.load_player_data(session["username"])
-        if not player_data:
-            return None
-        
-        player = Player(player_data["name"], player_data["player_class"])
-        if "equipment" in player_data:
-            equipment_data = player_data["equipment"]
-            player.equipment = {
-                slot: Equipment.from_dict(equip_data) if equip_data else None
-                for slot, equip_data in equipment_data.items()
-            }
-        player_data_copy = player_data.copy()
-        player_data_copy.pop('equipment', None)
-        player.__dict__.update(player_data_copy)
-        player.update_stats()
-        player.update_military_rank()
-        player.get_avatar_path()
-        return player
+    @classmethod
+    def get_star_bonus(cls, stars):
+        """Get the base bonus values for a given star rating."""
+        star_bonuses = cls._cache.get('titles', {}).get('star_bonuses', {})
+        return star_bonuses.get(str(stars), {})
 
-    @staticmethod
-    def get_all_players_in_location(location_id, exclude_username=None):
-        other_players = []
-        # 优先数据库
-        for model in PlayerModel.query.all():
-            if exclude_username and model.username == exclude_username:
-                continue
-            try:
-                data = json.loads(model.player_data)
-                if data.get("current_location") == location_id:
-                    other_players.append(data)
-            except Exception:
-                continue
-        # 若数据库没有，兜底到文件（兼容迁移期）
-        if not other_players:
-            for file in Config.SAVE_DIR.glob("*.json"):
-                if exclude_username and file.stem == exclude_username:
-                    continue
-                with open(file, 'r', encoding='utf-8') as f:
-                    other_player = json.load(f)
-                    if other_player["current_location"] == location_id:
-                        other_players.append(other_player)
-        return other_players
+    # --- Player CRUD ---
+
+    @classmethod
+    def get_player_by_username(cls, username):
+        return PlayerModel.query.filter_by(username=username).first()
+
+    @classmethod
+    def get_player_by_id(cls, player_id):
+        return PlayerModel.query.get(player_id)
+
+    @classmethod
+    def save_player(cls, player):
+        old_version = player.version
+        player.version = (player.version or 0) + 1
+        result = db.session.commit()
+        # SQLite doesn't support rowcount on commit, so we verify by re-querying
+        fresh = PlayerModel.query.get(player.id)
+        if fresh and fresh.version != player.version:
+            db.session.rollback()
+            raise ConcurrentModificationError(
+                f"Player {player.id} was modified by another transaction")
+
+    @classmethod
+    def save_players(cls, *players):
+        for p in players:
+            p.version = (p.version or 0) + 1
+        db.session.commit()
+
+    @classmethod
+    def get_all_players_in_location(cls, location_id, exclude_player_id=None):
+        query = PlayerModel.query.filter_by(current_location=location_id)
+        if exclude_player_id:
+            query = query.filter(PlayerModel.id != exclude_player_id)
+        return query.all()
+
+    # --- Equipment Instance CRUD ---
+
+    @classmethod
+    def create_equipment_instance(cls, player_id, template_id, rarity, stars):
+        template = cls.get_equipment_template(template_id)
+        if not template:
+            return None
+
+        ratio = stars / 5
+        base_stats = {stat: int(value * ratio) for stat, value in template.get("base_stats", {}).items()}
+        initial_stats = base_stats.copy()
+        extra_stats = cls._generate_extra_stats(template, rarity, stars)
+
+        equip = EquipmentInstance(
+            player_id=player_id,
+            template_id=template_id,
+            slot=template.get("slot", "weapon"),
+            rarity=rarity,
+            stars=stars,
+            level_required=template.get("level_required", 1),
+            class_required=template.get("class_required"),
+            is_bound=template.get("is_bound", False),
+            enhance_level=0,
+        )
+        equip.set_base_stats(base_stats)
+        equip.set_extra_stats(extra_stats)
+        equip.set_initial_stats(initial_stats)
+        equip.update_name()
+
+        db.session.add(equip)
+        db.session.flush()
+        return equip
+
+    @classmethod
+    def _generate_extra_stats(cls, template, rarity, stars):
+        extra_stats = {}
+        stat_counts = {"普通": 1, "精良": 2, "卓越": 3, "史诗": 4, "神器": 6}
+        count = stat_counts.get(rarity, 1)
+
+        weapon_order = [
+            ["attack"],
+            ["attack", "max_health"],
+            ["attack", "max_health", "crit_rate"],
+            ["attack", "max_health", "crit_rate", "max_mana"],
+            ["attack", "max_health", "crit_rate", "max_mana", "defense"],
+            ["attack", "max_health", "crit_rate", "max_mana", "defense", "dodge_rate"]
+        ]
+        armor_order = [
+            ["defense"],
+            ["defense", "max_health"],
+            ["defense", "max_health", "max_mana"],
+            ["defense", "max_health", "crit_rate", "max_mana"],
+            ["attack", "max_health", "crit_rate", "max_mana", "defense"],
+            ["attack", "max_health", "crit_rate", "max_mana", "defense", "dodge_rate"]
+        ]
+
+        slot = template.get("slot", "armor")
+        selected = (weapon_order[count - 1] if slot == "weapon" else armor_order[count - 1])
+
+        for stat in selected:
+            stat_stars = min(5, max(1, random.randint(stars - 1, stars + 1)))
+            max_value = template.get("max_extra_stats", {}).get(stat, 0)
+            actual_value = max_value * (stat_stars / 5)
+            extra_stats[stat] = [actual_value, stat_stars]
+
+        return extra_stats
+
+    # --- Inventory CRUD ---
+
+    @classmethod
+    def add_item_to_inventory(cls, player_id, item_id, quantity=1, is_bound=False):
+        inv = InventoryItem.query.filter_by(
+            player_id=player_id, item_id=item_id, is_bound=is_bound).first()
+        if inv:
+            inv.quantity += quantity
+        else:
+            inv = InventoryItem(player_id=player_id, item_id=item_id,
+                                quantity=quantity, is_bound=is_bound)
+            db.session.add(inv)
+        db.session.flush()
+        return inv
+
+    @classmethod
+    def remove_item_from_inventory(cls, player_id, item_id, quantity=1, is_bound=None):
+        if is_bound is not None:
+            inv = InventoryItem.query.filter_by(
+                player_id=player_id, item_id=item_id, is_bound=is_bound).first()
+        else:
+            inv = InventoryItem.query.filter_by(
+                player_id=player_id, item_id=item_id).first()
+        if not inv:
+            return False
+        inv.quantity -= quantity
+        if inv.quantity <= 0:
+            db.session.delete(inv)
+        db.session.flush()
+        return True
+
+    @classmethod
+    def get_inventory_item(cls, player_id, item_id, is_bound=None):
+        if is_bound is not None:
+            return InventoryItem.query.filter_by(
+                player_id=player_id, item_id=item_id, is_bound=is_bound).first()
+        return InventoryItem.query.filter_by(
+            player_id=player_id, item_id=item_id).first()
+
+    @classmethod
+    def get_inventory(cls, player_id):
+        return InventoryItem.query.filter_by(player_id=player_id).all()
+
+    # --- Equipment Slots ---
+
+    @classmethod
+    def get_equipped(cls, player_id):
+        result = {}
+        slots = EquipmentSlot.query.filter_by(player_id=player_id).all()
+        for s in slots:
+            if s.equipment_instance_id:
+                equip = EquipmentInstance.query.get(s.equipment_instance_id)
+                result[s.slot_name] = equip
+            else:
+                result[s.slot_name] = None
+        return result
+
+    @classmethod
+    def init_equipment_slots(cls, player_id):
+        for slot_name in EquipmentInstance.SLOTS:
+            existing = EquipmentSlot.query.filter_by(
+                player_id=player_id, slot_name=slot_name).first()
+            if not existing:
+                db.session.add(EquipmentSlot(player_id=player_id, slot_name=slot_name))
+        db.session.flush()
+
+    @classmethod
+    def get_unequipped_equipment(cls, player_id):
+        equipped_ids = {s.equipment_instance_id for s in
+                        EquipmentSlot.query.filter_by(player_id=player_id).all()
+                        if s.equipment_instance_id}
+        return EquipmentInstance.query.filter(
+            EquipmentInstance.player_id == player_id,
+            ~EquipmentInstance.id.in_(equipped_ids)
+        ).all() if equipped_ids else EquipmentInstance.query.filter_by(
+            player_id=player_id).all()
+
+    # --- Temp Effects ---
+
+    @classmethod
+    def clear_expired_effects(cls, player_id):
+        now = time.time()
+        TempEffect.query.filter(
+            TempEffect.player_id == player_id,
+            TempEffect.expire_time <= now
+        ).delete(synchronize_session=False)
+        db.session.flush()
+
+    @classmethod
+    def get_temp_effects(cls, player_id):
+        cls.clear_expired_effects(player_id)
+        return TempEffect.query.filter_by(player_id=player_id).all()
+
+    @classmethod
+    def get_temp_stat_bonus(cls, player_id, stat):
+        cls.clear_expired_effects(player_id)
+        effects = TempEffect.query.filter_by(
+            player_id=player_id, stat=stat).all()
+        flat = sum(e.value for e in effects)
+        rate = sum(e.rate for e in effects)
+        return flat, rate
+
+    # --- Chat ---
+
+    @classmethod
+    def broadcast_system(cls, content):
+        msg = ChatMessage(
+            sender_id=None,
+            content=content,
+            message_type='system'
+        )
+        db.session.add(msg)
+        db.session.commit()
+
+    @classmethod
+    def broadcast_player(cls, player_id, content):
+        msg = ChatMessage(
+            sender_id=player_id,
+            content=content,
+            message_type='player'
+        )
+        db.session.add(msg)
+        db.session.commit()
+
+    @classmethod
+    def list_latest_messages(cls, limit=10):
+        return ChatMessage.query.order_by(
+            ChatMessage.created_at.desc()
+        ).limit(limit).all()
+
+    @classmethod
+    def send_private_message(cls, sender_id, receiver_id, content):
+        msg = ChatMessage(
+            sender_id=sender_id,
+            receiver_id=receiver_id,
+            content=content,
+            message_type='private'
+        )
+        db.session.add(msg)
+        db.session.commit()
+        return msg
+
+    # --- Ground Items ---
+
+    @classmethod
+    def get_ground_items(cls, location_id):
+        now = time.time()
+        ground = cls._ground_items.get(location_id)
+        if not ground or now >= ground['next_refresh']:
+            cls._refresh_ground_items(location_id)
+            ground = cls._ground_items[location_id]
+        return ground['items']
+
+    @classmethod
+    def _refresh_ground_items(cls, location_id):
+        now = time.time()
+        items = []
+        if random.random() < 0.7:
+            items.append({
+                'type': 'item',
+                'item_id': 'money_small',
+                'id': f'item_money_small_{int(now)}'
+            })
+        if random.random() < 0.4:
+            potion = random.choice(['potion_heal', 'potion_mana'])
+            items.append({
+                'type': 'item',
+                'item_id': potion,
+                'id': f'item_{potion}_{int(now)}'
+            })
+        cls._ground_items[location_id] = {
+            'items': items,
+            'next_refresh': now + cls.GROUND_REFRESH_INTERVAL
+        }
+
+    @classmethod
+    def pickup_ground_item(cls, location_id, item_id):
+        ground = cls._ground_items.get(location_id)
+        if not ground:
+            return None
+        for i, item in enumerate(ground['items']):
+            if item['id'] == item_id:
+                ground['items'].pop(i)
+                return item
+        return None
+
+    # --- Guides ---
+
+    @classmethod
+    def get_guides(cls):
+        return cls._cache.get('guides', {})

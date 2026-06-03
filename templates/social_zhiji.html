@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>知己</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    <a href="{{ url_for('social.friends') }}">好友</a>
+    <a href="{{ url_for('social.hongyan') }}">红颜</a>
+    知己
+    <a href="{{ url_for('social.blacklist') }}">黑名单</a>
+    <a href="{{ url_for('social.enemies') }}">仇人</a><br/>
+    知己列表({{ rel_list|length }}/{{ max_relations }})<br/>
+    每位在线知己+20点攻击<br/>
+    ----------------<br/>
+
+    {% for rel in rel_list %}
+    {{ rel.nickname }}(缘分值:{{ rel.fate }}){% if rel.online %}<font color="green">在线</font>{% endif %}
+    <a href="{{ url_for('social.break_relation', username=rel.username) }}">断交</a><br/>
+    {% endfor %}
+
+    {% if not rel_list %}
+    目前没有知己！<br/>
+    {% endif %}
+    <br/>
+
+    {% if pending_requests %}
+    【待处理的结交邀请】<br/>
+    {% for req in pending_requests %}
+    {{ req.from_name }}想和你结为知己
+    <a href="{{ url_for('social.accept_relation', username=req.from) }}">同意</a>
+    <a href="{{ url_for('social.reject_relation', username=req.from) }}">拒绝</a><br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+
+    <a href="{{ url_for('social.social_index') }}">返回社交</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

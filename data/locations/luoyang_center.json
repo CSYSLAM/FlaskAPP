@@ -1,0 +1,209 @@
+{
+  "name": "洛阳中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "luoyang_center.定北前街",
+        "west": "luoyang_center.镇西前街",
+        "east": "luoyang_center.乐东前街",
+        "south": "luoyang_center.安南前街"
+      }
+    },
+    "定北前街": {
+      "name": "定北前街",
+      "exits": {
+        "north": "luoyang_center.定北后街",
+        "west": "luoyang_center.杂货铺",
+        "east": "luoyang_center.钱庄",
+        "south": "luoyang_center.广场"
+      }
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "luoyang_center.定北前街"
+      },
+      "npcs": [
+        "npc_luoyang_center_金掌柜仓库"
+      ]
+    },
+    "杂货铺": {
+      "name": "杂货铺",
+      "exits": {
+        "east": "luoyang_center.定北前街"
+      },
+      "npcs": [
+        "npc_luoyang_center_许掌柜"
+      ]
+    },
+    "定北后街": {
+      "name": "定北后街",
+      "exits": {
+        "north": "luoyang_center.皇宫",
+        "east": "luoyang_center.军营",
+        "south": "luoyang_center.定北前街"
+      },
+      "monster_type": "monster_luoyang_center_董卓护卫"
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "west": "luoyang_center.定北后街"
+      },
+      "npcs": [
+        "npc_luoyang_center_副将统领"
+      ]
+    },
+    "皇宫": {
+      "name": "皇宫",
+      "exits": {
+        "north": "luoyang_center.北城楼",
+        "west": "luoyang_center.战场",
+        "south": "luoyang_center.定北后街"
+      },
+      "npcs": [
+        "npc_luoyang_center_董卓荣誉"
+      ]
+    },
+    "战场": {
+      "name": "战场",
+      "exits": {
+        "east": "luoyang_center.皇宫"
+      },
+      "npcs": [
+        "npc_luoyang_center_军团使者",
+        "npc_luoyang_center_风云使者",
+        "npc_luoyang_center_英雄使者"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "luoyang_north.北门",
+        "south": "luoyang_center.皇宫"
+      }
+    },
+    "镇西前街": {
+      "name": "镇西前街",
+      "exits": {
+        "west": "luoyang_center.镇西中街",
+        "east": "luoyang_center.广场"
+      }
+    },
+    "镇西中街": {
+      "name": "镇西中街",
+      "exits": {
+        "west": "luoyang_center.镇西后街",
+        "east": "luoyang_center.镇西前街",
+        "south": "luoyang_center.酒馆"
+      }
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "north": "luoyang_center.镇西中街"
+      },
+      "npcs": [
+        "npc_luoyang_center_店小二"
+      ]
+    },
+    "镇西后街": {
+      "name": "镇西后街",
+      "exits": {
+        "north": "luoyang_center.铁匠铺",
+        "west": "luoyang_center.西城楼",
+        "east": "luoyang_center.镇西中街"
+      }
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "luoyang_center.镇西后街"
+      },
+      "npcs": [
+        "npc_luoyang_center_洛阳铁匠"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "luoyang_west.西门",
+        "east": "luoyang_center.镇西后街"
+      }
+    },
+    "乐东前街": {
+      "name": "乐东前街",
+      "exits": {
+        "north": "luoyang_center.客栈",
+        "west": "luoyang_center.广场",
+        "east": "luoyang_center.乐东后街"
+      }
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "south": "luoyang_center.乐东前街"
+      },
+      "npcs": [
+        "npc_luoyang_center_王老板"
+      ]
+    },
+    "乐东后街": {
+      "name": "乐东后街",
+      "exits": {
+        "west": "luoyang_center.乐东前街",
+        "east": "luoyang_center.东城楼",
+        "south": "luoyang_center.药铺"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "north": "luoyang_center.乐东后街"
+      },
+      "npcs": [
+        "npc_luoyang_center_许大夫"
+      ]
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "luoyang_center.乐东后街",
+        "east": "luoyang_east.东门"
+      }
+    },
+    "安南前街": {
+      "name": "安南前街",
+      "exits": {
+        "north": "luoyang_center.广场",
+        "west": "luoyang_center.驿站",
+        "south": "luoyang_center.安南后街"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "east": "luoyang_center.安南前街"
+      },
+      "npcs": [
+        "npc_luoyang_center_洛阳车夫"
+      ]
+    },
+    "安南后街": {
+      "name": "安南后街",
+      "exits": {
+        "north": "luoyang_center.安南前街",
+        "south": "luoyang_center.南城楼"
+      }
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "luoyang_center.安南后街",
+        "south": "luoyang_south.南门"
+      },
+      "monster_type": "monster_luoyang_center_连弩队长"
+    }
+  }
+}

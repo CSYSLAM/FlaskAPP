@@ -1,0 +1,81 @@
+{
+  "name": "晋阳东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "jinyang_center.东城楼",
+        "east": "jinyang_east.东榭庄"
+      },
+      "can_pk": true
+    },
+    "东榭庄": {
+      "name": "东榭庄",
+      "exits": {
+        "north": "jinyang_east.太行山",
+        "west": "jinyang_east.东门",
+        "east": "jinyang_east.白河",
+        "south": "jinyang_east.贾家村"
+      },
+      "can_pk": true
+    },
+    "太行山": {
+      "name": "太行山",
+      "exits": {
+        "south": "jinyang_east.东榭庄"
+      },
+      "can_pk": true
+    },
+    "贾家村": {
+      "name": "贾家村",
+      "exits": {
+        "north": "jinyang_east.东榭庄"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_east_短鼻鳄"
+    },
+    "白河": {
+      "name": "白河",
+      "exits": {
+        "west": "jinyang_east.东榭庄",
+        "east": "jinyang_east.黑水河"
+      },
+      "can_pk": true
+    },
+    "黑水河": {
+      "name": "黑水河",
+      "exits": {
+        "north": "jinyang_east.碧波谷",
+        "west": "jinyang_east.白河",
+        "east": "jinyang_east.晋阳东界",
+        "south": "jinyang_east.平原县"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_east_潜水巨龟"
+    },
+    "碧波谷": {
+      "name": "碧波谷",
+      "exits": {
+        "south": "jinyang_east.黑水河"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_east_暴躁猴"
+    },
+    "平原县": {
+      "name": "平原县",
+      "exits": {
+        "north": "jinyang_east.黑水河"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_east_魏讽"
+    },
+    "晋阳东界": {
+      "name": "晋阳东界",
+      "exits": {
+        "west": "jinyang_east.黑水河",
+        "east": "beiping_west.北平西界"
+      },
+      "can_pk": true
+    }
+  }
+}

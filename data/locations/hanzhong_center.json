@@ -1,0 +1,184 @@
+{
+  "name": "汉中中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "hanzhong_center.北前街",
+        "west": "hanzhong_center.西前街",
+        "east": "hanzhong_center.东前街",
+        "south": "hanzhong_center.南前街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_任务使者",
+        "npc_hanzhong_center_摸金校尉活动"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "east": "hanzhong_center.北前街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_张扬荣誉"
+      ]
+    },
+    "北前街": {
+      "name": "北前街",
+      "exits": {
+        "north": "hanzhong_center.北后街",
+        "west": "hanzhong_center.太守府",
+        "east": "hanzhong_center.钱庄",
+        "south": "hanzhong_center.广场"
+      }
+    },
+    "北后街": {
+      "name": "北后街",
+      "exits": {
+        "north": "hanzhong_center.北城楼",
+        "east": "hanzhong_center.军营",
+        "south": "hanzhong_center.北前街"
+      }
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "hanzhong_north.北门",
+        "south": "hanzhong_center.北后街"
+      }
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "west": "hanzhong_center.北后街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_副将统领"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "hanzhong_center.北前街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_金掌柜仓库"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "south": "hanzhong_center.东前街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_王老板"
+      ]
+    },
+    "西前街": {
+      "name": "西前街",
+      "exits": {
+        "east": "hanzhong_center.广场",
+        "west": "hanzhong_center.西中街"
+      }
+    },
+    "西中街": {
+      "name": "西中街",
+      "exits": {
+        "east": "hanzhong_center.西前街",
+        "west": "hanzhong_center.西后街",
+        "south": "hanzhong_center.酒馆"
+      }
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "north": "hanzhong_center.西中街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_店小二"
+      ]
+    },
+    "西后街": {
+      "name": "西后街",
+      "exits": {
+        "east": "hanzhong_center.西中街",
+        "west": "hanzhong_center.西城楼",
+        "north": "hanzhong_center.铁匠铺"
+      },
+      "monster_type": "monster_hanzhong_west_青鸾"
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "east": "hanzhong_center.西后街",
+        "west": "hanzhong_west.西门"
+      }
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "hanzhong_center.西后街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_汉中铁匠"
+      ]
+    },
+    "东前街": {
+      "name": "东前街",
+      "exits": {
+        "west": "hanzhong_center.广场",
+        "east": "hanzhong_center.东后街",
+        "north": "hanzhong_center.客栈"
+      }
+    },
+    "东后街": {
+      "name": "东后街",
+      "exits": {
+        "west": "hanzhong_center.东前街",
+        "east": "hanzhong_center.东城楼",
+        "south": "hanzhong_center.药铺"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "north": "hanzhong_center.东后街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_许大夫"
+      ]
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "hanzhong_center.东后街",
+        "east": "hanzhong_east.东门"
+      }
+    },
+    "南前街": {
+      "name": "南前街",
+      "exits": {
+        "north": "hanzhong_center.广场",
+        "west": "hanzhong_center.驿站",
+        "south": "hanzhong_center.南城楼"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "east": "hanzhong_center.南前街",
+        "west": "hanzhong_center.西中街"
+      },
+      "npcs": [
+        "npc_hanzhong_center_汉中车夫"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "hanzhong_center.南前街",
+        "south": "hanzhong_south.南门"
+      }
+    }
+  }
+}

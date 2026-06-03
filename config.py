@@ -1,12 +1,9 @@
+import os
 from pathlib import Path
 
+
 class Config:
-    SECRET_KEY = 'your_secret_key_here'
-    SAVE_DIR = Path("player_data")
+    SECRET_KEY = os.environ.get('SECRET_KEY', os.urandom(32).hex())
     DATA_DIR = Path("data")
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///game.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///game1.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
-    # Ensure directories exist
-    SAVE_DIR.mkdir(exist_ok=True)
-    DATA_DIR.mkdir(exist_ok=True)

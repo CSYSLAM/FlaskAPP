@@ -1,0 +1,86 @@
+{
+  "name": "晋阳北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "jinyang_north.北垓",
+        "south": "jinyang_center.北城楼"
+      }
+    },
+    "北垓": {
+      "name": "北垓",
+      "exits": {
+        "north": "jinyang_north.大雪岭",
+        "west": "jinyang_north.废墟",
+        "east": "jinyang_north.代县",
+        "south": "jinyang_north.北门"
+      },
+      "can_pk": true
+    },
+    "废墟": {
+      "name": "废墟",
+      "exits": {
+        "east": "jinyang_north.北垓"
+      },
+      "can_pk": true
+    },
+    "代县": {
+      "name": "代县",
+      "exits": {
+        "west": "jinyang_north.北垓"
+      },
+      "can_pk": true
+    },
+    "大雪岭": {
+      "name": "大雪岭",
+      "exits": {
+        "north": "jinyang_north.雁门关",
+        "south": "jinyang_north.北垓"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_north_山越骑兵"
+    },
+    "雁门关": {
+      "name": "雁门关",
+      "exits": {
+        "north": "jinyang_north.塞外荒野",
+        "west": "jinyang_north.断崖",
+        "east": "jinyang_north.匈奴部落",
+        "south": "jinyang_north.大雪岭"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_north_白狼"
+    },
+    "断崖": {
+      "name": "断崖",
+      "exits": {
+        "east": "jinyang_north.雁门关"
+      },
+      "can_pk": true
+    },
+    "匈奴部落": {
+      "name": "匈奴部落",
+      "exits": {
+        "west": "jinyang_north.雁门关"
+      },
+      "can_pk": true
+    },
+    "塞外荒野": {
+      "name": "塞外荒野",
+      "exits": {
+        "north": "jinyang_north.晋阳北界",
+        "south": "jinyang_north.雁门关"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_north_胡炮儿"
+    },
+    "晋阳北界": {
+      "name": "晋阳北界",
+      "exits": {
+        "south": "jinyang_north.塞外荒野"
+      },
+      "can_pk": true
+    }
+  }
+}

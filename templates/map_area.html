@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>区域地图 - {{ location.get('area_name', '') }}</title>
+<style>
+body { font-size: 16px; }
+a:link { color: #136ec2; text-decoration: none; }
+.block {
+    text-align: center;
+    font-size: 10px;
+    display: inline-block;
+    width: 35px;
+    height: 18px;
+    border: 1px ridge #FFFFCC;
+    border-style: solid;
+    border-color: #FFFFCC;
+}
+.now_map_block {
+    background: #00FFFF;
+}
+.map_block {
+    background: #FFFFCC;
+}
+.empty_map_block {
+    background: #FFFFCC;
+}
+.shang { border-top: 1px ridge red; }
+.xia { border-bottom: 1px ridge red; }
+.zuo { border-left: 1px ridge red; }
+.you { border-right: 1px ridge red; }
+.nshang { border-top: 1px ridge #FFFFCC; }
+.nxia { border-bottom: 1px ridge #FFFFCC; }
+.nzuo { border-left: 1px ridge #FFFFCC; }
+.nyou { border-right: 1px ridge #FFFFCC; }
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body style="margin-left:10px;margin-right:10px">
+
+<div id="loading"><span></span></div>
+
+<a href="{{ url_for('map.index') }}">返回地图</a><br/>
+<h3>区域地图 - {{ location.get('area_name', '') }}</h3>
+
+<style>
+{% for scene in scenes %}
+._{{ scene.id.replace('.', '_') }} {
+{% if scene.id == location_id %}background: #00FFFF;{% endif %}
+}
+{% endfor %}
+</style>
+
+{% set cols = 4 %}
+{% set grid = [] %}
+
+<font color="#00FFFF">青色框</font>中为所在地图<br/>
+<font color="red">红色线</font>为地图有链接<br/>
+
+{% set ns = namespace(current_row=[]) %}
+{% for scene in scenes %}
+  {% set ns.current_row = ns.current_row + [scene] %}
+  {% if loop.index % cols == 0 or loop.last %}
+<div style="font-size:0;">
+  {% for s in ns.current_row %}
+    {% set lid = s.id %}
+    {% set north = s.north_exit %}
+    {% set south = s.south_exit %}
+    {% set east = s.east_exit %}
+    {% set west = s.west_exit %}
+    {% set is_current = (lid == location_id) %}
+    {% set cls = 'now_map_block' if is_current else 'map_block' %}
+    {% set up = 'shang' if north else 'nshang' %}
+    {% set down = 'xia' if south else 'nxia' %}
+    {% set lt = 'zuo' if west else 'nzuo' %}
+    {% set rt = 'you' if east else 'nyou' %}
+<span class="block {{ cls }} {{ up }} {{ down }} {{ lt }} {{ rt }}">{{ s.name[:2] }}</span>
+  {% endfor %}
+</div>
+  {% set ns.current_row = [] %}
+  {% endif %}
+{% endfor %}
+
+<br/>
+{% if location.get('north_exit') and DataService.get_location(location.north_exit) %}
+北:↑<a href="{{ url_for('game.move', direction='north') }}">{{ DataService.get_location(location.north_exit).get('name', '') }}</a><br/>
+{% endif %}
+{% if location.get('west_exit') %}
+西:←<a href="{{ url_for('game.move', direction='west') }}">{{ DataService.get_location(location.west_exit).get('name', '') }}</a>
+{% endif %}
+{% if location.get('east_exit') %}
+东:→<a href="{{ url_for('game.move', direction='east') }}">{{ DataService.get_location(location.east_exit).get('name', '') }}</a>
+{% endif %}
+{% if location.get('west_exit') or location.get('east_exit') %}
+<br/>
+{% endif %}
+{% if location.get('south_exit') and DataService.get_location(location.south_exit) %}
+南:↓<a href="{{ url_for('game.move', direction='south') }}">{{ DataService.get_location(location.south_exit).get('name', '') }}</a><br/>
+{% endif %}
+
+<br/>
+<a href="{{ url_for('map.index') }}">返回上级</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
+</body>
+</html>

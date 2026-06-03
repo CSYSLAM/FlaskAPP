@@ -1,979 +1,820 @@
-import random
+import json
 import time
-from models.equipment import Equipment
-from services.equipment_generator import EquipmentGenerator, EquipmentSource
-from services import db
-from datetime import datetime as _dt
-import json as _json
-from models.skill import Skill
-from models.item import Item, ItemType
-from services.item_reward_registry import handle_reward
-from services.public_chat import broadcast_system
+import random
+import uuid
 from datetime import datetime
+from flask_login import UserMixin
+from services import db
 
-class Player:
+
+class PlayerModel(db.Model, UserMixin):
+    __tablename__ = 'players'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(64), unique=True, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=False)
+    nickname = db.Column(db.String(64), nullable=False)
+    player_class = db.Column(db.String(20), nullable=False)
+    gender = db.Column(db.String(4), default='男')
+
+    level = db.Column(db.Integer, default=1)
+    experience = db.Column(db.Integer, default=0)
+    exp_to_next_level = db.Column(db.Integer, default=50)
+    gold = db.Column(db.Integer, default=0)
+    yuanbao = db.Column(db.Integer, default=0)
+    jinzu = db.Column(db.Integer, default=0)
+
+    # Country (魏蜀吴)
+    country = db.Column(db.String(10), default='魏')
+
+    health = db.Column(db.Integer, default=0)
+    max_health = db.Column(db.Integer, default=0)
+    mana = db.Column(db.Integer, default=0)
+    max_mana = db.Column(db.Integer, default=0)
+    attack = db.Column(db.Integer, default=0)
+    defense = db.Column(db.Integer, default=0)
+    crit_rate = db.Column(db.Float, default=0.0)
+    dodge_rate = db.Column(db.Float, default=0.0)
+
+    pill_attack = db.Column(db.Integer, default=0)
+    pill_defense = db.Column(db.Integer, default=0)
+    pill_max_health = db.Column(db.Integer, default=0)
+    pill_max_mana = db.Column(db.Integer, default=0)
+
+    current_location = db.Column(db.String(64), default='beiping_center.广场')
+    honor = db.Column(db.Integer, default=0)
+    military_rank = db.Column(db.String(20), default='士兵')
+    rank_attack = db.Column(db.Integer, default=0)
+
+    in_battle = db.Column(db.Boolean, default=False)
+    in_pk = db.Column(db.Boolean, default=False)
+    pk_opponent = db.Column(db.String(64), nullable=True)
+    last_attack_time = db.Column(db.Float, default=0.0)
+    enhance_bonus_rate = db.Column(db.Float, default=0.0)
+
+    last_damage_taken = db.Column(db.Integer, default=0)
+    last_damage_dealt = db.Column(db.String(32), default='')
+    last_battle_result = db.Column(db.String(256), default='')
+    last_action = db.Column(db.String(128), default='')
+    last_skill = db.Column(db.String(64), default='')
+    last_mana_cost = db.Column(db.Integer, default=0)
+    item_effect = db.Column(db.String(256), default='')
+
+    current_view = db.Column(db.String(20), default='chat')
+    current_encounter = db.Column(db.Text, nullable=True)
+
+    shortcuts_raw = db.Column('shortcuts', db.Text, default='{"skill1":"attack","skill2":"attack","skill3":"attack","skill4":"attack","potion1":null,"potion2":null}')
+    chat_history_raw = db.Column('chat_history', db.Text, default='{}')
+    last_chat_message = db.Column(db.Text, nullable=True)
+    chat_refresh_count = db.Column(db.Integer, default=0)
+    notifications_raw = db.Column('notifications', db.Text, default='[]')
+
+    # Achievement tracking counters
+    kill_count = db.Column(db.Integer, default=0)
+    elite_kill_count = db.Column(db.Integer, default=0)
+    pk_win_count = db.Column(db.Integer, default=0)
+    gold_earned = db.Column(db.Integer, default=0)
+    gift_count = db.Column(db.Integer, default=0)
+    chat_count = db.Column(db.Integer, default=0)
+    visited_locations_raw = db.Column('visited_locations', db.Text, default='[]')
+
+    title_prefix_id = db.Column(db.String(64), nullable=True)
+    title_suffix_id = db.Column(db.String(64), nullable=True)
+    owned_titles_raw = db.Column('owned_titles', db.Text, default='[]')
+
+    activity_data_raw = db.Column('activity_data', db.Text, default='{}')
+
+    # Enemy list (仇人)
+    enemies_raw = db.Column('enemies', db.Text, default='[]')
+
+    # Friend list (好友)
+    friends_raw = db.Column('friends', db.Text, default='[]')
+
+    # Blacklist (黑名单)
+    blacklist_raw = db.Column('blacklist', db.Text, default='[]')
+
+    # Charm value (魅力值)
+    charm = db.Column(db.Integer, default=0)
+
+    # Relationship requests pending (结交邀请)
+    relation_requests_raw = db.Column('relation_requests', db.Text, default='[]')
+
+    # Need revive flag
+    need_revive = db.Column(db.Boolean, default=False)
+    killed_by = db.Column(db.String(64), nullable=True)  # Username of killer
+
+    # VIP
+    vip_level = db.Column(db.Integer, default=1)
+    vip_exp = db.Column(db.Integer, default=0)
+    vip_expire_time = db.Column(db.DateTime, nullable=True)
+    vip_daily_claimed_raw = db.Column('vip_daily_claimed', db.Text, default='{}')
+
+    @property
+    def is_vip(self):
+        from datetime import datetime
+        if self.vip_expire_time and self.vip_expire_time > datetime.now():
+            return True
+        return False
+
+    @property
+    def shortcuts(self):
+        data = self.get_shortcuts()
+        class ShortcutProxy:
+            _defaults = {'skill1': 'attack', 'skill2': 'attack',
+                         'skill3': 'attack', 'skill4': 'attack'}
+            def __init__(self, d):
+                self._d = d
+            def __getattr__(self, name):
+                val = self._d.get(name)
+                if val is not None:
+                    return val
+                return self._defaults.get(name)
+            def __getitem__(self, name):
+                val = self._d.get(name)
+                if val is not None:
+                    return val
+                return self._defaults.get(name)
+            def __contains__(self, name):
+                return name in self._d
+            def items(self):
+                return self._d.items()
+        return ShortcutProxy(data)
+
+    @shortcuts.setter
+    def shortcuts(self, value):
+        if isinstance(value, dict):
+            self.set_shortcuts(value)
+        elif isinstance(value, str):
+            self.shortcuts_raw = value
+
+    @property
+    def chat_history(self):
+        try:
+            return json.loads(self.chat_history_raw) if self.chat_history_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @chat_history.setter
+    def chat_history(self, value):
+        if isinstance(value, dict):
+            self.set_chat_history(value)
+        elif isinstance(value, str):
+            self.chat_history_raw = value
+
+    @property
+    def notifications(self):
+        try:
+            return json.loads(self.notifications_raw) if self.notifications_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @notifications.setter
+    def notifications(self, value):
+        if isinstance(value, list):
+            self.set_notifications(value)
+        elif isinstance(value, str):
+            self.notifications_raw = value
+
+    @property
+    def visited_locations(self):
+        try:
+            return json.loads(self.visited_locations_raw) if self.visited_locations_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @visited_locations.setter
+    def visited_locations(self, value):
+        self.visited_locations_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def owned_titles(self):
+        try:
+            return json.loads(self.owned_titles_raw) if self.owned_titles_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @owned_titles.setter
+    def owned_titles(self, value):
+        self.owned_titles_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def activity_data(self):
+        try:
+            return json.loads(self.activity_data_raw) if self.activity_data_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @activity_data.setter
+    def activity_data(self, value):
+        self.activity_data_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def enemies(self):
+        try:
+            return json.loads(self.enemies_raw) if self.enemies_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @enemies.setter
+    def enemies(self, value):
+        self.enemies_raw = json.dumps(value, ensure_ascii=False)
+
+    def add_enemy(self, username):
+        """Add a player to enemy list."""
+        enemies = self.enemies
+        if username not in enemies:
+            enemies.append(username)
+            self.enemies = enemies
+
+    @property
+    def friends(self):
+        try:
+            return json.loads(self.friends_raw) if self.friends_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @friends.setter
+    def friends(self, value):
+        self.friends_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def blacklist(self):
+        try:
+            return json.loads(self.blacklist_raw) if self.blacklist_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @blacklist.setter
+    def blacklist(self, value):
+        self.blacklist_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def relation_requests(self):
+        try:
+            return json.loads(self.relation_requests_raw) if self.relation_requests_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    @relation_requests.setter
+    def relation_requests(self, value):
+        self.relation_requests_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def vip_daily_claimed(self):
+        try:
+            return json.loads(self.vip_daily_claimed_raw) if self.vip_daily_claimed_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @vip_daily_claimed.setter
+    def vip_daily_claimed(self, value):
+        self.vip_daily_claimed_raw = json.dumps(value, ensure_ascii=False)
+
+    def get_today_activity(self, key):
+        """Get a daily activity value, auto-resets at midnight."""
+        from services.activity_service import ActivityService
+        return ActivityService.get_today_value(self, key)
+
+    def set_today_activity(self, key, value):
+        """Set a daily activity value."""
+        from services.activity_service import ActivityService
+        ActivityService.set_today_value(self, key, value)
+
+    def get_title_display(self):
+        """Return the full title string (prefix + suffix)."""
+        from services.data_service import DataService
+        prefix_name = ""
+        suffix_name = ""
+        if self.title_prefix_id:
+            prefix = DataService.get_title(self.title_prefix_id, 'prefix')
+            if prefix:
+                prefix_name = prefix.get('name', '')
+        if self.title_suffix_id:
+            suffix = DataService.get_title(self.title_suffix_id, 'suffix')
+            if suffix:
+                suffix_name = suffix.get('name', '')
+        return prefix_name + suffix_name if prefix_name or suffix_name else None
+
+    version = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    last_login = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def get_passive_bonuses(self):
+        """Calculate passive skill bonuses: rate bonuses for atk/def/hp/mp, flat for crit/dodge."""
+        from services.data_service import DataService
+        bonuses = {}
+        for ps in PlayerSkill.query.filter_by(player_id=self.id).all():
+            sdef = DataService.get_skill(ps.skill_id)
+            if not sdef or sdef.get('skill_type') != 'passive':
+                continue
+            btype = sdef.get('bonus_type')
+            bval = sdef.get('bonus_value_per_level', 0)
+            level = ps.skill_level
+            if btype in ('attack', 'defense', 'max_health', 'max_mana'):
+                bonuses[btype] = bonuses.get(btype, 0) + bval * level
+            elif btype in ('crit_rate', 'dodge_rate'):
+                bonuses[btype] = bonuses.get(btype, 0) + bval * level
+        return bonuses
+
+    # Relationships
+    equipment_instances = db.relationship('EquipmentInstance', backref='player', lazy='dynamic')
+    inventory_items = db.relationship('InventoryItem', backref='player', lazy='dynamic')
+    lieutenants = db.relationship('Lieutenant', backref='owner', lazy='dynamic')
+    equipment_slots = db.relationship('EquipmentSlot', backref='player', lazy='dynamic',
+                                      cascade='all, delete-orphan')
+    skills = db.relationship('PlayerSkill', backref='player', lazy='dynamic',
+                             cascade='all, delete-orphan')
+    temp_effects = db.relationship('TempEffect', backref='player', lazy='dynamic',
+                                   cascade='all, delete-orphan')
+    lieutenants = db.relationship('Lieutenant', backref='owner', lazy='dynamic',
+                                  cascade='all, delete-orphan')
+
     STAT_NAMES = {
         "max_health": "生命值",
-        "max_mana": "魔法值", 
+        "max_mana": "魔法值",
         "attack": "攻击力",
         "defense": "防御力",
         "crit_rate": "暴击率",
         "dodge_rate": "闪避率"
     }
-    # 在 Player 类开头添加军衔配置
-    MILITARY_RANKS = {
-        "十夫长": {"level": 20, "attack": 20, "honor": 0},
-        "百夫长": {"level": 25, "attack": 50, "honor": 30},
-        "校尉": {"level": 30, "attack": 100, "honor": 240},
-        "都尉": {"level": 35, "attack": 150, "honor": 1020},
-        "裨将": {"level": 40, "attack": 200, "honor": 3120},
-        "偏将": {"level": 45, "attack": 300, "honor": 7770},
-        "中郎将": {"level": 50, "attack": 400, "honor": 16800},
-        "车骑将军": {"level": 55, "attack": 500, "honor": 32760},
-        "骠骑将军": {"level": 60, "attack": 620, "honor": 59040},
-        "大司马": {"level": 65, "attack": 700, "honor": 100000},
-        "大都督": {"level": 70, "attack": 1000, "honor": 161050}
-    }
 
     CLASSES = {
         "术士": {
             "base_stats": {
-                "max_health": 80,
-                "max_mana": 100,
-                "attack": 20,
-                "defense": 3,
-                "crit_rate": 0.03,
-                "dodge_rate": 0.03
+                "max_health": 80, "max_mana": 100,
+                "attack": 20, "defense": 3,
+                "crit_rate": 0.03, "dodge_rate": 0.03
             },
             "level_up_stats": {
-                "max_health": 15,
-                "max_mana": 20,
-                "attack": 8,
-                "defense": 2,
-                "crit_rate": 0.005,
-                "dodge_rate": 0.005
+                "max_health": 15, "max_mana": 20,
+                "attack": 8, "defense": 2,
+                "crit_rate": 0.005, "dodge_rate": 0.005
             }
         },
         "战士": {
             "base_stats": {
-                "max_health": 120,
-                "max_mana": 50,
-                "attack": 15,
-                "defense": 8,
-                "crit_rate": 0.03,
-                "dodge_rate": 0.03
+                "max_health": 120, "max_mana": 50,
+                "attack": 15, "defense": 8,
+                "crit_rate": 0.03, "dodge_rate": 0.03
             },
             "level_up_stats": {
-                "max_health": 25,
-                "max_mana": 10,
-                "attack": 5,
-                "defense": 4,
-                "crit_rate": 0.005,
-                "dodge_rate": 0.005
+                "max_health": 25, "max_mana": 10,
+                "attack": 5, "defense": 4,
+                "crit_rate": 0.005, "dodge_rate": 0.005
             }
         },
         "刺客": {
             "base_stats": {
-                "max_health": 90,
-                "max_mana": 60,
-                "attack": 18,
-                "defense": 4,
-                "crit_rate": 0.08,
-                "dodge_rate": 0.08
+                "max_health": 90, "max_mana": 60,
+                "attack": 18, "defense": 4,
+                "crit_rate": 0.08, "dodge_rate": 0.08
             },
             "level_up_stats": {
-                "max_health": 18,
-                "max_mana": 12,
-                "attack": 6,
-                "defense": 3,
-                "crit_rate": 0.015,
-                "dodge_rate": 0.015
+                "max_health": 18, "max_mana": 12,
+                "attack": 6, "defense": 3,
+                "crit_rate": 0.015, "dodge_rate": 0.015
             }
         }
     }
 
-    def __init__(self, name, player_class):
-        self.name = name
-        self.player_class = player_class
-        self.level = 1
+    MILITARY_RANKS = {
+        "士兵":     {"level": 1,  "honor": 0,     "attack": 0},
+        "十夫长":   {"level": 5,  "honor": 100,   "attack": 5},
+        "百夫长":   {"level": 10, "honor": 500,    "attack": 15},
+        "校尉":     {"level": 15, "honor": 2000,   "attack": 30},
+        "都尉":     {"level": 20, "honor": 5000,   "attack": 50},
+        "裨将":     {"level": 25, "honor": 10000,  "attack": 80},
+        "偏将":     {"level": 30, "honor": 20000,  "attack": 120},
+        "中郎将":   {"level": 35, "honor": 40000,  "attack": 170},
+        "车骑将军": {"level": 40, "honor": 70000,  "attack": 230},
+        "骠骑将军": {"level": 45, "honor": 100000, "attack": 300},
+        "大司马":   {"level": 50, "honor": 150000, "attack": 400},
+        "大都督":   {"level": 55, "honor": 200000, "attack": 500},
+    }
 
-        self.experience = 0
-        self.exp_to_next_level = 50
-        self.money = 0
-        self.last_damage_taken = 0
-        self.last_damage_dealt = 0
-        self.last_battle_result = ""
-        self.item_effect = ""
-        self.current_location = "outdoor.village"
-        self.equipment = {slot: None for slot in Equipment.SLOTS}
-        self.inventory = {}
-        self.last_chat_message = None  # 最后收到的聊天消息
-        self.chat_refresh_count = 0    # 场景刷新计数
-        self.chat_history = {}         # 聊天历史记录 {username: [messages]}
-        self.notifications = []  # Add this line
-        self.current_view = "chat"  
-        self.enhance_bonus_rate = 0  # 添加全局强化成功率加成
-
-        self.in_battle = False  # Add this line
-        self.in_pk = False
-        self.pk_opponent = None
-        self.last_attack_time = 0
-        self.learned_skills = {}  # 改为字典存储 {skill_id: skill_level}
-        self.skill_exp = {}  # 技能经验值 {skill_id: exp}
-
-        self.gender = "男"  # 默认性别
-        self.honor = 0  # 荣誉值
-        self.military_rank = "十夫长"  # 默认军衔
-        self.rank_attack = 0  # 军衔加成攻击力
-
-        # 基础属性(每级成长)
-        self.base_stats = self.CLASSES[player_class]["base_stats"].copy()
-
-        # 当前实际属性
-        self.max_health = 0
-        self.health = 0
-        self.max_mana = 0
-        self.mana = 0
-        self.attack = 0
-        self.defense = 0
-        self.crit_rate = 0
-        self.dodge_rate = 0
-        
-        # 成长属性(等级带来的加成)
-        self.growth_stats = {
-            "max_health": 0,
-            "max_mana": 0,
-            "attack": 0,
-            "defense": 0,
-            "crit_rate": 0,
-            "dodge_rate": 0
-        }
-        
-        # 装备属性
-        self.equipment_stats = {
-            "max_health": 0,
-            "max_mana": 0,
-            "attack": 0,
-            "defense": 0,
-            "crit_rate": 0,
-            "dodge_rate": 0
-        }
-        
-        # 金丹属性
-        self.pill_defense = 0
-        self.pill_attack = 0
-        self.pill_max_health = 0
-        self.pill_max_mana = 0
-
-        # 临时属性
-        self.temp_effects = {
-            "max_health": [],  # [{value: 100, rate: 0.05, expire_time: timestamp}]
-            "max_mana": [],
-            "attack": [],
-            "defense": [], 
-            "crit_rate": [],
-            "dodge_rate": []
-        }
-
-        self.update_stats()
-        self.health = self.max_health  # Set initial health
-        self.mana = self.max_mana     # Set initial mana
-
-        self.shortcuts = {
-            'skill1': 'attack',
-            'skill2': 'attack',
-            'skill3': 'attack',
-            'skill4': 'attack',
-            'potion1': None,
-            'potion2': None
-        }
-
-    def update_military_rank(self):
-        """更新军衔"""
-        current_rank = "士兵"
-        rank_attack = 0
-        
-        for rank, requirements in self.MILITARY_RANKS.items():
-            if (self.level >= requirements["level"] and 
-                self.honor >= requirements["honor"]):
-                current_rank = rank
-                rank_attack = requirements["attack"]
-        
-        self.military_rank = current_rank
-        self.rank_attack = rank_attack
-
-    def get_avatar_path(self):
-        # 获取军衔等级(1-11)
-        rank_level = 1
-        for i, (rank, _) in enumerate(self.MILITARY_RANKS.items(), 1):
-            if rank == self.military_rank:
-                rank_level = i
-                break
-        
-        # 格式化等级为两位数字
-        rank_str = f"{rank_level:02d}"
-        
-        # 根据性别、职业确定图片前缀
-        if self.player_class == "刺客":
-            prefix = "b" if self.gender == "女" else "a"
-        elif self.player_class == "战士":
-            prefix = "q" if self.gender == "女" else "c"
-        elif self.player_class == "术士":
-            prefix = "q" if self.gender == "女" else "f"
-            
-        return f"images/rongyu/{prefix}{rank_str}.png"
-
-    def enter_battle(self):
-        self.in_battle = True
-
-    def exit_battle(self):
-        self.in_battle = False
-
-    def can_equip(self, equipment: Equipment) -> tuple[bool, str]:
-        if self.level < equipment.level_required:
-            return False, f"需要等级{equipment.level_required}"
-            
-        if equipment.class_required and equipment.class_required != self.player_class:
-            return False, f"需要职业{equipment.class_required}"
-            
-        return True, ""
-
-    def equip(self, equipment_data):
-        if isinstance(equipment_data, dict):
-            equipment = Equipment.from_dict(equipment_data)
-        else:
-            equipment = equipment_data
-
-        can_equip, message = self.can_equip(equipment)
-        if not can_equip:
-            self.item_effect = message
-            return None
-
-        # 记录装备前的属性
-        old_stats = self.get_current_stats()
-        
-        # 更换装备
-        old_equipment = self.equipment[equipment.slot]
-        equipment.update_name()  # 更新装备名称
-        self.equipment[equipment.slot] = equipment
-        
-        if not equipment.is_bound:
-            equipment.is_bound = True
-        
-        # 更新属性并生成变化信息
-        self.update_stats()
-        new_stats = self.get_current_stats()
-        
-        changes = self.generate_stat_changes(old_stats, new_stats)
-        self.item_effect = f"装备了 {equipment.name}\n{changes}"
-        
-        return old_equipment
-
-    def unequip(self, slot):
-        if self.equipment[slot]:
-            # 记录卸下前的属性
-            old_stats = self.get_current_stats()
-            
-            equipment = self.equipment[slot]
-            equipment.update_name()  # 更新装备名称
-            self.equipment[slot] = None
-            
-            # 更新属性并生成变化信息
-            self.update_stats()
-            new_stats = self.get_current_stats()
-            
-            changes = self.generate_stat_changes(old_stats, new_stats)
-            self.item_effect = f"卸下了 {equipment.name}\n{changes}"
-            
-            return equipment.to_dict()
-        return None
-
-    def get_current_stats(self) -> dict:
-        return {
-            "max_health": self.max_health,
-            "max_mana": self.max_mana,
-            "attack": self.attack,
-            "defense": self.defense,
-            "crit_rate": self.crit_rate,
-            "dodge_rate": self.dodge_rate
-        }
-
-    def generate_stat_changes(self, old_stats: dict, new_stats: dict) -> str:
-        changes = []
-        for stat, name in Equipment.STAT_NAMES.items():
-            old_val = old_stats.get(stat, 0)
-            new_val = new_stats.get(stat, 0)
-            diff = new_val - old_val
-            if diff != 0:
-                if stat in ['crit_rate', 'dodge_rate']:
-                    changes.append(f"{name}: {diff*100:+.1f}%")
-                else:
-                    changes.append(f"{name}: {diff:+.1f}")  # Changed from +d to +.1f
-        return "\n".join(changes)
-    
-    def add_temp_effect(self, stat, value=0, rate=0, duration=0, item_id=None, effect_name=None):
-        """添加临时属性效果
-        
-        Args:
-            stat: 属性名称
-            value: 绝对值加成
-            rate: 百分比加成
-            duration: 持续时间（秒）
-            item_id: 物品ID，用于标识效果来源
-            effect_name: 效果名称，用于显示
-        """
-        if stat not in self.temp_effects:
-            return False
-        
-        current_time = time.time()
-        expire_time = current_time + duration
-        
-        # 如果提供了item_id，查找相同物品的效果进行时间延长
-        if item_id:
-            for effect in self.temp_effects[stat]:
-                if effect.get("item_id") == item_id:
-                    # 找到相同物品的效果，延长持续时间
-                    remaining_time = max(0, effect["expire_time"] - current_time)
-                    effect["expire_time"] = current_time + remaining_time + duration
-                    self.update_stats()
-                    return True
-        
-        # 添加新效果
-        new_effect = {
-            "value": value,
-            "rate": rate,
-            "expire_time": expire_time,
-            "item_id": item_id,
-            "effect_name": effect_name or f"{stat}_effect"
-        }
-        
-        self.temp_effects[stat].append(new_effect)
-        self.update_stats()
-        return True
-
-    def clear_expired_effects(self):
-        """清理过期的临时效果"""
-        now = time.time()
-        for stat in self.temp_effects:
-            self.temp_effects[stat] = [
-                effect for effect in self.temp_effects[stat]
-                if effect["expire_time"] > now
-            ]
-
-    def get_temp_stat_bonus(self, stat):
-        """获取某个属性的临时加成总和"""
-        self.clear_expired_effects()
-        
-        if stat not in self.temp_effects:
-            return 0
-        
-        base_stat = getattr(self, stat, 0)
-        flat_bonus = sum(effect["value"] for effect in self.temp_effects[stat])
-        rate_bonus = sum(effect["rate"] for effect in self.temp_effects[stat])
-        
-        return flat_bonus + base_stat * rate_bonus
-
-    def get_temp_effects_description(self, stat):
-        """获取某个属性的临时效果描述"""
-        self.clear_expired_effects()
-        
-        if stat not in self.temp_effects or not self.temp_effects[stat]:
-            return []
-        
-        descriptions = []
-        current_time = time.time()
-        
-        for effect in self.temp_effects[stat]:
-            remaining_time = max(0, effect["expire_time"] - current_time)
-            minutes = int(remaining_time // 60)
-            seconds = int(remaining_time % 60)
-            
-            effect_parts = []
-            if effect["value"] > 0:
-                effect_parts.append(f"+{effect['value']}")
-            if effect["rate"] > 0:
-                effect_parts.append(f"+{effect['rate']*100:.1f}%")
-            
-            if effect_parts:
-                time_str = f"{minutes}分{seconds}秒" if minutes > 0 else f"{seconds}秒"
-                effect_name = effect.get("effect_name", "")
-                descriptions.append(f"{effect_name}({'+'.join(effect_parts)})剩余{time_str}")
-        
-        return descriptions
-
-    def apply_temp_effects_from_item(self, item_id, temp_effects):
-        """从物品应用临时效果，支持模板化处理"""
-        effect_descriptions = []
-        
-        for effect in temp_effects:
-            stat = effect.get("stat")
-            value = effect.get("value", 0)
-            rate = effect.get("rate", 0)
-            duration = effect.get("duration", 0)
-            effect_name = effect.get("effect_name", "")
-            
-            if not stat or stat not in self.temp_effects:
-                continue
-                
-            if self.add_temp_effect(stat, value, rate, duration, item_id, effect_name):
-                # 生成效果描述
-                effect_parts = []
-                if value > 0:
-                    effect_parts.append(f"{value}点")
-                if rate > 0:
-                    effect_parts.append(f"{rate*100:.1f}%")
-                
-                if effect_parts:
-                    stat_name = self.STAT_NAMES.get(stat, stat)
-                    minutes = int(duration // 60)
-                    seconds = int(duration % 60)
-                    time_str = f"{minutes}分{seconds}秒" if minutes > 0 else f"{seconds}秒"
-                    
-                    effect_descriptions.append(
-                        f"{effect_name or stat_name}提升{'+'.join(effect_parts)}，持续{time_str}"
-                    )
-        
-        return effect_descriptions
-
-    def modify_health_and_mana(self):
-        if self.health > self.max_health:
-            self.health = self.max_health
-        if self.mana > self.max_mana:
-            self.mana = self.max_mana
-
-    def update_stats(self):
-        # 获取职业的等级成长属性
-        level_up_stats = self.CLASSES[self.player_class]["level_up_stats"]
-
-        # 计算成长属性 = 基础属性 + (等级-1) * 等级成长值
-        for stat, base_value in self.base_stats.items():
-            growth = level_up_stats[stat] * (self.level - 1)
-            self.growth_stats[stat] = base_value + growth
-        
-        # 计算装备属性
-        self.equipment_stats = {stat: 0 for stat in self.growth_stats}
-        for equipment in self.equipment.values():
-            if equipment:
-                if isinstance(equipment, dict):
-                    equipment = Equipment.from_dict(equipment)
-                # 基础属性
-                for stat, value in equipment.base_stats.items():
-                    self.equipment_stats[stat] += value
-                # 附加属性
-                for stat, (value, stars) in equipment.extra_stats.items():
-                    self.equipment_stats[stat] += value
-        
-        # 最终属性 = 成长属性 + 装备属性 + 金丹属性
-        self.max_health = self.growth_stats["max_health"] + self.equipment_stats["max_health"] + self.pill_max_health
-        self.max_mana = self.growth_stats["max_mana"] + self.equipment_stats["max_mana"] + self.pill_max_mana
-        self.attack = self.growth_stats["attack"] + self.equipment_stats["attack"] + self.pill_attack
-        self.defense = self.growth_stats["defense"] + self.equipment_stats["defense"] + self.pill_defense
-        self.crit_rate = self.growth_stats["crit_rate"] + self.equipment_stats["crit_rate"]
-        self.dodge_rate = self.growth_stats["dodge_rate"] + self.equipment_stats["dodge_rate"]
-
-        self.update_military_rank()  # 更新军衔
-        self.attack += self.rank_attack  # 加上军衔攻击加成
-        self.modify_health_and_mana()
-
-        # 临时属性
-        self.max_health += self.get_temp_stat_bonus("max_health") 
-        self.max_mana += self.get_temp_stat_bonus("max_mana")
-        self.attack += self.get_temp_stat_bonus("attack")
-        self.defense += self.get_temp_stat_bonus("defense")
-        self.crit_rate += self.get_temp_stat_bonus("crit_rate")
-        self.dodge_rate += self.get_temp_stat_bonus("dodge_rate")
-
-    def level_up(self):
-        if self.experience >= self.exp_to_next_level:
-            self.level += 1
-            self.experience -= self.exp_to_next_level
-            self.exp_to_next_level = int(self.exp_to_next_level * 1.5)
-            
-            self.update_stats()
-            self.health = self.max_health
-            self.mana = self.max_mana
-            return True
-        return False
-
-    def attack_monster(self, monster):
-        self.last_skill = "普通攻击"
-        self.last_action = "使用了普通攻击"
-        self.last_mana_cost = 0
-        
-        if random.random() >= monster.dodge_rate:
-            damage = max(0, self.attack - monster.defense)
-            
-            if random.random() <= self.crit_rate:
-                damage *= 2
-                self.last_damage_dealt = f"{damage}(暴击!)"
-            else:
-                self.last_damage_dealt = str(damage)
-                
-            monster.health -= damage
-            monster.last_damage_taken = damage
-            return damage
-        else:
-            self.last_damage_dealt = "闪避"
-            monster.last_damage_taken = 0
-            return 0
-
-    def learn_skill(self, skill_id):
-        """学习新技能"""
-        skills = Skill.load_skills()
-        if skill_id not in skills:
-            return False, "技能不存在"
-            
-        skill = skills[skill_id]
-        if skill.class_required and skill.class_required != self.player_class:
-            return False, "职业不符合要求"
-            
-        if skill_id in self.learned_skills:
-            return False, "已经学习过该技能"
-            
-        exp_cost, money_cost = skill.level_up_cost()
-        if self.experience < exp_cost:
-            return False, f"经验不足,需要{exp_cost}点经验"
-            
-        if self.money < money_cost:
-            return False, f"银两不足,需要{money_cost}银两"
-            
-        self.experience -= exp_cost
-        self.money -= money_cost
-        self.learned_skills[skill_id] = 1  # 初始等级为1
-        self.skill_exp[skill_id] = 0
-        return True, f"成功学习技能【{skill.name}】"
-    
-    def upgrade_skill(self, skill_id):
-        """升级已学技能"""
-        if skill_id not in self.learned_skills:
-            return False, "未学习该技能"
-            
-        skills = Skill.load_skills()
-        skill = skills[skill_id]
-        current_level = self.learned_skills[skill_id]
-        
-        if current_level >= skill.max_level:
-            return False, "技能已达到最高等级"
-            
-        exp_cost, money_cost = skill.level_up_cost()
-        if self.experience < exp_cost:
-            return False, f"经验不足,需要{exp_cost}点经验"
-            
-        if self.money < money_cost:
-            return False, f"银两不足,需要{money_cost}银两"
-            
-        self.experience -= exp_cost
-        self.money -= money_cost
-        self.learned_skills[skill_id] += 1
-        return True, f"成功将【{skill.name}】升级到{self.learned_skills[skill_id]}级"
-
-    def use_skill(self, monster, skill_id):
-        """使用技能"""
-        if skill_id == "attack":
-            return self.attack_monster(monster)
-            
-        if skill_id not in self.learned_skills:
-            self.last_action = "技能未学习"
-            return 0
-            
-        skills = Skill.load_skills()
-        skill = skills[skill_id]
-        skill.level = self.learned_skills[skill_id]  # 设置技能等级
-        mana_cost = skill.get_current_mana_cost()
-        
-        if self.mana < mana_cost:
-            self.last_action = f"魔法值不足，需要{mana_cost}点魔法值"
-            self.last_mana_cost = 0
-            self.last_damage_dealt = 0
-            return 0
-            
-        self.mana -= mana_cost
-        self.last_mana_cost = mana_cost
-        self.last_skill = skill.name
-        self.last_action = f"使用了{skill.name}"
-        
-        if random.random() >= monster.dodge_rate:
-            base_damage = max(0, self.attack * skill.get_current_damage_rate() - monster.defense)
-            
-            if skill.hits > 1:
-                total_damage = 0
-                for _ in range(skill.hits):
-                    damage = base_damage
-                    if random.random() <= self.crit_rate:
-                        damage *= 2
-                    total_damage += damage
-                self.last_damage_dealt = f"{total_damage}"
-                monster.health -= total_damage
-                monster.last_damage_taken = total_damage
-                return total_damage
-            else:
-                damage = base_damage
-                if random.random() <= self.crit_rate:
-                    damage *= 2
-                    self.last_damage_dealt = f"{damage}(暴击!)"
-                else:
-                    self.last_damage_dealt = f"{damage}"
-                monster.health -= damage
-                monster.last_damage_taken = damage
-                return damage
-        else:
-            self.last_damage_dealt = "闪避"
-            monster.last_damage_taken = 0
-            return 0
-
-    def to_dict(self):
-        data = self.__dict__.copy()
-        # 处理聊天历史中的datetime
-        if 'chat_history' in data:
-            for username in data['chat_history']:
-                for message in data['chat_history'][username]:
-                    if isinstance(message['time'], datetime):
-                        message['time'] = message['time'].strftime('%Y-%m-%d %H:%M:%S')
-        
-        # 处理最新消息中的datetime
-        if data.get('last_chat_message') and isinstance(data['last_chat_message'].get('time'), datetime):
-            data['last_chat_message']['time'] = data['last_chat_message']['time'].strftime('%Y-%m-%d %H:%M:%S')
-        # Convert inventory items to serializable format
-        inventory_data = {}
-        for item_id, item_data in self.inventory.items():
-            if isinstance(item_data, dict) and "item" in item_data:
-                inventory_data[item_id] = {
-                    "item": item_data["item"],  # Already a dict, no need for __dict__
-                    "quantity": item_data["quantity"]
-                }
-            else:
-                # Handle legacy inventory data
-                inventory_data[item_id] = item_data
-        data['inventory'] = inventory_data
-        
-        # Handle equipment as before
-        data['equipment'] = {
-            slot: equip if isinstance(equip, dict) else equip.to_dict() if equip else None 
-            for slot, equip in self.equipment.items()
-        }
-        return data
-
-    def add_item(self, item_id):
-        items = Item.load_items()
-        if item_id in items:
-            if item_id in self.inventory:
-                if isinstance(self.inventory[item_id], dict) and "quantity" in self.inventory[item_id]:
-                    self.inventory[item_id]["quantity"] += 1
-                else:
-                    self.inventory[item_id] = {
-                        "item": items[item_id].to_dict(),
-                        "quantity": 1
-                    }
-            else:
-                self.inventory[item_id] = {
-                    "item": items[item_id].to_dict(),
-                    "quantity": 1
-                }
-
-    def use_revive_item(self):
-        if "potion_revive" in self.inventory and self.inventory["potion_revive"]["quantity"] > 0:
-            self.inventory["potion_revive"]["quantity"] -= 1
-            if self.inventory["potion_revive"]["quantity"] <= 0:
-                del self.inventory["potion_revive"]
-            self.health = self.max_health
-            return True
-        return False
-
-
-    def weak_revive(self):
-        self.health = max(10, self.max_health // 10)
-
-    def use_item(self, item_id):
-        if item_id in self.inventory:
-            item_data = self.inventory[item_id]
-            item = Item.from_dict(item_data["item"])
-            
-            if not item.is_usable:
-                self.item_effect = f"{item.name}不可使用"
-                return False
-                    
-            # Check usage conditions
-            if item.usage_condition:
-                if item.usage_condition.level_required > self.level:
-                    self.item_effect = f"需要等级{item.usage_condition.level_required}"
-                    return False
-                        
-                for req_item, req_count in item.usage_condition.required_items.items():
-                    if req_item not in self.inventory or self.inventory[req_item]["quantity"] < req_count:
-                        self.item_effect = f"需要{req_count}个{Item.load_items()[req_item].name}"
-                        return False
-            
-            # Apply usage effects
-            if item.usage_effect:
-                effect_description = []
-
-                # 处理临时效果 - 使用新的模板化方法
-                if item.usage_effect.temp_effects:
-                    temp_effect_descriptions = self.apply_temp_effects_from_item(
-                        item_id, item.usage_effect.temp_effects
-                    )
-                    effect_description.extend(temp_effect_descriptions)
-                
-                # Apply stat changes
-                for stat, value in item.usage_effect.stat_changes.items():
-                    if hasattr(self, stat):
-                        old_value = getattr(self, stat)
-                        setattr(self, stat, old_value + value)
-                        
-                        # 获取效果描述
-                        description = item.usage_effect.effect_descriptions.get(stat)
-                        if description:
-                            effect_description.append(description.format(value=value))
-                        self.update_stats()
-
-                # Apply rng stat changes
-                if getattr(item.usage_effect, 'stat_changes_rng', None):
-                    for stat, rng in item.usage_effect.stat_changes_rng.items():
-                        if not hasattr(self, stat):
-                            continue
-                        try:
-                            low, high = int(rng[0]), int(rng[1])
-                        except Exception:
-                            continue
-                        delta = random.randint(low, high)
-                        setattr(self, stat, getattr(self, stat) + delta)
-                        description = item.usage_effect.effect_descriptions.get(stat)
-                        if description:
-                            effect_description.append(description.format(value=delta))
-                        self.update_stats()
-
-                # 数据驱动：装备生成器（完全由 items.json 配置）
-                if getattr(item.usage_effect, 'equipment_generators', None):
-                    for rule in item.usage_effect.equipment_generators:
-                        count = int(rule.get('count', 1))
-                        chance = float(rule.get('chance', 1.0))
-                        awarded = 0
-                        for _ in range(count):
-                            if random.random() <= chance:
-                                if self._apply_equipment_generator_rule(rule):
-                                    awarded += 1
-                        if awarded > 0:
-                            effect_description.append(f"获得装备x{awarded}")
-
-                # Apply item changes and random items
-                if item.usage_effect.item_changes or item.usage_effect.random_items:
-                    items_gained = []
-                    
-                    # Handle required item consumption
-                    for change_item, change_count in item.usage_effect.item_changes.items():
-                        if change_count < 0:
-                            self.inventory[change_item]["quantity"] += change_count
-                            if self.inventory[change_item]["quantity"] <= 0:
-                                del self.inventory[change_item]
-                    
-                    # Handle random rewards
-                    if item.usage_effect.random_items:
-                        for item_info in item.usage_effect.random_items:
-                            item_id_reward = item_info["item_id"]
-                            max_count = item_info["max_count"]
-                            chance = item_info["chance"]
-                            guaranteed_count = item_info["guaranteed_count"]
-                            
-                            # First add guaranteed items
-                            total_count = guaranteed_count
-                            
-                            # Then calculate random items
-                            if max_count > guaranteed_count:
-                                remaining_count = max_count - guaranteed_count
-                                for _ in range(remaining_count):
-                                    if random.random() < chance:
-                                        total_count += 1
-                            
-                            if total_count > 0:
-                                handled = handle_reward(self, item_id_reward, total_count)
-                                if handled:
-                                    items_gained.extend(handled)
-                                else:
-                                    items_gained.append(f"{Item.load_items()[item_id_reward].name}x{total_count}")
-                                    for _ in range(total_count):
-                                        self.add_item(item_id_reward)
-                    
-                    if items_gained:
-                        effect_description.append(f"获得了: {', '.join(items_gained)}")
-                
-                self.item_effect = "、".join(effect_description)
-
-                # 如果是永久属性提升道具，更新属性
-                if item.is_permanent_buff:
-                    self.update_stats()
-            
-            # Remove used item
-            item_data["quantity"] -= 1
-            if item_data["quantity"] <= 0:
-                del self.inventory[item_id]
-            
-            return True
-
-    def _apply_equipment_generator_rule(self, rule: dict) -> bool:
-        from models.equipment import Equipment
-        import json as _json
-        # 构造模板池
-        with open("data/equipment_templates.json", "r", encoding="utf-8") as f:
-            templates = _json.load(f)
-        explicit_ids = rule.get('template_ids') or []
-        pool = []
-        if explicit_ids:
-            pool = [tid for tid in explicit_ids if tid in templates]
-        else:
-            level_min = int(rule.get('level_min', 1))
-            level_max = int(rule.get('level_max', 999))
-            slots = set(rule.get('slots', [])) if rule.get('slots') else None
-            slot_prefixes = rule.get('slot_prefixes', []) or []
-            class_required = rule.get('class_required')  # 单值或数组
-            class_set = set(class_required) if isinstance(class_required, list) else ({class_required} if class_required else None)
-            include_artifact = rule.get('include_artifact', True)
-            exclude_artifact = rule.get('exclude_artifact', False)
-            for tid, t in templates.items():
-                lv = t.get('level_required', 1)
-                if lv < level_min or lv > level_max:
-                    continue
-                slot_val = t.get('slot')
-                if slots and slot_val not in slots:
-                    continue
-                if slot_prefixes and not any(str(slot_val).startswith(pref) for pref in slot_prefixes):
-                    continue
-                if class_set is not None:
-                    tpl_cls = t.get('class_required')
-                    if isinstance(tpl_cls, list):
-                        if not (set(tpl_cls) & class_set):
-                            continue
-                    else:
-                        if tpl_cls not in class_set:
-                            continue
-                is_art = t.get('is_artifact', False)
-                if exclude_artifact and is_art:
-                    continue
-                if not include_artifact and is_art:
-                    continue
-                pool.append(tid)
-        if not pool:
-            return False
-        # 生成
-        rarity_weights = rule.get('rarity_weights')
-        star_range = None
-        if 'star_range' in rule and isinstance(rule['star_range'], list) and len(rule['star_range']) == 2:
-            star_range = (int(rule['star_range'][0]), int(rule['star_range'][1]))
-        star_weights = rule.get('star_weights')
-        template_weights = rule.get('template_weights')
-        roll = EquipmentGenerator.generate_from_pool(
-            source=EquipmentSource.CHEST,
-            template_pool=pool,
-            template_weights=template_weights,
-            template_loader=Equipment.load_template,
-            rarity_weights=rarity_weights,
-            star_range=star_range,
-            star_weights=star_weights,
-        )
-        if not roll:
-            return False
-        equip = Equipment(roll['template_id'], roll['rarity'], roll['stars'])
-        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
-        self.inventory[new_id] = equip.to_dict()
-        # 系统广播：开出神器
-        if equip.rarity == "神器":
-            broadcast_system(f"恭喜{self.name}开启礼盒获得神器{equip.name}")
-        return True
-
-    def _grant_random_equipment_lv1(self, weapon_only: bool):
-        from models.equipment import Equipment
-        # 选取1级模板池
-        from models.equipment import Equipment as _E
-        import json as _json
-        with open("data/equipment_templates.json", "r", encoding="utf-8") as f:
-            templates = _json.load(f)
-        pool = []
-        for tid, t in templates.items():
-            if t.get("level_required", 1) == 1 and not t.get("is_artifact", False):
-                if weapon_only and t.get("slot") != "weapon":
-                    continue
-                pool.append(tid)
-        if not pool:
-            return False
-        roll = EquipmentGenerator.generate_from_pool(
-            source=EquipmentSource.CHEST,
-            template_pool=pool,
-            template_weights=None,
-            template_loader=Equipment.load_template,
-            rarity_weights={"普通": 0.7, "精良": 0.2, "卓越": 0.09, "史诗": 0.01},
-            star_weights={1: 0.35, 2: 0.35, 3: 0.2, 4: 0.08, 5: 0.02}
-        )
-        if not roll:
-            return False
-        equip = Equipment(roll["template_id"], roll["rarity"], roll["stars"])
-        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
-        self.inventory[new_id] = equip.to_dict()
-        return True
-
-    def _grant_artifact_lv1(self):
-        from models.equipment import Equipment
-        roll = EquipmentGenerator.generate(
-            source=EquipmentSource.EVENT,
-            template_id="artifact_all_class_lv1",
-            template_loader=Equipment.load_template,
-        )
-        equip = Equipment(roll["template_id"], roll["rarity"], roll["stars"])
-        new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
-        self.inventory[new_id] = equip.to_dict()
-        return True
-
-
-
-    @classmethod
-    def from_dict(cls, data):
-        player = cls(data["name"], data["player_class"])
-        # Update other attributes
-        for key, value in data.items():
-            if key != "inventory" and key != "equipment":
-                setattr(player, key, value)
-        
-        # 正确加载装备数据
-        if "equipment" in data:
-            equipment_data = data["equipment"]
-            player.equipment = {
-                slot: Equipment.from_dict(equip_data) if equip_data else None
-                for slot, equip_data in equipment_data.items()
-            }
-        
-        # 正确加载背包数据，保持原有数据结构
-        if "inventory" in data:
-            player.inventory = data["inventory"]
-            
-        # 保持原有的物品加载逻辑
-        items = Item.load_items()
-        for item_id, item_data in data.get("inventory", {}).items():
-            if isinstance(item_data, dict) and "quantity" in item_data:
-                if item_id in items and not item_id.startswith('equipment_'):
-                    player.inventory[item_id] = {
-                        "item": items[item_id].to_dict(),
-                        "quantity": item_data["quantity"]
-                    }
-                    
-        return player
-
-
-
-
-
-class PlayerModel(db.Model):
-    __tablename__ = 'players'
-
-    username = db.Column(db.String(64), primary_key=True)
-    player_data = db.Column(db.Text, nullable=False)
-    last_login = db.Column(db.DateTime, default=_dt.utcnow)
-
-    # Flask-Login 兼容（若未来使用）
+    # Flask-Login
     def get_id(self):
-        return self.username
+        return str(self.id)
+
+    # Template compatibility properties
+    @property
+    def money(self):
+        return self.gold
+
+    @money.setter
+    def money(self, value):
+        self.gold = value
 
     @property
-    def data(self):
-        return _json.loads(self.player_data)
+    def name(self):
+        return self.nickname
 
-    @data.setter
-    def data(self, value):
-        self.player_data = _json.dumps(value, ensure_ascii=False)
+    def get_avatar_path(self):
+        from services.player_service import PlayerService
+        return PlayerService.get_avatar_path(self)
+
+    @property
+    def effective_max_health(self):
+        from services.player_service import PlayerService
+        return PlayerService.get_max_health(self)
+
+    @property
+    def effective_max_mana(self):
+        from services.player_service import PlayerService
+        return PlayerService.get_max_mana(self)
+
+    @property
+    def effective_attack(self):
+        from services.player_service import PlayerService
+        return PlayerService.get_attack(self)
+
+    @property
+    def effective_defense(self):
+        from services.player_service import PlayerService
+        return PlayerService.get_defense(self)
+
+    @property
+    def effective_crit_rate(self):
+        from services.title_service import TitleService
+        from services.player_service import PlayerService
+        passive = self.get_passive_bonuses()
+        title_bonuses = TitleService.get_title_bonuses(self)
+        lt_bonus = PlayerService._get_lt_passive_bonus(self, 'crit')
+        return self.crit_rate + passive.get('crit_rate', 0) + title_bonuses.get('crit_rate', 0) + lt_bonus
+
+    @property
+    def effective_dodge_rate(self):
+        from services.title_service import TitleService
+        from services.player_service import PlayerService
+        passive = self.get_passive_bonuses()
+        title_bonuses = TitleService.get_title_bonuses(self)
+        lt_bonus = PlayerService._get_lt_passive_bonus(self, 'dodge')
+        return self.dodge_rate + passive.get('dodge_rate', 0) + title_bonuses.get('dodge_rate', 0) + lt_bonus
+
+    @property
+    def inventory(self):
+        from services.data_service import DataService as DS
+        result = {}
+        for inv in DS.get_inventory(self.id):
+            item_data = DS.get_item(inv.item_id)
+            if item_data:
+                result[inv.item_id] = {"item": item_data, "quantity": inv.quantity}
+            else:
+                equip = EquipmentInstance.query.filter_by(
+                    instance_id=inv.item_id, player_id=self.id).first()
+                if equip:
+                    result[f"equipment_{inv.item_id}"] = equip
+                else:
+                    result[inv.item_id] = {"quantity": inv.quantity}
+        return result
+
+    @property
+    def inventory_dict(self):
+        return self.inventory
+
+    @property
+    def equipment(self):
+        from services.data_service import DataService as DS
+        result = {}
+        for slot_name, equip in DS.get_equipped(self.id).items():
+            if equip:
+                result[slot_name] = equip
+        return result
+
+    @property
+    def equipment_dict(self):
+        return {k: v.to_dict() if hasattr(v, 'to_dict') else v
+                for k, v in self.equipment.items()}
+
+    @property
+    def temp_effects_list(self):
+        effects = TempEffect.query.filter_by(player_id=self.id).all()
+        return [
+            {
+                "stat": e.stat,
+                "value": e.value,
+                "rate": e.rate,
+                "expire_time": e.expire_time,
+                "item_id": e.item_id,
+                "effect_name": e.effect_name,
+            }
+            for e in effects
+        ]
+
+    @property
+    def skills_dict(self):
+        player_skills = PlayerSkill.query.filter_by(player_id=self.id).all()
+        result = {}
+        for ps in player_skills:
+            result[ps.skill_id] = {
+                "level": ps.skill_level,
+                "exp": ps.skill_exp
+            }
+        return result
+
+    @property
+    def learned_skills(self):
+        return [ps.skill_id for ps in PlayerSkill.query.filter_by(player_id=self.id).all()]
+
+    @property
+    def temp_effects(self):
+        from services.data_service import DataService
+        DataService.clear_expired_effects(self.id)
+        effects = TempEffect.query.filter_by(player_id=self.id).all()
+        result = {}
+        for e in effects:
+            if e.stat not in result:
+                result[e.stat] = []
+            result[e.stat].append({
+                "value": e.value,
+                "rate": e.rate,
+                "expire_time": e.expire_time,
+                "item_id": e.item_id,
+                "effect_name": e.effect_name,
+            })
+        return result
+
+    def get_temp_effects_description(self, stat):
+        now = time.time()
+        descriptions = []
+        for e in TempEffect.query.filter_by(player_id=self.id, stat=stat).all():
+            remaining = max(0, e.expire_time - now)
+            minutes = int(remaining // 60)
+            seconds = int(remaining % 60)
+            parts = []
+            if e.value > 0:
+                parts.append(f"+{int(e.value)}")
+            if e.rate > 0:
+                parts.append(f"+{e.rate*100:.1f}%")
+            if parts:
+                time_str = f"{minutes}分{seconds}秒" if minutes > 0 else f"{seconds}秒"
+                descriptions.append(
+                    f"{e.effect_name or stat}({'+'.join(parts)})剩余{time_str}")
+        return descriptions
+
+    def get_shortcuts(self):
+        try:
+            return json.loads(self.shortcuts_raw) if self.shortcuts_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {'skill1': 'attack', 'skill2': 'attack',
+                    'skill3': 'attack', 'skill4': 'attack',
+                    'potion1': None, 'potion2': None}
+
+    def set_shortcuts(self, data):
+        self.shortcuts_raw = json.dumps(data, ensure_ascii=False)
+
+    def get_chat_history(self):
+        try:
+            return json.loads(self.chat_history_raw) if self.chat_history_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    def set_chat_history(self, data):
+        self.chat_history_raw = json.dumps(data, ensure_ascii=False)
+
+    def get_notifications(self):
+        try:
+            return json.loads(self.notifications_raw) if self.notifications_raw else []
+        except (json.JSONDecodeError, TypeError):
+            return []
+
+    def set_notifications(self, data):
+        self.notifications_raw = json.dumps(data, ensure_ascii=False)
+
+    def get_last_chat_message(self):
+        try:
+            return json.loads(self.last_chat_message) if self.last_chat_message else None
+        except (json.JSONDecodeError, TypeError):
+            return None
+
+    def set_last_chat_message(self, data):
+        self.last_chat_message = json.dumps(data, ensure_ascii=False) if data else None
+
+    def get_current_encounter_data(self):
+        try:
+            return json.loads(self.current_encounter) if self.current_encounter else None
+        except (json.JSONDecodeError, TypeError):
+            return None
+
+    def set_current_encounter_data(self, data):
+        self.current_encounter = json.dumps(data, ensure_ascii=False) if data else None
+
+
+class EquipmentInstance(db.Model):
+    __tablename__ = 'equipment_instances'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    instance_id = db.Column(db.String(36), unique=True, nullable=False, default=lambda: str(uuid.uuid4()))
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+    template_id = db.Column(db.String(64), nullable=False)
+    name = db.Column(db.String(128), nullable=False)
+    slot = db.Column(db.String(20), nullable=False)
+    rarity = db.Column(db.String(10), nullable=False)
+    stars = db.Column(db.Integer, default=1)
+    level_required = db.Column(db.Integer, default=1)
+    class_required = db.Column(db.String(20), nullable=True)
+    is_bound = db.Column(db.Boolean, default=False)
+    base_stats = db.Column(db.Text, default='{}')
+    extra_stats = db.Column(db.Text, default='{}')
+    initial_stats = db.Column(db.Text, default='{}')
+    enhance_level = db.Column(db.Integer, default=0)
+
+    STAT_NAMES = {
+        "max_health": "生命上限",
+        "max_mana": "魔法上限",
+        "attack": "攻击力",
+        "defense": "防御力",
+        "crit_rate": "暴击率",
+        "dodge_rate": "闪避率"
+    }
+
+    SLOTS = ['weapon', 'helmet', 'armor', 'gloves', 'pants', 'shoes', 'accessory']
+    SLOT_NAMES = {'weapon': '武器', 'helmet': '头盔', 'armor': '衣服',
+                  'gloves': '手套', 'pants': '裤子', 'shoes': '鞋子', 'accessory': '饰品'}
+
+    RARITIES = ["普通", "精良", "卓越", "史诗", "神器"]
+
+    def get_base_stats(self):
+        try:
+            return json.loads(self.base_stats) if self.base_stats else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    def set_base_stats(self, data):
+        self.base_stats = json.dumps(data, ensure_ascii=False)
+
+    def get_extra_stats(self):
+        try:
+            return json.loads(self.extra_stats) if self.extra_stats else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    def set_extra_stats(self, data):
+        self.extra_stats = json.dumps(data, ensure_ascii=False)
+
+    def get_initial_stats(self):
+        try:
+            return json.loads(self.initial_stats) if self.initial_stats else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    def set_initial_stats(self, data):
+        self.initial_stats = json.dumps(data, ensure_ascii=False)
+
+    def update_name(self):
+        base = f"【{self.rarity}】{_get_template_name(self.template_id)}({self.stars}星)({self.level_required}级)"
+        self.name = f"{base}+{self.enhance_level}" if self.enhance_level > 0 else base
+
+    def get_enhance_success_rate(self, player_bonus_rate=0):
+        el = self.enhance_level
+        if el < 1: base = 1.0
+        elif el < 10: base = 0.95
+        elif el < 18: base = 0.90
+        elif el < 25: base = 0.80
+        elif el < 30: base = 0.75
+        elif el < 35: base = 0.60
+        elif el < 40: base = 0.55
+        elif el < 42: base = 0.50
+        elif el < 45: base = 0.40
+        elif el < 48: base = 0.35
+        else: base = 0.30
+        return min(1.0, base + player_bonus_rate)
+
+    def get_sell_price(self):
+        from services.data_service import DataService
+        template = DataService.get_equipment_template(self.template_id)
+        base_price = template.get('base_price', 1000) if template else 1000
+        rarity_multipliers = {"普通": 0.2, "精良": 0.4, "卓越": 0.6, "史诗": 0.8, "神器": 1.0}
+        return int(base_price * rarity_multipliers.get(self.rarity, 0.2) * (self.stars / 5))
+
+    def to_dict(self):
+        return {
+            "instance_id": self.instance_id,
+            "template_id": self.template_id,
+            "name": self.name,
+            "slot": self.slot,
+            "rarity": self.rarity,
+            "stars": self.stars,
+            "level_required": self.level_required,
+            "class_required": self.class_required,
+            "is_bound": self.is_bound,
+            "base_stats": self.get_base_stats(),
+            "extra_stats": self.get_extra_stats(),
+            "enhance_level": self.enhance_level,
+            "initial_stats": self.get_initial_stats()
+        }
+
+    def get_display_stats(self):
+        result = {}
+        base = self.get_base_stats()
+        extra = self.get_extra_stats()
+        for stat, value in base.items():
+            display_name = self.STAT_NAMES.get(stat, stat)
+            if stat in ['crit_rate', 'dodge_rate']:
+                result[display_name] = f"+{value * 100:.1f}%"
+            else:
+                result[display_name] = f"+{int(value)}"
+        for stat, data in extra.items():
+            display_name = self.STAT_NAMES.get(stat, stat)
+            if isinstance(data, list):
+                value = data[0]
+            else:
+                value = data
+            if stat in ['crit_rate', 'dodge_rate']:
+                existing = result.get(display_name, "")
+                result[display_name] = f"{existing} +{value * 100:.1f}%"
+            else:
+                existing = result.get(display_name, "")
+                result[display_name] = f"{existing} +{int(value)}"
+        return result
+
+    def get_total_stats(self):
+        total = {}
+        for stat, value in self.get_base_stats().items():
+            total[stat] = total.get(stat, 0) + value
+        for stat, data in self.get_extra_stats().items():
+            value = data[0] if isinstance(data, list) else data
+            total[stat] = total.get(stat, 0) + value
+        return total
+
+
+def _get_template_name(template_id):
+    from services.data_service import DataService
+    t = DataService.get_equipment_template(template_id)
+    return t.get('name', template_id) if t else template_id
+
+
+class InventoryItem(db.Model):
+    __tablename__ = 'inventory_items'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    item_id = db.Column(db.String(64), nullable=False)
+    quantity = db.Column(db.Integer, default=1)
+    is_bound = db.Column(db.Boolean, default=False)
+
+    __table_args__ = (db.UniqueConstraint('player_id', 'item_id', 'is_bound'),)
+
+
+class EquipmentSlot(db.Model):
+    __tablename__ = 'equipment_slots'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    slot_name = db.Column(db.String(20), nullable=False)
+    equipment_instance_id = db.Column(db.Integer, db.ForeignKey('equipment_instances.id'), nullable=True)
+
+    equipment = db.relationship('EquipmentInstance', backref='slot_ref')
+
+    __table_args__ = (db.UniqueConstraint('player_id', 'slot_name'),)
+
+
+class PlayerSkill(db.Model):
+    __tablename__ = 'player_skills'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    skill_id = db.Column(db.String(64), nullable=False)
+    skill_level = db.Column(db.Integer, default=1)
+    skill_exp = db.Column(db.Integer, default=0)
+
+    __table_args__ = (db.UniqueConstraint('player_id', 'skill_id'),)
+
+
+class TempEffect(db.Model):
+    __tablename__ = 'temp_effects'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    stat = db.Column(db.String(20), nullable=False)
+    value = db.Column(db.Float, default=0.0)
+    rate = db.Column(db.Float, default=0.0)
+    expire_time = db.Column(db.Float, default=0.0)
+    item_id = db.Column(db.String(64), nullable=True)
+    effect_name = db.Column(db.String(64), nullable=True)
+
+
+class ChatMessage(db.Model):
+    __tablename__ = 'chat_messages'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+    receiver_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+    content = db.Column(db.String(512), nullable=False)
+    message_type = db.Column(db.String(10), default='system')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    sender = db.relationship('PlayerModel', foreign_keys=[sender_id])
+    receiver = db.relationship('PlayerModel', foreign_keys=[receiver_id])
+
+
+class Achievement(db.Model):
+    __tablename__ = 'achievements'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    achievement_id = db.Column(db.String(64), nullable=False)
+    claimed = db.Column(db.Boolean, default=False)
+    completed_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    __table_args__ = (db.UniqueConstraint('player_id', 'achievement_id'),)

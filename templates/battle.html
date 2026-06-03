@@ -1,149 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>战斗页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>战斗</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #003366;
-        }
-        .section {
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .battle-controls {
-            display: flex;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        .battle-controls button {
-            padding: 5px 10px;
-        }
-        .health-bar {
-            letter-spacing: 2px;
-            margin: 5px 0;
-        }
-        .battle-info {
-            background-color: #f5f5f5;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        .battle-message {
-            color: #666;
-            margin: 5px 0;
-        }
+        body { font-size: 16px; margin: 0; line-height: 1.6; }
+        a:link { color: #136ec2; text-decoration: none; }
+        button { font-size: 14px; padding: 2px 8px; margin: 1px; }
+        #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+        #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
     {% if remaining %}
-        <div class="alert alert-warning">
-            还需等待 {{ remaining }} 秒才能再次攻击。
-        </div>
+    需等待{{ remaining }}秒才能再次攻击<br/>
     {% endif %}
 
-    <div class="battle-controls">
-        {% if is_pk %}
-            <form action="{{ url_for('battle.pk_fight') }}" method="post">
-        {% else %}
-            <form action="{{ url_for('battle.fight') }}" method="post">
-        {% endif %}    
-            <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">
-                {% if player.shortcuts.skill1 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill1 }}{% endif %}
-            </button>
-            <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">
-                {% if player.shortcuts.skill2 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill2 }}{% endif %}
-            </button>
-            <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">
-                {% if player.shortcuts.skill3 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill3 }}{% endif %}
-            </button>
-            <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">
-                {% if player.shortcuts.skill4 == 'attack' %}普通攻击{% else %}{{ player.shortcuts.skill4 }}{% endif %}
-            </button>
-        </form>
-        <a href="{{ url_for('battle.shortcuts') }}">设置快捷键</a>
-    </div>
+    {% if is_pk %}
+    <form action="{{ url_for('battle.pk_fight') }}" method="post">
+    {% else %}
+    <form action="{{ url_for('battle.fight') }}" method="post">
+    {% endif %}
+        <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">{% if player.shortcuts.skill1 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill1 }}{% endif %}</button>
+        <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">{% if player.shortcuts.skill2 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill2 }}{% endif %}</button>
+        <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">{% if player.shortcuts.skill3 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill3 }}{% endif %}</button>
+        <a href="{{ url_for('battle.shortcuts') }}">技键</a><br/>
+        <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">{% if player.shortcuts.skill4 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill4 }}{% endif %}</button>
+    </form>
 
-    <div class="battle-info">
-        <div class="section">
-            <p>生命: {{ player.health }}/{{ player.max_health }} {% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}</p>
-            <p>魔法: {{ player.mana }}/{{ player.max_mana }} {% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}</p>
-        </div>
-        
-        <div class="section">
-            <p>【{{ monster.name }}】</p>
-            <p>生命: {{ monster.health }}/{{ monster.max_health }} {% if monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}</p>
-            <div class="health-bar">
-                {% set health_percent = (monster.health / monster.max_health * 10) | round | int %}
-                {% for i in range(10) %}
-                    {% if i < health_percent %}●{% else %}○{% endif %}
-                {% endfor %}
-            </div>
-        </div>
-        
-        <div class="section">
-            <h3>【战斗信息】</h3>
-            {% if player.last_action %}
-                <p>【我方】{{ player.last_action }}
-                {% if player.last_mana_cost %}，消耗{{ player.last_mana_cost }}点魔法值{% endif %}
-                {% if player.last_damage_dealt %}
-                    {% if player.last_damage_dealt == "闪避" %}
-                        ，被闪避了
-                    {% else %}
-                        ，造成{{ player.last_damage_dealt }}点伤害
-                    {% endif %}
-                {% endif %}
-                </p>
-            {% endif %}
+    {% if is_pk %}
+    <form action="{{ url_for('battle.pk_fight') }}" method="post">
+    {% else %}
+    <form action="{{ url_for('battle.fight') }}" method="post">
+    {% endif %}
+        {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
+        <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">{{ player.inventory[player.shortcuts.potion1].item.name }}</button>
+        {% endif %}
+        {% if player.shortcuts.potion2 and player.shortcuts.potion2 in player.inventory %}
+        <button type="submit" name="action" value="use:{{ player.shortcuts.potion2 }}">{{ player.inventory[player.shortcuts.potion2].item.name }}</button>
+        {% endif %}
+        <a href="{{ url_for('battle.shortcuts') }}">药键</a>
+        <a href="{{ url_for('battle.flee') }}">撤退</a><br/>
+    </form>
 
-            {% if monster.last_action %}
-                <p>【敌方】{{ monster.name }}使用了{{ monster.last_skill }}
-                {% if monster.last_damage_dealt == "闪避" %}
-                    ，被闪避了
-                {% else %}
-                    ，造成{{ monster.last_damage_dealt }}点伤害
-                {% endif %}
-                </p>
-            {% endif %}
-        </div>
-        
-        <p>{{ now.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-    </div>
+    生命:{{ player.health }}/{{ player.effective_max_health }}{% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}{% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}<br/>
 
-    <div class="battle-controls">
-        <form action="{{ url_for('battle.fight') }}" method="post">
-            {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
-                <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">
-                    {{ player.inventory[player.shortcuts.potion1].item.name }}
-                </button>
-            {% endif %}
-            {% if player.shortcuts.potion2 and player.shortcuts.potion2 in player.inventory %}
-                <button type="submit" name="action" value="use:{{ player.shortcuts.potion2 }}">
-                    {{ player.inventory[player.shortcuts.potion2].item.name }}
-                </button>
-            {% endif %}
-        </form>
-        <a href="{{ url_for('game.scene') }}">逃跑</a>
-    </div>    
+    {% if lieutenant %}
+    【副将】{{ lieutenant.name }}({{ lieutenant.quality_name }}) Lv.{{ lieutenant.level }}
+    {% if not lieutenant.is_alive %}<font color="red">阵亡</font>{% elif lieutenant.position == 'front' %}(前置){% else %}(后置){% endif %}
+    <br/>生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>
+    {% endif %}
+
+    『{% if not is_pk and monster.is_elite %}精{% endif %}{{ monster.name }}』({{ monster.level }}级)<br/>
+    生命:{{ monster.health }}/{{ monster.max_health }}{% if not is_pk and monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}<br/>
+    <font size="1">{% set health_percent = (monster.health / monster.max_health * 10) | round | int %}{% for i in range(10) %}{% if i < health_percent %}●{% else %}○{% endif %}{% endfor %}</font><br/>
+
+    {% if player.last_action %}
+    【我方】{{ player.last_action }}{% if player.last_mana_cost %}，耗{{ player.last_mana_cost }}魔{% endif %}{% if player.last_damage_dealt %}{% if player.last_damage_dealt == "闪避" %}，被闪避{% else %}，{{ player.last_damage_dealt }}伤害{% endif %}{% endif %}<br/>
+    {% endif %}
+    {% if not is_pk and monster.last_action %}
+    【敌方】{{ monster.last_skill }}{% if monster.last_damage_dealt == "闪避" %}，被闪避{% else %}，{{ monster.last_damage_dealt }}伤害{% endif %}<br/>
+    {% endif %}
+    {% if player.item_effect %}
+    {{ player.item_effect }}<br/>
+    {% endif %}
+
+    {{ now.strftime('%H:%M:%S') }}<br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+document.querySelectorAll('form').forEach(function(f){f.onsubmit=function(){document.getElementById('loading').style.display='block';};});
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
 </body>
 </html>

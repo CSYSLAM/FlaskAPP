@@ -1,52 +1,77 @@
 import json
-import time
-from pathlib import Path
-from typing import List, Dict, Any
+from services import db
+from models.player import PlayerModel
 
 
-_STORE = Path("data/public_chat.json")
-_MAX_LEN = 100
+class PublicChat:
 
+    @classmethod
+    def add_message(cls, username, content, msg_type="public"):
+        if msg_type == "system":
+            from services.data_service import DataService
+            DataService.broadcast_system(content)
+        else:
+            from services.data_service import DataService
+            player = DataService.get_player_by_username(username) if username else None
+            DataService.broadcast_player(player.id if player else None, content)
 
-def _load() -> List[Dict[str, Any]]:
-    if not _STORE.exists():
-        return []
-    try:
-        with open(_STORE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception:
-        return []
+    @classmethod
+    def broadcast(cls, content, msg_type="system"):
+        cls.add_message("", content, msg_type=msg_type)
 
+    @classmethod
+    def _collect_new(cls, player):
+        """Collect new messages since last seen and add to pending.
+        Returns current pending list. Does NOT tick or save."""
+        from services.data_service import DataService
+        all_msgs = DataService.list_latest_messages(200)
+        all_msgs_asc = list(reversed(all_msgs))
 
-def _save(messages: List[Dict[str, Any]]):
-    messages = messages[-_MAX_LEN:]
-    with open(_STORE, 'w', encoding='utf-8') as f:
-        json.dump(messages, f, ensure_ascii=False)
+        last_seen_id = player.chat_refresh_count or 0
+        new_msgs = [m for m in all_msgs_asc if m.id > last_seen_id]
 
+        # Read raw column directly to avoid property auto-parse
+        raw = player.notifications_raw
+        pending = []
+        try:
+            pending = json.loads(raw) if raw else []
+        except (json.JSONDecodeError, TypeError):
+            pending = []
 
-def list_latest(limit: int = 10) -> List[Dict[str, Any]]:
-    return _load()[-limit:]
+        if new_msgs:
+            for msg in new_msgs:
+                pending.append({
+                    "type": msg.message_type,
+                    "content": msg.content,
+                    "username": msg.sender.nickname if msg.sender and msg.message_type == 'player' else "",
+                    "refreshes": 0,
+                })
+            player.chat_refresh_count = new_msgs[-1].id
+            player.notifications_raw = json.dumps(pending, ensure_ascii=False)
+            db.session.commit()
 
+        return pending
 
-def broadcast_system(content: str):
-    msgs = _load()
-    msgs.append({
-        "type": "system",
-        "content": content,
-        "time": time.strftime('%Y-%m-%d %H:%M:%S')
-    })
-    _save(msgs)
+    @classmethod
+    def get_display_messages(cls, player, tick=True):
+        """Get messages to display for this player.
+        tick=True: page refresh, increment refresh counters, remove expired
+        tick=False: AJAX poll, just return current pending without ticking"""
+        pending = cls._collect_new(player)
 
+        if tick:
+            display = []
+            kept = []
+            for m in pending:
+                m["refreshes"] += 1
+                if m["refreshes"] <= 3:
+                    display.append(m)
+                    kept.append(m)
+            player.notifications_raw = json.dumps(kept, ensure_ascii=False)
+            db.session.commit()
+        else:
+            display = list(pending)
 
-def broadcast_player(username: str, player_name: str, content: str):
-    msgs = _load()
-    msgs.append({
-        "type": "player",
-        "username": username,
-        "player_name": player_name,
-        "content": content,
-        "time": time.strftime('%Y-%m-%d %H:%M:%S')
-    })
-    _save(msgs)
-
-
+        system_msgs = [m for m in display if m["type"] == "system"]
+        public_msgs = [m for m in display if m["type"] != "system"]
+        return system_msgs, public_msgs

@@ -1,0 +1,57 @@
+{
+  "name": "许昌东区",
+  "scenes": {
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "xuchang_center.青梅村",
+        "east": "xuchang_east.东门"
+      }
+    },
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "xuchang_east.东城楼",
+        "east": "xuchang_east.铜雀台"
+      },
+      "monster_type": "monster_xuchang_east_鲍信"
+    },
+    "铜雀台": {
+      "name": "铜雀台",
+      "exits": {
+        "north": "xuchang_east.射鹿台",
+        "west": "xuchang_east.东门",
+        "east": "xuchang_east.风陵渡",
+        "south": "xuchang_east.春秋地"
+      }
+    },
+    "射鹿台": {
+      "name": "射鹿台",
+      "exits": {
+        "south": "xuchang_east.铜雀台"
+      },
+      "monster_type": "monster_xuchang_east_张超"
+    },
+    "春秋地": {
+      "name": "春秋地",
+      "exits": {
+        "north": "xuchang_east.铜雀台"
+      },
+      "monster_type": "monster_xuchang_east_酒鬼"
+    },
+    "风陵渡": {
+      "name": "风陵渡",
+      "exits": {
+        "west": "xuchang_east.铜雀台",
+        "east": "xuchang_east.许昌东界"
+      },
+      "monster_type": "monster_xuchang_east_风陵王"
+    },
+    "许昌东界": {
+      "name": "许昌东界",
+      "exits": {
+        "west": "xuchang_east.风陵渡"
+      }
+    }
+  }
+}

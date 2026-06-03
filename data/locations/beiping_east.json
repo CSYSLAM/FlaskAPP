@@ -1,0 +1,56 @@
+{
+  "name": "北平东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "beiping_center.东城楼",
+        "east": "beiping_east.箭楼"
+      },
+      "can_pk": true
+    },
+    "箭楼": {
+      "name": "箭楼",
+      "exits": {
+        "west": "beiping_east.东门",
+        "east": "beiping_east.军营"
+      },
+      "monster_type": "monster_beiping_east_野狗",
+      "npcs": [
+        "npc_beiping_east_左慈副本"
+      ],
+      "can_pk": true
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "north": "beiping_east.铁匠铺",
+        "west": "beiping_east.箭楼",
+        "south": "beiping_east.客栈"
+      },
+      "npcs": [
+        "npc_beiping_east_曹彰",
+        "npc_beiping_east_副将统领"
+      ],
+      "can_pk": true
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "beiping_east.军营"
+      },
+      "npcs": [
+        "npc_beiping_east_李铁匠"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "north": "beiping_east.军营"
+      },
+      "npcs": [
+        "npc_beiping_east_王老板"
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "许昌西区",
+  "scenes": {
+    "许昌西界": {
+      "name": "许昌西界",
+      "exits": {
+        "east": "xuchang_west.龙门窟",
+        "west": "hanzhong_north.汉中北界"
+      }
+    },
+    "龙门窟": {
+      "name": "龙门窟",
+      "exits": {
+        "west": "xuchang_west.许昌西界",
+        "east": "xuchang_west.霸陵桥"
+      }
+    },
+    "少室山": {
+      "name": "少室山",
+      "exits": {
+        "south": "xuchang_west.霸陵桥"
+      },
+      "monster_type": "monster_xuchang_west_杨修"
+    },
+    "塔沟": {
+      "name": "塔沟",
+      "exits": {
+        "north": "xuchang_west.霸陵桥"
+      }
+    },
+    "霸陵桥": {
+      "name": "霸陵桥",
+      "exits": {
+        "north": "xuchang_west.少室山",
+        "west": "xuchang_west.龙门窟",
+        "east": "xuchang_west.西门",
+        "south": "xuchang_west.塔沟"
+      },
+      "monster_type": "monster_xuchang_west_霸陵王"
+    },
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "xuchang_west.霸陵桥",
+        "east": "xuchang_center.西城楼"
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "name": "吴郡东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "north": "wujun_east.药铺",
+        "west": "wujun_center.东城楼",
+        "east": "wujun_east.箭楼",
+        "south": "wujun_east.小巷"
+      }
+    },
+    "小巷": {
+      "name": "小巷",
+      "exits": {
+        "north": "wujun_east.东门"
+      },
+      "npcs": [
+        "npc_wujun_east_智者"
+      ]
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "south": "wujun_east.东门"
+      },
+      "npcs": [
+        "npc_wujun_east_华大夫"
+      ]
+    },
+    "箭楼": {
+      "name": "箭楼",
+      "exits": {
+        "west": "wujun_east.东门",
+        "east": "wujun_east.军营"
+      },
+      "monster_type": "monster_wujun_east_野狗",
+      "npcs": [
+        "npc_wujun_east_左慈副本"
+      ]
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "north": "wujun_east.铁匠铺",
+        "west": "wujun_east.箭楼",
+        "east": "wujun_east.厢房",
+        "south": "wujun_east.客栈"
+      },
+      "npcs": [
+        "npc_wujun_east_副将统领",
+        "npc_wujun_east_孙策"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "wujun_east.军营"
+      },
+      "npcs": [
+        "npc_wujun_east_李铁匠"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "north": "wujun_east.军营"
+      },
+      "npcs": [
+        "npc_wujun_east_王老板"
+      ]
+    },
+    "厢房": {
+      "name": "厢房",
+      "exits": {
+        "west": "wujun_east.军营",
+        "east": "wujun_east.大院"
+      },
+      "npcs": [
+        "npc_wujun_east_孙尚香"
+      ]
+    },
+    "大院": {
+      "name": "大院",
+      "exits": {
+        "west": "wujun_east.厢房"
+      },
+      "monster_type": "monster_wujun_east_窃贼",
+      "npcs": [
+        "npc_wujun_east_墨画"
+      ]
+    }
+  }
+}

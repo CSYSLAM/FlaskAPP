@@ -1,607 +1,1066 @@
 {
-    "potion_health": {
-        "name": "生命秘药",
-        "type": "other",
-        "description": "使用后临时提升5%生命上限,持续2分钟",
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "max_health",
-                    "rate": 0.05,
-                    "duration": 120,
-                    "effect_name": "生命秘药"
-                }
-            ]
-        }
-    },
-    "megaphone": {
-        "name": "大喇叭",
-        "type": "other",
-        "description": "在公共频道发言一次",
-        "price": 100,
-        "is_usable": false
-    },
-    "chest_lv1_weapon": {
-        "name": "1级武器宝箱",
-        "type": "chest",
-        "description": "开启可获得随机1星-5星的1级武器（普通-史诗）",
-        "price": 300,
-        "is_usable": true,
-        "usage_effect": {
-            "equipment_generators": [
-                {
-                    "count": 1,
-                    "chance": 1.0,
-                    "level_min": 1,
-                    "level_max": 1,
-                    "slots": ["weapon"],
-                    "exclude_artifact": true,
-                    "rarity_weights": {"普通": 0.7, "精良": 0.2, "卓越": 0.09, "史诗": 0.01},
-                    "star_weights": {"1": 0.35, "2": 0.35, "3": 0.2, "4": 0.08, "5": 0.02}
-                }
-            ]
-        }
-    },
-    "chest_lv1_gear": {
-        "name": "1级装备宝箱",
-        "type": "chest",
-        "description": "开启可获得随机1星-5星的1级装备（普通-史诗）",
-        "price": 300,
-        "is_usable": true,
-        "usage_effect": {
-            "equipment_generators": [
-                {
-                    "count": 1,
-                    "chance": 1.0,
-                    "level_min": 1,
-                    "level_max": 1,
-                    "slots": ["weapon","armor","helmet","pants","shoes","accessory"],
-                    "exclude_artifact": true,
-                    "rarity_weights": {"普通": 0.7, "精良": 0.2, "卓越": 0.09, "史诗": 0.01},
-                    "star_weights": {"1": 0.35, "2": 0.35, "3": 0.2, "4": 0.08, "5": 0.02}
-                }
-            ]
-        }
-    },
-    "gift_lv1_artifact": {
-        "name": "1级神器礼盒",
-        "type": "other",
-        "description": "开启有小概率获得1级神器，且必得经验与银两",
-        "price": 800,
-        "is_usable": true,
-        "usage_effect": {
-            "stat_changes_rng": {"experience": [1500, 3000], "money": [4000, 8000]},
-            "equipment_generators": [
-                {
-                    "count": 1,
-                    "chance": 0.1,
-                    "template_ids": ["artifact_all_class_lv1"],
-                    "include_artifact": true,
-                    "rarity_weights": null,
-                    "star_weights": {"1": 0.35, "2": 0.35, "3": 0.2, "4": 0.08, "5": 0.02}
-                }
-            ],
-            "effect_descriptions": {
-                "experience": "获得{value}点经验值",
-                "money": "获得{value}点银两"
-            }
-        }
-    },
-    "potion_mana_temp": {
-        "name": "魔法秘药",
-        "type": "other", 
-        "description": "使用后临时提升5%魔法上限,持续2分钟",
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "max_mana",
-                    "rate": 0.05,
-                    "duration": 120
-                }
-            ]
-        }
-    },
-    "potion_crit": {
-        "name": "暴击秘药",
-        "type": "other",
-        "description": "使用后临时提升3%暴击率,持续2分钟",
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "crit_rate",
-                    "rate": 0.03,
-                    "duration": 120
-                }
-            ]
-        }
-    },
-    "potion_dodge": {
-        "name": "闪避秘药",
-        "type": "other",
-        "description": "使用后临时提升3%闪避率,持续2分钟", 
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "dodge_rate",
-                    "rate": 0.03,
-                    "duration": 120
-                }
-            ]
-        }
-    },
-    "potion_package": {
-        "name": "秘药礼包",
-        "type": "other",
-        "description": "使用后随机获得一种秘药",
-        "price": 150,
-        "is_usable": true,
-        "usage_effect": {
-            "random_items": [
-                {
-                    "item_id": "potion_attack",
-                    "max_count": 1,
-                    "chance": 0.2,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "potion_defense",
-                    "max_count": 1,
-                    "chance": 0.2,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "potion_health",
-                    "max_count": 1,
-                    "chance": 0.2,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "potion_mana_temp",
-                    "max_count": 1,
-                    "chance": 0.2,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "potion_crit",
-                    "max_count": 1,
-                    "chance": 0.1,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "potion_dodge",
-                    "max_count": 1,
-                    "chance": 0.1,
-                    "guaranteed_count": 1
-                }
-            ]
-        }
-    },
-    "potion_attack": {
-        "name": "攻击秘药",
-        "type": "other",
-        "description": "使用后临时提升5%攻击力,持续2分钟",
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "attack",
-                    "rate": 0.05,
-                    "duration": 120
-                }
-            ]
-        }
-    },
-    "potion_defense": {
-        "name": "防御秘药", 
-        "type": "other",
-        "description": "使用后临时提升5%防御力,持续2分钟",
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "defense",
-                    "rate": 0.05,
-                    "duration": 120
-                }
-            ]
-        }
-    },
-    "honor_scroll": {
-        "name": "荣誉卷轴",
-        "item_type": "material",
-        "description": "使用后可获得1点荣誉值",
-        "price": 10,
-        "is_usable": true,
-        "can_bulk_use": true,
-        "usage_effect": {
-            "stat_changes": {
-                "honor": 1
-            },
-            "effect_descriptions": {
-                "honor": "获得{value}点荣誉值"
-            }
-        }
-    },
-    "enhance_gem": {
-        "name": "强化宝玉",
-        "type": "material",
-        "description": "用于强化装备的宝玉",
-        "price": 1000,
-        "is_usable": false
-    },
-    "exp_large": {
-        "name": "大经验丹",
-        "type": "other",
-        "description": "使用后增加5万经验",
-        "price": 500,
-        "is_usable": true,
-        "is_permanent_buff": false,
-        "usage_effect": {
-            "stat_changes": {
-                "experience": 50000
-            },
-            "effect_descriptions": {
-                "experience": "获得{value}点经验值"
-            }
-        }
-    },
-    "exp_small": {
-        "name": "小经验丹",
-        "type": "other", 
-        "description": "使用后增加1万经验",
-        "price": 200,
-        "is_usable": true,
-        "is_permanent_buff": false,
-        "usage_effect": {
-            "stat_changes": {
-                "experience": 10000
-            },
-            "effect_descriptions": {
-                "experience": "获得{value}点经验值"
-            }
-        }
-    },
-    "money_small": {
-        "name": "小银两包",
-        "type": "material",
-        "description": "使用后获得5万银两",
-        "is_usable": true,
-        "usage_effect": {
-            "stat_changes": {
-                "money": 50000
-            },
-            "effect_descriptions": {
-                "money": "获得{value}点银两"
-            }
-        }
-    },
-    "potion_heal": {
-        "name": "止血草",
-        "type": "potion",
-        "description": "恢复50点生命值",
-        "price": 50,
-        "is_usable": true,
-        "usage_effect": {
-            "stat_changes": {
-                "health": 50
-            },
-            "effect_descriptions": {
-                "health": "恢复{value}点生命值"
-            }
-        }
-    },
-    "potion_mana": {
-        "name": "凝魔草",
-        "type": "potion",
-        "description": "恢复30点魔法值",
-        "price": 50,
-        "is_usable": true,
-        "usage_effect": {
-            "stat_changes": {
-                "mana": 30
-            },
-            "effect_descriptions": {
-                "mana": "恢复{value}点魔法值"
-            }
-        }
-    },
-    "pill_attack": {
-        "name": "攻击金丹",
-        "type": "other",
-        "description": "永久增加5点攻击力",
-        "price": 80,
-        "is_usable": true,
-        "is_permanent_buff": true,
-        "usage_effect": {
-            "stat_changes": {
-                "pill_attack": 5
-            },
-            "effect_descriptions": {
-                "pill_attack": "永久增加{value}点攻击力"
-            }
-        }
-    },
-    "pill_defense": {
-        "name": "防御金丹",
-        "type": "other",
-        "description": "永久增加3点防御力",
-        "price": 80,
-        "is_usable": true,
-        "is_permanent_buff": true,
-        "usage_effect": {
-            "stat_changes": {
-                "pill_defense": 3
-            },
-            "effect_descriptions": {
-                "pill_defense": "永久增加{value}点防御力"
-            }
-        }
-    },
-    "pill_health": {
-        "name": "生命金丹",
-        "type": "other",
-        "description": "永久增加100点生命上限",
-        "price": 100,
-        "is_usable": true,
-        "is_permanent_buff": true,
-        "usage_effect": {
-            "stat_changes": {
-                "pill_max_health": 100
-            },
-            "effect_descriptions": {
-                "pill_max_health": "永久增加{value}点生命上限"
-            }
-        }
-    },
-    "pill_mana": {
-        "name": "魔法金丹",
-        "type": "other",
-        "description": "永久增加50点魔法上限",
-        "price": 100,
-        "is_usable": true,
-        "is_permanent_buff": true,
-        "usage_effect": {
-            "stat_changes": {
-                "pill_max_mana": 50
-            },
-            "effect_descriptions": {
-                "pill_max_mana": "永久增加{value}点魔法上限"
-            }
-        }
-    },
-    "potion_revive": {
-        "name": "续命灯",
-        "type": "material",
-        "description": "可以满血复活",
-        "price": 100,
-        "is_usable": false
-    },
-    "chest_iron": {
-        "name": "铁质宝匣",
-        "type": "chest",
-        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
-        "price": 100,
-        "is_usable": true,
-        "usage_condition": {
-            "required_items": {
-                "chest_key": 1
-            }
-        },
-        "usage_effect": {
-            "item_changes": {
-                "chest_key": -1
-            },
-            "random_items": [
-                {
-                    "item_id": "potion_heal",
-                    "max_count": 3,
-                    "chance": 0.8,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "potion_mana",
-                    "max_count": 2,
-                    "chance": 0.6,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "pill_attack",
-                    "max_count": 1,
-                    "chance": 0.3,
-                    "guaranteed_count": 0
-                }
-            ]
-        }
-    },
-    "chest_silver": {
-        "name": "银质宝匣",
-        "type": "chest",
-        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
-        "price": 200,
-        "is_usable": true,
-        "usage_condition": {
-            "level_required": 10,
-            "required_items": {
-                "chest_key": 1
-            }
-        },
-        "usage_effect": {
-            "item_changes": {
-                "chest_key": -1
-            },
-            "random_items": [
-                {
-                    "item_id": "potion_heal",
-                    "max_count": 4,
-                    "chance": 0.8,
-                    "guaranteed_count": 2
-                },
-                {
-                    "item_id": "potion_mana",
-                    "max_count": 3,
-                    "chance": 0.7,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "pill_attack",
-                    "max_count": 2,
-                    "chance": 0.4,
-                    "guaranteed_count": 0
-                },
-                {
-                    "item_id": "pill_defense",
-                    "max_count": 1,
-                    "chance": 0.3,
-                    "guaranteed_count": 0
-                }
-            ]
-        }
-    },
-    "chest_gold": {
-        "name": "金质宝匣",
-        "type": "chest",
-        "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
-        "price": 500,
-        "is_usable": true,
-        "usage_condition": {
-            "level_required": 20,
-            "required_items": {
-                "chest_key": 1
-            }
-        },
-        "usage_effect": {
-            "item_changes": {
-                "chest_key": -1
-            },
-            "random_items": [
-                {
-                    "item_id": "potion_heal",
-                    "max_count": 5,
-                    "chance": 0.9,
-                    "guaranteed_count": 2
-                },
-                {
-                    "item_id": "potion_mana",
-                    "max_count": 4,
-                    "chance": 0.8,
-                    "guaranteed_count": 2
-                },
-                {
-                    "item_id": "pill_attack",
-                    "max_count": 2,
-                    "chance": 0.5,
-                    "guaranteed_count": 1
-                },
-                {
-                    "item_id": "pill_defense",
-                    "max_count": 2,
-                    "chance": 0.5,
-                    "guaranteed_count": 1
-                }
-            ]
-        }
-    },
-    "chest_key": {
-        "name": "宝匣钥匙",
-        "type": "material",
-        "description": "用于打开宝匣",
-        "price": 50,
-        "is_usable": false
-    },
-    "potion_attack_absolute": {
-        "name": "攻击强化药水",
-        "type": "other",
-        "description": "使用后临时增加100点攻击力,持续3分钟",
-        "price": 300,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "attack",
-                    "value": 100,
-                    "duration": 180,
-                    "effect_name": "攻击强化"
-                }
-            ]
-        }
-    },
-    "potion_attack_mixed": {
-        "name": "混合攻击药水",
-        "type": "other",
-        "description": "使用后临时增加50点攻击力并提升10%攻击力,持续2分钟",
-        "price": 400,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "attack",
-                    "value": 50,
-                    "rate": 0.10,
-                    "duration": 120,
-                    "effect_name": "混合攻击强化"
-                }
-            ]
-        }
-    },
-    "potion_defense_absolute": {
-        "name": "防御强化药水",
-        "type": "other",
-        "description": "使用后临时增加80点防御力,持续2.5分钟",
-        "price": 350,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "defense",
-                    "value": 80,
-                    "duration": 150,
-                    "effect_name": "防御强化"
-                }
-            ]
-        }
-    },
-    "potion_crit_absolute": {
-        "name": "暴击强化药水",
-        "type": "other",
-        "description": "使用后临时增加15%暴击率,持续1.5分钟",
-        "price": 500,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "crit_rate",
-                    "rate": 0.15,
-                    "duration": 90,
-                    "effect_name": "暴击强化"
-                }
-            ]
-        }
-    },
-    "potion_health_temp": {
-        "name": "生命秘药",
-        "type": "other",
-        "description": "使用后临时提升5%生命上限,持续2分钟",
-        "price": 200,
-        "is_usable": true,
-        "usage_effect": {
-            "temp_effects": [
-                {
-                    "stat": "max_health",
-                    "rate": 0.05,
-                    "duration": 120,
-                    "effect_name": "生命秘药"
-                }
-            ]
-        }
+  "title_prefix_mangmang": {
+    "name": "称号卷轴-迷茫的",
+    "type": "material",
+    "description": "使用后获得前缀称号【迷茫的】(1星)",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix迷茫"
     }
+  },
+  "title_prefix_xiexing": {
+    "name": "称号卷轴-血腥的",
+    "type": "material",
+    "description": "使用后获得前缀称号【血腥的】(2星)",
+    "price": 2000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix血腥"
+    }
+  },
+  "title_prefix_zhenzheng": {
+    "name": "称号卷轴-真正的",
+    "type": "material",
+    "description": "使用后获得前缀称号【真正的】(2星)",
+    "price": 2000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix真正"
+    }
+  },
+  "title_prefix_beihoudai": {
+    "name": "称号卷轴-被厚待的",
+    "type": "material",
+    "description": "使用后获得前缀称号【被厚待的】(3星)",
+    "price": 5000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix被厚待"
+    }
+  },
+  "title_prefix_zhanwubusheng": {
+    "name": "称号卷轴-战无不胜的",
+    "type": "material",
+    "description": "使用后获得前缀称号【战无不胜的】(4星)",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix战无不胜"
+    }
+  },
+  "title_prefix_long": {
+    "name": "称号卷轴-龙的",
+    "type": "material",
+    "description": "使用后获得前缀称号【龙的】(5星)",
+    "price": 50000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix龙"
+    }
+  },
+  "title_prefix_zuirexue": {
+    "name": "称号卷轴-最热血的",
+    "type": "material",
+    "description": "使用后获得前缀称号【最热血的】(5星)",
+    "price": 50000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix最热血"
+    }
+  },
+  "title_suffix_xiaobai": {
+    "name": "称号卷轴-小白",
+    "type": "material",
+    "description": "使用后获得后缀称号【小白】(1星)",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix小白"
+    }
+  },
+  "title_suffix_tufu": {
+    "name": "称号卷轴-屠夫",
+    "type": "material",
+    "description": "使用后获得后缀称号【屠夫】(2星)",
+    "price": 2000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix屠夫"
+    }
+  },
+  "title_suffix_yongshi": {
+    "name": "称号卷轴-勇士",
+    "type": "material",
+    "description": "使用后获得后缀称号【勇士】(2星)",
+    "price": 2000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix勇士"
+    }
+  },
+  "title_suffix_vip": {
+    "name": "称号卷轴-VIP用户",
+    "type": "material",
+    "description": "使用后获得后缀称号【VIP用户】(3星)",
+    "price": 5000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffixVIP用户"
+    }
+  },
+  "title_suffix_zhongyizhihun": {
+    "name": "称号卷轴-忠义之魂",
+    "type": "material",
+    "description": "使用后获得后缀称号【忠义之魂】(5星)，与【最热血的】搭配可激活隐藏属性",
+    "price": 50000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix忠义之魂"
+    }
+  },
+  "title_suffix_chuanren": {
+    "name": "称号卷轴-传人",
+    "type": "material",
+    "description": "使用后获得后缀称号【传人】(5星)，与【龙的】搭配可激活隐藏属性",
+    "price": 50000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix传人"
+    }
+  },
+  "title_suffix_jiangjun": {
+    "name": "称号卷轴-将军",
+    "type": "material",
+    "description": "使用后获得后缀称号【将军】(4星)，与【战无不胜的】搭配可激活隐藏属性",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix将军"
+    }
+  },
+  "potion_health": {
+    "name": "生命秘药",
+    "type": "other",
+    "description": "使用后临时提升5%生命上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_health",
+          "rate": 0.05,
+          "duration": 120,
+          "effect_name": "生命秘药"
+        }
+      ]
+    }
+  },
+  "megaphone": {
+    "name": "大喇叭",
+    "type": "other",
+    "description": "在公共频道发言一次",
+    "price": 100,
+    "is_usable": false
+  },
+  "chest_lv1_weapon": {
+    "name": "1级武器礼盒",
+    "type": "chest",
+    "description": "开启可随机获得一件雏龙武器，品质星级随机",
+    "price": 300,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "chulong_sword_1"
+          ],
+          "rarity_weights": {
+            "普通": 0.7,
+            "精良": 0.2,
+            "卓越": 0.09,
+            "史诗": 0.01
+          },
+          "star_weights": {
+            "1": 0.35,
+            "2": 0.35,
+            "3": 0.2,
+            "4": 0.08,
+            "5": 0.02
+          }
+        }
+      ]
+    }
+  },
+  "chest_lv1_gear": {
+    "name": "1级装备礼盒",
+    "type": "chest",
+    "description": "开启可随机获得一件雏龙装备，品质星级随机",
+    "price": 250,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "chulong_helmet_1",
+            "chulong_armor_1",
+            "chulong_gloves_1",
+            "chulong_pants_1",
+            "chulong_shoes_1"
+          ],
+          "rarity_weights": {
+            "普通": 0.7,
+            "精良": 0.2,
+            "卓越": 0.09,
+            "史诗": 0.01
+          },
+          "star_weights": {
+            "1": 0.35,
+            "2": 0.35,
+            "3": 0.2,
+            "4": 0.08,
+            "5": 0.02
+          }
+        }
+      ]
+    }
+  },
+  "gift_lv1_artifact": {
+    "name": "1级神器礼盒",
+    "type": "chest",
+    "description": "开启可随机获得一件1级神器，星级随机",
+    "price": 5000,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "test_artifact_weapon_lv1",
+            "test_artifact_accessory_lv1"
+          ],
+          "star_weights": {
+            "1": 0.35,
+            "2": 0.35,
+            "3": 0.2,
+            "4": 0.08,
+            "5": 0.02
+          }
+        }
+      ]
+    }
+  },
+  "potion_mana_temp": {
+    "name": "魔法秘药",
+    "type": "other",
+    "description": "使用后临时提升5%魔法上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_mana",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    }
+  },
+  "potion_crit": {
+    "name": "暴击秘药",
+    "type": "other",
+    "description": "使用后临时提升3%暴击率,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "crit_rate",
+          "rate": 0.03,
+          "duration": 120
+        }
+      ]
+    }
+  },
+  "potion_dodge": {
+    "name": "闪避秘药",
+    "type": "other",
+    "description": "使用后临时提升3%闪避率,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "dodge_rate",
+          "rate": 0.03,
+          "duration": 120
+        }
+      ]
+    }
+  },
+  "potion_package": {
+    "name": "秘药礼包",
+    "type": "other",
+    "description": "使用后随机获得一种秘药",
+    "price": 150,
+    "is_usable": true,
+    "usage_effect": {
+      "random_items": [
+        {
+          "item_id": "potion_attack",
+          "max_count": 1,
+          "chance": 0.2,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_defense",
+          "max_count": 1,
+          "chance": 0.2,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_health",
+          "max_count": 1,
+          "chance": 0.2,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_mana_temp",
+          "max_count": 1,
+          "chance": 0.2,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_crit",
+          "max_count": 1,
+          "chance": 0.1,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_dodge",
+          "max_count": 1,
+          "chance": 0.1,
+          "guaranteed_count": 1
+        }
+      ]
+    }
+  },
+  "potion_attack": {
+    "name": "攻击秘药",
+    "type": "other",
+    "description": "使用后临时提升5%攻击力,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "attack",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    }
+  },
+  "potion_defense": {
+    "name": "防御秘药",
+    "type": "other",
+    "description": "使用后临时提升5%防御力,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "defense",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    }
+  },
+  "honor_scroll": {
+    "name": "荣誉卷轴",
+    "type": "material",
+    "description": "使用后可获得1点荣誉值",
+    "price": 10,
+    "is_usable": true,
+    "can_bulk_use": true,
+    "usage_effect": {
+      "stat_changes": {
+        "honor": 1
+      },
+      "effect_descriptions": {
+        "honor": "获得{value}点荣誉值"
+      }
+    }
+  },
+  "enhance_gem": {
+    "name": "强化宝玉",
+    "type": "material",
+    "description": "用于强化装备的宝玉",
+    "price": 1000,
+    "is_usable": false
+  },
+  "exp_large": {
+    "name": "大经验丹",
+    "type": "other",
+    "description": "使用后增加5万经验",
+    "price": 500,
+    "is_usable": true,
+    "is_permanent_buff": false,
+    "usage_effect": {
+      "stat_changes": {
+        "experience": 50000
+      },
+      "effect_descriptions": {
+        "experience": "获得{value}点经验值"
+      }
+    }
+  },
+  "exp_small": {
+    "name": "小经验丹",
+    "type": "other",
+    "description": "使用后增加1万经验",
+    "price": 200,
+    "is_usable": true,
+    "is_permanent_buff": false,
+    "usage_effect": {
+      "stat_changes": {
+        "experience": 10000
+      },
+      "effect_descriptions": {
+        "experience": "获得{value}点经验值"
+      }
+    }
+  },
+  "money_small": {
+    "name": "小银两包",
+    "type": "material",
+    "description": "使用后获得5万银两",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "gold": 50000
+      },
+      "effect_descriptions": {
+        "gold": "获得{value}点银两"
+      }
+    }
+  },
+  "potion_heal": {
+    "name": "止血草",
+    "type": "potion",
+    "description": "恢复50点生命值",
+    "price": 50,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "health": 50
+      },
+      "effect_descriptions": {
+        "health": "恢复{value}点生命值"
+      }
+    }
+  },
+  "potion_mana": {
+    "name": "凝魔草",
+    "type": "potion",
+    "description": "恢复30点魔法值",
+    "price": 50,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana": 30
+      },
+      "effect_descriptions": {
+        "mana": "恢复{value}点魔法值"
+      }
+    }
+  },
+  "pill_attack": {
+    "name": "攻击金丹",
+    "type": "other",
+    "description": "永久增加5点攻击力",
+    "price": 80,
+    "is_usable": true,
+    "is_permanent_buff": true,
+    "usage_effect": {
+      "stat_changes": {
+        "pill_attack": 5
+      },
+      "effect_descriptions": {
+        "pill_attack": "永久增加{value}点攻击力"
+      }
+    }
+  },
+  "pill_defense": {
+    "name": "防御金丹",
+    "type": "other",
+    "description": "永久增加3点防御力",
+    "price": 80,
+    "is_usable": true,
+    "is_permanent_buff": true,
+    "usage_effect": {
+      "stat_changes": {
+        "pill_defense": 3
+      },
+      "effect_descriptions": {
+        "pill_defense": "永久增加{value}点防御力"
+      }
+    }
+  },
+  "pill_health": {
+    "name": "生命金丹",
+    "type": "other",
+    "description": "永久增加100点生命上限",
+    "price": 100,
+    "is_usable": true,
+    "is_permanent_buff": true,
+    "usage_effect": {
+      "stat_changes": {
+        "pill_max_health": 100
+      },
+      "effect_descriptions": {
+        "pill_max_health": "永久增加{value}点生命上限"
+      }
+    }
+  },
+  "pill_mana": {
+    "name": "魔法金丹",
+    "type": "other",
+    "description": "永久增加50点魔法上限",
+    "price": 100,
+    "is_usable": true,
+    "is_permanent_buff": true,
+    "usage_effect": {
+      "stat_changes": {
+        "pill_max_mana": 50
+      },
+      "effect_descriptions": {
+        "pill_max_mana": "永久增加{value}点魔法上限"
+      }
+    }
+  },
+  "potion_revive": {
+    "name": "续命灯",
+    "type": "material",
+    "description": "可以满血复活",
+    "price": 20,
+    "currency": "yuanbao",
+    "is_usable": false
+  },
+  "chest_iron": {
+    "name": "铁质宝匣",
+    "type": "chest",
+    "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+    "price": 100,
+    "is_usable": true,
+    "usage_condition": {
+      "required_items": {
+        "chest_key": 1
+      }
+    },
+    "usage_effect": {
+      "item_changes": {
+        "chest_key": -1
+      },
+      "random_items": [
+        {
+          "item_id": "potion_heal",
+          "max_count": 3,
+          "chance": 0.8,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_mana",
+          "max_count": 2,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "pill_attack",
+          "max_count": 1,
+          "chance": 0.3,
+          "guaranteed_count": 0
+        }
+      ]
+    }
+  },
+  "chest_silver": {
+    "name": "银质宝匣",
+    "type": "chest",
+    "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+    "price": 200,
+    "is_usable": true,
+    "usage_condition": {
+      "level_required": 10,
+      "required_items": {
+        "chest_key": 1
+      }
+    },
+    "usage_effect": {
+      "item_changes": {
+        "chest_key": -1
+      },
+      "random_items": [
+        {
+          "item_id": "potion_heal",
+          "max_count": 4,
+          "chance": 0.8,
+          "guaranteed_count": 2
+        },
+        {
+          "item_id": "potion_mana",
+          "max_count": 3,
+          "chance": 0.7,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "pill_attack",
+          "max_count": 2,
+          "chance": 0.4,
+          "guaranteed_count": 0
+        },
+        {
+          "item_id": "pill_defense",
+          "max_count": 1,
+          "chance": 0.3,
+          "guaranteed_count": 0
+        }
+      ]
+    }
+  },
+  "chest_gold": {
+    "name": "金质宝匣",
+    "type": "chest",
+    "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+    "price": 500,
+    "is_usable": true,
+    "usage_condition": {
+      "level_required": 20,
+      "required_items": {
+        "chest_key": 1
+      }
+    },
+    "usage_effect": {
+      "item_changes": {
+        "chest_key": -1
+      },
+      "random_items": [
+        {
+          "item_id": "potion_heal",
+          "max_count": 5,
+          "chance": 0.9,
+          "guaranteed_count": 2
+        },
+        {
+          "item_id": "potion_mana",
+          "max_count": 4,
+          "chance": 0.8,
+          "guaranteed_count": 2
+        },
+        {
+          "item_id": "pill_attack",
+          "max_count": 2,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "pill_defense",
+          "max_count": 2,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        }
+      ]
+    }
+  },
+  "chest_key": {
+    "name": "宝匣钥匙",
+    "type": "material",
+    "description": "用于打开宝匣",
+    "price": 50,
+    "is_usable": false
+  },
+  "potion_health_temp": {
+    "name": "生命秘药",
+    "type": "other",
+    "description": "使用后临时提升5%生命上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_health",
+          "rate": 0.05,
+          "duration": 120,
+          "effect_name": "生命秘药"
+        }
+      ]
+    }
+  },
+  "chest_lv10_gear": {
+    "name": "10级装备礼盒",
+    "type": "chest",
+    "description": "开启可随机获得一件青布装备，品质星级随机",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "qingbu_helmet_10",
+            "qingbu_armor_10",
+            "qingbu_gloves_10",
+            "qingbu_pants_10",
+            "qingbu_shoes_10"
+          ],
+          "rarity_weights": {
+            "普通": 0.5,
+            "精良": 0.3,
+            "卓越": 0.15,
+            "史诗": 0.04,
+            "神器": 0.01
+          },
+          "star_weights": {
+            "1": 0.2,
+            "2": 0.3,
+            "3": 0.3,
+            "4": 0.15,
+            "5": 0.05
+          }
+        }
+      ]
+    }
+  },
+  "chest_lv10_weapon": {
+    "name": "10级武器礼盒",
+    "type": "chest",
+    "description": "开启可随机获得一件青布武器，品质星级随机",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "qingbu_sword_10"
+          ],
+          "rarity_weights": {
+            "普通": 0.5,
+            "精良": 0.3,
+            "卓越": 0.15,
+            "史诗": 0.04,
+            "神器": 0.01
+          },
+          "star_weights": {
+            "1": 0.2,
+            "2": 0.3,
+            "3": 0.3,
+            "4": 0.15,
+            "5": 0.05
+          }
+        }
+      ]
+    }
+  },
+  "yb_enhance_gem": {
+    "name": "强化宝玉",
+    "type": "material",
+    "description": "用于强化装备的宝玉",
+    "price": 50,
+    "currency": "yuanbao",
+    "is_usable": false
+  },
+  "yb_exp_double": {
+    "name": "双倍经验卡",
+    "type": "other",
+    "description": "使用后60分钟内打怪经验翻倍",
+    "price": 50,
+    "currency": "yuanbao",
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "experience",
+          "rate": 1.0,
+          "duration": 3600,
+          "effect_name": "双倍经验卡"
+        }
+      ]
+    }
+  },
+  "yb_big_money": {
+    "name": "大银两包",
+    "type": "material",
+    "description": "使用后获得500000银两",
+    "price": 5000,
+    "currency": "yuanbao",
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "gold": 500000
+      },
+      "effect_descriptions": {
+        "gold": "获得{value}银两"
+      }
+    }
+  },
+  "yb_small_money": {
+    "name": "小银两包",
+    "type": "material",
+    "description": "使用后获得100000银两",
+    "price": 1000,
+    "currency": "yuanbao",
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "gold": 100000
+      },
+      "effect_descriptions": {
+        "gold": "获得{value}银两"
+      }
+    }
+  },
+  "yb_revive": {
+    "name": "续命灯",
+    "type": "material",
+    "description": "可以满血复活",
+    "price": 20,
+    "currency": "yuanbao",
+    "is_usable": false
+  },
+  "jz_enhance_gem": {
+    "name": "强化宝玉",
+    "type": "material",
+    "description": "用于强化装备的宝玉",
+    "price": 500,
+    "currency": "jinzu",
+    "is_usable": false
+  },
+  "jz_revive": {
+    "name": "续命灯",
+    "type": "material",
+    "description": "可以满血复活",
+    "price": 200,
+    "currency": "jinzu",
+    "is_usable": false
+  },
+  "jz_big_exp": {
+    "name": "大经验丹",
+    "type": "other",
+    "description": "使用后增加10万经验",
+    "price": 1200,
+    "currency": "jinzu",
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "experience": 100000
+      },
+      "effect_descriptions": {
+        "experience": "获得{value}经验"
+      }
+    }
+  },
+  "jz_honor_scroll": {
+    "name": "荣誉卷轴",
+    "type": "material",
+    "description": "使用后可获得10点荣誉值",
+    "price": 500,
+    "currency": "jinzu",
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "honor": 10
+      },
+      "effect_descriptions": {
+        "honor": "获得{value}荣誉值"
+      }
+    }
+  },
+  "buy_yuanbao_1": {
+    "name": "1元宝",
+    "type": "other",
+    "description": "花费1银两兑换1元宝",
+    "price": 1,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "yuanbao": 1
+      },
+      "effect_descriptions": {
+        "yuanbao": "获得{value}元宝"
+      }
+    }
+  },
+  "buy_yuanbao_10": {
+    "name": "10元宝",
+    "type": "other",
+    "description": "花费10银两兑换10元宝",
+    "price": 10,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "yuanbao": 10
+      },
+      "effect_descriptions": {
+        "yuanbao": "获得{value}元宝"
+      }
+    }
+  },
+  "buy_jinzu_1": {
+    "name": "1金珠",
+    "type": "other",
+    "description": "花费1银两兑换1金珠",
+    "price": 1,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "jinzu": 1
+      },
+      "effect_descriptions": {
+        "jinzu": "获得{value}金珠"
+      }
+    }
+  },
+  "buy_jinzu_10": {
+    "name": "10金珠",
+    "type": "other",
+    "description": "花费10银两兑换10金珠",
+    "price": 10,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "jinzu": 10
+      },
+      "effect_descriptions": {
+        "jinzu": "获得{value}金珠"
+      }
+    }
+  },
+  "lt_quality_pill": {
+    "name": "副将资质丹",
+    "type": "material",
+    "description": "洗副将资质，随机刷新品质(0-20)",
+    "price": 500,
+    "currency": "yuanbao"
+  },
+  "lt_enlighten_pill": {
+    "name": "副将悟性丹",
+    "type": "material",
+    "description": "提升副将悟性，成功悟性+1，失败不变",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_reinforce_pill": {
+    "name": "副将强化丹",
+    "type": "material",
+    "description": "强化副将，成功+1，失败不变",
+    "price": 600,
+    "currency": "yuanbao"
+  },
+  "lt_loyalty_pill": {
+    "name": "副将忠诚丹",
+    "type": "material",
+    "description": "恢复副将忠诚度+20",
+    "price": 300,
+    "currency": "yuanbao"
+  },
+  "lt_lifespan_pill": {
+    "name": "副将寿命丹",
+    "type": "material",
+    "description": "恢复副将寿命+20",
+    "price": 300,
+    "currency": "yuanbao"
+  },
+  "lt_skill_expand": {
+    "name": "副将技能扩展符",
+    "type": "material",
+    "description": "扩充副将技能位+1(最多8)",
+    "price": 1000,
+    "currency": "yuanbao"
+  },
+  "lt_slot_expand": {
+    "name": "副将扩充符",
+    "type": "material",
+    "description": "扩充副将位+1",
+    "price": 2000,
+    "currency": "yuanbao"
+  },
+  "lt_potion_heal": {
+    "name": "副将补药",
+    "type": "potion",
+    "description": "恢复副将生命值100",
+    "price": 200
+  },
+  "lt_potion_mana": {
+    "name": "副将魔药",
+    "type": "potion",
+    "description": "恢复副将魔法值50",
+    "price": 200
+  },
+  "lt_skill_combo_1": {"name": "连击入门", "type": "material", "description": "副将学习连击1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_combo_2": {"name": "连击进阶", "type": "material", "description": "副将学习连击2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_combo_3": {"name": "连击精通", "type": "material", "description": "副将学习连击3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_smash_1": {"name": "猛击入门", "type": "material", "description": "副将学习猛击1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_smash_2": {"name": "猛击进阶", "type": "material", "description": "副将学习猛击2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_smash_3": {"name": "猛击精通", "type": "material", "description": "副将学习猛击3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_thunder_1": {"name": "天雷入门", "type": "material", "description": "副将学习天雷1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_thunder_2": {"name": "天雷进阶", "type": "material", "description": "副将学习天雷2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_thunder_3": {"name": "天雷精通", "type": "material", "description": "副将学习天雷3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_absorb_1": {"name": "吸收入门", "type": "material", "description": "副将学习吸收1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_absorb_2": {"name": "吸收进阶", "type": "material", "description": "副将学习吸收2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_absorb_3": {"name": "吸收精通", "type": "material", "description": "副将学习吸收3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_heal_trigger_1": {"name": "回春入门", "type": "material", "description": "副将学习回春1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_heal_trigger_2": {"name": "回春进阶", "type": "material", "description": "副将学习回春2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_heal_trigger_3": {"name": "回春精通", "type": "material", "description": "副将学习回春3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_sharp_1": {"name": "锐利入门", "type": "material", "description": "副将学习锐利1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_sharp_2": {"name": "锐利进阶", "type": "material", "description": "副将学习锐利2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_sharp_3": {"name": "锐利精通", "type": "material", "description": "副将学习锐利3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_tough_1": {"name": "坚韧入门", "type": "material", "description": "副将学习坚韧1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_tough_2": {"name": "坚韧进阶", "type": "material", "description": "副将学习坚韧2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_tough_3": {"name": "坚韧精通", "type": "material", "description": "副将学习坚韧3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_protect_1": {"name": "护佑入门", "type": "material", "description": "副将学习护佑1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_protect_2": {"name": "护佑进阶", "type": "material", "description": "副将学习护佑2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_protect_3": {"name": "护佑精通", "type": "material", "description": "副将学习护佑3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_magic_1": {"name": "法能入门", "type": "material", "description": "副将学习法能1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_magic_2": {"name": "法能进阶", "type": "material", "description": "副将学习法能2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_magic_3": {"name": "法能精通", "type": "material", "description": "副将学习法能3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_brave_1": {"name": "勇猛入门", "type": "material", "description": "副将学习勇猛1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_brave_2": {"name": "勇猛进阶", "type": "material", "description": "副将学习勇猛2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_brave_3": {"name": "勇猛精通", "type": "material", "description": "副将学习勇猛3级所需", "price": 800, "currency": "yuanbao"},
+  "lt_skill_calm_1": {"name": "冷静入门", "type": "material", "description": "副将学习冷静1级所需", "price": 200, "currency": "yuanbao"},
+  "lt_skill_calm_2": {"name": "冷静进阶", "type": "material", "description": "副将学习冷静2级所需", "price": 400, "currency": "yuanbao"},
+  "lt_skill_calm_3": {"name": "冷静精通", "type": "material", "description": "副将学习冷静3级所需", "price": 800, "currency": "yuanbao"},
+
+  "seed_herb": {"name": "草药种子", "type": "material", "description": "百草园种植用，1小时成熟", "price": 100},
+  "seed_flower": {"name": "玫瑰花种子", "type": "material", "description": "百草园种植用，2小时成熟", "price": 200},
+  "seed_ginseng": {"name": "人参种子", "type": "material", "description": "百草园种植用，4小时成熟", "price": 500},
+  "seed_dragon": {"name": "龙血参种子", "type": "material", "description": "百草园种植用，8小时成熟", "price": 1000},
+
+  "flower_rose": {"name": "玫瑰花", "type": "material", "description": "送给异性增加魅力和缘分", "sell_price": 50, "price": 100},
+  "ginseng": {"name": "人参", "type": "material", "description": "珍贵的人参", "sell_price": 200},
+  "dragon_herb": {"name": "龙血参", "type": "material", "description": "传说中的龙血参", "sell_price": 500},
+
+  "bond_wine": {"name": "结交酒", "type": "material", "description": "用于红颜或知己结交", "price": 500, "currency": "yuanbao"},
+  "break_wine": {"name": "断交酒", "type": "material", "description": "用于与红颜或知己断交", "price": 100, "currency": "yuanbao"},
+  "hunt_token": {"name": "追杀令", "type": "material", "description": "使用后可快速传送到仇人所在位置", "price": 200, "currency": "yuanbao"},
+
+  "zhuhouling_1d": {"name": "诸侯令1天", "type": "vip", "description": "使用后获得1天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 1}, "price": 100, "currency": "jinzu"},
+  "zhuhouling_7d": {"name": "诸侯令7天", "type": "vip", "description": "使用后获得7天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 7}, "price": 500, "currency": "jinzu"},
+  "zhuhouling_30d": {"name": "诸侯令30天", "type": "vip", "description": "使用后获得30天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 30}, "price": 2000, "currency": "jinzu"},
+  "zhuhouling_1d_bound": {"name": "诸侯令1天(绑)", "type": "vip", "description": "使用后获得1天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 1}, "price": 80, "currency": "yuanbao"},
+  "zhuhouling_7d_bound": {"name": "诸侯令7天(绑)", "type": "vip", "description": "使用后获得7天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 7}, "price": 400, "currency": "yuanbao"},
+  "zhuhouling_30d_bound": {"name": "诸侯令30天(绑)", "type": "vip", "description": "使用后获得30天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 30}, "price": 1500, "currency": "yuanbao"},
+  "horn_small": {"name": "小喇叭", "type": "other", "description": "在公共频道发言一次", "is_usable": false},
+  "box_key": {"name": "宝匣钥匙", "type": "material", "description": "用于打开宝匣"},
+  "revive_lamp": {"name": "续命灯", "type": "material", "description": "可以满血复活", "price": 20, "currency": "yuanbao", "is_usable": false},
+  "reinforce_gem": {"name": "强化宝玉", "type": "material", "description": "用于强化装备的宝玉"}
 }

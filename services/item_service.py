@@ -1,0 +1,277 @@
+import random
+from services import db
+from services.data_service import DataService
+from models.player import PlayerModel
+
+
+class ItemService:
+
+    @classmethod
+    def use_item(cls, player, item_id, is_bound=None):
+        inv = DataService.get_inventory_item(player.id, item_id, is_bound=is_bound)
+        if not inv or inv.quantity <= 0:
+            return False, "物品不存在或数量不足"
+
+        bound = inv.is_bound
+        item_data = DataService.get_item(item_id)
+        if not item_data:
+            return False, "物品数据异常"
+
+        if not item_data.get("is_usable", True):
+            return False, "该物品不可使用"
+
+        # Block lieutenant-specific items from inventory use (must use from lieutenant interface)
+        if item_id.startswith('lt_') and item_id not in ('lt_potion_heal', 'lt_potion_mana'):
+            return False, "该物品需在副将界面使用"
+
+        # VIP items use their own service
+        if item_data.get("type") == "vip":
+            from services.vip_service import VipService
+            success, msg = VipService.use_zhuhouling(player, item_id, is_bound=bound)
+            return success, msg
+
+        usage_condition = item_data.get("usage_condition")
+        if usage_condition:
+            level_req = usage_condition.get("level_required", 0)
+            if player.level < level_req:
+                return False, f"需要等级{level_req}"
+
+            required_items = usage_condition.get("required_items", {})
+            for req_id, req_count in required_items.items():
+                req_inv = DataService.get_inventory_item(player.id, req_id)
+                if not req_inv or req_inv.quantity < req_count:
+                    req_data = DataService.get_item(req_id)
+                    req_name = req_data.get("name", req_id) if req_data else req_id
+                    return False, f"需要{req_count}个{req_name}"
+
+        usage_effect = item_data.get("usage_effect", {})
+        effect_text_parts = []
+
+        # Process stat changes
+        stat_changes = usage_effect.get("stat_changes", {})
+        for stat, value in stat_changes.items():
+            if hasattr(player, stat):
+                setattr(player, stat, getattr(player, stat) + value)
+                desc = usage_effect.get("effect_descriptions", {}).get(stat)
+                if desc:
+                    effect_text_parts.append(desc.format(value=value))
+
+        # Process random stat changes
+        stat_changes_rng = usage_effect.get("stat_changes_rng", {})
+        for stat, rng_range in stat_changes_rng.items():
+            if hasattr(player, stat):
+                try:
+                    low, high = int(rng_range[0]), int(rng_range[1])
+                    delta = random.randint(low, high)
+                    setattr(player, stat, getattr(player, stat) + delta)
+                    desc = usage_effect.get("effect_descriptions", {}).get(stat)
+                    if desc:
+                        effect_text_parts.append(desc.format(value=delta))
+                except (ValueError, TypeError):
+                    pass
+
+        # Process temp effects
+        from models.player import TempEffect
+        import time
+        temp_effects = usage_effect.get("temp_effects", [])
+        for te in temp_effects:
+            stat = te.get("stat")
+            if not stat:
+                continue
+            value = te.get("value", 0)
+            rate = te.get("rate", 0)
+            duration = te.get("duration", 0)
+            expire_time = time.time() + duration
+            effect_name = te.get("effect_name", item_data.get("name", ""))
+
+            existing = TempEffect.query.filter_by(
+                player_id=player.id, stat=stat, item_id=item_id
+            ).first()
+            if existing:
+                remaining = max(0, existing.expire_time - time.time())
+                existing.expire_time = time.time() + remaining + duration
+                existing.value = max(existing.value, value)
+                existing.rate = max(existing.rate, rate)
+            else:
+                db.session.add(TempEffect(
+                    player_id=player.id,
+                    stat=stat,
+                    value=value,
+                    rate=rate,
+                    expire_time=expire_time,
+                    item_id=item_id,
+                    effect_name=effect_name,
+                ))
+
+            minutes = int(duration // 60)
+            seconds = int(duration % 60)
+            time_str = f"{minutes}分{seconds}秒" if minutes > 0 else f"{seconds}秒"
+            stat_name = PlayerModel.STAT_NAMES.get(stat, stat)
+            parts = []
+            if value > 0:
+                parts.append(f"+{value}")
+            if rate > 0:
+                parts.append(f"+{rate*100:.1f}%")
+            effect_text_parts.append(
+                f"{effect_name or stat_name}提升{'+'.join(parts)}，持续{time_str}")
+
+        # Process grant_title effect
+        grant_title_id = usage_effect.get("grant_title")
+        if grant_title_id:
+            from services.title_service import TitleService
+            if grant_title_id in player.owned_titles:
+                title_type = 'prefix' if grant_title_id.startswith('prefix') else 'suffix'
+                title_def = DataService.get_title(grant_title_id, title_type)
+                title_name = title_def.get('name', grant_title_id) if title_def else grant_title_id
+                return False, f"已拥有称号【{title_name}】，无法重复使用"
+            granted = TitleService.grant_title(player, grant_title_id, 'prefix' if grant_title_id.startswith('prefix') else 'suffix')
+            if granted:
+                title_type = 'prefix' if grant_title_id.startswith('prefix') else 'suffix'
+                title_def = DataService.get_title(grant_title_id, title_type)
+                title_name = title_def.get('name', grant_title_id) if title_def else grant_title_id
+                stars = title_def.get('stars', 1) if title_def else 1
+                effect_text_parts.append(f"获得称号【{title_name}】({stars}星)")
+            else:
+                return False, "称号授予失败"
+
+        # Process item changes
+        item_changes = usage_effect.get("item_changes", {})
+        for change_id, change_count in item_changes.items():
+            if change_count < 0:
+                DataService.remove_item_from_inventory(
+                    player.id, change_id, abs(change_count))
+
+        # Process random items
+        random_items = usage_effect.get("random_items", [])
+        from services.item_reward_registry import handle_reward
+        for ri in random_items:
+            reward_id = ri.get("item_id")
+            max_count = ri.get("max_count", 1)
+            chance = ri.get("chance", 1.0)
+            guaranteed = ri.get("guaranteed_count", 0)
+
+            total = guaranteed
+            remaining = max_count - guaranteed
+            for _ in range(remaining):
+                if random.random() < chance:
+                    total += 1
+
+            if total > 0:
+                handled = handle_reward(player, reward_id, total)
+                if handled:
+                    effect_text_parts.extend(handled)
+                else:
+                    DataService.add_item_to_inventory(player.id, reward_id, total)
+                    reward_data = DataService.get_item(reward_id)
+                    reward_name = reward_data.get("name", reward_id) if reward_data else reward_id
+                    effect_text_parts.append(f"获得{reward_name}x{total}")
+
+        # Process equipment generators
+        from services.equipment_service import EquipmentService
+        from services.equipment_generator import EquipmentSource
+        equipment_generators = usage_effect.get("equipment_generators", [])
+        awarded_count = 0
+        for rule in equipment_generators:
+            count = int(rule.get("count", 1))
+            chance = float(rule.get("chance", 1.0))
+            for _ in range(count):
+                if random.random() <= chance:
+                    pool = cls._build_template_pool(rule)
+                    if pool:
+                        equip = EquipmentService.generate_from_pool(
+                            player.id, pool,
+                            rarity_weights=rule.get("rarity_weights"),
+                            star_range=(int(rule.get("star_range", [1, 5])[0]),
+                                        int(rule.get("star_range", [1, 5])[1])) if "star_range" in rule else None,
+                            star_weights=rule.get("star_weights"),
+                            template_weights=rule.get("template_weights"),
+                        )
+                        if equip:
+                            DataService.add_item_to_inventory(
+                                player.id, equip.instance_id)
+                            awarded_count += 1
+                            effect_text_parts.append(f"获得装备{equip.name}")
+                            if equip.rarity == "神器":
+                                DataService.broadcast_system(
+                                    f"恭喜{player.nickname}获得神器{equip.name}")
+
+        # Process lieutenant potion effects
+        if item_id == 'lt_potion_heal':
+            from models.lieutenant import Lieutenant
+            from services.lieutenant_service import LieutenantService
+            lt = Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
+            if lt:
+                LieutenantService.heal(lt, 100)
+                effect_text_parts.append(f"副将{lt.name}生命恢复100")
+            else:
+                effect_text_parts.append("没有出战副将")
+        elif item_id == 'lt_potion_mana':
+            from models.lieutenant import Lieutenant
+            from services.lieutenant_service import LieutenantService
+            lt = Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
+            if lt:
+                LieutenantService.restore_mana(lt, 50)
+                effect_text_parts.append(f"副将{lt.name}魔法恢复50")
+            else:
+                effect_text_parts.append("没有出战副将")
+
+        # Consume the item
+        DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+
+        db.session.commit()
+
+        effect_text = "、".join(effect_text_parts) if effect_text_parts else "使用了物品"
+        player.item_effect = effect_text
+        return True, effect_text
+
+    @classmethod
+    def bulk_use(cls, player, item_id, quantity, is_bound=None):
+        inv = DataService.get_inventory_item(player.id, item_id, is_bound=is_bound)
+        if not inv or inv.quantity < quantity:
+            return 0
+
+        success_count = 0
+        for _ in range(quantity):
+            success, _ = cls.use_item(player, item_id, is_bound=is_bound)
+            if success:
+                success_count += 1
+        return success_count
+
+    @classmethod
+    def _build_template_pool(cls, rule):
+        templates = DataService.get_equipment_templates()
+        explicit_ids = rule.get("template_ids")
+        if explicit_ids:
+            return [tid for tid in explicit_ids if tid in templates]
+
+        pool = []
+        level_min = int(rule.get("level_min", 1))
+        level_max = int(rule.get("level_max", 999))
+        slots = set(rule.get("slots", [])) if rule.get("slots") else None
+        class_required = rule.get("class_required")
+        class_set = set(class_required) if isinstance(class_required, list) else (
+            {class_required} if class_required else None)
+        include_artifact = rule.get("include_artifact", True)
+        exclude_artifact = rule.get("exclude_artifact", False)
+
+        for tid, t in templates.items():
+            lv = t.get("level_required", 1)
+            if lv < level_min or lv > level_max:
+                continue
+            slot_val = t.get("slot")
+            if slots and slot_val not in slots:
+                continue
+            if class_set is not None:
+                tpl_cls = t.get("class_required")
+                if isinstance(tpl_cls, list):
+                    if not (set(tpl_cls) & class_set):
+                        continue
+                elif tpl_cls not in class_set:
+                    continue
+            is_art = t.get("is_artifact", False)
+            if exclude_artifact and is_art:
+                continue
+            if not include_artifact and is_art:
+                continue
+            pool.append(tid)
+        return pool

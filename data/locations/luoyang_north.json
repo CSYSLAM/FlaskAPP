@@ -1,0 +1,125 @@
+{
+  "name": "洛阳北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "luoyang_north.无双殿",
+        "west": "luoyang_north.玄武殿",
+        "east": "luoyang_north.青龙殿",
+        "south": "luoyang_center.北城楼"
+      }
+    },
+    "玄武殿": {
+      "name": "玄武殿",
+      "exits": {
+        "west": "luoyang_north.西御道",
+        "east": "luoyang_north.北门"
+      }
+    },
+    "西御道": {
+      "name": "西御道",
+      "exits": {
+        "north": "luoyang_north.后殿",
+        "east": "luoyang_north.玄武殿"
+      }
+    },
+    "后殿": {
+      "name": "后殿",
+      "exits": {
+        "north": "luoyang_north.栖雀宫",
+        "south": "luoyang_north.西御道"
+      },
+      "monster_type": "monster_luoyang_north_祈天道人"
+    },
+    "栖雀宫": {
+      "name": "栖雀宫",
+      "exits": {
+        "south": "luoyang_north.后殿"
+      },
+      "monster_type": "monster_luoyang_north_朱雀"
+    },
+    "青龙殿": {
+      "name": "青龙殿",
+      "exits": {
+        "west": "luoyang_north.北门",
+        "east": "luoyang_north.东御道"
+      },
+      "monster_type": "monster_luoyang_north_青龙"
+    },
+    "东御道": {
+      "name": "东御道",
+      "exits": {
+        "north": "luoyang_north.七星阁",
+        "west": "luoyang_north.青龙殿"
+      }
+    },
+    "七星阁": {
+      "name": "七星阁",
+      "exits": {
+        "north": "luoyang_north.寒门",
+        "south": "luoyang_north.东御道"
+      }
+    },
+    "寒门": {
+      "name": "寒门",
+      "exits": {
+        "east": "luoyang_north.伏燕宫",
+        "south": "luoyang_north.七星阁"
+      },
+      "monster_type": "monster_luoyang_north_洛阳副官"
+    },
+    "伏燕宫": {
+      "name": "伏燕宫",
+      "exits": {
+        "west": "luoyang_north.寒门",
+        "east": "luoyang_north.特权V5地图"
+      }
+    },
+    "特权V5地图": {
+      "name": "特权V5地图",
+      "exits": {
+        "west": "luoyang_north.伏燕宫"
+      }
+    },
+    "无双殿": {
+      "name": "无双殿",
+      "exits": {
+        "north": "luoyang_north.白虎殿",
+        "south": "luoyang_north.北门"
+      }
+    },
+    "白虎殿": {
+      "name": "白虎殿",
+      "exits": {
+        "north": "luoyang_north.虎牢关",
+        "south": "luoyang_north.无双殿"
+      },
+      "monster_type": "monster_luoyang_north_白虎"
+    },
+    "虎牢关": {
+      "name": "虎牢关",
+      "exits": {
+        "north": "luoyang_north.洛阳北界",
+        "east": "wa_island_south.倭岛码头",
+        "south": "luoyang_north.白虎殿"
+      },
+      "monster_type": "monster_luoyang_north_神秘将军"
+    },
+    "洛阳北界": {
+      "name": "洛阳北界",
+      "exits": {
+        "north": "silk_road.玉门关",
+        "west": "luoyang_north.官道",
+        "south": "luoyang_north.虎牢关"
+      }
+    },
+    "官道": {
+      "name": "官道",
+      "exits": {
+        "west": "chang_an_east.芙蓉河",
+        "east": "luoyang_north.洛阳北界"
+      }
+    }
+  }
+}

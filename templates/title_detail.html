@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ title_def['name'] }}</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .star-rating { color: #ff6600; }
+    .hidden-attr { color: #008800; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% set full_title = player.get_title_display() %}
+    {% if full_title %}
+    {{ full_title }} <br/>
+    {% else %}
+    {{ title_def['name'] }} <br/>
+    {% endif %}
+    ----------------<br/>
+    {% set stars = title_def.get('stars', 1) %}
+    {% set bonus = star_bonus %}
+    生命值+{{ bonus.get('base_hp', 0) }}<br/>
+    魔法值+{{ bonus.get('base_mp', 0) }}<br/>
+    攻击力+{{ bonus.get('base_attack', 0) }}<br/>
+    防御力+{{ bonus.get('base_defense', 0) }}<br/>
+
+    {% if is_equipped and pair_id and pair_title %}
+    {% if (title_type == 'prefix' and player.title_suffix_id == pair_id) or (title_type == 'suffix' and player.title_prefix_id == pair_id) %}
+    隐藏属性<br/>
+    <span class="hidden-attr">暴击率+{{ "%.1f"|format(star_bonus.get('hidden_crit', 0) * 100) }}%(激活)</span><br/>
+    <span class="hidden-attr">闪避率+{{ "%.1f"|format(star_bonus.get('hidden_dodge', 0) * 100) }}%(激活)</span><br/>
+    {% endif %}
+    {% endif %}
+    <br/>
+
+    {% if is_owned %}
+    {% if is_equipped %}
+    <a href="{{ url_for('player.unequip_title', title_type=title_type) }}">卸下称号</a><br/>
+    {% else %}
+    <a href="{{ url_for('player.equip_title', title_type=title_type, title_id=title_id) }}">装备称号</a><br/>
+    {% endif %}
+    {% else %}
+    <span style="color: #888;">未拥有此称号</span><br/>
+    {% endif %}
+    <br/>
+
+    <a href="{{ url_for('player.titles', title_type=title_type) }}">返回上级<br/></a>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

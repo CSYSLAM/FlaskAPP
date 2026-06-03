@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>招募副将</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+招募副将<br/>
+<br/>
+选择性别和职业：<br/>
+<br/>
+<b>男</b><br/>
+<a href="{{ url_for('lieutenant.do_recruit', gender='male', class_type='warrior') }}">战士</a>
+<a href="{{ url_for('lieutenant.do_recruit', gender='male', class_type='mage') }}">术士</a>
+<a href="{{ url_for('lieutenant.do_recruit', gender='male', class_type='assassin') }}">刺客</a><br/>
+<br/>
+<b>女</b><br/>
+<a href="{{ url_for('lieutenant.do_recruit', gender='female', class_type='warrior') }}">战士</a>
+<a href="{{ url_for('lieutenant.do_recruit', gender='female', class_type='mage') }}">术士</a>
+<a href="{{ url_for('lieutenant.do_recruit', gender='female', class_type='assassin') }}">刺客</a><br/>
+<br/>
+<a href="{{ url_for('lieutenant.index') }}">返回副将</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

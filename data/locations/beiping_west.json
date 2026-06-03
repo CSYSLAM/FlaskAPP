@@ -1,0 +1,47 @@
+{
+  "name": "北平西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "beiping_west.长亭",
+        "east": "beiping_center.西城楼"
+      },
+      "can_pk": true
+    },
+    "长亭": {
+      "name": "长亭",
+      "exits": {
+        "west": "beiping_west.古道",
+        "east": "beiping_west.西门"
+      },
+      "can_pk": true
+    },
+    "古道": {
+      "name": "古道",
+      "exits": {
+        "north": "beiping_west.云鹤崖",
+        "west": "beiping_west.北平西界",
+        "east": "beiping_west.长亭"
+      },
+      "monster_type": "monster_beiping_west_马贼探子",
+      "can_pk": true
+    },
+    "云鹤崖": {
+      "name": "云鹤崖",
+      "exits": {
+        "south": "beiping_west.古道"
+      },
+      "monster_type": "monster_beiping_west_高干",
+      "can_pk": true
+    },
+    "北平西界": {
+      "name": "北平西界",
+      "exits": {
+        "east": "beiping_west.古道",
+        "west": "jinyang_east.晋阳东界"
+      },
+      "can_pk": true
+    }
+  }
+}

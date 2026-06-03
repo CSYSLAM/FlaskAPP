@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>神行</title>
+<style>
+body { font-size: 16px; }
+a:link { color: #136ec2; text-decoration: none; }
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body style="margin-left:10px;margin-right:10px">
+
+<div id="loading"><span></span></div>
+
+<a href="{{ url_for('map.index') }}">返回地图</a><br/>
+<br/>
+<font color="red">每次神行消耗神行符1个</font><br/>
+<br/>
+当前区域传送点：<br/>
+<br/>
+{% if teleport_points %}
+{% for point in teleport_points %}
+<div style="margin:3px 0;">
+<a href="{{ url_for('map.shenxing_go', scene_id=point.id) }}">{{ point.name }}</a>
+{% if point.monsters %}
+- 怪物
+{% endif %}
+{% if point.npcs %}
+- NPC
+{% endif %}
+</div>
+{% endfor %}
+{% else %}
+当前区域暂无传送点<br/>
+{% endif %}
+<br/>
+<a href="{{ url_for('map.index') }}">返回上级</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
+</body>
+</html>

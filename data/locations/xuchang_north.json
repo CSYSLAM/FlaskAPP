@@ -1,0 +1,46 @@
+{
+  "name": "许昌北区",
+  "scenes": {
+    "许昌北界": {
+      "name": "许昌北界",
+      "exits": {
+        "south": "xuchang_north.护城河",
+        "north": "jinyang_south.晋阳南界"
+      }
+    },
+    "护城河": {
+      "name": "护城河",
+      "exits": {
+        "north": "xuchang_north.许昌北界",
+        "west": "xuchang_north.陆小",
+        "east": "xuchang_north.楚留巷",
+        "south": "xuchang_north.北门"
+      },
+      "monster_type": "monster_xuchang_north_许昌卫兵"
+    },
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "xuchang_north.护城河",
+        "south": "xuchang_center.北城楼"
+      }
+    },
+    "陆小": {
+      "name": "陆小",
+      "exits": {
+        "east": "xuchang_north.护城河"
+      },
+      "monster_type": "monster_xuchang_north_小八嘎"
+    },
+    "楚留巷": {
+      "name": "楚留巷",
+      "exits": {
+        "west": "xuchang_north.护城河"
+      },
+      "monsters": [
+        "monster_xuchang_north_孔由",
+        "monster_xuchang_north_邪恶道士"
+      ]
+    }
+  }
+}

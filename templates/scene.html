@@ -1,246 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>场景页面</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #003366;
-        }
-        .section {
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .map-container {
-            margin: 8px 0;
-            padding: 3px;
-            background: #f5f5f5;
-            border-radius: 3px;
-            width: 240px;
-        }
-        .map-grid {
-            display: grid;
-            grid-template-columns: 70px 70px 70px;
-            gap: 1px;
-            text-align: center;
-            font-size: 11px;
-        }
-        .map-cell {
-            padding: 1px 2px;
-            min-height: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .map-cell.current {
-            background: #e3f2fd;
-            border: 1px solid #2196f3;
-            border-radius: 2px;
-            font-weight: bold;
-            padding: 1px 3px;
-        }
-        .map-cell.exit {
-            color: #0066cc;
-            font-size: 10px;
-        }
-        .chat-message {
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{{ location.get('name', '未知') }}（{{ location.get('area_name', '') }}）</title>
+<style>
+body { font-size: 16px; }
+a:link { color: #136ec2; text-decoration: none; }
+
+.rarity-common { color: #ccc; }
+.rarity-uncommon { color: #2eff2e; }
+.rarity-rare { color: #0070dd; }
+.rarity-epic { color: #a335ee; }
+.rarity-legendary { color: #ff6600; }
+
+.xuancai_1 {
+    display: inline; width: 200px; height: 22px;
+    background-image: -webkit-linear-gradient(left, #3498db, #f47920 10%, #d71345 20%, #f7acbc 30%, #ffd400 40%, #3498db 50%, #f47920 60%, #d71345 70%, #f7acbc 80%, #ffd400 90%, #3498db);
+    color: transparent; -webkit-text-fill-color: transparent; -webkit-background-clip: text;
+    background-size: 200% 100%; animation: masked-animation 4s infinite linear;
+}
+.xuancai_2 {
+    display: inline; width: 200px; height: 22px;
+    background-image: -webkit-linear-gradient(left, #ffa080, #ffa060 10%, #ffa040 20%, #ffa020 30%, #ffa0a0 40%, #ffa080 50%, #ffa060 80%, #ffa040 70%, #ffa020 80%, #ffa000 90%, #ffff00);
+    color: transparent; -webkit-text-fill-color: transparent; -webkit-background-clip: text;
+    background-size: 200% 100%; animation: masked-animation 4s infinite linear;
+}
+.xuancai_3 {
+    display: inline; width: 200px; height: 22px;
+    background-image: -webkit-linear-gradient(left, #90fbe9, #60fbe6 10%, #30fbe3 20%, #10fbe1 30%, #00ebff 40%, #80ebff 50%, #60ebff 80%, #40ebff 70%, #20ebff 80%, #00ebff 90%, #10ebff);
+    color: transparent; -webkit-text-fill-color: transparent; -webkit-background-clip: text;
+    background-size: 200% 100%; animation: masked-animation 4s infinite linear;
+}
+.xuancai_4 {
+    display: inline; width: 200px; height: 22px;
+    background-image: -webkit-linear-gradient(left, #ff80b8, #ff60b6 10%, #ff40b4 20%, #ff20b2 30%, #ae00ff 40%, #ae80ff 50%, #ae60ff 80%, #ae40ff 70%, #ae20ff 80%, #ae10ff 90%, #ff00b0);
+    color: transparent; -webkit-text-fill-color: transparent; -webkit-background-clip: text;
+    background-size: 200% 100%; animation: masked-animation 4s infinite linear;
+}
+.xuancai_5 {
+    display: inline; width: 200px; height: 22px;
+    background-image: -webkit-linear-gradient(left, #fcff00, #fcff30 10%, #fcff50 20%, #fcff50 30%, #f7782c 40%, #f79e2c 50%, #f7782b 60%, #f73e2b 70%, #f72b2b 80%, #ebf72b 90%, #fbf803);
+    color: transparent; -webkit-text-fill-color: transparent; -webkit-background-clip: text;
+    background-size: 200% 100%; animation: masked-animation 4s infinite linear;
+}
+@keyframes masked-animation {
+    0% { background-position: 0 0; }
+    100% { background-position: -100% 0; }
+}
+
+.block {
+    text-align: center; font-size: 12px;
+    display: inline-block; width: 24px; height: 16px; line-height: 16px;
+    border: 1px ridge #fafad2; border-style: solid; border-color: #fafad2;
+}
+.now_map_block { background: #FF9999; }
+.map_block { background: #fafad2; }
+.empty_map_block { background: #fafad2; }
+.heng { background-color: #fafad2; font-size: 1px; width: 5px; font-weight: bolder; }
+.centered-vertical-line {
+    background-color: #fafad2; position: relative; display: inline-block;
+    width: 30px; height: 5px; text-align: center; line-height: 5px;
+}
+.centered-vertical-line::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    border-left: 1px solid black; height: 100%;
+}
+.ncentered-vertical-line {
+    background-color: #fafad2; position: relative; display: inline-block;
+    width: 30px; height: 5px; text-align: center; line-height: 5px; color: #fafad2;
+}
+.ncentered-vertical-line::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    border-left: 1px solid #fafad2; height: 100%; color: #fafad2;
+}
+
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
 </head>
-<body>
-    {% set public_messages = [] %}
-    {% if public_messages is not defined %}{% set public_messages = [] %}{% endif %}
-    {% if public_messages %}
-        {% for msg in public_messages|reverse %}
-            {% if loop.index0 < 3 %}
-            <div class="chat-message">
-                {% if msg.type == 'system' %}
-                    【系统】{{ msg.content }} <small>({{ msg.time }})</small>
-                {% else %}
-                    【公共】{{ msg.player_name }}：{{ msg.content }} <small>({{ msg.time }})</small>
-                {% endif %}
-            </div>
-            {% endif %}
-        {% endfor %}
+<body style='margin-left:10px;margin-right:10px'>
+
+<div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
     {% endif %}
+    {% endwith %}
 
-    <div class="section">
-        <a href="{{ url_for('game.scene') }}" class="refresh-btn">刷新</a>
-        <a href="{{ url_for('shop.shop') }}">商城</a>
-    </div>
+    {% if public_messages %}
+{% for msg in public_messages|reverse %}
+{% if msg.message_type == 'system' %}【系统】{{ msg.content }}<br/>{% else %}【公共】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}<br/>{% endif %}
+{% endfor %}
+{% endif %}
 
-    <h1>{{ location.name }}（{{ location.area_name }}）</h1>
+<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle">关地图</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
 
-    <div style="margin: 5px 0;">
-        <a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle">关地图</a>
-    </div>
+*{{ location.get('name', '未知') }}({{ location.get('area_name', '') }})<br/>
 
-    <div class="map-container" id="mapContainer">
-        <div class="map-grid">
-            <!-- 北方区域及其延伸出口 -->
-            <div class="map-cell exit">
-                {% if location.north_exit and locations[location.north_exit].west_exit %}
-                    {{ locations[locations[location.north_exit].west_exit].name }}
-                {% endif %}
-            </div>
-            <div class="map-cell exit">
-                {% if location.north_exit %}
-                    {{ locations[location.north_exit].name }}
-                    {% if locations[location.north_exit].north_exit %}
-                        <br>{{ locations[locations[location.north_exit].north_exit].name }}
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="map-cell exit">
-                {% if location.north_exit and locations[location.north_exit].east_exit %}
-                    {{ locations[locations[location.north_exit].east_exit].name }}
-                {% endif %}
-            </div>
-            
-            <!-- 中间区域（西-当前-东） -->
-            <div class="map-cell exit">
-                {% if location.west_exit %}
-                    {{ locations[location.west_exit].name }}
-                    {% if locations[location.west_exit].west_exit %}
-                        <br>{{ locations[locations[location.west_exit].west_exit].name }}
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="map-cell current">{{ location.name }}</div>
-            <div class="map-cell exit">
-                {% if location.east_exit %}
-                    {{ locations[location.east_exit].name }}
-                    {% if locations[location.east_exit].east_exit %}
-                        <br>{{ locations[locations[location.east_exit].east_exit].name }}
-                    {% endif %}
-                {% endif %}
-            </div>
-            
-            <!-- 南方区域及其延伸出口 -->
-            <div class="map-cell exit">
-                {% if location.south_exit and locations[location.south_exit].west_exit %}
-                    {{ locations[locations[location.south_exit].west_exit].name }}
-                {% endif %}
-            </div>
-            <div class="map-cell exit">
-                {% if location.south_exit %}
-                    {{ locations[location.south_exit].name }}
-                    {% if locations[location.south_exit].south_exit %}
-                        <br>{{ locations[locations[location.south_exit].south_exit].name }}
-                    {% endif %}
-                {% endif %}
-            </div>
-            <div class="map-cell exit">
-                {% if location.south_exit and locations[location.south_exit].east_exit %}
-                    {{ locations[locations[location.south_exit].east_exit].name }}
-                {% endif %}
-            </div>
-        </div>
-    </div>
+<div id="mapContainer" style="width: 130px; background-color: #fafad2;">
+<div style="font-size:0;">
 
-    <div class="section">
-        {% if location.north_exit %}
-            北:↑ <a href="{{ url_for('game.move', direction='north') }}">{{ locations[location.north_exit].name }}</a><br>
-        {% endif %}
-        
-        {% if location.west_exit or location.east_exit %}
-            {% if location.west_exit %}
-                西:← <a href="{{ url_for('game.move', direction='west') }}">{{ locations[location.west_exit].name }}</a>
-            {% endif %}
-            {% if location.east_exit %}
-                东:→ <a href="{{ url_for('game.move', direction='east') }}">{{ locations[location.east_exit].name }}</a>
-            {% endif %}
-            <br>
-        {% endif %}
-        
-        {% if location.south_exit %}
-            南:↓ <a href="{{ url_for('game.move', direction='south') }}">{{ locations[location.south_exit].name }}</a>
-        {% endif %}
-    </div>
+<span class="ncentered-vertical-line">竖线</span>
+<span class="ncentered-vertical-line">竖线</span>
+<span class="ncentered-vertical-line">竖线</span>
 
-    <div class="section">
-        怪物：
-        {% if monster.killable %}
-            <a href="{{ url_for('battle.battle') }}">{{ monster.name }}({{ monster.level }}级)</a>
-        {% else %}
-            <a href="{{ url_for('game.view_npc', monster_id=monster.monster_id) }}">{{ monster.name }}({{ monster.level }}级)</a>
-        {% endif %}
-    </div>
+</div>
+<div style="font-size:0;">
 
-    <div class="section">
-        {% if location.ground_items %}
-            地上物品：
-            {% for item_id in location.ground_items %}
-                <a href="{{ url_for('game.pickup_item', item_id=item_id) }}">
-                    {{ Item.load_items()[item_id].name }}
-                </a>
-            {% endfor %}
-        {% endif %}
-    </div>
+{% if location.get('north_exit') and locations[location['north_exit']].get('west_exit') %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block map_block">{{ locations[locations[location['north_exit']]['west_exit']].get('name', '')[:2] }}</span>
+<span class="heng">-</span>
+{% else %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% endif %}
 
-    <div class="section">
-        <p>玩家：{% if other_players %}
-            {% for other_player in other_players %}
-                <a href="{{ url_for('player.view_player', username=other_player.username) }}">{{ other_player.name }}</a>{% if not loop.last %},{% endif %}
-            {% endfor %}
-        {% else %}
-            无
-        {% endif %}</p>
-    </div>
+{% if location.get('north_exit') %}
+<span class="block map_block">{{ locations[location['north_exit']].get('name', '')[:2] }}</span>
+{% else %}
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+{% endif %}
 
-    <div class="section">
-        <a href="{{ url_for('player.character') }}">角色</a>
-        <a href="{{ url_for('player.inventory') }}">背包</a>
-        <a href="{{ url_for('social.chat') }}">聊天</a>
-    </div>
+{% if location.get('north_exit') and locations[location['north_exit']].get('east_exit') %}
+<span class="heng">-</span>
+<span class="block map_block">{{ locations[locations[location['north_exit']]['east_exit']].get('name', '')[:2] }}</span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% else %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% endif %}
 
-    <div class="section">
-        三国时间：{{ now.strftime('%Y-%m-%d %H:%M:%S') }}
-    </div>
+</div>
+<div style="font-size:0;">
 
-    <div>
-        <a href="{{ url_for('auth.logout') }}">退出游戏</a>
-    </div>
+<span class="ncentered-vertical-line">竖线</span>
+<span class="ncentered-vertical-line">竖线</span>
+<span class="ncentered-vertical-line">竖线</span>
 
-    <script>
-        function toggleMap() {
-            const mapContainer = document.getElementById('mapContainer');
-            const mapToggle = document.getElementById('mapToggle');
-            if (mapContainer.style.display === 'none') {
-                mapContainer.style.display = 'block';
-                mapToggle.textContent = '关地图';
-            } else {
-                mapContainer.style.display = 'none';
-                mapToggle.textContent = '开地图';
-            }
-        }
-    </script>
+</div>
+<div style="font-size:0;">
+
+{% if location.get('west_exit') %}
+<span class="heng" style="color:red">-</span>
+<span class="block map_block">{{ locations[location['west_exit']].get('name', '')[:2] }}</span>
+<span class="heng">-</span>
+{% else %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% endif %}
+
+<span class="block now_map_block">{{ location.get('name', '')[:2] }}</span>
+
+{% if location.get('east_exit') %}
+<span class="heng">-</span>
+<span class="block map_block">{{ locations[location['east_exit']].get('name', '')[:2] }}</span>
+<span class="heng" style="color:red">-</span>
+{% else %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% endif %}
+
+</div>
+<div style="font-size:0;">
+
+<span class="ncentered-vertical-line">竖线</span>
+<span class="ncentered-vertical-line">竖线</span>
+<span class="ncentered-vertical-line">竖线</span>
+
+</div>
+<div style="font-size:0;">
+
+{% if location.get('south_exit') and locations[location['south_exit']].get('west_exit') %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block map_block">{{ locations[locations[location['south_exit']]['west_exit']].get('name', '')[:2] }}</span>
+<span class="heng">-</span>
+{% else %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% endif %}
+
+{% if location.get('south_exit') %}
+<span class="block map_block">{{ locations[location['south_exit']].get('name', '')[:2] }}</span>
+{% else %}
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+{% endif %}
+
+{% if location.get('south_exit') and locations[location['south_exit']].get('east_exit') %}
+<span class="heng">-</span>
+<span class="block map_block">{{ locations[locations[location['south_exit']]['east_exit']].get('name', '')[:2] }}</span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% else %}
+<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="heng" style="color: #E6ECBE;">-</span>
+{% endif %}
+
+</div>
+</div>
+
+<a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle2">关地图</a><br/>
+
+{% if location.get('north_exit') %}
+北:↑ <a href="{{ url_for('game.move', direction='north') }}">{{ locations[location['north_exit']].get('name', '') }}</a><br/>
+{% endif %}
+{% if location.get('west_exit') or location.get('east_exit') %}
+{% if location.get('west_exit') %}西:← <a href="{{ url_for('game.move', direction='west') }}">{{ locations[location['west_exit']].get('name', '') }}</a>{% endif %}
+{% if location.get('west_exit') and location.get('east_exit') %}  {% endif %}
+{% if location.get('east_exit') %}右:→ <a href="{{ url_for('game.move', direction='east') }}">{{ locations[location['east_exit']].get('name', '') }}</a>{% endif %}
+<br/>
+{% endif %}
+{% if location.get('south_exit') %}
+南:↓ <a href="{{ url_for('game.move', direction='south') }}">{{ locations[location['south_exit']].get('name', '') }}</a><br/>
+{% endif %}
+
+<br/>
+{% if monsters is defined and monsters %}
+怪物:
+{% for monster in monsters %}
+{% if monster.is_elite %}【精】{% endif %}<a href="{{ url_for('game.encounter') if monster.killable else url_for('game.view_npc', monster_id=monster.monster_id) }}">{{ monster.name }}</a>({{ monster.level }}级){% if not loop.last %}、{% endif %}
+{% endfor %}
+<br/>
+{% endif %}
+
+{% if npcs %}
+{% for npc in npcs %}
+{{ npc.name }} <a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">对话</a><br/>
+{% endfor %}
+{% endif %}
+
+{% if ground_items %}
+地上物品：
+{% for gitem in ground_items %}
+    {% set item_data = DataService.get_item(gitem.item_id) %}
+    <a href="{{ url_for('game.pickup_ground', item_id=gitem.id) }}">{{ item_data.get('name', gitem.item_id) if item_data else gitem.item_id }}</a>
+{% endfor %}
+<br/>
+{% endif %}
+
+{% if other_players %}
+看到:
+{% for other_player in other_players %}
+<a href="{{ url_for('player.view_player', username=other_player.username) }}">{{ other_player.nickname }}</a>
+{% endfor %}
+<br/>
+{% endif %}
+
+<br/>
+<a href="{{ url_for('player.character') }}">角色</a> .<a href="{{ url_for('player.inventory') }}">背包</a> .<a href="{{ url_for('social.chat') }}">聊天</a> .<a href="{{ url_for('activity.index') }}">活动</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a> .<a href="{{ url_for('villa.index') }}">山庄</a> .<a href="{{ url_for('social.social_index') }}">社交</a> .<a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('guide.index') }}">攻略</a> .<a href="{{ url_for('map.index') }}">地图</a><br/>
+<br/>
+{{ now.strftime('%H:%M') }}<br/>
+<br/>
+<a href="{{ url_for('auth.logout') }}">退出登录</a><br/>
+
+<script>
+function toggleMap() {
+    var c = document.getElementById('mapContainer');
+    var t1 = document.getElementById('mapToggle');
+    var t2 = document.getElementById('mapToggle2');
+    if (c.style.display === 'none') {
+        c.style.display = 'block'; t1.textContent = '关地图'; t2.textContent = '关地图';
+    } else {
+        c.style.display = 'none'; t1.textContent = '开地图'; t2.textContent = '开地图';
+    }
+}
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
 </body>
 </html>

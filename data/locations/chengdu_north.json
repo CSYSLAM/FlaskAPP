@@ -1,0 +1,18 @@
+{
+  "name": "成都北区",
+  "scenes": {
+    "成都北界": {
+      "name": "成都北界",
+      "exits": {
+        "north": "hanzhong_south.汉中南界",
+        "west": "chengdu_north.九寨沟"
+      }
+    },
+    "九寨沟": {
+      "name": "九寨沟",
+      "exits": {
+        "east": "chengdu_north.成都北界"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "建邺西区",
+  "scenes": {
+    "建邺西界": {
+      "name": "建邺西界",
+      "exits": {
+        "west": "jiangling_east.江陵东界",
+        "east": "jianye_west.葬英墓"
+      }
+    },
+    "葬英墓": {
+      "name": "葬英墓",
+      "exits": {
+        "west": "jianye_west.建邺西界",
+        "east": "jianye_west.石头路"
+      }
+    },
+    "石头路": {
+      "name": "石头路",
+      "exits": {
+        "north": "jianye_west.梅岭山",
+        "west": "jianye_west.葬英墓",
+        "east": "jianye_center.西门",
+        "south": "jianye_west.蒋陵"
+      },
+      "monster_type": "monster_jianye_west_杨弘"
+    },
+    "梅岭山": {
+      "name": "梅岭山",
+      "exits": {
+        "south": "jianye_west.石头路"
+      }
+    },
+    "蒋陵": {
+      "name": "蒋陵",
+      "exits": {
+        "north": "jianye_west.石头路"
+      }
+    },
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "jianye_west.石头路",
+        "east": "jianye_center.西城楼"
+      }
+    }
+  }
+}

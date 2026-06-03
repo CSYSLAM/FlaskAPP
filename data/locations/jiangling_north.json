@@ -1,0 +1,90 @@
+{
+  "name": "江陵北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "jiangling_north.北郊",
+        "south": "jiangling_center.北城楼"
+      }
+    },
+    "北郊": {
+      "name": "北郊",
+      "exits": {
+        "north": "jiangling_north.西岭",
+        "south": "jiangling_north.北门"
+      }
+    },
+    "西岭": {
+      "name": "西岭",
+      "exits": {
+        "north": "jiangling_north.魏前营",
+        "south": "jiangling_north.北郊"
+      },
+      "monster_type": "monster_jiangling_north_灵土道人"
+    },
+    "魏前营": {
+      "name": "魏前营",
+      "exits": {
+        "north": "jiangling_north.魏中营",
+        "west": "jiangling_north.魏仓库",
+        "east": "jiangling_north.魏火库",
+        "south": "jiangling_north.西岭"
+      },
+      "monster_type": "monster_hanzhong_north_魏军前锋"
+    },
+    "魏中营": {
+      "name": "魏中营",
+      "exits": {
+        "north": "jiangling_north.魏后营",
+        "west": "jiangling_north.魏右营",
+        "east": "jiangling_north.魏左营",
+        "south": "jiangling_north.魏前营"
+      }
+    },
+    "魏后营": {
+      "name": "魏后营",
+      "exits": {
+        "north": "jiangling_north.江陵北界",
+        "south": "jiangling_north.魏中营"
+      }
+    },
+    "魏仓库": {
+      "name": "魏仓库",
+      "exits": {
+        "north": "jiangling_north.魏右营",
+        "east": "jiangling_north.魏前营"
+      },
+      "monster_type": "monster_jiangling_north_步骘"
+    },
+    "魏火库": {
+      "name": "魏火库",
+      "exits": {
+        "north": "jiangling_north.魏左营",
+        "west": "jiangling_north.魏前营"
+      },
+      "monster_type": "monster_jiangling_north_辛毗"
+    },
+    "魏右营": {
+      "name": "魏右营",
+      "exits": {
+        "east": "jiangling_north.魏中营",
+        "south": "jiangling_north.魏仓库"
+      }
+    },
+    "魏左营": {
+      "name": "魏左营",
+      "exits": {
+        "west": "jiangling_north.魏中营",
+        "south": "jiangling_north.魏火库"
+      }
+    },
+    "江陵北界": {
+      "name": "江陵北界",
+      "exits": {
+        "north": "luoyang_south.洛阳南界",
+        "south": "jiangling_north.魏后营"
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "下邳东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "xiapi_center.东城楼",
+        "east": "xiapi_east.逍遥津",
+        "north": "xiapi_east.东郊"
+      }
+    },
+    "东郊": {
+      "name": "东郊",
+      "exits": {
+        "south": "xiapi_east.东门"
+      }
+    },
+    "逍遥津": {
+      "name": "逍遥津",
+      "exits": {
+        "west": "xiapi_east.东门",
+        "east": "xiapi_east.小师桥"
+      }
+    },
+    "小师桥": {
+      "name": "小师桥",
+      "exits": {
+        "west": "xiapi_east.逍遥津",
+        "east": "xiapi_east.吴中营",
+        "north": "xiapi_east.吴仓库",
+        "south": "xiapi_east.吴火库"
+      },
+      "monster_type": "monster_xiapi_east_吴军守卫"
+    },
+    "吴中营": {
+      "name": "吴中营",
+      "exits": {
+        "west": "xiapi_east.小师桥",
+        "east": "xiapi_east.下邳东界",
+        "north": "xiapi_east.吴右营",
+        "south": "xiapi_east.吴左营"
+      },
+      "monster_type": "monster_xiapi_east_吴军亲卫"
+    },
+    "吴右营": {
+      "name": "吴右营",
+      "exits": {
+        "south": "xiapi_east.吴中营",
+        "west": "xiapi_east.吴仓库"
+      },
+      "monster_type": "monster_xiapi_east_陆逊"
+    },
+    "吴左营": {
+      "name": "吴左营",
+      "exits": {
+        "north": "xiapi_east.吴中营",
+        "west": "xiapi_east.吴火库"
+      },
+      "monster_type": "monster_xiapi_east_孙桓"
+    },
+    "吴仓库": {
+      "name": "吴仓库",
+      "exits": {
+        "south": "xiapi_east.小师桥",
+        "east": "xiapi_east.吴右营"
+      }
+    },
+    "吴火库": {
+      "name": "吴火库",
+      "exits": {
+        "north": "xiapi_east.小师桥",
+        "east": "xiapi_east.吴左营"
+      }
+    },
+    "下邳东界": {
+      "name": "下邳东界",
+      "exits": {
+        "west": "xiapi_east.吴中营",
+        "east": "jianye_north.建邺北界"
+      }
+    }
+  }
+}

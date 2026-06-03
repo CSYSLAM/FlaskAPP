@@ -1,0 +1,150 @@
+{
+  "name": "柴桑中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "chaisang_center.太守府",
+        "south": "chaisang_center.驿站"
+      },
+      "npcs": [
+        "npc_chaisang_center_任务使者"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "north": "chaisang_center.北街",
+        "west": "chaisang_center.技能馆",
+        "east": "chaisang_center.酒馆",
+        "south": "chaisang_center.广场"
+      },
+      "npcs": [
+        "npc_chaisang_center_吕范荣誉"
+      ]
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "west": "chaisang_center.太守府",
+        "east": "chaisang_center.东城楼"
+      },
+      "npcs": [
+        "npc_chaisang_center_店小二"
+      ]
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "east": "chaisang_center.太守府"
+      },
+      "npcs": [
+        "npc_chaisang_center_技能教官",
+        "npc_chaisang_center_学徒"
+      ]
+    },
+    "北街": {
+      "name": "北街",
+      "exits": {
+        "north": "chaisang_center.北城楼",
+        "east": "chaisang_center.药铺",
+        "south": "chaisang_center.太守府"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "west": "chaisang_center.北街"
+      },
+      "npcs": [
+        "npc_chaisang_center_许大夫"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "chaisang_north.北门",
+        "south": "chaisang_center.北街"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "chaisang_center.广场",
+        "west": "chaisang_center.杂货铺",
+        "east": "chaisang_center.钱庄",
+        "south": "chaisang_center.南街"
+      },
+      "npcs": [
+        "npc_chaisang_center_柴桑车夫"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "chaisang_center.驿站"
+      },
+      "npcs": [
+        "npc_chaisang_center_金掌柜仓库"
+      ]
+    },
+    "南街": {
+      "name": "南街",
+      "exits": {
+        "north": "chaisang_center.驿站",
+        "west": "chaisang_center.客栈",
+        "east": "chaisang_center.铁匠铺",
+        "south": "chaisang_center.南城楼"
+      }
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "east": "chaisang_center.南街"
+      },
+      "npcs": [
+        "npc_chaisang_center_王老板"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "west": "chaisang_center.南街"
+      },
+      "npcs": [
+        "npc_chaisang_center_柴桑铁匠"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "chaisang_center.南街",
+        "south": "chaisang_south.南荡地"
+      }
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "chaisang_center.酒馆",
+        "east": "chaisang_east.东门"
+      }
+    },
+    "杂货铺": {
+      "name": "杂货铺",
+      "exits": {
+        "west": "chaisang_center.西城楼",
+        "east": "chaisang_center.驿站"
+      },
+      "npcs": [
+        "npc_chaisang_center_许掌柜"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "chaisang_west.西门",
+        "east": "chaisang_center.杂货铺"
+      }
+    }
+  }
+}

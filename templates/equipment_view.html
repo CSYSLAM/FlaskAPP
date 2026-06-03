@@ -1,106 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>装备详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ equipment.name }}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0;
-            padding: 10px;
-            line-height: 1.6;
-        }
-        .stat-section {
-            margin: 15px 0;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 5px;
-        }
-        .stat-section p {
-            margin: 5px 0;
-            word-break: break-all;
-        }
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .actions a {
-            flex: 1 1 auto;
-            padding: 8px;
-            text-align: center;
-            background: #f0f0f0;
-            border-radius: 4px;
-            min-width: 80px;
-        }
-        @media (max-width: 480px) {
-            body {
-                font-size: 14px;
-            }
-            .actions {
-                flex-direction: column;
-            }
-        }
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .bound { color: #999; font-size: 14px; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
-    <h1>装备详情</h1>
-    <div>
-        <p>装备名称：{{ equipment.name }}</p>
-        <p>描述: {{ equipment.description }}</p>
-        <p>部位: {{ Equipment.SLOTS[equipment.slot] }}</p>
-        <p>品质: {{ equipment.rarity }}</p>
-        <p>星级: {{ equipment.stars }}星</p>
-        <p>绑定状态: {% if equipment.is_bound %}已绑定{% else %}未绑定{% endif %}</p>
-        
-        <div class="stat-section">
-            <p>基础属性:</p>
-            {% for stat, value in equipment.base_stats.items() %}
-                <p>{{ Equipment.STAT_NAMES[stat] }}: 
-                    {% if stat in ['crit_rate', 'dodge_rate'] %}
-                        +{{ "%.1f"|format(value * 100) }}%
-                        {% if equipment.enhance_level > 0 %}
-                            (含强化加成{{ "%.1f"|format(equipment.initial_stats[stat] * 0.1 * equipment.enhance_level * 100) }}%)
-                        {% endif %}
-                    {% else %}
-                        +{{ value }}
-                        {% if equipment.enhance_level > 0 %}
-                            (含强化加成{{ (equipment.initial_stats[stat] * 0.1 * equipment.enhance_level)|int }})
-                        {% endif %}
-                    {% endif %}
-                </p>
-            {% endfor %}
-        </div>
-        
-        <div class="stat-section">
-            <p>附加属性:</p>
-            {% for stat, (value, stars) in equipment.extra_stats.items() %}
-                <p>{{ Equipment.STAT_NAMES[stat] }}: 
-                    {% if stat in ['crit_rate', 'dodge_rate'] %}
-                        +{{ "%.1f"|format(value * 100) }}% ({{ stars }}星)
-                    {% else %}
-                        +{{ value|int }} ({{ stars }}星)
-                    {% endif %}
-                </p>
-            {% endfor %}
-        </div>
-        
-        <div class="stat-section">
-            <p>预计出售价格: {{ (50 * equipment.stars * {'普通': 1, '精良': 2, '卓越': 3, '史诗': 4, '神器': 5}[equipment.rarity]) }}银两</p>
-        </div>
-        
-        <div class="actions">
-            <a href="{{ url_for('player.enhance_page', item_id=item_id) }}">强化</a>
-            <a href="{{ url_for('player.equip_item', item_id=item_id) }}">装备</a>
-            <a href="{{ url_for('player.sell_item', item_id=item_id) }}">出售</a>
-        </div>
-        <div style="margin-top: 10px;">
-            <a href="{{ url_for('player.inventory') }}">返回背包</a>
-        </div>
-        
-    </div>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% set slot_name = EquipmentInstance.SLOT_NAMES.get(equipment.slot, equipment.slot) %}
+    {% set rarity_colors = {'普通': '', '精良': '#1a8c1a', '卓越': '#0070dd', '史诗': '#a335ee', '神器': '#ff8000'} %}
+    {% set rc = rarity_colors.get(equipment.rarity, '') %}
+
+    <a href="{{ url_for('player.equipment_list') }}">装备</a><br/>
+
+    {% if rc %}<font color="{{ rc }}">{% endif %}{{ equipment.name }}{% if rc %}</font>{% endif %}{% if equipment.is_bound %}<span class="bound">(绑定)</span>{% endif %}<br/>
+    [{{ slot_name }}]{% if equipment.rarity != '普通' %}{{ equipment.rarity }}{% endif %} {{ equipment.enhance_level }}级<br/>
+    {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
+    {% if tpl and tpl.get('set_name') %}套装:{{ tpl.set_name }}<br/>{% endif %}
+
+    基础属性:<br/>
+    {% for stat, value in equipment.get_base_stats().items() %}
+    {% if value %}
+    &nbsp;&nbsp;{{ EquipmentInstance.STAT_NAMES.get(stat, stat) }}:{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.2f"|format(value * 100) }}%{% else %}{{ value }}{% endif %}<br/>
+    {% endif %}
+    {% endfor %}
+
+    {% set extra = equipment.get_extra_stats() %}
+    {% if extra %}
+    附加属性:<br/>
+    {% for stat, val_stars in extra.items() %}
+    {% if val_stars[0] %}
+    &nbsp;&nbsp;{{ EquipmentInstance.STAT_NAMES.get(stat, stat) }}:{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.2f"|format(val_stars[0] * 100) }}%{% else %}{{ val_stars[0]|round|int }}{% endif %}<font size="1">{% for i in range(5) %}{% if i < val_stars[1] %}★{% else %}☆{% endif %}{% endfor %}</font><br/>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if equipment.level_required > 1 %}
+    需要等级:{{ equipment.level_required }}<br/>
+    {% endif %}
+    {% if equipment.class_required %}
+    需要职业:{{ equipment.class_required }}<br/>
+    {% endif %}
+
+    {% if is_equipped.val %}
+    <a href="{{ url_for('player.unequip', slot=equipment.slot) }}">卸下</a>
+    {% else %}
+    <a href="{{ url_for('player.equip_item', equipment_instance_id=item_id) }}">装备</a>
+    {% if old_equip %}(替换:{{ old_equip.name }}){% endif %}
+    <a href="{{ url_for('player.enhance_page', equipment_instance_id=item_id) }}">强化</a>
+    <a href="{{ url_for('player.sell_item', item_id=item_id) }}">出售</a>
+    <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a>
+    {% endif %}<br/>
+
+    <a href="{{ url_for('player.equipment_list') }}">返回装备</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
 </body>
 </html>

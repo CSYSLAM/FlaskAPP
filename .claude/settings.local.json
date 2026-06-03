@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(python *)",
+      "Bash(curl -s http://127.0.0.1:5000/auth/login)",
+      "WebFetch(domain:tmsg2.n6game.cn)",
+      "Bash(curl -s -L \"http://tmsg2.n6game.cn/tdcq_player/index/?username=tmsg940812&password=Hxz123123\")",
+      "Bash(curl -s -L -c /tmp/game_cookies.txt -b /tmp/game_cookies.txt -d 'username=tmsg940812&password=Hxz123123&csrfmiddlewaretoken=9gra28mpbl4vQZ2UUJVUOxf75mA4WFeuik0oNBG5EanMTGU4X0oslxjTZd8HYPWh' -e 'http://tmsg2.n6game.cn/game/chose_fenqu/?id=1&tic=bd758254' http://tmsg2.n6game.cn/tdcq_player/login/)",
+      "Bash(curl -s -L -c /tmp/game_cookies.txt -b /tmp/game_cookies.txt 'http://tmsg2.n6game.cn/game/chose_fenqu/?id=1&tic=9014e37d')",
+      "Bash(curl *)",
+      "Bash(sed 's/<[^>]*>//g')",
+      "Bash(pip install *)",
+      "Bash(findstr /i python)",
+      "Bash(pkill -f \"python app.py\")",
+      "Read(//tmp/**)",
+      "Bash(taskkill //F //IM python.exe)",
+      "Bash(chcp 65001)",
+      "Bash(npx --version)",
+      "Bash(claude mcp *)",
+      "Bash(file *)",
+      "Bash(netstat -ano)",
+      "WebFetch(domain:)",
+      "Bash(python3 -c ' *)",
+      "Bash(ls -la game1.db)",
+      "Bash(rm -f game1.db)",
+      "Bash(rm -f \"C:/csy_work/fysg/1008/FlaskAPP/instance/game1.db\")",
+      "Bash(taskkill /F /IM python.exe)",
+      "Bash(python3 *)",
+      "Bash(taskkill /F /IM python.exe /T)",
+      "Bash(taskkill /F /PID 25556 /PID 27604 /PID 8696 /PID 22196 /PID 32428 /PID 26868 /PID 536 /PID 29404)",
+      "Bash(powershell *)",
+      "Bash(rm -f instance/game1.db)"
+    ]
+  }
+}

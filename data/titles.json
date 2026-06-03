@@ -1,0 +1,199 @@
+{
+  "prefixes": {
+    "prefix迷茫": {
+      "name": "迷茫的",
+      "stars": 1,
+      "description": "迷茫的新手，前路漫漫",
+      "pair_id": "suffix小白"
+    },
+    "prefix血腥": {
+      "name": "血腥的",
+      "stars": 2,
+      "description": "沾满鲜血的战士",
+      "pair_id": "suffix屠夫"
+    },
+    "prefix真正": {
+      "name": "真正的",
+      "stars": 2,
+      "description": "名符其实的勇士",
+      "pair_id": "suffix勇士"
+    },
+    "prefix被厚待": {
+      "name": "被厚待的",
+      "stars": 3,
+      "description": "享受特权的贵宾",
+      "pair_id": "suffixVIP用户"
+    },
+    "prefix啸傲西方": {
+      "name": "啸傲西方的",
+      "stars": 3,
+      "description": "西方大陆的霸主",
+      "pair_id": null
+    },
+    "prefix翱翔南方": {
+      "name": "翱翔南方的",
+      "stars": 3,
+      "description": "南方天空的雄鹰",
+      "pair_id": null
+    },
+    "prefix盘踞北方": {
+      "name": "盘踞北方的",
+      "stars": 3,
+      "description": "北方疆域的霸主",
+      "pair_id": null
+    },
+    "prefix狂奔": {
+      "name": "狂奔的",
+      "stars": 2,
+      "description": "追逐自由的灵魂",
+      "pair_id": null
+    },
+    "prefix战无不胜": {
+      "name": "战无不胜的",
+      "stars": 4,
+      "description": "百战百胜的战神",
+      "pair_id": "suffix将军"
+    },
+    "prefix御鬼": {
+      "name": "御鬼的",
+      "stars": 3,
+      "description": "驾驭鬼神之力",
+      "pair_id": null
+    },
+    "prefix览尽繁华": {
+      "name": "览尽繁华的",
+      "stars": 4,
+      "description": "看遍世间荣华",
+      "pair_id": null
+    },
+    "prefix龙": {
+      "name": "龙的",
+      "stars": 5,
+      "description": "龙之传人，威震四方",
+      "pair_id": "suffix传人"
+    },
+    "prefix最热血": {
+      "name": "最热血的",
+      "stars": 5,
+      "description": "热血沸腾的传奇",
+      "pair_id": "suffix忠义之魂"
+    }
+  },
+  "suffixes": {
+    "suffix小白": {
+      "name": "小白",
+      "stars": 1,
+      "description": "初出茅庐的新人",
+      "pair_id": "prefix迷茫"
+    },
+    "suffix屠夫": {
+      "name": "屠夫",
+      "stars": 2,
+      "description": "杀戮无数的屠夫",
+      "pair_id": "prefix血腥"
+    },
+    "suffix勇士": {
+      "name": "勇士",
+      "stars": 2,
+      "description": "无畏的战士",
+      "pair_id": "prefix真正"
+    },
+    "suffixVIP用户": {
+      "name": "VIP用户",
+      "stars": 3,
+      "description": "尊贵的VIP用户",
+      "pair_id": "prefix被厚待"
+    },
+    "suffix忠义之魂": {
+      "name": "忠义之魂",
+      "stars": 5,
+      "description": "忠义两全的英雄",
+      "pair_id": "prefix最热血"
+    },
+    "suffix传人": {
+      "name": "传人",
+      "stars": 5,
+      "description": "龙之传人，威震四方",
+      "pair_id": "prefix龙"
+    },
+    "suffix将军": {
+      "name": "将军",
+      "stars": 4,
+      "description": "统领千军的将军",
+      "pair_id": "prefix战无不胜"
+    },
+    "suffix战神": {
+      "name": "战神",
+      "stars": 4,
+      "description": "无人能敌的战神",
+      "pair_id": null
+    },
+    "suffix霸王": {
+      "name": "霸王",
+      "stars": 5,
+      "description": "一统天下的霸王",
+      "pair_id": null
+    },
+    "suffix智者": {
+      "name": "智者",
+      "stars": 3,
+      "description": "足智多谋的智者",
+      "pair_id": null
+    },
+    "suffix剑圣": {
+      "name": "剑圣",
+      "stars": 4,
+      "description": "剑术通神的剑圣",
+      "pair_id": null
+    },
+    "suffix暗影": {
+      "name": "暗影",
+      "stars": 3,
+      "description": "潜伏于暗影之中",
+      "pair_id": null
+    }
+  },
+  "star_bonuses": {
+    "1": {
+      "base_hp": 200,
+      "base_mp": 150,
+      "base_attack": 80,
+      "base_defense": 100,
+      "hidden_crit": 0.005,
+      "hidden_dodge": 0.005
+    },
+    "2": {
+      "base_hp": 400,
+      "base_mp": 300,
+      "base_attack": 160,
+      "base_defense": 200,
+      "hidden_crit": 0.01,
+      "hidden_dodge": 0.01
+    },
+    "3": {
+      "base_hp": 800,
+      "base_mp": 600,
+      "base_attack": 320,
+      "base_defense": 400,
+      "hidden_crit": 0.02,
+      "hidden_dodge": 0.02
+    },
+    "4": {
+      "base_hp": 1400,
+      "base_mp": 1100,
+      "base_attack": 560,
+      "base_defense": 700,
+      "hidden_crit": 0.03,
+      "hidden_dodge": 0.03
+    },
+    "5": {
+      "base_hp": 1960,
+      "base_mp": 1560,
+      "base_attack": 818,
+      "base_defense": 996,
+      "hidden_crit": 0.035,
+      "hidden_dodge": 0.035
+    }
+  },
+  "_comment": "hidden_crit and hidden_dodge are activated when prefix.pair_id matches suffix_id AND suffix.pair_id matches prefix_id"
+}

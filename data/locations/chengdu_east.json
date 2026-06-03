@@ -1,0 +1,18 @@
+{
+  "name": "成都东区",
+  "scenes": {
+    "成都东界": {
+      "name": "成都东界",
+      "exits": {
+        "west": "chengdu_east.永陵",
+        "east": "jiangling_west.江陵西界"
+      }
+    },
+    "永陵": {
+      "name": "永陵",
+      "exits": {
+        "east": "chengdu_east.成都东界"
+      }
+    }
+  }
+}
