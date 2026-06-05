@@ -1,0 +1,201 @@
+{
+  "name": "成都中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "chengdu_center.皇宫",
+        "west": "chengdu_center.校军场",
+        "east": "chengdu_center.军营",
+        "south": "chengdu_center.驿站"
+      },
+      "npcs": [
+        "npc_chengdu_center_任务使者"
+      ]
+    },
+    "校军场": {
+      "name": "校军场",
+      "exits": {
+        "west": "chengdu_center.赵府",
+        "east": "chengdu_center.广场"
+      },
+      "npcs": [
+        "npc_chengdu_center_黄忠副本"
+      ]
+    },
+    "赵府": {
+      "name": "赵府",
+      "exits": {
+        "north": "chengdu_center.太子殿",
+        "east": "chengdu_center.校军场",
+        "south": "chengdu_center.锦官门"
+      }
+    },
+    "锦官门": {
+      "name": "锦官门",
+      "exits": {
+        "north": "chengdu_center.赵府"
+      }
+    },
+    "太子殿": {
+      "name": "太子殿",
+      "exits": {
+        "west": "chengdu_center.西城楼",
+        "south": "chengdu_center.赵府"
+      }
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "chengdu_west.西门",
+        "east": "chengdu_center.太子殿"
+      }
+    },
+    "皇宫": {
+      "name": "皇宫",
+      "exits": {
+        "north": "chengdu_center.张院",
+        "west": "chengdu_center.战场",
+        "south": "chengdu_center.广场"
+      },
+      "npcs": [
+        "npc_chengdu_center_刘备荣誉",
+        "npc_chengdu_center_小公主"
+      ]
+    },
+    "战场": {
+      "name": "战场",
+      "exits": {
+        "east": "chengdu_center.皇宫"
+      },
+      "npcs": [
+        "npc_chengdu_center_军团使者"
+      ],
+      "monster_type": "monster_chengdu_center_蜀军护兵"
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "chengdu_north.北门",
+        "south": "chengdu_center.张院"
+      }
+    },
+    "张院": {
+      "name": "张院",
+      "exits": {
+        "north": "chengdu_center.北城楼",
+        "west": "chengdu_center.铁匠铺",
+        "east": "chengdu_center.药铺",
+        "south": "chengdu_center.皇宫"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "west": "chengdu_center.张院"
+      },
+      "npcs": [
+        "npc_chengdu_center_许大夫"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "east": "chengdu_center.张院"
+      },
+      "npcs": [
+        "npc_chengdu_center_成都铁匠"
+      ]
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "west": "chengdu_center.广场",
+        "east": "chengdu_center.关园"
+      }
+    },
+    "关园": {
+      "name": "关园",
+      "exits": {
+        "north": "chengdu_center.望川阁",
+        "west": "chengdu_center.军营",
+        "south": "chengdu_center.桃园"
+      }
+    },
+    "望川阁": {
+      "name": "望川阁",
+      "exits": {
+        "south": "chengdu_center.关园"
+      }
+    },
+    "桃园": {
+      "name": "桃园",
+      "exits": {
+        "north": "chengdu_center.关园",
+        "east": "chengdu_center.东城楼"
+      }
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "chengdu_center.桃园",
+        "east": "chengdu_east.东门"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "chengdu_center.广场",
+        "west": "chengdu_center.钱庄",
+        "south": "chengdu_center.马院"
+      },
+      "npcs": [
+        "npc_chengdu_center_成都车夫"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "east": "chengdu_center.驿站"
+      },
+      "npcs": [
+        "npc_chengdu_center_金掌柜仓库"
+      ]
+    },
+    "马院": {
+      "name": "马院",
+      "exits": {
+        "north": "chengdu_center.驿站",
+        "west": "chengdu_center.客栈",
+        "east": "chengdu_center.技能馆",
+        "south": "chengdu_center.南城楼"
+      }
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "west": "chengdu_center.马院"
+      },
+      "npcs": [
+        "npc_chengdu_center_技能教官",
+        "npc_chengdu_center_学徒"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "east": "chengdu_center.马院"
+      },
+      "npcs": [
+        "npc_chengdu_center_王老板"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "chengdu_center.马院",
+        "south": "chengdu_south.南门"
+      }
+    }
+  }
+}

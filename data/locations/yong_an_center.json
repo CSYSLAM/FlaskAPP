@@ -1,0 +1,202 @@
+{
+  "name": "永安中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "yong_an_center.北前街",
+        "west": "yong_an_center.林西街",
+        "east": "yong_an_center.东前街",
+        "south": "yong_an_center.南前街"
+      },
+      "npcs": [
+        "npc_yong_an_center_任务使者"
+      ]
+    },
+    "北前街": {
+      "name": "北前街",
+      "exits": {
+        "north": "yong_an_center.北中街",
+        "south": "yong_an_center.广场"
+      }
+    },
+    "北中街": {
+      "name": "北中街",
+      "exits": {
+        "north": "yong_an_center.北后街",
+        "west": "yong_an_center.钱庄",
+        "east": "yong_an_center.酒馆",
+        "south": "yong_an_center.北前街"
+      }
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "west": "yong_an_center.北中街"
+      },
+      "npcs": [
+        "npc_yong_an_center_店小二"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "east": "yong_an_center.北中街"
+      },
+      "npcs": [
+        "npc_yong_an_center_金掌柜仓库"
+      ]
+    },
+    "北后街": {
+      "name": "北后街",
+      "exits": {
+        "north": "yong_an_center.北城楼",
+        "west": "yong_an_center.太守府",
+        "south": "yong_an_center.北中街"
+      }
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "east": "yong_an_center.北后街"
+      },
+      "npcs": [
+        "npc_yong_an_center_李严荣誉"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "yong_an_north.北门",
+        "south": "yong_an_center.北后街"
+      },
+      "npcs": [
+        "npc_yong_an_center_关羽副本"
+      ]
+    },
+    "林西街": {
+      "name": "林西街",
+      "exits": {
+        "north": "yong_an_center.药铺",
+        "west": "yong_an_center.西城楼",
+        "east": "yong_an_center.广场",
+        "south": "yong_an_center.铁匠铺"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "south": "yong_an_center.林西街"
+      },
+      "npcs": [
+        "npc_yong_an_center_许大夫"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "north": "yong_an_center.林西街"
+      },
+      "npcs": [
+        "npc_yong_an_center_永安铁匠"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "yong_an_west.西门",
+        "east": "yong_an_center.林西街"
+      }
+    },
+    "南前街": {
+      "name": "南前街",
+      "exits": {
+        "north": "yong_an_center.广场",
+        "south": "yong_an_center.南后街"
+      }
+    },
+    "南后街": {
+      "name": "南后街",
+      "exits": {
+        "north": "yong_an_center.南前街",
+        "west": "yong_an_center.技能馆",
+        "east": "yong_an_center.驿站",
+        "south": "yong_an_center.南城楼"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "west": "yong_an_center.南后街"
+      },
+      "npcs": [
+        "npc_yong_an_center_永安车夫"
+      ]
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "east": "yong_an_center.南后街"
+      },
+      "npcs": [
+        "npc_yong_an_center_技能教官",
+        "npc_yong_an_center_学徒"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "yong_an_center.南后街",
+        "south": "yong_an_south.南门"
+      }
+    },
+    "东前街": {
+      "name": "东前街",
+      "exits": {
+        "north": "yong_an_center.杂货铺",
+        "west": "yong_an_center.广场",
+        "east": "yong_an_center.东后街",
+        "south": "yong_an_center.客栈"
+      }
+    },
+    "杂货铺": {
+      "name": "杂货铺",
+      "exits": {
+        "south": "yong_an_center.东前街"
+      },
+      "npcs": [
+        "npc_yong_an_center_许掌柜"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "north": "yong_an_center.东前街"
+      },
+      "npcs": [
+        "npc_yong_an_center_王老板"
+      ]
+    },
+    "东后街": {
+      "name": "东后街",
+      "exits": {
+        "north": "yong_an_center.潘宅",
+        "west": "yong_an_center.东前街",
+        "east": "yong_an_center.东城楼"
+      }
+    },
+    "潘宅": {
+      "name": "潘宅",
+      "exits": {
+        "south": "yong_an_center.东后街"
+      }
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "yong_an_center.东后街",
+        "east": "yong_an_east.东门"
+      }
+    }
+  }
+}

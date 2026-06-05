@@ -1,0 +1,49 @@
+{
+  "name": "建宁东区",
+  "scenes": {
+    "建宁东界": {
+      "name": "建宁东界",
+      "exits": {
+        "west": "jianing_east.玉露道",
+        "east": "yong_an_west.永安西界"
+      }
+    },
+    "玉露道": {
+      "name": "玉露道",
+      "exits": {
+        "west": "jianing_east.金凤道",
+        "east": "jianing_east.建宁东界"
+      },
+      "monster_type": "monster_jianing_east_刘循"
+    },
+    "金凤道": {
+      "name": "金凤道",
+      "exits": {
+        "west": "jianing_east.东门",
+        "east": "jianing_east.玉露道",
+        "south": "jianing_east.洱海"
+      }
+    },
+    "洱海": {
+      "name": "洱海",
+      "exits": {
+        "north": "jianing_east.金凤道"
+      }
+    },
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "jianing_center.东城楼",
+        "east": "jianing_east.金凤道",
+        "south": "jianing_east.苍山"
+      }
+    },
+    "苍山": {
+      "name": "苍山",
+      "exits": {
+        "north": "jianing_east.东门"
+      },
+      "monster_type": "monster_jianing_east_王累"
+    }
+  }
+}

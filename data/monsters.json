@@ -9203,5 +9203,2945 @@
       },
       "experience": 0
     }
+  },
+  "monster_chengdu_north_汉军刀手": {
+    "name": "汉军刀手",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "汉军刀手",
+    "base_stats": {
+      "health": 1440,
+      "mana": 360,
+      "attack": 108,
+      "defense": 72,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 48
+      },
+      "experience": 360
+    }
+  },
+  "monster_chengdu_north_汉军遗贼": {
+    "name": "汉军遗贼",
+    "level": 38,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "汉军遗贼",
+    "base_stats": {
+      "health": 1520,
+      "mana": 380,
+      "attack": 114,
+      "defense": 76,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 22,
+        "max": 52
+      },
+      "experience": 380
+    }
+  },
+  "monster_chengdu_north_小八嘎": {
+    "name": "小八嘎",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "小八嘎",
+    "base_stats": {
+      "health": 640,
+      "mana": 160,
+      "attack": 48,
+      "defense": 32,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.01
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 8,
+        "max": 20
+      },
+      "experience": 160
+    }
+  },
+  "monster_chengdu_north_姜叙": {
+    "name": "姜叙",
+    "level": 33,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】姜叙",
+    "base_stats": {
+      "health": 1980,
+      "mana": 495,
+      "attack": 132,
+      "defense": 99,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 23,
+        "max": 55
+      },
+      "experience": 495
+    }
+  },
+  "monster_chengdu_north_汉军守卫": {
+    "name": "汉军守卫",
+    "level": 34,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "汉军守卫",
+    "base_stats": {
+      "health": 1360,
+      "mana": 340,
+      "attack": 102,
+      "defense": 68,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 19,
+        "max": 45
+      },
+      "experience": 340
+    }
+  },
+  "monster_chengdu_center_蜀军护兵": {
+    "name": "蜀军护兵",
+    "level": 35,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "蜀军护兵",
+    "base_stats": {
+      "health": 1400,
+      "mana": 350,
+      "attack": 105,
+      "defense": 70,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 48
+      },
+      "experience": 350
+    }
+  },
+  "monster_chengdu_west_黑犀": {
+    "name": "黑犀",
+    "level": 43,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "黑犀",
+    "base_stats": {
+      "health": 2600,
+      "mana": 650,
+      "attack": 170,
+      "defense": 120,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 610
+    }
+  },
+  "monster_chengdu_west_赵昂": {
+    "name": "赵昂",
+    "level": 35,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】赵昂",
+    "base_stats": {
+      "health": 2100,
+      "mana": 525,
+      "attack": 140,
+      "defense": 105,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 24,
+        "max": 58
+      },
+      "experience": 525
+    }
+  },
+  "monster_chengdu_west_凤鸟": {
+    "name": "凤鸟",
+    "level": 32,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "凤鸟",
+    "base_stats": {
+      "health": 1280,
+      "mana": 320,
+      "attack": 96,
+      "defense": 64,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 18,
+        "max": 42
+      },
+      "experience": 320
+    }
+  },
+  "monster_chengdu_west_囚牛": {
+    "name": "囚牛",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【兽王】囚牛",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 160,
+      "defense": 120,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 900
+    }
+  },
+  "monster_chengdu_south_韦康": {
+    "name": "韦康",
+    "level": 31,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】韦康",
+    "base_stats": {
+      "health": 1860,
+      "mana": 465,
+      "attack": 124,
+      "defense": 93,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 22,
+        "max": 53
+      },
+      "experience": 465
+    }
+  },
+  "monster_chengdu_south_刘进": {
+    "name": "刘进",
+    "level": 37,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】刘进",
+    "base_stats": {
+      "health": 2220,
+      "mana": 555,
+      "attack": 148,
+      "defense": 111,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 26,
+        "max": 62
+      },
+      "experience": 555
+    }
+  },
+  "monster_chengdu_south_黑熊": {
+    "name": "黑熊",
+    "level": 30,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "黑熊",
+    "base_stats": {
+      "health": 1200,
+      "mana": 300,
+      "attack": 90,
+      "defense": 60,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 16,
+        "max": 40
+      },
+      "experience": 300
+    }
+  },
+  "monster_chengdu_east_关平": {
+    "name": "关平",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】关平",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 160,
+      "defense": 120,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 28,
+        "max": 66
+      },
+      "experience": 600
+    }
+  },
+  "monster_chengdu_east_黄巾信徒": {
+    "name": "黄巾信徒",
+    "level": 45,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "黄巾信徒",
+    "base_stats": {
+      "health": 2700,
+      "mana": 675,
+      "attack": 180,
+      "defense": 135,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 30,
+        "max": 68
+      },
+      "experience": 675
+    }
+  },
+  "monster_chengdu_east_刘安": {
+    "name": "刘安",
+    "level": 39,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】刘安",
+    "base_stats": {
+      "health": 2340,
+      "mana": 585,
+      "attack": 156,
+      "defense": 117,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 28,
+        "max": 66
+      },
+      "experience": 585
+    }
+  },
+  "monster_chengdu_east_黑老大": {
+    "name": "黑老大",
+    "level": 40,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "黑老大",
+    "base_stats": {
+      "health": 1600,
+      "mana": 400,
+      "attack": 120,
+      "defense": 80,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 28,
+        "max": 66
+      },
+      "experience": 400
+    }
+  },
+  "npc_chengdu_center_任务使者": {
+    "name": "任务使者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "任务使者",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_黄忠副本": {
+    "name": "黄忠【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "黄忠【副本】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_刘备荣誉": {
+    "name": "刘备【荣誉】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "刘备【荣誉】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_小公主": {
+    "name": "小公主",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "小公主",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_军团使者": {
+    "name": "军团使者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "军团使者",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_许大夫": {
+    "name": "许大夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "许大夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_成都铁匠": {
+    "name": "成都铁匠",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "成都铁匠",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_成都车夫": {
+    "name": "成都车夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "成都车夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_金掌柜仓库": {
+    "name": "金掌柜【仓库】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "金掌柜【仓库】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_技能教官": {
+    "name": "技能教官",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "技能教官",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_学徒": {
+    "name": "学徒",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "学徒",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_chengdu_center_王老板": {
+    "name": "王老板",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "王老板",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "monster_yong_an_north_岩蛇": {
+    "name": "岩蛇",
+    "level": 35,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "岩蛇",
+    "base_stats": {
+      "health": 1400,
+      "mana": 350,
+      "attack": 105,
+      "defense": 70,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 48
+      },
+      "experience": 350
+    }
+  },
+  "monster_yong_an_north_幽州枪兵": {
+    "name": "幽州枪兵",
+    "level": 33,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "幽州枪兵",
+    "base_stats": {
+      "health": 1320,
+      "mana": 330,
+      "attack": 99,
+      "defense": 66,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 19,
+        "max": 45
+      },
+      "experience": 330
+    }
+  },
+  "monster_yong_an_north_徐商": {
+    "name": "徐商",
+    "level": 22,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】徐商",
+    "base_stats": {
+      "health": 980,
+      "mana": 245,
+      "attack": 70,
+      "defense": 49,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 13,
+        "max": 32
+      },
+      "experience": 245
+    }
+  },
+  "monster_yong_an_north_幽州刀兵": {
+    "name": "幽州刀兵",
+    "level": 30,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "幽州刀兵",
+    "base_stats": {
+      "health": 1200,
+      "mana": 300,
+      "attack": 90,
+      "defense": 60,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 16,
+        "max": 40
+      },
+      "experience": 300
+    }
+  },
+  "monster_yong_an_north_吕建": {
+    "name": "吕建",
+    "level": 26,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】吕建",
+    "base_stats": {
+      "health": 1140,
+      "mana": 285,
+      "attack": 83,
+      "defense": 62,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 15,
+        "max": 37
+      },
+      "experience": 280
+    }
+  },
+  "monster_yong_an_west_炼丹童子": {
+    "name": "炼丹童子",
+    "level": 17,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "炼丹童子",
+    "base_stats": {
+      "health": 780,
+      "mana": 195,
+      "attack": 56,
+      "defense": 28,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 10,
+        "max": 25
+      },
+      "experience": 170
+    }
+  },
+  "monster_yong_an_west_邪恶祭司": {
+    "name": "邪恶祭司",
+    "level": 15,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "邪恶祭司",
+    "base_stats": {
+      "health": 700,
+      "mana": 175,
+      "attack": 50,
+      "defense": 25,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 9,
+        "max": 22
+      },
+      "experience": 150
+    }
+  },
+  "monster_yong_an_south_叛军剑手": {
+    "name": "叛军剑手",
+    "level": 19,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "叛军剑手",
+    "base_stats": {
+      "health": 860,
+      "mana": 215,
+      "attack": 62,
+      "defense": 31,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 11,
+        "max": 28
+      },
+      "experience": 190
+    }
+  },
+  "monster_yong_an_south_朱褒": {
+    "name": "朱褒",
+    "level": 24,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】朱褒",
+    "base_stats": {
+      "health": 1060,
+      "mana": 265,
+      "attack": 74,
+      "defense": 53,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 14,
+        "max": 34
+      },
+      "experience": 265
+    }
+  },
+  "monster_yong_an_south_叛军精英": {
+    "name": "叛军精英",
+    "level": 22,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "叛军精英",
+    "base_stats": {
+      "health": 980,
+      "mana": 245,
+      "attack": 70,
+      "defense": 35,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 13,
+        "max": 32
+      },
+      "experience": 220
+    }
+  },
+  "monster_yong_an_south_雍凯": {
+    "name": "雍凯",
+    "level": 28,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】雍凯",
+    "base_stats": {
+      "health": 1140,
+      "mana": 285,
+      "attack": 83,
+      "defense": 62,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 16,
+        "max": 40
+      },
+      "experience": 280
+    }
+  },
+  "monster_yong_an_east_魏国细作": {
+    "name": "魏国细作",
+    "level": 24,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "魏国细作",
+    "base_stats": {
+      "health": 1060,
+      "mana": 265,
+      "attack": 77,
+      "defense": 38,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 14,
+        "max": 34
+      },
+      "experience": 240
+    }
+  },
+  "monster_yong_an_east_吴国细作": {
+    "name": "吴国细作",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "吴国细作",
+    "base_stats": {
+      "health": 1040,
+      "mana": 260,
+      "attack": 78,
+      "defense": 39,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 15,
+        "max": 37
+      },
+      "experience": 260
+    }
+  },
+  "monster_yong_an_east_老酒鬼": {
+    "name": "老酒鬼",
+    "level": 28,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "老酒鬼",
+    "base_stats": {
+      "health": 1140,
+      "mana": 285,
+      "attack": 83,
+      "defense": 41,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 16,
+        "max": 40
+      },
+      "experience": 280
+    }
+  },
+  "npc_yong_an_center_任务使者": {
+    "name": "任务使者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "任务使者",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_李严荣誉": {
+    "name": "李严【荣誉】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "李严【荣誉】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_关羽副本": {
+    "name": "关羽【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "关羽【副本】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_店小二": {
+    "name": "店小二",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "店小二",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_金掌柜仓库": {
+    "name": "金掌柜【仓库】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "金掌柜【仓库】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_许大夫": {
+    "name": "许大夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "许大夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_永安铁匠": {
+    "name": "永安铁匠",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "永安铁匠",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_永安车夫": {
+    "name": "永安车夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "永安车夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_技能教官": {
+    "name": "技能教官",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "技能教官",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_学徒": {
+    "name": "学徒",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "学徒",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_许掌柜": {
+    "name": "许掌柜",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "许掌柜",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_yong_an_center_王老板": {
+    "name": "王老板",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "王老板",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "monster_jianing_east_刘循": {
+    "name": "刘循",
+    "level": 18,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】刘循",
+    "base_stats": {
+      "health": 820,
+      "mana": 205,
+      "attack": 59,
+      "defense": 43,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 11,
+        "max": 28
+      },
+      "experience": 180
+    }
+  },
+  "monster_jianing_east_王累": {
+    "name": "王累",
+    "level": 12,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】王累",
+    "base_stats": {
+      "health": 580,
+      "mana": 145,
+      "attack": 41,
+      "defense": 30,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 8,
+        "max": 18
+      },
+      "experience": 120
+    }
+  },
+  "monster_jianing_center_小偷": {
+    "name": "小偷",
+    "level": 5,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "小偷",
+    "base_stats": {
+      "health": 300,
+      "mana": 75,
+      "attack": 20,
+      "defense": 10,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 5,
+        "max": 15
+      },
+      "experience": 50
+    }
+  },
+  "monster_jianing_center_铜人": {
+    "name": "铜人",
+    "level": 1,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "铜人",
+    "base_stats": {
+      "health": 140,
+      "mana": 35,
+      "attack": 8,
+      "defense": 4,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 2,
+        "max": 7
+      },
+      "experience": 10
+    }
+  },
+  "monster_jianing_west_野狗": {
+    "name": "野狗",
+    "level": 3,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "野狗",
+    "base_stats": {
+      "health": 220,
+      "mana": 55,
+      "attack": 14,
+      "defense": 7,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 3,
+        "max": 10
+      },
+      "experience": 30
+    }
+  },
+  "monster_jianing_west_窃贼": {
+    "name": "窃贼",
+    "level": 1,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "窃贼",
+    "base_stats": {
+      "health": 140,
+      "mana": 35,
+      "attack": 8,
+      "defense": 4,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 2,
+        "max": 7
+      },
+      "experience": 10
+    }
+  },
+  "monster_jianing_north_娘子军": {
+    "name": "娘子军",
+    "level": 14,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "娘子军",
+    "base_stats": {
+      "health": 660,
+      "mana": 165,
+      "attack": 47,
+      "defense": 23,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 9,
+        "max": 22
+      },
+      "experience": 140
+    }
+  },
+  "monster_jianing_north_流民": {
+    "name": "流民",
+    "level": 9,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "流民",
+    "base_stats": {
+      "health": 460,
+      "mana": 115,
+      "attack": 32,
+      "defense": 16,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 6,
+        "max": 14
+      },
+      "experience": 90
+    }
+  },
+  "monster_jianing_north_凤蝶": {
+    "name": "凤蝶",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "凤蝶",
+    "base_stats": {
+      "health": 740,
+      "mana": 185,
+      "attack": 53,
+      "defense": 26,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 10,
+        "max": 24
+      },
+      "experience": 160
+    }
+  },
+  "monster_jianing_north_杨怀": {
+    "name": "杨怀",
+    "level": 16,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】杨怀",
+    "base_stats": {
+      "health": 740,
+      "mana": 185,
+      "attack": 53,
+      "defense": 39,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 10,
+        "max": 24
+      },
+      "experience": 160
+    }
+  },
+  "monster_jianing_south_越女": {
+    "name": "越女",
+    "level": 7,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "越女",
+    "base_stats": {
+      "health": 380,
+      "mana": 95,
+      "attack": 26,
+      "defense": 13,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 5,
+        "max": 12
+      },
+      "experience": 70
+    }
+  },
+  "monster_jianing_south_水贼": {
+    "name": "水贼",
+    "level": 18,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "水贼",
+    "base_stats": {
+      "health": 820,
+      "mana": 205,
+      "attack": 59,
+      "defense": 29,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 11,
+        "max": 28
+      },
+      "experience": 180
+    }
+  },
+  "monster_jianing_south_苗族先锋": {
+    "name": "苗族先锋",
+    "level": 12,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "苗族先锋",
+    "base_stats": {
+      "health": 580,
+      "mana": 145,
+      "attack": 41,
+      "defense": 20,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 7,
+        "max": 18
+      },
+      "experience": 120
+    }
+  },
+  "monster_jianing_south_高沛": {
+    "name": "高沛",
+    "level": 14,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】高沛",
+    "base_stats": {
+      "health": 660,
+      "mana": 165,
+      "attack": 47,
+      "defense": 35,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 9,
+        "max": 22
+      },
+      "experience": 140
+    }
+  },
+  "npc_jianing_center_长宁道长": {
+    "name": "长宁道长",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "长宁道长",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_任务使者": {
+    "name": "任务使者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "任务使者",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_活动礼官活动": {
+    "name": "活动礼官【活动】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "活动礼官【活动】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_霍弋荣誉": {
+    "name": "霍弋【荣誉】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "霍弋【荣誉】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_马良": {
+    "name": "马良",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "马良",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_华大夫": {
+    "name": "华大夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "华大夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_金掌柜仓库": {
+    "name": "金掌柜【仓库】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "金掌柜【仓库】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_技能教官": {
+    "name": "技能教官",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "技能教官",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_学徒": {
+    "name": "学徒",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "学徒",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_建宁车夫": {
+    "name": "建宁车夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "建宁车夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_建宁铁匠": {
+    "name": "建宁铁匠",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "建宁铁匠",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_王老板": {
+    "name": "王老板",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "王老板",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_center_城南守将": {
+    "name": "城南守将",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "城南守将",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_华大夫": {
+    "name": "华大夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "华大夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_智者": {
+    "name": "智者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "智者",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_左慈副本": {
+    "name": "左慈【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "左慈【副本】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_副将统领": {
+    "name": "副将统领",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "副将统领",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_黄月英副本": {
+    "name": "黄月英【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "黄月英【副本】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_刘封": {
+    "name": "刘封",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "刘封",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_李铁匠": {
+    "name": "李铁匠",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "李铁匠",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_王老板": {
+    "name": "王老板",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "王老板",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_刘雅": {
+    "name": "刘雅",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "刘雅",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_金锁": {
+    "name": "金锁",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "金锁",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jianing_west_新手大使福利": {
+    "name": "新手大使【福利】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "新手大使【福利】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_beiping_east_曹樱": {
+    "name": "曹樱",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "曹樱",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_beiping_east_香凝": {
+    "name": "香凝",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "香凝",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
   }
 }

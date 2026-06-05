@@ -1,0 +1,43 @@
+{
+  "name": "成都西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "chengdu_west.沧海",
+        "east": "chengdu_center.西城楼"
+      }
+    },
+    "沧海": {
+      "name": "沧海",
+      "exits": {
+        "north": "chengdu_west.青城山",
+        "west": "chengdu_west.西雪岭",
+        "east": "chengdu_west.西门",
+        "south": "chengdu_west.松西村"
+      },
+      "monster_type": "monster_chengdu_west_黑犀"
+    },
+    "青城山": {
+      "name": "青城山",
+      "exits": {
+        "south": "chengdu_west.沧海"
+      },
+      "monster_type": "monster_chengdu_west_赵昂"
+    },
+    "松西村": {
+      "name": "松西村",
+      "exits": {
+        "north": "chengdu_west.沧海"
+      },
+      "monster_type": "monster_chengdu_west_凤鸟"
+    },
+    "西雪岭": {
+      "name": "西雪岭",
+      "exits": {
+        "east": "chengdu_west.沧海"
+      },
+      "monster_type": "monster_chengdu_west_囚牛"
+    }
+  }
+}

@@ -11,8 +11,44 @@
     "九寨沟": {
       "name": "九寨沟",
       "exits": {
+        "west": "chengdu_north.绵竹",
         "east": "chengdu_north.成都北界"
       }
+    },
+    "绵竹": {
+      "name": "绵竹",
+      "exits": {
+        "west": "chengdu_north.黄龙溪",
+        "east": "chengdu_north.九寨沟",
+        "south": "chengdu_north.北门"
+      },
+      "monster_type": "monster_chengdu_north_汉军刀手"
+    },
+    "黄龙溪": {
+      "name": "黄龙溪",
+      "exits": {
+        "north": "chengdu_north.弃剑川",
+        "east": "chengdu_north.绵竹"
+      },
+      "monster_type": "monster_chengdu_north_汉军遗贼"
+    },
+    "弃剑川": {
+      "name": "弃剑川",
+      "exits": {
+        "south": "chengdu_north.黄龙溪"
+      },
+      "monster_type": "monster_chengdu_north_小八嘎"
+    },
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "chengdu_north.绵竹",
+        "south": "chengdu_center.北城楼"
+      },
+      "monsters": [
+        "monster_chengdu_north_姜叙",
+        "monster_chengdu_north_汉军守卫"
+      ]
     }
   }
 }

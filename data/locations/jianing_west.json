@@ -1,0 +1,96 @@
+{
+  "name": "建宁西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "north": "jianing_west.药铺",
+        "west": "jianing_west.箭楼",
+        "east": "jianing_center.西城楼",
+        "south": "jianing_west.小巷"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "south": "jianing_west.西门"
+      },
+      "npcs": [
+        "npc_jianing_west_华大夫"
+      ]
+    },
+    "小巷": {
+      "name": "小巷",
+      "exits": {
+        "north": "jianing_west.西门"
+      },
+      "npcs": [
+        "npc_jianing_west_智者"
+      ]
+    },
+    "箭楼": {
+      "name": "箭楼",
+      "exits": {
+        "west": "jianing_west.军营",
+        "east": "jianing_west.西门"
+      },
+      "monster_type": "monster_jianing_west_野狗",
+      "npcs": [
+        "npc_jianing_west_左慈副本"
+      ]
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "north": "jianing_west.铁匠铺",
+        "west": "jianing_west.厢房",
+        "east": "jianing_west.箭楼",
+        "south": "jianing_west.客栈"
+      },
+      "npcs": [
+        "npc_jianing_west_副将统领",
+        "npc_jianing_west_黄月英副本",
+        "npc_jianing_west_刘封"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "jianing_west.军营"
+      },
+      "npcs": [
+        "npc_jianing_west_李铁匠"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "north": "jianing_west.军营"
+      },
+      "npcs": [
+        "npc_jianing_west_王老板"
+      ]
+    },
+    "厢房": {
+      "name": "厢房",
+      "exits": {
+        "west": "jianing_west.大院",
+        "east": "jianing_west.军营"
+      },
+      "npcs": [
+        "npc_jianing_west_刘雅"
+      ]
+    },
+    "大院": {
+      "name": "大院",
+      "exits": {
+        "east": "jianing_west.厢房"
+      },
+      "monster_type": "monster_jianing_west_窃贼",
+      "npcs": [
+        "npc_jianing_west_金锁",
+        "npc_jianing_west_新手大使福利"
+      ]
+    }
+  }
+}
