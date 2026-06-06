@@ -27,6 +27,12 @@
     社交<br/>
     ----------------<br/>
 
+    <form action="{{ url_for('social.search_player') }}" method="get" style="margin:5px 0;">
+        查找玩家ID: <input type="text" name="uid" maxlength="10" size="12" placeholder="输入10位ID">
+        <button type="submit">搜索</button>
+    </form>
+    ----------------<br/>
+
     {% set pending_count = player.relation_requests|length %}
     {% if pending_count > 0 %}
     <font color="red">你有{{ pending_count }}条待处理的结交邀请</font><br/>

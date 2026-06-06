@@ -5,6 +5,7 @@ from models.player import PlayerModel, EquipmentInstance, PlayerSkill
 from services import db
 from services.data_service import DataService
 from services.battle_service import BattleService
+from services.copy_dungeon_service import CopyDungeonService
 from services.player_service import PlayerService
 import traceback as _tb
 
@@ -53,6 +54,13 @@ def scene():
             if not location:
                 return "No starting location found", 500
 
+        # If player left a copy dungeon map, reset their dungeon state
+        if location and not location.get('is_copy_map'):
+            data = player.activity_data
+            copy_states = data.get('copy_dungeons', {})
+            if copy_states:
+                data['copy_dungeons'] = {}
+                player.activity_data = data
         # Get other players in the same location
         other_players = PlayerModel.query.filter(
             PlayerModel.current_location == location_id,
@@ -64,11 +72,18 @@ def scene():
         location_monsters = location.get("monsters", [])
         if location_monsters:
             all_monsters = DataService.get_monsters()
+            from services.world_boss_service import WorldBossService
             for monster_id in location_monsters:
                 monster_data = all_monsters.get(monster_id)
-                if monster_data:
+                if monster_data and CopyDungeonService.should_show_monster_in_scene(player, monster_id):
                     from models.monster import Monster
-                    monsters_list.append(Monster.from_dict(monster_id, monster_data))
+                    m = Monster.from_dict(monster_id, monster_data)
+                    if monster_data.get("is_elite") and not monster_data.get("is_copy"):
+                        remaining = WorldBossService.get_respawn_remaining(monster_id)
+                        if remaining > 0:
+                            m.respawning = True
+                            m.respawn_remaining = remaining
+                    monsters_list.append(m)
 
         # Get NPCs in this location
         npcs = []
@@ -79,10 +94,17 @@ def scene():
                 ndata = all_monsters.get(nid)
                 if ndata:
                     from models.monster import Monster
-                    npcs.append(Monster.from_dict(nid, ndata))
+                    npc = Monster.from_dict(nid, ndata)
+                    marker = CopyDungeonService.get_npc_marker(player, nid)
+                    npc.task_icon = marker['icon'] if marker else None
+                    npcs.append(npc)
 
         # Get recent public messages
         public_messages = DataService.list_latest_messages(3)
+
+        # Get recent country messages
+        from services.social_service import SocialService
+        country_messages = SocialService.get_country_messages(player.country, 3)
 
         # Get ground items
         ground_items = DataService.get_ground_items(location_id)
@@ -95,6 +117,7 @@ def scene():
                              monsters=monsters_list,
                              npcs=npcs,
                              public_messages=public_messages,
+                             country_messages=country_messages,
                              ground_items=ground_items,
                              DataService=DataService,
                              now=datetime.now())
@@ -131,6 +154,19 @@ def move(direction):
         exit_id = location.get("east_exit")
     elif direction == 'west':
         exit_id = location.get("west_exit")
+
+    if exit_id and exit_id in locations:
+        current_name = location.get("name")
+        target_name = locations[exit_id].get("name")
+        is_huangjin_river_crossing = (
+            location.get("copy_dungeon_id") == "huangjin_trial"
+            and {current_name, target_name} == {"黄河岸边", "兖州"}
+        )
+        if is_huangjin_river_crossing:
+            raft = DataService.get_inventory_item(player.id, "wood_raft")
+            if not raft or raft.quantity < 1:
+                flash("需要先前往小渔村击杀偷伐人，夺取木筏后才能渡河")
+                return redirect(url_for("game.scene"))
 
     if exit_id and exit_id in locations:
         player.current_location = exit_id
@@ -184,6 +220,17 @@ def view_npc(monster_id):
     from models.monster import Monster
     monster = Monster.from_dict(monster_id, monster_data)
 
+    if monster_data.get('copy_dungeon_id') or monster_data.get('is_copy'):
+        context = CopyDungeonService.build_npc_context(player, monster_id)
+        if context:
+            view_mode = request.args.get('mode', 'npc')
+            context.update({
+                'player': player,
+                'monster': monster,
+                'view_mode': view_mode,
+            })
+            return render_template("copy_dungeon.html", **context)
+
     if '技能教官' in monster_id:
         skills = DataService.get_skills()
         player_skills = {
@@ -195,6 +242,12 @@ def view_npc(monster_id):
                              monster=monster,
                              skills=skills,
                              player_skills=player_skills,
+                             npc_id=monster_id)
+
+    if '铁匠' in monster_id:
+        return render_template("blacksmith.html",
+                             player=player,
+                             monster=monster,
                              npc_id=monster_id)
 
     return render_template("view_npc.html",

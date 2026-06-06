@@ -33,6 +33,7 @@
         "item_ids": [
             "honor_scroll",
             "enhance_gem",
+            "shenyou_guo",
             "chest_key",
             "money_small"
         ],
@@ -114,6 +115,14 @@
         "name": "金珠-诸侯令",
         "item_ids": [
             "zhuhouling_1d", "zhuhouling_7d", "zhuhouling_30d"
+        ],
+        "category": null
+    },
+    "crafting_materials": {
+        "name": "打造材料商店",
+        "item_ids": [
+            "craft_suipi", "craft_mabu", "craft_huangyangmu", "craft_huangtongkuang",
+            "craft_yingpi", "craft_mianbu", "craft_chenxiangmu", "craft_heitiekuang"
         ],
         "category": null
     }

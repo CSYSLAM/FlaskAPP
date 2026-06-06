@@ -1,0 +1,319 @@
+{
+  "huangjin_trial": {
+    "name": "黄巾起义(6级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "huangjin_copy_live.洛阳皇宫",
+    "entry_npc_id": "npc_beiping_east_左慈副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "beiping_east.箭楼",
+    "story_intro": [
+      "东汉末年，社会动荡，民不聊生。",
+      "大小起义不计其数，其中以黄巾起义最为庞大，你身为朝廷的武将，理应为朝廷效力。",
+      "先破豫州、徐州前营，再斩波才、张曼成，最后夺木筏渡河击败张氏三兄弟，才能彻底平定这场乱局。"
+    ],
+    "story_outro": [
+      "历经万重险阻终于通关黄巾起义副本，获得了大量奖励！",
+      "返回箭楼继续征战吧。"
+    ],
+    "reward": {
+      "experience": 3000,
+      "gold": 600,
+      "items": []
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "大破黄巾一",
+        "scene_id": "huangjin_copy_live.豫州",
+        "objective": "前往「豫州」击杀5名『黄巾士兵』",
+        "progress_label": "已击败黄巾士兵(6级)",
+        "target_monsters": ["monster_huangjin_copy_黄巾士兵"],
+        "required_count": 5,
+        "story": "先清掉豫州前线的斥候，断掉黄巾军的耳目。",
+        "reward": {
+          "experience": 1500,
+          "gold": 150,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "大破黄巾二",
+        "scene_id": "huangjin_copy_live.徐州",
+        "objective": "前往「徐州」击杀5名『黄巾头目』",
+        "progress_label": "已击败黄巾头目(6级)",
+        "target_monsters": ["monster_huangjin_copy_黄巾头目"],
+        "required_count": 5,
+        "story": "徐州的黄巾头目开始集结，先斩掉他们的前线首脑。",
+        "reward": {
+          "experience": 2000,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "斩将破敌一",
+        "scene_id": "huangjin_copy_live.颖州",
+        "objective": "前往「颍川」击杀『波才』",
+        "progress_label": "已击败【精】波才(6级)",
+        "target_monsters": ["monster_huangjin_copy_波才"],
+        "required_count": 1,
+        "story": "黄巾大将波才出现在颍川，你速速前往「颍川」将『波才』击杀！",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "斩将破敌二",
+        "scene_id": "huangjin_copy_live.南阳",
+        "objective": "前往「南阳」击杀敌方主将『张曼成』",
+        "progress_label": "已击败【精】张曼成(6级)",
+        "target_monsters": ["monster_huangjin_copy_张曼成"],
+        "required_count": 1,
+        "story": "南阳黄巾军首领，杀郡守褚贡，一度占据宛城数月。你速去「南阳」杀死敌方主将『张曼成』！",
+        "reward": {
+          "experience": 3500,
+          "gold": 350,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "最终决战",
+        "scene_id": "huangjin_copy_live.小渔村",
+        "objective": "渡船到「黄河岸边」以北，击杀张氏三兄弟。",
+        "progress_label": "已击败最终首领",
+        "target_monsters": ["monster_huangjin_copy_张宝", "monster_huangjin_copy_张梁", "monster_huangjin_copy_张角"],
+        "required_count": 3,
+        "required_items": {
+          "wood_raft": 1
+        },
+        "story": "黄巾之乱虽然暂时平息了，但是只要张氏三兄弟不死，还是有暴乱的风险。你渡船到「黄河岸边」以北，击杀张氏三兄弟，将黄巾之乱彻底平息。",
+        "reward": {
+          "experience": 5000,
+          "gold": 500,
+          "items": []
+        }
+      }
+    ]
+  },
+  "jiding_liaodong": {
+    "name": "计定辽东(16级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "jiding_liaodong_copy_live.易州城",
+    "entry_npc_id": "npc_beiping_center_郭嘉副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "beiping_center.广场",
+    "story_intro": [
+      "辽东未平，二袁未除，匈奴虎视眈眈。",
+      "郭嘉献计：先定辽东斩二袁，再平匈奴之患。",
+      "你随郭嘉前往易州城，助其计定辽东，扫清北方边患。"
+    ],
+    "story_outro": [
+      "历经千辛万苦，终于助郭嘉计定辽东！",
+      "二袁已除，公孙瓒已斩，北方边患已平。",
+      "返回北平广场继续征战吧。"
+    ],
+    "reward": {
+      "experience": 8000,
+      "gold": 1700,
+      "items": [
+        {"item_id": "chest_copy_low", "count": 1}
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "冒牌神医",
+        "scene_id": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "前往「神医坊」击杀5名『冒牌神医』",
+        "progress_label": "已击败冒牌神医(16级)",
+        "target_monsters": ["monster_jiding_copy_冒牌神医"],
+        "required_count": 5,
+        "story": "易州城中出现冒牌神医，假借华佗之名行骗害人，你速去神医坊将其铲除。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "天香续命",
+        "scene_id": "jiding_liaodong_copy_live.须弥山",
+        "quest_giver_location": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_npc_id": "npc_jiding_copy_华佗",
+        "objective": "前往「须弥山」收集5颗『天香草』(击杀山中精怪)",
+        "progress_label": "已收集天香草",
+        "target_monsters": ["monster_jiding_copy_山中精怪"],
+        "required_count": 5,
+        "required_items": {
+          "tianxiang_cao": 5
+        },
+        "story": "华佗需要天香草入药，天香草生于须弥山，山中精怪守护其旁，你去取5颗回来。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "以毒攻毒",
+        "scene_id": "jiding_liaodong_copy_live.北沙漠",
+        "quest_giver_location": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_npc_id": "npc_jiding_copy_华佗",
+        "objective": "前往「北沙漠」收集5滴『蝎毒』(击杀毒蝎)",
+        "progress_label": "已收集蝎毒",
+        "target_monsters": ["monster_jiding_copy_毒蝎"],
+        "required_count": 5,
+        "required_items": {
+          "xie_du": 5
+        },
+        "story": "华佗以毒攻毒，需要北沙漠毒蝎之毒入药，你去取5滴蝎毒回来。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": [
+            {"item_id": "miyao_bound", "count": 1}
+          ]
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "服用秘药",
+        "scene_id": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_location": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_npc_id": "npc_jiding_copy_郭嘉",
+        "objective": "将『秘药』交给郭嘉",
+        "progress_label": "已交付秘药",
+        "target_monsters": [],
+        "required_count": 0,
+        "required_items": {
+          "miyao_bound": 1
+        },
+        "story": "华佗已制成秘药，你将秘药交给神医坊中的郭嘉服用。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": [
+            {"item_id": "envelope_bound", "count": 1}
+          ]
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "郭嘉定计",
+        "scene_id": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "将『信封』交给曹操",
+        "progress_label": "已交付信封",
+        "target_monsters": [],
+        "required_count": 0,
+        "required_items": {
+          "envelope_bound": 1
+        },
+        "story": "郭嘉服用秘药后写下定计书信，你将信封带回易州城交给曹操。",
+        "reward": {
+          "experience": 5000,
+          "gold": 500,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "屯兵造势",
+        "scene_id": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "前往「卢龙口」击杀5名『敌军探子』",
+        "progress_label": "已击败敌军探子(16级)",
+        "target_monsters": ["monster_jiding_copy_敌军探子"],
+        "required_count": 5,
+        "story": "曹操定计后命你前往卢龙口屯兵造势，先清除敌军探子，以免走漏风声。",
+        "reward": {
+          "experience": 6000,
+          "gold": 600,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "突袭匈奴",
+        "scene_id": "jiding_liaodong_copy_live.白狼山前",
+        "quest_giver_location": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_npc_id": "npc_jiding_copy_田畴",
+        "objective": "前往「白狼山前」击杀『【精】他顿』",
+        "progress_label": "已击败【精】他顿(16级)",
+        "target_monsters": ["monster_jiding_copy_他顿"],
+        "required_count": 1,
+        "story": "田畴告知匈奴首领他顿驻扎在白狼山前，你速去将其击杀，断匈奴一臂。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "大破敌军",
+        "scene_id": "jiding_liaodong_copy_live.太守府",
+        "quest_giver_location": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_npc_id": "npc_jiding_copy_田畴",
+        "objective": "前往「太守府」击杀5名『辽东兵』",
+        "progress_label": "已击败辽东兵(16级)",
+        "target_monsters": ["monster_jiding_copy_辽东兵"],
+        "required_count": 5,
+        "story": "田畴命你前往太守府大破辽东兵，扫清通往柳城的障碍。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_9",
+        "name": "扫清障碍",
+        "scene_id": "jiding_liaodong_copy_live.柳城",
+        "quest_giver_location": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_npc_id": "npc_jiding_copy_田畴",
+        "objective": "前往「柳城」击杀『【精】袁尚』",
+        "progress_label": "已击败【精】袁尚(16级)",
+        "target_monsters": ["monster_jiding_copy_袁尚"],
+        "required_count": 1,
+        "story": "袁尚盘踞柳城，是公孙瓒的得力助手，你速去将其击杀，扫清最后障碍。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_10",
+        "name": "斩草除根",
+        "scene_id": "jiding_liaodong_copy_live.太守府",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "前往「太守府」击杀『公孙瓒』",
+        "progress_label": "已击败公孙瓒(20级)",
+        "target_monsters": ["monster_jiding_copy_公孙瓒"],
+        "required_count": 1,
+        "story": "最后的敌人公孙瓒藏身太守府中，你速去将其击杀，斩草除根，彻底平定辽东！",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      }
+    ]
+  }
+}

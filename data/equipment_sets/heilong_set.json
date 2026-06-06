@@ -1,0 +1,106 @@
+{
+  "heilong_helmet_54": {
+    "name": "黑龙重盔",
+    "description": "战士专属，以黑龙之魂锻造的重盔，龙威浩荡",
+    "slot": "helmet",
+    "is_bound": false,
+    "level_required": 54,
+    "class_required": "战士",
+    "base_price": 14000,
+    "is_artifact": false,
+    "set_name": "黑龙套",
+    "base_stats": {
+      "defense": 72,
+      "max_health": 255
+    },
+    "max_extra_stats": {
+      "defense": 37,
+      "max_health": 125,
+      "attack": 9,
+      "crit_rate": 0.06
+    }
+  },
+  "heilong_armor_53": {
+    "name": "黑龙重甲",
+    "description": "战士专属，以黑龙之鳞铸造的重甲，龙鳞护体",
+    "slot": "armor",
+    "is_bound": false,
+    "level_required": 53,
+    "class_required": "战士",
+    "base_price": 16500,
+    "is_artifact": false,
+    "set_name": "黑龙套",
+    "base_stats": {
+      "defense": 86,
+      "max_health": 310
+    },
+    "max_extra_stats": {
+      "defense": 44,
+      "max_health": 150,
+      "attack": 12,
+      "crit_rate": 0.06
+    }
+  },
+  "heilong_gloves_51": {
+    "name": "黑龙护手",
+    "description": "战士专属，以黑龙之爪锻造的护手，龙力无穷",
+    "slot": "gloves",
+    "is_bound": false,
+    "level_required": 51,
+    "class_required": "战士",
+    "base_price": 12000,
+    "is_artifact": false,
+    "set_name": "黑龙套",
+    "base_stats": {
+      "attack": 58,
+      "crit_rate": 0.12
+    },
+    "max_extra_stats": {
+      "attack": 26,
+      "crit_rate": 0.07,
+      "defense": 13,
+      "max_health": 65
+    }
+  },
+  "heilong_pants_52": {
+    "name": "黑龙护腿",
+    "description": "战士专属，以黑龙之鳞铸造的护腿，坚如龙鳞",
+    "slot": "pants",
+    "is_bound": false,
+    "level_required": 52,
+    "class_required": "战士",
+    "base_price": 14500,
+    "is_artifact": false,
+    "set_name": "黑龙套",
+    "base_stats": {
+      "defense": 74,
+      "max_health": 280
+    },
+    "max_extra_stats": {
+      "defense": 37,
+      "max_health": 125,
+      "attack": 7,
+      "dodge_rate": 0.06
+    }
+  },
+  "heilong_shoes_50": {
+    "name": "黑龙重靴",
+    "description": "战士专属，以黑龙之骨铸造的重靴，踏地如龙",
+    "slot": "shoes",
+    "is_bound": false,
+    "level_required": 50,
+    "class_required": "战士",
+    "base_price": 11500,
+    "is_artifact": false,
+    "set_name": "黑龙套",
+    "base_stats": {
+      "defense": 50
+    },
+    "max_extra_stats": {
+      "defense": 25,
+      "max_health": 75,
+      "attack": 6,
+      "crit_rate": 0.06
+    }
+  }
+}

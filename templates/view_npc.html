@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ monster.name }}</title>
+    <title>{{ monster.name }}{% if monster.is_copy %}【副本NPC】{% endif %}</title>
     <style>
         body { font-size: 16px;  margin: 0; line-height: 1.6; }
         a { text-decoration: none; color: #136ec2; }
@@ -15,12 +15,15 @@
 </head>
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
-    <h1>{{ monster.name }}</h1>
+    <h1>{{ monster.name }}{% if monster.is_copy %} <span style="color:#d9534f;">【副本NPC】</span>{% endif %}</h1>
 
     <div class="section">
         <p>等级: {{ monster.level }}</p>
         <p>生命: {{ monster.health }}/{{ monster.max_health }}</p>
         <p>{{ monster.description }}</p>
+        {% if monster.is_copy %}
+        <p><strong>标记:</strong> 副本专属NPC</p>
+        {% endif %}
     </div>
 
     <div>

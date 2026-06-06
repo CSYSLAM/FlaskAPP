@@ -11,6 +11,8 @@ from services.battle_service import BattleService
 from services.player_service import PlayerService
 from services.item_service import ItemService
 
+from services.world_boss_service import WorldBossService
+
 battle_bp = Blueprint('battle', __name__)
 
 
@@ -27,6 +29,19 @@ def battle():
         player.current_encounter = None
         db.session.commit()
         return redirect(url_for("game.scene"))
+
+    # World boss: check if still alive
+    if monster.is_elite:
+        from services.world_boss_service import WorldBossService
+        boss = WorldBossService.get_boss(monster.monster_id)
+        if boss and boss.current_health <= 0 and not boss.is_alive:
+            player.in_battle = False
+            player.current_encounter = None
+            db.session.commit()
+            flash("该怪物已被击杀，正在复活中")
+            return redirect(url_for("game.scene"))
+        if boss:
+            monster.health = boss.current_health
 
     referrer = request.referrer
     if referrer and 'scene' in referrer:
@@ -45,6 +60,7 @@ def battle():
                          monster=monster,
                          lieutenant=Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first(),
                          DataService=DataService,
+                         participants=WorldBossService.get_participant_count(monster.monster_id, player.id) if monster.is_elite else 0,
                          now=datetime.now())
 
 
@@ -258,6 +274,7 @@ def pk_battle(opponent):
                          monster=opponent_player,
                          is_pk=True,
                          remaining=remaining,
+                         participants=0,
                          now=datetime.now())
 
 

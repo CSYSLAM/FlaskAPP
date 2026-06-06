@@ -44,6 +44,7 @@ class PlayerService:
             dodge_rate=base["dodge_rate"],
             current_location='beiping_center.广场',
             current_view='chat',
+            story_completed=False,
         )
         db.session.add(player)
         db.session.flush()
@@ -53,6 +54,43 @@ class PlayerService:
         DataService.add_item_to_inventory(player.id, "potion_heal", 50, is_bound=True)
         DataService.add_item_to_inventory(player.id, "potion_mana", 50, is_bound=True)
 
+        db.session.commit()
+        return player, None
+
+    @classmethod
+    def create_character(cls, player, nickname, player_class, gender, country):
+        """创建角色（注册后已存在player，只需设置角色信息）"""
+        class_data = PlayerModel.CLASSES.get(player_class)
+        if not class_data:
+            return None, "无效职业"
+
+        # 检查昵称是否已使用
+        if PlayerModel.query.filter_by(nickname=nickname).first():
+            return None, "昵称已被使用"
+
+        base = class_data["base_stats"]
+        player.nickname = nickname
+        player.player_class = player_class
+        player.gender = gender
+        player.country = country
+        player.level = 1
+        player.experience = 0
+        player.exp_to_next_level = 50
+        player.gold = 100
+        player.health = base["max_health"]
+        player.max_health = base["max_health"]
+        player.mana = base["max_mana"]
+        player.max_mana = base["max_mana"]
+        player.attack = base["attack"]
+        player.defense = base["defense"]
+        player.crit_rate = base["crit_rate"]
+        player.dodge_rate = base["dodge_rate"]
+
+        DataService.init_equipment_slots(player.id)
+        DataService.add_item_to_inventory(player.id, "potion_heal", 50, is_bound=True)
+        DataService.add_item_to_inventory(player.id, "potion_mana", 50, is_bound=True)
+
+        from services import db
         db.session.commit()
         return player, None
 
@@ -156,6 +194,8 @@ class PlayerService:
                 extra = equip.get_extra_stats().get(stat_name)
                 if extra and isinstance(extra, list):
                     total += extra[0]
+        if stat_name in ('crit_rate', 'dodge_rate'):
+            return total
         return int(total)
 
     @classmethod

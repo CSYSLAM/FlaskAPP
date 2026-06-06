@@ -1,7 +1,7 @@
 import os
 import traceback
 from pathlib import Path
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_login import LoginManager
 from services import db
 from services.data_service import DataService
@@ -27,12 +27,16 @@ def create_app():
     db.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login_page'
+    login_manager.login_message = None
 
     @login_manager.user_loader
     def load_user(user_id):
         return PlayerModel.query.get(int(user_id))
 
     DataService.init_app(app)
+
+    from services.world_boss_service import WorldBossService
+    WorldBossService.init_bosses()
 
     from blueprints.auth import auth_bp
     from blueprints.game import game_bp
@@ -47,6 +51,8 @@ def create_app():
     from blueprints.rank import rank_bp
     from blueprints.guide import guide_bp
     from blueprints.map_route import map_bp
+    from blueprints.dungeon import dungeon_bp
+    from blueprints.workbench import workbench_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -61,6 +67,16 @@ def create_app():
     app.register_blueprint(rank_bp)
     app.register_blueprint(guide_bp)
     app.register_blueprint(map_bp)
+    app.register_blueprint(dungeon_bp, url_prefix='/dungeon')
+    app.register_blueprint(workbench_bp, url_prefix='/workbench')
+
+    from blueprints.crafting import crafting_bp
+    app.register_blueprint(crafting_bp, url_prefix='/crafting')
+
+    @app.route('/ref/<path:filename>')
+    def ref_file(filename):
+        ref_dir = Path(app.root_path) / 'ref'
+        return send_from_directory(ref_dir, filename)
 
     @app.route('/')
     def index():
@@ -69,6 +85,31 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+        # 为已有数据库添加新列（SQLite 不支持 ALTER TABLE ADD COLUMN IF NOT EXISTS）
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN player_uid VARCHAR(10)"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN is_designer BOOLEAN DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        # 为没有 player_uid 的旧玩家生成 UID
+        import random
+        import string
+        from models.player import PlayerModel
+        players_without_uid = PlayerModel.query.filter(
+            PlayerModel.player_uid == None).all()
+        for p in players_without_uid:
+            while True:
+                uid = ''.join(random.choices(string.digits + string.ascii_lowercase, k=10))
+                if not PlayerModel.query.filter_by(player_uid=uid).first():
+                    break
+            p.player_uid = uid
+        if players_without_uid:
+            db.session.commit()
 
     return app
 

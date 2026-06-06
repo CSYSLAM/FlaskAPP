@@ -3,6 +3,8 @@ import time
 from services import db
 from services.data_service import DataService
 from services.player_service import PlayerService
+from services.world_boss_service import WorldBossService
+from services.copy_dungeon_service import CopyDungeonService
 from models.player import PlayerModel, EquipmentInstance, InventoryItem, PlayerSkill
 from models.monster import Monster
 from models.lieutenant import Lieutenant
@@ -33,7 +35,8 @@ class BattleService:
     @classmethod
     def _monster_attack_with_lt(cls, monster, player, lt):
         """Monster attacks, lieutenant absorbs if front position."""
-        monster_damage = max(1, monster.attack - PlayerService.get_defense(player))
+        min_damage = monster.level * 2 if monster.is_elite else monster.level
+        monster_damage = max(min_damage, monster.attack - PlayerService.get_defense(player))
         is_crit = random.random() <= monster.crit_rate
         if is_crit:
             monster_damage = int(monster_damage * 1.5)
@@ -103,14 +106,32 @@ class BattleService:
         # Filter out NPCs (non-killable)
         all_monsters = DataService.get_monsters()
         killable_ids = [mid for mid in monster_ids
-                        if all_monsters.get(mid, {}).get("killable", True)]
+                        if all_monsters.get(mid, {}).get("killable", True)
+                        and CopyDungeonService.should_show_monster_in_scene(player, mid)]
         if not killable_ids:
             return None, "这里没有怪物"
 
         monster_id = random.choice(killable_ids)
+        monster_data = all_monsters.get(monster_id, {})
+        is_elite = monster_data.get("is_elite", False)
+        is_copy_monster = monster_data.get("is_copy") or monster_data.get("copy_only")
+
+        # World boss check
+        if is_elite and not is_copy_monster:
+            remaining = WorldBossService.get_respawn_remaining(monster_id)
+            if remaining > 0:
+                return None, f"该怪物已被击杀，正在复活中（剩余{remaining}秒）"
+
         monster = Monster.create_monster(monster_id)
         if not monster:
             return None, "怪物数据异常"
+
+        # World boss: use shared HP (copy dungeon elites are personal, not world bosses)
+        if is_elite and not is_copy_monster:
+            boss = WorldBossService.get_boss(monster_id)
+            if boss:
+                monster.health = boss.current_health
+                monster.max_health = boss.max_health
 
         player.in_battle = True
         player.last_battle_result = ""
@@ -128,7 +149,14 @@ class BattleService:
         data = player.get_current_encounter_data()
         if not data:
             return None
-        return Monster(data.get('monster_id'), data)
+        monster = Monster(data.get('monster_id'), data)
+        # Sync world boss HP from shared state
+        if data.get('is_world_boss'):
+            boss = WorldBossService.get_boss(monster.monster_id)
+            if boss:
+                monster.health = boss.current_health
+                monster.max_health = boss.max_health
+        return monster
 
     @classmethod
     def _save_encounter(cls, player, monster):
@@ -137,6 +165,12 @@ class BattleService:
             'name': monster.name,
             'level': monster.level,
             'is_elite': monster.is_elite,
+            'is_divine_beast': monster.is_divine_beast,
+            'is_copy': getattr(monster, 'is_copy', False),
+            'copy_only': getattr(monster, 'copy_only', False),
+            'copy_dungeon_id': getattr(monster, 'copy_dungeon_id', None),
+            'copy_stage': getattr(monster, 'copy_stage', None),
+            'copy_role': getattr(monster, 'copy_role', None),
             'killable': monster.killable,
             'immortal': monster.immortal,
             'description': monster.description,
@@ -157,6 +191,7 @@ class BattleService:
             'last_damage_dealt': monster.last_damage_dealt,
             'last_action': monster.last_action,
             'last_skill': monster.last_skill,
+            'is_world_boss': monster.is_elite and not getattr(monster, 'is_copy', False),
         }
         player.set_current_encounter_data(encounter)
 
@@ -176,6 +211,8 @@ class BattleService:
         player.last_mana_cost = 0
         player.item_effect = ""
 
+        encounter_data = player.get_current_encounter_data()
+
         if random.random() >= monster.dodge_rate:
             player_atk = PlayerService.get_attack(player)
             damage = max(1, player_atk - monster.defense)
@@ -187,6 +224,9 @@ class BattleService:
                 player.last_damage_dealt = str(damage)
             monster.health -= damage
             monster.last_damage_taken = damage
+            # World boss: sync damage to shared state
+            if encounter_data.get('is_world_boss'):
+                WorldBossService.damage_boss(monster.monster_id, player.id, damage)
         else:
             damage = 0
             player.last_damage_dealt = "闪避"
@@ -200,6 +240,9 @@ class BattleService:
                 monster.health -= lt_damage
                 player.last_damage_dealt += f"+副将{lt_damage}"
                 monster.last_damage_taken += lt_damage
+                # World boss: apply lt damage too
+                if encounter_data.get('is_world_boss'):
+                    WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
 
         cls._save_encounter(player, monster)
 
@@ -268,6 +311,8 @@ class BattleService:
         player.last_skill = skill_data["name"]
         player.item_effect = ""
 
+        encounter_data = player.get_current_encounter_data()
+
         base_rate = skill_data["base_damage_rate"]
         rate_per = skill_data.get("damage_rate_per_level", 0)
         damage_rate = base_rate + rate_per * (skill_level - 1)
@@ -292,6 +337,13 @@ class BattleService:
         monster.health -= total_damage
         monster.last_damage_taken = total_damage
 
+        # World boss: also apply damage to shared state
+        if encounter_data.get('is_world_boss'):
+            killed, killer_id = WorldBossService.damage_boss(
+                monster.monster_id, player.id, total_damage)
+            if killed:
+                monster.health = 0
+
         # Lieutenant also attacks
         lt = cls._get_deployed_lt(player)
         if lt and lt.is_alive:
@@ -300,6 +352,9 @@ class BattleService:
                 monster.health -= lt_damage
                 player.last_damage_dealt += f"+副将{lt_damage}"
                 monster.last_damage_taken += lt_damage
+                # World boss: apply lt damage too
+                if encounter_data.get('is_world_boss'):
+                    WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
 
         cls._save_encounter(player, monster)
 
@@ -371,12 +426,29 @@ class BattleService:
                     bind_text = "(绑定)" if is_bound else ""
                     loot_text = f"获得了装备 {equip.name}{bind_text}"
 
+        dungeon_note = CopyDungeonService.record_monster_defeat(player, monster)
+        if dungeon_note:
+            if loot_text:
+                loot_text += f"；{dungeon_note}"
+            else:
+                loot_text = dungeon_note
+
         player.in_battle = False
         player.last_battle_result = f"击败了{monster.name}！获得 {money} 金币, {exp} 经验"
         if loot_text:
             player.last_battle_result += f"。{loot_text}"
         player.current_encounter = None
         monster.reset_health()
+
+        # World boss: broadcast defeat via last_battle_result
+        if monster.is_elite and not getattr(monster, 'is_copy', False):
+            boss = WorldBossService.get_boss(monster.monster_id)
+            if boss:
+                player.last_battle_result += f" [世界BOSS已被击败，{boss.respawn_time}秒后复活]"
+
+        # Divine beast: global kill announcement
+        if monster.is_divine_beast:
+            DataService.broadcast_system(f"{player.nickname}率先击杀了{monster.description}，各位承让承让！")
 
         from services.achievement_service import AchievementService
         ctype = 'elite_kill' if monster.is_elite else 'kill'
@@ -391,8 +463,14 @@ class BattleService:
             return False, "你不在战斗中"
 
         monster = cls.get_current_monster(player)
+        if not monster:
+            player.in_battle = False
+            player.current_encounter = None
+            db.session.commit()
+            return True, "战斗已结束"
+
         flee_rate = 0.5
-        if monster and monster.is_elite:
+        if monster.is_elite:
             flee_rate = 0.3
 
         if random.random() < flee_rate:
@@ -402,16 +480,15 @@ class BattleService:
             db.session.commit()
             return True, "成功逃离"
         else:
-            if monster:
-                monster.attack_player(player)
-                cls._save_encounter(player, monster)
-                if player.health <= 0:
-                    player.health = 0
-                    player.in_battle = False
-                    player.last_battle_result = "逃跑失败，被击败了"
-                    player.current_encounter = None
-                    db.session.commit()
-                    return False, "逃跑失败，被击败了"
+            monster.attack_player(player)
+            cls._save_encounter(player, monster)
+            if player.health <= 0:
+                player.health = 0
+                player.in_battle = False
+                player.last_battle_result = "逃跑失败，被击败了"
+                player.current_encounter = None
+                db.session.commit()
+                return False, "逃跑失败，被击败了"
             db.session.commit()
             return False, "逃跑失败"
 

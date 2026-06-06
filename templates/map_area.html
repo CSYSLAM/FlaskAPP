@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>区域地图 - {{ location.get('area_name', '') }}</title>
+  <title>区域地图 - {{ location.get('area_name', '') }}{% if location.get('is_copy_map') %}【副本地图】{% endif %}</title>
 <style>
 body { font-size: 16px; }
 a:link { color: #136ec2; text-decoration: none; }
@@ -44,7 +44,7 @@ a:link { color: #136ec2; text-decoration: none; }
 <div id="loading"><span></span></div>
 
 <a href="{{ url_for('map.index') }}">返回地图</a><br/>
-<h3>区域地图 - {{ location.get('area_name', '') }}</h3>
+<h3>区域地图 - {{ location.get('area_name', '') }}{% if location.get('is_copy_map') %}【副本地图】{% endif %}</h3>
 
 <style>
 {% for scene in scenes %}

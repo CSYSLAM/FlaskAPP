@@ -1,0 +1,107 @@
+{
+  "yese_helmet_29": {
+    "name": "夜色头巾",
+    "description": "刺客专属，以夜色之暗编织的头巾，隐匿于黑暗之中",
+    "slot": "helmet",
+    "is_bound": false,
+    "level_required": 29,
+    "class_required": "刺客",
+    "base_price": 5500,
+    "is_artifact": false,
+    "set_name": "夜色套",
+    "base_stats": {
+      "defense": 30,
+      "max_health": 120
+    },
+    "max_extra_stats": {
+      "defense": 15,
+      "max_health": 55,
+      "dodge_rate": 0.05,
+      "crit_rate": 0.04
+    }
+  },
+  "yese_armor_28": {
+    "name": "夜行衣",
+    "description": "刺客专属，以夜色之丝织成的夜行衣，如影随形",
+    "slot": "armor",
+    "is_bound": false,
+    "level_required": 28,
+    "class_required": "刺客",
+    "base_price": 6500,
+    "is_artifact": false,
+    "set_name": "夜色套",
+    "base_stats": {
+      "defense": 38,
+      "max_health": 140
+    },
+    "max_extra_stats": {
+      "defense": 18,
+      "max_health": 60,
+      "dodge_rate": 0.04,
+      "crit_rate": 0.05
+    }
+  },
+  "yese_gloves_26": {
+    "name": "清风手套",
+    "description": "刺客专属，轻盈如风的护手，出手如电",
+    "slot": "gloves",
+    "is_bound": false,
+    "level_required": 26,
+    "class_required": "刺客",
+    "base_price": 4800,
+    "is_artifact": false,
+    "set_name": "夜色套",
+    "base_stats": {
+      "attack": 32,
+      "crit_rate": 0.08
+    },
+    "max_extra_stats": {
+      "attack": 16,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04,
+      "max_health": 30
+    }
+  },
+  "yese_pants_27": {
+    "name": "清风护腿",
+    "description": "刺客专属，轻盈如风的护腿，疾行无影",
+    "slot": "pants",
+    "is_bound": false,
+    "level_required": 27,
+    "class_required": "刺客",
+    "base_price": 5800,
+    "is_artifact": false,
+    "set_name": "夜色套",
+    "base_stats": {
+      "defense": 32,
+      "max_health": 125
+    },
+    "max_extra_stats": {
+      "defense": 16,
+      "max_health": 55,
+      "dodge_rate": 0.05,
+      "crit_rate": 0.04
+    }
+  },
+  "yese_shoes_25": {
+    "name": "清风长靴",
+    "description": "刺客专属，轻盈如风的战靴，踏雪无痕",
+    "slot": "shoes",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": "刺客",
+    "base_price": 4500,
+    "is_artifact": false,
+    "set_name": "夜色套",
+    "base_stats": {
+      "dodge_rate": 0.09,
+      "defense": 22
+    },
+    "max_extra_stats": {
+      "dodge_rate": 0.06,
+      "defense": 10,
+      "crit_rate": 0.04,
+      "max_health": 30
+    }
+  }
+}

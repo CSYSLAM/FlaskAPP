@@ -176,6 +176,11 @@ def do_teleport(location_id):
         flash("VIP未生效，无法使用特权传送")
         return redirect(url_for('vip.index'))
 
+    current_loc = DataService.get_location(player.current_location)
+    if current_loc and current_loc.get('is_copy_map'):
+        flash("副本内无法使用传送，请先放弃副本再离开")
+        return redirect(url_for('game.scene'))
+
     locations = DataService.get_locations()
     if location_id not in locations:
         flash("目标地点不存在")

@@ -28,6 +28,7 @@ class DataService:
         files = {
             'items': 'items.json',
             'monsters': 'monsters.json',
+            'copy_dungeons': 'copy_dungeons.json',
             'equipment_templates': 'equipment_templates.json',
             'shops': 'shops.json',
             'skills': 'skills.json',
@@ -43,6 +44,11 @@ class DataService:
                     cls._cache[key] = json.load(f)
             else:
                 cls._cache[key] = {}
+
+        copy_monsters_path = data_dir / 'copy_monsters.json'
+        if copy_monsters_path.exists():
+            with open(copy_monsters_path, 'r', encoding='utf-8') as f:
+                cls._cache.setdefault('monsters', {}).update(json.load(f))
 
         # Load locations from data/locations/ directory (one file per area)
         loc_dir = data_dir / "locations"
@@ -72,12 +78,15 @@ class DataService:
         for area_key, area_data in raw_locations.items():
             if isinstance(area_data, dict) and 'scenes' in area_data:
                 area_name = area_data.get('name', area_key)
+                area_meta = {key: value for key, value in area_data.items() if key not in {'name', 'scenes'}}
                 for scene_key, scene_data in area_data['scenes'].items():
                     full_id = f"{area_key}.{scene_key}"
                     entry = dict(scene_data)
                     entry['area_id'] = area_key
                     entry['area_name'] = area_name
                     entry['scene_id'] = scene_key
+                    for meta_key, meta_value in area_meta.items():
+                        entry.setdefault(meta_key, meta_value)
                     if 'monster_type' in entry and 'monsters' not in entry:
                         entry['monsters'] = [entry['monster_type']]
                     # Convert exits dict to directional keys
@@ -112,6 +121,14 @@ class DataService:
     @classmethod
     def get_monster(cls, monster_id):
         return cls._cache.get('monsters', {}).get(monster_id)
+
+    @classmethod
+    def get_copy_dungeons(cls):
+        return cls._cache.get('copy_dungeons', {})
+
+    @classmethod
+    def get_copy_dungeon(cls, dungeon_id):
+        return cls.get_copy_dungeons().get(dungeon_id)
 
     @classmethod
     def get_locations(cls):
@@ -209,6 +226,10 @@ class DataService:
         return PlayerModel.query.get(player_id)
 
     @classmethod
+    def get_player_by_uid(cls, player_uid):
+        return PlayerModel.query.filter_by(player_uid=player_uid).first()
+
+    @classmethod
     def save_player(cls, player):
         old_version = player.version
         player.version = (player.version or 0) + 1
@@ -269,7 +290,7 @@ class DataService:
     @classmethod
     def _generate_extra_stats(cls, template, rarity, stars):
         extra_stats = {}
-        stat_counts = {"普通": 1, "精良": 2, "卓越": 3, "史诗": 4, "神器": 6}
+        stat_counts = {"普通": 1, "精良": 2, "卓越": 3, "史诗": 4, "神器": 5}
         count = stat_counts.get(rarity, 1)
 
         weapon_order = [
@@ -278,7 +299,7 @@ class DataService:
             ["attack", "max_health", "crit_rate"],
             ["attack", "max_health", "crit_rate", "max_mana"],
             ["attack", "max_health", "crit_rate", "max_mana", "defense"],
-            ["attack", "max_health", "crit_rate", "max_mana", "defense", "dodge_rate"]
+            ["attack", "max_health", "crit_rate", "max_mana", "defense", "dodge_rate"],
         ]
         armor_order = [
             ["defense"],
@@ -286,11 +307,27 @@ class DataService:
             ["defense", "max_health", "max_mana"],
             ["defense", "max_health", "crit_rate", "max_mana"],
             ["attack", "max_health", "crit_rate", "max_mana", "defense"],
-            ["attack", "max_health", "crit_rate", "max_mana", "defense", "dodge_rate"]
+            ["attack", "max_health", "crit_rate", "max_mana", "defense", "dodge_rate"],
         ]
 
         slot = template.get("slot", "armor")
         selected = (weapon_order[count - 1] if slot == "weapon" else armor_order[count - 1])
+
+        # Shoes and pants prioritize dodge_rate over crit_rate
+        if slot in ("shoes", "pants"):
+            # Replace crit_rate -> dodge_rate in the selected order, then deduplicate
+            selected = [
+                "dodge_rate" if s == "crit_rate" else s
+                for s in selected
+            ]
+            # Remove duplicates (keep first)
+            seen = set()
+            deduped = []
+            for s in selected:
+                if s not in seen:
+                    seen.add(s)
+                    deduped.append(s)
+            selected = deduped
 
         for stat in selected:
             stat_stars = min(5, max(1, random.randint(stars - 1, stars + 1)))
@@ -426,7 +463,9 @@ class DataService:
 
     @classmethod
     def list_latest_messages(cls, limit=10):
-        return ChatMessage.query.order_by(
+        return ChatMessage.query.filter_by(
+            message_type='public'
+        ).order_by(
             ChatMessage.created_at.desc()
         ).limit(limit).all()
 
@@ -457,19 +496,6 @@ class DataService:
     def _refresh_ground_items(cls, location_id):
         now = time.time()
         items = []
-        if random.random() < 0.7:
-            items.append({
-                'type': 'item',
-                'item_id': 'money_small',
-                'id': f'item_money_small_{int(now)}'
-            })
-        if random.random() < 0.4:
-            potion = random.choice(['potion_heal', 'potion_mana'])
-            items.append({
-                'type': 'item',
-                'item_id': potion,
-                'id': f'item_{potion}_{int(now)}'
-            })
         cls._ground_items[location_id] = {
             'items': items,
             'next_refresh': now + cls.GROUND_REFRESH_INTERVAL

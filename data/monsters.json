@@ -26,7 +26,12 @@
           "chulong_armor_1",
           "chulong_gloves_1",
           "chulong_pants_1",
-          "chulong_shoes_1"
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
         ],
         "rarity_weights": {
           "common": 50,
@@ -284,7 +289,12 @@
           "chulong_armor_1",
           "chulong_gloves_1",
           "chulong_pants_1",
-          "chulong_shoes_1"
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
         ],
         "rarity_weights": {
           "common": 50,
@@ -362,7 +372,12 @@
           "chulong_armor_1",
           "chulong_gloves_1",
           "chulong_pants_1",
-          "chulong_shoes_1"
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
         ],
         "rarity_weights": {
           "common": 50,
@@ -433,17 +448,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "qinghong_jian",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 38,
         "max": 88
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_hanzhong_south_灵火道人": {
     "name": "灵火道人",
@@ -465,11 +510,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 38,
         "max": 88
@@ -497,9 +569,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -509,38 +603,65 @@
       "experience": 610
     }
   },
-    "monster_hanzhong_south_法正": {
-      "name": "法正",
-      "level": 45,
-      "is_elite": true,
-      "killable": true,
-      "immortal": false,
-      "description": "【精】法正",
-      "base_stats": {
-        "health": 3300,
-        "mana": 825,
-        "attack": 215,
-        "defense": 160,
-        "crit_rate": 0.07,
-        "dodge_rate": 0.04
-      },
-      "skills": [
-        "normal_attack"
-      ],
-      "drops": {
-        "equipment_drop": {
-          "drop_rate": 0,
-          "templates": [],
-          "rarity_weights": {}
-        },
-        "items": {},
-        "money": {
-          "min": 32,
-          "max": 72
-        },
-        "experience": 820
-      }
+  "monster_hanzhong_south_法正": {
+    "name": "法正",
+    "level": 45,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】法正",
+    "base_stats": {
+      "health": 3300,
+      "mana": 825,
+      "attack": 215,
+      "defense": 160,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.04
     },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
+      "money": {
+        "min": 32,
+        "max": 72
+      },
+      "experience": 820
+    }
+  },
   "monster_hanzhong_south_廖化": {
     "name": "廖化",
     "level": 45,
@@ -561,11 +682,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -573,38 +721,60 @@
       "experience": 820
     }
   },
-      "monster_hanzhong_east_吴军前锋": {
-        "name": "吴军前锋",
-        "level": 43,
-        "is_elite": false,
-        "killable": true,
-        "immortal": false,
-        "description": "吴军前锋",
-        "base_stats": {
-          "health": 2600,
-          "mana": 650,
-          "attack": 170,
-          "defense": 120,
-          "crit_rate": 0.05,
-          "dodge_rate": 0.03
-        },
-        "skills": [
-          "normal_attack"
+  "monster_hanzhong_east_吴军前锋": {
+    "name": "吴军前锋",
+    "level": 43,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "吴军前锋",
+    "base_stats": {
+      "health": 2600,
+      "mana": 650,
+      "attack": 170,
+      "defense": 120,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
         ],
-        "drops": {
-          "equipment_drop": {
-            "drop_rate": 0,
-            "templates": [],
-            "rarity_weights": {}
-          },
-          "items": {},
-          "money": {
-            "min": 28,
-            "max": 62
-          },
-          "experience": 610
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
-        },
+      },
+      "items": {},
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 610
+    }
+  },
   "monster_hanzhong_east_徐盛": {
     "name": "徐盛",
     "level": 45,
@@ -625,11 +795,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -657,11 +854,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -669,37 +893,64 @@
       "experience": 820
     }
   },
-    "monster_jiangling_north_灵土道人": {
-      "name": "灵土道人",
-      "level": 50,
-      "is_elite": true,
-      "killable": true,
-      "immortal": false,
-      "description": "【活】灵土道人",
-      "base_stats": {
-        "health": 4200,
-        "mana": 1100,
-        "attack": 240,
-        "defense": 185,
-        "crit_rate": 0.08,
-        "dodge_rate": 0.05
+  "monster_jiangling_north_灵土道人": {
+    "name": "灵土道人",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】灵土道人",
+    "base_stats": {
+      "health": 4200,
+      "mana": 1100,
+      "attack": 240,
+      "defense": 185,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "skills": [
-        "normal_attack"
-      ],
-      "drops": {
-        "equipment_drop": {
-          "drop_rate": 0,
-          "templates": [],
-          "rarity_weights": {}
-        },
-        "items": {},
-        "money": {
-          "min": 38,
-          "max": 88
-        },
-        "experience": 980
-      }
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
+      "money": {
+        "min": 38,
+        "max": 88
+      },
+      "experience": 980
+    }
   },
   "monster_jiangling_north_辛毗": {
     "name": "辛毗",
@@ -721,11 +972,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -753,11 +1031,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -785,11 +1090,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -817,11 +1149,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -849,9 +1208,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -881,11 +1262,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -913,11 +1321,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -1105,11 +1540,11 @@
           "qingbu_shoes_10"
         ],
         "rarity_weights": {
-          "common": 60,
-          "uncommon": 40,
-          "rare": 0,
-          "epic": 0,
-          "legendary": 0
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
       },
       "items": {
@@ -1153,11 +1588,11 @@
           "qingbu_shoes_10"
         ],
         "rarity_weights": {
-          "common": 60,
-          "uncommon": 40,
-          "rare": 0,
-          "epic": 0,
-          "legendary": 0
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
       },
       "items": {
@@ -1193,18 +1628,27 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
@@ -1241,18 +1685,27 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
@@ -1297,11 +1750,11 @@
           "qingbu_shoes_10"
         ],
         "rarity_weights": {
-          "common": 60,
-          "uncommon": 40,
-          "rare": 0,
-          "epic": 0,
-          "legendary": 0
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
       },
       "items": {
@@ -1342,7 +1795,12 @@
           "chulong_armor_1",
           "chulong_gloves_1",
           "chulong_pants_1",
-          "chulong_shoes_1"
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
         ],
         "rarity_weights": {
           "common": 50,
@@ -1540,7 +1998,12 @@
           "chulong_armor_1",
           "chulong_gloves_1",
           "chulong_pants_1",
-          "chulong_shoes_1"
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
         ],
         "rarity_weights": {
           "common": 50,
@@ -1583,18 +2046,27 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
@@ -1631,18 +2103,27 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
@@ -1684,7 +2165,12 @@
           "chulong_armor_1",
           "chulong_gloves_1",
           "chulong_pants_1",
-          "chulong_shoes_1"
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
         ],
         "rarity_weights": {
           "common": 50,
@@ -1735,11 +2221,11 @@
           "qingbu_shoes_10"
         ],
         "rarity_weights": {
-          "common": 60,
-          "uncommon": 40,
-          "rare": 0,
-          "epic": 0,
-          "legendary": 0
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
       },
       "items": {
@@ -1775,12 +2261,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
           "common": 50,
@@ -1831,11 +2326,11 @@
           "qingbu_shoes_10"
         ],
         "rarity_weights": {
-          "common": 60,
-          "uncommon": 40,
-          "rare": 0,
-          "epic": 0,
-          "legendary": 0
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
       },
       "items": {
@@ -1871,12 +2366,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
           "common": 50,
@@ -1919,18 +2423,27 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
@@ -1967,12 +2480,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
           "common": 50,
@@ -2015,12 +2537,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
           "common": 50,
@@ -2063,24 +2594,37 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
       },
       "money": {
         "min": 65,
@@ -2111,12 +2655,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
           "common": 50,
@@ -2159,24 +2712,37 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 70,
@@ -2207,12 +2773,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
         ],
         "rarity_weights": {
           "common": 50,
@@ -2255,12 +2830,21 @@
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
         ],
         "rarity_weights": {
           "common": 50,
@@ -2303,18 +2887,27 @@
       "equipment_drop": {
         "drop_rate": 0.3,
         "templates": [
-          "qingbu_sword_10",
-          "qingbu_helmet_10",
-          "qingbu_armor_10",
-          "qingbu_gloves_10",
-          "qingbu_pants_10",
-          "qingbu_shoes_10"
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
         ],
         "rarity_weights": {
-          "common": 0,
-          "uncommon": 40,
-          "rare": 40,
-          "epic": 15,
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
           "legendary": 5
         }
       },
@@ -2359,11 +2952,11 @@
           "qingbu_shoes_10"
         ],
         "rarity_weights": {
-          "common": 60,
-          "uncommon": 40,
-          "rare": 0,
-          "epic": 0,
-          "legendary": 0
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
         }
       },
       "items": {
@@ -2706,8 +3299,7 @@
       },
       "experience": 0
     }
-  }
-  ,
+  },
   "npc_xuchang_center_任务使者": {
     "name": "任务使者",
     "level": 50,
@@ -2938,9 +3530,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -2970,9 +3584,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3002,9 +3638,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3018,6 +3676,7 @@
     "name": "青蛇",
     "level": 40,
     "is_elite": true,
+    "is_divine_beast": true,
     "killable": true,
     "immortal": false,
     "description": "【兽王】青蛇",
@@ -3034,11 +3693,40 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "longlin",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -3166,6 +3854,36 @@
       "experience": 0
     }
   },
+  "npc_xiapi_center_下邳铁匠": {
+    "name": "下邳铁匠",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "下邳铁匠",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
   "monster_xiapi_west_蜀军守卫": {
     "name": "蜀军守卫",
     "level": 43,
@@ -3186,9 +3904,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3218,9 +3958,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3250,11 +4012,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -3282,11 +4071,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -3314,9 +4130,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3346,11 +4184,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -3378,11 +4243,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -3410,11 +4302,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -3442,9 +4361,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3474,9 +4415,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3506,9 +4469,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3538,11 +4523,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -3570,11 +4582,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -3602,11 +4641,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -3634,17 +4700,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "longhun_zhu",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 36,
         "max": 84
       },
       "experience": 860
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_xiapi_south_毕方": {
     "name": "毕方",
@@ -3666,17 +4762,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "yu_lingzhi",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 42,
         "max": 95
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_xiapi_south_黄巾上将": {
     "name": "黄巾上将",
@@ -3698,11 +4824,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 45,
         "max": 100
@@ -3718,10 +4871,10 @@
     "immortal": false,
     "description": "小八嘎",
     "base_stats": {
-      "health": 900,
-      "mana": 220,
-      "attack": 70,
-      "defense": 45,
+      "health": 640,
+      "mana": 160,
+      "attack": 48,
+      "defense": 32,
       "crit_rate": 0.02,
       "dodge_rate": 0.01
     },
@@ -3730,16 +4883,29 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
         "min": 8,
         "max": 20
       },
-      "experience": 110
+      "experience": 160
     }
   },
   "monster_xuchang_north_许昌卫兵": {
@@ -3762,9 +4928,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3794,9 +4982,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3826,9 +5036,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3858,11 +5081,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.19,
+        "craft_mabu": 0.19,
+        "craft_huangyangmu": 0.19,
+        "craft_huangtongkuang": 0.19
+      },
       "money": {
         "min": 24,
         "max": 58
@@ -3890,9 +5140,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3922,11 +5194,40 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "longlin",
+        "artifact_drop_rate": 0.05
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -3954,9 +5255,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -3986,11 +5309,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.22,
+        "craft_mabu": 0.22,
+        "craft_huangyangmu": 0.22,
+        "craft_huangtongkuang": 0.22
+      },
       "money": {
         "min": 23,
         "max": 55
@@ -4018,9 +5368,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -4050,9 +5422,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -4082,11 +5476,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.25,
+        "craft_mabu": 0.25,
+        "craft_huangyangmu": 0.25,
+        "craft_huangtongkuang": 0.25
+      },
       "money": {
         "min": 24,
         "max": 58
@@ -4114,11 +5535,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.28,
+        "craft_mabu": 0.28,
+        "craft_huangyangmu": 0.28,
+        "craft_huangtongkuang": 0.28
+      },
       "money": {
         "min": 26,
         "max": 62
@@ -4146,9 +5594,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -4178,11 +5648,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.31,
+        "craft_mabu": 0.31,
+        "craft_huangyangmu": 0.31,
+        "craft_huangtongkuang": 0.31
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -4480,9 +5977,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -4752,9 +6271,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -4814,17 +6355,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "yuchang_jian",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 38,
         "max": 88
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_jiangling_south_辟邪": {
     "name": "辟邪",
@@ -4846,17 +6417,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "wuhu_duanhun_dao",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 38,
         "max": 88
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": true
   },
   "npc_xiapi_center_任务使者": {
     "name": "任务使者",
@@ -5028,9 +6629,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -5060,9 +6683,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -5092,11 +6737,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -5124,11 +6796,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -5156,11 +6855,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.21,
+        "craft_mianbu": 0.21,
+        "craft_chenxiangmu": 0.21,
+        "craft_heitiekuang": 0.21
+      },
       "money": {
         "min": 38,
         "max": 88
@@ -5188,9 +6914,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -5220,9 +6968,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -5252,11 +7022,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -5284,11 +7081,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -5316,9 +7140,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -5348,11 +7194,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -5380,17 +7253,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "qisheng_dao",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
       "money": {
         "min": 50,
         "max": 110
       },
       "experience": 1500
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_luoyang_north_青龙": {
     "name": "青龙",
@@ -5412,17 +7315,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "heshi_bi",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
       "money": {
         "min": 50,
         "max": 110
       },
       "experience": 1500
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_luoyang_north_洛阳副官": {
     "name": "洛阳副官",
@@ -5444,11 +7377,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
       "money": {
         "min": 45,
         "max": 100
@@ -5476,17 +7436,47 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "chengying_jian",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
       "money": {
         "min": 50,
         "max": 110
       },
       "experience": 1500
-    }
+    },
+    "is_divine_beast": true
   },
   "monster_luoyang_north_神秘将军": {
     "name": "神秘将军",
@@ -5508,11 +7498,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
       "money": {
         "min": 45,
         "max": 100
@@ -5810,9 +7827,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -5842,11 +7881,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -5874,11 +7940,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -5906,11 +7999,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -5938,11 +8058,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -5970,9 +8117,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6002,11 +8171,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -6034,9 +8230,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6066,11 +8284,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -6098,11 +8343,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -6130,11 +8402,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -6162,11 +8461,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.27,
+        "craft_mianbu": 0.27,
+        "craft_chenxiangmu": 0.27,
+        "craft_heitiekuang": 0.27
+      },
       "money": {
         "min": 42,
         "max": 95
@@ -6464,11 +8790,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.28,
+        "craft_mabu": 0.28,
+        "craft_huangyangmu": 0.28,
+        "craft_huangtongkuang": 0.28
+      },
       "money": {
         "min": 26,
         "max": 62
@@ -6496,9 +8849,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6528,9 +8903,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6560,11 +8957,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.22,
+        "craft_mabu": 0.22,
+        "craft_huangyangmu": 0.22,
+        "craft_huangtongkuang": 0.22
+      },
       "money": {
         "min": 23,
         "max": 55
@@ -6592,9 +9016,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6624,9 +9070,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6656,9 +9124,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6668,42 +9158,11 @@
       "experience": 675
     }
   },
-  "monster_jianye_north_小八嘎": {
-    "name": "小八嘎",
-    "level": 16,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "小八嘎",
-    "base_stats": {
-      "health": 640,
-      "mana": 160,
-      "attack": 48,
-      "defense": 32,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.01
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 8,
-        "max": 20
-      },
-      "experience": 160
-    }
-  },
   "monster_jianye_north_翼虎": {
     "name": "翼虎",
     "level": 40,
     "is_elite": true,
+    "is_divine_beast": true,
     "killable": true,
     "immortal": false,
     "description": "【兽王】翼虎",
@@ -6720,11 +9179,40 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "chixiao_jian",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -6752,11 +9240,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.25,
+        "craft_mabu": 0.25,
+        "craft_huangyangmu": 0.25,
+        "craft_huangtongkuang": 0.25
+      },
       "money": {
         "min": 24,
         "max": 58
@@ -6784,9 +9299,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6816,9 +9353,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6848,11 +9407,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.19,
+        "craft_mabu": 0.19,
+        "craft_huangyangmu": 0.19,
+        "craft_huangtongkuang": 0.19
+      },
       "money": {
         "min": 22,
         "max": 53
@@ -6880,9 +9466,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6912,9 +9520,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -6944,11 +9574,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.31,
+        "craft_mabu": 0.31,
+        "craft_huangyangmu": 0.31,
+        "craft_huangtongkuang": 0.31
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -6976,11 +9633,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -7338,9 +10022,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -7370,9 +10076,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7402,9 +10130,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7434,9 +10184,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -7466,9 +10238,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7498,9 +10283,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7530,9 +10328,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7562,11 +10382,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 15,
         "max": 37
@@ -7594,9 +10441,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7626,11 +10495,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -7658,9 +10554,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7690,9 +10608,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7722,9 +10662,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -7754,9 +10716,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8146,9 +11121,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8178,9 +11171,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8210,9 +11221,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -8242,9 +11275,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8274,9 +11325,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8306,9 +11375,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8338,9 +11420,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8370,9 +11470,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8402,9 +11515,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -8434,9 +11569,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -8466,9 +11623,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8498,9 +11673,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8530,9 +11718,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -8562,9 +11763,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -9224,9 +12447,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9256,9 +12501,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9288,9 +12555,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9320,11 +12600,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.22,
+        "craft_mabu": 0.22,
+        "craft_huangyangmu": 0.22,
+        "craft_huangtongkuang": 0.22
+      },
       "money": {
         "min": 23,
         "max": 55
@@ -9352,9 +12659,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9384,9 +12713,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9416,9 +12767,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9448,11 +12821,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.25,
+        "craft_mabu": 0.25,
+        "craft_huangyangmu": 0.25,
+        "craft_huangtongkuang": 0.25
+      },
       "money": {
         "min": 24,
         "max": 58
@@ -9480,9 +12880,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9496,6 +12918,7 @@
     "name": "囚牛",
     "level": 40,
     "is_elite": true,
+    "is_divine_beast": true,
     "killable": true,
     "immortal": false,
     "description": "【兽王】囚牛",
@@ -9512,11 +12935,40 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "paoding_caidao",
+        "artifact_drop_rate": 1.0
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -9544,11 +12996,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.19,
+        "craft_mabu": 0.19,
+        "craft_huangyangmu": 0.19,
+        "craft_huangtongkuang": 0.19
+      },
       "money": {
         "min": 22,
         "max": 53
@@ -9576,11 +13055,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.28,
+        "craft_mabu": 0.28,
+        "craft_huangyangmu": 0.28,
+        "craft_huangtongkuang": 0.28
+      },
       "money": {
         "min": 26,
         "max": 62
@@ -9608,9 +13114,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9640,11 +13168,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.33,
+        "craft_mabu": 0.33,
+        "craft_huangyangmu": 0.33,
+        "craft_huangtongkuang": 0.33
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -9672,9 +13227,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -9704,11 +13281,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.31,
+        "craft_mabu": 0.31,
+        "craft_huangyangmu": 0.31,
+        "craft_huangtongkuang": 0.31
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -9736,9 +13340,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10128,9 +13754,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10160,9 +13808,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10192,9 +13862,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -10224,9 +13916,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10256,11 +13970,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 15,
         "max": 37
@@ -10288,9 +14029,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10320,9 +14074,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10352,9 +14119,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10384,9 +14164,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -10416,9 +14218,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10448,11 +14272,38 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -10480,9 +14331,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10512,9 +14385,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10544,9 +14439,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -10936,9 +14853,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -10968,9 +14907,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -11000,9 +14961,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11032,9 +15011,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11064,9 +15061,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11096,9 +15111,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11128,9 +15161,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11160,9 +15206,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11192,9 +15256,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11224,9 +15301,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -11256,9 +15355,27 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11288,9 +15405,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11320,9 +15450,22 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.15,
+        "templates": [
+          "qingbu_sword_10",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
       },
       "items": {},
       "money": {
@@ -11352,9 +15495,31 @@
     ],
     "drops": {
       "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
+        "drop_rate": 0.3,
+        "templates": [
+          "baopi_helmet_19",
+          "baopi_armor_18",
+          "baopi_pants_17",
+          "baopi_gloves_16",
+          "baopi_shoes_15",
+          "shuiwen_helmet_19",
+          "shuiwen_armor_18",
+          "shuiwen_pants_17",
+          "shuiwen_gloves_16",
+          "shuiwen_shoes_15",
+          "canglang_helmet_19",
+          "canglang_armor_18",
+          "canglang_pants_17",
+          "canglang_gloves_16",
+          "canglang_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
       "items": {},
       "money": {
@@ -12143,5 +16308,67 @@
       },
       "experience": 0
     }
+  },
+  "monster_luoyang_north_玄武": {
+    "name": "玄武",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【圣兽】玄武",
+    "base_stats": {
+      "health": 5000,
+      "mana": 1250,
+      "attack": 300,
+      "defense": 225,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "juque_jian",
+        "artifact_drop_rate": 1.0
+      },
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
+      "money": {
+        "min": 50,
+        "max": 110
+      },
+      "experience": 1500
+    },
+    "is_divine_beast": true
   }
 }

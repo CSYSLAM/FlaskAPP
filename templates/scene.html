@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>{{ location.get('name', '未知') }}（{{ location.get('area_name', '') }}）</title>
+    <title>{{ location.get('name', '未知') }}（{{ location.get('area_name', '') }}）{% if location.get('is_copy_map') %}【副本地图】{% endif %}</title>
 <style>
 body { font-size: 16px; }
 a:link { color: #136ec2; text-decoration: none; }
+.map-label { margin: 2px 0; }
+.scene-tools { margin-bottom: 2px; }
+.quick-actions { margin-top: 6px; }
+.quick-actions-row { margin-bottom: 2px; }
 
 .rarity-common { color: #ccc; }
 .rarity-uncommon { color: #2eff2e; }
@@ -84,6 +88,19 @@ a:link { color: #136ec2; text-decoration: none; }
 
 <div id="loading"><span></span></div>
 
+<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="{{ url_for('map.index') }}">地图</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
+
+    {% if public_messages %}
+{% for msg in public_messages|reverse %}
+【公共】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}<br/>
+{% endfor %}
+{% endif %}
+{% if country_messages %}
+{% for msg in country_messages|reverse %}
+【{{ player.country }}】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}<br/>
+{% endfor %}
+{% endif %}
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for msg in messages %}
@@ -92,16 +109,9 @@ a:link { color: #136ec2; text-decoration: none; }
     {% endif %}
     {% endwith %}
 
-    {% if public_messages %}
-{% for msg in public_messages|reverse %}
-{% if msg.message_type == 'system' %}【系统】{{ msg.content }}<br/>{% else %}【公共】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}<br/>{% endif %}
-{% endfor %}
-{% endif %}
+*{{ location.get('name', '未知') }}({{ location.get('area_name', '') }}){% if location.get('is_copy_map') %}【副本地图】{% endif %}<br/>
 
-<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle">关地图</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
-
-*{{ location.get('name', '未知') }}({{ location.get('area_name', '') }})<br/>
-
+<div class="map-label">显示地图</div>
 <div id="mapContainer" style="width: 130px; background-color: #fafad2;">
 <div style="font-size:0;">
 
@@ -209,15 +219,38 @@ a:link { color: #136ec2; text-decoration: none; }
 </div>
 </div>
 
-<a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle2">关地图</a><br/>
+<div class="scene-tools">
+<a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle">关地图</a>. <a href="{{ url_for('guide.index') }}">攻略</a><br/>
+</div>
 
 {% if location.get('north_exit') %}
 北:↑ <a href="{{ url_for('game.move', direction='north') }}">{{ locations[location['north_exit']].get('name', '') }}</a><br/>
 {% endif %}
+{% set has_wood_raft = DataService.get_inventory_item(player.id, 'wood_raft') %}
 {% if location.get('west_exit') or location.get('east_exit') %}
-{% if location.get('west_exit') %}西:← <a href="{{ url_for('game.move', direction='west') }}">{{ locations[location['west_exit']].get('name', '') }}</a>{% endif %}
+{% if location.get('west_exit') %}
+{% if location.get('name') == '兖州' and locations[location['west_exit']].get('name') == '黄河岸边' %}
+{% if has_wood_raft %}
+西:← <a href="{{ url_for('game.move', direction='west') }}">渡河至[{{ locations[location['west_exit']].get('name', '') }}]</a>
+{% else %}
+西:← 黄河岸边(需木筏)
+{% endif %}
+{% else %}
+西:← <a href="{{ url_for('game.move', direction='west') }}">{{ locations[location['west_exit']].get('name', '') }}</a>
+{% endif %}
+{% endif %}
 {% if location.get('west_exit') and location.get('east_exit') %}  {% endif %}
-{% if location.get('east_exit') %}右:→ <a href="{{ url_for('game.move', direction='east') }}">{{ locations[location['east_exit']].get('name', '') }}</a>{% endif %}
+{% if location.get('east_exit') %}
+{% if location.get('name') == '黄河岸边' and locations[location['east_exit']].get('name') == '兖州' %}
+{% if has_wood_raft %}
+右:→ <a href="{{ url_for('game.move', direction='east') }}">渡河至[{{ locations[location['east_exit']].get('name', '') }}]</a>
+{% else %}
+右:→ 兖州(需木筏)
+{% endif %}
+{% else %}
+右:→ <a href="{{ url_for('game.move', direction='east') }}">{{ locations[location['east_exit']].get('name', '') }}</a>
+{% endif %}
+{% endif %}
 <br/>
 {% endif %}
 {% if location.get('south_exit') %}
@@ -228,15 +261,26 @@ a:link { color: #136ec2; text-decoration: none; }
 {% if monsters is defined and monsters %}
 怪物:
 {% for monster in monsters %}
-{% if monster.is_elite %}【精】{% endif %}<a href="{{ url_for('game.encounter') if monster.killable else url_for('game.view_npc', monster_id=monster.monster_id) }}">{{ monster.name }}</a>({{ monster.level }}级){% if not loop.last %}、{% endif %}
+{% if monster.is_divine_beast %}
+{% if monster.respawning %}
+{{ monster.description }}({{ monster.level }}级,复活中)
+{% else %}
+<a href="{{ url_for('game.encounter') }}">{{ monster.description }}({{ monster.level }}级)</a>
+{% endif %}
+{% elif monster.is_elite %}
+{% if monster.respawning %}
+{% if monster.is_copy %}【副本】{% endif %}{% if '【精】' not in monster.name %}【精】{% endif %}{{ monster.name }}({{ monster.level }}级精,复活中)
+{% else %}
+<a href="{{ url_for('game.encounter') }}">{% if monster.is_copy %}【副本】{% endif %}{% if '【精】' not in monster.name %}【精】{% endif %}{{ monster.name }}({{ monster.level }}级精)</a>
+{% endif %}
+{% else %}
+<a href="{{ url_for('game.encounter') if monster.killable else url_for('game.view_npc', monster_id=monster.monster_id) }}">{% if monster.is_copy %}【副本】{% endif %}{{ monster.name }}</a>({{ monster.level }}级){% endif %}{% if not loop.last %}、{% endif %}
 {% endfor %}
 <br/>
 {% endif %}
 
 {% if npcs %}
-{% for npc in npcs %}
-{{ npc.name }} <a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">对话</a><br/>
-{% endfor %}
+看到：{% for npc in npcs %}{% if npc.task_icon %}<img src="{{ url_for('ref_file', filename=npc.task_icon) }}" alt="任务标记">{% endif %}<a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">{{ npc.name }}</a> {% endfor %}<br/>
 {% endif %}
 
 {% if ground_items %}
@@ -257,7 +301,22 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endif %}
 
 <br/>
-<a href="{{ url_for('player.character') }}">角色</a> .<a href="{{ url_for('player.inventory') }}">背包</a> .<a href="{{ url_for('social.chat') }}">聊天</a> .<a href="{{ url_for('activity.index') }}">活动</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a> .<a href="{{ url_for('villa.index') }}">山庄</a> .<a href="{{ url_for('social.social_index') }}">社交</a> .<a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('guide.index') }}">攻略</a> .<a href="{{ url_for('map.index') }}">地图</a><br/>
+<div class="quick-actions">
+    <div class="quick-actions-row">
+        <a href="{{ url_for('player.character') }}">角色</a> . <a href="{{ url_for('player.inventory') }}">背包</a> . <a href="{{ url_for('social.chat') }}">聊天</a> . 
+        <a href="{{ url_for('activity.index') }}">活动</a>
+    </div>
+    <div class="quick-actions-row">
+        <a href="{{ url_for('lieutenant.index') }}">副将</a> . <a href="{{ url_for('villa.index') }}">山庄</a> . <a href="{{ url_for('social.social_index') }}">社交</a> . 
+        <a href="{{ url_for('vip.index') }}">VIP</a>
+    </div>
+    <div class="quick-actions-row">
+        <a href="{{ url_for('rank.index') }}">排行</a>
+        {% if player.is_designer %}
+         . <a href="{{ url_for('workbench.index') }}">工作台</a>
+        {% endif %}
+    </div>
+</div>
 <br/>
 {{ now.strftime('%H:%M') }}<br/>
 <br/>
@@ -267,11 +326,10 @@ a:link { color: #136ec2; text-decoration: none; }
 function toggleMap() {
     var c = document.getElementById('mapContainer');
     var t1 = document.getElementById('mapToggle');
-    var t2 = document.getElementById('mapToggle2');
     if (c.style.display === 'none') {
-        c.style.display = 'block'; t1.textContent = '关地图'; t2.textContent = '关地图';
+        c.style.display = 'block'; t1.textContent = '关地图';
     } else {
-        c.style.display = 'none'; t1.textContent = '开地图'; t2.textContent = '开地图';
+        c.style.display = 'none'; t1.textContent = '开地图';
     }
 }
 var aLinks = document.getElementsByTagName("a");

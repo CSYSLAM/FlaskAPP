@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>设置设计师</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .flash { color: green; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}<span class="flash">{{ messages[0] }}</span><br/>{% endif %}
+    {% endwith %}
+
+    <h3>设置/取消设计师</h3>
+
+    <form method="post">
+        玩家ID/用户名/UID: <input type="text" name="target_id" value="{{ target.username if target else '' }}" placeholder="输入ID/用户名/UID">
+        <button type="submit">查询</button>
+    </form>
+
+    {% if target %}
+    <p>
+        玩家: {{ target.nickname }}(UID:{{ target.player_uid }}) | {{ target.player_class }} | Lv.{{ target.level }}<br/>
+        当前状态: {% if target.is_designer %}<span style="color:red">设计师</span>{% else %}普通玩家{% endif %}
+    </p>
+    <form method="post">
+        <input type="hidden" name="target_id" value="{{ target.player_uid }}">
+        <input type="hidden" name="toggle" value="1">
+        <button type="submit">{% if target.is_designer %}取消设计师{% else %}设为设计师{% endif %}</button>
+    </form>
+    {% endif %}
+</div>
+</body>
+</html>

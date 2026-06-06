@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>天命三国2</title>
+    <style>
+        body { margin: 0 10px; font-size: 16px; line-height: 1.8; }
+        a:link, a:visited { color: #136ec2; text-decoration: none; }
+        form { display: inline; margin: 0; }
+        input[type="submit"] { padding: 0; border: 0; background: none; color: #136ec2; font: inherit; cursor: pointer; }
+        #loading { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 9999; }
+        #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="loading"><span></span></div>
+
+    {% set quest_title = "副·" ~ stage.name if stage else dungeon.name %}
+    {% set progress_text = (stage.progress_label ~ "(" ~ state.progress ~ "/" ~ stage.required_count ~ ")") if stage else "暂无进度" %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    天命三国2<br/>
+
+    {% if monster.copy_role == 'entry_npc' and (not state.accepted or state.completed or state.reward_claimed) %}
+    {{ dungeon.name }}<br/>
+    进入需要消耗：{{ entry_item_name }} x{{ entry_item_count }}<br/>
+    <br/>
+    <a href="{{ url_for('dungeon.enter', dungeon_id=dungeon_id) }}">进入副本</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+    {% elif view_mode == 'npc' %}
+    {{ monster.name }}<br/>
+    {{ monster.description }}<br/>
+    {% if stage and is_current_quest_giver %}
+    <a href="{{ url_for('game.view_npc', monster_id=npc_id, mode='handin' if state.accepted and state.ready_to_complete else 'task') }}">{{ quest_title }}</a><br/>
+    {% endif %}
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+    {% elif view_mode == 'handin' and stage %}
+    {{ quest_title }}<br/>
+    {{ stage.objective }}<br/>
+    任务奖励:<br/>
+    经验+{{ stage.reward.experience or 0 }}<br/>
+    银两+{{ stage.reward.gold or 0 }}<br/>
+    任务进度:<br/>
+    {{ progress_text }}<br/>
+    {% if state.accepted and state.ready_to_complete and not state.completed %}
+    <form method="POST" action="{{ url_for('dungeon.action', npc_id=npc_id) }}">
+        <input type="hidden" name="action" value="complete">
+        <input type="submit" value="完成任务">
+    </form><br/>
+    {% endif %}
+    <a href="{{ url_for('game.view_npc', monster_id=npc_id) }}">返回</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+    {% elif stage %}
+    {{ quest_title }}<br/>
+    {% if state.accepted %}
+    任务来自:{{ monster.name }} <a href="{{ url_for('dungeon.jump', npc_id=npc_id, target='entry') }}">传送</a><br/>
+    {% endif %}
+    {{ stage.objective }}<br/>
+    {% if state.accepted and not state.ready_to_complete %}
+    <a href="{{ url_for('dungeon.jump', npc_id=npc_id, target='stage') }}">快速前往目的地</a><br/>
+    {% endif %}
+    任务奖励:<br/>
+    经验+{{ stage.reward.experience or 0 }}<br/>
+    银两+{{ stage.reward.gold or 0 }}<br/>
+    {% if state.accepted %}
+    任务进度:<br/>
+    {{ progress_text }}<br/>
+    {% endif %}
+    {% if not state.accepted %}
+    <form method="POST" action="{{ url_for('dungeon.action', npc_id=npc_id) }}">
+        <input type="hidden" name="action" value="accept">
+        <input type="submit" value="接受任务">
+    </form><br/>
+    {% endif %}
+    {% if state.accepted and not state.completed and not state.reward_claimed %}
+    <form method="POST" action="{{ url_for('dungeon.action', npc_id=npc_id) }}">
+        <input type="hidden" name="action" value="leave">
+        <input type="submit" value="离开副本">
+    </form><br/>
+    {% endif %}
+    <a href="{{ url_for('game.view_npc', monster_id=npc_id) }}">返回</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+    {% else %}
+    {{ monster.name }}<br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+    {% endif %}
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for (var i = 0; i < aLinks.length; i++) {
+    aLinks[i].onclick = function () { document.getElementById('loading').style.display = 'block'; };
+}
+var inputs = document.getElementsByTagName("input");
+for (var j = 0; j < inputs.length; j++) {
+    if (inputs[j].type === 'submit') {
+        inputs[j].onclick = function () { document.getElementById('loading').style.display = 'block'; };
+    }
+}
+setTimeout(function () { document.getElementById('loading').style.display = 'none'; }, 350);
+</script>
+</body>
+</html>

@@ -63,7 +63,7 @@ def view_player(username):
 @login_required
 def military_ranks():
     rank_order = [
-        "列兵", "十夫长", "百夫长", "校尉", "都尉",
+        "士兵", "十夫长", "百夫长", "校尉", "都尉",
         "裨将", "偏将", "中郎将", "车骑将军", "骠骑将军",
         "大司马", "大都督",
     ]

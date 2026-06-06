@@ -17,30 +17,43 @@ class SocialService:
 
     @classmethod
     def send_public_message(cls, player, content):
+        """Public chat - consumes 小喇叭 (horn_small)."""
+        inv = DataService.get_inventory_item(player.id, 'horn_small')
+        if not inv or inv.quantity <= 0:
+            return False, "需要一个小喇叭才能在公共频道发言"
+
+        DataService.remove_item_from_inventory(player.id, 'horn_small', 1)
+
         msg = ChatMessage(
             sender_id=player.id,
             content=content,
-            message_type='player'
+            message_type='public'
         )
         db.session.add(msg)
 
         player.chat_count = (player.chat_count or 0) + 1
-
-        chat_history = player.get_chat_history()
-        chat_history["public"] = chat_history.get("public", [])
-        chat_history["public"].append({
-            "sender": player.nickname,
-            "content": content,
-            "type": "player"
-        })
-        if len(chat_history["public"]) > 50:
-            chat_history["public"] = chat_history["public"][-50:]
-        player.set_chat_history(chat_history)
         db.session.commit()
 
         from services.achievement_service import AchievementService
         AchievementService.check(player, 'chat', player.chat_count)
+        return True, None
+
+    @classmethod
+    def send_country_message(cls, player, content):
+        """Country chat - only visible to same country, free."""
+        msg = ChatMessage(
+            sender_id=player.id,
+            content=content,
+            message_type='country'
+        )
+        db.session.add(msg)
+
+        player.chat_count = (player.chat_count or 0) + 1
         db.session.commit()
+
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'chat', player.chat_count)
+        return True, None
 
     @classmethod
     def send_private_message(cls, sender, receiver, content):
@@ -51,20 +64,6 @@ class SocialService:
             message_type='private'
         )
         db.session.add(msg)
-
-        for p in [sender, receiver]:
-            history = p.get_chat_history()
-            key = f"private_{min(sender.id, receiver.id)}_{max(sender.id, receiver.id)}"
-            history[key] = history.get(key, [])
-            history[key].append({
-                "sender": sender.nickname,
-                "content": content,
-                "type": "private"
-            })
-            if len(history[key]) > 50:
-                history[key] = history[key][-50:]
-            p.set_chat_history(history)
-
         db.session.commit()
 
     @classmethod
@@ -128,21 +127,60 @@ class SocialService:
     @classmethod
     def get_public_messages(cls, limit=20):
         return ChatMessage.query.filter_by(
-            message_type='player',
+            message_type='public',
             receiver_id=None
         ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
 
     @classmethod
-    def get_private_messages(cls, player1_id, player2_id, limit=20):
+    def get_country_messages(cls, country, limit=20):
+        """Get country chat messages for a specific country."""
+        players = PlayerModel.query.filter_by(country=country).all()
+        player_ids = [p.id for p in players]
+        if not player_ids:
+            return []
         return ChatMessage.query.filter(
-            ChatMessage.message_type == 'private',
+            ChatMessage.message_type == 'country',
+            ChatMessage.sender_id.in_(player_ids)
+        ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
+
+    @classmethod
+    def get_system_messages(cls, limit=20):
+        return ChatMessage.query.filter_by(
+            message_type='system'
+        ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
+
+    @classmethod
+    def get_notification_messages(cls, player_id, limit=20):
+        """Get personal notifications (system broadcasts + private messages)."""
+        return ChatMessage.query.filter(
             db.or_(
-                db.and_(ChatMessage.sender_id == player1_id,
-                        ChatMessage.receiver_id == player2_id),
-                db.and_(ChatMessage.sender_id == player2_id,
-                        ChatMessage.receiver_id == player1_id)
+                ChatMessage.message_type == 'system',
+                db.and_(ChatMessage.message_type == 'private',
+                        ChatMessage.receiver_id == player_id)
             )
         ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
+
+    @classmethod
+    def get_private_messages(cls, player1_id, player2_id=None, limit=20):
+        if player2_id:
+            return ChatMessage.query.filter(
+                ChatMessage.message_type == 'private',
+                db.or_(
+                    db.and_(ChatMessage.sender_id == player1_id,
+                            ChatMessage.receiver_id == player2_id),
+                    db.and_(ChatMessage.sender_id == player2_id,
+                            ChatMessage.receiver_id == player1_id)
+                )
+            ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
+        else:
+            # All private messages for this player (sent or received)
+            return ChatMessage.query.filter(
+                ChatMessage.message_type == 'private',
+                db.or_(
+                    ChatMessage.sender_id == player1_id,
+                    ChatMessage.receiver_id == player1_id
+                )
+            ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
 
     # --- Friends ---
 

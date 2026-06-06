@@ -30,7 +30,23 @@
       "Bash(taskkill /F /IM python.exe /T)",
       "Bash(taskkill /F /PID 25556 /PID 27604 /PID 8696 /PID 22196 /PID 32428 /PID 26868 /PID 536 /PID 29404)",
       "Bash(powershell *)",
-      "Bash(rm -f instance/game1.db)"
+      "Bash(rm -f instance/game1.db)",
+      "Bash(/c/software/anaconda3/python *)",
+      "Bash(del *)",
+      "Bash(taskkill //f //im python.exe)",
+      "Bash(ls C:\\\\\\\\csy_work\\\\\\\\fysg\\\\\\\\1008\\\\\\\\FlaskAPP\\\\\\\\temp_fix_base_stats.py)",
+      "Bash(cd C:\\\\\\\\csy_work\\\\\\\\fysg\\\\\\\\1008\\\\\\\\FlaskAPP)",
+      "Bash(echo \"exit: $?\")",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(env)",
+      "Bash(npx @playwright/mcp@latest --help)",
+      "Bash(npx @playwright/mcp@latest --version)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_fill_form",
+      "mcp__playwright__browser_type"
     ]
   }
 }

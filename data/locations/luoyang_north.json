@@ -74,7 +74,8 @@
       "exits": {
         "west": "luoyang_north.寒门",
         "east": "luoyang_north.特权V5地图"
-      }
+      },
+      "monster_type": "monster_luoyang_north_玄武"
     },
     "特权V5地图": {
       "name": "特权V5地图",

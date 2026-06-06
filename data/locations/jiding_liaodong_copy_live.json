@@ -1,0 +1,107 @@
+{
+  "name": "计定辽东副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "jiding_liaodong",
+  "scenes": {
+    "易州城": {
+      "name": "易州城(副本)",
+      "exits": {
+        "west": "jiding_liaodong_copy_live.神医坊",
+        "east": "jiding_liaodong_copy_live.卢龙口"
+      },
+      "npcs": [
+        "npc_jiding_copy_曹操"
+      ]
+    },
+    "神医坊": {
+      "name": "神医坊",
+      "exits": {
+        "north": "jiding_liaodong_copy_live.北沙漠",
+        "south": "jiding_liaodong_copy_live.须弥山",
+        "east": "jiding_liaodong_copy_live.易州城"
+      },
+      "npcs": [
+        "npc_jiding_copy_华佗",
+        "npc_jiding_copy_郭嘉"
+      ],
+      "monsters": [
+        "monster_jiding_copy_冒牌神医"
+      ]
+    },
+    "须弥山": {
+      "name": "须弥山",
+      "exits": {
+        "north": "jiding_liaodong_copy_live.神医坊"
+      },
+      "monsters": [
+        "monster_jiding_copy_山中精怪"
+      ]
+    },
+    "北沙漠": {
+      "name": "北沙漠",
+      "exits": {
+        "south": "jiding_liaodong_copy_live.神医坊"
+      },
+      "monsters": [
+        "monster_jiding_copy_毒蝎"
+      ]
+    },
+    "卢龙口": {
+      "name": "卢龙口",
+      "exits": {
+        "west": "jiding_liaodong_copy_live.易州城",
+        "east": "jiding_liaodong_copy_live.百檀"
+      },
+      "npcs": [
+        "npc_jiding_copy_田畴"
+      ],
+      "monsters": [
+        "monster_jiding_copy_敌军探子"
+      ]
+    },
+    "百檀": {
+      "name": "百檀",
+      "exits": {
+        "west": "jiding_liaodong_copy_live.卢龙口",
+        "east": "jiding_liaodong_copy_live.白狼山口"
+      }
+    },
+    "白狼山口": {
+      "name": "白狼山口",
+      "exits": {
+        "west": "jiding_liaodong_copy_live.百檀",
+        "east": "jiding_liaodong_copy_live.白狼山前"
+      }
+    },
+    "白狼山前": {
+      "name": "白狼山前",
+      "exits": {
+        "west": "jiding_liaodong_copy_live.白狼山口",
+        "north": "jiding_liaodong_copy_live.柳城"
+      },
+      "monsters": [
+        "monster_jiding_copy_他顿"
+      ]
+    },
+    "柳城": {
+      "name": "柳城",
+      "exits": {
+        "south": "jiding_liaodong_copy_live.白狼山前",
+        "east": "jiding_liaodong_copy_live.太守府"
+      },
+      "monsters": [
+        "monster_jiding_copy_袁尚"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "west": "jiding_liaodong_copy_live.柳城"
+      },
+      "monsters": [
+        "monster_jiding_copy_辽东兵",
+        "monster_jiding_copy_公孙瓒"
+      ]
+    }
+  }
+}

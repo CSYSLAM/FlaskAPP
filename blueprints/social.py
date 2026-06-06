@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, flash
 from flask_login import login_required, current_user
+from datetime import datetime
 from models.player import PlayerModel, EquipmentInstance
 from models.relationship import Relationship
 from services import db
@@ -15,6 +16,20 @@ social_bp = Blueprint('social', __name__)
 def social_index():
     player = current_user
     return render_template("social_index.html", player=player)
+
+
+@social_bp.route("/search_player")
+@login_required
+def search_player():
+    uid = request.args.get("uid", "").strip()
+    if not uid:
+        flash("请输入玩家ID")
+        return redirect(url_for('social.social_index'))
+    target = DataService.get_player_by_uid(uid)
+    if not target:
+        flash("找不到该玩家")
+        return redirect(url_for('social.social_index'))
+    return redirect(url_for('player.view_player', username=target.username))
 
 
 # --- Friends ---
@@ -201,12 +216,24 @@ def break_relation(username):
 @login_required
 def chat():
     player = current_user
-    messages = SocialService.get_public_messages(20)
+    tab = request.args.get('tab', 'public')
+
+    if tab == 'country':
+        messages = SocialService.get_country_messages(player.country, 20)
+    elif tab == 'system':
+        messages = SocialService.get_system_messages(20)
+    elif tab == 'private':
+        messages = SocialService.get_private_messages(player.id, None, 20)
+    else:
+        messages = SocialService.get_public_messages(20)
+
     notifications = player.notifications[:5]
     return render_template("chat.html",
                          player=player,
                          messages=messages,
-                         notifications=notifications)
+                         notifications=notifications,
+                         tab=tab,
+                         now=datetime.now())
 
 
 @social_bp.route("/send_message", methods=["POST"])
@@ -214,9 +241,21 @@ def chat():
 def send_message():
     player = current_user
     content = request.form.get("content", "").strip()
-    if content:
-        SocialService.send_public_message(player, content)
-    return redirect(request.referrer or url_for("social.chat"))
+    tab = request.form.get("tab", "public")
+    if not content:
+        flash("内容不能为空")
+        return redirect(url_for("social.chat", tab=tab))
+
+    if tab == 'public':
+        success, err = SocialService.send_public_message(player, content)
+        if not success:
+            flash(err)
+        else:
+            flash("发言成功")
+    elif tab == 'country':
+        SocialService.send_country_message(player, content)
+        flash("发言成功")
+    return redirect(url_for("social.chat", tab=tab))
 
 
 @social_bp.route("/private/<username>")
@@ -286,26 +325,6 @@ def toggle_view(view_type):
     player = current_user
     player.current_view = view_type
     db.session.commit()
-    return redirect(url_for("social.chat"))
-
-
-@social_bp.route("/shout", methods=["POST"])
-@login_required
-def shout():
-    player = current_user
-    content = request.form.get("content", "").strip()
-    if not content:
-        flash("内容不能为空")
-        return redirect(url_for("social.chat"))
-
-    inv = DataService.get_inventory_item(player.id, "megaphone")
-    if not inv or inv.quantity <= 0:
-        flash("需要一个大喇叭道具")
-        return redirect(url_for("social.chat"))
-
-    DataService.remove_item_from_inventory(player.id, "megaphone", 1)
-    SocialService.send_public_message(player, content)
-    flash("已在公共频道发言")
     return redirect(url_for("social.chat"))
 
 

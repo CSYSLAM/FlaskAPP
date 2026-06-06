@@ -111,7 +111,10 @@
       "name": "铁匠铺",
       "exits": {
         "south": "xiapi_center.西后街"
-      }
+      },
+      "npcs": [
+        "npc_xiapi_center_下邳铁匠"
+      ]
     },
     "酒馆": {
       "name": "酒馆",

@@ -11,6 +11,7 @@ class PlayerModel(db.Model, UserMixin):
     __tablename__ = 'players'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_uid = db.Column(db.String(10), unique=True, nullable=True, index=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
     nickname = db.Column(db.String(64), nullable=False)
@@ -108,6 +109,12 @@ class PlayerModel(db.Model, UserMixin):
     vip_exp = db.Column(db.Integer, default=0)
     vip_expire_time = db.Column(db.DateTime, nullable=True)
     vip_daily_claimed_raw = db.Column('vip_daily_claimed', db.Text, default='{}')
+
+    # Story
+    story_completed = db.Column(db.Boolean, default=False)
+
+    # Designer
+    is_designer = db.Column(db.Boolean, default=False)
 
     @property
     def is_vip(self):
@@ -440,7 +447,8 @@ class PlayerModel(db.Model, UserMixin):
         passive = self.get_passive_bonuses()
         title_bonuses = TitleService.get_title_bonuses(self)
         lt_bonus = PlayerService._get_lt_passive_bonus(self, 'crit')
-        return self.crit_rate + passive.get('crit_rate', 0) + title_bonuses.get('crit_rate', 0) + lt_bonus
+        equip_bonus = PlayerService._get_equipment_stat_sum(self, 'crit_rate')
+        return self.crit_rate + passive.get('crit_rate', 0) + title_bonuses.get('crit_rate', 0) + lt_bonus + equip_bonus
 
     @property
     def effective_dodge_rate(self):
@@ -449,7 +457,8 @@ class PlayerModel(db.Model, UserMixin):
         passive = self.get_passive_bonuses()
         title_bonuses = TitleService.get_title_bonuses(self)
         lt_bonus = PlayerService._get_lt_passive_bonus(self, 'dodge')
-        return self.dodge_rate + passive.get('dodge_rate', 0) + title_bonuses.get('dodge_rate', 0) + lt_bonus
+        equip_bonus = PlayerService._get_equipment_stat_sum(self, 'dodge_rate')
+        return self.dodge_rate + passive.get('dodge_rate', 0) + title_bonuses.get('dodge_rate', 0) + lt_bonus + equip_bonus
 
     @property
     def inventory(self):

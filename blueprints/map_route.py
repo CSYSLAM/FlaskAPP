@@ -29,6 +29,11 @@ def teleport():
     player = current_user
     msg = None
 
+    location = DataService.get_location(player.current_location)
+    if location and location.get('is_copy_map'):
+        flash("副本内无法使用传送，请先放弃副本再离开")
+        return redirect(url_for('game.scene'))
+
     if request.method == "POST":
         target = request.form.get("target")
         if not target:
@@ -40,7 +45,7 @@ def teleport():
                 flash(msg)
                 return redirect(url_for('game.scene'))
 
-    return render_template("map_teleport.html", player=player, msg=msg)
+    return render_template("map_teleport.html", player=player, msg=msg, copy_dungeons=DataService.get_copy_dungeons())
 
 
 @map_bp.route("/town")
@@ -50,6 +55,10 @@ def town():
     player = current_user
     location_id = player.current_location
     location = DataService.get_location(location_id)
+
+    if location and location.get('is_copy_map'):
+        flash("副本内无法使用回城，请先放弃副本再离开")
+        return redirect(url_for('game.scene'))
 
     result = MapService.town(player)
     msg = result['msg']
@@ -82,6 +91,11 @@ def shenxing():
 def shenxing_go(scene_id):
     """执行神行传送"""
     player = current_user
+    location = DataService.get_location(player.current_location)
+    if location and location.get('is_copy_map'):
+        flash("副本内无法使用神行，请先放弃副本再离开")
+        return redirect(url_for('game.scene'))
+
     result = MapService.shenxing(player, scene_id)
     if result['success']:
         flash(result['msg'])

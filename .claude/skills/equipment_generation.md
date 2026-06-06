@@ -47,6 +47,9 @@
 四、神器规则
 - 模板 `is_artifact` 为 true 时，直接生成“神器”，跳过普通品质权重；
 - 模板 `is_artifact` 为 false 时，最高仅到“史诗”。
+- 怪物来源额外强约束：`EquipmentGenerator.generate_from_pool(source=monster, ...)` 必须排除神器模板，不能因为模板池混入 `is_artifact=true` 而掉出神器。
+- 普通怪和精英怪都不允许出神器；神器只允许活动、宝箱、专门配置的特殊来源产出。
+- 品质权重即使只传入子集，例如 `{common, uncommon}` 或 `{uncommon, rare, epic}`，也必须严格按该子集抽取，不能回退到默认全品质池。
 
 五、宝箱/锻造/活动示例
 调用统一接口 `EquipmentGenerator.generate` 或 `generate_from_pool`，将 source 设置为对应来源。
@@ -148,5 +151,19 @@ equip = Equipment(roll["template_id"], roll["rarity"], roll["stars"])
 - 精英默认品质池：{"普通":0.4, "精良":0.3, "卓越":0.2, "史诗":0.1}
 - 默认星级范围：(1,5)
 - 模板 is_artifact=true 时强制“神器”
+
+八、怪物掉落实现约束
+- 普通怪默认回退品质只能是：`普通 / 精良`
+- 精英怪默认回退品质只能是：`精良 / 卓越 / 史诗`
+- `generate_from_pool` 在怪物来源下要先过滤 `is_artifact=true` 模板，再做模板抽取
+- `rarity_weights` 为字典时，不论键数量是 2、3、4 还是 5，都要直接按传入键集合抽取，不能因为“不满五档”就退回默认品质池
+
+九、黄巾副本专用约束
+- `黄巾士兵`、`黄巾头目`、`偷伐人` 只允许掉落 `普通 / 精良`
+- 这些怪的掉落模板来自雏龙套、麻布套等普通套装，绝不允许出现 `【神器】`
+- 如果出现普通副本怪掉落神器，优先检查：
+  - 模板池是否混入 `is_artifact=true`
+  - `generate_from_pool` 是否对 monster source 正确过滤神器模板
+  - `_roll_rarity_from_weights` 是否错误回退到了默认全品质池
 
 

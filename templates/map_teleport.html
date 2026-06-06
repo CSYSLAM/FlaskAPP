@@ -97,6 +97,14 @@ a:link { color: #136ec2; text-decoration: none; }
 【副本入口】<br/>
 黄巾起义(6级) | 计定辽东(16级) | 威震逍遥津(26级)<br/>
 官渡之战(36级) | 七擒孟获(46级) | 智斗马超(56级)<br/>
+{% if copy_dungeons %}
+<br/>
+【本地副本】<br/>
+{% for dungeon_id, dungeon in copy_dungeons.items() %}
+<a href="{{ url_for('dungeon.enter', dungeon_id=dungeon_id) }}">{{ dungeon.name }}</a>{% if not loop.last %} | {% endif %}
+{% endfor %}
+<br/>
+{% endif %}
 <br/>
 <a href="{{ url_for('map.index') }}">返回上级</a><br/>
 <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>

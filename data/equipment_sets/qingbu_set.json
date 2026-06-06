@@ -63,15 +63,15 @@
     "class_required": null,
     "is_artifact": false,
     "base_stats": {
-      "defense": 8,
-      "max_health": 30
+      "attack": 12,
+      "crit_rate": 0.04
     },
     "max_extra_stats": {
-      "defense": 6,
-      "max_health": 50,
-      "max_mana": 25,
+      "attack": 6,
       "crit_rate": 0.03,
-      "attack": 4
+      "max_health": 30,
+      "max_mana": 25,
+      "defense": 5
     }
   },
   "qingbu_pants_10": {

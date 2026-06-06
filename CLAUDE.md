@@ -36,6 +36,17 @@ Three-layer pattern: **Blueprints → Services → Models**
 - **In-memory chat**: `services/public_chat.py` stores messages in a Python list capped at 100 entries. Messages are lost on server restart.
 - **Equipment generation**: Procedural system in `services/equipment_generator.py` with 5 rarity tiers (common 40%, uncommon 30%, rare 20%, epic 8%, legendary 2%). See `docs/equipment_generation.md` for full design spec.
 
+## Interface Style
+
+All game-facing UI in `templates/` must follow the mobile WAP text-page style guide in `docs/wap_text_ui_skill.md`.
+
+Key rules:
+- Mobile-first, text-first, single-column layouts
+- Visual hierarchy should come from text, spacing, and restrained semantic color
+- Prefer lightweight links, inline CSS/JS, and low-resource interactions
+- Use animated gradient text only as sparse emphasis for rare or celebratory content
+- Avoid modern heavy card dashboards, oversized buttons, and framework-like UI chrome
+
 ## Blueprint URL Prefixes
 
 | Blueprint | Prefix | Purpose |

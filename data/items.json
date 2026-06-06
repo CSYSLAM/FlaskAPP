@@ -163,6 +163,103 @@
     "price": 100,
     "is_usable": false
   },
+  "shenyou_guo": {
+    "name": "神游果",
+    "type": "other",
+    "description": "进入副本需要消耗1个",
+    "price": 50,
+    "is_usable": false
+  },
+  "tianxiang_cao": {
+    "name": "天香草",
+    "type": "material",
+    "description": "须弥山中的珍稀草药，华佗入药所需。",
+    "price": 0,
+    "is_usable": false
+  },
+  "xie_du": {
+    "name": "蝎毒",
+    "type": "material",
+    "description": "北沙漠毒蝎的毒液，华佗用以以毒攻毒。",
+    "price": 0,
+    "is_usable": false
+  },
+  "miyao_bound": {
+    "name": "秘药(绑)",
+    "type": "material",
+    "description": "华佗炼制的秘药，需交给郭嘉服用。",
+    "price": 0,
+    "is_usable": false
+  },
+  "envelope_bound": {
+    "name": "信封(绑)",
+    "type": "material",
+    "description": "郭嘉写下的定计书信，需交给曹操。",
+    "price": 0,
+    "is_usable": false
+  },
+  "chest_copy_low": {
+    "name": "低级副本礼包",
+    "type": "chest",
+    "description": "开启可随机获得装备和道具",
+    "price": 500,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "mabu_helmet_5",
+            "mabu_armor_5",
+            "mabu_gloves_5",
+            "mabu_pants_5",
+            "mabu_shoes_5",
+            "qingbu_helmet_10",
+            "qingbu_armor_10",
+            "qingbu_gloves_10",
+            "qingbu_pants_10",
+            "qingbu_shoes_10"
+          ],
+          "rarity_weights": {
+            "普通": 0.4,
+            "精良": 0.3,
+            "卓越": 0.2,
+            "史诗": 0.08,
+            "神器": 0.02
+          },
+          "star_weights": {
+            "1": 0.2,
+            "2": 0.3,
+            "3": 0.3,
+            "4": 0.15,
+            "5": 0.05
+          }
+        }
+      ],
+      "random_items": [
+        {
+          "item_id": "potion_heal",
+          "max_count": 3,
+          "chance": 0.8,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "potion_mana",
+          "max_count": 2,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        }
+      ]
+    }
+  },
+  "wood_raft": {
+    "name": "木筏",
+    "type": "material",
+    "description": "渡河用的木筏，黄巾副本中用于前往最终战场。",
+    "price": 0,
+    "is_usable": false
+  },
   "chest_lv1_weapon": {
     "name": "1级武器礼盒",
     "type": "chest",
@@ -1062,5 +1159,13 @@
   "horn_small": {"name": "小喇叭", "type": "other", "description": "在公共频道发言一次", "is_usable": false},
   "box_key": {"name": "宝匣钥匙", "type": "material", "description": "用于打开宝匣"},
   "revive_lamp": {"name": "续命灯", "type": "material", "description": "可以满血复活", "price": 20, "currency": "yuanbao", "is_usable": false},
-  "reinforce_gem": {"name": "强化宝玉", "type": "material", "description": "用于强化装备的宝玉"}
+  "reinforce_gem": {"name": "强化宝玉", "type": "material", "description": "用于强化装备的宝玉"},
+  "craft_suipi": {"name": "碎皮", "type": "material", "description": "用于打造15-29级装备的基础材料", "is_usable": false, "price": 100},
+  "craft_mabu": {"name": "麻布", "type": "material", "description": "用于打造15-29级装备的基础材料", "is_usable": false, "price": 100},
+  "craft_huangyangmu": {"name": "黄杨木", "type": "material", "description": "用于打造15-29级装备的基础材料", "is_usable": false, "price": 100},
+  "craft_huangtongkuang": {"name": "黄铜矿", "type": "material", "description": "用于打造15-29级装备的特殊材料", "is_usable": false, "price": 150},
+  "craft_yingpi": {"name": "硬皮", "type": "material", "description": "用于打造35-60级装备的基础材料", "is_usable": false, "price": 200},
+  "craft_mianbu": {"name": "棉布", "type": "material", "description": "用于打造35-60级装备的基础材料", "is_usable": false, "price": 200},
+  "craft_chenxiangmu": {"name": "沉香木", "type": "material", "description": "用于打造35-60级装备的基础材料", "is_usable": false, "price": 200},
+  "craft_heitiekuang": {"name": "黑铁矿", "type": "material", "description": "用于打造35-60级装备的特殊材料", "is_usable": false, "price": 300}
 }

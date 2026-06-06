@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>天命三国2-选区</title>
+<style>
+body { font-size: 16px; }
+a:link { color: #136ec2; text-decoration: none; }
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body style="margin-left:10px;margin-right:10px">
+
+<div id="loading"><span></span></div>
+
+最新大区: <a href="{{ url_for('auth.select_role') }}">在梦三国[1区](爆)</a><br/>
+选游戏区进三国！<br/>
+<a href="{{ url_for('auth.select_role') }}">在梦三国[1区](爆)</a><br/>
+<br/>
+安全提示:请注意账号安全<br/>
+保存此页面为书签，再次进入无需登陆，游戏中的页面不支持书签访问。<br/>
+<a href="{{ url_for('auth.logout') }}">退出登陆</a><br/>
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
+</body>
+</html>

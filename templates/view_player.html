@@ -26,6 +26,7 @@
 
     <img src="{{ url_for('static', filename=target_player.get_avatar_path()) }}" border="0" height="53" width="45"/><br/>
     姓名:{{ target_player.name }}<br/>
+    ID:{{ target_player.player_uid }}<br/>
     性别:{{ target_player.gender }} 职业:{{ target_player.player_class }} 国家:{{ target_player.country }}<br/>
     徽章:{% if target_vip_level > 0 %}VIP{{ target_vip_level }}<img src="{{ url_for('static', filename='vip/vip_' ~ target_vip_level ~ '.jpg') }}" border="0" height="20"/>{% else %}VIP1<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="20" style="opacity:0.3;filter:grayscale(1);"/>{% endif %}<br/>
     军衔:{{ target_player.military_rank }}<br/>

@@ -24,6 +24,7 @@
     {% set title_display = player.get_title_display() %}
     称号:{% if title_display %}<a href="{{ url_for('player.titles') }}">{{ title_display }}</a>{% else %}无{% endif %}<br/>
     姓名:{{ player.name }}<br/>
+    ID:{{ player.player_uid }}<br/>
     性别:{{ player.gender }} 职业:{{ player.player_class }} 国家:{{ player.country }}<br/>
     徽章:{% if vip_level > 0 %}<a href="{{ url_for('vip.index') }}">VIP{{ vip_level }}</a><img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="20"/>{% else %}<a href="{{ url_for('vip.index') }}">VIP1</a><img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="20" style="opacity:0.3;filter:grayscale(1);"/>{% endif %}<br/>
     军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>

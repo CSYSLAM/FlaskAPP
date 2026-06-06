@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>史诗打造</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error { color: #d32f2f; background: #fce4ec; padding: 8px; margin: 8px 0; border-radius: 4px; }
+    .tab-bar { margin: 10px 0; }
+    .tab-bar a { display: inline-block; padding: 4px 12px; margin-right: 4px; border: 1px solid #136ec2; border-radius: 4px; }
+    .tab-bar a.active { background: #136ec2; color: #fff; }
+    .set-block { margin: 12px 0; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+    .set-title { font-weight: bold; margin-bottom: 6px; }
+    .forge-row { margin: 4px 0; padding: 4px 0; border-bottom: 1px dotted #eee; }
+    .forge-row:last-child { border-bottom: none; }
+    .forge-btn { color: #d32f2f; font-size: 14px; }
+    .material-hint { font-size: 13px; color: #666; }
+    .tooltip { position: relative; display: inline-block; }
+    .tooltip .tooltiptext { visibility: hidden; width: 200px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -100px; opacity: 0; transition: opacity 0.3s; font-size: 13px; }
+    .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    <div class="tab-bar">
+        <a href="{{ url_for('crafting.crafting_by_class', class_name='战士') }}" {% if active_class == '战士' %}class="active"{% endif %}>战士</a>
+        <a href="{{ url_for('crafting.crafting_by_class', class_name='术士') }}" {% if active_class == '术士' %}class="active"{% endif %}>术士</a>
+        <a href="{{ url_for('crafting.crafting_by_class', class_name='刺客') }}" {% if active_class == '刺客' %}class="active"{% endif %}>刺客</a>
+    </div>
+
+    史诗打造<br/>
+    打造成品随机精良、卓越、史诗，非绑材料打造为非绑，混合材料打造绑定！<br/><br/>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% for set in sets %}
+    <div class="set-block">
+        <div class="set-title">{{ set.name }}（{{ set.level_range }}）</div>
+        {% for tid in set.templates %}
+        {% set info = craft_info.get(tid) if craft_info else None %}
+        <div class="forge-row">
+            <div class="tooltip">{{ info.name if info else tid }}({{ info.level_required if info else '?' }}级{{ active_class[:1] }})
+                <span class="tooltiptext">
+                    打造需要: 银两x{{ info.silver if info else '?' }}{% if info %}{% for m in info.materials %}、{{ m.name }}x{{ m.quantity }}{% endfor %}{% endif %}
+                </span>
+            </div>|
+            <form method="POST" action="{{ url_for('crafting.forge_equipment', template_id=tid) }}" style="display:inline;">
+                <a href="#" class="forge-btn" onclick="this.parentNode.submit();return false;">打造</a>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){
+        if(aLinks[i].className.indexOf('forge-btn')===-1){
+            aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};
+        }
+    }
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

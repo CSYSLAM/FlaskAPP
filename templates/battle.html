@@ -56,7 +56,15 @@
     <br/>生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>
     {% endif %}
 
-    『{% if not is_pk and monster.is_elite %}精{% endif %}{{ monster.name }}』({{ monster.level }}级)<br/>
+    {% if is_pk %}
+    『{{ monster.name }}』({{ monster.level }}级)<br/>
+    {% elif monster.is_divine_beast %}
+    『{{ monster.description }}』({{ monster.level }}级) <font size="1">玩家:{{ participants }}</font><br/>
+    {% elif monster.is_elite %}
+    『{% if '【精】' not in monster.name and '【神】' not in monster.name %}【精】{% endif %}{{ monster.name }}』({{ monster.level }}级) <font size="1">玩家:{{ participants }}</font><br/>
+    {% else %}
+    『{{ monster.name }}』({{ monster.level }}级)<br/>
+    {% endif %}
     生命:{{ monster.health }}/{{ monster.max_health }}{% if not is_pk and monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}<br/>
     <font size="1">{% set health_percent = (monster.health / monster.max_health * 10) | round | int %}{% for i in range(10) %}{% if i < health_percent %}●{% else %}○{% endif %}{% endfor %}</font><br/>
 

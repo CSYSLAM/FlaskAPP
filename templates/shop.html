@@ -70,11 +70,20 @@
 {% if shop_data.total_pages > 1 %}
     {% if shop_data.has_prev %}
         <a href="{{ url_for('shop.shop', shop_id=shop_type, page=shop_data.page-1, per_page=shop_data.per_page) }}">上一页</a>
+    {% else %}
+        上一页
     {% endif %}
     {{ shop_data.page }}/{{ shop_data.total_pages }}
     {% if shop_data.has_next %}
         <a href="{{ url_for('shop.shop', shop_id=shop_type, page=shop_data.page+1, per_page=shop_data.per_page) }}">下一页</a>
+    {% else %}
+        下一页
     {% endif %}
+    <br/>
+    跳转到: <input type="text" id="jump_page" size="3" maxlength="5">
+    <button type="button" onclick="jump_to_page()">跳转</button>
+    <br/>
+{% else %}
     <br/>
 {% endif %}
 <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
@@ -83,6 +92,15 @@
 var aLinks=document.getElementsByTagName("a");
 for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
 setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+
+function jump_to_page() {
+    var page = parseInt(document.getElementById('jump_page').value);
+    var total = {{ shop_data.total_pages }};
+    if (isNaN(page) || page < 1) page = 1;
+    if (page > total) page = total;
+    document.getElementById('loading').style.display = 'block';
+    window.location.href = "{{ url_for('shop.shop', shop_id=shop_type, per_page=shop_data.per_page) }}" + "&page=" + page;
+}
 </script>
 </body>
 </html>

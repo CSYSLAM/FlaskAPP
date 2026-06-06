@@ -40,8 +40,9 @@ class EquipmentGenerator:
         if not template_pool:
             return None
 
+        allow_artifact_template = source != EquipmentSource.MONSTER
         template_id = cls._select_template(
-            template_pool, template_weights, template_loader)
+            template_pool, template_weights, template_loader, allow_artifact_template)
         if not template_id:
             return None
 
@@ -49,11 +50,16 @@ class EquipmentGenerator:
         if not template:
             return None
 
-        is_elite = source == EquipmentSource.MONSTER
-        if template.get("is_artifact"):
+        is_monster_source = source == EquipmentSource.MONSTER
+        is_artifact = template.get("is_artifact", False)
+        if is_artifact and allow_artifact_template:
             rarity = "神器"
         else:
-            rarity = cls._roll_rarity_from_weights(rarity_weights, is_elite)
+            rarity = cls._roll_rarity_from_weights(
+                rarity_weights,
+                is_elite=is_monster_source,
+                allow_legendary=False,
+            )
 
         stars = cls.roll_stars(star_range, star_weights)
 
@@ -64,14 +70,27 @@ class EquipmentGenerator:
         }
 
     @classmethod
-    def _select_template(cls, pool, weights, loader):
-        valid = [tid for tid in pool if loader(tid)]
+    def _select_template(cls, pool, weights, loader, allow_artifact_template=True):
+        valid = []
+        for tid in pool:
+            template = loader(tid)
+            if not template:
+                continue
+            if not allow_artifact_template and template.get("is_artifact", False):
+                continue
+            valid.append(tid)
         if not valid:
             return None
 
         if weights and len(weights) == len(pool):
-            weights = [float(w) for w in weights]
-            return random.choices(pool, weights=weights, k=1)[0]
+            filtered = []
+            filtered_weights = []
+            for tid, weight in zip(pool, weights):
+                if tid in valid:
+                    filtered.append(tid)
+                    filtered_weights.append(float(weight))
+            if filtered:
+                return random.choices(filtered, weights=filtered_weights, k=1)[0]
         return random.choice(valid)
 
     RARITY_KEY_MAP = {
@@ -83,17 +102,28 @@ class EquipmentGenerator:
     }
 
     @classmethod
-    def _roll_rarity_from_weights(cls, weights, is_elite=False):
+    def _roll_rarity_from_weights(cls, weights, is_elite=False, allow_legendary=True):
         if weights:
             if isinstance(weights, dict):
                 mapped = {}
                 for k, v in weights.items():
                     cn = cls.RARITY_KEY_MAP.get(k, k)
                     mapped[cn] = float(v)
-                if len(mapped) == len(cls.RARITY_NAMES):
-                    return random.choices(cls.RARITY_NAMES, weights=list(mapped.values()), k=1)[0]
+                if not allow_legendary:
+                    mapped.pop("神器", None)
+                mapped = {name: weight for name, weight in mapped.items() if weight > 0}
+                if mapped:
+                    names = list(mapped.keys())
+                    values = list(mapped.values())
+                    return random.choices(names, weights=values, k=1)[0]
             else:
                 wlist = [float(w) for w in weights]
                 if len(wlist) == len(cls.RARITY_NAMES):
+                    if not allow_legendary:
+                        wlist = wlist[:-1]
+                        names = cls.RARITY_NAMES[:-1]
+                        return random.choices(names, weights=wlist, k=1)[0]
                     return random.choices(cls.RARITY_NAMES, weights=wlist, k=1)[0]
-        return cls.roll_rarity(is_elite)
+        if is_elite:
+            return random.choice(["精良", "卓越", "史诗"])
+        return random.choice(["普通", "精良"])
