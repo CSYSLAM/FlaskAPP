@@ -198,6 +198,13 @@
     "price": 0,
     "is_usable": false
   },
+  "liangcao": {
+    "name": "粮草",
+    "type": "material",
+    "description": "袁军押运的粮草，官渡之战副本任务物品。",
+    "price": 0,
+    "is_usable": false
+  },
   "chest_copy_low": {
     "name": "低级副本礼包",
     "type": "chest",
@@ -248,6 +255,65 @@
           "item_id": "potion_mana",
           "max_count": 2,
           "chance": 0.6,
+          "guaranteed_count": 1
+        }
+      ]
+    }
+  },
+  "chest_copy_mid_bound": {
+    "name": "中级副本礼包(绑)",
+    "type": "chest",
+    "description": "官渡之战通关奖励，开启可随机获得30级装备和道具",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "equipment_generators": [
+        {
+          "count": 1,
+          "chance": 1.0,
+          "template_ids": [
+            "jinggang_helmet_39",
+            "jinggang_armor_39",
+            "jinggang_gloves_39",
+            "jinggang_pants_39",
+            "jinggang_shoes_39",
+            "yuanlv_helmet_39",
+            "yuanlv_armor_39",
+            "yuanlv_gloves_39",
+            "yuanlv_pants_39",
+            "yuanlv_shoes_39",
+            "jifeng_helmet_39",
+            "jifeng_armor_39",
+            "jifeng_gloves_39",
+            "jifeng_pants_39",
+            "jifeng_shoes_39"
+          ],
+          "rarity_weights": {
+            "精良": 0.3,
+            "卓越": 0.35,
+            "史诗": 0.25,
+            "神器": 0.1
+          },
+          "star_weights": {
+            "1": 0.1,
+            "2": 0.2,
+            "3": 0.3,
+            "4": 0.25,
+            "5": 0.15
+          }
+        }
+      ],
+      "random_items": [
+        {
+          "item_id": "potion_heal",
+          "max_count": 5,
+          "chance": 0.9,
+          "guaranteed_count": 2
+        },
+        {
+          "item_id": "potion_mana",
+          "max_count": 3,
+          "chance": 0.7,
           "guaranteed_count": 1
         }
       ]
@@ -1103,69 +1169,473 @@
     "description": "恢复副将魔法值50",
     "price": 200
   },
-  "lt_skill_combo_1": {"name": "连击入门", "type": "material", "description": "副将学习连击1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_combo_2": {"name": "连击进阶", "type": "material", "description": "副将学习连击2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_combo_3": {"name": "连击精通", "type": "material", "description": "副将学习连击3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_smash_1": {"name": "猛击入门", "type": "material", "description": "副将学习猛击1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_smash_2": {"name": "猛击进阶", "type": "material", "description": "副将学习猛击2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_smash_3": {"name": "猛击精通", "type": "material", "description": "副将学习猛击3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_thunder_1": {"name": "天雷入门", "type": "material", "description": "副将学习天雷1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_thunder_2": {"name": "天雷进阶", "type": "material", "description": "副将学习天雷2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_thunder_3": {"name": "天雷精通", "type": "material", "description": "副将学习天雷3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_absorb_1": {"name": "吸收入门", "type": "material", "description": "副将学习吸收1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_absorb_2": {"name": "吸收进阶", "type": "material", "description": "副将学习吸收2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_absorb_3": {"name": "吸收精通", "type": "material", "description": "副将学习吸收3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_heal_trigger_1": {"name": "回春入门", "type": "material", "description": "副将学习回春1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_heal_trigger_2": {"name": "回春进阶", "type": "material", "description": "副将学习回春2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_heal_trigger_3": {"name": "回春精通", "type": "material", "description": "副将学习回春3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_sharp_1": {"name": "锐利入门", "type": "material", "description": "副将学习锐利1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_sharp_2": {"name": "锐利进阶", "type": "material", "description": "副将学习锐利2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_sharp_3": {"name": "锐利精通", "type": "material", "description": "副将学习锐利3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_tough_1": {"name": "坚韧入门", "type": "material", "description": "副将学习坚韧1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_tough_2": {"name": "坚韧进阶", "type": "material", "description": "副将学习坚韧2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_tough_3": {"name": "坚韧精通", "type": "material", "description": "副将学习坚韧3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_protect_1": {"name": "护佑入门", "type": "material", "description": "副将学习护佑1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_protect_2": {"name": "护佑进阶", "type": "material", "description": "副将学习护佑2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_protect_3": {"name": "护佑精通", "type": "material", "description": "副将学习护佑3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_magic_1": {"name": "法能入门", "type": "material", "description": "副将学习法能1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_magic_2": {"name": "法能进阶", "type": "material", "description": "副将学习法能2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_magic_3": {"name": "法能精通", "type": "material", "description": "副将学习法能3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_brave_1": {"name": "勇猛入门", "type": "material", "description": "副将学习勇猛1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_brave_2": {"name": "勇猛进阶", "type": "material", "description": "副将学习勇猛2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_brave_3": {"name": "勇猛精通", "type": "material", "description": "副将学习勇猛3级所需", "price": 800, "currency": "yuanbao"},
-  "lt_skill_calm_1": {"name": "冷静入门", "type": "material", "description": "副将学习冷静1级所需", "price": 200, "currency": "yuanbao"},
-  "lt_skill_calm_2": {"name": "冷静进阶", "type": "material", "description": "副将学习冷静2级所需", "price": 400, "currency": "yuanbao"},
-  "lt_skill_calm_3": {"name": "冷静精通", "type": "material", "description": "副将学习冷静3级所需", "price": 800, "currency": "yuanbao"},
-
-  "seed_herb": {"name": "草药种子", "type": "material", "description": "百草园种植用，1小时成熟", "price": 100},
-  "seed_flower": {"name": "玫瑰花种子", "type": "material", "description": "百草园种植用，2小时成熟", "price": 200},
-  "seed_ginseng": {"name": "人参种子", "type": "material", "description": "百草园种植用，4小时成熟", "price": 500},
-  "seed_dragon": {"name": "龙血参种子", "type": "material", "description": "百草园种植用，8小时成熟", "price": 1000},
-
-  "flower_rose": {"name": "玫瑰花", "type": "material", "description": "送给异性增加魅力和缘分", "sell_price": 50, "price": 100},
-  "ginseng": {"name": "人参", "type": "material", "description": "珍贵的人参", "sell_price": 200},
-  "dragon_herb": {"name": "龙血参", "type": "material", "description": "传说中的龙血参", "sell_price": 500},
-
-  "bond_wine": {"name": "结交酒", "type": "material", "description": "用于红颜或知己结交", "price": 500, "currency": "yuanbao"},
-  "break_wine": {"name": "断交酒", "type": "material", "description": "用于与红颜或知己断交", "price": 100, "currency": "yuanbao"},
-  "hunt_token": {"name": "追杀令", "type": "material", "description": "使用后可快速传送到仇人所在位置", "price": 200, "currency": "yuanbao"},
-
-  "zhuhouling_1d": {"name": "诸侯令1天", "type": "vip", "description": "使用后获得1天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 1}, "price": 100, "currency": "jinzu"},
-  "zhuhouling_7d": {"name": "诸侯令7天", "type": "vip", "description": "使用后获得7天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 7}, "price": 500, "currency": "jinzu"},
-  "zhuhouling_30d": {"name": "诸侯令30天", "type": "vip", "description": "使用后获得30天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 30}, "price": 2000, "currency": "jinzu"},
-  "zhuhouling_1d_bound": {"name": "诸侯令1天(绑)", "type": "vip", "description": "使用后获得1天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 1}, "price": 80, "currency": "yuanbao"},
-  "zhuhouling_7d_bound": {"name": "诸侯令7天(绑)", "type": "vip", "description": "使用后获得7天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 7}, "price": 400, "currency": "yuanbao"},
-  "zhuhouling_30d_bound": {"name": "诸侯令30天(绑)", "type": "vip", "description": "使用后获得30天VIP特权", "is_usable": true, "usage_effect": {"vip_days": 30}, "price": 1500, "currency": "yuanbao"},
-  "horn_small": {"name": "小喇叭", "type": "other", "description": "在公共频道发言一次", "is_usable": false},
-  "box_key": {"name": "宝匣钥匙", "type": "material", "description": "用于打开宝匣"},
-  "revive_lamp": {"name": "续命灯", "type": "material", "description": "可以满血复活", "price": 20, "currency": "yuanbao", "is_usable": false},
-  "reinforce_gem": {"name": "强化宝玉", "type": "material", "description": "用于强化装备的宝玉"},
-  "craft_suipi": {"name": "碎皮", "type": "material", "description": "用于打造15-29级装备的基础材料", "is_usable": false, "price": 100},
-  "craft_mabu": {"name": "麻布", "type": "material", "description": "用于打造15-29级装备的基础材料", "is_usable": false, "price": 100},
-  "craft_huangyangmu": {"name": "黄杨木", "type": "material", "description": "用于打造15-29级装备的基础材料", "is_usable": false, "price": 100},
-  "craft_huangtongkuang": {"name": "黄铜矿", "type": "material", "description": "用于打造15-29级装备的特殊材料", "is_usable": false, "price": 150},
-  "craft_yingpi": {"name": "硬皮", "type": "material", "description": "用于打造35-60级装备的基础材料", "is_usable": false, "price": 200},
-  "craft_mianbu": {"name": "棉布", "type": "material", "description": "用于打造35-60级装备的基础材料", "is_usable": false, "price": 200},
-  "craft_chenxiangmu": {"name": "沉香木", "type": "material", "description": "用于打造35-60级装备的基础材料", "is_usable": false, "price": 200},
-  "craft_heitiekuang": {"name": "黑铁矿", "type": "material", "description": "用于打造35-60级装备的特殊材料", "is_usable": false, "price": 300}
+  "lt_skill_combo_1": {
+    "name": "连击入门",
+    "type": "material",
+    "description": "副将学习连击1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_combo_2": {
+    "name": "连击进阶",
+    "type": "material",
+    "description": "副将学习连击2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_combo_3": {
+    "name": "连击精通",
+    "type": "material",
+    "description": "副将学习连击3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_smash_1": {
+    "name": "猛击入门",
+    "type": "material",
+    "description": "副将学习猛击1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_smash_2": {
+    "name": "猛击进阶",
+    "type": "material",
+    "description": "副将学习猛击2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_smash_3": {
+    "name": "猛击精通",
+    "type": "material",
+    "description": "副将学习猛击3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_thunder_1": {
+    "name": "天雷入门",
+    "type": "material",
+    "description": "副将学习天雷1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_thunder_2": {
+    "name": "天雷进阶",
+    "type": "material",
+    "description": "副将学习天雷2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_thunder_3": {
+    "name": "天雷精通",
+    "type": "material",
+    "description": "副将学习天雷3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_absorb_1": {
+    "name": "吸收入门",
+    "type": "material",
+    "description": "副将学习吸收1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_absorb_2": {
+    "name": "吸收进阶",
+    "type": "material",
+    "description": "副将学习吸收2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_absorb_3": {
+    "name": "吸收精通",
+    "type": "material",
+    "description": "副将学习吸收3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_heal_trigger_1": {
+    "name": "回春入门",
+    "type": "material",
+    "description": "副将学习回春1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_heal_trigger_2": {
+    "name": "回春进阶",
+    "type": "material",
+    "description": "副将学习回春2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_heal_trigger_3": {
+    "name": "回春精通",
+    "type": "material",
+    "description": "副将学习回春3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_sharp_1": {
+    "name": "锐利入门",
+    "type": "material",
+    "description": "副将学习锐利1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_sharp_2": {
+    "name": "锐利进阶",
+    "type": "material",
+    "description": "副将学习锐利2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_sharp_3": {
+    "name": "锐利精通",
+    "type": "material",
+    "description": "副将学习锐利3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_tough_1": {
+    "name": "坚韧入门",
+    "type": "material",
+    "description": "副将学习坚韧1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_tough_2": {
+    "name": "坚韧进阶",
+    "type": "material",
+    "description": "副将学习坚韧2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_tough_3": {
+    "name": "坚韧精通",
+    "type": "material",
+    "description": "副将学习坚韧3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_protect_1": {
+    "name": "护佑入门",
+    "type": "material",
+    "description": "副将学习护佑1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_protect_2": {
+    "name": "护佑进阶",
+    "type": "material",
+    "description": "副将学习护佑2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_protect_3": {
+    "name": "护佑精通",
+    "type": "material",
+    "description": "副将学习护佑3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_magic_1": {
+    "name": "法能入门",
+    "type": "material",
+    "description": "副将学习法能1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_magic_2": {
+    "name": "法能进阶",
+    "type": "material",
+    "description": "副将学习法能2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_magic_3": {
+    "name": "法能精通",
+    "type": "material",
+    "description": "副将学习法能3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_brave_1": {
+    "name": "勇猛入门",
+    "type": "material",
+    "description": "副将学习勇猛1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_brave_2": {
+    "name": "勇猛进阶",
+    "type": "material",
+    "description": "副将学习勇猛2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_brave_3": {
+    "name": "勇猛精通",
+    "type": "material",
+    "description": "副将学习勇猛3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "lt_skill_calm_1": {
+    "name": "冷静入门",
+    "type": "material",
+    "description": "副将学习冷静1级所需",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "lt_skill_calm_2": {
+    "name": "冷静进阶",
+    "type": "material",
+    "description": "副将学习冷静2级所需",
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "lt_skill_calm_3": {
+    "name": "冷静精通",
+    "type": "material",
+    "description": "副将学习冷静3级所需",
+    "price": 800,
+    "currency": "yuanbao"
+  },
+  "seed_herb": {
+    "name": "草药种子",
+    "type": "material",
+    "description": "百草园种植用，1小时成熟",
+    "price": 100
+  },
+  "seed_flower": {
+    "name": "玫瑰花种子",
+    "type": "material",
+    "description": "百草园种植用，2小时成熟",
+    "price": 200
+  },
+  "seed_ginseng": {
+    "name": "人参种子",
+    "type": "material",
+    "description": "百草园种植用，4小时成熟",
+    "price": 500
+  },
+  "seed_dragon": {
+    "name": "龙血参种子",
+    "type": "material",
+    "description": "百草园种植用，8小时成熟",
+    "price": 1000
+  },
+  "flower_rose": {
+    "name": "玫瑰花",
+    "type": "material",
+    "description": "送给异性增加魅力和缘分",
+    "sell_price": 50,
+    "price": 100
+  },
+  "ginseng": {
+    "name": "人参",
+    "type": "material",
+    "description": "珍贵的人参",
+    "sell_price": 200
+  },
+  "dragon_herb": {
+    "name": "龙血参",
+    "type": "material",
+    "description": "传说中的龙血参",
+    "sell_price": 500
+  },
+  "bond_wine": {
+    "name": "结交酒",
+    "type": "material",
+    "description": "用于红颜或知己结交",
+    "price": 500,
+    "currency": "yuanbao"
+  },
+  "break_wine": {
+    "name": "断交酒",
+    "type": "material",
+    "description": "用于与红颜或知己断交",
+    "price": 100,
+    "currency": "yuanbao"
+  },
+  "hunt_token": {
+    "name": "追杀令",
+    "type": "material",
+    "description": "使用后可快速传送到仇人所在位置",
+    "price": 200,
+    "currency": "yuanbao"
+  },
+  "zhuhouling_1d": {
+    "name": "诸侯令1天",
+    "type": "vip",
+    "description": "使用后获得1天VIP特权",
+    "is_usable": true,
+    "usage_effect": {
+      "vip_days": 1
+    },
+    "price": 100,
+    "currency": "jinzu"
+  },
+  "zhuhouling_7d": {
+    "name": "诸侯令7天",
+    "type": "vip",
+    "description": "使用后获得7天VIP特权",
+    "is_usable": true,
+    "usage_effect": {
+      "vip_days": 7
+    },
+    "price": 500,
+    "currency": "jinzu"
+  },
+  "zhuhouling_30d": {
+    "name": "诸侯令30天",
+    "type": "vip",
+    "description": "使用后获得30天VIP特权",
+    "is_usable": true,
+    "usage_effect": {
+      "vip_days": 30
+    },
+    "price": 2000,
+    "currency": "jinzu"
+  },
+  "zhuhouling_1d_bound": {
+    "name": "诸侯令1天(绑)",
+    "type": "vip",
+    "description": "使用后获得1天VIP特权",
+    "is_usable": true,
+    "usage_effect": {
+      "vip_days": 1
+    },
+    "price": 80,
+    "currency": "yuanbao"
+  },
+  "zhuhouling_7d_bound": {
+    "name": "诸侯令7天(绑)",
+    "type": "vip",
+    "description": "使用后获得7天VIP特权",
+    "is_usable": true,
+    "usage_effect": {
+      "vip_days": 7
+    },
+    "price": 400,
+    "currency": "yuanbao"
+  },
+  "zhuhouling_30d_bound": {
+    "name": "诸侯令30天(绑)",
+    "type": "vip",
+    "description": "使用后获得30天VIP特权",
+    "is_usable": true,
+    "usage_effect": {
+      "vip_days": 30
+    },
+    "price": 1500,
+    "currency": "yuanbao"
+  },
+  "horn_small": {
+    "name": "小喇叭",
+    "type": "other",
+    "description": "在公共频道发言一次",
+    "is_usable": false
+  },
+  "box_key": {
+    "name": "宝匣钥匙",
+    "type": "material",
+    "description": "用于打开宝匣"
+  },
+  "revive_lamp": {
+    "name": "续命灯",
+    "type": "material",
+    "description": "可以满血复活",
+    "price": 20,
+    "currency": "yuanbao",
+    "is_usable": false
+  },
+  "reinforce_gem": {
+    "name": "强化宝玉",
+    "type": "material",
+    "description": "用于强化装备的宝玉"
+  },
+  "craft_suipi": {
+    "name": "碎皮",
+    "type": "material",
+    "description": "用于打造15-29级装备的基础材料",
+    "is_usable": false,
+    "price": 100
+  },
+  "craft_mabu": {
+    "name": "麻布",
+    "type": "material",
+    "description": "用于打造15-29级装备的基础材料",
+    "is_usable": false,
+    "price": 100
+  },
+  "craft_huangyangmu": {
+    "name": "黄杨木",
+    "type": "material",
+    "description": "用于打造15-29级装备的基础材料",
+    "is_usable": false,
+    "price": 100
+  },
+  "craft_huangtongkuang": {
+    "name": "黄铜矿",
+    "type": "material",
+    "description": "用于打造15-29级装备的特殊材料",
+    "is_usable": false,
+    "price": 150
+  },
+  "craft_yingpi": {
+    "name": "硬皮",
+    "type": "material",
+    "description": "用于打造35-60级装备的基础材料",
+    "is_usable": false,
+    "price": 200
+  },
+  "craft_mianbu": {
+    "name": "棉布",
+    "type": "material",
+    "description": "用于打造35-60级装备的基础材料",
+    "is_usable": false,
+    "price": 200
+  },
+  "craft_chenxiangmu": {
+    "name": "沉香木",
+    "type": "material",
+    "description": "用于打造35-60级装备的基础材料",
+    "is_usable": false,
+    "price": 200
+  },
+  "craft_heitiekuang": {
+    "name": "黑铁矿",
+    "type": "material",
+    "description": "用于打造35-60级装备的特殊材料",
+    "is_usable": false,
+    "price": 300
+  },
+  "qing_mufa": {
+    "name": "轻木筏",
+    "type": "material",
+    "description": "用于渡河的轻便木筏。七擒孟获副本任务物品。",
+    "is_usable": false,
+    "price": 0
+  },
+  "fangzhu": {
+    "name": "方竹",
+    "type": "material",
+    "description": "质地坚硬的方形竹子，可制兵器。七擒孟获副本任务物品。",
+    "is_usable": false,
+    "price": 0
+  },
+  "huixiangcao": {
+    "name": "荟香草",
+    "type": "material",
+    "description": "可祛毒疗伤的珍稀药草。七擒孟获副本任务物品。",
+    "is_usable": false,
+    "price": 0
+  },
+  "chest_copy_high_bound": {
+    "name": "高级副本礼包(绑)",
+    "type": "material",
+    "description": "打开后会获得高级奖励。",
+    "is_usable": true,
+    "price": 0
+  }
 }

@@ -1,0 +1,189 @@
+{
+  "name": "七擒孟获副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "qiqinmenghuo",
+  "scenes": {
+    "孔明寨": {
+      "name": "孔明寨(副本)",
+      "exits": {
+        "east": "qiqin_copy_live.五溪洞"
+      }
+    },
+    "五溪洞": {
+      "name": "五溪洞(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.孔明寨",
+        "east": "qiqin_copy_live.锦带山"
+      },
+      "npcs": [
+        "npc_qiqin_copy_诸葛亮"
+      ]
+    },
+    "锦带山": {
+      "name": "锦带山(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.五溪洞",
+        "east": "qiqin_copy_live.泸水"
+      },
+      "monsters": [
+        "monster_qiqin_copy_金环三结",
+        "monster_qiqin_copy_忙牙长"
+      ]
+    },
+    "泸水": {
+      "name": "泸水(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.锦带山"
+      },
+      "monsters": [
+        "monster_qiqin_copy_土人"
+      ]
+    },
+    "小路": {
+      "name": "小路(副本)",
+      "exits": {
+        "south": "qiqin_copy_live.沙口"
+      },
+      "monsters": [
+        "monster_qiqin_copy_南蛮运粮兵"
+      ]
+    },
+    "沙口": {
+      "name": "沙口(副本)",
+      "exits": {
+        "north": "qiqin_copy_live.小路",
+        "east": "qiqin_copy_live.夹山峪"
+      },
+      "npcs": [
+        "npc_qiqin_copy_吕四娘"
+      ]
+    },
+    "夹山峪": {
+      "name": "夹山峪(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.沙口",
+        "south": "qiqin_copy_live.河西岸"
+      },
+      "monsters": [
+        "monster_qiqin_copy_祝融"
+      ]
+    },
+    "河西岸": {
+      "name": "河西岸(副本)",
+      "exits": {
+        "north": "qiqin_copy_live.夹山峪",
+        "east": "qiqin_copy_live.西洱河",
+        "south": "qiqin_copy_live.凤凰山"
+      },
+      "npcs": [
+        "npc_qiqin_copy_赵云"
+      ],
+      "monsters": [
+        "monster_qiqin_copy_孟优"
+      ]
+    },
+    "凤凰山": {
+      "name": "凤凰山(副本)",
+      "exits": {
+        "north": "qiqin_copy_live.河西岸"
+      },
+      "monsters": [
+        "monster_qiqin_copy_神凤"
+      ]
+    },
+    "西洱山": {
+      "name": "西洱山(副本)",
+      "exits": {
+        "east": "qiqin_copy_live.西洱河"
+      },
+      "monsters": [
+        "monster_qiqin_copy_药鬼"
+      ]
+    },
+    "西洱河": {
+      "name": "西洱河(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.河西岸",
+        "east": "qiqin_copy_live.河东岸",
+        "north": "qiqin_copy_live.西洱山"
+      }
+    },
+    "河东岸": {
+      "name": "河东岸(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.西洱河",
+        "east": "qiqin_copy_live.哑泉"
+      }
+    },
+    "哑泉": {
+      "name": "哑泉(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.河东岸",
+        "east": "qiqin_copy_live.灭泉"
+      }
+    },
+    "灭泉": {
+      "name": "灭泉(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.哑泉",
+        "east": "qiqin_copy_live.秃龙洞"
+      }
+    },
+    "秃龙洞": {
+      "name": "秃龙洞(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.灭泉",
+        "south": "qiqin_copy_live.三江城"
+      },
+      "npcs": [
+        "npc_qiqin_copy_马谡"
+      ],
+      "monsters": [
+        "monster_qiqin_copy_朵思大王"
+      ]
+    },
+    "三江城": {
+      "name": "三江城(副本)",
+      "exits": {
+        "north": "qiqin_copy_live.秃龙洞",
+        "south": "qiqin_copy_live.八纳洞"
+      }
+    },
+    "八纳洞": {
+      "name": "八纳洞(副本)",
+      "exits": {
+        "north": "qiqin_copy_live.三江城",
+        "east": "qiqin_copy_live.桃花水",
+        "south": "qiqin_copy_live.铜坑洞"
+      },
+      "monsters": [
+        "monster_qiqin_copy_木鹿大王"
+      ]
+    },
+    "桃花水": {
+      "name": "桃花水(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.八纳洞",
+        "east": "qiqin_copy_live.盘蛇谷"
+      }
+    },
+    "盘蛇谷": {
+      "name": "盘蛇谷(副本)",
+      "exits": {
+        "west": "qiqin_copy_live.桃花水"
+      },
+      "monsters": [
+        "monster_qiqin_copy_兀突骨"
+      ]
+    },
+    "铜坑洞": {
+      "name": "铜坑洞(副本)",
+      "exits": {
+        "north": "qiqin_copy_live.八纳洞"
+      },
+      "monsters": [
+        "monster_qiqin_copy_孟获"
+      ]
+    }
+  }
+}

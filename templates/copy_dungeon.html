@@ -30,11 +30,12 @@
 
     天命三国2<br/>
 
-    {% if monster.copy_role == 'entry_npc' and (not state.accepted or state.completed or state.reward_claimed) %}
+    {% if monster.copy_role == 'entry_npc' and not in_dungeon %}
     {{ dungeon.name }}<br/>
-    进入需要消耗：{{ entry_item_name }} x{{ entry_item_count }}<br/>
+    {{ dungeon.story_intro[0] if dungeon.story_intro else '' }}<br/>
+    通关奖励:经验+{{ dungeon.reward.experience or 0 }} 银两+{{ dungeon.reward.gold or 0 }}！<br/>
     <br/>
-    <a href="{{ url_for('dungeon.enter', dungeon_id=dungeon_id) }}">进入副本</a><br/>
+    <a href="{{ url_for('dungeon.enter', dungeon_id=dungeon_id) }}">进入副本({{ entry_item_name }}x{{ entry_item_count }})</a><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
     {% elif view_mode == 'npc' %}
     {{ monster.name }}<br/>

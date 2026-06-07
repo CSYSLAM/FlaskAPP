@@ -202,14 +202,15 @@ class CopyDungeonService:
             state = {}
 
         monster_data = DataService.get_monster(npc_id) or {}
+        in_dungeon = cls._is_in_dungeon(player, dungeon_id)
 
-        # entry_npc: handles enter/re-enter
-        if monster_data.get('copy_role') == 'entry_npc':
-            if state.get('completed') or state.get('reward_claimed'):
-                return {'icon': 'gt.gif', 'label': '可再次进入'}
-            if not state.get('accepted'):
-                return {'icon': 'gt.gif', 'label': '可接任务'}
-            return None
+        # entry_npc outside dungeon: always show "can enter" marker
+        if monster_data.get('copy_role') == 'entry_npc' and not in_dungeon:
+            return {'icon': 'gt.gif', 'label': '可进入副本'}
+
+        # entry_npc inside dungeon: treat as quest_giver
+        if monster_data.get('copy_role') == 'entry_npc' and in_dungeon:
+            pass  # fall through to quest_giver logic below
 
         # quest_giver: only show markers if this NPC is the current stage's quest giver
         stage = cls.get_current_stage(definition, state)
@@ -241,9 +242,24 @@ class CopyDungeonService:
 
     @classmethod
     def get_current_stage(cls, definition, state):
-        steps = definition.get('steps', [])
+        steps = definition.get('steps') or definition.get('stages', [])
         index = min(state.get('stage_index', 0), max(0, len(steps) - 1))
         return steps[index] if steps else None
+
+    @classmethod
+    def _is_in_dungeon(cls, player, dungeon_id):
+        """Check if player is currently inside the dungeon's map area."""
+        definition = cls.get_definition(dungeon_id)
+        if not definition:
+            return False
+        current_loc = player.current_location
+        if not current_loc:
+            return False
+        entry_location = definition.get('entry_location', '')
+        if not entry_location:
+            return False
+        area_key = entry_location.split('.')[0] if '.' in entry_location else entry_location
+        return current_loc.startswith(area_key + '.')
 
     @classmethod
     def build_npc_context(cls, player, npc_id):
@@ -252,21 +268,53 @@ class CopyDungeonService:
         if not definition:
             return None
 
-        state = cls.get_state(player, dungeon_id)
         monster_data = DataService.get_monster(npc_id) or {}
+        in_dungeon = cls._is_in_dungeon(player, dungeon_id)
+
+        # entry_npc outside dungeon: always show "enter dungeon" page, reset state
+        if monster_data.get('copy_role') == 'entry_npc' and not in_dungeon:
+            cls.clear_state(player, dungeon_id)
+            state = cls.get_state(player, dungeon_id)
+            entry_item_id = definition.get('entry_item_id')
+            entry_item = DataService.get_item(entry_item_id) if entry_item_id else None
+            return {
+                'dungeon_id': dungeon_id,
+                'dungeon': definition,
+                'state': state,
+                'stage': None,
+                'next_stage': None,
+                'npc_id': npc_id,
+                'entry_location': definition.get('entry_location'),
+                'quest_giver_location': definition.get('entry_location'),
+                'return_location': definition.get('return_location'),
+                'entry_item_id': entry_item_id,
+                'entry_item_name': entry_item.get('name', entry_item_id) if entry_item else entry_item_id,
+                'entry_item_count': definition.get('entry_item_count', 1),
+                'current_location': player.current_location,
+                'current_scene_name': '',
+                'is_current_quest_giver': False,
+            }
+
+        state = cls.get_state(player, dungeon_id)
+        # entry_npc inside dungeon: treat as quest_giver for the current stage
+        if monster_data.get('copy_role') == 'entry_npc' and in_dungeon:
+            if state.get('completed') or state.get('reward_claimed'):
+                cls.clear_state(player, dungeon_id)
+                state = cls.get_state(player, dungeon_id)
+
         if monster_data.get('copy_role') == 'quest_giver' and (state.get('completed') or state.get('reward_claimed')):
             cls.clear_state(player, dungeon_id)
             state = cls.get_state(player, dungeon_id)
 
         stage = cls.get_current_stage(definition, state)
         next_stage = None
-        steps = definition.get('steps', [])
+        steps = definition.get('steps') or definition.get('stages', [])
         if stage and state.get('stage_index', 0) + 1 < len(steps):
             next_stage = steps[state.get('stage_index', 0) + 1]
 
         # Check if this NPC is the current stage's quest giver
         is_current_quest_giver = True
-        if monster_data.get('copy_role') == 'quest_giver' and stage and stage.get('quest_giver_npc_id'):
+        if stage and stage.get('quest_giver_npc_id'):
             is_current_quest_giver = (npc_id == stage.get('quest_giver_npc_id'))
 
         current_scene = DataService.get_location(player.current_location)
@@ -290,6 +338,7 @@ class CopyDungeonService:
             'current_location': player.current_location,
             'current_scene_name': current_scene.get('name') if current_scene else player.current_location,
             'is_current_quest_giver': is_current_quest_giver,
+            'in_dungeon': in_dungeon,
         }
 
     @classmethod
@@ -449,7 +498,7 @@ class CopyDungeonService:
             DataService.remove_item_from_inventory(player.id, item_id, count)
 
         cls._grant_reward(player, stage.get('reward', {}))
-        steps = definition.get('steps', [])
+        steps = definition.get('steps') or definition.get('stages', [])
         is_last = state.get('stage_index', 0) >= len(steps) - 1
         if is_last:
             final_reward = definition.get('reward', {})
@@ -488,6 +537,7 @@ class CopyDungeonService:
             'dungeon': definition,
             'completed_stage': stage,
             'next_stage': next_stage,
+            'stage': stage,
             'reward': stage.get('reward', {}),
         }
 

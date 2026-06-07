@@ -8686,7 +8686,9 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "诸葛亮【副本】",
+    "description": "身长八尺，面如冠玉，头戴纶巾，身披鹤氅，飘飘然有神仙之概.",
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_role": "entry_npc",
     "base_stats": {
       "health": 99999,
       "mana": 9999,

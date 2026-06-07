@@ -79,14 +79,48 @@ def action(npc_id):
                 completed_stage = result.get('completed_stage') or {}
                 next_stage = result.get('next_stage') or {}
                 reward = result.get('reward', {})
+                consumed_items = completed_stage.get('required_items', {})
                 story_lines = []
+
+                # Show consumed items
+                for item_id, count in consumed_items.items():
+                    item_data = DataService.get_item(item_id)
+                    item_name = item_data.get('name', item_id) if item_data else item_id
+                    story_lines.append(f"失去[{item_name}]{count}个")
+
+                # Show reward items (stage reward)
+                for ri in reward.get('items', []):
+                    item_data = DataService.get_item(ri.get('item_id'))
+                    item_name = item_data.get('name', ri.get('item_id')) if item_data else ri.get('item_id')
+                    story_lines.append(f"获得 {item_name} x{ri.get('count', 1)}")
+
                 if reward.get('experience'):
                     story_lines.append(f"经验+{reward.get('experience')}")
                 if reward.get('gold'):
                     story_lines.append(f"银两+{reward.get('gold')}")
+
+                # NPC completion dialogue
+                stage = result.get('stage')
+                if stage and stage.get('complete_story'):
+                    stage_npc_id = stage.get('quest_giver_npc_id')
+                    npc_name = 'NPC'
+                    if stage_npc_id:
+                        npc_data = DataService.get_monster(stage_npc_id) or {}
+                        npc_name = npc_data.get('name', 'NPC')
+                    story_lines.append(f"{npc_name}: {stage.get('complete_story')}")
+
                 if next_stage:
-                    if next_stage.get('story'):
-                        story_lines.append(f"灵帝: {next_stage.get('story')}")
+                    # Hint about next NPC/location
+                    if completed_stage.get('complete_hint'):
+                        story_lines.append(completed_stage.get('complete_hint'))
+                    elif next_stage.get('quest_giver_npc_id'):
+                        next_npc_id = next_stage.get('quest_giver_npc_id')
+                        next_npc = DataService.get_monster(next_npc_id) or {}
+                        next_npc_name = next_npc.get('name', 'NPC')
+                        next_loc_id = next_stage.get('quest_giver_location', '')
+                        next_loc = DataService.get_location(next_loc_id) if next_loc_id else None
+                        next_loc_name = next_loc.get('name', next_loc_id.split('.')[-1] if next_loc_id else '未知')
+                        story_lines.append(f"提示:前往「{next_loc_name}」与『{next_npc_name}』对话")
                     story_lines.append(f"已开启任务: 副·{next_stage.get('name', '下一阶段')}")
                 return render_template(
                     'story.html',
