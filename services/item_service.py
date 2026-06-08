@@ -215,6 +215,17 @@ class ItemService:
             else:
                 effect_text_parts.append("没有出战副将")
 
+        # Process capacity expansion effects
+        expand_backpack = usage_effect.get("expand_backpack")
+        if expand_backpack:
+            player.backpack_capacity += expand_backpack
+            effect_text_parts.append(f"背包容量增加{expand_backpack}，当前容量{player.backpack_capacity}")
+
+        expand_warehouse = usage_effect.get("expand_warehouse")
+        if expand_warehouse:
+            player.warehouse_capacity += expand_warehouse
+            effect_text_parts.append(f"仓库容量增加{expand_warehouse}，当前容量{player.warehouse_capacity}")
+
         # Consume the item
         DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
 

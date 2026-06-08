@@ -168,7 +168,8 @@
         "east": "jiangling_center.南前街"
       },
       "npcs": [
-        "npc_jiangling_center_江陵车夫"
+        "npc_jiangling_center_江陵车夫",
+        "npc_postmaster"
       ]
     },
     "南城楼": {

@@ -76,7 +76,8 @@
         "south": "chaisang_center.南街"
       },
       "npcs": [
-        "npc_chaisang_center_柴桑车夫"
+        "npc_chaisang_center_柴桑车夫",
+        "npc_postmaster"
       ]
     },
     "钱庄": {

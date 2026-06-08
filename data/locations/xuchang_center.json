@@ -115,14 +115,18 @@
         "south": "xuchang_center.朱雀街"
       },
       "npcs": [
-        "npc_xuchang_center_许昌车夫"
+        "npc_xuchang_center_许昌车夫",
+        "npc_postmaster"
       ]
     },
     "钱庄": {
       "name": "钱庄",
       "exits": {
         "east": "xuchang_center.驿站"
-      }
+      },
+      "npcs": [
+        "npc_xuchang_center_金掌柜仓库"
+      ]
     },
     "朱雀街": {
       "name": "朱雀街",

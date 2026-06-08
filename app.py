@@ -54,6 +54,8 @@ def create_app():
     from blueprints.dungeon import dungeon_bp
     from blueprints.workbench import workbench_bp
     from blueprints.medicine_shop import medicine_bp
+    from blueprints.warehouse import warehouse_bp
+    from blueprints.lost_found import lost_found_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -71,6 +73,8 @@ def create_app():
     app.register_blueprint(dungeon_bp, url_prefix='/dungeon')
     app.register_blueprint(workbench_bp, url_prefix='/workbench')
     app.register_blueprint(medicine_bp, url_prefix='/medicine')
+    app.register_blueprint(warehouse_bp, url_prefix='/warehouse')
+    app.register_blueprint(lost_found_bp, url_prefix='/lost_found')
 
     from blueprints.crafting import crafting_bp
     app.register_blueprint(crafting_bp, url_prefix='/crafting')
@@ -95,6 +99,21 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN is_designer BOOLEAN DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN warehouse_gold INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN backpack_capacity INTEGER DEFAULT 20"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN warehouse_capacity INTEGER DEFAULT 20"))
             db.session.commit()
         except Exception:
             db.session.rollback()

@@ -123,7 +123,8 @@
         "south": "beiping_center.南街"
       },
       "npcs": [
-        "npc_beiping_center_北平车夫"
+        "npc_beiping_center_北平车夫",
+        "npc_postmaster"
       ]
     },
     "南街": {

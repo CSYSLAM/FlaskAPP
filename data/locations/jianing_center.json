@@ -110,7 +110,8 @@
         "south": "jianing_center.建南街"
       },
       "npcs": [
-        "npc_jianing_center_建宁车夫"
+        "npc_jianing_center_建宁车夫",
+        "npc_postmaster"
       ]
     },
     "建南街": {

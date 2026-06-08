@@ -130,7 +130,8 @@
         "west": "yong_an_center.南后街"
       },
       "npcs": [
-        "npc_yong_an_center_永安车夫"
+        "npc_yong_an_center_永安车夫",
+        "npc_postmaster"
       ]
     },
     "技能馆": {

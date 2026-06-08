@@ -414,6 +414,33 @@ class DataService:
         ).all() if equipped_ids else EquipmentInstance.query.filter_by(
             player_id=player_id).all()
 
+    # --- Capacity ---
+
+    @classmethod
+    def get_backpack_used_capacity(cls, player_id):
+        """背包已用容量：物品 + 未装备的装备"""
+        total = 0.0
+        # Items: capacity from items.json * quantity
+        for inv in cls.get_inventory(player_id):
+            item_data = cls.get_item(inv.item_id)
+            cap = item_data.get('capacity', 0.5) if item_data else 0.5
+            total += cap * inv.quantity
+        # Unequipped equipment: each equipment = 1
+        for equip in cls.get_unequipped_equipment(player_id):
+            total += 1.0
+        return total
+
+    @classmethod
+    def get_warehouse_used_capacity(cls, player_id):
+        """仓库已用容量"""
+        from models.player import WarehouseItem
+        total = 0.0
+        for wh in WarehouseItem.query.filter_by(player_id=player_id).all():
+            item_data = cls.get_item(wh.item_id)
+            cap = item_data.get('capacity', 0.5) if item_data else 0.5
+            total += cap * wh.quantity
+        return total
+
     # --- Temp Effects ---
 
     @classmethod

@@ -61,6 +61,9 @@
     {% if page < total_pages %}<a href="{{ url_for('player.inventory', category=category, page=page+1, per_page=per_page) }}">下一页</a>{% endif %}
     {% endif %}
 
+    <br/>
+    背包容量:{{ used_capacity|int }}/{{ player.backpack_capacity }}<br/>
+
     <script>
     var aLinks=document.getElementsByTagName("a");
     for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}

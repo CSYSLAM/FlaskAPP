@@ -150,7 +150,8 @@
         "south": "chengdu_center.马院"
       },
       "npcs": [
-        "npc_chengdu_center_成都车夫"
+        "npc_chengdu_center_成都车夫",
+        "npc_postmaster"
       ]
     },
     "钱庄": {

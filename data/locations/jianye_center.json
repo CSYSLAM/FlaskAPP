@@ -151,7 +151,8 @@
         "south": "jianye_center.朱雀街"
       },
       "npcs": [
-        "npc_jianye_center_建邺车夫"
+        "npc_jianye_center_建邺车夫",
+        "npc_postmaster"
       ]
     },
     "钱庄": {

@@ -100,7 +100,8 @@
         "south": "wujun_center.南街"
       },
       "npcs": [
-        "npc_wujun_center_吴郡车夫"
+        "npc_wujun_center_吴郡车夫",
+        "npc_postmaster"
       ]
     },
     "南街": {

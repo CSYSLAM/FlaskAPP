@@ -90,7 +90,8 @@
         "south": "jinyang_center.南街"
       },
       "npcs": [
-        "npc_jinyang_center_晋阳车夫"
+        "npc_jinyang_center_晋阳车夫",
+        "npc_postmaster"
       ]
     },
     "钱庄": {

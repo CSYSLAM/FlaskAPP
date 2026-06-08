@@ -187,7 +187,8 @@
         "east": "luoyang_center.安南前街"
       },
       "npcs": [
-        "npc_luoyang_center_洛阳车夫"
+        "npc_luoyang_center_洛阳车夫",
+        "npc_postmaster"
       ]
     },
     "安南后街": {

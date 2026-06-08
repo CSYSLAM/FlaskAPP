@@ -159,7 +159,8 @@
         "east": "xiapi_center.南前街"
       },
       "npcs": [
-        "npc_xiapi_center_下邳车夫"
+        "npc_xiapi_center_下邳车夫",
+        "npc_postmaster"
       ]
     },
     "药铺": {

@@ -253,6 +253,12 @@ def view_npc(monster_id):
     if '大夫' in monster_id:
         return redirect(url_for('medicine.shop', npc_id=monster_id))
 
+    if '金掌柜' in monster_id or '仓库' in monster_id:
+        return redirect(url_for('warehouse.warehouse', npc_id=monster_id))
+
+    if '驿站管理员' in monster_id:
+        return redirect(url_for('lost_found.lost_found'))
+
     return render_template("view_npc.html",
                          player=player,
                          monster=monster)

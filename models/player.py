@@ -25,6 +25,13 @@ class PlayerModel(db.Model, UserMixin):
     yuanbao = db.Column(db.Integer, default=0)
     jinzu = db.Column(db.Integer, default=0)
 
+    # Warehouse silver (stored in warehouse)
+    warehouse_gold = db.Column(db.Integer, default=0)
+
+    # Backpack and warehouse capacity
+    backpack_capacity = db.Column(db.Integer, default=20)
+    warehouse_capacity = db.Column(db.Integer, default=20)
+
     # Country (魏蜀吴)
     country = db.Column(db.String(10), default='魏')
 
@@ -765,6 +772,18 @@ class InventoryItem(db.Model):
     __table_args__ = (db.UniqueConstraint('player_id', 'item_id', 'is_bound'),)
 
 
+class WarehouseItem(db.Model):
+    __tablename__ = 'warehouse_items'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    item_id = db.Column(db.String(64), nullable=False)
+    quantity = db.Column(db.Integer, default=1)
+    is_bound = db.Column(db.Boolean, default=False)
+
+    __table_args__ = (db.UniqueConstraint('player_id', 'item_id', 'is_bound'),)
+
+
 class EquipmentSlot(db.Model):
     __tablename__ = 'equipment_slots'
 
@@ -776,6 +795,24 @@ class EquipmentSlot(db.Model):
     equipment = db.relationship('EquipmentInstance', backref='slot_ref')
 
     __table_args__ = (db.UniqueConstraint('player_id', 'slot_name'),)
+
+
+class LostItem(db.Model):
+    __tablename__ = 'lost_items'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    item_id = db.Column(db.String(64), nullable=False)
+    quantity = db.Column(db.Integer, default=1)
+    is_bound = db.Column(db.Boolean, default=False)
+    lost_at = db.Column(db.DateTime, nullable=False)
+    # Stage: 'holding' (owner can redeem), 'auction' (open to all), 'claimed', 'expired'
+    stage = db.Column(db.String(20), default='holding')
+    # Current bid for auction stage
+    current_bid = db.Column(db.Integer, default=0)
+    current_bidder_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+    # When the item was moved to auction
+    auction_started_at = db.Column(db.DateTime, nullable=True)
 
 
 class PlayerSkill(db.Model):

@@ -170,7 +170,8 @@
         "west": "hanzhong_center.西中街"
       },
       "npcs": [
-        "npc_hanzhong_center_汉中车夫"
+        "npc_hanzhong_center_汉中车夫",
+        "npc_postmaster"
       ]
     },
     "南城楼": {

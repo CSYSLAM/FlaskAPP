@@ -317,6 +317,9 @@ def inventory(category='全部'):
     start = (page - 1) * per_page
     page_items = filtered[start:start + per_page]
 
+    # Calculate backpack capacity
+    used_capacity = DataService.get_backpack_used_capacity(player.id)
+
     return render_template("inventory.html",
                          player=player,
                          category=category,
@@ -325,6 +328,7 @@ def inventory(category='全部'):
                          total=total,
                          total_pages=total_pages,
                          page_items=page_items,
+                         used_capacity=used_capacity,
                          DataService=DataService,
                          EquipmentInstance=EquipmentInstance)
 
