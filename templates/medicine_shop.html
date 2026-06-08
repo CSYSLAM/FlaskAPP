@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>药铺 - {{ doctor_name }}</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+{% if tab == 'medicine' %}
+药品
+{% else %}
+<a href="?tab=medicine">药品</a>
+{% endif %}
+|
+{% if tab == 'seed' %}
+种子
+{% else %}
+<a href="?tab=seed">种子</a>
+{% endif %}
+<br/>
+<br/>
+名称|价格<br/>
+{% for item in items %}
+    {{ item.name }}|{{ item.price }}银两
+    <form action="{{ url_for('medicine.buy', npc_id=npc_id, item_id=item.item_id) }}" method="post" style="display:inline;">
+        <input type="text" name="quantity" value="1" maxlength="5" style="width:50px;">
+        <input type="submit" value="购买">
+    </form>
+    <br/>
+{% endfor %}
+<br/>
+{% if total_pages > 1 %}
+    {% if page > 1 %}
+        <a href="?tab={{ tab }}&page={{ page - 1 }}">上.页</a>
+        <a href="?tab={{ tab }}&page=1">首.页</a>
+    {% else %}
+        上.页 首.页
+    {% endif %}
+    {% if page < total_pages %}
+        <a href="?tab={{ tab }}&page={{ page + 1 }}">下.页</a>
+        <a href="?tab={{ tab }}&page={{ total_pages }}">末.页</a>
+    {% else %}
+        下.页 末.页
+    {% endif %}
+{% endif %}
+<br/>
+银两:{{ player.gold }}<br/>
+<a href="{{ url_for('game.view_npc', monster_id=npc_id) }}">返回</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+小Q报时(<span id="time"></span>)
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

@@ -3300,6 +3300,36 @@
       "experience": 0
     }
   },
+  "npc_xuchang_center_许大夫": {
+    "name": "许大夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "许大夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
   "npc_xuchang_center_任务使者": {
     "name": "任务使者",
     "level": 50,
@@ -3861,6 +3891,36 @@
     "killable": false,
     "immortal": true,
     "description": "下邳铁匠",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_xiapi_center_许大夫": {
+    "name": "许大夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,

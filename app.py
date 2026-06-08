@@ -53,6 +53,7 @@ def create_app():
     from blueprints.map_route import map_bp
     from blueprints.dungeon import dungeon_bp
     from blueprints.workbench import workbench_bp
+    from blueprints.medicine_shop import medicine_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -69,6 +70,7 @@ def create_app():
     app.register_blueprint(map_bp)
     app.register_blueprint(dungeon_bp, url_prefix='/dungeon')
     app.register_blueprint(workbench_bp, url_prefix='/workbench')
+    app.register_blueprint(medicine_bp, url_prefix='/medicine')
 
     from blueprints.crafting import crafting_bp
     app.register_blueprint(crafting_bp, url_prefix='/crafting')

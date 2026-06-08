@@ -166,7 +166,10 @@
       "name": "药铺",
       "exits": {
         "north": "xiapi_center.东后街"
-      }
+      },
+      "npcs": [
+        "npc_xiapi_center_许大夫"
+      ]
     },
     "南后街": {
       "name": "南后街",

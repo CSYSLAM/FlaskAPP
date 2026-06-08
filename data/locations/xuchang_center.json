@@ -52,7 +52,10 @@
       "name": "药铺",
       "exits": {
         "west": "xuchang_center.玄武街"
-      }
+      },
+      "npcs": [
+        "npc_xuchang_center_许大夫"
+      ]
     },
     "战场": {
       "name": "战场",

@@ -250,6 +250,9 @@ def view_npc(monster_id):
                              monster=monster,
                              npc_id=monster_id)
 
+    if '大夫' in monster_id:
+        return redirect(url_for('medicine.shop', npc_id=monster_id))
+
     return render_template("view_npc.html",
                          player=player,
                          monster=monster)

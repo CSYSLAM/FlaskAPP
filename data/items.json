@@ -1651,5 +1651,297 @@
     "description": "从东吴枪兵处缴获的火药。威震逍遥津副本任务物品。",
     "is_usable": false,
     "price": 0
+  },
+  "potion_heal_100": {
+    "name": "金疮药",
+    "type": "potion",
+    "description": "恢复100点生命值",
+    "price": 100,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 100 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_mana_100": {
+    "name": "聚魔散",
+    "type": "potion",
+    "description": "恢复60点魔法值",
+    "price": 100,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "mana": 60 },
+      "effect_descriptions": { "mana": "恢复{value}点魔法值" }
+    }
+  },
+  "potion_heal_200": {
+    "name": "养生丸",
+    "type": "potion",
+    "description": "恢复200点生命值",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 200 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_mana_200": {
+    "name": "醒神水",
+    "type": "potion",
+    "description": "恢复100点魔法值",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "mana": 100 },
+      "effect_descriptions": { "mana": "恢复{value}点魔法值" }
+    }
+  },
+  "potion_heal_300": {
+    "name": "回生丸",
+    "type": "potion",
+    "description": "恢复300点生命值",
+    "price": 300,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 300 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_heal_400": {
+    "name": "大补丸",
+    "type": "potion",
+    "description": "恢复400点生命值",
+    "price": 400,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 400 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_heal_500": {
+    "name": "小还丹",
+    "type": "potion",
+    "description": "恢复500点生命值",
+    "price": 500,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 500 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_heal_625": {
+    "name": "大还丹",
+    "type": "potion",
+    "description": "恢复700点生命值",
+    "price": 625,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 700 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_heal_800": {
+    "name": "野山参",
+    "type": "potion",
+    "description": "恢复800点生命值",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 800 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_mana_800": {
+    "name": "雪莲露",
+    "type": "potion",
+    "description": "恢复400点魔法值",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "mana": 400 },
+      "effect_descriptions": { "mana": "恢复{value}点魔法值" }
+    }
+  },
+  "potion_heal_950": {
+    "name": "珍珠贝",
+    "type": "potion",
+    "description": "恢复1000点生命值",
+    "price": 950,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 1000 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_heal_1150": {
+    "name": "还阳丹",
+    "type": "potion",
+    "description": "恢复1500点生命值",
+    "price": 1150,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 1500 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_mana_1150": {
+    "name": "观音水",
+    "type": "potion",
+    "description": "恢复600点魔法值",
+    "price": 1150,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "mana": 600 },
+      "effect_descriptions": { "mana": "恢复{value}点魔法值" }
+    }
+  },
+  "potion_heal_2000": {
+    "name": "天蚕丹",
+    "type": "potion",
+    "description": "恢复2500点生命值",
+    "price": 2000,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 2500 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_mana_2000": {
+    "name": "化神水",
+    "type": "potion",
+    "description": "恢复1000点魔法值",
+    "price": 2000,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "mana": 1000 },
+      "effect_descriptions": { "mana": "恢复{value}点魔法值" }
+    }
+  },
+  "potion_heal_2250": {
+    "name": "神血丹",
+    "type": "potion",
+    "description": "恢复3000点生命值",
+    "price": 2250,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "health": 3000 },
+      "effect_descriptions": { "health": "恢复{value}点生命值" }
+    }
+  },
+  "potion_mana_2250": {
+    "name": "清灵露",
+    "type": "potion",
+    "description": "恢复1500点魔法值",
+    "price": 2250,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": { "mana": 1500 },
+      "effect_descriptions": { "mana": "恢复{value}点魔法值" }
+    }
+  },
+  "seed_jinchuangyao": {
+    "name": "金疮药种子",
+    "type": "seed",
+    "description": "可在山庄种植金疮药。",
+    "price": 240,
+    "is_usable": false
+  },
+  "seed_jumosan": {
+    "name": "凝魔散种子",
+    "type": "seed",
+    "description": "可在山庄种植聚魔散。",
+    "price": 240,
+    "is_usable": false
+  },
+  "seed_yangshengwan": {
+    "name": "养生丸种子",
+    "type": "seed",
+    "description": "可在山庄种植养生丸。",
+    "price": 480,
+    "is_usable": false
+  },
+  "seed_xingshenshui": {
+    "name": "醒神水种子",
+    "type": "seed",
+    "description": "可在山庄种植醒神水。",
+    "price": 480,
+    "is_usable": false
+  },
+  "seed_dabuwan": {
+    "name": "大补丸种子",
+    "type": "seed",
+    "description": "可在山庄种植大补丸。",
+    "price": 960,
+    "is_usable": false
+  },
+  "seed_yeshanshen": {
+    "name": "野山参种子",
+    "type": "seed",
+    "description": "可在山庄种植野山参。",
+    "price": 1920,
+    "is_usable": false
+  },
+  "seed_xuelianlu": {
+    "name": "雪莲露种子",
+    "type": "seed",
+    "description": "可在山庄种植雪莲露。",
+    "price": 1920,
+    "is_usable": false
+  },
+  "seed_zhenzhubei": {
+    "name": "珍珠贝种子",
+    "type": "seed",
+    "description": "可在山庄种植珍珠贝。",
+    "price": 2440,
+    "is_usable": false
+  },
+  "seed_huanyangdan": {
+    "name": "还阳丹种子",
+    "type": "seed",
+    "description": "可在山庄种植还阳丹。",
+    "price": 2980,
+    "is_usable": false
+  },
+  "seed_guanyinshui": {
+    "name": "观音水种子",
+    "type": "seed",
+    "description": "可在山庄种植观音水。",
+    "price": 2980,
+    "is_usable": false
+  },
+  "seed_tiancandan": {
+    "name": "天蚕丹种子",
+    "type": "seed",
+    "description": "可在山庄种植天蚕丹。",
+    "price": 4960,
+    "is_usable": false
+  },
+  "seed_huashenshui": {
+    "name": "化神水种子",
+    "type": "seed",
+    "description": "可在山庄种植化神水。",
+    "price": 4960,
+    "is_usable": false
+  },
+  "seed_jingyandan": {
+    "name": "经验丹种子",
+    "type": "seed",
+    "description": "可在山庄种植经验丹。",
+    "price": 10000,
+    "is_usable": false
+  },
+  "seed_shenxuedan": {
+    "name": "神血丹种子",
+    "type": "seed",
+    "description": "可在山庄种植神血丹。",
+    "price": 5960,
+    "is_usable": false
+  },
+  "seed_qinglinglu": {
+    "name": "清灵露种子",
+    "type": "seed",
+    "description": "可在山庄种植清灵露。",
+    "price": 5960,
+    "is_usable": false
   }
 }
