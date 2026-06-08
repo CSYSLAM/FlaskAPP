@@ -1,0 +1,126 @@
+{
+  "name": "威震逍遥津副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "weizhen_xiaoyaojin",
+  "scenes": {
+    "合肥城": {
+      "name": "合肥城(副本)",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.北中",
+        "east": "xiaoyaojin_copy_live.东中",
+        "south": "xiaoyaojin_copy_live.南中"
+      },
+      "npcs": [
+        "npc_xiaoyaojin_copy_张辽"
+      ]
+    },
+    "北中": {
+      "name": "北中",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.北郊",
+        "south": "xiaoyaojin_copy_live.合肥城"
+      }
+    },
+    "北郊": {
+      "name": "北郊",
+      "exits": {
+        "south": "xiaoyaojin_copy_live.北中",
+        "east": "xiaoyaojin_copy_live.三孝园"
+      },
+      "monsters": [
+        "mon_xiaoyaojin_dongwu_xizuo"
+      ]
+    },
+    "三孝园": {
+      "name": "三孝园",
+      "exits": {
+        "west": "xiaoyaojin_copy_live.北郊",
+        "east": "xiaoyaojin_copy_live.小石桥"
+      }
+    },
+    "小石桥": {
+      "name": "小石桥",
+      "exits": {
+        "west": "xiaoyaojin_copy_live.三孝园"
+      }
+    },
+    "东中": {
+      "name": "东中",
+      "exits": {
+        "west": "xiaoyaojin_copy_live.合肥城",
+        "east": "xiaoyaojin_copy_live.东郊"
+      }
+    },
+    "东郊": {
+      "name": "东郊",
+      "exits": {
+        "west": "xiaoyaojin_copy_live.东中",
+        "south": "xiaoyaojin_copy_live.大师桥"
+      }
+    },
+    "大师桥": {
+      "name": "大师桥",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.小师桥",
+        "west": "xiaoyaojin_copy_live.东郊"
+      },
+      "monsters": [
+        "mon_xiaoyaojin_dongwu_qiangbing",
+        "mon_xiaoyaojin_sunquan"
+      ]
+    },
+    "小师桥": {
+      "name": "小师桥",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.逍遥津",
+        "south": "xiaoyaojin_copy_live.大师桥"
+      },
+      "monsters": [
+        "mon_xiaoyaojin_taishici",
+        "mon_xiaoyaojin_jinwei"
+      ]
+    },
+    "逍遥津": {
+      "name": "逍遥津",
+      "exits": {
+        "south": "xiaoyaojin_copy_live.小师桥"
+      }
+    },
+    "南中": {
+      "name": "南中",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.合肥城",
+        "south": "xiaoyaojin_copy_live.南郊"
+      }
+    },
+    "南郊": {
+      "name": "南郊",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.南中",
+        "south": "xiaoyaojin_copy_live.乌龙山"
+      },
+      "monsters": [
+        "mon_xiaoyaojin_dongwu_tanzi"
+      ]
+    },
+    "乌山": {
+      "name": "乌山",
+      "exits": {
+        "east": "xiaoyaojin_copy_live.乌龙山"
+      },
+      "monsters": [
+        "mon_xiaoyaojin_lingtong"
+      ]
+    },
+    "乌龙山": {
+      "name": "乌龙山",
+      "exits": {
+        "north": "xiaoyaojin_copy_live.南郊",
+        "west": "xiaoyaojin_copy_live.乌山"
+      },
+      "monsters": [
+        "mon_xiaoyaojin_yeniu"
+      ]
+    }
+  }
+}

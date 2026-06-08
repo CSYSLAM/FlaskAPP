@@ -1637,5 +1637,19 @@
     "description": "打开后会获得高级奖励。",
     "is_usable": true,
     "price": 0
+  },
+  "wujun_mihan": {
+    "name": "吴军密函",
+    "type": "quest",
+    "description": "吴军的密函，记载着敌军作战计划。威震逍遥津副本任务物品。",
+    "is_usable": false,
+    "price": 0
+  },
+  "jiangdong_huoyao": {
+    "name": "江东火药",
+    "type": "quest",
+    "description": "从东吴枪兵处缴获的火药。威震逍遥津副本任务物品。",
+    "is_usable": false,
+    "price": 0
   }
 }

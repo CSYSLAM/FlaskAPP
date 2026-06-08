@@ -794,5 +794,153 @@
         }
       }
     ]
+  },
+  "weizhen_xiaoyaojin": {
+    "name": "威震逍遥津(26级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "xiaoyaojin_copy_live.合肥城",
+    "entry_npc_id": "npc_jinyang_west_李典副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "jinyang_west.西村",
+    "story_intro": [
+      "威震逍遥津，张辽一战成名，令江东小儿夜不敢啼。",
+      "孙权亲率十万大军来犯合肥，张辽率八百勇士迎战。",
+      "你身为魏国大将，速去相助张辽威震逍遥津！"
+    ],
+    "story_outro": [
+      "历经苦战终于助张辽威震逍遥津！",
+      "张辽一战成名，江东小儿闻其名而不敢夜啼。",
+      "返回晋阳西村继续征战吧。"
+    ],
+    "reward": {
+      "experience": 21000,
+      "gold": 2100,
+      "items": [
+        {
+          "item_id": "chest_copy_mid_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "吴军来袭",
+        "scene_id": "xiaoyaojin_copy_live.南郊",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「南郊」击杀5名『东吴探子』",
+        "progress_label": "已击败东吴探子(26级)",
+        "target_monsters": ["mon_xiaoyaojin_dongwu_tanzi"],
+        "required_count": 5,
+        "story": "吴军来袭，先清掉南郊的东吴探子，断其耳目。",
+        "complete_story": "探子已除，吴军动向尽在掌握。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_2",
+        "name": "察觉敌情",
+        "scene_id": "xiaoyaojin_copy_live.北郊",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「北郊」抢夺1封吴国密函",
+        "hint": "吴国密函可在「北郊」击杀『东吴细作』获得。",
+        "progress_label": "已获得吴国密函",
+        "target_monsters": ["mon_xiaoyaojin_dongwu_xizuo"],
+        "required_count": 1,
+        "required_items": { "wujun_mihan": 1 },
+        "story": "张辽察觉敌情有异，命你前往北郊抢夺吴国密函，查探敌军虚实。",
+        "complete_story": "密函到手，原来吴军打算兵分两路偷袭合肥。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_3",
+        "name": "将计就计",
+        "scene_id": "xiaoyaojin_copy_live.大师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「大师桥」拦截5份江东火药",
+        "hint": "江东火药可在「大师桥」击杀『东吴枪兵』获得。",
+        "progress_label": "已收集江东火药",
+        "target_monsters": ["mon_xiaoyaojin_dongwu_qiangbing"],
+        "required_count": 5,
+        "required_items": { "jiangdong_huoyao": 5 },
+        "story": "张辽将计就计，命你前往大师桥拦截江东火药，让吴军自食其果。",
+        "complete_story": "火药已缴获，吴军火攻之计已破。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_4",
+        "name": "击杀太史慈",
+        "scene_id": "xiaoyaojin_copy_live.小师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往东面「小师桥」击杀『太史慈』",
+        "progress_label": "已击败【精】太史慈(26级)",
+        "target_monsters": ["mon_xiaoyaojin_taishici"],
+        "required_count": 1,
+        "story": "吴军大将太史慈在小师桥叫阵，你速去将其击杀！",
+        "complete_story": "太史慈已死，吴军士气大挫。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_5",
+        "name": "计诱孙权",
+        "scene_id": "xiaoyaojin_copy_live.小师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往东面「小师桥」击杀『近卫』",
+        "progress_label": "已击败【精】近卫(26级)",
+        "target_monsters": ["mon_xiaoyaojin_jinwei"],
+        "required_count": 1,
+        "story": "张辽设计诱孙权深入，你前往小师桥击杀孙权近卫，引孙权出战。",
+        "complete_story": "近卫已除，孙权身边再无护卫。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀凌统",
+        "scene_id": "xiaoyaojin_copy_live.乌山",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往南面「乌山」击杀『凌统』",
+        "progress_label": "已击败【精】凌统(26级)",
+        "target_monsters": ["mon_xiaoyaojin_lingtong"],
+        "required_count": 1,
+        "story": "吴将凌统率军在南面乌山策应，你速去将其击杀，断孙权后援。",
+        "complete_story": "凌统已死，孙权孤立无援。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_7",
+        "name": "擒贼擒王",
+        "scene_id": "xiaoyaojin_copy_live.大师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往东面「大师桥」击杀『孙权』",
+        "progress_label": "已击败【精】孙权(30级)",
+        "target_monsters": ["mon_xiaoyaojin_sunquan"],
+        "required_count": 1,
+        "story": "孙权亲临大师桥督战，擒贼先擒王，你速去将孙权击杀！",
+        "complete_story": "孙权小儿不过如此，哈哈！",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_8",
+        "name": "犒劳三军",
+        "scene_id": "xiaoyaojin_copy_live.乌龙山",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「乌龙山」击杀5头『野牛』",
+        "progress_label": "已击败野牛(26级)",
+        "target_monsters": ["mon_xiaoyaojin_yeniu"],
+        "required_count": 5,
+        "story": "你前往合肥城南边的「乌龙山」击杀5头『野牛』，犒劳三军！",
+        "complete_story": "这次守住合肥，将军当为首功。",
+        "complete_hint": "副本结束，返回场景领取通关奖励",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      }
+    ]
   }
 }
