@@ -66,6 +66,7 @@
 <a href="{{ url_for('lieutenant.skills_page', lt_id=lieutenant.id) }}">查看技能</a><br/>
 <br/>
 <a href="{{ url_for('lieutenant.index') }}">返回副将列表</a><br/>
+<a href="{{ url_for('lieutenant.banish', lt_id=lieutenant.id) }}" onclick="return confirm('确定要赶走{{ lieutenant.name }}吗？')">赶走{{ lieutenant.name }}</a><br/>
 <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
 <script>

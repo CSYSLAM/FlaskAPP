@@ -14,6 +14,8 @@ QUALITY_MULTIPLIER = {0: 0.5, 1: 0.6, 2: 0.7, 3: 0.8, 4: 0.9,
 
 GENDER_NAMES = {'male': '男', 'female': '女'}
 CLASS_NAMES = {'warrior': '战士', 'mage': '术士', 'assassin': '刺客'}
+TIER_NAMES = {0: '普通', 1: '一级', 2: '二级', 3: '三级'}
+TIER_FRAGMENTS = {1: 10, 2: 3, 3: 1}
 
 
 class Lieutenant(db.Model):
@@ -37,6 +39,7 @@ class Lieutenant(db.Model):
     current_mana = db.Column(db.Integer, nullable=False, default=0)
     skills_raw = db.Column(db.Text, nullable=False, default='[]')
     skill_slots = db.Column(db.Integer, nullable=False, default=3)
+    tier = db.Column(db.Integer, nullable=False, default=3)
     is_alive = db.Column(db.Boolean, nullable=False, default=True)
 
     @property

@@ -215,6 +215,57 @@ class ItemService:
             else:
                 effect_text_parts.append("没有出战副将")
 
+        # Pre-validate grant_lieutenant effect before consuming item
+        grant_lieutenant = usage_effect.get("grant_lieutenant")
+        if grant_lieutenant:
+            from services.lieutenant_service import LieutenantService, SOUL_TO_LT, LIEUTENANT_DATA as LT_DATA
+            soul_item_id_check = f'soul_{grant_lieutenant}'
+            if soul_item_id_check not in SOUL_TO_LT:
+                return False, "无效的魂魄"
+            tier_check, pid_check = SOUL_TO_LT[soul_item_id_check]
+            lt_info_check = LT_DATA[tier_check][pid_check]
+            if LieutenantService._count_owned(player) >= LieutenantService.get_max_slots(player):
+                return False, "副将位已满"
+            if LieutenantService.has_lieutenant_by_name(player, lt_info_check['name']):
+                return False, f"已拥有副将【{lt_info_check['name']}】"
+
+        # Consume the item
+        DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+
+        # Process grant_lieutenant effect (soul items) — actually grant the lieutenant
+        if grant_lieutenant:
+            from services.lieutenant_service import LieutenantService, SOUL_TO_LT as SLT, LIEUTENANT_DATA as LTD
+            soul_item_id_real = f'soul_{grant_lieutenant}'
+            tier_real, pid_real = SLT[soul_item_id_real]
+            lt_info_real = LTD[tier_real][pid_real]
+            success, msg = LieutenantService.grant_lieutenant_from_soul(player, tier_real, pid_real)
+            if not success:
+                # Refund the item since grant failed
+                DataService.add_item_to_inventory(player.id, item_id, 1)
+                return False, msg
+            tier_name = {1: '一级', 2: '二级', 3: '三级'}.get(tier_real, '')
+            effect_text_parts.append(f"获得{tier_name}副将【{lt_info_real['name']}】")
+
+        # Process random_soul effect (soul banner)
+        random_soul = usage_effect.get("random_soul")
+        if random_soul:
+            from services.lieutenant_service import LIEUTENANT_DATA as LTD2
+            import random as _random
+            roll = _random.randint(1, 100)
+            if roll <= 80:
+                tier_r = 3
+            elif roll <= 99:
+                tier_r = 2
+            else:
+                tier_r = 1
+            candidates = LTD2[tier_r]
+            pinyin_id_r = _random.choice(list(candidates.keys()))
+            lt_info_r = candidates[pinyin_id_r]
+            DataService.add_item_to_inventory(player.id, f'soul_{pinyin_id_r}', 1)
+            tier_name_r = {1: '一级', 2: '二级', 3: '三级'}.get(tier_r, '')
+            DataService.broadcast_system(f"{player.nickname}通过副将聚魂获得了{tier_name_r}魂魄【{lt_info_r['name']}】")
+            effect_text_parts.append(f"获得{tier_name_r}魂魄【{lt_info_r['name']}】")
+
         # Process capacity expansion effects
         expand_backpack = usage_effect.get("expand_backpack")
         if expand_backpack:
@@ -226,8 +277,7 @@ class ItemService:
             player.warehouse_capacity += expand_warehouse
             effect_text_parts.append(f"仓库容量增加{expand_warehouse}，当前容量{player.warehouse_capacity}")
 
-        # Consume the item
-        DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+        # (item already consumed above)
 
         db.session.commit()
 

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, sessio
 from flask_login import login_required, current_user
 from services import db
 from services.data_service import DataService
-from services.lieutenant_service import LieutenantService, LIEUTENANT_SKILLS
+from services.lieutenant_service import LieutenantService, LIEUTENANT_SKILLS, LIEUTENANT_DATA, TIER_NAMES
 from models.lieutenant import Lieutenant
 
 lieutenant_bp = Blueprint('lieutenant', __name__, url_prefix='/lieutenant')
@@ -17,30 +17,14 @@ def index():
     return render_template("lieutenant_list.html",
                          player=player,
                          lieutenants=lieutenants,
-                         max_slots=max_slots)
+                         max_slots=max_slots,
+                         TIER_NAMES=TIER_NAMES)
 
 
 @lieutenant_bp.route("/recruit")
 @login_required
 def recruit_page():
-    player = current_user
-    max_slots = LieutenantService.get_max_slots(player)
-    count = Lieutenant.query.filter_by(owner_id=player.id).count()
-    if count >= max_slots:
-        flash("副将位已满")
-        return redirect(url_for('lieutenant.index'))
-    return render_template("lieutenant_recruit.html", player=player)
-
-
-@lieutenant_bp.route("/do_recruit")
-@login_required
-def do_recruit():
-    player = current_user
-    gender = request.args.get('gender', 'male')
-    class_type = request.args.get('class_type', 'warrior')
-    lt, msg = LieutenantService.recruit(player, gender, class_type)
-    flash(msg)
-    return redirect(url_for('lieutenant.index'))
+    return redirect(url_for('commander.recruit_page'))
 
 
 @lieutenant_bp.route("/detail/<int:lt_id>")
@@ -264,5 +248,27 @@ def expand_skill_slots(lt_id):
 def expand_slots():
     player = current_user
     success, msg = LieutenantService.expand_slots(player)
+    flash(msg)
+    return redirect(url_for('lieutenant.index'))
+
+
+@lieutenant_bp.route("/banish/<int:lt_id>")
+@login_required
+def banish(lt_id):
+    player = current_user
+    lt = Lieutenant.query.filter_by(id=lt_id, owner_id=player.id).first()
+    if not lt:
+        flash("副将不存在")
+        return redirect(url_for('lieutenant.index'))
+    success, msg = LieutenantService.banish(lt)
+    flash(msg)
+    return redirect(url_for('lieutenant.index'))
+
+
+@lieutenant_bp.route("/use_soul/<soul_item_id>")
+@login_required
+def use_soul(soul_item_id):
+    player = current_user
+    success, msg = LieutenantService.use_soul(player, soul_item_id)
     flash(msg)
     return redirect(url_for('lieutenant.index'))

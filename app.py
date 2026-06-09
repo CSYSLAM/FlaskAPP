@@ -46,6 +46,7 @@ def create_app():
     from blueprints.social import social_bp
     from blueprints.activity import activity_bp
     from blueprints.lieutenant import lieutenant_bp
+    from blueprints.lieutenant_commander import commander_bp
     from blueprints.villa import villa_bp
     from blueprints.vip import vip_bp
     from blueprints.rank import rank_bp
@@ -65,6 +66,7 @@ def create_app():
     app.register_blueprint(social_bp, url_prefix='/social')
     app.register_blueprint(activity_bp)
     app.register_blueprint(lieutenant_bp)
+    app.register_blueprint(commander_bp)
     app.register_blueprint(villa_bp)
     app.register_blueprint(vip_bp)
     app.register_blueprint(rank_bp)
@@ -114,6 +116,11 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN warehouse_capacity INTEGER DEFAULT 20"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE lieutenant ADD COLUMN tier INTEGER DEFAULT 3"))
             db.session.commit()
         except Exception:
             db.session.rollback()

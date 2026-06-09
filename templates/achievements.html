@@ -19,6 +19,14 @@
 
     <a href="{{ url_for('player.character') }}">状态</a>&gt;&gt;成就<br/>
     ----------------<br/>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    ----------------<br/>
+    {% endif %}
+    {% endwith %}
     {% set bonuses = AchievementService.get_bonuses(player) %}
     {% if bonuses %}
     总属性:{% for stat, val in bonuses.items() %}{{ stat_names.get(stat, stat) }}+{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.1f"|format(val * 100) }}%{% else %}{{ val }}{% endif %}{% if not loop.last %}、{% endif %}{% endfor %}<br/>

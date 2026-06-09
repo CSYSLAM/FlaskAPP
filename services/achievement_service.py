@@ -8,7 +8,8 @@ class AchievementService:
     @classmethod
     def check_all(cls, player):
         for ctype in ['level', 'kill', 'elite_kill', 'pk_win', 'enhance',
-                       'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level']:
+                       'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level',
+                       'lieutenant_owned']:
             cls.check(player, ctype)
 
     @classmethod
@@ -57,6 +58,10 @@ class AchievementService:
             return player.chat_count >= val
         elif ctype == 'vip_level':
             return player.vip_level >= val
+        elif ctype == 'lieutenant_owned':
+            from models.lieutenant import Lieutenant
+            name = adef.get('lt_name', '')
+            return Lieutenant.query.filter_by(owner_id=player.id, name=name).first() is not None
         return False
 
     @classmethod
@@ -90,6 +95,7 @@ class AchievementService:
             elif hasattr(player, stat):
                 current = getattr(player, stat) or 0
                 setattr(player, stat, current + value)
+        DataService.broadcast_system(f"{player.nickname}完成了{adef['name']}成就，太有实力了！")
         return True, "领取成功"
 
     @classmethod
@@ -159,6 +165,10 @@ class AchievementService:
             return player.gift_count or 0
         elif ctype == 'chat':
             return player.chat_count or 0
+        elif ctype == 'lieutenant_owned':
+            from models.lieutenant import Lieutenant
+            name = adef.get('lt_name', '')
+            return 1 if Lieutenant.query.filter_by(owner_id=player.id, name=name).first() else 0
         return 0
 
     @classmethod

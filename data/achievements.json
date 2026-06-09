@@ -1,5 +1,5 @@
 {
-  "categories": ["成长", "战斗", "探索", "收集", "社交", "特权"],
+  "categories": ["成长", "战斗", "探索", "收集", "社交", "特权", "副将"],
   "achievements": {
     "level_10": {
       "name": "初入江湖",
@@ -256,6 +256,348 @@
       "condition_type": "vip_level",
       "condition_value": 5,
       "reward": {"attack": 50, "defense": 50, "max_health": 500}
+    },
+    "lt_dianwei": {
+      "name": "一级名将【典韦】",
+      "category": "副将",
+      "description": "拥有一级副将典韦",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "典韦",
+      "reward": {"attack": 15, "defense": 10}
+    },
+    "lt_huangzhong": {
+      "name": "一级名将【黄忠】",
+      "category": "副将",
+      "description": "拥有一级副将黄忠",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "黄忠",
+      "reward": {"attack": 15, "crit_rate": 0.02}
+    },
+    "lt_pangtong": {
+      "name": "一级名将【庞统】",
+      "category": "副将",
+      "description": "拥有一级副将庞统",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "庞统",
+      "reward": {"max_mana": 150, "attack": 10}
+    },
+    "lt_xunyu": {
+      "name": "一级名将【荀彧】",
+      "category": "副将",
+      "description": "拥有一级副将荀彧",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "荀彧",
+      "reward": {"max_mana": 150, "defense": 10}
+    },
+    "lt_zhouyu": {
+      "name": "一级名将【周瑜】",
+      "category": "副将",
+      "description": "拥有一级副将周瑜",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "周瑜",
+      "reward": {"max_mana": 200, "attack": 10}
+    },
+    "lt_diaochan": {
+      "name": "一级名将【貂蝉】",
+      "category": "副将",
+      "description": "拥有一级副将貂蝉",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "貂蝉",
+      "reward": {"dodge_rate": 0.03, "max_health": 100}
+    },
+    "lt_guojia": {
+      "name": "一级名将【郭嘉】",
+      "category": "副将",
+      "description": "拥有一级副将郭嘉",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "郭嘉",
+      "reward": {"max_mana": 150, "attack": 15}
+    },
+    "lt_machao": {
+      "name": "一级名将【马超】",
+      "category": "副将",
+      "description": "拥有一级副将马超",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "马超",
+      "reward": {"attack": 20, "crit_rate": 0.02}
+    },
+    "lt_liru": {
+      "name": "一级名将【李儒】",
+      "category": "副将",
+      "description": "拥有一级副将李儒",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "李儒",
+      "reward": {"max_mana": 150, "attack": 10}
+    },
+    "lt_xuchu": {
+      "name": "一级名将【许褚】",
+      "category": "副将",
+      "description": "拥有一级副将许褚",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "许褚",
+      "reward": {"attack": 15, "defense": 15}
+    },
+    "lt_dengai": {
+      "name": "一级名将【邓艾】",
+      "category": "副将",
+      "description": "拥有一级副将邓艾",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "邓艾",
+      "reward": {"attack": 15, "crit_rate": 0.02}
+    },
+    "lt_taishici": {
+      "name": "一级名将【太史慈】",
+      "category": "副将",
+      "description": "拥有一级副将太史慈",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "太史慈",
+      "reward": {"attack": 15, "dodge_rate": 0.02}
+    },
+    "lt_xiaoqiao": {
+      "name": "二级名将【小乔】",
+      "category": "副将",
+      "description": "拥有二级副将小乔",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "小乔",
+      "reward": {"max_mana": 80, "dodge_rate": 0.01}
+    },
+    "lt_zhugejin": {
+      "name": "二级名将【诸葛瑾】",
+      "category": "副将",
+      "description": "拥有二级副将诸葛瑾",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "诸葛瑾",
+      "reward": {"max_mana": 80, "defense": 8}
+    },
+    "lt_sunliang": {
+      "name": "二级名将【孙亮】",
+      "category": "副将",
+      "description": "拥有二级副将孙亮",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "孙亮",
+      "reward": {"attack": 8, "defense": 5}
+    },
+    "lt_liufeng": {
+      "name": "二级名将【刘封】",
+      "category": "副将",
+      "description": "拥有二级副将刘封",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "刘封",
+      "reward": {"attack": 8, "max_health": 50}
+    },
+    "lt_jiangwan": {
+      "name": "二级名将【蒋琬】",
+      "category": "副将",
+      "description": "拥有二级副将蒋琬",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "蒋琬",
+      "reward": {"max_mana": 80, "attack": 5}
+    },
+    "lt_manchong": {
+      "name": "二级名将【满宠】",
+      "category": "副将",
+      "description": "拥有二级副将满宠",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "满宠",
+      "reward": {"max_mana": 80, "defense": 8}
+    },
+    "lt_daqiao": {
+      "name": "二级名将【大乔】",
+      "category": "副将",
+      "description": "拥有二级副将大乔",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "大乔",
+      "reward": {"max_mana": 100, "dodge_rate": 0.01}
+    },
+    "lt_guanping": {
+      "name": "二级名将【关平】",
+      "category": "副将",
+      "description": "拥有二级副将关平",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "关平",
+      "reward": {"attack": 10, "max_health": 50}
+    },
+    "lt_caozhen": {
+      "name": "二级名将【曹真】",
+      "category": "副将",
+      "description": "拥有二级副将曹真",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "曹真",
+      "reward": {"attack": 8, "defense": 8}
+    },
+    "lt_pangde": {
+      "name": "二级名将【庞德】",
+      "category": "副将",
+      "description": "拥有二级副将庞德",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "庞德",
+      "reward": {"attack": 10, "defense": 5}
+    },
+    "lt_caiwenji": {
+      "name": "二级名将【蔡文姬】",
+      "category": "副将",
+      "description": "拥有二级副将蔡文姬",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "蔡文姬",
+      "reward": {"max_mana": 100, "max_health": 50}
+    },
+    "lt_mayunlu": {
+      "name": "二级名将【马云禄】",
+      "category": "副将",
+      "description": "拥有二级副将马云禄",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "马云禄",
+      "reward": {"attack": 8, "dodge_rate": 0.01}
+    },
+    "lt_dengzhong": {
+      "name": "二级名将【邓忠】",
+      "category": "副将",
+      "description": "拥有二级副将邓忠",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "邓忠",
+      "reward": {"attack": 8, "crit_rate": 0.01}
+    },
+    "lt_adou": {
+      "name": "三级名将【阿斗】",
+      "category": "副将",
+      "description": "拥有三级副将阿斗",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "阿斗",
+      "reward": {"max_health": 30}
+    },
+    "lt_liaohua": {
+      "name": "三级名将【廖化】",
+      "category": "副将",
+      "description": "拥有三级副将廖化",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "廖化",
+      "reward": {"attack": 3, "max_health": 20}
+    },
+    "lt_lvkuang": {
+      "name": "三级名将【吕旷】",
+      "category": "副将",
+      "description": "拥有三级副将吕旷",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "吕旷",
+      "reward": {"attack": 3, "defense": 3}
+    },
+    "lt_zhaoguang": {
+      "name": "三级名将【赵广】",
+      "category": "副将",
+      "description": "拥有三级副将赵广",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "赵广",
+      "reward": {"attack": 3, "crit_rate": 0.01}
+    },
+    "lt_xuyou": {
+      "name": "三级名将【许攸】",
+      "category": "副将",
+      "description": "拥有三级副将许攸",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "许攸",
+      "reward": {"max_mana": 30, "attack": 2}
+    },
+    "lt_wuguotai": {
+      "name": "三级名将【吴国太】",
+      "category": "副将",
+      "description": "拥有三级副将吴国太",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "吴国太",
+      "reward": {"max_mana": 30, "defense": 3}
+    },
+    "lt_zhenji": {
+      "name": "三级名将【甄姬】",
+      "category": "副将",
+      "description": "拥有三级副将甄姬",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "甄姬",
+      "reward": {"max_mana": 40, "dodge_rate": 0.01}
+    },
+    "lt_zhangxiu": {
+      "name": "三级名将【张绣】",
+      "category": "副将",
+      "description": "拥有三级副将张绣",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "张绣",
+      "reward": {"attack": 3, "max_health": 20}
+    },
+    "lt_wangmeiren": {
+      "name": "三级名将【王美人】",
+      "category": "副将",
+      "description": "拥有三级副将王美人",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "王美人",
+      "reward": {"max_mana": 30, "max_health": 20}
+    },
+    "lt_yuejin": {
+      "name": "三级名将【乐进】",
+      "category": "副将",
+      "description": "拥有三级副将乐进",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "乐进",
+      "reward": {"attack": 5, "defense": 2}
+    },
+    "lt_matie": {
+      "name": "三级名将【马铁】",
+      "category": "副将",
+      "description": "拥有三级副将马铁",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "马铁",
+      "reward": {"attack": 3, "max_health": 20}
+    },
+    "lt_xiahouba": {
+      "name": "三级名将【夏侯霸】",
+      "category": "副将",
+      "description": "拥有三级副将夏侯霸",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "夏侯霸",
+      "reward": {"attack": 4, "defense": 3}
+    },
+    "lt_dongbai": {
+      "name": "三级名将【董白】",
+      "category": "副将",
+      "description": "拥有三级副将董白",
+      "condition_type": "lieutenant_owned",
+      "condition_value": 1,
+      "lt_name": "董白",
+      "reward": {"max_health": 30, "dodge_rate": 0.01}
     }
   }
 }

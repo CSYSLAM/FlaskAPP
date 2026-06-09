@@ -29,19 +29,18 @@
 {% if lieutenants %}
 {% for lt in lieutenants %}
 <a href="{{ url_for('lieutenant.detail', lt_id=lt.id) }}">{{ lt.name }}</a>
+({{ TIER_NAMES.get(lt.tier, '') }})
 {{ lt.quality_name }}{{ lt.class_name }}({{ lt.gender_name }})
 Lv.{{ lt.level }}
 {% if lt.is_deployed %}出战中{% if lt.position == 'front' %}(前置){% else %}(后置){% endif %}{% endif %}
 {% if not lt.is_alive %}<font color="red">已阵亡</font>{% endif %}
+<a href="{{ url_for('lieutenant.banish', lt_id=lt.id) }}" onclick="return confirm('确定要放逐{{ lt.name }}吗？')">放逐</a>
 <br/>
 {% endfor %}
 {% else %}
 暂无副将<br/>
 {% endif %}
 <br/>
-{% if lieutenants|length < max_slots %}
-<a href="{{ url_for('lieutenant.recruit_page') }}">招募副将</a><br/>
-{% endif %}
 {% if lieutenants|length >= max_slots %}
 <a href="{{ url_for('lieutenant.expand_slots') }}">扩充副将位</a><br/>
 {% endif %}

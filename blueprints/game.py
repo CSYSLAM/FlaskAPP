@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, flash, jsonify
 from flask_login import login_required, current_user
-from datetime import datetime
-from models.player import PlayerModel, EquipmentInstance, PlayerSkill
+from datetime import datetime, timedelta
+from models.player import PlayerModel, EquipmentInstance, PlayerSkill, ChatMessage
 from services import db
 from services.data_service import DataService
 from services.battle_service import BattleService
@@ -55,12 +55,11 @@ def scene():
                 return "No starting location found", 500
 
         # If player left a copy dungeon map, reset their dungeon state
+        data = player.activity_data
         if location and not location.get('is_copy_map'):
-            data = player.activity_data
             copy_states = data.get('copy_dungeons', {})
             if copy_states:
                 data['copy_dungeons'] = {}
-                player.activity_data = data
         # Get other players in the same location
         other_players = PlayerModel.query.filter(
             PlayerModel.current_location == location_id,
@@ -99,12 +98,54 @@ def scene():
                     npc.task_icon = marker['icon'] if marker else None
                     npcs.append(npc)
 
-        # Get recent public messages
-        public_messages = DataService.list_latest_messages(3)
+        # Get messages from last 3 minutes
+        cutoff = datetime.utcnow() - timedelta(minutes=3)
+        from sqlalchemy import or_
 
-        # Get recent country messages
-        from services.social_service import SocialService
-        country_messages = SocialService.get_country_messages(player.country, 3)
+        # Channel 1: single unread public/system message, consumed on each refresh
+        last_c1_id = data.get('last_read_c1_id', 0)
+        next_c1 = ChatMessage.query.filter(
+            ChatMessage.message_type.in_(['public', 'system']),
+            ChatMessage.id > last_c1_id,
+            ChatMessage.created_at >= cutoff
+        ).order_by(ChatMessage.id.asc()).first()
+        channel1_msg = next_c1
+        if next_c1:
+            data['last_read_c1_id'] = next_c1.id
+        player.activity_data = data
+        db.session.commit()
+
+        # Channel 2: country messages (same country) + private messages (to/from player)
+        same_country_ids = [p.id for p in PlayerModel.query.filter_by(country=player.country).all()]
+        channel2 = ChatMessage.query.filter(
+            or_(
+                db.and_(
+                    ChatMessage.message_type == 'country',
+                    ChatMessage.sender_id.in_(same_country_ids)
+                ),
+                db.and_(
+                    ChatMessage.message_type == 'private',
+                    or_(
+                        ChatMessage.sender_id == player.id,
+                        ChatMessage.receiver_id == player.id
+                    )
+                )
+            ),
+            ChatMessage.created_at >= cutoff
+        ).order_by(ChatMessage.created_at.desc()).limit(10).all()
+
+        # Player notifications (JSON field)
+        notifications = player.notifications or []
+        recent_notifications = [n for n in notifications[:5]]
+        # Check notification time
+        filtered_notifications = []
+        for n in recent_notifications:
+            try:
+                n_time = datetime.strptime(n.get('time', ''), '%Y-%m-%d %H:%M')
+                if n_time >= cutoff:
+                    filtered_notifications.append(n)
+            except (ValueError, TypeError):
+                pass
 
         # Get ground items
         ground_items = DataService.get_ground_items(location_id)
@@ -116,8 +157,9 @@ def scene():
                              other_players=other_players,
                              monsters=monsters_list,
                              npcs=npcs,
-                             public_messages=public_messages,
-                             country_messages=country_messages,
+                             channel1_msg=channel1_msg,
+                             channel2=channel2,
+                             notifications=filtered_notifications,
                              ground_items=ground_items,
                              DataService=DataService,
                              now=datetime.now())
@@ -258,6 +300,9 @@ def view_npc(monster_id):
 
     if '驿站管理员' in monster_id:
         return redirect(url_for('lost_found.lost_found'))
+
+    if '副将统领' in monster_id:
+        return redirect(url_for('commander.index'))
 
     return render_template("view_npc.html",
                          player=player,

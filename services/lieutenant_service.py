@@ -3,19 +3,74 @@ import random
 import json
 from services import db
 from services.data_service import DataService
-from models.lieutenant import Lieutenant, QUALITY_NAMES, QUALITY_MULTIPLIER, CLASS_NAMES, GENDER_NAMES
+from models.lieutenant import Lieutenant, QUALITY_NAMES, QUALITY_MULTIPLIER, CLASS_NAMES, GENDER_NAMES, TIER_NAMES, TIER_FRAGMENTS
 
 
-LIEUTENANT_NAMES = {
-    'male_warrior': ['徐晃', '马超', '关羽', '张飞', '赵云', '吕布', '典韦', '许褚', '夏侯惇', '魏延'],
-    'male_mage': ['李儒', '庞统', '诸葛亮', '司马懿', '郭嘉', '贾诩', '荀彧', '周瑜', '陆逊', '法正'],
-    'male_assassin': ['甘宁', '太史慈', '凌统', '丁奉', '徐盛', '吕蒙', '黄盖', '韩当', '程普', '蒋钦'],
-    'female_warrior': ['孙尚香', '祝融', '关银屏', '张星彩', '鲍三娘', '马云騄'],
-    'female_mage': ['黄月英', '步练师', '王元姬', '蔡文姬', '甄姬'],
-    'female_assassin': ['貂蝉', '吕玲绮', '花鬘', '孙鲁育', '小乔'],
+# Normal lieutenant name pools (not part of the 1-3 tier system, no soul/achievement)
+NORMAL_LIEUTENANT_NAMES = {
+    'male_warrior': ['李通', '郝萌', '曹性', '成廉', '魏越', '侯成', '宋宪', '魏续', '韩浩', '史涣'],
+    'male_mage': ['王楷', '许汜', '张超', '陈琳', '阮瑀', '刘馥', '王粲', '徐干', '杨修', '应玚'],
+    'male_assassin': ['胡车儿', '秦朗', '吴硕', '耿纪', '韦晃', '金祎', '吉邈', '吉穆', '秦庆童', '苗泽'],
+    'female_warrior': ['赵娥', '李姬', '孙氏', '徐氏', '杜氏'],
+    'female_mage': ['樊氏', '邹氏', '尹氏', '何氏', '唐姬'],
+    'female_assassin': ['郭氏', '曹节', '伏寿', '董贵妃', '刘氏'],
 }
 
-# Lieutenant skill definitions
+# Tier-based lieutenant data: {tier: {pinyin_id: {'name': '中文名', 'gender': 'male'/'female', 'class_type': 'warrior'/'mage'/'assassin'}}}
+LIEUTENANT_DATA = {
+    1: {
+        'dianwei': {'name': '典韦', 'gender': 'male', 'class_type': 'warrior'},
+        'huangzhong': {'name': '黄忠', 'gender': 'male', 'class_type': 'assassin'},
+        'pangtong': {'name': '庞统', 'gender': 'male', 'class_type': 'mage'},
+        'xunyu': {'name': '荀彧', 'gender': 'male', 'class_type': 'mage'},
+        'zhouyu': {'name': '周瑜', 'gender': 'male', 'class_type': 'mage'},
+        'diaochan': {'name': '貂蝉', 'gender': 'female', 'class_type': 'assassin'},
+        'guojia': {'name': '郭嘉', 'gender': 'male', 'class_type': 'mage'},
+        'machao': {'name': '马超', 'gender': 'male', 'class_type': 'assassin'},
+        'liru': {'name': '李儒', 'gender': 'male', 'class_type': 'mage'},
+        'xuchu': {'name': '许褚', 'gender': 'male', 'class_type': 'warrior'},
+        'dengai': {'name': '邓艾', 'gender': 'male', 'class_type': 'assassin'},
+        'taishici': {'name': '太史慈', 'gender': 'male', 'class_type': 'assassin'},
+    },
+    2: {
+        'xiaoqiao': {'name': '小乔', 'gender': 'female', 'class_type': 'mage'},
+        'zhugejin': {'name': '诸葛瑾', 'gender': 'male', 'class_type': 'mage'},
+        'sunliang': {'name': '孙亮', 'gender': 'male', 'class_type': 'warrior'},
+        'liufeng': {'name': '刘封', 'gender': 'male', 'class_type': 'warrior'},
+        'jiangwan': {'name': '蒋琬', 'gender': 'male', 'class_type': 'mage'},
+        'manchong': {'name': '满宠', 'gender': 'male', 'class_type': 'mage'},
+        'daqiao': {'name': '大乔', 'gender': 'female', 'class_type': 'mage'},
+        'guanping': {'name': '关平', 'gender': 'male', 'class_type': 'warrior'},
+        'caozhen': {'name': '曹真', 'gender': 'male', 'class_type': 'warrior'},
+        'pangde': {'name': '庞德', 'gender': 'male', 'class_type': 'warrior'},
+        'caiwenji': {'name': '蔡文姬', 'gender': 'female', 'class_type': 'mage'},
+        'mayunlu': {'name': '马云禄', 'gender': 'female', 'class_type': 'warrior'},
+        'dengzhong': {'name': '邓忠', 'gender': 'male', 'class_type': 'warrior'},
+    },
+    3: {
+        'adou': {'name': '阿斗', 'gender': 'male', 'class_type': 'warrior'},
+        'liaohua': {'name': '廖化', 'gender': 'male', 'class_type': 'warrior'},
+        'lvkuang': {'name': '吕旷', 'gender': 'male', 'class_type': 'warrior'},
+        'zhaoguang': {'name': '赵广', 'gender': 'male', 'class_type': 'assassin'},
+        'xuyou': {'name': '许攸', 'gender': 'male', 'class_type': 'mage'},
+        'wuguotai': {'name': '吴国太', 'gender': 'female', 'class_type': 'mage'},
+        'zhenji': {'name': '甄姬', 'gender': 'female', 'class_type': 'mage'},
+        'zhangxiu': {'name': '张绣', 'gender': 'male', 'class_type': 'warrior'},
+        'wangmeiren': {'name': '王美人', 'gender': 'female', 'class_type': 'mage'},
+        'yuejin': {'name': '乐进', 'gender': 'male', 'class_type': 'warrior'},
+        'matie': {'name': '马铁', 'gender': 'male', 'class_type': 'warrior'},
+        'xiahouba': {'name': '夏侯霸', 'gender': 'male', 'class_type': 'warrior'},
+        'dongbai': {'name': '董白', 'gender': 'female', 'class_type': 'assassin'},
+    },
+}
+
+# Soul item_id -> (tier, pinyin_id) mapping
+SOUL_TO_LT = {}
+for tier, data in LIEUTENANT_DATA.items():
+    for pinyin_id in data:
+        SOUL_TO_LT[f'soul_{pinyin_id}'] = (tier, pinyin_id)
+
+
 LIEUTENANT_SKILLS = {
     # Active skills
     'combo': {'name': '连击', 'type': 'active', 'class_required': 'assassin',
@@ -66,7 +121,6 @@ LIEUTENANT_SKILLS = {
               'description': '副将出战给与主人闪避加成'},
 }
 
-# Skill book item IDs for each skill and level
 SKILL_BOOK_IDS = {}
 for sid, sdef in LIEUTENANT_SKILLS.items():
     level_names = ['入门', '进阶', '精通']
@@ -83,6 +137,9 @@ for sid, sdef in LIEUTENANT_SKILLS.items():
 MAX_LIEUTENANT_SLOTS = 4
 LOYALTY_DEATH_LOSS = 10
 LIFESPAN_DEATH_LOSS = 5
+RECRUIT_GOLD_COST = 5000
+DECOMPOSE_GOLD_COST = 5000
+SYNTHESIZE_FRAGMENTS = 10
 
 
 class LieutenantService:
@@ -96,12 +153,30 @@ class LieutenantService:
         return Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
 
     @classmethod
-    def recruit(cls, player, gender, class_type):
+    def recruit(cls, player, method='token'):
+        """Recruit a random NORMAL lieutenant (not a named 1-3 tier lieutenant).
+        Normal lieutenants have no soul, no achievement, no tier.
+        method: 'token' (use 1 recruitment_token) or 'gold' (pay 5000 gold)
+        """
+        max_slots = cls.get_max_slots(player)
         count = Lieutenant.query.filter_by(owner_id=player.id).count()
-        if count >= MAX_LIEUTENANT_SLOTS:
+        if count >= max_slots:
             return None, "副将位已满"
 
-        name_pool = LIEUTENANT_NAMES.get(f'{gender}_{class_type}', ['副将'])
+        if method == 'token':
+            inv = DataService.get_inventory_item(player.id, 'recruitment_token')
+            if not inv or inv.quantity < 1:
+                return None, "没有招募令"
+            DataService.remove_item_from_inventory(player.id, 'recruitment_token', 1)
+        else:
+            if player.gold < RECRUIT_GOLD_COST:
+                return None, f"银两不足（需要{RECRUIT_GOLD_COST}银两）"
+            player.gold -= RECRUIT_GOLD_COST
+
+        # Random gender and class
+        gender = random.choice(['male', 'female'])
+        class_type = random.choice(['warrior', 'mage', 'assassin'])
+        name_pool = NORMAL_LIEUTENANT_NAMES.get(f'{gender}_{class_type}', ['副将'])
         name = random.choice(name_pool)
 
         lt = Lieutenant(
@@ -119,6 +194,7 @@ class LieutenantService:
             is_deployed=False,
             skills_raw='[]',
             skill_slots=3,
+            tier=0,
         )
         lt.current_health = lt.get_max_health()
         lt.current_mana = lt.get_max_mana()
@@ -130,19 +206,13 @@ class LieutenantService:
 
     @classmethod
     def expand_slots(cls, player):
-        """Expand lieutenant slots using skill expansion item."""
         inv = DataService.get_inventory_item(player.id, 'lt_slot_expand')
         if not inv or inv.quantity <= 0:
             return False, "没有副将扩充符"
-        count = Lieutenant.query.filter_by(owner_id=player.id).count()
-        if count >= MAX_LIEUTENANT_SLOTS:
-            return False, "副将位已满"
-        DataService.remove_item_from_inventory(player.id, 'lt_slot_expand', 1)
-        # Effectively this allows a new slot; MAX is 4, user buys expand to add
-        # For simplicity, we increase the effective max stored on player
         data = player.activity_data
-        lt_max = data.get('lieutenant_max', MAX_LIEUTENANT_SLOTS)
-        data['lieutenant_max'] = lt_max + 1
+        current_max = data.get('lieutenant_max', MAX_LIEUTENANT_SLOTS)
+        DataService.remove_item_from_inventory(player.id, 'lt_slot_expand', 1)
+        data['lieutenant_max'] = current_max + 1
         player.activity_data = data
         db.session.commit()
         return True, f"副将位扩充至{data['lieutenant_max']}个"
@@ -153,8 +223,184 @@ class LieutenantService:
         return data.get('lieutenant_max', MAX_LIEUTENANT_SLOTS)
 
     @classmethod
+    def banish(cls, lieutenant):
+        """Banish/expel a lieutenant."""
+        if lieutenant.is_deployed:
+            return False, "请先让副将休息"
+        name = lieutenant.name
+        db.session.delete(lieutenant)
+        db.session.commit()
+        return True, f"已放逐副将【{name}】"
+
+    @classmethod
+    def get_player_souls(cls, player):
+        """Get all soul items in player's inventory, grouped by tier."""
+        inventory = DataService.get_inventory(player.id)
+        souls = {1: [], 2: [], 3: []}
+        for inv in inventory:
+            if inv.item_id.startswith('soul_') and inv.item_id in SOUL_TO_LT:
+                tier, pinyin_id = SOUL_TO_LT[inv.item_id]
+                lt_info = LIEUTENANT_DATA[tier][pinyin_id]
+                souls[tier].append({
+                    'item_id': inv.item_id,
+                    'name': lt_info['name'],
+                    'quantity': inv.quantity,
+                    'fragments': TIER_FRAGMENTS[tier],
+                })
+        for tier in souls:
+            souls[tier].sort(key=lambda x: x['name'])
+        return souls
+
+    @classmethod
+    def decompose_soul(cls, player, soul_item_id):
+        """Decompose a soul into soul banner fragments."""
+        if soul_item_id not in SOUL_TO_LT:
+            return False, "无效的魂魄"
+        if player.gold < DECOMPOSE_GOLD_COST:
+            return False, f"银两不足（需要{DECOMPOSE_GOLD_COST}银两）"
+
+        inv = DataService.get_inventory_item(player.id, soul_item_id)
+        if not inv or inv.quantity < 1:
+            return False, "魂魄数量不足"
+
+        tier, pinyin_id = SOUL_TO_LT[soul_item_id]
+        fragments = TIER_FRAGMENTS[tier]
+        lt_info = LIEUTENANT_DATA[tier][pinyin_id]
+
+        DataService.remove_item_from_inventory(player.id, soul_item_id, 1)
+        player.gold -= DECOMPOSE_GOLD_COST
+        DataService.add_item_to_inventory(player.id, 'soul_banner_fragment', fragments)
+        db.session.commit()
+
+        tier_name = TIER_NAMES.get(tier, '')
+        return True, f"分解{tier_name}魂魄【{lt_info['name']}】获得{fragments}个聚魂幡碎片"
+
+    @classmethod
+    def synthesize_banner(cls, player):
+        """Synthesize 10 fragments into 1 soul banner."""
+        inv = DataService.get_inventory_item(player.id, 'soul_banner_fragment')
+        if not inv or inv.quantity < SYNTHESIZE_FRAGMENTS:
+            return False, f"聚魂幡碎片不足（需要{SYNTHESIZE_FRAGMENTS}个）"
+
+        DataService.remove_item_from_inventory(player.id, 'soul_banner_fragment', SYNTHESIZE_FRAGMENTS)
+        DataService.add_item_to_inventory(player.id, 'soul_banner', 1)
+        db.session.commit()
+        return True, f"使用{SYNTHESIZE_FRAGMENTS}个聚魂幡碎片合成了1个聚魂幡"
+
+    @classmethod
+    def use_soul_banner(cls, player):
+        """Use soul banner to get a random soul."""
+        inv = DataService.get_inventory_item(player.id, 'soul_banner')
+        if not inv or inv.quantity < 1:
+            return False, "没有聚魂幡"
+
+        DataService.remove_item_from_inventory(player.id, 'soul_banner', 1)
+
+        roll = random.randint(1, 100)
+        if roll <= 80:
+            tier = 3
+        elif roll <= 99:
+            tier = 2
+        else:
+            tier = 1
+
+        candidates = LIEUTENANT_DATA[tier]
+        pinyin_id = random.choice(list(candidates.keys()))
+        lt_info = candidates[pinyin_id]
+        soul_item_id = f'soul_{pinyin_id}'
+
+        DataService.add_item_to_inventory(player.id, soul_item_id, 1)
+        db.session.commit()
+
+        tier_name = TIER_NAMES.get(tier, '')
+        DataService.broadcast_system(f"{player.nickname}通过副将聚魂获得了{tier_name}魂魄【{lt_info['name']}】")
+        return True, f"获得{tier_name}魂魄【{lt_info['name']}】"
+
+    @classmethod
+    def use_soul(cls, player, soul_item_id):
+        """Use a soul to obtain the corresponding lieutenant."""
+        if soul_item_id not in SOUL_TO_LT:
+            return False, "无效的魂魄"
+
+        tier, pinyin_id = SOUL_TO_LT[soul_item_id]
+        success, msg = cls.grant_lieutenant_from_soul(player, tier, pinyin_id)
+        if not success:
+            return False, msg
+
+        # Consume the soul item
+        inv = DataService.get_inventory_item(player.id, soul_item_id)
+        if not inv or inv.quantity < 1:
+            return False, "魂魄数量不足"
+
+        DataService.remove_item_from_inventory(player.id, soul_item_id, 1)
+
+        db.session.commit()
+
+        lt_info = LIEUTENANT_DATA[tier][pinyin_id]
+        tier_name = TIER_NAMES.get(tier, '')
+        return True, f"获得{tier_name}副将【{lt_info['name']}】"
+
+    @classmethod
+    def grant_lieutenant_from_soul(cls, player, tier, pinyin_id):
+        """Grant a tiered lieutenant from a soul. Does NOT consume the soul item."""
+        if tier not in LIEUTENANT_DATA or pinyin_id not in LIEUTENANT_DATA[tier]:
+            return False, "副将数据不存在"
+
+        lt_info = LIEUTENANT_DATA[tier][pinyin_id]
+
+        max_slots = cls.get_max_slots(player)
+        count = Lieutenant.query.filter_by(owner_id=player.id).count()
+        if count >= max_slots:
+            return False, "副将位已满"
+
+        existing = Lieutenant.query.filter_by(owner_id=player.id, name=lt_info['name']).first()
+        if existing:
+            return False, f"已拥有副将【{lt_info['name']}】"
+
+        lt = Lieutenant(
+            owner_id=player.id,
+            name=lt_info['name'],
+            gender=lt_info['gender'],
+            class_type=lt_info['class_type'],
+            quality=0,
+            enlightenment=0,
+            reinforce=0,
+            loyalty=80,
+            lifespan=100,
+            level=1,
+            position='front',
+            is_deployed=False,
+            skills_raw='[]',
+            skill_slots=3,
+            tier=tier,
+        )
+        lt.current_health = lt.get_max_health()
+        lt.current_mana = lt.get_max_mana()
+        lt.is_alive = True
+
+        db.session.add(lt)
+        db.session.flush()
+
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'lieutenant_owned')
+
+        return True, "ok"
+
+    @classmethod
+    def _get_lt_info(cls, tier, pinyin_id):
+        """Get lieutenant info dict for a given tier and pinyin_id."""
+        return LIEUTENANT_DATA.get(tier, {}).get(pinyin_id, {})
+
+    @classmethod
+    def _count_owned(cls, player):
+        return Lieutenant.query.filter_by(owner_id=player.id).count()
+
+    @classmethod
+    def has_lieutenant_by_name(cls, player, name):
+        return Lieutenant.query.filter_by(owner_id=player.id, name=name).first() is not None
+
+    @classmethod
     def wash_quality(cls, lieutenant):
-        """Wash quality (洗资质) - randomize quality using 资质丹."""
         inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_quality_pill')
         if not inv or inv.quantity <= 0:
             return False, "没有副将资质丹"
@@ -164,7 +410,6 @@ class LieutenantService:
         new_quality = random.randint(0, 20)
         lieutenant.quality = new_quality
 
-        # Recalculate health/mana based on new quality
         max_hp = lieutenant.get_max_health()
         max_mp = lieutenant.get_max_mana()
         lieutenant.current_health = min(lieutenant.current_health, max_hp)
@@ -175,7 +420,6 @@ class LieutenantService:
 
     @classmethod
     def enlighten(cls, lieutenant):
-        """Increase enlightenment (悟性) using 悟性丹. Success rate decreases per level."""
         inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_enlighten_pill')
         if not inv or inv.quantity <= 0:
             return False, "没有副将悟性丹"
@@ -200,7 +444,6 @@ class LieutenantService:
 
     @classmethod
     def reinforce(cls, lieutenant):
-        """Reinforce (强化) using 强化丹. Success rate decreases per level."""
         inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_reinforce_pill')
         if not inv or inv.quantity <= 0:
             return False, "没有副将强化丹"
@@ -225,7 +468,6 @@ class LieutenantService:
 
     @classmethod
     def restore_loyalty(cls, lieutenant):
-        """Restore loyalty using 忠诚丹."""
         inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_loyalty_pill')
         if not inv or inv.quantity <= 0:
             return False, "没有副将忠诚丹"
@@ -240,7 +482,6 @@ class LieutenantService:
 
     @classmethod
     def restore_lifespan(cls, lieutenant):
-        """Restore lifespan using 寿命丹."""
         inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_lifespan_pill')
         if not inv or inv.quantity <= 0:
             return False, "没有副将寿命丹"
@@ -255,12 +496,10 @@ class LieutenantService:
 
     @classmethod
     def deploy(cls, lieutenant):
-        """Deploy lieutenant for battle."""
         can, msg = lieutenant.can_deploy()
         if not can:
             return False, msg
 
-        # Undeploy any currently deployed lieutenant
         current = Lieutenant.query.filter_by(
             owner_id=lieutenant.owner_id, is_deployed=True).first()
         if current:
@@ -275,14 +514,12 @@ class LieutenantService:
 
     @classmethod
     def recall(cls, lieutenant):
-        """Recall lieutenant from battle."""
         lieutenant.is_deployed = False
         db.session.commit()
         return True, f"副将【{lieutenant.name}】休息"
 
     @classmethod
     def set_position(cls, lieutenant, position):
-        """Set lieutenant position (front/back)."""
         if position not in ('front', 'back'):
             return False, "无效位置"
         lieutenant.position = position
@@ -292,7 +529,6 @@ class LieutenantService:
 
     @classmethod
     def expand_skill_slots(cls, lieutenant):
-        """Expand skill slots using 技能扩展符."""
         inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_skill_expand')
         if not inv or inv.quantity <= 0:
             return False, "没有副将技能扩展符"
@@ -307,12 +543,10 @@ class LieutenantService:
 
     @classmethod
     def learn_skill(cls, lieutenant, skill_id, level=1):
-        """Learn a lieutenant skill at specified level using skill books."""
         sdef = LIEUTENANT_SKILLS.get(skill_id)
         if not sdef:
             return False, "技能不存在"
 
-        # Check class requirement
         class_req = sdef.get('class_required')
         if class_req and lieutenant.class_type != class_req:
             return False, f"需要{CLASS_NAMES.get(class_req, class_req)}职业"
@@ -322,12 +556,10 @@ class LieutenantService:
         if current_slots >= lieutenant.skill_slots:
             return False, "技能位已满"
 
-        # Check if skill already exists
         for sk in skills:
             if sk.get('id') == skill_id:
                 return False, "已学习该技能"
 
-        # Find the skill book for this level
         book_key = f'lt_skill_{skill_id}_{level}'
         book_info = SKILL_BOOK_IDS.get(book_key)
         if not book_info:
@@ -340,7 +572,6 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(lieutenant.owner_id, book_key, required_count)
 
-        # Add skill
         skill_entry = {
             'id': skill_id,
             'name': sdef['name'],
@@ -367,7 +598,6 @@ class LieutenantService:
 
     @classmethod
     def upgrade_skill(cls, lieutenant, skill_id):
-        """Upgrade a lieutenant skill to next level."""
         sdef = LIEUTENANT_SKILLS.get(skill_id)
         if not sdef:
             return False, "技能不存在"
@@ -387,7 +617,6 @@ class LieutenantService:
         if next_level > sdef['max_level']:
             return False, "技能已满级"
 
-        # Find the skill book for the next level
         book_key = f'lt_skill_{skill_id}_{next_level}'
         book_info = SKILL_BOOK_IDS.get(book_key)
         if not book_info:
@@ -400,7 +629,6 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(lieutenant.owner_id, book_key, required_count)
 
-        # Update skill
         skills[skill_idx]['level'] = next_level
         if sdef['type'] == 'passive':
             skills[skill_idx]['bonus_value'] = sdef['bonus_value'][next_level - 1]
@@ -421,7 +649,6 @@ class LieutenantService:
 
     @classmethod
     def forget_skill(cls, lieutenant, skill_id):
-        """Forget a lieutenant skill."""
         skills = lieutenant.skills
         new_skills = [sk for sk in skills if sk.get('id') != skill_id]
         if len(new_skills) == len(skills):
@@ -432,28 +659,18 @@ class LieutenantService:
 
     @classmethod
     def handle_death(cls, lieutenant, owner_died=False):
-        """Handle lieutenant death in battle.
-
-        Args:
-            lieutenant: The lieutenant that died
-            owner_died: If True, owner died (back position loses loyalty)
-                       If False, lieutenant died in front (loses lifespan)
-        """
         lieutenant.is_alive = False
         lieutenant.current_health = 0
-        lieutenant.is_deployed = False  # Auto rest
+        lieutenant.is_deployed = False
 
         if owner_died:
-            # Back position - owner died, lose loyalty
             lieutenant.loyalty = max(0, lieutenant.loyalty - LOYALTY_DEATH_LOSS)
         else:
-            # Front position - lieutenant killed, lose lifespan
             lieutenant.lifespan = max(0, lieutenant.lifespan - LIFESPAN_DEATH_LOSS)
         db.session.commit()
 
     @classmethod
     def revive(cls, lieutenant):
-        """Revive lieutenant with health=1."""
         lieutenant.is_alive = True
         lieutenant.current_health = 1
         lieutenant.current_mana = min(lieutenant.current_mana, lieutenant.get_max_mana())
@@ -461,7 +678,6 @@ class LieutenantService:
 
     @classmethod
     def heal(cls, lieutenant, amount):
-        """Heal lieutenant."""
         if not lieutenant.is_alive:
             lieutenant.is_alive = True
             lieutenant.current_health = 1
@@ -470,13 +686,11 @@ class LieutenantService:
 
     @classmethod
     def restore_mana(cls, lieutenant, amount):
-        """Restore lieutenant mana."""
         lieutenant.current_mana = min(lieutenant.get_max_mana(), lieutenant.current_mana + amount)
         db.session.commit()
 
     @classmethod
     def gain_experience(cls, lieutenant, exp):
-        """Give experience to lieutenant, auto level up."""
         lieutenant.experience += exp
         while lieutenant.experience >= cls._exp_to_next(lieutenant.level):
             lieutenant.experience -= cls._exp_to_next(lieutenant.level)
@@ -491,13 +705,11 @@ class LieutenantService:
 
     @classmethod
     def get_available_skills(cls, lieutenant):
-        """Get skills available for this lieutenant to learn."""
         available = {}
         for sid, sdef in LIEUTENANT_SKILLS.items():
             class_req = sdef.get('class_required')
             if class_req and lieutenant.class_type != class_req:
                 continue
-            # Check if already learned
             learned = any(sk.get('id') == sid for sk in lieutenant.skills)
             if learned:
                 continue

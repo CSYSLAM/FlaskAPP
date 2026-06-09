@@ -2215,5 +2215,450 @@
     "price": 500,
     "is_usable": false,
     "capacity": 0
+  },
+  "recruitment_token": {
+    "name": "招募令",
+    "type": "material",
+    "description": "用于在副将统领处招募一名随机普通副将。",
+    "price": 5000,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "soul_banner_fragment": {
+    "name": "聚魂幡碎片",
+    "type": "material",
+    "description": "集齐10个可以合成1个聚魂幡。",
+    "price": 500,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "soul_banner": {
+    "name": "聚魂幡",
+    "type": "material",
+    "description": "使用后随机获得一个副将魂魄。80%概率三级，19%概率二级，1%概率一级。",
+    "price": 5000,
+    "is_usable": true,
+    "usage_effect": {
+      "random_soul": true
+    },
+    "capacity": 0.5
+  },
+  "soul_adou": {
+    "name": "阿斗魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将阿斗。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "adou"
+    },
+    "capacity": 0.1
+  },
+  "soul_liaohua": {
+    "name": "廖化魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将廖化。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "liaohua"
+    },
+    "capacity": 0.1
+  },
+  "soul_lvkuang": {
+    "name": "吕旷魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将吕旷。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "lvkuang"
+    },
+    "capacity": 0.1
+  },
+  "soul_zhaoguang": {
+    "name": "赵广魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将赵广。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "zhaoguang"
+    },
+    "capacity": 0.1
+  },
+  "soul_xuyou": {
+    "name": "许攸魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将许攸。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "xuyou"
+    },
+    "capacity": 0.1
+  },
+  "soul_wuguotai": {
+    "name": "吴国太魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将吴国太。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "wuguotai"
+    },
+    "capacity": 0.1
+  },
+  "soul_zhenji": {
+    "name": "甄姬魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将甄姬。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "zhenji"
+    },
+    "capacity": 0.1
+  },
+  "soul_zhangxiu": {
+    "name": "张绣魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将张绣。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "zhangxiu"
+    },
+    "capacity": 0.1
+  },
+  "soul_wangmeiren": {
+    "name": "王美人魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将王美人。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "wangmeiren"
+    },
+    "capacity": 0.1
+  },
+  "soul_yuejin": {
+    "name": "乐进魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将乐进。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "yuejin"
+    },
+    "capacity": 0.1
+  },
+  "soul_matie": {
+    "name": "马铁魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将马铁。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "matie"
+    },
+    "capacity": 0.1
+  },
+  "soul_xiahouba": {
+    "name": "夏侯霸魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将夏侯霸。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "xiahouba"
+    },
+    "capacity": 0.1
+  },
+  "soul_dongbai": {
+    "name": "董白魂魄",
+    "type": "material",
+    "description": "使用后获得三级副将董白。",
+    "price": 1000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "dongbai"
+    },
+    "capacity": 0.1
+  },
+  "soul_xiaoqiao": {
+    "name": "小乔魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将小乔。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "xiaoqiao"
+    },
+    "capacity": 0.1
+  },
+  "soul_zhugejin": {
+    "name": "诸葛瑾魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将诸葛瑾。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "zhugejin"
+    },
+    "capacity": 0.1
+  },
+  "soul_sunliang": {
+    "name": "孙亮魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将孙亮。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "sunliang"
+    },
+    "capacity": 0.1
+  },
+  "soul_liufeng": {
+    "name": "刘封魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将刘封。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "liufeng"
+    },
+    "capacity": 0.1
+  },
+  "soul_jiangwan": {
+    "name": "蒋琬魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将蒋琬。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "jiangwan"
+    },
+    "capacity": 0.1
+  },
+  "soul_manchong": {
+    "name": "满宠魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将满宠。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "manchong"
+    },
+    "capacity": 0.1
+  },
+  "soul_daqiao": {
+    "name": "大乔魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将大乔。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "daqiao"
+    },
+    "capacity": 0.1
+  },
+  "soul_guanping": {
+    "name": "关平魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将关平。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "guanping"
+    },
+    "capacity": 0.1
+  },
+  "soul_caozhen": {
+    "name": "曹真魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将曹真。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "caozhen"
+    },
+    "capacity": 0.1
+  },
+  "soul_pangde": {
+    "name": "庞德魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将庞德。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "pangde"
+    },
+    "capacity": 0.1
+  },
+  "soul_caiwenji": {
+    "name": "蔡文姬魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将蔡文姬。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "caiwenji"
+    },
+    "capacity": 0.1
+  },
+  "soul_mayunlu": {
+    "name": "马云禄魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将马云禄。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "mayunlu"
+    },
+    "capacity": 0.1
+  },
+  "soul_dengzhong": {
+    "name": "邓忠魂魄",
+    "type": "material",
+    "description": "使用后获得二级副将邓忠。",
+    "price": 3000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "dengzhong"
+    },
+    "capacity": 0.1
+  },
+  "soul_dianwei": {
+    "name": "典韦魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将典韦。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "dianwei"
+    },
+    "capacity": 0.1
+  },
+  "soul_huangzhong": {
+    "name": "黄忠魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将黄忠。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "huangzhong"
+    },
+    "capacity": 0.1
+  },
+  "soul_pangtong": {
+    "name": "庞统魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将庞统。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "pangtong"
+    },
+    "capacity": 0.1
+  },
+  "soul_xunyu": {
+    "name": "荀彧魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将荀彧。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "xunyu"
+    },
+    "capacity": 0.1
+  },
+  "soul_zhouyu": {
+    "name": "周瑜魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将周瑜。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "zhouyu"
+    },
+    "capacity": 0.1
+  },
+  "soul_diaochan": {
+    "name": "貂蝉魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将貂蝉。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "diaochan"
+    },
+    "capacity": 0.1
+  },
+  "soul_guojia": {
+    "name": "郭嘉魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将郭嘉。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "guojia"
+    },
+    "capacity": 0.1
+  },
+  "soul_machao": {
+    "name": "马超魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将马超。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "machao"
+    },
+    "capacity": 0.1
+  },
+  "soul_liru": {
+    "name": "李儒魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将李儒。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "liru"
+    },
+    "capacity": 0.1
+  },
+  "soul_xuchu": {
+    "name": "许褚魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将许褚。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "xuchu"
+    },
+    "capacity": 0.1
+  },
+  "soul_dengai": {
+    "name": "邓艾魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将邓艾。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "dengai"
+    },
+    "capacity": 0.1
+  },
+  "soul_taishici": {
+    "name": "太史慈魂魄",
+    "type": "material",
+    "description": "使用后获得一级副将太史慈。",
+    "price": 10000,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_lieutenant": "taishici"
+    },
+    "capacity": 0.1
   }
 }

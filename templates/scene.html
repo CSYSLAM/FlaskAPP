@@ -90,14 +90,15 @@ a:link { color: #136ec2; text-decoration: none; }
 
 <a href="{{ url_for('game.scene') }}">刷新</a> .<a href="{{ url_for('map.index') }}">地图</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
 
-    {% if public_messages %}
-{% for msg in public_messages|reverse %}
-【公共】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}<br/>
-{% endfor %}
+{% if channel1_msg %}
+{% if channel1_msg.message_type == 'system' %}【系统】{{ channel1_msg.content }}{% else %}【公共】{{ channel1_msg.sender.nickname if channel1_msg.sender else '未知' }}：{{ channel1_msg.content }}{% endif %}<br/>
 {% endif %}
-{% if country_messages %}
-{% for msg in country_messages|reverse %}
-【{{ player.country }}】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}<br/>
+{% if channel2 or notifications %}
+{% for msg in channel2 %}
+{% if msg.message_type == 'country' %}【{{ player.country }}】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}{% elif msg.message_type == 'private' %}【私聊】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}{% endif %}<br/>
+{% endfor %}
+{% for n in notifications %}
+【通知】{{ n.message }}<br/>
 {% endfor %}
 {% endif %}
 
