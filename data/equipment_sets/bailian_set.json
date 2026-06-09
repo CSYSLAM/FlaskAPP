@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "百炼套",
     "base_stats": {
-      "defense": 62,
-      "max_health": 220
+      "defense": 62
     },
     "max_extra_stats": {
       "defense": 32,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "百炼套",
     "base_stats": {
-      "defense": 74,
-      "max_health": 270
+      "defense": 74
     },
     "max_extra_stats": {
       "defense": 38,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "百炼套",
     "base_stats": {
-      "attack": 50,
-      "crit_rate": 0.1
+      "defense": 50
     },
     "max_extra_stats": {
       "attack": 22,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "百炼套",
     "base_stats": {
-      "defense": 64,
-      "max_health": 245
+      "defense": 64
     },
     "max_extra_stats": {
       "defense": 32,

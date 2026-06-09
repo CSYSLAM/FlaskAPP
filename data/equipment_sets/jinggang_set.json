@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "精钢套",
     "base_stats": {
-      "defense": 50,
-      "max_health": 180
+      "defense": 50
     },
     "max_extra_stats": {
       "defense": 26,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "精钢套",
     "base_stats": {
-      "defense": 60,
-      "max_health": 220
+      "defense": 60
     },
     "max_extra_stats": {
       "defense": 30,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "精钢套",
     "base_stats": {
-      "attack": 40,
-      "crit_rate": 0.08
+      "defense": 40
     },
     "max_extra_stats": {
       "attack": 18,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "精钢套",
     "base_stats": {
-      "defense": 52,
-      "max_health": 200
+      "defense": 52
     },
     "max_extra_stats": {
       "defense": 26,

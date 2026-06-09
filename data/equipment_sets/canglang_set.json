@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "苍狼套",
     "base_stats": {
-      "defense": 20,
-      "max_health": 85
+      "defense": 20
     },
     "max_extra_stats": {
       "defense": 10,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "苍狼套",
     "base_stats": {
-      "defense": 26,
-      "max_health": 100
+      "defense": 26
     },
     "max_extra_stats": {
       "defense": 13,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "苍狼套",
     "base_stats": {
-      "attack": 22,
-      "crit_rate": 0.06
+      "defense": 22
     },
     "max_extra_stats": {
       "attack": 12,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "苍狼套",
     "base_stats": {
-      "defense": 22,
-      "max_health": 90
+      "defense": 22
     },
     "max_extra_stats": {
       "defense": 11,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "苍狼套",
     "base_stats": {
-      "dodge_rate": 0.07,
       "defense": 15
     },
     "max_extra_stats": {

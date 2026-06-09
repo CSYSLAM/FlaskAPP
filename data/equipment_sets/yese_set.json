@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "夜色套",
     "base_stats": {
-      "defense": 30,
-      "max_health": 120
+      "defense": 30
     },
     "max_extra_stats": {
       "defense": 15,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "夜色套",
     "base_stats": {
-      "defense": 38,
-      "max_health": 140
+      "defense": 38
     },
     "max_extra_stats": {
       "defense": 18,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "夜色套",
     "base_stats": {
-      "attack": 32,
-      "crit_rate": 0.08
+      "defense": 32
     },
     "max_extra_stats": {
       "attack": 16,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "夜色套",
     "base_stats": {
-      "defense": 32,
-      "max_health": 125
+      "defense": 32
     },
     "max_extra_stats": {
       "defense": 16,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "夜色套",
     "base_stats": {
-      "dodge_rate": 0.09,
       "defense": 22
     },
     "max_extra_stats": {

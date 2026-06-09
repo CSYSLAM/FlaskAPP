@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "雷霆套",
     "base_stats": {
-      "defense": 38,
-      "max_health": 140
+      "defense": 38
     },
     "max_extra_stats": {
       "defense": 20,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "雷霆套",
     "base_stats": {
-      "defense": 46,
-      "max_health": 170
+      "defense": 46
     },
     "max_extra_stats": {
       "defense": 24,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "雷霆套",
     "base_stats": {
-      "attack": 30,
-      "crit_rate": 0.06
+      "defense": 30
     },
     "max_extra_stats": {
       "attack": 14,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "雷霆套",
     "base_stats": {
-      "defense": 40,
-      "max_health": 155
+      "defense": 40
     },
     "max_extra_stats": {
       "defense": 20,

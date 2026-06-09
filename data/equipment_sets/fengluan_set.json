@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "凤鸾套",
     "base_stats": {
-      "defense": 60,
-      "max_health": 215
+      "defense": 60
     },
     "max_extra_stats": {
       "defense": 30,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "凤鸾套",
     "base_stats": {
-      "defense": 74,
-      "max_health": 255
+      "defense": 74
     },
     "max_extra_stats": {
       "defense": 37,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "凤鸾套",
     "base_stats": {
-      "attack": 48,
-      "crit_rate": 0.13
+      "defense": 48
     },
     "max_extra_stats": {
       "attack": 26,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "凤鸾套",
     "base_stats": {
-      "defense": 62,
-      "max_health": 225
+      "defense": 62
     },
     "max_extra_stats": {
       "defense": 30,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "凤鸾套",
     "base_stats": {
-      "dodge_rate": 0.14,
       "defense": 42
     },
     "max_extra_stats": {

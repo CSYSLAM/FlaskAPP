@@ -1746,6 +1746,22 @@
     "price": 300,
     "capacity": 0.1
   },
+  "craft_zitanmu": {
+    "name": "紫檀木",
+    "type": "material",
+    "description": "用于打造50级以上装备的稀有材料",
+    "is_usable": false,
+    "price": 400,
+    "capacity": 0.1
+  },
+  "craft_jingjinkuang": {
+    "name": "精金矿",
+    "type": "material",
+    "description": "用于打造50级以上装备的稀有材料",
+    "is_usable": false,
+    "price": 500,
+    "capacity": 0.1
+  },
   "qing_mufa": {
     "name": "轻木筏",
     "type": "material",

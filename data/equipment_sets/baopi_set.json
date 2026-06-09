@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "豹皮套",
     "base_stats": {
-      "defense": 26,
-      "max_health": 100
+      "defense": 26
     },
     "max_extra_stats": {
       "defense": 14,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "豹皮套",
     "base_stats": {
-      "defense": 32,
-      "max_health": 120
+      "defense": 32
     },
     "max_extra_stats": {
       "defense": 16,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "豹皮套",
     "base_stats": {
-      "attack": 20,
-      "crit_rate": 0.04
+      "defense": 20
     },
     "max_extra_stats": {
       "attack": 10,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "豹皮套",
     "base_stats": {
-      "defense": 28,
-      "max_health": 110
+      "defense": 28
     },
     "max_extra_stats": {
       "defense": 14,

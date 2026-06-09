@@ -25,8 +25,7 @@
     "class_required": null,
     "is_artifact": false,
     "base_stats": {
-      "defense": 10,
-      "max_health": 40
+      "defense": 10
     },
     "max_extra_stats": {
       "defense": 8,
@@ -44,8 +43,7 @@
     "class_required": null,
     "is_artifact": false,
     "base_stats": {
-      "defense": 14,
-      "max_health": 60
+      "defense": 14
     },
     "max_extra_stats": {
       "defense": 10,
@@ -63,8 +61,7 @@
     "class_required": null,
     "is_artifact": false,
     "base_stats": {
-      "attack": 12,
-      "crit_rate": 0.04
+      "defense": 12
     },
     "max_extra_stats": {
       "attack": 6,
@@ -82,8 +79,7 @@
     "class_required": null,
     "is_artifact": false,
     "base_stats": {
-      "defense": 12,
-      "max_health": 50
+      "defense": 12
     },
     "max_extra_stats": {
       "defense": 9,
@@ -101,8 +97,7 @@
     "class_required": null,
     "is_artifact": false,
     "base_stats": {
-      "defense": 8,
-      "dodge_rate": 0.02
+      "defense": 8
     },
     "max_extra_stats": {
       "defense": 6,

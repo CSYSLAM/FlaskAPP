@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "水纹套",
     "base_stats": {
-      "defense": 22,
-      "max_health": 80
+      "defense": 22
     },
     "max_extra_stats": {
       "defense": 12,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "水纹套",
     "base_stats": {
-      "defense": 28,
-      "max_health": 100
+      "defense": 28
     },
     "max_extra_stats": {
       "defense": 15,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "水纹套",
     "base_stats": {
-      "attack": 18,
-      "crit_rate": 0.05
+      "defense": 18
     },
     "max_extra_stats": {
       "attack": 10,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "水纹套",
     "base_stats": {
-      "defense": 24,
-      "max_health": 90
+      "defense": 24
     },
     "max_extra_stats": {
       "defense": 12,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "水纹套",
     "base_stats": {
-      "dodge_rate": 0.06,
       "defense": 16
     },
     "max_extra_stats": {

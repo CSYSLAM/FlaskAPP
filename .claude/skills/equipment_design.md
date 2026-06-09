@@ -2,25 +2,23 @@
 
 ## 基础属性（base_stats）
 
-- **每件装备最多只有1-2种基础属性**
-- **一般装备只有1种基础属性**：
-  - 武器 → `attack`（攻击）
-  - 防具 → `defense`（防御）
-- **厉害一点的装备有2种基础属性**（需在模板中明确指定），按部位固定搭配：
-  - 头盔/衣服/裤子 → `defense` + `max_health`
-  - 手套 → `attack` + `crit_rate`
-  - 鞋子 → `dodge_rate` + `defense`
-- 特殊饰品可以有 `attack` + `defense`（目前未实现，后续添加）
+- **所有装备严格只有1种基础属性**
+- 武器 → `attack`（攻击）
+- 防具（头盔/衣服/手套/裤子/鞋子）→ `defense`（防御）
+- 饰品（戒指/项链）→ `defense`（防御）
+- **活动装备可以有2种基础属性**（需在模板中明确指定，由设计者自定义搭配）
 
 ### 现有装备示例
 
 | 装备 | 部位 | 基础属性 |
 |------|------|---------|
 | 雏龙长剑 | 武器 | attack |
-| 雏龙头巾 | 头盔 | defense、max_health |
-| 雏龙衣 | 衣服 | defense、max_health |
-| 雏龙手套 | 手套 | attack、crit_rate |
-| 雏龙鞋 | 鞋子 | dodge_rate、defense |
+| 雏龙头巾 | 头盔 | defense |
+| 雏龙衣 | 衣服 | defense |
+| 雏龙手套 | 手套 | defense |
+| 雏龙鞋 | 鞋子 | defense |
+| 黄铜戒指 | 饰品 | defense |
+| 灵犀项链 | 饰品 | defense |
 
 ## 附加属性（extra_stats）
 
@@ -101,7 +99,7 @@ stat_stars = random(min(1, stars-1), min(5, stars+1))
 {
   "template_id": {
     "name": "装备名称",
-    "slot": "weapon|helmet|armor|gloves|pants|shoes",
+    "slot": "weapon|helmet|armor|gloves|pants|shoes|accessory",
     "set_name": "套装名称",
     "level_required": 10,
     "class_required": null,
@@ -122,21 +120,26 @@ stat_stars = random(min(1, stars-1), min(5, stars+1))
 
 ## 装备部位（slots）
 
-| 部位 | slot 值 | 1种基础属性 | 2种基础属性 |
-|------|---------|------------|------------|
-| 武器 | weapon | attack | - |
-| 头盔 | helmet | defense | defense + max_health |
-| 衣服 | armor | defense | defense + max_health |
-| 手套 | gloves | attack | attack + crit_rate |
-| 裤子 | pants | defense | defense + max_health |
-| 鞋子 | shoes | dodge_rate | dodge_rate + defense |
+| 部位 | slot 值 | 基础属性 |
+|------|---------|---------|
+| 武器 | weapon | attack |
+| 头盔 | helmet | defense |
+| 衣服 | armor | defense |
+| 手套 | gloves | defense |
+| 裤子 | pants | defense |
+| 鞋子 | shoes | defense |
+| 饰品 | accessory | defense |
+
+注：活动装备可以有2种基础属性，需在模板中明确指定。
 
 ## 打造系统
 
 ### 合成规则
 
-- 基础材料：碎皮/麻布/黄杨木/黄铜矿（25-40级精英怪掉落）、硬皮/棉布/沉香木/黑铁矿（41-60级精英怪掉落）
-- 合成成本：材料 + 金币 + 随机品质 + 随机星级
+- 武器材料：黄杨木+黄铜矿（L20-30）/ 沉香木+黑铁矿（L40-50）/ 紫檀木+精金矿（L54+）
+- 饰品材料：同上，按等级精确映射银两（见 crafting_service.py 中的 ACCESSORY_MATERIALS）
+- 防具材料：碎皮+麻布+黄杨木+黄铜矿（L15-30）/ 硬皮+棉布+沉香木+黑铁矿（L35-55）
+- 合成成本：材料 + 银两 + 随机品质 + 随机星级
 - 非神器套装打造产出：精良、卓越、史诗（不含神器）
 - 神器套装打造产出：仅神器
 
@@ -144,10 +147,10 @@ stat_stars = random(min(1, stars-1), min(5, stars+1))
 
 ```json
 {
-  "uncommon": 40,  // 精良
+  "uncommon": 50,  // 精良
   "rare": 35,      // 卓越
-  "epic": 20,      // 史诗
-  "legendary": 5   // 神器（非神器套装时排除）
+  "epic": 15,      // 史诗
+  "legendary": 0   // 神器（非神器套装时排除）
 }
 ```
 
@@ -160,3 +163,5 @@ stat_stars = random(min(1, stars-1), min(5, stars+1))
 | 2026-06-06 | 附加属性规则：品质→条数(普通1/精良2/卓越3/史诗4/神器5)，武器/防具/鞋护腿顺序 |
 | 2026-06-06 | 神器规则：独立品质体系，非神器不出神器，神器只出神器 |
 | 2026-06-06 | 鞋子/护腿优先闪避率替代暴击率 |
+| 2026-06-09 | 基础属性简化为严格1种：武器=attack，防具/饰品=defense；活动装备可自定义2种 |
+| 2026-06-09 | 武器打造品质权重调整：精良50%/卓越35%/史诗15%（移除神器5%） |

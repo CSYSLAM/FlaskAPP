@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "黑龙套",
     "base_stats": {
-      "defense": 72,
-      "max_health": 255
+      "defense": 72
     },
     "max_extra_stats": {
       "defense": 37,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "黑龙套",
     "base_stats": {
-      "defense": 86,
-      "max_health": 310
+      "defense": 86
     },
     "max_extra_stats": {
       "defense": 44,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "黑龙套",
     "base_stats": {
-      "attack": 58,
-      "crit_rate": 0.12
+      "defense": 58
     },
     "max_extra_stats": {
       "attack": 26,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "黑龙套",
     "base_stats": {
-      "defense": 74,
-      "max_health": 280
+      "defense": 74
     },
     "max_extra_stats": {
       "defense": 37,

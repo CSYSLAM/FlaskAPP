@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "雁翔套",
     "base_stats": {
-      "defense": 58,
-      "max_health": 220
+      "defense": 58
     },
     "max_extra_stats": {
       "defense": 28,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "雁翔套",
     "base_stats": {
-      "defense": 72,
-      "max_health": 255
+      "defense": 72
     },
     "max_extra_stats": {
       "defense": 35,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "雁翔套",
     "base_stats": {
-      "attack": 60,
-      "crit_rate": 0.14
+      "defense": 60
     },
     "max_extra_stats": {
       "attack": 28,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "雁翔套",
     "base_stats": {
-      "defense": 60,
-      "max_health": 225
+      "defense": 60
     },
     "max_extra_stats": {
       "defense": 30,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "雁翔套",
     "base_stats": {
-      "dodge_rate": 0.15,
       "defense": 40
     },
     "max_extra_stats": {

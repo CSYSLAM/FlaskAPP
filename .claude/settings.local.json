@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(python *)",
+      "Bash(curl *)",
+      "Bash(pip install *)",
+      "Bash(taskkill //F //IM python.exe)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(chcp 65001)",
+      "Bash(npx --version)",
+      "Bash(npx @playwright/mcp@latest *)",
+      "Bash(netstat -ano)",
+      "Bash(ls *)",
+      "Bash(rm *)",
+      "Bash(del *)",
+      "Bash(powershell *)",
+      "Bash(env)",
+      "Bash(echo *)",
+      "Bash(sleep *)",
+      "Bash(file *)",
+      "WebFetch(*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_fill_form",
+      "mcp__playwright__browser_type",
+      "mcp__playwright__browser_run_code_unsafe",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_navigate_back",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_tabs",
+      "mcp__playwright__browser_close",
+      "Bash(claude mcp *)",
+      "mcp__playwright__browser_hover",
+      "Bash(pkill -f \"python app.py\")"
+    ]
+  },
+  "mcpServers": {
+    "playwright": {
+      "url": "http://localhost:39457/mcp"
+    }
+  }
+}

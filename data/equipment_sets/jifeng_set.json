@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "疾风套",
     "base_stats": {
-      "defense": 40,
-      "max_health": 155
+      "defense": 40
     },
     "max_extra_stats": {
       "defense": 20,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "疾风套",
     "base_stats": {
-      "defense": 50,
-      "max_health": 180
+      "defense": 50
     },
     "max_extra_stats": {
       "defense": 24,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "疾风套",
     "base_stats": {
-      "attack": 42,
-      "crit_rate": 0.1
+      "defense": 42
     },
     "max_extra_stats": {
       "attack": 20,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "疾风套",
     "base_stats": {
-      "defense": 42,
-      "max_health": 160
+      "defense": 42
     },
     "max_extra_stats": {
       "defense": 21,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "疾风套",
     "base_stats": {
-      "dodge_rate": 0.11,
       "defense": 28
     },
     "max_extra_stats": {

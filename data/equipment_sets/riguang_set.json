@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "日光套",
     "base_stats": {
-      "defense": 32,
-      "max_health": 115
+      "defense": 32
     },
     "max_extra_stats": {
       "defense": 16,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "日光套",
     "base_stats": {
-      "defense": 40,
-      "max_health": 140
+      "defense": 40
     },
     "max_extra_stats": {
       "defense": 20,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "日光套",
     "base_stats": {
-      "attack": 26,
-      "crit_rate": 0.07
+      "defense": 26
     },
     "max_extra_stats": {
       "attack": 14,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "日光套",
     "base_stats": {
-      "defense": 34,
-      "max_health": 125
+      "defense": 34
     },
     "max_extra_stats": {
       "defense": 16,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "日光套",
     "base_stats": {
-      "dodge_rate": 0.08,
       "defense": 23
     },
     "max_extra_stats": {

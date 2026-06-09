@@ -10,8 +10,7 @@
     "is_artifact": false,
     "set_name": "锦绣套",
     "base_stats": {
-      "defense": 52,
-      "max_health": 185
+      "defense": 52
     },
     "max_extra_stats": {
       "defense": 26,
@@ -31,8 +30,7 @@
     "is_artifact": false,
     "set_name": "锦绣套",
     "base_stats": {
-      "defense": 64,
-      "max_health": 220
+      "defense": 64
     },
     "max_extra_stats": {
       "defense": 32,
@@ -52,8 +50,7 @@
     "is_artifact": false,
     "set_name": "锦绣套",
     "base_stats": {
-      "attack": 42,
-      "crit_rate": 0.11
+      "defense": 42
     },
     "max_extra_stats": {
       "attack": 22,
@@ -73,8 +70,7 @@
     "is_artifact": false,
     "set_name": "锦绣套",
     "base_stats": {
-      "defense": 54,
-      "max_health": 195
+      "defense": 54
     },
     "max_extra_stats": {
       "defense": 26,
@@ -94,7 +90,6 @@
     "is_artifact": false,
     "set_name": "锦绣套",
     "base_stats": {
-      "dodge_rate": 0.12,
       "defense": 37
     },
     "max_extra_stats": {
