@@ -766,8 +766,9 @@
   "chest_iron": {
     "name": "铁质宝匣",
     "type": "chest",
-    "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+    "description": "需要1个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
     "price": 100,
+    "sell_price": 25,
     "is_usable": true,
     "usage_condition": {
       "required_items": {
@@ -778,24 +779,141 @@
       "item_changes": {
         "chest_key": -1
       },
+      "stat_changes_rng": {
+        "experience": [
+          100,
+          200
+        ],
+        "gold": [
+          200,
+          500
+        ]
+      },
       "random_items": [
         {
-          "item_id": "potion_heal",
-          "max_count": 3,
-          "chance": 0.8,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_mana",
-          "max_count": 2,
+          "item_id": "craft_huangyangmu",
+          "max_count": 4,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
-          "item_id": "pill_attack",
-          "max_count": 1,
-          "chance": 0.3,
-          "guaranteed_count": 0
+          "item_id": "craft_huangtongkuang",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_suipi",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_mabu",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        }
+      ],
+      "equipment_generators": [
+        {
+          "level_min": 5,
+          "level_max": 30,
+          "slots": [
+            "helmet",
+            "armor",
+            "gloves",
+            "pants",
+            "shoes",
+            "accessory",
+            "weapon"
+          ],
+          "exclude_artifact": true,
+          "chance": 0.6,
+          "count": 1,
+          "rarity_weights": {
+            "精良": 45,
+            "卓越": 38,
+            "史诗": 17
+          }
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "chest_iron_bound": {
+    "name": "铁质宝匣",
+    "type": "chest",
+    "description": "[绑定]需要1个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
+    "price": 80,
+    "sell_price": 20,
+    "is_usable": true,
+    "usage_condition": {
+      "required_items": {
+        "chest_key": 1
+      }
+    },
+    "usage_effect": {
+      "item_changes": {
+        "chest_key": -1
+      },
+      "stat_changes_rng": {
+        "experience": [
+          100,
+          200
+        ],
+        "gold": [
+          200,
+          500
+        ]
+      },
+      "random_items": [
+        {
+          "item_id": "craft_huangyangmu",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_huangtongkuang",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_suipi",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_mabu",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        }
+      ],
+      "equipment_generators": [
+        {
+          "level_min": 5,
+          "level_max": 30,
+          "slots": [
+            "helmet",
+            "armor",
+            "gloves",
+            "pants",
+            "shoes",
+            "accessory",
+            "weapon"
+          ],
+          "exclude_artifact": true,
+          "chance": 0.6,
+          "count": 1,
+          "rarity_weights": {
+            "精良": 45,
+            "卓越": 38,
+            "史诗": 17
+          }
         }
       ]
     },
@@ -804,43 +922,156 @@
   "chest_silver": {
     "name": "银质宝匣",
     "type": "chest",
-    "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+    "description": "需要2个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
     "price": 200,
+    "sell_price": 50,
     "is_usable": true,
     "usage_condition": {
-      "level_required": 10,
       "required_items": {
-        "chest_key": 1
-      }
+        "chest_key": 2
+      },
+      "level_required": 10
     },
     "usage_effect": {
       "item_changes": {
-        "chest_key": -1
+        "chest_key": -2
+      },
+      "stat_changes_rng": {
+        "experience": [
+          500,
+          1000
+        ],
+        "gold": [
+          1000,
+          2000
+        ]
       },
       "random_items": [
         {
-          "item_id": "potion_heal",
+          "item_id": "craft_chenxiangmu",
           "max_count": 4,
-          "chance": 0.8,
-          "guaranteed_count": 2
-        },
-        {
-          "item_id": "potion_mana",
-          "max_count": 3,
-          "chance": 0.7,
+          "chance": 0.6,
           "guaranteed_count": 1
         },
         {
-          "item_id": "pill_attack",
-          "max_count": 2,
-          "chance": 0.4,
-          "guaranteed_count": 0
+          "item_id": "craft_heitiekuang",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
         },
         {
-          "item_id": "pill_defense",
-          "max_count": 1,
-          "chance": 0.3,
-          "guaranteed_count": 0
+          "item_id": "craft_yingpi",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_mianbu",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        }
+      ],
+      "equipment_generators": [
+        {
+          "level_min": 34,
+          "level_max": 50,
+          "slots": [
+            "helmet",
+            "armor",
+            "gloves",
+            "pants",
+            "shoes",
+            "accessory",
+            "weapon"
+          ],
+          "exclude_artifact": true,
+          "chance": 0.65,
+          "count": 1,
+          "rarity_weights": {
+            "精良": 45,
+            "卓越": 38,
+            "史诗": 17
+          }
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "chest_silver_bound": {
+    "name": "银质宝匣",
+    "type": "chest",
+    "description": "[绑定]需要2个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
+    "price": 160,
+    "sell_price": 40,
+    "is_usable": true,
+    "usage_condition": {
+      "required_items": {
+        "chest_key": 2
+      },
+      "level_required": 10
+    },
+    "usage_effect": {
+      "item_changes": {
+        "chest_key": -2
+      },
+      "stat_changes_rng": {
+        "experience": [
+          500,
+          1000
+        ],
+        "gold": [
+          1000,
+          2000
+        ]
+      },
+      "random_items": [
+        {
+          "item_id": "craft_chenxiangmu",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_heitiekuang",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_yingpi",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_mianbu",
+          "max_count": 4,
+          "chance": 0.5,
+          "guaranteed_count": 1
+        }
+      ],
+      "equipment_generators": [
+        {
+          "level_min": 34,
+          "level_max": 50,
+          "slots": [
+            "helmet",
+            "armor",
+            "gloves",
+            "pants",
+            "shoes",
+            "accessory",
+            "weapon"
+          ],
+          "exclude_artifact": true,
+          "chance": 0.65,
+          "count": 1,
+          "rarity_weights": {
+            "精良": 45,
+            "卓越": 38,
+            "史诗": 17
+          }
         }
       ]
     },
@@ -849,43 +1080,156 @@
   "chest_gold": {
     "name": "金质宝匣",
     "type": "chest",
-    "description": "需要宝匣钥匙才能打开，随机获得药品和金丹",
+    "description": "需要3个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
     "price": 500,
+    "sell_price": 125,
     "is_usable": true,
     "usage_condition": {
-      "level_required": 20,
       "required_items": {
-        "chest_key": 1
-      }
+        "chest_key": 3
+      },
+      "level_required": 20
     },
     "usage_effect": {
       "item_changes": {
-        "chest_key": -1
+        "chest_key": -3
+      },
+      "stat_changes_rng": {
+        "experience": [
+          2000,
+          4000
+        ],
+        "gold": [
+          3000,
+          5000
+        ]
       },
       "random_items": [
         {
-          "item_id": "potion_heal",
-          "max_count": 5,
-          "chance": 0.9,
-          "guaranteed_count": 2
-        },
-        {
-          "item_id": "potion_mana",
+          "item_id": "craft_zitanmu",
           "max_count": 4,
-          "chance": 0.8,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_jingjinkuang",
+          "max_count": 4,
+          "chance": 0.6,
+          "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_chenxiangmu",
+          "max_count": 5,
+          "chance": 0.5,
           "guaranteed_count": 2
         },
         {
-          "item_id": "pill_attack",
-          "max_count": 2,
+          "item_id": "craft_heitiekuang",
+          "max_count": 5,
           "chance": 0.5,
+          "guaranteed_count": 2
+        }
+      ],
+      "equipment_generators": [
+        {
+          "level_min": 50,
+          "level_max": 60,
+          "slots": [
+            "helmet",
+            "armor",
+            "gloves",
+            "pants",
+            "shoes",
+            "accessory",
+            "weapon"
+          ],
+          "exclude_artifact": true,
+          "chance": 0.7,
+          "count": 1,
+          "rarity_weights": {
+            "精良": 45,
+            "卓越": 38,
+            "史诗": 17
+          }
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "chest_gold_bound": {
+    "name": "金质宝匣",
+    "type": "chest",
+    "description": "[绑定]需要3个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
+    "price": 400,
+    "sell_price": 100,
+    "is_usable": true,
+    "usage_condition": {
+      "required_items": {
+        "chest_key": 3
+      },
+      "level_required": 20
+    },
+    "usage_effect": {
+      "item_changes": {
+        "chest_key": -3
+      },
+      "stat_changes_rng": {
+        "experience": [
+          2000,
+          4000
+        ],
+        "gold": [
+          3000,
+          5000
+        ]
+      },
+      "random_items": [
+        {
+          "item_id": "craft_zitanmu",
+          "max_count": 4,
+          "chance": 0.6,
           "guaranteed_count": 1
         },
         {
-          "item_id": "pill_defense",
-          "max_count": 2,
-          "chance": 0.5,
+          "item_id": "craft_jingjinkuang",
+          "max_count": 4,
+          "chance": 0.6,
           "guaranteed_count": 1
+        },
+        {
+          "item_id": "craft_chenxiangmu",
+          "max_count": 5,
+          "chance": 0.5,
+          "guaranteed_count": 2
+        },
+        {
+          "item_id": "craft_heitiekuang",
+          "max_count": 5,
+          "chance": 0.5,
+          "guaranteed_count": 2
+        }
+      ],
+      "equipment_generators": [
+        {
+          "level_min": 50,
+          "level_max": 60,
+          "slots": [
+            "helmet",
+            "armor",
+            "gloves",
+            "pants",
+            "shoes",
+            "accessory",
+            "weapon"
+          ],
+          "exclude_artifact": true,
+          "chance": 0.7,
+          "count": 1,
+          "rarity_weights": {
+            "精良": 45,
+            "卓越": 38,
+            "史诗": 17
+          }
         }
       ]
     },

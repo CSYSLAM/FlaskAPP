@@ -33,7 +33,8 @@
       "mcp__playwright__browser_close",
       "Bash(claude mcp *)",
       "mcp__playwright__browser_hover",
-      "Bash(pkill -f \"python app.py\")"
+      "Bash(pkill -f \"python app.py\")",
+      "Bash(pkill -9 -f \"python app.py\")"
     ]
   },
   "mcpServers": {

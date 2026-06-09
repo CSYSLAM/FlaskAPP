@@ -38,8 +38,13 @@ class ItemService:
 
             required_items = usage_condition.get("required_items", {})
             for req_id, req_count in required_items.items():
-                req_inv = DataService.get_inventory_item(player.id, req_id)
-                if not req_inv or req_inv.quantity < req_count:
+                # Aggregate across bound/unbound stacks
+                total = 0
+                for is_b in (False, True):
+                    inv = DataService.get_inventory_item(player.id, req_id, is_bound=is_b)
+                    if inv:
+                        total += inv.quantity
+                if total < req_count:
                     req_data = DataService.get_item(req_id)
                     req_name = req_data.get("name", req_id) if req_data else req_id
                     return False, f"需要{req_count}个{req_name}"
@@ -134,12 +139,20 @@ class ItemService:
             else:
                 return False, "称号授予失败"
 
-        # Process item changes
+        # Process item changes (supports aggregated removal across bound/unbound stacks)
         item_changes = usage_effect.get("item_changes", {})
         for change_id, change_count in item_changes.items():
             if change_count < 0:
-                DataService.remove_item_from_inventory(
-                    player.id, change_id, abs(change_count))
+                remaining = abs(change_count)
+                for is_b in (False, True):
+                    if remaining <= 0:
+                        break
+                    inv = DataService.get_inventory_item(player.id, change_id, is_bound=is_b)
+                    if inv and inv.quantity > 0:
+                        take = min(inv.quantity, remaining)
+                        DataService.remove_item_from_inventory(
+                            player.id, change_id, take, is_bound=is_b)
+                        remaining -= take
 
         # Process random items
         random_items = usage_effect.get("random_items", [])
