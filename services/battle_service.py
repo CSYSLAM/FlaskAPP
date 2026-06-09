@@ -142,6 +142,24 @@ class BattleService:
 
         cls._save_encounter(player, monster)
         db.session.commit()
+
+        # Monster strikes first
+        lt = cls._get_deployed_lt(player)
+        cls._monster_attack_with_lt(monster, player, lt)
+        cls._save_encounter(player, monster)
+        if player.health <= 0:
+            player.health = 0
+            player.in_battle = False
+            player.last_battle_result = "你被击败了..."
+            player.current_encounter = None
+            if lt and lt.is_alive:
+                from services.lieutenant_service import LieutenantService
+                LieutenantService.handle_death(lt, owner_died=True)
+            db.session.commit()
+            return None, "怪物先发制人，你被击败了"
+        cls._apply_reserve_restore(player, monster)
+        player.last_damage_taken = monster.last_damage_dealt or 0
+        db.session.commit()
         return monster, None
 
     @classmethod
@@ -267,8 +285,34 @@ class BattleService:
             db.session.commit()
             return monster, None, "你被击败了"
 
+        cls._apply_reserve_restore(player, monster)
         db.session.commit()
         return monster, None, None
+
+    @classmethod
+    def _apply_reserve_restore(cls, player, monster):
+        """Auto-restore HP/MP from reserve during battle."""
+        result_parts = []
+        # HP reserve
+        if player.blood_reserve_enabled and player.blood_reserve > 0:
+            max_hp = player.effective_max_health
+            missing_hp = max_hp - player.health
+            if missing_hp > 0:
+                restore = min(missing_hp, player.blood_reserve)
+                player.health += restore
+                player.blood_reserve -= restore
+                result_parts.append(f"生命储备回复{restore}")
+        # MP reserve
+        if player.mana_reserve_enabled and player.mana_reserve > 0:
+            max_mp = player.effective_max_mana
+            missing_mp = max_mp - player.mana
+            if missing_mp > 0:
+                restore = min(missing_mp, player.mana_reserve)
+                player.mana += restore
+                player.mana_reserve -= restore
+                result_parts.append(f"魔法储备回复{restore}")
+        if result_parts:
+            player.item_effect = "、".join(result_parts)
 
     @classmethod
     def use_skill(cls, player, skill_id):
@@ -378,6 +422,7 @@ class BattleService:
             db.session.commit()
             return monster, None, "你被击败了"
 
+        cls._apply_reserve_restore(player, monster)
         db.session.commit()
         return monster, None, None
 

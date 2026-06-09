@@ -28,7 +28,7 @@
 <a href="{{ url_for('warehouse.deposit', npc_id=npc_id) }}">存入物品</a><br/>
 <br/>
 <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
-小Q报时(<span id="time"></span>)
+当前时间：<span id="time"></span>
 <script>
 var d = new Date();
 document.getElementById('time').textContent =

@@ -16,6 +16,19 @@ FATE_REQUIRED = 100  # Min fate value to request relationship
 class SocialService:
 
     @classmethod
+    def get_social_bonus(cls, player):
+        """Calculate social bonuses from hongyan/zhiji counts."""
+        from sqlalchemy import or_
+        hongyan = Relationship.query.filter(
+            or_(Relationship.player1_id == player.id, Relationship.player2_id == player.id),
+            Relationship.rel_type == 'hongyan').count()
+        zhiji = Relationship.query.filter(
+            or_(Relationship.player1_id == player.id, Relationship.player2_id == player.id),
+            Relationship.rel_type == 'zhiji').count()
+        total = hongyan * 2 + zhiji * 3
+        return total * 2, total * 1
+
+    @classmethod
     def send_public_message(cls, player, content):
         """Public chat - consumes 小喇叭 (horn_small)."""
         inv = DataService.get_inventory_item(player.id, 'horn_small')

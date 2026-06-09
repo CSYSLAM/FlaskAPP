@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>背包</title>
     <style>
-    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    body { font-size: 16px; }
     a:link { color: #136ec2; text-decoration: none; }
     .bound { color: #999; font-size: 14px; }
-    .item-name { color: #333; }
+    .rarity-普通 { color: #888; }
+    .rarity-精良 { color: #1a8c1a; }
+    .rarity-卓越 { color: #0070dd; }
+    .rarity-史诗 { color: #a335ee; }
+    .rarity-神器 { color: #ff8000; }
     #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
     #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -16,9 +20,6 @@
 </head>
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
-
-    <a href="{{ url_for('player.character') }}">角色</a>
-    <a href="{{ url_for('game.scene') }}">返回</a><br/>
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -28,41 +29,45 @@
     {% endif %}
     {% endwith %}
 
-    {% set cats = ['全部', '装备', '药品', '材料', '宝箱'] %}
+    {% set cats = ['全部', '药品', '装备', '材料', '宝箱', '其他', '任务'] %}
     {% for c in cats %}
     {% if c == category %}{{ c }}{% else %}<a href="{{ url_for('player.inventory', category=c) }}">{{ c }}</a>{% endif %}
-    {% endfor %}<br/>
+    {% if not loop.last %}|{% endif %}{% endfor %}<br/>
 
-    共{{ total }}件<br/>
+    <form method="get" action="{{ url_for('player.inventory', category=category) }}" style="margin:4px 0;">
+        <input name="search_word" type="text" value="{{ search_word }}" maxlength="20">
+        <input name="submit" type="submit" title="搜索" value="搜索">
+    </form>
 
     {% for entry in page_items %}
     {% if entry.type == 'item' %}
-    <a href="{{ url_for('player.view_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0') }}" class="item-name">{{ entry.item_data.name }}</a>{% if entry.is_bound %}<span class="bound">(绑定)</span>{% endif %}x{{ entry.quantity }}
-    <a href="{{ url_for('player.use_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">使用</a>
-    <a href="{{ url_for('player.sell_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">出售</a>
-    <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">丢弃</a>
-    <br/>
+    <a href="{{ url_for('player.view_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0') }}">{{ entry.item_data.name }}{% if entry.is_bound %}(绑定){% endif %}</a> x{{ entry.quantity }}
+    {% if entry.item_data.is_usable %}<a href="{{ url_for('player.use_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">使用</a>{% endif %}
+    <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">销毁</a><br/>
     {% elif entry.type == 'equipment' %}
     {% set equip = entry.equipment %}
-    {% set rarity_colors = {'普通': '', '精良': '#1a8c1a', '卓越': '#0070dd', '史诗': '#a335ee', '神器': '#ff8000'} %}
-    <a href="{{ url_for('player.view_item', item_id=entry.item_id) }}" class="item-name">{% if rarity_colors.get(equip.rarity) %}<font color="{{ rarity_colors[equip.rarity] }}">{% endif %}{{ equip.name }}{% if rarity_colors.get(equip.rarity) %}</font>{% endif %}</a>{% if entry.is_bound %}<span class="bound">(绑定)</span>{% endif %}
+    <a href="{{ url_for('player.view_item', item_id=entry.item_id) }}" class="rarity-{{ equip.rarity }}">{{ equip.name }}</a>{% if entry.is_bound %}(绑定){% endif %}
     <a href="{{ url_for('player.equip_item', equipment_instance_id=entry.item_id, category=category, page=page, per_page=per_page) }}">装备</a>
     <a href="{{ url_for('player.enhance_page', equipment_instance_id=entry.item_id) }}">强化</a>
-    <a href="{{ url_for('player.sell_item', item_id=entry.item_id, category=category, page=page, per_page=per_page) }}">出售</a>
-    <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, category=category, page=page, per_page=per_page) }}">丢弃</a>
-    <br/>
+    <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, category=category, page=page, per_page=per_page) }}">销毁</a><br/>
     {% endif %}
     {% endfor %}
 
     {% if total_pages > 1 %}
-    <br/>
-    {% if page > 1 %}<a href="{{ url_for('player.inventory', category=category, page=page-1, per_page=per_page) }}">上一页</a>{% endif %}
+    {% if page > 1 %}<a href="{{ url_for('player.inventory', category=category, page=page-1, per_page=per_page, search_word=search_word) }}">上一页</a>{% else %}上一页{% endif %}
     {{ page }}/{{ total_pages }}
-    {% if page < total_pages %}<a href="{{ url_for('player.inventory', category=category, page=page+1, per_page=per_page) }}">下一页</a>{% endif %}
+    {% if page < total_pages %}<a href="{{ url_for('player.inventory', category=category, page=page+1, per_page=per_page, search_word=search_word) }}">下一页</a>{% else %}下一页{% endif %}
+    <form method="get" action="{{ url_for('player.inventory', category=category) }}" style="margin:4px 0;">
+        <input type="number" name="page" placeholder="" maxlength="3" style="width:40px;" value="{{ page }}">
+        <input name="submit" type="submit" title="跳到该页" value="跳转">
+        {% if search_word %}<input type="hidden" name="search_word" value="{{ search_word }}">{% endif %}
+        <input type="hidden" name="per_page" value="{{ per_page }}">
+    </form>
     {% endif %}
 
-    <br/>
     背包容量:{{ used_capacity|int }}/{{ player.backpack_capacity }}<br/>
+    银两:{{ player.gold }}<br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 
     <script>
     var aLinks=document.getElementsByTagName("a");

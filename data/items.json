@@ -155,7 +155,7 @@
   },
   "potion_health": {
     "name": "生命秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升5%生命上限,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -448,7 +448,7 @@
   },
   "potion_mana_temp": {
     "name": "魔法秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升5%魔法上限,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -465,7 +465,7 @@
   },
   "potion_crit": {
     "name": "暴击秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升3%暴击率,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -482,7 +482,7 @@
   },
   "potion_dodge": {
     "name": "闪避秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升3%闪避率,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -499,7 +499,7 @@
   },
   "potion_package": {
     "name": "秘药礼包",
-    "type": "other",
+    "type": "potion",
     "description": "使用后随机获得一种秘药",
     "price": 150,
     "is_usable": true,
@@ -547,7 +547,7 @@
   },
   "potion_attack": {
     "name": "攻击秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升5%攻击力,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -564,7 +564,7 @@
   },
   "potion_defense": {
     "name": "防御秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升5%防御力,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -756,11 +756,113 @@
   },
   "potion_revive": {
     "name": "续命灯",
-    "type": "material",
+    "type": "potion",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
     "is_usable": false,
+    "capacity": 0.1
+  },
+  "blood_stone_small": {
+    "name": "小血石",
+    "type": "consumable",
+    "description": "使用后增加1000点生命储备，战斗中可自动回复",
+    "price": 200,
+    "sell_price": 50,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "blood_reserve": 1000
+      },
+      "effect_descriptions": {
+        "blood_reserve": "生命储备+1000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "blood_stone_medium": {
+    "name": "中血石",
+    "type": "consumable",
+    "description": "使用后增加5000点生命储备，战斗中可自动回复",
+    "price": 800,
+    "sell_price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "blood_reserve": 5000
+      },
+      "effect_descriptions": {
+        "blood_reserve": "生命储备+5000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "blood_stone_large": {
+    "name": "大血石",
+    "type": "consumable",
+    "description": "使用后增加20000点生命储备，战斗中可自动回复",
+    "price": 3000,
+    "sell_price": 750,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "blood_reserve": 20000
+      },
+      "effect_descriptions": {
+        "blood_reserve": "生命储备+20000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "mana_stone_small": {
+    "name": "小魔石",
+    "type": "consumable",
+    "description": "使用后增加1000点魔法储备，战斗中可自动回复",
+    "price": 200,
+    "sell_price": 50,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana_reserve": 1000
+      },
+      "effect_descriptions": {
+        "mana_reserve": "魔法储备+1000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "mana_stone_medium": {
+    "name": "中魔石",
+    "type": "consumable",
+    "description": "使用后增加5000点魔法储备，战斗中可自动回复",
+    "price": 800,
+    "sell_price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana_reserve": 5000
+      },
+      "effect_descriptions": {
+        "mana_reserve": "魔法储备+5000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "mana_stone_large": {
+    "name": "大魔石",
+    "type": "consumable",
+    "description": "使用后增加20000点魔法储备，战斗中可自动回复",
+    "price": 3000,
+    "sell_price": 750,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana_reserve": 20000
+      },
+      "effect_descriptions": {
+        "mana_reserve": "魔法储备+20000"
+      }
+    },
     "capacity": 0.1
   },
   "chest_iron": {
@@ -1245,7 +1347,7 @@
   },
   "potion_health_temp": {
     "name": "生命秘药",
-    "type": "other",
+    "type": "potion",
     "description": "使用后临时提升5%生命上限,持续2分钟",
     "price": 200,
     "is_usable": true,
@@ -2132,7 +2234,7 @@
   },
   "chest_copy_high_bound": {
     "name": "高级副本礼包(绑)",
-    "type": "material",
+    "type": "chest",
     "description": "打开后会获得高级奖励。",
     "is_usable": true,
     "price": 0,

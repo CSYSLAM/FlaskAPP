@@ -31,6 +31,53 @@ def character():
                          now=datetime.now())
 
 
+@player_bp.route("/status")
+@login_required
+def character_status():
+    player = current_user
+    # Compute 精怪活跃 (based on elite kills)
+    jingguai_activity = "低" if player.elite_kill_count < 10 else (
+        "中" if player.elite_kill_count < 50 else "高")
+    # Compute social bonuses (friends + hongyan + zhiji count * multiplier)
+    from services.social_service import SocialService
+    social_attack_bonus, social_defense_bonus = SocialService.get_social_bonus(player)
+    # Get lieutenant passives
+    lt_passives = []
+    try:
+        from models.lieutenant import Lieutenant
+        from services.lieutenant_service import LIEUTENANT_DATA
+        deployed = Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
+        if deployed:
+            tier_data = LIEUTENANT_DATA.get(deployed.tier, {}).get(deployed.lt_pinyin_id, {})
+            passives = tier_data.get('passive_skills', [])
+            for ps in passives:
+                lt_passives.append({'name': ps.get('name', ''), 'desc': ps.get('description', '')})
+    except Exception:
+        pass
+    return render_template("character_status.html",
+                         player=player,
+                         jingguai_activity=jingguai_activity,
+                         social_attack_bonus=social_attack_bonus,
+                         social_defense_bonus=social_defense_bonus,
+                         lt_passives=lt_passives)
+
+
+@player_bp.route("/toggle_reserve/<reserve_type>")
+@login_required
+def toggle_reserve(reserve_type):
+    player = current_user
+    if reserve_type == 'blood':
+        player.blood_reserve_enabled = not player.blood_reserve_enabled
+    elif reserve_type == 'mana':
+        player.mana_reserve_enabled = not player.mana_reserve_enabled
+    db.session.commit()
+    # Redirect back to the referring page
+    ref = request.referrer
+    if ref and 'toggle_reserve' not in ref:
+        return redirect(ref)
+    return redirect(url_for("player.character_status"))
+
+
 @player_bp.route("/level_up")
 @login_required
 def level_up():
@@ -274,6 +321,7 @@ def inventory(category='全部'):
     player = current_user
 
     filtered = []
+    search_word = request.args.get('search_word', '').strip()
     # Inventory items (non-equipment)
     for inv in DataService.get_inventory(player.id):
         if inv.quantity <= 0:
@@ -288,8 +336,13 @@ def inventory(category='全部'):
             cat = '材料'
         elif it_type == 'chest':
             cat = '宝箱'
+        elif it_type == 'quest':
+            cat = '任务'
         else:
             cat = '其他'
+        # Search filter
+        if search_word and search_word.lower() not in item_data.get('name', '').lower():
+            continue
         if category == '全部' or category == cat:
             filtered.append({
                 'type': 'item',
@@ -302,6 +355,8 @@ def inventory(category='全部'):
 
     # Equipment instances (unequipped)
     for equip in DataService.get_unequipped_equipment(player.id):
+        if search_word and search_word.lower() not in equip.name.lower():
+            continue
         if category == '全部' or category == '装备':
             filtered.append({
                 'type': 'equipment',
@@ -317,7 +372,6 @@ def inventory(category='全部'):
     start = (page - 1) * per_page
     page_items = filtered[start:start + per_page]
 
-    # Calculate backpack capacity
     used_capacity = DataService.get_backpack_used_capacity(player.id)
 
     return render_template("inventory.html",
@@ -329,6 +383,7 @@ def inventory(category='全部'):
                          total_pages=total_pages,
                          page_items=page_items,
                          used_capacity=used_capacity,
+                         search_word=search_word,
                          DataService=DataService,
                          EquipmentInstance=EquipmentInstance)
 

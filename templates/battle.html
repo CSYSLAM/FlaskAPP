@@ -49,6 +49,8 @@
 
     生命:{{ player.health }}/{{ player.effective_max_health }}{% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}<br/>
     魔法:{{ player.mana }}/{{ player.effective_max_mana }}{% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}<br/>
+    生命储备:{{ player.blood_reserve }}{% if player.blood_reserve_enabled %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">关闭</a>]{% else %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">开启</a>]{% endif %}<br/>
+    魔法储备:{{ player.mana_reserve }}{% if player.mana_reserve_enabled %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">关闭</a>]{% else %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">开启</a>]{% endif %}<br/>
 
     {% if lieutenant %}
     【副将】{{ lieutenant.name }}({{ lieutenant.quality_name }}) Lv.{{ lieutenant.level }}
@@ -78,7 +80,7 @@
     {{ player.item_effect }}<br/>
     {% endif %}
 
-    {{ now.strftime('%H:%M:%S') }}<br/>
+    当前时间：{{ now.strftime('%H:%M:%S') }}<br/>
 
 <script>
 var aLinks=document.getElementsByTagName("a");

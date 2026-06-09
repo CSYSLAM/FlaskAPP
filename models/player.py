@@ -68,6 +68,12 @@ class PlayerModel(db.Model, UserMixin):
     last_mana_cost = db.Column(db.Integer, default=0)
     item_effect = db.Column(db.String(256), default='')
 
+    # HP/MP reserve pool (血石/魔石)
+    blood_reserve = db.Column(db.Integer, default=0)
+    mana_reserve = db.Column(db.Integer, default=0)
+    blood_reserve_enabled = db.Column(db.Boolean, default=False)
+    mana_reserve_enabled = db.Column(db.Boolean, default=False)
+
     current_view = db.Column(db.String(20), default='chat')
     current_encounter = db.Column(db.Text, nullable=True)
 
