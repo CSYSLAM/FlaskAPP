@@ -34,40 +34,44 @@ class BattleService:
 
     @classmethod
     def _monster_attack_with_lt(cls, monster, player, lt):
-        """Monster attacks, lieutenant absorbs if front position."""
+        """Monster attacks, lieutenant absorbs if front position. Logs in reference format."""
         min_damage = monster.level * 2 if monster.is_elite else monster.level
         monster_damage = max(min_damage, monster.attack - PlayerService.get_defense(player))
         is_crit = random.random() <= monster.crit_rate
-        if is_crit:
+        dodge = random.random() <= player.dodge_rate
+        if dodge:
+            monster_damage = 0
+        elif is_crit:
             monster_damage = int(monster_damage * 1.5)
 
+        monster.last_skill = "普攻"
+        if dodge:
+            dmg_text = "0(闪避)"
+        elif is_crit:
+            dmg_text = f"{monster_damage}(暴击)"
+        else:
+            dmg_text = str(monster_damage)
+
         if lt and lt.is_alive and lt.is_deployed and lt.position == 'front':
-            # Front lieutenant absorbs monster damage first
             lt.current_health -= monster_damage
-            monster.last_damage_dealt = f"{monster_damage}(副将承受)"
-            monster.last_action = f"攻击了副将{lt.name}"
+            monster.last_action = f"*『{monster.name}』使出[普攻],『{lt.name}』受到{dmg_text}伤害."
+            monster.last_damage_dealt = dmg_text
+            player.last_damage_taken = 0
             if lt.current_health <= 0:
                 from services.lieutenant_service import LieutenantService
                 LieutenantService.handle_death(lt, owner_died=False)
-                player.item_effect = f"副将{lt.name}阵亡！"
-                # Remaining damage still hits player if lieutenant dies
                 remaining = abs(lt.current_health)
                 if remaining > 0:
                     player.health -= remaining
                     player.last_damage_taken = remaining
-                    player.item_effect += f"溢出伤害{remaining}"
+                    player.item_effect = f"副将{lt.name}阵亡！溢出{remaining}伤害"
             else:
-                player.last_damage_taken = 0
-                player.item_effect = f"副将{lt.name}承受{monster_damage}伤害"
+                player.item_effect = ""
         else:
-            # No front lieutenant, monster attacks player normally
             player.health -= monster_damage
-            player.last_damage_taken = monster_damage
-            if is_crit:
-                monster.last_damage_dealt = f"{monster_damage}(暴击!)"
-            else:
-                monster.last_damage_dealt = str(monster_damage)
-            monster.last_action = "攻击了你"
+            player.last_damage_taken = monster_damage if not dodge else 0
+            monster.last_action = f"*『{monster.name}』使出[普攻],『{player.name}』受到{dmg_text}伤害."
+            monster.last_damage_dealt = dmg_text
 
         # Check for lieutenant triggered skills (absorb/heal)
         if lt and lt.is_alive and lt.is_deployed:
@@ -224,43 +228,55 @@ class BattleService:
             db.session.commit()
             return None, "没有怪物", None
 
-        player.last_action = "使用了普通攻击"
-        player.last_skill = "普通攻击"
+        player.last_skill = "普攻"
         player.last_mana_cost = 0
+        player.last_action = ""
         player.item_effect = ""
 
         encounter_data = player.get_current_encounter_data()
 
+        # Build battle log: player attack
+        player_log = f"*『{player.name}』使出[普攻]"
+        lt = cls._get_deployed_lt(player)
+        lt_damage = 0
         if random.random() >= monster.dodge_rate:
             player_atk = PlayerService.get_attack(player)
             damage = max(1, player_atk - monster.defense)
             is_crit = random.random() <= player.crit_rate
+            dmg_text = f"{damage}"
             if is_crit:
                 damage = int(damage * 1.5)
-                player.last_damage_dealt = f"{damage}(暴击!)"
-            else:
-                player.last_damage_dealt = str(damage)
+                dmg_text = f"{damage}(暴击)"
             monster.health -= damage
             monster.last_damage_taken = damage
-            # World boss: sync damage to shared state
             if encounter_data.get('is_world_boss'):
                 WorldBossService.damage_boss(monster.monster_id, player.id, damage)
+            # Lieutenant also attacks
+            if lt and lt.is_alive:
+                lt_damage = cls._lt_attack_monster(lt, monster)
+                if lt_damage > 0:
+                    monster.health -= lt_damage
+                    monster.last_damage_taken += lt_damage
+                    player_log += f",『{lt.name}』使出[普攻]"
+                    dmg_text += f"＋{lt_damage}"
+                    if encounter_data.get('is_world_boss'):
+                        WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
+            player_log += f",『{monster.name}』受到{dmg_text}伤害."
+            player.last_damage_dealt = dmg_text
         else:
             damage = 0
-            player.last_damage_dealt = "闪避"
             monster.last_damage_taken = 0
-
-        # Lieutenant also attacks
-        lt = cls._get_deployed_lt(player)
-        if lt and lt.is_alive:
-            lt_damage = cls._lt_attack_monster(lt, monster)
-            if lt_damage > 0:
-                monster.health -= lt_damage
-                player.last_damage_dealt += f"+副将{lt_damage}"
-                monster.last_damage_taken += lt_damage
-                # World boss: apply lt damage too
-                if encounter_data.get('is_world_boss'):
-                    WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
+            if lt and lt.is_alive:
+                lt_damage = cls._lt_attack_monster(lt, monster)
+                if lt_damage > 0:
+                    monster.health -= lt_damage
+                    monster.last_damage_taken += lt_damage
+                    player_log += f",『{lt.name}』使出[普攻]"
+                    if encounter_data.get('is_world_boss'):
+                        WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
+            player_log += f",『{monster.name}』受到0(闪避)伤害."
+            player.last_damage_dealt = "0(闪避)"
+        player.last_action = player_log
 
         cls._save_encounter(player, monster)
 
@@ -301,7 +317,7 @@ class BattleService:
                 restore = min(missing_hp, player.blood_reserve)
                 player.health += restore
                 player.blood_reserve -= restore
-                result_parts.append(f"生命储备回复{restore}")
+                result_parts.append(f"*『{player.name}』生命储备回复{restore}")
         # MP reserve
         if player.mana_reserve_enabled and player.mana_reserve > 0:
             max_mp = player.effective_max_mana
@@ -310,7 +326,7 @@ class BattleService:
                 restore = min(missing_mp, player.mana_reserve)
                 player.mana += restore
                 player.mana_reserve -= restore
-                result_parts.append(f"魔法储备回复{restore}")
+                result_parts.append(f"*『{player.name}』魔法储备回复{restore}")
         if result_parts:
             player.item_effect = "、".join(result_parts)
 
@@ -351,8 +367,8 @@ class BattleService:
 
         player.mana -= mana_cost
         player.last_mana_cost = mana_cost
-        player.last_action = f"使用了{skill_data['name']}"
-        player.last_skill = skill_data["name"]
+        skill_name = skill_data["name"]
+        player.last_skill = skill_name
         player.item_effect = ""
 
         encounter_data = player.get_current_encounter_data()
@@ -363,25 +379,33 @@ class BattleService:
 
         hits = skill_data.get("hits", 1)
         total_damage = 0
+        dodge_all = True
+        is_crit_hit = False
         for _ in range(hits):
             if random.random() >= monster.dodge_rate:
+                dodge_all = False
                 player_atk = PlayerService.get_attack(player)
                 damage = max(1, int(player_atk * damage_rate) - monster.defense)
                 if random.random() <= player.crit_rate:
                     damage = int(damage * 1.5)
+                    is_crit_hit = True
                 total_damage += damage
             else:
                 total_damage += 0
 
-        if hits > 1:
-            player.last_damage_dealt = f"{total_damage}({hits}连击)"
+        # Build battle log in reference format
+        if dodge_all:
+            dmg_text = "0(闪避)"
+        elif hits > 1:
+            dmg_text = f"{total_damage}({hits}连击)"
+        elif is_crit_hit:
+            dmg_text = f"{total_damage}(暴击)"
         else:
-            player.last_damage_dealt = str(total_damage)
+            dmg_text = str(total_damage)
 
         monster.health -= total_damage
         monster.last_damage_taken = total_damage
 
-        # World boss: also apply damage to shared state
         if encounter_data.get('is_world_boss'):
             killed, killer_id = WorldBossService.damage_boss(
                 monster.monster_id, player.id, total_damage)
@@ -390,15 +414,20 @@ class BattleService:
 
         # Lieutenant also attacks
         lt = cls._get_deployed_lt(player)
+        lt_damage = 0
+        player_log = f"*『{player.name}』使出[{skill_name}]"
         if lt and lt.is_alive:
             lt_damage = cls._lt_attack_monster(lt, monster)
             if lt_damage > 0:
                 monster.health -= lt_damage
-                player.last_damage_dealt += f"+副将{lt_damage}"
                 monster.last_damage_taken += lt_damage
-                # World boss: apply lt damage too
+                player_log += f",『{lt.name}』使出[普攻]"
+                dmg_text += f"＋{lt_damage}"
                 if encounter_data.get('is_world_boss'):
                     WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
+        player_log += f",『{monster.name}』受到{dmg_text}伤害."
+        player.last_action = player_log
+        player.last_damage_dealt = dmg_text
 
         cls._save_encounter(player, monster)
 
@@ -479,7 +508,7 @@ class BattleService:
                 loot_text = dungeon_note
 
         player.in_battle = False
-        player.last_battle_result = f"击败了{monster.name}！获得 {money} 金币, {exp} 经验"
+        player.last_battle_result = f"击败了『{monster.name}』！获得{money}银两、{exp}经验"
         if loot_text:
             player.last_battle_result += f"。{loot_text}"
         player.current_encounter = None

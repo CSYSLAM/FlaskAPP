@@ -38,10 +38,10 @@ class Monster:
         equip_cfg = data.get("drops", {}).get("equipment_drop", {})
         self.artifact_drop = equip_cfg.get("artifact_template")
         self.artifact_drop_rate = equip_cfg.get("artifact_drop_rate", 0.05)
-        self.last_damage_taken = 0
-        self.last_damage_dealt = ""
-        self.last_action = ""
-        self.last_skill = ""
+        self.last_damage_taken = data.get("last_damage_taken", 0)
+        self.last_damage_dealt = data.get("last_damage_dealt", "")
+        self.last_action = data.get("last_action", "")
+        self.last_skill = data.get("last_skill", "")
         self.respawning = False
         self.respawn_remaining = 0
 

@@ -50,10 +50,7 @@ def battle():
         player.last_damage_taken = 0
         player.last_mana_cost = 0
         player.last_skill = ""
-        monster.last_action = ""
-        monster.last_damage_dealt = ""
-        monster.last_damage_taken = 0
-        monster.last_skill = ""
+        # Don't clear monster.last_action - it contains the first-strike log
 
     return render_template("battle.html",
                          player=player,

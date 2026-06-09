@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>战斗</title>
     <style>
-        body { font-size: 16px; margin: 0; line-height: 1.6; }
-        a:link { color: #136ec2; text-decoration: none; }
-        button { font-size: 14px; padding: 2px 8px; margin: 1px; }
-        #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
-        #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body style='margin-left:10px;margin-right:10px'>
@@ -21,60 +20,59 @@
     {% endif %}
 
     {% if is_pk %}
-    <form action="{{ url_for('battle.pk_fight') }}" method="post">
+    <form action="{{ url_for('battle.pk_fight') }}" method="post" style="display:inline;">
     {% else %}
-    <form action="{{ url_for('battle.fight') }}" method="post">
+    <form action="{{ url_for('battle.fight') }}" method="post" style="display:inline;">
     {% endif %}
-        <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">{% if player.shortcuts.skill1 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill1 }}{% endif %}</button>
-        <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">{% if player.shortcuts.skill2 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill2 }}{% endif %}</button>
-        <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">{% if player.shortcuts.skill3 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill3 }}{% endif %}</button>
-        <a href="{{ url_for('battle.shortcuts') }}">技键</a><br/>
-        <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">{% if player.shortcuts.skill4 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill4 }}{% endif %}</button>
-    </form>
+    <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">{% if player.shortcuts.skill1 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill1 }}{% endif %}</button>
+    <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">{% if player.shortcuts.skill2 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill2 }}{% endif %}</button>
+    <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">{% if player.shortcuts.skill3 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill3 }}{% endif %}</button>
+    <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">{% if player.shortcuts.skill4 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill4 }}{% endif %}</button>
+    <a href="{{ url_for('battle.shortcuts') }}">技键</a>
+    </form><br/>
 
     {% if is_pk %}
-    <form action="{{ url_for('battle.pk_fight') }}" method="post">
+    <form action="{{ url_for('battle.pk_fight') }}" method="post" style="display:inline;">
     {% else %}
-    <form action="{{ url_for('battle.fight') }}" method="post">
+    <form action="{{ url_for('battle.fight') }}" method="post" style="display:inline;">
     {% endif %}
-        {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
-        <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">{{ player.inventory[player.shortcuts.potion1].item.name }}</button>
-        {% endif %}
-        {% if player.shortcuts.potion2 and player.shortcuts.potion2 in player.inventory %}
-        <button type="submit" name="action" value="use:{{ player.shortcuts.potion2 }}">{{ player.inventory[player.shortcuts.potion2].item.name }}</button>
-        {% endif %}
-        <a href="{{ url_for('battle.shortcuts') }}">药键</a>
-        <a href="{{ url_for('battle.flee') }}">撤退</a><br/>
-    </form>
+    {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
+    <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">{{ player.inventory[player.shortcuts.potion1].item.name }}</button>
+    {% endif %}
+    {% if player.shortcuts.potion2 and player.shortcuts.potion2 in player.inventory %}
+    <button type="submit" name="action" value="use:{{ player.shortcuts.potion2 }}">{{ player.inventory[player.shortcuts.potion2].item.name }}</button>
+    {% endif %}
+    <a href="{{ url_for('battle.shortcuts') }}">药键</a>
+    <a href="{{ url_for('battle.flee') }}">撤退</a>
+    </form><br/>
 
-    生命:{{ player.health }}/{{ player.effective_max_health }}{% if player.last_damage_taken %}(-{{ player.last_damage_taken }}){% endif %}<br/>
-    魔法:{{ player.mana }}/{{ player.effective_max_mana }}{% if player.last_mana_cost %}(-{{ player.last_mana_cost }}){% endif %}<br/>
-    生命储备:{{ player.blood_reserve }}{% if player.blood_reserve_enabled %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">关闭</a>]{% else %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">开启</a>]{% endif %}<br/>
-    魔法储备:{{ player.mana_reserve }}{% if player.mana_reserve_enabled %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">关闭</a>]{% else %}[<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">开启</a>]{% endif %}<br/>
+    生命储备:{{ player.blood_reserve }}{% if player.blood_reserve_enabled %}<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">关闭</a>{% else %}<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">开启</a>{% endif %}<br/>
+    魔法储备:{{ player.mana_reserve }}{% if player.mana_reserve_enabled %}<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">关闭</a>{% else %}<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">开启</a>{% endif %}<br/>
+    生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
 
     {% if lieutenant %}
-    【副将】{{ lieutenant.name }}({{ lieutenant.quality_name }}) Lv.{{ lieutenant.level }}
-    {% if not lieutenant.is_alive %}<font color="red">阵亡</font>{% elif lieutenant.position == 'front' %}(前置){% else %}(后置){% endif %}
-    <br/>生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>
+    『{{ lieutenant.name }}』({{ '后卫' if lieutenant.position == 'back' else '前卫' }})<br/>
+    生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>
     {% endif %}
 
     {% if is_pk %}
     『{{ monster.name }}』({{ monster.level }}级)<br/>
     {% elif monster.is_divine_beast %}
-    『{{ monster.description }}』({{ monster.level }}级) <font size="1">玩家:{{ participants }}</font><br/>
+    『{{ monster.description }}』({{ monster.level }}级)<br/>
     {% elif monster.is_elite %}
-    『{% if '【精】' not in monster.name and '【神】' not in monster.name %}【精】{% endif %}{{ monster.name }}』({{ monster.level }}级) <font size="1">玩家:{{ participants }}</font><br/>
+    『{% if '【精】' not in monster.name and '【神】' not in monster.name %}【精】{% endif %}{{ monster.name }}』({{ monster.level }}级)<br/>
     {% else %}
     『{{ monster.name }}』({{ monster.level }}级)<br/>
     {% endif %}
-    生命:{{ monster.health }}/{{ monster.max_health }}{% if not is_pk and monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}<br/>
+    生命:{{ monster.health }}/{{ monster.max_health }}{% if monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}<br/>
     <font size="1">{% set health_percent = (monster.health / monster.max_health * 10) | round | int %}{% for i in range(10) %}{% if i < health_percent %}●{% else %}○{% endif %}{% endfor %}</font><br/>
 
-    {% if player.last_action %}
-    【我方】{{ player.last_action }}{% if player.last_mana_cost %}，耗{{ player.last_mana_cost }}魔{% endif %}{% if player.last_damage_dealt %}{% if player.last_damage_dealt == "闪避" %}，被闪避{% else %}，{{ player.last_damage_dealt }}伤害{% endif %}{% endif %}<br/>
+    {% if monster.last_action %}
+    {{ monster.last_action }}<br/>
     {% endif %}
-    {% if not is_pk and monster.last_action %}
-    【敌方】{{ monster.last_skill }}{% if monster.last_damage_dealt == "闪避" %}，被闪避{% else %}，{{ monster.last_damage_dealt }}伤害{% endif %}<br/>
+    {% if player.last_action %}
+    {{ player.last_action }}<br/>
     {% endif %}
     {% if player.item_effect %}
     {{ player.item_effect }}<br/>
@@ -82,11 +80,11 @@
 
     当前时间：{{ now.strftime('%H:%M:%S') }}<br/>
 
-<script>
-var aLinks=document.getElementsByTagName("a");
-for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
-document.querySelectorAll('form').forEach(function(f){f.onsubmit=function(){document.getElementById('loading').style.display='block';};});
-setTimeout(function(){document.getElementById('loading').style.display='none';},350);
-</script>
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    document.querySelectorAll('form').forEach(function(f){f.onsubmit=function(){document.getElementById('loading').style.display='block';};});
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
 </body>
 </html>
