@@ -304,6 +304,9 @@ def view_npc(monster_id):
     if '副将统领' in monster_id:
         return redirect(url_for('commander.index'))
 
+    if '王老板' in monster_id:
+        return redirect(url_for('game.inn_view', npc_id=monster_id))
+
     return render_template("view_npc.html",
                          player=player,
                          monster=monster)
@@ -315,6 +318,53 @@ def rest():
     player = current_user
     PlayerService.rest(player)
     return redirect(url_for("game.scene"))
+
+
+@game_bp.route("/inn/<npc_id>")
+@login_required
+def inn_view(npc_id):
+    player = current_user
+    monsters = DataService.get_monsters()
+    npc_data = monsters.get(npc_id)
+    if not npc_data:
+        return redirect(url_for("game.scene"))
+    cost = player.level * 10
+    vip_free = player.is_vip
+    max_hp = PlayerService.get_max_health(player)
+    max_mp = PlayerService.get_max_mana(player)
+    already_full = player.health >= max_hp and player.mana >= max_mp
+    return render_template("inn.html",
+                         player=player, npc_id=npc_id,
+                         npc_name=npc_data.get('name', '王老板'),
+                         cost=cost, vip_free=vip_free,
+                         already_full=already_full)
+
+
+@game_bp.route("/inn_rest/<npc_id>")
+@login_required
+def inn_rest(npc_id):
+    player = current_user
+    max_hp = PlayerService.get_max_health(player)
+    max_mp = PlayerService.get_max_mana(player)
+    if player.health >= max_hp and player.mana >= max_mp:
+        flash("#你气血、魔法充盈，无需休息")
+        return redirect(url_for("game.inn_view", npc_id=npc_id))
+
+    cost = player.level * 10
+    if not player.is_vip:
+        if player.gold < cost:
+            flash(f"银两不足（需要{cost}银两）")
+            return redirect(url_for("game.inn_view", npc_id=npc_id))
+        player.gold -= cost
+        player.health = max_hp
+        player.mana = max_mp
+        flash(f"#休息成功，银两-{cost}\n生命值补满\n魔法值补满")
+    else:
+        player.health = max_hp
+        player.mana = max_mp
+        flash(f"#休息成功(VIP免费)\n生命值补满\n魔法值补满")
+    db.session.commit()
+    return redirect(url_for("game.inn_view", npc_id=npc_id))
 
 
 @game_bp.route("/pickup_ground/<item_id>")

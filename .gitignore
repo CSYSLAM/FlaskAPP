@@ -5,3 +5,4 @@ instance/
 .env
 .playwright-mcp/
 ref/
+.claude/settings.local.json
