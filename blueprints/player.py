@@ -609,6 +609,8 @@ def learn_skill(npc_id, skill_id):
     player.gold -= gold_cost
     db.session.add(PlayerSkill(player_id=player.id, skill_id=skill_id))
     db.session.commit()
+    from services.quest_service import QuestService
+    QuestService.update_learn_skill_progress(player)
     flash(f"成功学习技能【{skill_data['name']}】")
     return redirect(url_for('player.skill_list', npc_id=npc_id, skill_type=skill_type))
 

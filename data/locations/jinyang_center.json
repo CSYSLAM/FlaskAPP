@@ -49,7 +49,10 @@
       "exits": {
         "west": "jinyang_center.酒馆",
         "east": "jinyang_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "北街": {
       "name": "北街",

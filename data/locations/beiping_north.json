@@ -26,7 +26,10 @@
         "south": "beiping_north.将军营"
       },
       "monster_type": "monster_beiping_north_翼州步兵",
-      "can_pk": true
+      "can_pk": true,
+      "monsters": [
+        "monster_beiping_north_冀州步兵"
+      ]
     },
     "乌恒部落": {
       "name": "乌恒部落",

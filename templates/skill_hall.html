@@ -17,6 +17,11 @@
 
     技能教官<br/>
     在我这里可以习得与升级技能.<br/>
+    {% if npc_quests %}
+    {% for q in npc_quests %}
+    <a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+    {% endfor %}
+    {% endif %}
     <a href="{{ url_for('player.skill_list', npc_id=npc_id) }}">技能学习</a><br/><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 

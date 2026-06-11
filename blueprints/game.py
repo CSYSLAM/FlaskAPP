@@ -35,6 +35,10 @@ def scene():
         if player.need_revive:
             return redirect(url_for('battle.revive'))
 
+        # Check if in battlefield
+        if player.in_battlefield:
+            return redirect(url_for('battlefield.city_view'))
+
         DataService.clear_expired_effects(player.id)
 
         # Auto-revive dead lieutenant
@@ -150,6 +154,27 @@ def scene():
         # Get ground items
         ground_items = DataService.get_ground_items(location_id)
 
+        # Quest data for scene
+        from services.quest_service import QuestService
+        active_quest_count = QuestService.get_active_quest_count(player)
+        current_main = QuestService.get_current_main_quest(player)
+        # Mark NPCs that have quests (single pass)
+        active = QuestService.get_active_quests(player)
+        for npc in npcs:
+            npc_quests = QuestService.get_available_quests_for_npc(player, npc.monster_id)
+            npc.has_quest = len(npc_quests) > 0
+            npc.has_completable = False
+            for q in npc_quests:
+                if q['id'] not in active:
+                    continue
+                obj = q.get('objective', {})
+                if obj.get('type') == 'talk_npc' and obj.get('npc_id') == npc.monster_id:
+                    npc.has_completable = True
+                    break
+                if QuestService.is_quest_objective_met(player, q['id']):
+                    npc.has_completable = True
+                    break
+
         return render_template("scene.html",
                              player=player,
                              location=location,
@@ -161,6 +186,8 @@ def scene():
                              channel2=channel2,
                              notifications=filtered_notifications,
                              ground_items=ground_items,
+                             active_quest_count=active_quest_count,
+                             current_main=current_main,
                              DataService=DataService,
                              now=datetime.now())
     except Exception as e:
@@ -279,37 +306,96 @@ def view_npc(monster_id):
             ps.skill_id: ps
             for ps in PlayerSkill.query.filter_by(player_id=player.id).all()
         }
+        from services.quest_service import QuestService
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
         return render_template("skill_hall.html",
                              player=player,
                              monster=monster,
                              skills=skills,
                              player_skills=player_skills,
-                             npc_id=monster_id)
+                             npc_id=monster_id,
+                             npc_quests=npc_quests)
 
     if '铁匠' in monster_id:
+        from services.quest_service import QuestService
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
         return render_template("blacksmith.html",
                              player=player,
                              monster=monster,
-                             npc_id=monster_id)
+                             npc_id=monster_id,
+                             npc_quests=npc_quests)
+
+    if '军团使者' in monster_id or '战场使者' in monster_id:
+        return redirect(url_for('battlefield.index'))
 
     if '大夫' in monster_id:
+        from services.quest_service import QuestService
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
+        if npc_quests:
+            return render_template("view_npc.html", player=player, monster=monster,
+                                 npc_quests=npc_quests, QuestService=QuestService)
         return redirect(url_for('medicine.shop', npc_id=monster_id))
 
     if '金掌柜' in monster_id or '仓库' in monster_id:
+        from services.quest_service import QuestService
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
+        if npc_quests:
+            return render_template("view_npc.html", player=player, monster=monster,
+                                 npc_quests=npc_quests, QuestService=QuestService)
         return redirect(url_for('warehouse.warehouse', npc_id=monster_id))
 
     if '驿站管理员' in monster_id:
+        from services.quest_service import QuestService
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
+        if npc_quests:
+            return render_template("view_npc.html", player=player, monster=monster,
+                                 npc_quests=npc_quests, QuestService=QuestService)
         return redirect(url_for('lost_found.lost_found'))
 
     if '副将统领' in monster_id:
-        return redirect(url_for('commander.index'))
+        from services.quest_service import QuestService
+        from services.lieutenant_service import LieutenantService
+        from models.lieutenant import Lieutenant
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
+        return render_template("commander.html",
+                             player=player,
+                             lt_count=Lieutenant.query.filter_by(owner_id=player.id).count(),
+                             max_slots=LieutenantService.get_max_slots(player),
+                             npc_id=monster_id,
+                             npc_quests=npc_quests)
 
     if '王老板' in monster_id:
-        return redirect(url_for('game.inn_view', npc_id=monster_id))
+        from services.quest_service import QuestService
+        QuestService.update_talk_progress(player, monster_id)
+        npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
+        cost = player.level * 10
+        vip_free = player.is_vip
+        max_hp = PlayerService.get_max_health(player)
+        max_mp = PlayerService.get_max_mana(player)
+        already_full = player.health >= max_hp and player.mana >= max_mp
+        return render_template("inn.html",
+                             player=player, npc_id=monster_id,
+                             npc_name=monster_data.get('name', '王老板'),
+                             cost=cost, vip_free=vip_free,
+                             already_full=already_full,
+                             npc_quests=npc_quests)
+
+    # Check for quests from this NPC
+    from services.quest_service import QuestService
+    QuestService.update_talk_progress(player, monster_id)
+    npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
 
     return render_template("view_npc.html",
                          player=player,
-                         monster=monster)
+                         monster=monster,
+                         npc_quests=npc_quests,
+                         QuestService=QuestService)
 
 
 @game_bp.route("/rest")

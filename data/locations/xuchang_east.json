@@ -6,7 +6,10 @@
       "exits": {
         "west": "xuchang_center.青梅村",
         "east": "xuchang_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "东门": {
       "name": "东门",

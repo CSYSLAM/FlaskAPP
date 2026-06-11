@@ -197,7 +197,10 @@
       "exits": {
         "west": "yong_an_center.东后街",
         "east": "yong_an_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     }
   }
 }

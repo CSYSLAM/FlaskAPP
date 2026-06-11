@@ -22,6 +22,11 @@
 
 副将统领<br/>
 在我这里可以招募副将.<br/>
+{% if npc_quests %}
+{% for q in npc_quests %}
+<a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+{% endfor %}
+{% endif %}
 <br/>
 <a href="{{ url_for('commander.recruit_page') }}">副将招募</a><br/>
 <a href="{{ url_for('commander.decompose') }}">魂魄分解</a><br/>

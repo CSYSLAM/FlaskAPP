@@ -88,7 +88,7 @@ a:link { color: #136ec2; text-decoration: none; }
 
 <div id="loading"><span></span></div>
 
-<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="{{ url_for('map.index') }}">地图</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
+<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="{{ url_for('map.index') }}">地图</a> .<a href="{{ url_for('quest.quest_list') }}">任务({{ active_quest_count }})</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
 
 {% if channel1_msg %}
 {% if channel1_msg.message_type == 'system' %}【系统】{{ channel1_msg.content }}{% else %}【公共】{{ channel1_msg.sender.nickname if channel1_msg.sender else '未知' }}：{{ channel1_msg.content }}{% endif %}<br/>
@@ -110,6 +110,9 @@ a:link { color: #136ec2; text-decoration: none; }
     {% endif %}
     {% endwith %}
 
+{% if current_main %}
+【当前主线】<a href="{{ url_for('quest.quest_detail', quest_id=current_main.id) }}">{{ current_main.name }}</a><br/>
+{% endif %}
 *{{ location.get('name', '未知') }}({{ location.get('area_name', '') }}){% if location.get('is_copy_map') %}【副本地图】{% endif %}<br/>
 
 <div class="map-label">显示地图</div>
@@ -281,7 +284,7 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endif %}
 
 {% if npcs %}
-看到：{% for npc in npcs %}{% if npc.task_icon %}<img src="{{ url_for('ref_file', filename=npc.task_icon) }}" alt="任务标记">{% endif %}<a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">{{ npc.name }}</a> {% endfor %}<br/>
+看到：{% for npc in npcs %}{% if npc.has_completable %}<img src="{{ url_for('static', filename='renwu/wh.gif') }}" border="0">{% elif npc.has_quest %}<img src="{{ url_for('static', filename='renwu/gt.gif') }}" border="0">{% endif %}<a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">{{ npc.name }}</a> {% endfor %}<br/>
 {% endif %}
 
 {% if ground_items %}
@@ -308,8 +311,8 @@ a:link { color: #136ec2; text-decoration: none; }
         <a href="{{ url_for('activity.index') }}">活动</a>
     </div>
     <div class="quick-actions-row">
-        <a href="{{ url_for('lieutenant.index') }}">副将</a> . <a href="{{ url_for('villa.index') }}">山庄</a> . <a href="{{ url_for('social.social_index') }}">社交</a> . 
-        <a href="{{ url_for('vip.index') }}">VIP</a>
+        <a href="{{ url_for('lieutenant.index') }}">副将</a> . <a href="{{ url_for('villa.index') }}">山庄</a> . <a href="{{ url_for('social.social_index') }}">社交</a> .
+        <a href="{{ url_for('legion.index') }}">军团</a> . <a href="{{ url_for('vip.index') }}">VIP</a>
     </div>
     <div class="quick-actions-row">
         <a href="{{ url_for('rank.index') }}">排行</a>

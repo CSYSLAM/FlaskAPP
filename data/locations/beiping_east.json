@@ -16,7 +16,9 @@
       },
       "monster_type": "monster_beiping_east_野狗",
       "npcs": [
-        "npc_beiping_east_左慈副本"
+        "npc_beiping_east_左慈副本",
+        "npc_beiping_east_猎户",
+        "npc_beiping_east_左慈"
       ]
     },
     "军营": {
@@ -68,6 +70,9 @@
       "monster_type": "monster_beiping_east_窃贼",
       "npcs": [
         "npc_beiping_east_香凝"
+      ],
+      "monsters": [
+        "monster_beiping_east_窃贼"
       ]
     }
   }

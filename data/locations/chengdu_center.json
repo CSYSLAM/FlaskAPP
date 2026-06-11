@@ -140,7 +140,10 @@
       "exits": {
         "west": "chengdu_center.桃园",
         "east": "chengdu_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "驿站": {
       "name": "驿站",

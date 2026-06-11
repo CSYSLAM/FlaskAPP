@@ -171,7 +171,10 @@
       "exits": {
         "west": "luoyang_center.乐东后街",
         "east": "luoyang_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "安南前街": {
       "name": "安南前街",

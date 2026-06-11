@@ -40,5 +40,22 @@
       "crit_rate": 0.1,
       "dodge_rate": 0.1
     }
+  },
+  "tie_sword_quest": {
+    "name": "铁剑",
+    "slot": "weapon",
+    "set_name": "任务奖励",
+    "level_required": 5,
+    "class_required": null,
+    "is_artifact": false,
+    "is_bound": true,
+    "base_stats": {
+      "attack": 15
+    },
+    "max_extra_stats": {
+      "attack": 8,
+      "max_health": 30,
+      "crit_rate": 0.03
+    }
   }
 }

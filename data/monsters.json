@@ -27,7 +27,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_center_人妖": {
     "name": "人妖",
@@ -80,7 +84,11 @@
         "max": 75
       },
       "experience": 100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_长宁道长": {
     "name": "长宁道长",
@@ -110,7 +118,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_郭嘉副本": {
     "name": "郭嘉【副本】",
@@ -140,7 +152,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_公孙瓒荣誉": {
     "name": "公孙瓒【荣誉】",
@@ -170,7 +186,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_程昱": {
     "name": "程昱",
@@ -200,7 +220,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_华大夫": {
     "name": "华大夫",
@@ -230,7 +254,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_技能教官": {
     "name": "技能教官",
@@ -260,7 +288,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_学徒": {
     "name": "学徒",
@@ -290,7 +322,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_center_铜人": {
     "name": "铜人",
@@ -343,7 +379,11 @@
         "max": 7
       },
       "experience": 10
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_智者": {
     "name": "智者",
@@ -373,7 +413,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_center_小偷": {
     "name": "小偷",
@@ -426,7 +470,11 @@
         "max": 37
       },
       "experience": 50
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_汉中车夫": {
     "name": "汉中车夫",
@@ -456,7 +504,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_west_青鸾": {
     "name": "青鸾",
@@ -518,7 +570,10 @@
       },
       "experience": 980
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_south_灵火道人": {
     "name": "灵火道人",
@@ -577,7 +632,11 @@
         "max": 88
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_south_蜀军前锋": {
     "name": "蜀军前锋",
@@ -631,7 +690,11 @@
         "max": 62
       },
       "experience": 610
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_south_法正": {
     "name": "法正",
@@ -690,7 +753,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_south_廖化": {
     "name": "廖化",
@@ -749,7 +816,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_east_吴军前锋": {
     "name": "吴军前锋",
@@ -803,7 +874,11 @@
         "max": 62
       },
       "experience": 610
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_east_徐盛": {
     "name": "徐盛",
@@ -862,7 +937,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_east_丁奉": {
     "name": "丁奉",
@@ -921,7 +1000,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_north_灵土道人": {
     "name": "灵土道人",
@@ -980,7 +1063,11 @@
         "max": 88
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_north_辛毗": {
     "name": "辛毗",
@@ -1039,7 +1126,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_north_步骘": {
     "name": "步骘",
@@ -1098,7 +1189,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_west_刘封": {
     "name": "刘封",
@@ -1157,7 +1252,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_west_糜芳": {
     "name": "糜芳",
@@ -1216,7 +1315,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_east_吴军前锋": {
     "name": "吴军前锋",
@@ -1270,7 +1373,11 @@
         "max": 62
       },
       "experience": 620
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_east_孙静": {
     "name": "孙静",
@@ -1329,7 +1436,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_east_潘章": {
     "name": "潘章",
@@ -1388,7 +1499,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -1418,7 +1533,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_北平车夫": {
     "name": "北平车夫",
@@ -1448,7 +1567,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_王老板": {
     "name": "王老板",
@@ -1478,7 +1601,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_北平铁匠": {
     "name": "北平铁匠",
@@ -1508,7 +1635,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_center_城南守将": {
     "name": "城南守将",
@@ -1538,7 +1669,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_north_翼州步兵": {
     "name": "翼州步兵",
@@ -1586,7 +1721,11 @@
         "max": 90
       },
       "experience": 120
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_north_乌恒骑兵": {
     "name": "乌恒骑兵",
@@ -1634,7 +1773,11 @@
         "max": 120
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_north_逢纪": {
     "name": "逢纪",
@@ -1691,7 +1834,11 @@
         "max": 90
       },
       "experience": 120
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_north_公孙碧": {
     "name": "公孙碧",
@@ -1748,7 +1895,11 @@
         "max": 120
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_north_翼州斧兵": {
     "name": "翼州斧兵",
@@ -1796,7 +1947,11 @@
         "max": 105
       },
       "experience": 140
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_east_野狗": {
     "name": "野狗",
@@ -1849,7 +2004,11 @@
         "max": 22
       },
       "experience": 30
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_east_左慈副本": {
     "name": "左慈【副本】",
@@ -1879,37 +2038,35 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_east_曹彰": {
     "name": "曹彰",
     "level": 50,
-    "is_elite": false,
     "killable": false,
-    "immortal": true,
-    "description": "曹彰",
+    "immortal": false,
+    "is_elite": false,
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "description": "曹操之子，曹樱的父亲，驻守军营的将领",
     "base_stats": {
+      "current_health": 99999,
       "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
+      "max_health": 99999,
+      "mana": 0,
+      "max_mana": 0,
+      "attack": 0,
+      "defense": 0,
       "crit_rate": 0,
       "dodge_rate": 0
     },
     "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    }
+    "drops": {}
   },
   "npc_beiping_east_副将统领": {
     "name": "副将统领",
@@ -1939,7 +2096,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_east_李铁匠": {
     "name": "李铁匠",
@@ -1969,7 +2130,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_east_王老板": {
     "name": "王老板",
@@ -1999,7 +2164,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_west_马贼探子": {
     "name": "马贼探子",
@@ -2052,7 +2221,11 @@
         "max": 67
       },
       "experience": 90
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_west_高干": {
     "name": "高干",
@@ -2109,7 +2282,11 @@
         "max": 135
       },
       "experience": 180
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_south_郭图": {
     "name": "郭图",
@@ -2166,7 +2343,11 @@
         "max": 105
       },
       "experience": 140
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_south_土匪探子": {
     "name": "土匪探子",
@@ -2219,7 +2400,11 @@
         "max": 52
       },
       "experience": 70
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_beiping_south_白龟": {
     "name": "白龟",
@@ -2267,7 +2452,11 @@
         "max": 135
       },
       "experience": 180
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_east_短鼻鳄": {
     "name": "短鼻鳄",
@@ -2324,7 +2513,11 @@
         "max": 165
       },
       "experience": 220
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_east_潜水巨龟": {
     "name": "潜水巨龟",
@@ -2372,7 +2565,11 @@
         "max": 142
       },
       "experience": 190
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_east_暴躁猴": {
     "name": "暴躁猴",
@@ -2429,7 +2626,11 @@
         "max": 225
       },
       "experience": 300
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_east_魏讽": {
     "name": "魏讽",
@@ -2486,7 +2687,11 @@
         "max": 165
       },
       "experience": 220
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_north_山越骑兵": {
     "name": "山越骑兵",
@@ -2543,7 +2748,11 @@
         "max": 195
       },
       "experience": 260
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_north_白狼": {
     "name": "白狼",
@@ -2600,7 +2809,11 @@
         "max": 210
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_north_胡炮儿": {
     "name": "胡炮儿",
@@ -2661,7 +2874,11 @@
         "max": 195
       },
       "experience": 260
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_south_南蛮兵": {
     "name": "南蛮兵",
@@ -2718,7 +2935,11 @@
         "max": 180
       },
       "experience": 240
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_south_张泉": {
     "name": "张泉",
@@ -2779,7 +3000,11 @@
         "max": 210
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_south_酒肉和尚": {
     "name": "酒肉和尚",
@@ -2836,7 +3061,11 @@
         "max": 247
       },
       "experience": 330
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_south_墨鸦": {
     "name": "墨鸦",
@@ -2893,7 +3122,11 @@
         "max": 262
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_south_张先": {
     "name": "张先",
@@ -2950,7 +3183,11 @@
         "max": 180
       },
       "experience": 240
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jinyang_west_黄巾残军": {
     "name": "黄巾残军",
@@ -2998,7 +3235,11 @@
         "max": 112
       },
       "experience": 150
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_任务使者": {
     "name": "任务使者",
@@ -3028,7 +3269,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_张扬荣誉": {
     "name": "张扬【荣誉】",
@@ -3058,7 +3303,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_技能教官": {
     "name": "技能教官",
@@ -3088,7 +3337,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_学徒": {
     "name": "学徒",
@@ -3118,7 +3371,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_店小二": {
     "name": "店小二",
@@ -3148,7 +3405,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_晋阳车夫": {
     "name": "晋阳车夫",
@@ -3178,7 +3439,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -3208,7 +3473,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_王老板": {
     "name": "王老板",
@@ -3238,7 +3507,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_晋阳铁匠": {
     "name": "晋阳铁匠",
@@ -3268,7 +3541,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_center_许大夫": {
     "name": "许大夫",
@@ -3298,7 +3575,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jinyang_west_李典副本": {
     "name": "李典【副本】",
@@ -3328,7 +3609,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_许大夫": {
     "name": "许大夫",
@@ -3358,7 +3643,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -3388,7 +3677,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_任务使者": {
     "name": "任务使者",
@@ -3418,7 +3711,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_曹操荣誉": {
     "name": "曹操【荣誉】",
@@ -3448,7 +3745,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_小公主": {
     "name": "小公主",
@@ -3478,7 +3779,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_军团使者": {
     "name": "军团使者",
@@ -3508,7 +3813,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_曹昂副本": {
     "name": "曹昂【副本】",
@@ -3538,7 +3847,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_副将统领": {
     "name": "副将统领",
@@ -3568,7 +3881,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xuchang_center_许昌车夫": {
     "name": "许昌车夫",
@@ -3598,7 +3915,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_center_许昌卫兵": {
     "name": "许昌卫兵",
@@ -3652,7 +3973,11 @@
         "max": 46
       },
       "experience": 340
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_center_魏军护兵": {
     "name": "魏军护兵",
@@ -3706,7 +4031,11 @@
         "max": 50
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_center_太子守卫": {
     "name": "太子守卫",
@@ -3760,7 +4089,11 @@
         "max": 44
       },
       "experience": 320
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_center_青蛇": {
     "name": "青蛇",
@@ -3822,7 +4155,10 @@
         "max": 70
       },
       "experience": 600
-    }
+    },
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_下邳将官": {
     "name": "下邳将官",
@@ -3852,7 +4188,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_战场军团使者": {
     "name": "战场军团使者",
@@ -3882,7 +4222,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_比武大使": {
     "name": "比武大使",
@@ -3912,7 +4256,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_下邳车夫": {
     "name": "下邳车夫",
@@ -3942,7 +4290,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_下邳铁匠": {
     "name": "下邳铁匠",
@@ -3972,7 +4324,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_许大夫": {
     "name": "许大夫",
@@ -4002,7 +4358,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_west_蜀军守卫": {
     "name": "蜀军守卫",
@@ -4056,7 +4416,11 @@
         "max": 62
       },
       "experience": 620
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_west_蜀军亲卫": {
     "name": "蜀军亲卫",
@@ -4110,7 +4474,11 @@
         "max": 68
       },
       "experience": 675
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_west_王平": {
     "name": "王平",
@@ -4169,7 +4537,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_west_马岱": {
     "name": "马岱",
@@ -4228,7 +4600,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_east_吴军守卫": {
     "name": "吴军守卫",
@@ -4282,7 +4658,11 @@
         "max": 62
       },
       "experience": 620
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_east_吴军亲卫": {
     "name": "吴军亲卫",
@@ -4341,7 +4721,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_east_陆逊": {
     "name": "陆逊",
@@ -4400,7 +4784,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_east_孙桓": {
     "name": "孙桓",
@@ -4459,7 +4847,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_倭寇细作": {
     "name": "倭寇细作",
@@ -4513,7 +4905,11 @@
         "max": 50
       },
       "experience": 440
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_黄巾守卫": {
     "name": "黄巾守卫",
@@ -4567,7 +4963,11 @@
         "max": 68
       },
       "experience": 760
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_黄巾力士": {
     "name": "黄巾力士",
@@ -4621,7 +5021,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_张角": {
     "name": "张角",
@@ -4680,7 +5084,11 @@
         "max": 90
       },
       "experience": 900
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_张宝": {
     "name": "张宝",
@@ -4739,7 +5147,11 @@
         "max": 90
       },
       "experience": 900
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_张梁": {
     "name": "张梁",
@@ -4798,7 +5210,11 @@
         "max": 90
       },
       "experience": 900
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_应龙": {
     "name": "应龙",
@@ -4860,7 +5276,10 @@
       },
       "experience": 860
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_毕方": {
     "name": "毕方",
@@ -4922,7 +5341,10 @@
       },
       "experience": 980
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_south_黄巾上将": {
     "name": "黄巾上将",
@@ -4981,7 +5403,11 @@
         "max": 100
       },
       "experience": 1000
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_小八嘎": {
     "name": "小八嘎",
@@ -5026,7 +5452,11 @@
         "max": 20
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_north_许昌卫兵": {
     "name": "许昌卫兵",
@@ -5080,7 +5510,11 @@
         "max": 45
       },
       "experience": 340
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_north_泥蛇": {
     "name": "泥蛇",
@@ -5134,7 +5568,11 @@
         "max": 48
       },
       "experience": 360
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_north_小八嘎": {
     "name": "小八嘎",
@@ -5179,7 +5617,11 @@
         "max": 20
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_north_孔由": {
     "name": "孔由",
@@ -5238,7 +5680,11 @@
         "max": 58
       },
       "experience": 465
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_north_邪恶道士": {
     "name": "邪恶道士",
@@ -5292,7 +5738,11 @@
         "max": 62
       },
       "experience": 430
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_west_霸陵王": {
     "name": "霸陵王",
@@ -5353,7 +5803,11 @@
         "max": 70
       },
       "experience": 600
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_west_机关兽": {
     "name": "机关兽",
@@ -5407,7 +5861,11 @@
         "max": 40
       },
       "experience": 300
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_west_杨修": {
     "name": "杨修",
@@ -5466,7 +5924,11 @@
         "max": 55
       },
       "experience": 495
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_south_斗篷白衣人": {
     "name": "斗篷白衣人",
@@ -5520,7 +5982,11 @@
         "max": 62
       },
       "experience": 380
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_south_斗篷黑衣人": {
     "name": "斗篷黑衣人",
@@ -5574,7 +6040,11 @@
         "max": 66
       },
       "experience": 400
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_east_鲍信": {
     "name": "鲍信",
@@ -5633,7 +6103,11 @@
         "max": 58
       },
       "experience": 525
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_east_张超": {
     "name": "张超",
@@ -5692,7 +6166,11 @@
         "max": 62
       },
       "experience": 555
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_east_酒鬼": {
     "name": "酒鬼",
@@ -5746,7 +6224,11 @@
         "max": 72
       },
       "experience": 675
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xuchang_east_风陵王": {
     "name": "风陵王",
@@ -5805,7 +6287,11 @@
         "max": 66
       },
       "experience": 585
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_任务使者": {
     "name": "任务使者",
@@ -5835,7 +6321,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_摸金校尉活动": {
     "name": "摸金校尉【活动】",
@@ -5865,7 +6355,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_张扬荣誉": {
     "name": "张扬【荣誉】",
@@ -5895,7 +6389,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_店小二": {
     "name": "店小二",
@@ -5925,7 +6423,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_汉中铁匠": {
     "name": "汉中铁匠",
@@ -5955,7 +6457,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_副将统领": {
     "name": "副将统领",
@@ -5985,7 +6491,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -6015,7 +6525,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_王老板": {
     "name": "王老板",
@@ -6045,7 +6559,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_hanzhong_center_许大夫": {
     "name": "许大夫",
@@ -6075,7 +6593,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_center_守城兵": {
     "name": "守城兵",
@@ -6129,7 +6651,11 @@
         "max": 50
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_任务使者": {
     "name": "任务使者",
@@ -6159,7 +6685,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_刘表荣誉": {
     "name": "刘表【荣誉】",
@@ -6189,7 +6719,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_副将统领": {
     "name": "副将统领",
@@ -6219,7 +6753,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -6249,7 +6787,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_王老板": {
     "name": "王老板",
@@ -6279,7 +6821,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_店小二": {
     "name": "店小二",
@@ -6309,7 +6855,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_江陵铁匠": {
     "name": "江陵铁匠",
@@ -6339,7 +6889,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_许大夫": {
     "name": "许大夫",
@@ -6369,7 +6923,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_center_守城兵": {
     "name": "守城兵",
@@ -6423,7 +6981,11 @@
         "max": 50
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jiangling_center_江陵车夫": {
     "name": "江陵车夫",
@@ -6453,7 +7015,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_south_蛟龙": {
     "name": "蛟龙",
@@ -6515,7 +7081,10 @@
       },
       "experience": 980
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jiangling_south_辟邪": {
     "name": "辟邪",
@@ -6577,7 +7146,10 @@
       },
       "experience": 980
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_任务使者": {
     "name": "任务使者",
@@ -6607,7 +7179,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_吕布荣誉": {
     "name": "吕布【荣誉】",
@@ -6637,7 +7213,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_副将统领": {
     "name": "副将统领",
@@ -6667,7 +7247,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -6697,7 +7281,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_xiapi_center_王老板": {
     "name": "王老板",
@@ -6727,7 +7315,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_center_守城兵": {
     "name": "守城兵",
@@ -6781,7 +7373,11 @@
         "max": 50
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_north_魏军前锋": {
     "name": "魏军前锋",
@@ -6835,7 +7431,11 @@
         "max": 62
       },
       "experience": 610
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_north_侯成": {
     "name": "侯成",
@@ -6894,7 +7494,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_hanzhong_north_李典": {
     "name": "李典",
@@ -6953,7 +7557,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_north_灵水道人": {
     "name": "灵水道人",
@@ -7012,7 +7620,11 @@
         "max": 88
       },
       "experience": 980
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_north_魏军守卫": {
     "name": "魏军守卫",
@@ -7066,7 +7678,11 @@
         "max": 62
       },
       "experience": 610
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_north_魏军亲卫": {
     "name": "魏军亲卫",
@@ -7120,7 +7736,11 @@
         "max": 68
       },
       "experience": 760
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_north_李典": {
     "name": "李典",
@@ -7179,7 +7799,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_xiapi_north_庞德": {
     "name": "庞德",
@@ -7238,7 +7862,11 @@
         "max": 72
       },
       "experience": 820
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_center_董卓护卫": {
     "name": "董卓护卫",
@@ -7292,7 +7920,11 @@
         "max": 90
       },
       "experience": 900
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_祈天道人": {
     "name": "祈天道人",
@@ -7351,7 +7983,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_朱雀": {
     "name": "朱雀",
@@ -7413,7 +8049,10 @@
       },
       "experience": 1500
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_青龙": {
     "name": "青龙",
@@ -7475,7 +8114,10 @@
       },
       "experience": 1500
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_洛阳副官": {
     "name": "洛阳副官",
@@ -7534,7 +8176,11 @@
         "max": 100
       },
       "experience": 1200
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_白虎": {
     "name": "白虎",
@@ -7596,7 +8242,10 @@
       },
       "experience": 1500
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_神秘将军": {
     "name": "神秘将军",
@@ -7655,7 +8304,11 @@
         "max": 100
       },
       "experience": 1200
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -7685,7 +8338,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_许掌柜": {
     "name": "许掌柜",
@@ -7715,7 +8372,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_副将统领": {
     "name": "副将统领",
@@ -7745,7 +8406,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_董卓荣誉": {
     "name": "董卓【荣誉】",
@@ -7775,7 +8440,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_军团使者": {
     "name": "军团使者",
@@ -7805,7 +8474,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_风云使者": {
     "name": "风云使者",
@@ -7835,7 +8508,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_英雄使者": {
     "name": "英雄使者",
@@ -7865,7 +8542,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wa_island_south_镇倭大将军副本": {
     "name": "镇倭大将军【副本】",
@@ -7895,7 +8576,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wa_island_south_医师": {
     "name": "医师",
@@ -7925,7 +8610,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_east_洛阳劫匪": {
     "name": "洛阳劫匪",
@@ -7979,7 +8668,11 @@
         "max": 80
       },
       "experience": 800
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_east_张济": {
     "name": "张济",
@@ -8038,7 +8731,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_east_孙礼": {
     "name": "孙礼",
@@ -8097,7 +8794,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_east_曹纯": {
     "name": "曹纯",
@@ -8156,7 +8857,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_center_连弩队长": {
     "name": "连弩队长",
@@ -8215,7 +8920,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_south_董军长弓手": {
     "name": "董军长弓手",
@@ -8269,7 +8978,11 @@
         "max": 85
       },
       "experience": 880
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_south_徐荣": {
     "name": "徐荣",
@@ -8328,7 +9041,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_south_董军弓兵": {
     "name": "董军弓兵",
@@ -8382,7 +9099,11 @@
         "max": 82
       },
       "experience": 850
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_south_虎豹队长": {
     "name": "虎豹队长",
@@ -8441,7 +9162,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_west_华安": {
     "name": "华安",
@@ -8500,7 +9225,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_west_越女兵长": {
     "name": "越女兵长",
@@ -8559,7 +9288,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_west_于吉": {
     "name": "于吉",
@@ -8618,7 +9351,11 @@
         "max": 95
       },
       "experience": 1100
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_店小二": {
     "name": "店小二",
@@ -8648,7 +9385,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_洛阳铁匠": {
     "name": "洛阳铁匠",
@@ -8678,7 +9419,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_王老板": {
     "name": "王老板",
@@ -8708,7 +9453,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_许大夫": {
     "name": "许大夫",
@@ -8738,7 +9487,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_center_洛阳车夫": {
     "name": "洛阳车夫",
@@ -8768,7 +9521,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_south_司马懿副本": {
     "name": "司马懿【副本】",
@@ -8798,7 +9555,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_luoyang_west_诸葛亮副本": {
     "name": "诸葛亮【副本】",
@@ -8830,7 +9591,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_ice_tower_寒冰使者活动": {
     "name": "寒冰使者【活动】",
@@ -8860,7 +9625,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_ice_tower_医师": {
     "name": "医师",
@@ -8890,7 +9659,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_west_杨弘": {
     "name": "杨弘",
@@ -8949,7 +9722,11 @@
         "max": 62
       },
       "experience": 555
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_center_太子护卫": {
     "name": "太子护卫",
@@ -9003,7 +9780,11 @@
         "max": 45
       },
       "experience": 340
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_center_吴军护兵": {
     "name": "吴军护兵",
@@ -9057,7 +9838,11 @@
         "max": 48
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_雷薄": {
     "name": "雷薄",
@@ -9116,7 +9901,11 @@
         "max": 55
       },
       "experience": 495
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_建邺卫兵": {
     "name": "建邺卫兵",
@@ -9170,7 +9959,11 @@
         "max": 48
       },
       "experience": 360
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_鹰卫": {
     "name": "鹰卫",
@@ -9224,7 +10017,11 @@
         "max": 62
       },
       "experience": 620
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_梁上君子": {
     "name": "梁上君子",
@@ -9278,7 +10075,11 @@
         "max": 68
       },
       "experience": 675
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_翼虎": {
     "name": "翼虎",
@@ -9340,7 +10141,10 @@
         "max": 90
       },
       "experience": 900
-    }
+    },
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_north_阎象": {
     "name": "阎象",
@@ -9399,7 +10203,11 @@
         "max": 58
       },
       "experience": 525
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_east_赌徒": {
     "name": "赌徒",
@@ -9453,7 +10261,11 @@
         "max": 66
       },
       "experience": 400
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_east_凤鸟": {
     "name": "凤鸟",
@@ -9507,7 +10319,11 @@
         "max": 62
       },
       "experience": 380
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_south_陈兰": {
     "name": "陈兰",
@@ -9566,7 +10382,11 @@
         "max": 53
       },
       "experience": 465
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_south_机关兽": {
     "name": "机关兽",
@@ -9620,7 +10440,11 @@
         "max": 40
       },
       "experience": 300
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_south_兵痞": {
     "name": "兵痞",
@@ -9674,7 +10498,11 @@
         "max": 42
       },
       "experience": 320
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_south_山越左骑使": {
     "name": "山越左骑使",
@@ -9733,7 +10561,11 @@
         "max": 66
       },
       "experience": 585
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianye_south_山越右骑使": {
     "name": "山越右骑使",
@@ -9792,7 +10624,11 @@
         "max": 66
       },
       "experience": 600
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_任务使者": {
     "name": "任务使者",
@@ -9822,7 +10658,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_陆逊副本": {
     "name": "陆逊【副本】",
@@ -9852,7 +10692,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_孙权荣誉": {
     "name": "孙权【荣誉】",
@@ -9882,7 +10726,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_小公主": {
     "name": "小公主",
@@ -9912,7 +10760,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_军团使者": {
     "name": "军团使者",
@@ -9942,7 +10794,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_建邺铁匠": {
     "name": "建邺铁匠",
@@ -9972,7 +10828,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_许大夫": {
     "name": "许大夫",
@@ -10002,7 +10862,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_建邺车夫": {
     "name": "建邺车夫",
@@ -10032,7 +10896,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -10062,7 +10930,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_技能教官": {
     "name": "技能教官",
@@ -10092,7 +10964,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianye_center_王老板": {
     "name": "王老板",
@@ -10122,7 +10998,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_north_刘通": {
     "name": "刘通",
@@ -10176,7 +11056,11 @@
         "max": 34
       },
       "experience": 265
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_north_马贼弓手": {
     "name": "马贼弓手",
@@ -10230,7 +11114,11 @@
         "max": 40
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_north_马贼刀手": {
     "name": "马贼刀手",
@@ -10284,7 +11172,11 @@
         "max": 48
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_east_黄能": {
     "name": "黄能",
@@ -10338,7 +11230,11 @@
         "max": 32
       },
       "experience": 245
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_east_银狐": {
     "name": "银狐",
@@ -10383,7 +11279,11 @@
         "max": 28
       },
       "experience": 190
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_east_太平流寇": {
     "name": "太平流寇",
@@ -10428,7 +11328,11 @@
         "max": 25
       },
       "experience": 170
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_south_幽影精锐": {
     "name": "幽影精锐",
@@ -10482,7 +11386,11 @@
         "max": 32
       },
       "experience": 220
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_south_杨散": {
     "name": "杨散",
@@ -10541,7 +11449,11 @@
         "max": 37
       },
       "experience": 290
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_south_虎豹营亲卫": {
     "name": "虎豹营亲卫",
@@ -10595,7 +11507,11 @@
         "max": 34
       },
       "experience": 240
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_south_范漫": {
     "name": "范漫",
@@ -10654,7 +11570,11 @@
         "max": 40
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_west_黄巾暴徒": {
     "name": "黄巾暴徒",
@@ -10708,7 +11628,11 @@
         "max": 40
       },
       "experience": 300
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_west_金钱豹": {
     "name": "金钱豹",
@@ -10762,7 +11686,11 @@
         "max": 37
       },
       "experience": 260
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_west_毒蜥蜴": {
     "name": "毒蜥蜴",
@@ -10816,7 +11744,11 @@
         "max": 45
       },
       "experience": 330
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chaisang_west_苍狼": {
     "name": "苍狼",
@@ -10861,7 +11793,11 @@
         "max": 22
       },
       "experience": 150
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_任务使者": {
     "name": "任务使者",
@@ -10891,7 +11827,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_吕范荣誉": {
     "name": "吕范【荣誉】",
@@ -10921,7 +11861,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_店小二": {
     "name": "店小二",
@@ -10951,7 +11895,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_技能教官": {
     "name": "技能教官",
@@ -10981,7 +11929,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_学徒": {
     "name": "学徒",
@@ -11011,7 +11963,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_许大夫": {
     "name": "许大夫",
@@ -11041,7 +11997,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_柴桑车夫": {
     "name": "柴桑车夫",
@@ -11071,7 +12031,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -11101,7 +12065,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_王老板": {
     "name": "王老板",
@@ -11131,7 +12099,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_柴桑铁匠": {
     "name": "柴桑铁匠",
@@ -11161,7 +12133,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_center_许掌柜": {
     "name": "许掌柜",
@@ -11191,7 +12167,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chaisang_south_甘宁副本": {
     "name": "甘宁【副本】",
@@ -11221,7 +12201,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_center_小偷": {
     "name": "小偷",
@@ -11271,7 +12255,11 @@
         "max": 15
       },
       "experience": 50
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_center_铜人": {
     "name": "铜人",
@@ -11321,7 +12309,11 @@
         "max": 7
       },
       "experience": 10
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_west_严旺": {
     "name": "严旺",
@@ -11375,7 +12367,11 @@
         "max": 22
       },
       "experience": 140
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_east_野狗": {
     "name": "野狗",
@@ -11425,7 +12421,11 @@
         "max": 10
       },
       "experience": 30
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_east_窃贼": {
     "name": "窃贼",
@@ -11475,7 +12475,11 @@
         "max": 7
       },
       "experience": 10
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_north_黑野猪": {
     "name": "黑野猪",
@@ -11520,7 +12524,11 @@
         "max": 22
       },
       "experience": 140
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_north_淘金者": {
     "name": "淘金者",
@@ -11570,7 +12578,11 @@
         "max": 12
       },
       "experience": 70
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_north_花妖": {
     "name": "花妖",
@@ -11615,7 +12627,11 @@
         "max": 28
       },
       "experience": 180
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_north_周昕": {
     "name": "周昕",
@@ -11669,7 +12685,11 @@
         "max": 18
       },
       "experience": 120
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_north_王朗": {
     "name": "王朗",
@@ -11723,7 +12743,11 @@
         "max": 24
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_south_土匪": {
     "name": "土匪",
@@ -11773,7 +12797,11 @@
         "max": 14
       },
       "experience": 90
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_south_青花蛇": {
     "name": "青花蛇",
@@ -11818,7 +12846,11 @@
         "max": 24
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_south_岩怪": {
     "name": "岩怪",
@@ -11863,7 +12895,11 @@
         "max": 18
       },
       "experience": 120
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_wujun_south_苗人龙": {
     "name": "苗人龙",
@@ -11917,7 +12953,11 @@
         "max": 28
       },
       "experience": 180
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_长宁道长": {
     "name": "长宁道长",
@@ -11947,7 +12987,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_任务使者": {
     "name": "任务使者",
@@ -11977,7 +13021,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_活动礼官活动": {
     "name": "活动礼官【活动】",
@@ -12007,7 +13055,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_技能教官": {
     "name": "技能教官",
@@ -12037,7 +13089,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_学徒": {
     "name": "学徒",
@@ -12067,7 +13123,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -12097,7 +13157,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_张昭副本": {
     "name": "张昭【副本】",
@@ -12127,7 +13191,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_华大夫": {
     "name": "华大夫",
@@ -12157,7 +13225,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_吴郡车夫": {
     "name": "吴郡车夫",
@@ -12187,7 +13259,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_王老板": {
     "name": "王老板",
@@ -12217,7 +13293,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_吴郡铁匠": {
     "name": "吴郡铁匠",
@@ -12247,7 +13327,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_center_城南守将": {
     "name": "城南守将",
@@ -12277,7 +13361,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_智者": {
     "name": "智者",
@@ -12307,7 +13395,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_华大夫": {
     "name": "华大夫",
@@ -12337,7 +13429,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_左慈副本": {
     "name": "左慈【副本】",
@@ -12367,7 +13463,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_副将统领": {
     "name": "副将统领",
@@ -12397,7 +13497,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_孙策": {
     "name": "孙策",
@@ -12427,7 +13531,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_李铁匠": {
     "name": "李铁匠",
@@ -12457,7 +13565,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_王老板": {
     "name": "王老板",
@@ -12487,7 +13599,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_孙尚香": {
     "name": "孙尚香",
@@ -12517,7 +13633,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_wujun_east_墨画": {
     "name": "墨画",
@@ -12547,7 +13667,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_north_汉军刀手": {
     "name": "汉军刀手",
@@ -12601,7 +13725,11 @@
         "max": 48
       },
       "experience": 360
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_north_汉军遗贼": {
     "name": "汉军遗贼",
@@ -12655,7 +13783,11 @@
         "max": 52
       },
       "experience": 380
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_north_小八嘎": {
     "name": "小八嘎",
@@ -12700,7 +13832,11 @@
         "max": 20
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_north_姜叙": {
     "name": "姜叙",
@@ -12759,7 +13895,11 @@
         "max": 55
       },
       "experience": 495
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_north_汉军守卫": {
     "name": "汉军守卫",
@@ -12813,7 +13953,11 @@
         "max": 45
       },
       "experience": 340
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_center_蜀军护兵": {
     "name": "蜀军护兵",
@@ -12867,7 +14011,11 @@
         "max": 48
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_west_黑犀": {
     "name": "黑犀",
@@ -12921,7 +14069,11 @@
         "max": 62
       },
       "experience": 610
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_west_赵昂": {
     "name": "赵昂",
@@ -12980,7 +14132,11 @@
         "max": 58
       },
       "experience": 525
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_west_凤鸟": {
     "name": "凤鸟",
@@ -13034,7 +14190,11 @@
         "max": 42
       },
       "experience": 320
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_west_囚牛": {
     "name": "囚牛",
@@ -13096,7 +14256,10 @@
         "max": 90
       },
       "experience": 900
-    }
+    },
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_south_韦康": {
     "name": "韦康",
@@ -13155,7 +14318,11 @@
         "max": 53
       },
       "experience": 465
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_south_刘进": {
     "name": "刘进",
@@ -13214,7 +14381,11 @@
         "max": 62
       },
       "experience": 555
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_south_黑熊": {
     "name": "黑熊",
@@ -13268,7 +14439,11 @@
         "max": 40
       },
       "experience": 300
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_east_关平": {
     "name": "关平",
@@ -13327,7 +14502,11 @@
         "max": 66
       },
       "experience": 600
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_east_黄巾信徒": {
     "name": "黄巾信徒",
@@ -13381,7 +14560,11 @@
         "max": 68
       },
       "experience": 675
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_east_刘安": {
     "name": "刘安",
@@ -13440,7 +14623,11 @@
         "max": 66
       },
       "experience": 585
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_chengdu_east_黑老大": {
     "name": "黑老大",
@@ -13494,7 +14681,11 @@
         "max": 66
       },
       "experience": 400
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_任务使者": {
     "name": "任务使者",
@@ -13524,7 +14715,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_黄忠副本": {
     "name": "黄忠【副本】",
@@ -13554,7 +14749,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_刘备荣誉": {
     "name": "刘备【荣誉】",
@@ -13584,7 +14783,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_小公主": {
     "name": "小公主",
@@ -13614,7 +14817,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_军团使者": {
     "name": "军团使者",
@@ -13644,7 +14851,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_许大夫": {
     "name": "许大夫",
@@ -13674,7 +14885,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_成都铁匠": {
     "name": "成都铁匠",
@@ -13704,7 +14919,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_成都车夫": {
     "name": "成都车夫",
@@ -13734,7 +14953,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -13764,7 +14987,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_技能教官": {
     "name": "技能教官",
@@ -13794,7 +15021,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_学徒": {
     "name": "学徒",
@@ -13824,7 +15055,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_chengdu_center_王老板": {
     "name": "王老板",
@@ -13854,7 +15089,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_north_岩蛇": {
     "name": "岩蛇",
@@ -13908,7 +15147,11 @@
         "max": 48
       },
       "experience": 350
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_north_幽州枪兵": {
     "name": "幽州枪兵",
@@ -13962,7 +15205,11 @@
         "max": 45
       },
       "experience": 330
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_north_徐商": {
     "name": "徐商",
@@ -14016,7 +15263,11 @@
         "max": 32
       },
       "experience": 245
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_north_幽州刀兵": {
     "name": "幽州刀兵",
@@ -14070,7 +15321,11 @@
         "max": 40
       },
       "experience": 300
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_north_吕建": {
     "name": "吕建",
@@ -14129,7 +15384,11 @@
         "max": 37
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_west_炼丹童子": {
     "name": "炼丹童子",
@@ -14174,7 +15433,11 @@
         "max": 25
       },
       "experience": 170
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_west_邪恶祭司": {
     "name": "邪恶祭司",
@@ -14219,7 +15482,11 @@
         "max": 22
       },
       "experience": 150
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_south_叛军剑手": {
     "name": "叛军剑手",
@@ -14264,7 +15531,11 @@
         "max": 28
       },
       "experience": 190
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_south_朱褒": {
     "name": "朱褒",
@@ -14318,7 +15589,11 @@
         "max": 34
       },
       "experience": 265
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_south_叛军精英": {
     "name": "叛军精英",
@@ -14372,7 +15647,11 @@
         "max": 32
       },
       "experience": 220
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_south_雍凯": {
     "name": "雍凯",
@@ -14431,7 +15710,11 @@
         "max": 40
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_east_魏国细作": {
     "name": "魏国细作",
@@ -14485,7 +15768,11 @@
         "max": 34
       },
       "experience": 240
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_east_吴国细作": {
     "name": "吴国细作",
@@ -14539,7 +15826,11 @@
         "max": 37
       },
       "experience": 260
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_yong_an_east_老酒鬼": {
     "name": "老酒鬼",
@@ -14593,7 +15884,11 @@
         "max": 40
       },
       "experience": 280
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_任务使者": {
     "name": "任务使者",
@@ -14623,7 +15918,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_李严荣誉": {
     "name": "李严【荣誉】",
@@ -14653,7 +15952,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_关羽副本": {
     "name": "关羽【副本】",
@@ -14683,7 +15986,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_店小二": {
     "name": "店小二",
@@ -14713,7 +16020,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -14743,7 +16054,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_许大夫": {
     "name": "许大夫",
@@ -14773,7 +16088,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_永安铁匠": {
     "name": "永安铁匠",
@@ -14803,7 +16122,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_永安车夫": {
     "name": "永安车夫",
@@ -14833,7 +16156,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_技能教官": {
     "name": "技能教官",
@@ -14863,7 +16190,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_学徒": {
     "name": "学徒",
@@ -14893,7 +16224,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_许掌柜": {
     "name": "许掌柜",
@@ -14923,7 +16258,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_yong_an_center_王老板": {
     "name": "王老板",
@@ -14953,7 +16292,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_east_刘循": {
     "name": "刘循",
@@ -15007,7 +16350,11 @@
         "max": 28
       },
       "experience": 180
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_east_王累": {
     "name": "王累",
@@ -15061,7 +16408,11 @@
         "max": 18
       },
       "experience": 120
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_center_小偷": {
     "name": "小偷",
@@ -15111,7 +16462,11 @@
         "max": 15
       },
       "experience": 50
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_center_铜人": {
     "name": "铜人",
@@ -15161,7 +16516,11 @@
         "max": 7
       },
       "experience": 10
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_west_野狗": {
     "name": "野狗",
@@ -15211,7 +16570,11 @@
         "max": 10
       },
       "experience": 30
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_west_窃贼": {
     "name": "窃贼",
@@ -15261,7 +16624,11 @@
         "max": 7
       },
       "experience": 10
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_north_娘子军": {
     "name": "娘子军",
@@ -15306,7 +16673,11 @@
         "max": 22
       },
       "experience": 140
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_north_流民": {
     "name": "流民",
@@ -15356,7 +16727,11 @@
         "max": 14
       },
       "experience": 90
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_north_凤蝶": {
     "name": "凤蝶",
@@ -15401,7 +16776,11 @@
         "max": 24
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_north_杨怀": {
     "name": "杨怀",
@@ -15455,7 +16834,11 @@
         "max": 24
       },
       "experience": 160
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_south_越女": {
     "name": "越女",
@@ -15505,7 +16888,11 @@
         "max": 12
       },
       "experience": 70
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_south_水贼": {
     "name": "水贼",
@@ -15550,7 +16937,11 @@
         "max": 28
       },
       "experience": 180
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_south_苗族先锋": {
     "name": "苗族先锋",
@@ -15595,7 +16986,11 @@
         "max": 18
       },
       "experience": 120
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_jianing_south_高沛": {
     "name": "高沛",
@@ -15649,7 +17044,11 @@
         "max": 22
       },
       "experience": 140
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_长宁道长": {
     "name": "长宁道长",
@@ -15679,7 +17078,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_任务使者": {
     "name": "任务使者",
@@ -15709,7 +17112,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_活动礼官活动": {
     "name": "活动礼官【活动】",
@@ -15739,7 +17146,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_霍弋荣誉": {
     "name": "霍弋【荣誉】",
@@ -15769,7 +17180,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_马良": {
     "name": "马良",
@@ -15799,7 +17214,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_华大夫": {
     "name": "华大夫",
@@ -15829,7 +17248,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_金掌柜仓库": {
     "name": "金掌柜【仓库】",
@@ -15859,7 +17282,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_技能教官": {
     "name": "技能教官",
@@ -15889,7 +17316,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_学徒": {
     "name": "学徒",
@@ -15919,7 +17350,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_建宁车夫": {
     "name": "建宁车夫",
@@ -15949,7 +17384,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_建宁铁匠": {
     "name": "建宁铁匠",
@@ -15979,7 +17418,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_王老板": {
     "name": "王老板",
@@ -16009,7 +17452,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_center_城南守将": {
     "name": "城南守将",
@@ -16039,7 +17486,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_华大夫": {
     "name": "华大夫",
@@ -16069,7 +17520,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_智者": {
     "name": "智者",
@@ -16099,7 +17554,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_左慈副本": {
     "name": "左慈【副本】",
@@ -16129,7 +17588,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_副将统领": {
     "name": "副将统领",
@@ -16159,7 +17622,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_黄月英副本": {
     "name": "黄月英【副本】",
@@ -16189,7 +17656,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_刘封": {
     "name": "刘封",
@@ -16219,7 +17690,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_李铁匠": {
     "name": "李铁匠",
@@ -16249,7 +17724,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_王老板": {
     "name": "王老板",
@@ -16279,7 +17758,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_刘雅": {
     "name": "刘雅",
@@ -16309,7 +17792,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_金锁": {
     "name": "金锁",
@@ -16339,7 +17826,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_jianing_west_新手大使福利": {
     "name": "新手大使【福利】",
@@ -16369,7 +17860,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_east_曹樱": {
     "name": "曹樱",
@@ -16399,7 +17894,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "npc_beiping_east_香凝": {
     "name": "香凝",
@@ -16429,7 +17928,11 @@
         "max": 0
       },
       "experience": 0
-    }
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   },
   "monster_luoyang_north_玄武": {
     "name": "玄武",
@@ -16491,6 +17994,177 @@
       },
       "experience": 1500
     },
-    "is_divine_beast": true
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_beiping_center_钱掌柜": {
+    "name": "钱掌柜",
+    "level": 50,
+    "killable": false,
+    "description": "钱庄掌柜，掌管金银钱财",
+    "health": 99999,
+    "max_health": 99999,
+    "attack": 0,
+    "defense": 0,
+    "crit_rate": 0,
+    "dodge_rate": 0,
+    "mana": 0,
+    "max_mana": 0,
+    "skills": [],
+    "drops": {},
+    "immortal": false,
+    "is_elite": false,
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "base_stats": {
+      "current_health": 99999,
+      "health": 99999,
+      "mana": 0,
+      "attack": 0,
+      "defense": 0,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    }
+  },
+  "npc_beiping_east_猎户": {
+    "name": "猎户",
+    "level": 50,
+    "killable": false,
+    "description": "终日打猎为生的猎户",
+    "health": 99999,
+    "max_health": 99999,
+    "attack": 0,
+    "defense": 0,
+    "crit_rate": 0,
+    "dodge_rate": 0,
+    "mana": 0,
+    "max_mana": 0,
+    "skills": [],
+    "drops": {},
+    "immortal": false,
+    "is_elite": false,
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "base_stats": {
+      "current_health": 99999,
+      "health": 99999,
+      "mana": 0,
+      "attack": 0,
+      "defense": 0,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    }
+  },
+  "monster_beiping_east_窃贼": {
+    "name": "窃贼",
+    "level": 1,
+    "killable": true,
+    "description": "鬼鬼祟祟的窃贼",
+    "base_stats": {
+      "health": 140,
+      "mana": 35,
+      "attack": 8,
+      "defense": 4,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 2,
+        "max": 7
+      },
+      "experience": 10
+    },
+    "immortal": false,
+    "is_elite": false,
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_beiping_east_左慈": {
+    "name": "左慈",
+    "level": 50,
+    "killable": false,
+    "immortal": false,
+    "is_elite": false,
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "description": "神秘的道士，精通炼丹之术",
+    "base_stats": {
+      "current_health": 99999,
+      "health": 99999,
+      "max_health": 99999,
+      "mana": 0,
+      "max_mana": 0,
+      "attack": 0,
+      "defense": 0,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {}
+  },
+  "monster_beiping_north_冀州步兵": {
+    "name": "冀州步兵",
+    "level": 10,
+    "killable": true,
+    "immortal": false,
+    "is_elite": false,
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "description": "冀州的步兵，奉命驻守燕山",
+    "base_stats": {
+      "current_health": 250,
+      "health": 250,
+      "max_health": 250,
+      "mana": 0,
+      "max_mana": 0,
+      "attack": 35,
+      "defense": 15,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.03
+    },
+    "skills": [],
+    "drops": {
+      "money": {
+        "min": 15,
+        "max": 40
+      },
+      "experience": 40
+    }
   }
 }

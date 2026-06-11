@@ -118,6 +118,7 @@ class PlayerService:
         from services.title_service import TitleService
         from services.social_service import SocialService
         from services.vip_service import VipService
+        from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
         base = player.attack
         equip_atk = cls._get_equipment_stat_sum(player, "attack")
@@ -131,12 +132,20 @@ class PlayerService:
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'attack')
         relation_atk = SocialService.get_online_relation_attack_bonus(player)
         vip_rate = VipService.get_stat_bonus_rate(player)
-        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        legion_skills = LegionService.get_legion_skill_bonuses(player)
+        legion_atk = legion_skills.get('attack', 0)
+        legion_aura = LegionService.get_vip_aura_bonuses(player)
+        aura_atk = legion_aura.get('attack', 0)
+        from services.battlefield_service import BattlefieldService
+        territory = BattlefieldService.get_territory_bonuses(player)
+        territory_atk = territory.get('attack', 0)
+        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + legion_atk + aura_atk + territory_atk) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
 
     @classmethod
     def get_defense(cls, player):
         from services.title_service import TitleService
         from services.vip_service import VipService
+        from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
         base = player.defense
         equip_def = cls._get_equipment_stat_sum(player, "defense")
@@ -148,12 +157,20 @@ class PlayerService:
         title_def = title_bonuses.get('defense', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'defense')
         vip_rate = VipService.get_stat_bonus_rate(player)
-        return int((base + equip_def + pill + flat + title_def) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        legion_skills = LegionService.get_legion_skill_bonuses(player)
+        legion_def = legion_skills.get('defense', 0)
+        legion_aura = LegionService.get_vip_aura_bonuses(player)
+        aura_def = legion_aura.get('defense', 0)
+        from services.battlefield_service import BattlefieldService
+        territory = BattlefieldService.get_territory_bonuses(player)
+        territory_def = territory.get('defense', 0)
+        return int((base + equip_def + pill + flat + title_def + legion_def + aura_def + territory_def) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
 
     @classmethod
     def get_max_health(cls, player):
         from services.title_service import TitleService
         from services.vip_service import VipService
+        from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
         base = player.max_health
         equip_hp = cls._get_equipment_stat_sum(player, "max_health")
@@ -165,12 +182,20 @@ class PlayerService:
         title_hp = title_bonuses.get('max_health', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'health')
         vip_rate = VipService.get_stat_bonus_rate(player)
-        return int((base + equip_hp + pill + flat + title_hp) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        legion_skills = LegionService.get_legion_skill_bonuses(player)
+        legion_hp = legion_skills.get('max_health', 0)
+        legion_aura = LegionService.get_vip_aura_bonuses(player)
+        aura_hp = legion_aura.get('max_health', 0)
+        from services.battlefield_service import BattlefieldService
+        territory = BattlefieldService.get_territory_bonuses(player)
+        territory_hp = territory.get('max_health', 0)
+        return int((base + equip_hp + pill + flat + title_hp + legion_hp + aura_hp + territory_hp) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
 
     @classmethod
     def get_max_mana(cls, player):
         from services.title_service import TitleService
         from services.vip_service import VipService
+        from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
         base = player.max_mana
         equip_mp = cls._get_equipment_stat_sum(player, "max_mana")
@@ -182,7 +207,12 @@ class PlayerService:
         title_mp = title_bonuses.get('max_mana', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'mana')
         vip_rate = VipService.get_stat_bonus_rate(player)
-        return int((base + equip_mp + pill + flat + title_mp) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        legion_skills = LegionService.get_legion_skill_bonuses(player)
+        legion_mp = legion_skills.get('max_mana', 0)
+        from services.battlefield_service import BattlefieldService
+        territory = BattlefieldService.get_territory_bonuses(player)
+        territory_mp = territory.get('max_mana', 0)
+        return int((base + equip_mp + pill + flat + title_mp + legion_mp + territory_mp) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
 
     @classmethod
     def _get_equipment_stat_sum(cls, player, stat_name):

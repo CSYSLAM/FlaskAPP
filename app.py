@@ -57,6 +57,8 @@ def create_app():
     from blueprints.medicine_shop import medicine_bp
     from blueprints.warehouse import warehouse_bp
     from blueprints.lost_found import lost_found_bp
+    from blueprints.legion import legion_bp
+    from blueprints.battlefield import battlefield_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -77,9 +79,13 @@ def create_app():
     app.register_blueprint(medicine_bp, url_prefix='/medicine')
     app.register_blueprint(warehouse_bp, url_prefix='/warehouse')
     app.register_blueprint(lost_found_bp, url_prefix='/lost_found')
+    app.register_blueprint(legion_bp, url_prefix='/legion')
+    app.register_blueprint(battlefield_bp, url_prefix='/battlefield')
 
     from blueprints.crafting import crafting_bp
+    from blueprints.quest import quest_bp
     app.register_blueprint(crafting_bp, url_prefix='/crafting')
+    app.register_blueprint(quest_bp, url_prefix='/quest')
 
     @app.route('/ref/<path:filename>')
     def ref_file(filename):
@@ -124,6 +130,46 @@ def create_app():
             db.session.commit()
         except Exception:
             db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE legions ADD COLUMN battle_points INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE legion_members ADD COLUMN quest_count INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE legion_members ADD COLUMN quest_date VARCHAR(10) DEFAULT ''"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE legion_members ADD COLUMN personal_battle_points INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN in_battlefield BOOLEAN DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN battlefield_city VARCHAR(32)"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN battlefield_death_time FLOAT DEFAULT 0.0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE legions ADD COLUMN occupied_cities_raw TEXT DEFAULT '[]'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
         # 为没有 player_uid 的旧玩家生成 UID
         import random
         import string
@@ -144,4 +190,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    app.run(debug=False)

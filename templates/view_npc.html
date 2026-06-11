@@ -15,20 +15,17 @@
 </head>
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
-    <h1>{{ monster.name }}{% if monster.is_copy %} <span style="color:#d9534f;">【副本NPC】</span>{% endif %}</h1>
 
-    <div class="section">
-        <p>等级: {{ monster.level }}</p>
-        <p>生命: {{ monster.health }}/{{ monster.max_health }}</p>
-        <p>{{ monster.description }}</p>
-        {% if monster.is_copy %}
-        <p><strong>标记:</strong> 副本专属NPC</p>
-        {% endif %}
-    </div>
+    {{ monster.name }}<br/>
+    {{ monster.description }}<br/>
 
-    <div>
-        <a href="{{ url_for('game.scene') }}">返回场景</a>
-    </div>
+    {% if npc_quests %}
+    {% for q in npc_quests %}
+    <a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 
 <script>
 var aLinks=document.getElementsByTagName("a");

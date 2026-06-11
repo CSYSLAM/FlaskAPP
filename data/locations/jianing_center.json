@@ -75,7 +75,10 @@
       "exits": {
         "west": "jianing_center.钱庄",
         "east": "jianing_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "技能馆": {
       "name": "技能馆",

@@ -128,7 +128,10 @@
       "exits": {
         "west": "chaisang_center.酒馆",
         "east": "chaisang_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "杂货铺": {
       "name": "杂货铺",

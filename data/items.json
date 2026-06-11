@@ -3122,5 +3122,231 @@
       "grant_lieutenant": "taishici"
     },
     "capacity": 0.1
+  },
+  "quest_qingnangshu": {
+    "name": "青囊书",
+    "type": "quest",
+    "description": "曹樱被偷走的医书，记载了珍贵的药方",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_jiashu": {
+    "name": "家书",
+    "type": "quest",
+    "description": "曹樱写给曹彰的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_fancai": {
+    "name": "饭菜",
+    "type": "quest",
+    "description": "曹樱为父亲准备的饭菜",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "lt_recruit_token": {
+    "name": "副将招募令",
+    "type": "quest",
+    "description": "可在副将统领处招募一名副将",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "legion_tiger_tally_1": {
+    "name": "一级军团虎符",
+    "type": "quest",
+    "description": "创建一级军团所需的虎符",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "bag_expand_scroll": {
+    "name": "秘背包扩容卷",
+    "type": "item",
+    "description": "使用后增加背包容量5格",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "usage_effect": {"expand_backpack": 5},
+    "capacity": 0
+  },
+  "battle_challenge_token": {
+    "name": "战场请战符",
+    "type": "material",
+    "description": "可在战场中使用",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "battle_revive_lamp": {
+    "name": "战场续命灯",
+    "type": "material",
+    "description": "可在战场中复活",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "epic_ring_1": {
+    "name": "【史诗】至尊一戒",
+    "type": "equipment",
+    "description": "史诗级戒指",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "epic_ring_2": {
+    "name": "【史诗】至尊二戒",
+    "type": "equipment",
+    "description": "史诗级戒指",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "epic_ring_3": {
+    "name": "【史诗】至尊三戒",
+    "type": "equipment",
+    "description": "史诗级戒指",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "epic_ring_4": {
+    "name": "【史诗】至尊四戒",
+    "type": "equipment",
+    "description": "史诗级戒指",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "epic_ring_5": {
+    "name": "【史诗】至尊五戒",
+    "type": "equipment",
+    "description": "史诗级戒指",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "small_blood_stone": {
+    "name": "小血石",
+    "type": "material",
+    "description": "增加生命值",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "small_mana_stone": {
+    "name": "小魔石",
+    "type": "material",
+    "description": "增加魔法值",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "strong_hp_potion": {
+    "name": "强效生命秘药",
+    "type": "consumable",
+    "description": "恢复大量生命值",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "strong_mp_potion": {
+    "name": "强效魔法秘药",
+    "type": "consumable",
+    "description": "恢复大量魔法值",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "strong_atk_potion": {
+    "name": "强效攻击秘药",
+    "type": "consumable",
+    "description": "临时增加攻击力",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "strong_def_potion": {
+    "name": "强效防御秘药",
+    "type": "consumable",
+    "description": "临时增加防御力",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "strong_crit_potion": {
+    "name": "强效暴击秘药",
+    "type": "consumable",
+    "description": "临时增加暴击率",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "strong_dodge_potion": {
+    "name": "强效闪避秘药",
+    "type": "consumable",
+    "description": "临时增加闪避率",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "capacity": 0
+  },
+  "yuanyang_sword_blueprint": {
+    "name": "鸳鸯剑图纸",
+    "type": "material",
+    "description": "可用于打造鸳鸯剑",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "battle_flag_1": {
+    "name": "战场令旗(低级)",
+    "type": "material",
+    "description": "进入低级战场的凭证",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "battle_flag_2": {
+    "name": "战场令旗(中级)",
+    "type": "material",
+    "description": "进入中级战场的凭证",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "battle_flag_3": {
+    "name": "战场令旗(高级)",
+    "type": "material",
+    "description": "进入高级战场的凭证",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
   }
 }

@@ -34,7 +34,18 @@
       "Bash(claude mcp *)",
       "mcp__playwright__browser_hover",
       "Bash(pkill -f \"python app.py\")",
-      "Bash(pkill -9 -f \"python app.py\")"
+      "Bash(pkill -9 -f \"python app.py\")",
+      "Bash(sqlite3 *)",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(pkill -f python)",
+      "Bash(taskkill //F //PID 29296)",
+      "Bash(awk '{print $5}')",
+      "Bash(taskkill //F //PID 26684)",
+      "Bash(taskkill //F //PID 12048)",
+      "Bash(python app.py)",
+      "Bash(taskkill //F //PID 14020)",
+      "Bash(taskkill //F //PID 12344)",
+      "Bash(taskkill *)"
     ]
   },
   "mcpServers": {

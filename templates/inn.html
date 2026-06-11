@@ -26,6 +26,11 @@
 
 {{ npc_name }}<br/>
 花费一定银两，就可以住店恢复状态。VIP特权玩家可免费住店！<br/>
+{% if npc_quests %}
+{% for q in npc_quests %}
+<a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+{% endfor %}
+{% endif %}
 <br/>
 <a href="{{ url_for('game.inn_rest', npc_id=npc_id) }}">住店休息({{ cost }}银两)</a><br/>
 <br/>

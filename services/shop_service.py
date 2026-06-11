@@ -145,6 +145,8 @@ class ShopService:
                 return True, f"兑换成功，花费{price}{cn}"
             else:
                 DataService.add_item_to_inventory(player.id, item_id, quantity)
+                from services.quest_service import QuestService
+                QuestService.update_buy_item_progress(player, item_id)
                 db.session.commit()
                 cn = currency_names.get(currency, "银两")
                 return True, f"购买了{quantity}个，花费{price}{cn}"

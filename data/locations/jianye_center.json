@@ -141,7 +141,10 @@
       "exits": {
         "west": "jianye_center.诸葛亭",
         "east": "jianye_east.东门"
-      }
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "驿站": {
       "name": "驿站",

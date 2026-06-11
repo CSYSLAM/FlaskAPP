@@ -57,6 +57,9 @@ class PlayerModel(db.Model, UserMixin):
     in_battle = db.Column(db.Boolean, default=False)
     in_pk = db.Column(db.Boolean, default=False)
     pk_opponent = db.Column(db.String(64), nullable=True)
+    in_battlefield = db.Column(db.Boolean, default=False)
+    battlefield_city = db.Column(db.String(32), nullable=True)
+    battlefield_death_time = db.Column(db.Float, default=0.0)
     last_attack_time = db.Column(db.Float, default=0.0)
     enhance_bonus_rate = db.Column(db.Float, default=0.0)
 
@@ -73,6 +76,10 @@ class PlayerModel(db.Model, UserMixin):
     mana_reserve = db.Column(db.Integer, default=0)
     blood_reserve_enabled = db.Column(db.Boolean, default=False)
     mana_reserve_enabled = db.Column(db.Boolean, default=False)
+
+    # Quest system: JSON tracking {quest_id: progress, ...}
+    active_quests = db.Column(db.Text, default='{}')
+    completed_quests = db.Column(db.Text, default='[]')
 
     current_view = db.Column(db.String(20), default='chat')
     current_encounter = db.Column(db.Text, nullable=True)

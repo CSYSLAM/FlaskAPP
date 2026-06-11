@@ -474,6 +474,22 @@ class BattleService:
         else:
             player.kill_count = (player.kill_count or 0) + 1
 
+        # Update quest kill progress and drop quest items
+        from services.quest_service import QuestService
+        quest_drops = []
+        active = QuestService.get_active_quests(player)
+        for qid, prog in active.items():
+            q = QuestService.get_quest(qid)
+            if not q:
+                continue
+            obj = q.get('objective', {})
+            if obj.get('type') == 'collect_item' and obj.get('monster_name') == monster.name:
+                item_id = obj.get('item_id', '')
+                if item_id and prog.get('progress', 0) < prog.get('target', 1):
+                    DataService.add_item_to_inventory(player.id, item_id, 1)
+                    quest_drops.append(obj.get('item_name', item_id))
+        QuestService.update_kill_progress(player, monster.name, quest_drops)
+
         # Track daily kill count for diligence ranking
         from services.activity_service import ActivityService
         daily_kills = ActivityService.get_today_value(player, 'kill_count')
@@ -511,6 +527,15 @@ class BattleService:
         player.last_battle_result = f"击败了『{monster.name}』！获得{money}银两、{exp}经验"
         if loot_text:
             player.last_battle_result += f"。{loot_text}"
+        # Show quest drops
+        quest_drops_final = []
+        for qid, prog in QuestService.get_active_quests(player).items():
+            q = QuestService.get_quest(qid)
+            if q and q.get('objective', {}).get('type') == 'collect_item':
+                if q['objective'].get('monster_name') == monster.name:
+                    quest_drops_final.append(q['objective'].get('item_name', ''))
+        if quest_drops_final:
+            player.last_battle_result += f"。任务掉落: {'、'.join(set(quest_drops_final))}"
         player.current_encounter = None
         monster.reset_health()
 

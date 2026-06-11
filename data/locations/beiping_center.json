@@ -78,7 +78,10 @@
         "east": "beiping_east.东门",
         "south": "beiping_center.小巷"
       },
-      "monster_type": "monster_beiping_center_铜人"
+      "monster_type": "monster_beiping_center_铜人",
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
     },
     "药铺_东": {
       "name": "药铺",
@@ -106,7 +109,8 @@
       },
       "monster_type": "monster_beiping_center_小偷",
       "npcs": [
-        "npc_beiping_center_金掌柜仓库"
+        "npc_beiping_center_金掌柜仓库",
+        "npc_beiping_center_钱掌柜"
       ]
     },
     "西城楼": {
