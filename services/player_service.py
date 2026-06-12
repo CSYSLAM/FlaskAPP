@@ -139,7 +139,9 @@ class PlayerService:
         from services.battlefield_service import BattlefieldService
         territory = BattlefieldService.get_territory_bonuses(player)
         territory_atk = territory.get('attack', 0)
-        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + legion_atk + aura_atk + territory_atk) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        from services.party_service import PartyService
+        party_rate = PartyService.get_party_bonus_rate(player)
+        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + legion_atk + aura_atk + territory_atk) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate + party_rate))
 
     @classmethod
     def get_defense(cls, player):
@@ -164,7 +166,9 @@ class PlayerService:
         from services.battlefield_service import BattlefieldService
         territory = BattlefieldService.get_territory_bonuses(player)
         territory_def = territory.get('defense', 0)
-        return int((base + equip_def + pill + flat + title_def + legion_def + aura_def + territory_def) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        from services.party_service import PartyService
+        party_rate = PartyService.get_party_bonus_rate(player)
+        return int((base + equip_def + pill + flat + title_def + legion_def + aura_def + territory_def) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate + party_rate))
 
     @classmethod
     def get_max_health(cls, player):

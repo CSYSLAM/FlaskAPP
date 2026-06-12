@@ -60,6 +60,7 @@ class PlayerModel(db.Model, UserMixin):
     in_battlefield = db.Column(db.Boolean, default=False)
     battlefield_city = db.Column(db.String(32), nullable=True)
     battlefield_death_time = db.Column(db.Float, default=0.0)
+    party_id = db.Column(db.Integer, nullable=True)
     last_attack_time = db.Column(db.Float, default=0.0)
     enhance_bonus_rate = db.Column(db.Float, default=0.0)
 

@@ -13,6 +13,7 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
 
     config_name = os.environ.get('FLASK_ENV', 'development')
     if config_name == 'development':
@@ -34,6 +35,13 @@ def create_app():
         return PlayerModel.query.get(int(user_id))
 
     DataService.init_app(app)
+
+    @app.before_request
+    def track_online():
+        from flask_login import current_user
+        if current_user.is_authenticated:
+            from services.party_service import mark_online
+            mark_online(current_user.id)
 
     from services.world_boss_service import WorldBossService
     WorldBossService.init_bosses()
@@ -59,6 +67,7 @@ def create_app():
     from blueprints.lost_found import lost_found_bp
     from blueprints.legion import legion_bp
     from blueprints.battlefield import battlefield_bp
+    from blueprints.party import party_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -81,6 +90,7 @@ def create_app():
     app.register_blueprint(lost_found_bp, url_prefix='/lost_found')
     app.register_blueprint(legion_bp, url_prefix='/legion')
     app.register_blueprint(battlefield_bp, url_prefix='/battlefield')
+    app.register_blueprint(party_bp, url_prefix='/party')
 
     from blueprints.crafting import crafting_bp
     from blueprints.quest import quest_bp
@@ -167,6 +177,11 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE legions ADD COLUMN occupied_cities_raw TEXT DEFAULT '[]'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN party_id INTEGER"))
             db.session.commit()
         except Exception:
             db.session.rollback()

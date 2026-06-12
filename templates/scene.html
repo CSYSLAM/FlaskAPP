@@ -307,17 +307,18 @@ a:link { color: #136ec2; text-decoration: none; }
 <br/>
 <div class="quick-actions">
     <div class="quick-actions-row">
-        <a href="{{ url_for('player.character') }}">角色</a> . <a href="{{ url_for('player.inventory') }}">背包</a> . <a href="{{ url_for('social.chat') }}">聊天</a> . 
-        <a href="{{ url_for('activity.index') }}">活动</a>
+        <a href="{{ url_for('player.character') }}">角色</a> .<a href="{{ url_for('player.inventory') }}">背包</a> .<a href="{{ url_for('legion.index') }}">军团</a> .<a href="{{ url_for('activity.index') }}">活动</a>
     </div>
     <div class="quick-actions-row">
-        <a href="{{ url_for('lieutenant.index') }}">副将</a> . <a href="{{ url_for('villa.index') }}">山庄</a> . <a href="{{ url_for('social.social_index') }}">社交</a> .
-        <a href="{{ url_for('legion.index') }}">军团</a> . <a href="{{ url_for('vip.index') }}">VIP</a>
+        <a href="{{ url_for('party.index') }}">队伍</a> .<a href="{{ url_for('villa.index') }}">山庄</a> .<a href="{{ url_for('social.social_index') }}">社交</a> .<a href="{{ url_for('social.chat') }}">聊天</a>
     </div>
     <div class="quick-actions-row">
-        <a href="{{ url_for('rank.index') }}">排行</a>
+        <a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a> .<a href="{{ url_for('shop.shop') }}">商城</a>
+    </div>
+    <div class="quick-actions-row">
+        <a href="{{ url_for('guide.index') }}">攻略</a>
         {% if player.is_designer %}
-         . <a href="{{ url_for('workbench.index') }}">工作台</a>
+         .<a href="{{ url_for('workbench.index') }}">工作台</a>
         {% endif %}
     </div>
 </div>

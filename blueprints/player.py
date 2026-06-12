@@ -96,14 +96,57 @@ def view_player(username):
         return redirect(url_for("game.scene"))
     from services.social_service import SocialService
     from services.vip_service import VipService
+    from services.party_service import PartyService
+    tab = request.args.get('tab', 'info')
     target_vip_level = VipService.get_active_vip_level(target)
+    target_party = PartyService.get_player_party(target)
+    target_party_name = ""
+    target_party_count = 0
+    if target_party:
+        from models.player import PlayerModel
+        leader = PlayerModel.query.get(target_party.leader_id)
+        target_party_name = f"{leader.nickname}的队伍" if leader else "队伍"
+        target_party_count = len(target_party.members)
+    my_party = PartyService.get_player_party(player)
+    target_equipped = DataService.get_equipped(target.id)
+    from services.achievement_service import AchievementService
+    target_achievements, achievement_categories = AchievementService.get_all(target)
+    from services.social_service import SocialService
+    from models.relationship import Relationship
+    target_spouse = None
+    spouse_rel = Relationship.query.filter(
+        ((Relationship.player1_id == target.id) | (Relationship.player2_id == target.id))
+    ).first()
+    if spouse_rel:
+        spouse_id = spouse_rel.get_other_player_id(target.id)
+        target_spouse = PlayerModel.query.get(spouse_id)
+    hongyan_count = Relationship.count_relationships(target.id, 'hongyan')
+    zhiji_count = Relationship.count_relationships(target.id, 'zhiji')
+    from models.legion import Legion
+    from services.legion_service import LegionService
+    target_legion = LegionService.get_player_legion(target)
+    from models.lieutenant import Lieutenant
+    target_lieutenant = Lieutenant.query.filter_by(owner_id=target.id, is_deployed=True).first()
     return render_template("view_player.html",
                          player=player,
                          target_player=target,
                          target_vip_level=target_vip_level,
                          EquipmentInstance=EquipmentInstance,
                          DataService=DataService,
-                         SocialService=SocialService)
+                         SocialService=SocialService,
+                         target_party=target_party,
+                         target_party_name=target_party_name,
+                         target_party_count=target_party_count,
+                         my_party=my_party,
+                         tab=tab,
+                         target_equipped=target_equipped,
+                         target_achievements=target_achievements,
+                         achievement_categories=achievement_categories,
+                         target_spouse=target_spouse,
+                         target_legion=target_legion,
+                         hongyan_count=hongyan_count,
+                         zhiji_count=zhiji_count,
+                         target_lieutenant=target_lieutenant)
 
 
 @player_bp.route("/military_ranks")

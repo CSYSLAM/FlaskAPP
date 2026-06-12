@@ -7,3 +7,4 @@ class Config:
     DATA_DIR = Path("data")
     SQLALCHEMY_DATABASE_URI = 'sqlite:///game1.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    TEMPLATES_AUTO_RELOAD = True
