@@ -1,0 +1,82 @@
+{
+  "name": "永安北区",
+  "scenes": {
+    "永安北界": {
+      "name": "永安北界",
+      "exits": {
+        "north": "chengdu_south.成都南界",
+        "south": "yong_an_north.地下洞"
+      }
+    },
+    "地下洞": {
+      "name": "地下洞",
+      "exits": {
+        "north": "yong_an_north.永安北界",
+        "west": "yong_an_north.九龙洞",
+        "east": "yong_an_north.公安山",
+        "south": "yong_an_north.玉泉"
+      },
+      "monster_type": "monster_yong_an_north_岩蛇"
+    },
+    "九龙洞": {
+      "name": "九龙洞",
+      "exits": {
+        "east": "yong_an_north.地下洞"
+      }
+    },
+    "公安山": {
+      "name": "公安山",
+      "exits": {
+        "west": "yong_an_north.地下洞"
+      }
+    },
+    "玉泉": {
+      "name": "玉泉",
+      "exits": {
+        "north": "yong_an_north.地下洞",
+        "south": "yong_an_north.北峡"
+      },
+      "monster_type": "monster_yong_an_north_幽州枪兵"
+    },
+    "北峡": {
+      "name": "北峡",
+      "exits": {
+        "north": "yong_an_north.玉泉",
+        "west": "yong_an_north.白帝城",
+        "east": "yong_an_north.麦城",
+        "south": "yong_an_north.北门"
+      },
+      "monsters": [
+        "monster_yong_an_north_徐商",
+        "monster_yong_an_north_幽州刀兵"
+      ]
+    },
+    "白帝城": {
+      "name": "白帝城",
+      "exits": {
+        "east": "yong_an_north.北峡"
+      }
+    },
+    "麦城": {
+      "name": "麦城",
+      "exits": {
+        "west": "yong_an_north.北峡",
+        "east": "yong_an_north.柳溪"
+      }
+    },
+    "柳溪": {
+      "name": "柳溪",
+      "exits": {
+        "west": "yong_an_north.麦城"
+      },
+      "monster_type": "monster_yong_an_north_吕建"
+    },
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "yong_an_north.北峡",
+        "south": "yong_an_center.北城楼"
+      }
+    }
+  }
+}

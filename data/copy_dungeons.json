@@ -1,0 +1,946 @@
+{
+  "huangjin_trial": {
+    "name": "黄巾起义(6级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "huangjin_copy_live.洛阳皇宫",
+    "entry_npc_id": "npc_beiping_east_左慈副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "beiping_east.箭楼",
+    "story_intro": [
+      "东汉末年，社会动荡，民不聊生。",
+      "大小起义不计其数，其中以黄巾起义最为庞大，你身为朝廷的武将，理应为朝廷效力。",
+      "先破豫州、徐州前营，再斩波才、张曼成，最后夺木筏渡河击败张氏三兄弟，才能彻底平定这场乱局。"
+    ],
+    "story_outro": [
+      "历经万重险阻终于通关黄巾起义副本，获得了大量奖励！",
+      "返回箭楼继续征战吧。"
+    ],
+    "reward": {
+      "experience": 3000,
+      "gold": 600,
+      "items": []
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "大破黄巾一",
+        "scene_id": "huangjin_copy_live.豫州",
+        "objective": "前往「豫州」击杀5名『黄巾士兵』",
+        "progress_label": "已击败黄巾士兵(6级)",
+        "target_monsters": [
+          "monster_huangjin_copy_黄巾士兵"
+        ],
+        "required_count": 5,
+        "story": "先清掉豫州前线的斥候，断掉黄巾军的耳目。",
+        "reward": {
+          "experience": 1500,
+          "gold": 150,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "大破黄巾二",
+        "scene_id": "huangjin_copy_live.徐州",
+        "objective": "前往「徐州」击杀5名『黄巾头目』",
+        "progress_label": "已击败黄巾头目(6级)",
+        "target_monsters": [
+          "monster_huangjin_copy_黄巾头目"
+        ],
+        "required_count": 5,
+        "story": "徐州的黄巾头目开始集结，先斩掉他们的前线首脑。",
+        "reward": {
+          "experience": 2000,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "斩将破敌一",
+        "scene_id": "huangjin_copy_live.颖州",
+        "objective": "前往「颍川」击杀『波才』",
+        "progress_label": "已击败【精】波才(6级)",
+        "target_monsters": [
+          "monster_huangjin_copy_波才"
+        ],
+        "required_count": 1,
+        "story": "黄巾大将波才出现在颍川，你速速前往「颍川」将『波才』击杀！",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "斩将破敌二",
+        "scene_id": "huangjin_copy_live.南阳",
+        "objective": "前往「南阳」击杀敌方主将『张曼成』",
+        "progress_label": "已击败【精】张曼成(6级)",
+        "target_monsters": [
+          "monster_huangjin_copy_张曼成"
+        ],
+        "required_count": 1,
+        "story": "南阳黄巾军首领，杀郡守褚贡，一度占据宛城数月。你速去「南阳」杀死敌方主将『张曼成』！",
+        "reward": {
+          "experience": 3500,
+          "gold": 350,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "最终决战",
+        "scene_id": "huangjin_copy_live.小渔村",
+        "objective": "渡船到「黄河岸边」以北，击杀张氏三兄弟。",
+        "progress_label": "已击败最终首领",
+        "target_monsters": [
+          "monster_huangjin_copy_张宝",
+          "monster_huangjin_copy_张梁",
+          "monster_huangjin_copy_张角"
+        ],
+        "required_count": 3,
+        "required_items": {
+          "wood_raft": 1
+        },
+        "story": "黄巾之乱虽然暂时平息了，但是只要张氏三兄弟不死，还是有暴乱的风险。你渡船到「黄河岸边」以北，击杀张氏三兄弟，将黄巾之乱彻底平息。",
+        "reward": {
+          "experience": 5000,
+          "gold": 500,
+          "items": []
+        }
+      }
+    ]
+  },
+  "guandu_battle": {
+    "name": "官渡之战(36级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "guandu_copy_live.曹军大营",
+    "entry_npc_id": "npc_xuchang_center_曹昂副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "xuchang_center.广场",
+    "story_intro": [
+      "东汉末年，群雄割据，曹操与袁绍两大势力在官渡展开决战。",
+      "袁绍兵多将广，号称十万大军，此战关乎北方霸业之归属。",
+      "你身为魏国大将，理应为曹公效力，助其在官渡之战中击败袁绍，一统北方。"
+    ],
+    "story_outro": [
+      "历经苦战终于助曹操在官渡之战中大败袁绍！",
+      "韩猛、高览、张郃等袁绍名将尽数被斩，袁军主力覆灭。",
+      "此次大胜，一统天下、恢复汉室指日可待！返回许昌广场继续征战吧。"
+    ],
+    "reward": {
+      "experience": 42000,
+      "gold": 4200,
+      "items": [
+        {
+          "item_id": "chest_copy_mid_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "击杀韩猛",
+        "scene_id": "guandu_copy_live.官渡渡口",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「官渡渡口」击杀『【精】韩猛』",
+        "progress_label": "已击败【精】韩猛(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_韩猛"
+        ],
+        "required_count": 1,
+        "story": "袁绍手下有一员大将，名叫『韩猛』，正在「官渡渡口」叫骂，你速去将其击杀！",
+        "complete_story": "有你相助，何惧袁绍！",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "清理前线",
+        "scene_id": "guandu_copy_live.前营",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「前营」清理5名『袁军前锋』",
+        "progress_label": "已击败袁军前锋(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_袁军前锋"
+        ],
+        "required_count": 5,
+        "story": "你前往「前营」清理5名『袁军前锋』！",
+        "complete_story": "前方已经清理干净，继续攻城拔寨！",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "清理主力",
+        "scene_id": "guandu_copy_live.左营",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「左营」清理5名『袁军弩手』",
+        "progress_label": "已击败袁军弩手(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_袁军弩手"
+        ],
+        "required_count": 5,
+        "story": "袁军主力正聚集，你去「左营」清理5名『袁军弩手』！",
+        "complete_story": "干的漂亮，不愧是我魏国大将！",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "又遇敌手",
+        "scene_id": "guandu_copy_live.密山山路",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「密山山路」击杀『【精】高览』",
+        "progress_label": "已击败【精】高览(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_高览"
+        ],
+        "required_count": 1,
+        "story": "袁绍又派出另一员大将，名叫『高览』，目前在「密山山路」，你去把他也杀了！",
+        "complete_story": "高览乃袁绍四大将军之一，高览一死，胜利在望！",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "后院起火",
+        "scene_id": "guandu_copy_live.土丘",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「土丘」击杀5名『掘子军』",
+        "progress_label": "已击败掘子军(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_掘子军"
+        ],
+        "required_count": 5,
+        "story": "袁绍派人从后山偷袭，你前往「土丘」击杀5名『掘子军』！",
+        "complete_story": "差点后院起火，还好有将军相助。",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀赵睿",
+        "scene_id": "guandu_copy_live.土山",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「土山」击杀『【精】赵睿』",
+        "progress_label": "已击败【精】赵睿(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_赵睿"
+        ],
+        "required_count": 1,
+        "story": "袁绍居然又派人骚扰我军后方，你前往「土山」击杀『赵睿』！",
+        "complete_story": "后方已稳固，将军前往北面的「后山」助『张辽』一臂之力吧！",
+        "complete_hint": "前往「后山」与『张辽』对话",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "截取粮草",
+        "scene_id": "guandu_copy_live.粮营前关",
+        "quest_giver_location": "guandu_copy_live.后山",
+        "quest_giver_npc_id": "npc_guandu_copy_张辽",
+        "objective": "前往「粮营前关」收集5份『粮草』(击杀押粮兵)",
+        "progress_label": "已收集粮草",
+        "target_monsters": [
+          "monster_guandu_copy_押粮兵"
+        ],
+        "required_count": 5,
+        "required_items": {
+          "liangcao": 5
+        },
+        "story": "俗话说兵马未动，粮草先行。咱们的粮草马上就要用完了，今天有一路『押粮兵』从「粮营前关」经过，你去截取5份粮草回来！",
+        "complete_story": "这下粮草也充足了！",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "击杀郭于琼",
+        "scene_id": "guandu_copy_live.粮营",
+        "quest_giver_location": "guandu_copy_live.后山",
+        "quest_giver_npc_id": "npc_guandu_copy_张辽",
+        "objective": "前往「粮营」击杀『【精】郭玉琼』",
+        "progress_label": "已击败【精】郭玉琼(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_郭玉琼"
+        ],
+        "required_count": 1,
+        "story": "「粮营」的『淳于琼』听说你截了他们的粮草，要和你决斗，淳于琼乃袁绍四大战将，小心应敌！",
+        "complete_story": "将军神勇，将军赶快返回「曹军大营」将此处战况汇报给主公！",
+        "complete_hint": "前往「曹军大营」与『曹操』对话",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_9",
+        "name": "胜利在望",
+        "scene_id": "guandu_copy_live.南营",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「南营」击杀『【精】张郃』",
+        "progress_label": "已击败【精】张郃(36级)",
+        "target_monsters": [
+          "monster_guandu_copy_张郃"
+        ],
+        "required_count": 1,
+        "story": "袁军基本被消灭殆尽，只剩下一些残余势力，张郃依然图谋不轨，你前往「南营」击杀『张郃』！",
+        "complete_story": "胜利就在眼前！",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      },
+      {
+        "id": "step_10",
+        "name": "最终决战",
+        "scene_id": "guandu_copy_live.东营",
+        "quest_giver_location": "guandu_copy_live.曹军大营",
+        "quest_giver_npc_id": "npc_guandu_copy_曹操",
+        "objective": "前往「东营」击杀『【精】蒋奇』",
+        "progress_label": "已击败【精】蒋奇(40级)",
+        "target_monsters": [
+          "monster_guandu_copy_蒋奇"
+        ],
+        "required_count": 1,
+        "story": "袁军不过垂死挣扎，你前往「东营」击杀『蒋奇』！",
+        "complete_story": "此次大胜，一统天下，恢复汉室指日可待！",
+        "complete_hint": "副本结束，返回场景领取通关奖励",
+        "reward": {
+          "experience": 10000,
+          "gold": 700,
+          "items": []
+        }
+      }
+    ]
+  },
+  "qiqinmenghuo": {
+    "name": "七擒孟获(46级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "qiqin_copy_live.五溪洞",
+    "entry_npc_id": "npc_qiqin_copy_诸葛亮",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "luoyang_west.函谷关",
+    "story_intro": [
+      "南蛮孟获起兵造反，诸葛孔明率军南征。",
+      "孔明曰：攻心为上，攻城为下，心战为上，兵战为下。",
+      "遂定七擒七纵之计，你随孔明出师，助其七擒孟获，平定南中。"
+    ],
+    "story_outro": [
+      "历经千辛万苦，终于七擒孟获，平定南中！",
+      "孟获终于归服，南中地区就此平定。",
+      "返回洛阳继续征战吧。"
+    ],
+    "reward": {
+      "experience": 84000,
+      "gold": 8400,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "一擒孟获",
+        "scene_id": "qiqin_copy_live.锦带山",
+        "quest_giver_location": "qiqin_copy_live.五溪洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_诸葛亮",
+        "objective": "前往「锦带山」击杀『金环三结』",
+        "progress_label": "已击败【精】金环三结(46级)",
+        "target_monsters": ["monster_qiqin_copy_金环三结"],
+        "required_count": 1,
+        "story": "孟获派手下大将金环三结在锦带山与我军对峙，你速去将其击杀！",
+        "complete_story": "干得漂亮！首战告捷。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_2",
+        "name": "二擒孟获",
+        "scene_id": "qiqin_copy_live.锦带山",
+        "quest_giver_location": "qiqin_copy_live.五溪洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_诸葛亮",
+        "objective": "前往「锦带山」击杀『忙牙长』",
+        "progress_label": "已击败【精】忙牙长(46级)",
+        "target_monsters": ["monster_qiqin_copy_忙牙长"],
+        "required_count": 1,
+        "story": "孟获又派另一员大将忙牙长在锦带山叫阵，你去将他击杀！",
+        "complete_story": "孟获手下大将接连被斩。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_3",
+        "name": "准备渡河",
+        "scene_id": "qiqin_copy_live.泸水",
+        "quest_giver_location": "qiqin_copy_live.五溪洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_诸葛亮",
+        "objective": "前往「泸水」收集5个『轻木筏』(击败土人)",
+        "progress_label": "已收集轻木筏",
+        "target_monsters": ["monster_qiqin_copy_土人"],
+        "required_count": 5,
+        "required_items": { "qing_mufa": 5 },
+        "story": "欲渡泸水，先备木筏。你去「泸水」击败土人，收集5个『轻木筏』回来！",
+        "complete_story": "木筏已备，准备渡河。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_4",
+        "name": "扰乱敌方",
+        "scene_id": "qiqin_copy_live.小路",
+        "quest_giver_location": "qiqin_copy_live.沙口",
+        "quest_giver_npc_id": "npc_qiqin_copy_吕四娘",
+        "objective": "前往「小路」击杀5名『南蛮运粮兵』",
+        "progress_label": "已击败南蛮运粮兵(46级)",
+        "target_monsters": ["monster_qiqin_copy_南蛮运粮兵"],
+        "required_count": 5,
+        "story": "前方发现敌军粮道，你去「小路」截击5名『南蛮运粮兵』，扰乱敌军后勤！",
+        "complete_story": "敌军粮道被断，军心大乱。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_5",
+        "name": "捉拿祝融",
+        "scene_id": "qiqin_copy_live.夹山峪",
+        "quest_giver_location": "qiqin_copy_live.沙口",
+        "quest_giver_npc_id": "npc_qiqin_copy_吕四娘",
+        "objective": "前往「夹山峪」击杀『祝融』",
+        "progress_label": "已击败【精】祝融(46级)",
+        "target_monsters": ["monster_qiqin_copy_祝融"],
+        "required_count": 1,
+        "story": "孟获夫人祝融亲自率兵出战，目前在「夹山峪」，你速去将她拿下！",
+        "complete_story": "祝融被擒，孟获痛失臂助。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀孟优",
+        "scene_id": "qiqin_copy_live.河西岸",
+        "quest_giver_location": "qiqin_copy_live.沙口",
+        "quest_giver_npc_id": "npc_qiqin_copy_吕四娘",
+        "objective": "前往「河西岸」击杀『孟优』",
+        "progress_label": "已击败【精】孟优(46级)",
+        "target_monsters": ["monster_qiqin_copy_孟优"],
+        "required_count": 1,
+        "story": "孟获之弟孟优领军在西洱河对岸接应，你去「河西岸」将他也击杀！",
+        "complete_story": "孟优已除，继续往南推进。",
+        "complete_hint": "前往「河西岸」与『赵云』对话",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_7",
+        "name": "收集方竹",
+        "scene_id": "qiqin_copy_live.凤凰山",
+        "quest_giver_location": "qiqin_copy_live.河西岸",
+        "quest_giver_npc_id": "npc_qiqin_copy_赵云",
+        "objective": "前往「凤凰山」收集5根『方竹』(击败神凤)",
+        "progress_label": "已收集方竹",
+        "target_monsters": ["monster_qiqin_copy_神凤"],
+        "required_count": 5,
+        "required_items": { "fangzhu": 5 },
+        "story": "赵云需要方竹制作兵器，你去「凤凰山」击败神凤，收集5根『方竹』回来！",
+        "complete_story": "方竹质地坚硬，可制神兵。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_8",
+        "name": "收集药草",
+        "scene_id": "qiqin_copy_live.西洱山",
+        "quest_giver_location": "qiqin_copy_live.河西岸",
+        "quest_giver_npc_id": "npc_qiqin_copy_赵云",
+        "objective": "前往「西洱山」收集5株『荟香草』(击败药鬼)",
+        "progress_label": "已收集荟香草",
+        "target_monsters": ["monster_qiqin_copy_药鬼"],
+        "required_count": 5,
+        "required_items": { "huixiangcao": 5 },
+        "story": "赵云需要荟香草祛毒疗伤，你去「西洱山」击败药鬼，收集5株『荟香草』回来！",
+        "complete_story": "有了荟香草，将士们士气大增。",
+        "complete_hint": "向西前往「灭泉」，再向东到「秃龙洞」与『马谡』对话",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_9",
+        "name": "击杀朵思大王",
+        "scene_id": "qiqin_copy_live.秃龙洞",
+        "quest_giver_location": "qiqin_copy_live.秃龙洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_马谡",
+        "objective": "前往「秃龙洞」击杀『朵思大王』",
+        "progress_label": "已击败【精】朵思大王(46级)",
+        "target_monsters": ["monster_qiqin_copy_朵思大王"],
+        "required_count": 1,
+        "story": "前方秃龙洞有孟获部将朵思大王把守，你速去将其击杀，打通南进之路！",
+        "complete_story": "今日将秃龙洞攻下，我们离孟获不远了。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_10",
+        "name": "击杀木鹿大王",
+        "scene_id": "qiqin_copy_live.八纳洞",
+        "quest_giver_location": "qiqin_copy_live.秃龙洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_马谡",
+        "objective": "前往「八纳洞」击杀『木鹿大王』",
+        "progress_label": "已击败【精】木鹿大王(46级)",
+        "target_monsters": ["monster_qiqin_copy_木鹿大王"],
+        "required_count": 1,
+        "story": "孟获又请来木鹿大王相助，木鹿大王善驱百兽，你前往「八纳洞」将他击杀！",
+        "complete_story": "木鹿大王已死，孟获还有何招。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_11",
+        "name": "击杀兀突骨",
+        "scene_id": "qiqin_copy_live.盘蛇谷",
+        "quest_giver_location": "qiqin_copy_live.秃龙洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_马谡",
+        "objective": "前往「盘蛇谷」击杀『兀突骨』",
+        "progress_label": "已击败【精】兀突骨(46级)",
+        "target_monsters": ["monster_qiqin_copy_兀突骨"],
+        "required_count": 1,
+        "story": "孟获还是不服，又请来了帮手，你去「盘蛇谷」将『兀突骨』击杀！",
+        "complete_story": "不知孟获还有什么招。",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      },
+      {
+        "id": "step_12",
+        "name": "七擒孟获",
+        "scene_id": "qiqin_copy_live.铜坑洞",
+        "quest_giver_location": "qiqin_copy_live.秃龙洞",
+        "quest_giver_npc_id": "npc_qiqin_copy_马谡",
+        "objective": "前往「铜坑洞」捉拿『孟获』",
+        "progress_label": "已击败【精】孟获(50级)",
+        "target_monsters": ["monster_qiqin_copy_孟获"],
+        "required_count": 1,
+        "story": "孟获被包围在「铜坑洞」，你去将他捉拿回来！",
+        "complete_story": "孟获终于归服，南中地区就此平定！",
+        "complete_hint": "副本结束，返回场景领取通关奖励",
+        "reward": { "experience": 12500, "gold": 750, "items": [] }
+      }
+    ]
+  },
+  "jiding_liaodong": {
+    "name": "计定辽东(16级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "jiding_liaodong_copy_live.易州城",
+    "entry_npc_id": "npc_beiping_center_郭嘉副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "beiping_center.广场",
+    "story_intro": [
+      "辽东未平，二袁未除，匈奴虎视眈眈。",
+      "郭嘉献计：先定辽东斩二袁，再平匈奴之患。",
+      "你随郭嘉前往易州城，助其计定辽东，扫清北方边患。"
+    ],
+    "story_outro": [
+      "历经千辛万苦，终于助郭嘉计定辽东！",
+      "二袁已除，公孙瓒已斩，北方边患已平。",
+      "返回北平广场继续征战吧。"
+    ],
+    "reward": {
+      "experience": 8000,
+      "gold": 1700,
+      "items": [
+        {
+          "item_id": "chest_copy_low",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "冒牌神医",
+        "scene_id": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "前往「神医坊」击杀5名『冒牌神医』",
+        "progress_label": "已击败冒牌神医(16级)",
+        "target_monsters": [
+          "monster_jiding_copy_冒牌神医"
+        ],
+        "required_count": 5,
+        "story": "易州城中出现冒牌神医，假借华佗之名行骗害人，你速去神医坊将其铲除。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "天香续命",
+        "scene_id": "jiding_liaodong_copy_live.须弥山",
+        "quest_giver_location": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_npc_id": "npc_jiding_copy_华佗",
+        "objective": "前往「须弥山」收集5颗『天香草』(击杀山中精怪)",
+        "progress_label": "已收集天香草",
+        "target_monsters": [
+          "monster_jiding_copy_山中精怪"
+        ],
+        "required_count": 5,
+        "required_items": {
+          "tianxiang_cao": 5
+        },
+        "story": "华佗需要天香草入药，天香草生于须弥山，山中精怪守护其旁，你去取5颗回来。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "以毒攻毒",
+        "scene_id": "jiding_liaodong_copy_live.北沙漠",
+        "quest_giver_location": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_npc_id": "npc_jiding_copy_华佗",
+        "objective": "前往「北沙漠」收集5滴『蝎毒』(击杀毒蝎)",
+        "progress_label": "已收集蝎毒",
+        "target_monsters": [
+          "monster_jiding_copy_毒蝎"
+        ],
+        "required_count": 5,
+        "required_items": {
+          "xie_du": 5
+        },
+        "story": "华佗以毒攻毒，需要北沙漠毒蝎之毒入药，你去取5滴蝎毒回来。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": [
+            {
+              "item_id": "miyao_bound",
+              "count": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "服用秘药",
+        "scene_id": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_location": "jiding_liaodong_copy_live.神医坊",
+        "quest_giver_npc_id": "npc_jiding_copy_郭嘉",
+        "objective": "将『秘药』交给郭嘉",
+        "progress_label": "已交付秘药",
+        "target_monsters": [],
+        "required_count": 0,
+        "required_items": {
+          "miyao_bound": 1
+        },
+        "story": "华佗已制成秘药，你将秘药交给神医坊中的郭嘉服用。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": [
+            {
+              "item_id": "envelope_bound",
+              "count": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "郭嘉定计",
+        "scene_id": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "将『信封』交给曹操",
+        "progress_label": "已交付信封",
+        "target_monsters": [],
+        "required_count": 0,
+        "required_items": {
+          "envelope_bound": 1
+        },
+        "story": "郭嘉服用秘药后写下定计书信，你将信封带回易州城交给曹操。",
+        "reward": {
+          "experience": 5000,
+          "gold": 500,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "屯兵造势",
+        "scene_id": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "前往「卢龙口」击杀5名『敌军探子』",
+        "progress_label": "已击败敌军探子(16级)",
+        "target_monsters": [
+          "monster_jiding_copy_敌军探子"
+        ],
+        "required_count": 5,
+        "story": "曹操定计后命你前往卢龙口屯兵造势，先清除敌军探子，以免走漏风声。",
+        "reward": {
+          "experience": 6000,
+          "gold": 600,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "突袭匈奴",
+        "scene_id": "jiding_liaodong_copy_live.白狼山前",
+        "quest_giver_location": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_npc_id": "npc_jiding_copy_田畴",
+        "objective": "前往「白狼山前」击杀『【精】他顿』",
+        "progress_label": "已击败【精】他顿(16级)",
+        "target_monsters": [
+          "monster_jiding_copy_他顿"
+        ],
+        "required_count": 1,
+        "story": "田畴告知匈奴首领他顿驻扎在白狼山前，你速去将其击杀，断匈奴一臂。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "大破敌军",
+        "scene_id": "jiding_liaodong_copy_live.太守府",
+        "quest_giver_location": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_npc_id": "npc_jiding_copy_田畴",
+        "objective": "前往「太守府」击杀5名『辽东兵』",
+        "progress_label": "已击败辽东兵(16级)",
+        "target_monsters": [
+          "monster_jiding_copy_辽东兵"
+        ],
+        "required_count": 5,
+        "story": "田畴命你前往太守府大破辽东兵，扫清通往柳城的障碍。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_9",
+        "name": "扫清障碍",
+        "scene_id": "jiding_liaodong_copy_live.柳城",
+        "quest_giver_location": "jiding_liaodong_copy_live.卢龙口",
+        "quest_giver_npc_id": "npc_jiding_copy_田畴",
+        "objective": "前往「柳城」击杀『【精】袁尚』",
+        "progress_label": "已击败【精】袁尚(16级)",
+        "target_monsters": [
+          "monster_jiding_copy_袁尚"
+        ],
+        "required_count": 1,
+        "story": "袁尚盘踞柳城，是公孙瓒的得力助手，你速去将其击杀，扫清最后障碍。",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_10",
+        "name": "斩草除根",
+        "scene_id": "jiding_liaodong_copy_live.太守府",
+        "quest_giver_location": "jiding_liaodong_copy_live.易州城",
+        "quest_giver_npc_id": "npc_jiding_copy_曹操",
+        "objective": "前往「太守府」击杀『公孙瓒』",
+        "progress_label": "已击败公孙瓒(20级)",
+        "target_monsters": [
+          "monster_jiding_copy_公孙瓒"
+        ],
+        "required_count": 1,
+        "story": "最后的敌人公孙瓒藏身太守府中，你速去将其击杀，斩草除根，彻底平定辽东！",
+        "reward": {
+          "experience": 3000,
+          "gold": 300,
+          "items": []
+        }
+      }
+    ]
+  },
+  "weizhen_xiaoyaojin": {
+    "name": "威震逍遥津(26级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "xiaoyaojin_copy_live.合肥城",
+    "entry_npc_id": "npc_jinyang_west_李典副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "jinyang_west.西村",
+    "story_intro": [
+      "威震逍遥津，张辽一战成名，令江东小儿夜不敢啼。",
+      "孙权亲率十万大军来犯合肥，张辽率八百勇士迎战。",
+      "你身为魏国大将，速去相助张辽威震逍遥津！"
+    ],
+    "story_outro": [
+      "历经苦战终于助张辽威震逍遥津！",
+      "张辽一战成名，江东小儿闻其名而不敢夜啼。",
+      "返回晋阳西村继续征战吧。"
+    ],
+    "reward": {
+      "experience": 21000,
+      "gold": 2100,
+      "items": [
+        {
+          "item_id": "chest_copy_mid_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "吴军来袭",
+        "scene_id": "xiaoyaojin_copy_live.南郊",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「南郊」击杀5名『东吴探子』",
+        "progress_label": "已击败东吴探子(26级)",
+        "target_monsters": ["mon_xiaoyaojin_dongwu_tanzi"],
+        "required_count": 5,
+        "story": "吴军来袭，先清掉南郊的东吴探子，断其耳目。",
+        "complete_story": "探子已除，吴军动向尽在掌握。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_2",
+        "name": "察觉敌情",
+        "scene_id": "xiaoyaojin_copy_live.北郊",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「北郊」抢夺1封吴国密函",
+        "hint": "吴国密函可在「北郊」击杀『东吴细作』获得。",
+        "progress_label": "已获得吴国密函",
+        "target_monsters": ["mon_xiaoyaojin_dongwu_xizuo"],
+        "required_count": 1,
+        "required_items": { "wujun_mihan": 1 },
+        "story": "张辽察觉敌情有异，命你前往北郊抢夺吴国密函，查探敌军虚实。",
+        "complete_story": "密函到手，原来吴军打算兵分两路偷袭合肥。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_3",
+        "name": "将计就计",
+        "scene_id": "xiaoyaojin_copy_live.大师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「大师桥」拦截5份江东火药",
+        "hint": "江东火药可在「大师桥」击杀『东吴枪兵』获得。",
+        "progress_label": "已收集江东火药",
+        "target_monsters": ["mon_xiaoyaojin_dongwu_qiangbing"],
+        "required_count": 5,
+        "required_items": { "jiangdong_huoyao": 5 },
+        "story": "张辽将计就计，命你前往大师桥拦截江东火药，让吴军自食其果。",
+        "complete_story": "火药已缴获，吴军火攻之计已破。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_4",
+        "name": "击杀太史慈",
+        "scene_id": "xiaoyaojin_copy_live.小师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往东面「小师桥」击杀『太史慈』",
+        "progress_label": "已击败【精】太史慈(26级)",
+        "target_monsters": ["mon_xiaoyaojin_taishici"],
+        "required_count": 1,
+        "story": "吴军大将太史慈在小师桥叫阵，你速去将其击杀！",
+        "complete_story": "太史慈已死，吴军士气大挫。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_5",
+        "name": "计诱孙权",
+        "scene_id": "xiaoyaojin_copy_live.小师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往东面「小师桥」击杀『近卫』",
+        "progress_label": "已击败【精】近卫(26级)",
+        "target_monsters": ["mon_xiaoyaojin_jinwei"],
+        "required_count": 1,
+        "story": "张辽设计诱孙权深入，你前往小师桥击杀孙权近卫，引孙权出战。",
+        "complete_story": "近卫已除，孙权身边再无护卫。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀凌统",
+        "scene_id": "xiaoyaojin_copy_live.乌山",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往南面「乌山」击杀『凌统』",
+        "progress_label": "已击败【精】凌统(26级)",
+        "target_monsters": ["mon_xiaoyaojin_lingtong"],
+        "required_count": 1,
+        "story": "吴将凌统率军在南面乌山策应，你速去将其击杀，断孙权后援。",
+        "complete_story": "凌统已死，孙权孤立无援。",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_7",
+        "name": "擒贼擒王",
+        "scene_id": "xiaoyaojin_copy_live.大师桥",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往东面「大师桥」击杀『孙权』",
+        "progress_label": "已击败【精】孙权(30级)",
+        "target_monsters": ["mon_xiaoyaojin_sunquan"],
+        "required_count": 1,
+        "story": "孙权亲临大师桥督战，擒贼先擒王，你速去将孙权击杀！",
+        "complete_story": "孙权小儿不过如此，哈哈！",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      },
+      {
+        "id": "step_8",
+        "name": "犒劳三军",
+        "scene_id": "xiaoyaojin_copy_live.乌龙山",
+        "quest_giver_location": "xiaoyaojin_copy_live.合肥城",
+        "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
+        "objective": "前往「乌龙山」击杀5头『野牛』",
+        "progress_label": "已击败野牛(26级)",
+        "target_monsters": ["mon_xiaoyaojin_yeniu"],
+        "required_count": 5,
+        "story": "你前往合肥城南边的「乌龙山」击杀5头『野牛』，犒劳三军！",
+        "complete_story": "这次守住合肥，将军当为首功。",
+        "complete_hint": "副本结束，返回场景领取通关奖励",
+        "reward": { "experience": 7500, "gold": 500, "items": [] }
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "洛阳南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "luoyang_center.南城楼",
+        "south": "luoyang_south.汜水关"
+      },
+      "monster_type": "monster_luoyang_south_董军长弓手"
+    },
+    "汜水关": {
+      "name": "汜水关",
+      "exits": {
+        "north": "luoyang_south.南门",
+        "south": "luoyang_south.九宫台"
+      },
+      "monster_type": "monster_luoyang_south_徐荣"
+    },
+    "九宫台": {
+      "name": "九宫台",
+      "exits": {
+        "north": "luoyang_south.汜水关",
+        "east": "luoyang_south.天月亭"
+      },
+      "npcs": [
+        "npc_luoyang_south_司马懿副本"
+      ]
+    },
+    "天月亭": {
+      "name": "天月亭",
+      "exits": {
+        "west": "luoyang_south.九宫台",
+        "south": "luoyang_south.乌林"
+      }
+    },
+    "乌林": {
+      "name": "乌林",
+      "exits": {
+        "north": "luoyang_south.天月亭",
+        "east": "luoyang_south.南洛道",
+        "south": "luoyang_south.洛阳南界"
+      },
+      "monster_type": "monster_luoyang_south_董军弓兵"
+    },
+    "南洛道": {
+      "name": "南洛道",
+      "exits": {
+        "west": "luoyang_south.乌林"
+      },
+      "monster_type": "monster_luoyang_south_虎豹队长"
+    },
+    "洛阳南界": {
+      "name": "洛阳南界",
+      "exits": {
+        "north": "luoyang_south.乌林",
+        "south": "jiangling_north.江陵北界"
+      }
+    }
+  }
+}

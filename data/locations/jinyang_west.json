@@ -1,0 +1,72 @@
+{
+  "name": "晋阳西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "jinyang_west.西渡口",
+        "east": "jinyang_center.西城楼"
+      },
+      "can_pk": true
+    },
+    "西渡口": {
+      "name": "西渡口",
+      "exits": {
+        "north": "jinyang_west.清水",
+        "west": "jinyang_west.西村",
+        "east": "jinyang_west.西门",
+        "south": "jinyang_west.西河"
+      },
+      "can_pk": true
+    },
+    "清水": {
+      "name": "清水",
+      "exits": {
+        "south": "jinyang_west.西渡口"
+      },
+      "can_pk": true
+    },
+    "西河": {
+      "name": "西河",
+      "exits": {
+        "north": "jinyang_west.西渡口"
+      },
+      "can_pk": true
+    },
+    "西村": {
+      "name": "西村",
+      "exits": {
+        "west": "jinyang_west.长平",
+        "east": "jinyang_west.西渡口"
+      },
+      "can_pk": true,
+      "npcs": [
+        "npc_jinyang_west_李典副本"
+      ]
+    },
+    "长平": {
+      "name": "长平",
+      "exits": {
+        "north": "jinyang_west.寿山",
+        "east": "jinyang_west.西村",
+        "south": "jinyang_west.临马寺"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_west_黄巾残军"
+    },
+    "寿山": {
+      "name": "寿山",
+      "exits": {
+        "south": "jinyang_west.长平"
+      },
+      "can_pk": true
+    },
+    "临马寺": {
+      "name": "临马寺",
+      "exits": {
+        "north": "jinyang_west.长平"
+      },
+      "can_pk": true
+    }
+  }
+}

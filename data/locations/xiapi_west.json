@@ -1,0 +1,83 @@
+{
+  "name": "下邳西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "east": "xiapi_center.西城楼",
+        "west": "xiapi_west.西郊"
+      }
+    },
+    "西郊": {
+      "name": "西郊",
+      "exits": {
+        "east": "xiapi_west.西门",
+        "west": "xiapi_west.古城"
+      }
+    },
+    "古城": {
+      "name": "古城",
+      "exits": {
+        "east": "xiapi_west.西郊",
+        "west": "xiapi_west.小沛"
+      }
+    },
+    "小沛": {
+      "name": "小沛",
+      "exits": {
+        "east": "xiapi_west.古城",
+        "west": "xiapi_west.蜀中营",
+        "north": "xiapi_west.蜀仓库",
+        "south": "xiapi_west.蜀火库"
+      },
+      "monster_type": "monster_xiapi_west_蜀军守卫"
+    },
+    "蜀中营": {
+      "name": "蜀中营",
+      "exits": {
+        "east": "xiapi_west.小沛",
+        "west": "xiapi_west.下邳西界",
+        "north": "xiapi_west.蜀左营",
+        "south": "xiapi_west.蜀右营"
+      },
+      "monster_type": "monster_xiapi_west_蜀军亲卫"
+    },
+    "蜀左营": {
+      "name": "蜀左营",
+      "exits": {
+        "south": "xiapi_west.蜀中营",
+        "east": "xiapi_west.蜀仓库"
+      },
+      "monster_type": "monster_xiapi_west_王平"
+    },
+    "蜀右营": {
+      "name": "蜀右营",
+      "exits": {
+        "north": "xiapi_west.蜀中营",
+        "east": "xiapi_west.蜀火库"
+      },
+      "monster_type": "monster_xiapi_west_马岱"
+    },
+    "蜀仓库": {
+      "name": "蜀仓库",
+      "exits": {
+        "south": "xiapi_west.小沛",
+        "west": "xiapi_west.蜀左营"
+      }
+    },
+    "蜀火库": {
+      "name": "蜀火库",
+      "exits": {
+        "north": "xiapi_west.小沛",
+        "west": "xiapi_west.蜀右营"
+      }
+    },
+    "下邳西界": {
+      "name": "下邳西界",
+      "exits": {
+        "east": "xiapi_west.蜀中营",
+        "west": "luoyang_east.洛阳东界"
+      }
+    }
+  }
+}

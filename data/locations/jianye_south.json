@@ -1,0 +1,61 @@
+{
+  "name": "建邺南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "jianye_center.南城楼",
+        "south": "jianye_south.子明丘"
+      },
+      "monsters": [
+        "monster_jianye_south_陈兰",
+        "monster_jianye_south_机关兽"
+      ]
+    },
+    "子明丘": {
+      "name": "子明丘",
+      "exits": {
+        "north": "jianye_south.南门",
+        "west": "jianye_south.沉鱼湖",
+        "east": "jianye_south.聚宝盆",
+        "south": "jianye_south.建邺南界"
+      },
+      "monster_type": "monster_jianye_south_兵痞"
+    },
+    "沉鱼湖": {
+      "name": "沉鱼湖",
+      "exits": {
+        "east": "jianye_south.子明丘"
+      }
+    },
+    "聚宝盆": {
+      "name": "聚宝盆",
+      "exits": {
+        "west": "jianye_south.子明丘",
+        "east": "jianye_south.山越地"
+      }
+    },
+    "山越地": {
+      "name": "山越地",
+      "exits": {
+        "west": "jianye_south.聚宝盆",
+        "south": "jianye_south.密林"
+      },
+      "monster_type": "monster_jianye_south_山越左骑使"
+    },
+    "密林": {
+      "name": "密林",
+      "exits": {
+        "north": "jianye_south.山越地"
+      },
+      "monster_type": "monster_jianye_south_山越右骑使"
+    },
+    "建邺南界": {
+      "name": "建邺南界",
+      "exits": {
+        "north": "jianye_south.子明丘",
+        "south": "chaisang_north.柴桑北界"
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "柴桑南区",
+  "scenes": {
+    "南荡地": {
+      "name": "南荡地",
+      "exits": {
+        "north": "chaisang_center.南城楼",
+        "west": "chaisang_south.烽火台",
+        "east": "chaisang_south.战国墓",
+        "south": "chaisang_south.越阳坡"
+      },
+      "npcs": [
+        "npc_chaisang_south_甘宁副本"
+      ],
+      "monster_type": "monster_chaisang_south_幽影精锐"
+    },
+    "烽火台": {
+      "name": "烽火台",
+      "exits": {
+        "east": "chaisang_south.南荡地"
+      }
+    },
+    "战国墓": {
+      "name": "战国墓",
+      "exits": {
+        "west": "chaisang_south.南荡地"
+      }
+    },
+    "越阳坡": {
+      "name": "越阳坡",
+      "exits": {
+        "north": "chaisang_south.南荡地",
+        "south": "chaisang_south.烟水湖"
+      },
+      "monster_type": "monster_chaisang_south_杨散"
+    },
+    "烟水湖": {
+      "name": "烟水湖",
+      "exits": {
+        "north": "chaisang_south.越阳坡",
+        "west": "chaisang_south.顺天河",
+        "east": "chaisang_south.长江堤",
+        "south": "chaisang_south.柴桑南界"
+      },
+      "monster_type": "monster_chaisang_south_虎豹营亲卫"
+    },
+    "顺天河": {
+      "name": "顺天河",
+      "exits": {
+        "west": "chaisang_south.逆天峰",
+        "east": "chaisang_south.烟水湖"
+      }
+    },
+    "逆天峰": {
+      "name": "逆天峰",
+      "exits": {
+        "east": "chaisang_south.顺天河"
+      },
+      "monster_type": "monster_chaisang_south_范漫"
+    },
+    "长江堤": {
+      "name": "长江堤",
+      "exits": {
+        "west": "chaisang_south.烟水湖"
+      }
+    },
+    "柴桑南界": {
+      "name": "柴桑南界",
+      "exits": {
+        "north": "chaisang_south.烟水湖",
+        "south": "wujun_north.吴郡北界"
+      }
+    }
+  }
+}

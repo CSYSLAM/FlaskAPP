@@ -1,0 +1,70 @@
+{
+  "name": "永安西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "yong_an_west.西旷山",
+        "east": "yong_an_center.西城楼"
+      }
+    },
+    "西旷山": {
+      "name": "西旷山",
+      "exits": {
+        "north": "yong_an_west.江津",
+        "west": "yong_an_west.丝绸路",
+        "east": "yong_an_west.西门",
+        "south": "yong_an_west.小马村"
+      },
+      "monster_type": "monster_yong_an_west_炼丹童子"
+    },
+    "江津": {
+      "name": "江津",
+      "exits": {
+        "south": "yong_an_west.西旷山"
+      }
+    },
+    "小马村": {
+      "name": "小马村",
+      "exits": {
+        "north": "yong_an_west.西旷山"
+      }
+    },
+    "丝绸路": {
+      "name": "丝绸路",
+      "exits": {
+        "west": "yong_an_west.彩云湖",
+        "east": "yong_an_west.西旷山"
+      }
+    },
+    "彩云湖": {
+      "name": "彩云湖",
+      "exits": {
+        "north": "yong_an_west.龙眼井",
+        "west": "yong_an_west.永安西界",
+        "east": "yong_an_west.丝绸路",
+        "south": "yong_an_west.赌坊"
+      },
+      "monster_type": "monster_yong_an_west_邪恶祭司"
+    },
+    "赌坊": {
+      "name": "赌坊",
+      "exits": {
+        "north": "yong_an_west.彩云湖"
+      }
+    },
+    "龙眼井": {
+      "name": "龙眼井",
+      "exits": {
+        "south": "yong_an_west.彩云湖"
+      }
+    },
+    "永安西界": {
+      "name": "永安西界",
+      "exits": {
+        "west": "jianing_east.建宁东界",
+        "east": "yong_an_west.彩云湖"
+      }
+    }
+  }
+}

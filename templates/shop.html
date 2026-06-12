@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ shop_data.name }}</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .tooltip {
+        position: relative; display: inline-block; color: #136ec2;
+    }
+    .tooltip .tooltiptext {
+        visibility: hidden; width: 160px; background-color: black; color: #fff;
+        text-align: center; border-radius: 6px; padding: 5px 0;
+        position: absolute; z-index: 1; top: 150%; left: 100%; margin-left: -60px;
+    }
+    .tooltip .tooltiptext::after {
+        content: ""; position: absolute; bottom: 100%; left: 10%; margin-left: -5px;
+        border-width: 6px; border-style: solid; border-color: transparent transparent black transparent;
+    }
+    .tooltip:hover .tooltiptext { visibility: visible; }
+
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+银两:{{ player.gold }} 元宝:{{ player.yuanbao }} 金珠:{{ player.jinzu }}<br/>
+<br/>
+{% for sid, sname in [('default', '通用'), ('potions', '药水'), ('pills', '金丹'), ('materials', '材料'), ('chests', '宝箱'), ('experience', '经验'), ('titles', '称号'), ('lieutenant', '副将'), ('exchange', '兑换')] %}
+    <a href="{{ url_for('shop.shop', shop_id=sid) }}">{{ sname }}</a>
+{% endfor %}
+<br/>
+<br/>
+名称|价格<br/>
+{% if shop_data.shop_items %}
+    {% for item_id, item in shop_data.shop_items.items() %}
+        <div class="tooltip">{{ item.name }}
+        <span class="tooltiptext">{{ item.description if item.description else item.name }}</span>
+        </div>|{{ item.price }}{% if item.get('currency') == 'yuanbao' %}元宝{% elif item.get('currency') == 'jinzu' %}金珠{% else %}银两{% endif %}
+        {% if item.type == 'item' %}
+            <form action="{{ url_for('shop.buy_item', shop_id=shop_type, item_id=item_id, page=shop_data.page, per_page=shop_data.per_page) }}" method="post" style="display:inline;">
+                <input type="text" name="quantity" value="1" maxlength="5" style="width:50px;">
+                <input type="submit" value="购买">
+            </form>
+        {% else %}
+            <form action="{{ url_for('shop.buy_equipment', shop_id=shop_type, template_id=item.template_id, page=shop_data.page, per_page=shop_data.per_page) }}" method="post" style="display:inline;">
+                <input type="submit" value="购买">
+            </form>
+        {% endif %}
+        <br/>
+    {% endfor %}
+{% else %}
+    暂无商品<br/>
+{% endif %}
+<br/>
+{% if shop_data.total_pages > 1 %}
+    {% if shop_data.has_prev %}
+        <a href="{{ url_for('shop.shop', shop_id=shop_type, page=shop_data.page-1, per_page=shop_data.per_page) }}">上一页</a>
+    {% else %}
+        上一页
+    {% endif %}
+    {{ shop_data.page }}/{{ shop_data.total_pages }}
+    {% if shop_data.has_next %}
+        <a href="{{ url_for('shop.shop', shop_id=shop_type, page=shop_data.page+1, per_page=shop_data.per_page) }}">下一页</a>
+    {% else %}
+        下一页
+    {% endif %}
+    <br/>
+    跳转到: <input type="text" id="jump_page" size="3" maxlength="5">
+    <button type="button" onclick="jump_to_page()">跳转</button>
+    <br/>
+{% else %}
+    <br/>
+{% endif %}
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+
+function jump_to_page() {
+    var page = parseInt(document.getElementById('jump_page').value);
+    var total = {{ shop_data.total_pages }};
+    if (isNaN(page) || page < 1) page = 1;
+    if (page > total) page = total;
+    document.getElementById('loading').style.display = 'block';
+    window.location.href = "{{ url_for('shop.shop', shop_id=shop_type, per_page=shop_data.per_page) }}" + "&page=" + page;
+}
+</script>
+</body>
+</html>

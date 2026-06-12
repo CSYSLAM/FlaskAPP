@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>军衔</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .current-rank { color: #ff6600; font-weight: bold; }
+    .locked-rank { color: #999; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    当前军衔:<span class="current-rank">{{ player.military_rank }}</span> 荣誉:{{ player.honor }}{% if player.rank_attack > 0 %} 攻击+{{ player.rank_attack }}{% endif %}<br/>
+    <br/>
+    军衔说明<br/>
+    军衔达到所需等级和荣誉将自动变更<br/>
+    <br/>
+
+{% for rank_name, rank_data in ranks %}
+    {% if rank_name == player.military_rank %}
+<span class="current-rank">★{{ rank_name }}</span>（等级{{ rank_data.level }}、荣誉{{ rank_data.honor }}、攻击{{ rank_data.attack }}）<br/>
+    {% elif player.level >= rank_data.level and player.honor >= rank_data.honor %}
+{{ rank_name }}（等级{{ rank_data.level }}、荣誉{{ rank_data.honor }}、攻击{{ rank_data.attack }}）<br/>
+    {% else %}
+<span class="locked-rank">{{ rank_name }}（等级{{ rank_data.level }}、荣誉{{ rank_data.honor }}、攻击{{ rank_data.attack }}）</span><br/>
+    {% endif %}
+{% endfor %}
+    <br/>
+    <a href="{{ url_for('player.character') }}">返回角色</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

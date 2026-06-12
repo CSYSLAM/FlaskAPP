@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>队伍</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    {% if party %}
+    我的队伍<br/>
+    ----------------<br/>
+    队伍人数:{{ members|length }}/{{ max_size }}<br/>
+    队伍光环:攻击+{{ bonus_pct }}% 防御+{{ bonus_pct }}%<br/>
+    在线人数:{{ online_count }}<br/>
+    ---<br/>
+    {% for m in members %}
+    {% if m.id == party.leader_id %}
+    ★<a href="{{ url_for('player.view_player', username=m.username) }}">{{ m.nickname }}</a>({{ m.level }}级){% if m.id not in online_member_ids %}[离线]{% endif %}
+    {% else %}
+    <a href="{{ url_for('player.view_player', username=m.username) }}">{{ m.nickname }}</a>({{ m.level }}级){% if m.id not in online_member_ids %}[离线]{% endif %}
+    {% if player.id == party.leader_id %}
+    <a href="{{ url_for('party.kick', target_id=m.id) }}">踢出</a>
+    {% endif %}
+    {% endif %}
+    <br/>
+    {% endfor %}
+    ---<br/>
+
+    {% if player.id == party.leader_id and party.applications %}
+    申请列表:<br/>
+    {% for app_id in party.applications %}
+    {% set app_player = DataService.get_player_by_id(app_id) %}
+    {% if app_player %}
+    {{ app_player.nickname }}({{ app_player.level }}级)
+    <a href="{{ url_for('party.accept_application', applicant_id=app_id) }}">同意</a>
+    <a href="{{ url_for('party.reject_application', applicant_id=app_id) }}">拒绝</a><br/>
+    {% endif %}
+    {% endfor %}
+    ---<br/>
+    {% endif %}
+
+    <a href="{{ url_for('party.leave') }}">离队</a><br/>
+    {% else %}
+    我的队伍<br/>
+    ----------------<br/>
+    你还没有队伍，请选择创建队伍。<br/>
+    队伍中每个在线成员增加1%攻击力和防御力。<br/>
+    <a href="{{ url_for('party.create') }}">创建队伍</a><br/>
+
+    {% if pending_invites %}
+    ---<br/>
+    邀请列表:<br/>
+    {% for inv in pending_invites %}
+    {% set inv_leader = DataService.get_player_by_id(inv.leader_id) %}
+    {% if inv_leader %}
+    {{ inv_leader.nickname }}的队伍({{ inv.members|length }}人)
+    <a href="{{ url_for('party.accept_invite', party_id=inv.party_id) }}">加入</a><br/>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endif %}
+    <br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

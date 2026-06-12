@@ -1,0 +1,200 @@
+{
+  "name": "下邳中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "xiapi_center.北前街",
+        "west": "xiapi_center.西前街",
+        "east": "xiapi_center.东前街",
+        "south": "xiapi_center.南前街"
+      },
+      "npcs": [
+        "npc_xiapi_center_任务使者",
+        "npc_xiapi_center_下邳将官",
+        "npc_xiapi_center_战场军团使者",
+        "npc_xiapi_center_比武大使"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "east": "xiapi_center.北前街"
+      },
+      "npcs": [
+        "npc_xiapi_center_吕布荣誉"
+      ]
+    },
+    "北前街": {
+      "name": "北前街",
+      "exits": {
+        "north": "xiapi_center.北后街",
+        "west": "xiapi_center.太守府",
+        "east": "xiapi_center.钱庄",
+        "south": "xiapi_center.广场"
+      }
+    },
+    "北后街": {
+      "name": "北后街",
+      "exits": {
+        "north": "xiapi_center.北城楼",
+        "east": "xiapi_center.军营",
+        "south": "xiapi_center.北前街"
+      }
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "xiapi_north.北门",
+        "south": "xiapi_center.北后街"
+      },
+      "monster_type": "monster_xiapi_center_守城兵"
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "west": "xiapi_center.北后街"
+      },
+      "npcs": [
+        "npc_xiapi_center_副将统领"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "xiapi_center.北前街"
+      },
+      "npcs": [
+        "npc_xiapi_center_金掌柜仓库"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "south": "xiapi_center.东后街"
+      },
+      "npcs": [
+        "npc_xiapi_center_王老板"
+      ]
+    },
+    "西前街": {
+      "name": "西前街",
+      "exits": {
+        "east": "xiapi_center.广场",
+        "west": "xiapi_center.西中街"
+      }
+    },
+    "西中街": {
+      "name": "西中街",
+      "exits": {
+        "east": "xiapi_center.西前街",
+        "west": "xiapi_center.西后街",
+        "south": "xiapi_center.酒馆"
+      }
+    },
+    "西后街": {
+      "name": "西后街",
+      "exits": {
+        "east": "xiapi_center.西中街",
+        "west": "xiapi_center.西城楼",
+        "north": "xiapi_center.铁匠铺"
+      }
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "east": "xiapi_center.西后街",
+        "west": "xiapi_west.西门"
+      }
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "xiapi_center.西后街"
+      },
+      "npcs": [
+        "npc_xiapi_center_下邳铁匠"
+      ]
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "north": "xiapi_center.西中街"
+      }
+    },
+    "东前街": {
+      "name": "东前街",
+      "exits": {
+        "west": "xiapi_center.广场",
+        "east": "xiapi_center.东后街"
+      }
+    },
+    "东后街": {
+      "name": "东后街",
+      "exits": {
+        "west": "xiapi_center.东前街",
+        "east": "xiapi_center.东城楼",
+        "north": "xiapi_center.客栈",
+        "south": "xiapi_center.药铺"
+      }
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "xiapi_center.东后街",
+        "east": "xiapi_east.东门"
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
+    },
+    "南前街": {
+      "name": "南前街",
+      "exits": {
+        "north": "xiapi_center.广场",
+        "west": "xiapi_center.驿站",
+        "south": "xiapi_center.南后街"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "east": "xiapi_center.南前街"
+      },
+      "npcs": [
+        "npc_xiapi_center_下邳车夫",
+        "npc_postmaster"
+      ]
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "north": "xiapi_center.东后街"
+      },
+      "npcs": [
+        "npc_xiapi_center_许大夫"
+      ]
+    },
+    "南后街": {
+      "name": "南后街",
+      "exits": {
+        "north": "xiapi_center.南前街",
+        "east": "xiapi_center.茅屋",
+        "south": "xiapi_center.南城楼"
+      }
+    },
+    "茅屋": {
+      "name": "茅屋",
+      "exits": {
+        "west": "xiapi_center.南后街"
+      }
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "xiapi_center.南后街",
+        "south": "xiapi_south.南门"
+      }
+    }
+  }
+}

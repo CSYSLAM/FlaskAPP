@@ -1,0 +1,61 @@
+{
+  "test_artifact_weapon_lv1": {
+    "name": "测试新手法器",
+    "description": "测试用的1级神器武器，全职业通用",
+    "slot": "weapon",
+    "is_bound": true,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 3000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 50
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 30,
+      "defense": 30,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "test_artifact_accessory_lv1": {
+    "name": "测试新手葫芦",
+    "description": "测试用的1级神器饰品，全职业通用",
+    "slot": "accessory",
+    "is_bound": true,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 3000,
+    "is_artifact": true,
+    "base_stats": {
+      "defense": 15
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 25,
+      "defense": 25,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "tie_sword_quest": {
+    "name": "铁剑",
+    "slot": "weapon",
+    "set_name": "任务奖励",
+    "level_required": 5,
+    "class_required": null,
+    "is_artifact": false,
+    "is_bound": true,
+    "base_stats": {
+      "attack": 15
+    },
+    "max_extra_stats": {
+      "attack": 8,
+      "max_health": 30,
+      "crit_rate": 0.03
+    }
+  }
+}

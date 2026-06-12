@@ -1,0 +1,55 @@
+{
+    "enhance_cost": 5000,
+    "enhance_base_rate": 0.5,
+    "sell_price_ratios": {
+        "common": 0.5,
+        "uncommon": 0.6,
+        "rare": 0.7,
+        "epic": 0.8,
+        "legendary": 0.9
+    },
+    "default_sell_price": 10,
+    "item_sell_ratios": {
+        "healing_herb": 5,
+        "mana_potion": 8,
+        "healing_potion": 10,
+        "strength_pill": 200,
+        "defense_pill": 200,
+        "magic_pill": 200,
+        "exp_potion": 500,
+        "revive_scroll": 1000
+    },
+    "class_stats": {
+        "warrior": {"health": 150, "mana": 50, "attack": 15, "defense": 12, "crit_rate": 0.05, "dodge_rate": 0.03},
+        "mage": {"health": 80, "mana": 150, "attack": 8, "defense": 6, "crit_rate": 0.08, "dodge_rate": 0.05},
+        "assassin": {"health": 100, "mana": 80, "attack": 18, "defense": 8, "crit_rate": 0.15, "dodge_rate": 0.1},
+        "priest": {"health": 100, "mana": 120, "attack": 10, "defense": 10, "crit_rate": 0.05, "dodge_rate": 0.05}
+    },
+    "level_exp_table": [
+        100, 250, 450, 700, 1000, 1400, 1900, 2500, 3200, 4000,
+        4900, 5900, 7000, 8200, 9500, 11000, 12600, 14300, 16100, 18000,
+        20000, 22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000, 38000,
+        40000, 42000, 44000, 46000, 48000, 50000, 52000, 54000, 56000, 58000,
+        60000, 62000, 64000, 66000, 68000, 70000, 72000, 74000, 76000, 78000,
+        80000, 82000, 84000, 86000, 88000, 90000, 92000, 94000, 96000, 98000,
+        100000, 102000, 104000, 106000, 108000, 110000, 112000, 114000, 116000, 118000,
+        120000, 122000, 124000, 126000, 128000, 130000, 132000, 134000, 136000, 138000,
+        140000, 142000, 144000, 146000, 148000, 150000, 152000, 154000, 156000, 158000,
+        160000, 162000, 164000, 166000, 168000, 170000, 172000, 174000, 176000, 178000
+    ],
+    "military_ranks": [
+        {"name": "列兵", "honor_required": 0, "rank_attack": 0},
+        {"name": "下士", "honor_required": 10, "rank_attack": 2},
+        {"name": "中士", "honor_required": 30, "rank_attack": 5},
+        {"name": "上士", "honor_required": 60, "rank_attack": 8},
+        {"name": "少尉", "honor_required": 100, "rank_attack": 12},
+        {"name": "中尉", "honor_required": 150, "rank_attack": 16},
+        {"name": "上尉", "honor_required": 210, "rank_attack": 20},
+        {"name": "少校", "honor_required": 280, "rank_attack": 25},
+        {"name": "中校", "honor_required": 360, "rank_attack": 30},
+        {"name": "上校", "honor_required": 450, "rank_attack": 35},
+        {"name": "少将", "honor_required": 550, "rank_attack": 40},
+        {"name": "中将", "honor_required": 660, "rank_attack": 45},
+        {"name": "上将", "honor_required": 780, "rank_attack": 50}
+    ]
+}

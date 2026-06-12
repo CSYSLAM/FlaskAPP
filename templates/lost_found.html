@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>驿站管理员</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+驿站管理员<br/>
+<br/>
+{% if holding %}
+    你的遗失物品：<br/>
+    {% for item in holding %}
+        {{ item.name }}{% if item.is_bound %}(绑定){% endif %} x{{ item.quantity }}
+        剩余{{ item.days_left }}天
+        <form action="{{ url_for('lost_found.redeem', item_id=item.id) }}" method="post" style="display:inline;">
+            <input type="submit" value="赎回(赎金券x1)">
+        </form>
+        <br/>
+    {% endfor %}
+{% else %}
+    暂无遗失物品<br/>
+{% endif %}
+<br/>
+{% if auctions %}
+    拍卖物品：<br/>
+    {% for item in auctions %}
+        {{ item.name }}{% if item.is_bound %}(绑定){% endif %} x{{ item.quantity }}
+        当前出价:{{ item.current_bid }} 剩余{{ item.days_left }}天
+        <form action="{{ url_for('lost_found.bid', item_id=item.id) }}" method="post" style="display:inline;">
+            <input type="text" name="bid" value="{{ item.current_bid + 1 }}" maxlength="10" style="width:80px;">
+            <input type="submit" value="出价">
+        </form>
+        <br/>
+    {% endfor %}
+{% else %}
+    暂无拍卖物品<br/>
+{% endif %}
+<br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

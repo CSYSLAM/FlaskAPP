@@ -1,0 +1,22 @@
+{
+  "name": "寒冰塔",
+  "scenes": {
+    "寒冰塔入口": {
+      "name": "寒冰塔入口",
+      "exits": {
+        "north": "ice_tower.寒冰塔一层",
+        "south": "luoyang_east.邙岭"
+      },
+      "npcs": [
+        "npc_ice_tower_寒冰使者活动",
+        "npc_ice_tower_医师"
+      ]
+    },
+    "寒冰塔一层": {
+      "name": "寒冰塔一层",
+      "exits": {
+        "south": "ice_tower.寒冰塔入口"
+      }
+    }
+  }
+}

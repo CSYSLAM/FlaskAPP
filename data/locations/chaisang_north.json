@@ -1,0 +1,78 @@
+{
+  "name": "柴桑北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "chaisang_north.北要塞",
+        "south": "chaisang_center.北城楼"
+      },
+      "monster_type": "monster_chaisang_north_刘通"
+    },
+    "北要塞": {
+      "name": "北要塞",
+      "exits": {
+        "north": "chaisang_north.玄凤谷",
+        "west": "chaisang_north.陵水河",
+        "east": "chaisang_north.清池",
+        "south": "chaisang_north.北门"
+      },
+      "monster_type": "monster_chaisang_north_马贼弓手"
+    },
+    "清池": {
+      "name": "清池",
+      "exits": {
+        "west": "chaisang_north.北要塞"
+      }
+    },
+    "陵水河": {
+      "name": "陵水河",
+      "exits": {
+        "east": "chaisang_north.北要塞"
+      }
+    },
+    "玄凤谷": {
+      "name": "玄凤谷",
+      "exits": {
+        "north": "chaisang_north.仙人谷",
+        "south": "chaisang_north.北要塞"
+      }
+    },
+    "仙人谷": {
+      "name": "仙人谷",
+      "exits": {
+        "north": "chaisang_north.五行山",
+        "west": "chaisang_north.瀑布",
+        "east": "chaisang_north.洗剑阁",
+        "south": "chaisang_north.玄凤谷"
+      },
+      "monster_type": "monster_chaisang_north_马贼刀手"
+    },
+    "洗剑阁": {
+      "name": "洗剑阁",
+      "exits": {
+        "west": "chaisang_north.仙人谷"
+      }
+    },
+    "瀑布": {
+      "name": "瀑布",
+      "exits": {
+        "east": "chaisang_north.仙人谷"
+      }
+    },
+    "五行山": {
+      "name": "五行山",
+      "exits": {
+        "north": "chaisang_north.柴桑北界",
+        "south": "chaisang_north.仙人谷"
+      }
+    },
+    "柴桑北界": {
+      "name": "柴桑北界",
+      "exits": {
+        "north": "jianye_south.建邺南界",
+        "south": "chaisang_north.五行山"
+      }
+    }
+  }
+}

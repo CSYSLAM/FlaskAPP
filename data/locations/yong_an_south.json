@@ -1,0 +1,71 @@
+{
+  "name": "永安南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "yong_an_center.南城楼",
+        "south": "yong_an_south.南淼"
+      }
+    },
+    "南淼": {
+      "name": "南淼",
+      "exits": {
+        "north": "yong_an_south.南门",
+        "west": "yong_an_south.夷江",
+        "east": "yong_an_south.药王山",
+        "south": "yong_an_south.银坑"
+      },
+      "monster_type": "monster_yong_an_south_叛军剑手"
+    },
+    "夷江": {
+      "name": "夷江",
+      "exits": {
+        "east": "yong_an_south.南淼"
+      }
+    },
+    "药王山": {
+      "name": "药王山",
+      "exits": {
+        "west": "yong_an_south.南淼"
+      },
+      "monster_type": "monster_yong_an_south_朱褒"
+    },
+    "银坑": {
+      "name": "银坑",
+      "exits": {
+        "north": "yong_an_south.南淼",
+        "south": "yong_an_south.秃龙洞"
+      },
+      "monster_type": "monster_yong_an_south_叛军精英"
+    },
+    "秃龙洞": {
+      "name": "秃龙洞",
+      "exits": {
+        "north": "yong_an_south.银坑",
+        "west": "yong_an_south.泸水",
+        "east": "yong_an_south.盘蛇山",
+        "south": "yong_an_south.永安南界"
+      }
+    },
+    "盘蛇山": {
+      "name": "盘蛇山",
+      "exits": {
+        "west": "yong_an_south.秃龙洞"
+      },
+      "monster_type": "monster_yong_an_south_雍凯"
+    },
+    "泸水": {
+      "name": "泸水",
+      "exits": {
+        "east": "yong_an_south.秃龙洞"
+      }
+    },
+    "永安南界": {
+      "name": "永安南界",
+      "exits": {
+        "north": "yong_an_south.秃龙洞"
+      }
+    }
+  }
+}

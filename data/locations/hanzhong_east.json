@@ -1,0 +1,82 @@
+{
+  "name": "汉中东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "hanzhong_center.东城楼",
+        "north": "hanzhong_east.东郊",
+        "east": "hanzhong_east.吴前营"
+      }
+    },
+    "东郊": {
+      "name": "东郊",
+      "exits": {
+        "south": "hanzhong_east.东门"
+      }
+    },
+    "吴前营": {
+      "name": "吴前营",
+      "exits": {
+        "west": "hanzhong_east.东门",
+        "east": "hanzhong_east.吴中营",
+        "north": "hanzhong_east.吴仓库",
+        "south": "hanzhong_east.吴火库"
+      },
+      "monster_type": "monster_hanzhong_east_吴军前锋"
+    },
+    "吴仓库": {
+      "name": "吴仓库",
+      "exits": {
+        "south": "hanzhong_east.吴前营",
+        "east": "hanzhong_east.吴右营"
+      }
+    },
+    "吴右营": {
+      "name": "吴右营",
+      "exits": {
+        "west": "hanzhong_east.吴仓库",
+        "south": "hanzhong_east.吴中营"
+      },
+      "monster_type": "monster_hanzhong_east_徐盛"
+    },
+    "吴火库": {
+      "name": "吴火库",
+      "exits": {
+        "north": "hanzhong_east.吴前营",
+        "east": "hanzhong_east.吴左营"
+      }
+    },
+    "吴左营": {
+      "name": "吴左营",
+      "exits": {
+        "north": "hanzhong_east.吴中营",
+        "west": "hanzhong_east.吴火库"
+      },
+      "monster_type": "monster_hanzhong_east_丁奉"
+    },
+    "吴中营": {
+      "name": "吴中营",
+      "exits": {
+        "west": "hanzhong_east.吴前营",
+        "east": "hanzhong_east.吴后营",
+        "north": "hanzhong_east.吴右营",
+        "south": "hanzhong_east.吴左营"
+      }
+    },
+    "吴后营": {
+      "name": "吴后营",
+      "exits": {
+        "west": "hanzhong_east.吴中营",
+        "east": "hanzhong_east.汉中东界"
+      }
+    },
+    "汉中东界": {
+      "name": "汉中东界",
+      "exits": {
+        "west": "hanzhong_east.吴后营",
+        "east": "luoyang_west.洛阳西界"
+      }
+    }
+  }
+}

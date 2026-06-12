@@ -1,0 +1,56 @@
+{
+  "name": "建邺北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "jianye_north.射虎台",
+        "south": "jianye_center.北城楼"
+      },
+      "monsters": [
+        "monster_jianye_north_雷薄",
+        "monster_jianye_north_建邺卫兵"
+      ]
+    },
+    "射虎台": {
+      "name": "射虎台",
+      "exits": {
+        "west": "jianye_north.江心亭",
+        "east": "jianye_north.钟山",
+        "south": "jianye_north.北门"
+      },
+      "monster_type": "monster_jianye_north_鹰卫"
+    },
+    "江心亭": {
+      "name": "江心亭",
+      "exits": {
+        "west": "jianye_north.建邺北界",
+        "east": "jianye_north.射虎台"
+      },
+      "monster_type": "monster_jianye_north_梁上君子"
+    },
+    "建邺北界": {
+      "name": "建邺北界",
+      "exits": {
+        "west": "xiapi_east.下邳东界",
+        "east": "jianye_north.江心亭"
+      },
+      "monster_type": "monster_jianye_north_小八嘎"
+    },
+    "钟山": {
+      "name": "钟山",
+      "exits": {
+        "north": "jianye_north.苍黄峰",
+        "west": "jianye_north.射虎台"
+      },
+      "monster_type": "monster_jianye_north_翼虎"
+    },
+    "苍黄峰": {
+      "name": "苍黄峰",
+      "exits": {
+        "south": "jianye_north.钟山"
+      },
+      "monster_type": "monster_jianye_north_阎象"
+    }
+  }
+}

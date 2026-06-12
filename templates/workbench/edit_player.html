@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>修改玩家属性</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        label { display: inline-block; width: 140px; }
+        input[type="number"] { width: 100px; }
+        input[type="text"] { width: 120px; }
+        select { font-size: 14px; }
+        .section { margin: 10px 0; }
+        .section-title { font-weight: bold; color: #333; border-bottom: 1px solid #ccc; margin: 10px 0 5px 0; }
+        .flash { color: green; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}<span class="flash">{{ messages[0] }}</span><br/>{% endif %}
+    {% endwith %}
+
+    <h3>修改玩家属性</h3>
+
+    <form method="post">
+        玩家ID/用户名: <input type="text" name="target_id" value="{{ target.username if target else '' }}" placeholder="输入ID或用户名">
+        <button type="submit">查询</button>
+    </form>
+
+    {% if target %}
+    <p>当前玩家: {{ target.nickname }}(ID:{{ target.id }}) | {{ target.player_class }} | Lv.{{ target.level }} | {{ target.country }}</p>
+
+    <form method="post">
+        <input type="hidden" name="target_id" value="{{ target.id }}">
+        <input type="hidden" name="save" value="1">
+
+        {% set ns = namespace(section='') %}
+        {% for field_id, info in fields.items() %}
+            {% if field_id == 'attack' and ns.section != 'stat' %}
+                {% set ns.section = 'stat' %}
+                <div class="section-title">-- 基础战斗属性 --</div>
+            {% elif field_id == 'pill_attack' and ns.section != 'pill' %}
+                {% set ns.section = 'pill' %}
+                <div class="section-title">-- 丹药属性 --</div>
+            {% elif field_id == 'level' and ns.section != 'account' %}
+                {% set ns.section = 'account' %}
+                <div class="section-title">-- 账号属性 --</div>
+            {% endif %}
+
+            <label>{{ info.label }}:</label>
+            {% if info.type == 'number' %}
+            <input type="number" name="{{ field_id }}" value="{{ info.value }}" step="any">
+            {% elif info.type == 'bool' %}
+            <input type="checkbox" name="{{ field_id }}" value="1" {% if info.value %}checked{% endif %}>
+            {% elif field_id == 'player_class' %}
+            <select name="player_class">
+                <option value="">不变</option>
+                {% for c in class_choices %}<option value="{{ c }}" {% if info.value == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+            </select>
+            {% elif field_id == 'country' %}
+            <select name="country">
+                <option value="">不变</option>
+                {% for c in country_choices %}<option value="{{ c }}" {% if info.value == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+            </select>
+            {% elif field_id == 'military_rank' %}
+            <select name="military_rank">
+                <option value="">不变</option>
+                {% for r in rank_choices %}<option value="{{ r }}" {% if info.value == r %}selected{% endif %}>{{ r }}</option>{% endfor %}
+            </select>
+            {% else %}
+            <input type="text" name="{{ field_id }}" value="{{ info.value }}">
+            {% endif %}
+            <br/>
+        {% endfor %}
+
+        <br/>
+        <button type="submit">保存修改</button>
+        <span style="color:#888; font-size:12px;">（清空的字段不会被修改）</span>
+    </form>
+    {% endif %}
+</div>
+</body>
+</html>

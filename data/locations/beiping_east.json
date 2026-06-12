@@ -1,0 +1,79 @@
+{
+  "name": "北平东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "beiping_center.东城楼",
+        "east": "beiping_east.箭楼"
+      }
+    },
+    "箭楼": {
+      "name": "箭楼",
+      "exits": {
+        "west": "beiping_east.东门",
+        "east": "beiping_east.军营"
+      },
+      "monster_type": "monster_beiping_east_野狗",
+      "npcs": [
+        "npc_beiping_east_左慈副本",
+        "npc_beiping_east_猎户",
+        "npc_beiping_east_左慈"
+      ]
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "north": "beiping_east.铁匠铺",
+        "west": "beiping_east.箭楼",
+        "east": "beiping_east.厢房",
+        "south": "beiping_east.客栈"
+      },
+      "npcs": [
+        "npc_beiping_east_曹彰",
+        "npc_beiping_east_副将统领"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "beiping_east.军营"
+      },
+      "npcs": [
+        "npc_beiping_east_李铁匠"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "north": "beiping_east.军营"
+      },
+      "npcs": [
+        "npc_beiping_east_王老板"
+      ]
+    },
+    "厢房": {
+      "name": "厢房",
+      "exits": {
+        "west": "beiping_east.军营",
+        "east": "beiping_east.大院"
+      },
+      "npcs": [
+        "npc_beiping_east_曹樱"
+      ]
+    },
+    "大院": {
+      "name": "大院",
+      "exits": {
+        "west": "beiping_east.厢房"
+      },
+      "monster_type": "monster_beiping_east_窃贼",
+      "npcs": [
+        "npc_beiping_east_香凝"
+      ],
+      "monsters": [
+        "monster_beiping_east_窃贼"
+      ]
+    }
+  }
+}

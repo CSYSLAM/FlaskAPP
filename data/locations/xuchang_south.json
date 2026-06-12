@@ -1,0 +1,49 @@
+{
+  "name": "许昌南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "xuchang_center.南城楼",
+        "south": "xuchang_south.虎豹山"
+      }
+    },
+    "虎豹山": {
+      "name": "虎豹山",
+      "exits": {
+        "north": "xuchang_south.南门",
+        "west": "xuchang_south.阳关道",
+        "east": "xuchang_south.独木桥",
+        "south": "xuchang_south.许昌南界"
+      }
+    },
+    "阳关道": {
+      "name": "阳关道",
+      "exits": {
+        "east": "xuchang_south.虎豹山"
+      },
+      "monster_type": "monster_xuchang_south_斗篷白衣人"
+    },
+    "独木桥": {
+      "name": "独木桥",
+      "exits": {
+        "west": "xuchang_south.虎豹山"
+      },
+      "monster_type": "monster_xuchang_south_斗篷黑衣人"
+    },
+    "许昌南界": {
+      "name": "许昌南界",
+      "exits": {
+        "north": "xuchang_south.虎豹山",
+        "south": "xuchang_south.下邳北界"
+      }
+    },
+    "下邳北界": {
+      "name": "下邳北界",
+      "exits": {
+        "north": "xuchang_south.许昌南界",
+        "south": "xiapi_north.下邳北界"
+      }
+    }
+  }
+}

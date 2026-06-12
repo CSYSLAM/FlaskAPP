@@ -1,0 +1,40 @@
+{
+  "medicines": [
+    {"item_id": "potion_heal", "name": "止血草", "price": 25, "description": "恢复50点生命值"},
+    {"item_id": "potion_mana", "name": "凝魔草", "price": 25, "description": "恢复30点魔法值"},
+    {"item_id": "potion_heal_100", "name": "金疮药", "price": 100, "description": "恢复100点生命值"},
+    {"item_id": "potion_mana_100", "name": "聚魔散", "price": 100, "description": "恢复60点魔法值"},
+    {"item_id": "potion_heal_200", "name": "养生丸", "price": 200, "description": "恢复200点生命值"},
+    {"item_id": "potion_mana_200", "name": "醒神水", "price": 200, "description": "恢复100点魔法值"},
+    {"item_id": "potion_heal_300", "name": "回生丸", "price": 300, "description": "恢复300点生命值"},
+    {"item_id": "potion_heal_400", "name": "大补丸", "price": 400, "description": "恢复400点生命值"},
+    {"item_id": "potion_heal_500", "name": "小还丹", "price": 500, "description": "恢复500点生命值"},
+    {"item_id": "potion_heal_625", "name": "大还丹", "price": 625, "description": "恢复700点生命值"},
+    {"item_id": "potion_heal_800", "name": "野山参", "price": 800, "description": "恢复800点生命值"},
+    {"item_id": "potion_mana_800", "name": "雪莲露", "price": 800, "description": "恢复400点魔法值"},
+    {"item_id": "potion_heal_950", "name": "珍珠贝", "price": 950, "description": "恢复1000点生命值"},
+    {"item_id": "potion_heal_1150", "name": "还阳丹", "price": 1150, "description": "恢复1500点生命值"},
+    {"item_id": "potion_mana_1150", "name": "观音水", "price": 1150, "description": "恢复600点魔法值"},
+    {"item_id": "potion_heal_2000", "name": "天蚕丹", "price": 2000, "description": "恢复2500点生命值"},
+    {"item_id": "potion_mana_2000", "name": "化神水", "price": 2000, "description": "恢复1000点魔法值"},
+    {"item_id": "potion_heal_2250", "name": "神血丹", "price": 2250, "description": "恢复3000点生命值"},
+    {"item_id": "potion_mana_2250", "name": "清灵露", "price": 2250, "description": "恢复1500点魔法值"}
+  ],
+  "seeds": [
+    {"item_id": "seed_jinchuangyao", "name": "金疮药种子", "price": 240},
+    {"item_id": "seed_jumosan", "name": "凝魔散种子", "price": 240},
+    {"item_id": "seed_yangshengwan", "name": "养生丸种子", "price": 480},
+    {"item_id": "seed_xingshenshui", "name": "醒神水种子", "price": 480},
+    {"item_id": "seed_dabuwan", "name": "大补丸种子", "price": 960},
+    {"item_id": "seed_yeshanshen", "name": "野山参种子", "price": 1920},
+    {"item_id": "seed_xuelianlu", "name": "雪莲露种子", "price": 1920},
+    {"item_id": "seed_zhenzhubei", "name": "珍珠贝种子", "price": 2440},
+    {"item_id": "seed_huanyangdan", "name": "还阳丹种子", "price": 2980},
+    {"item_id": "seed_guanyinshui", "name": "观音水种子", "price": 2980},
+    {"item_id": "seed_tiancandan", "name": "天蚕丹种子", "price": 4960},
+    {"item_id": "seed_huashenshui", "name": "化神水种子", "price": 4960},
+    {"item_id": "seed_jingyandan", "name": "经验丹种子", "price": 10000},
+    {"item_id": "seed_shenxuedan", "name": "神血丹种子", "price": 5960},
+    {"item_id": "seed_qinglinglu", "name": "清灵露种子", "price": 5960}
+  ]
+}

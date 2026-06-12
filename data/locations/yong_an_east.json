@@ -1,0 +1,63 @@
+{
+  "name": "永安东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "yong_an_center.东城楼",
+        "east": "yong_an_east.东斜坡"
+      }
+    },
+    "东斜坡": {
+      "name": "东斜坡",
+      "exits": {
+        "north": "yong_an_east.飞云涧",
+        "west": "yong_an_east.东门",
+        "east": "yong_an_east.高老庄",
+        "south": "yong_an_east.十里坡"
+      },
+      "monster_type": "monster_yong_an_east_魏国细作"
+    },
+    "飞云涧": {
+      "name": "飞云涧",
+      "exits": {
+        "south": "yong_an_east.东斜坡"
+      }
+    },
+    "十里坡": {
+      "name": "十里坡",
+      "exits": {
+        "north": "yong_an_east.东斜坡"
+      },
+      "monster_type": "monster_yong_an_east_吴国细作"
+    },
+    "高老庄": {
+      "name": "高老庄",
+      "exits": {
+        "west": "yong_an_east.东斜坡",
+        "east": "yong_an_east.清音谷"
+      },
+      "monster_type": "monster_yong_an_east_老酒鬼"
+    },
+    "清音谷": {
+      "name": "清音谷",
+      "exits": {
+        "north": "yong_an_east.听花亭",
+        "west": "yong_an_east.高老庄",
+        "south": "yong_an_east.万花亭"
+      }
+    },
+    "听花亭": {
+      "name": "听花亭",
+      "exits": {
+        "south": "yong_an_east.清音谷"
+      }
+    },
+    "万花亭": {
+      "name": "万花亭",
+      "exits": {
+        "north": "yong_an_east.清音谷"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ npc_name }}</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+{{ npc_name }}<br/>
+欲速富者将不免于不义.<br/>
+<br/>
+<a href="{{ url_for('warehouse.silver', npc_id=npc_id) }}">存取银两</a><br/>
+<a href="{{ url_for('warehouse.withdraw', npc_id=npc_id) }}">取出物品</a><br/>
+<a href="{{ url_for('warehouse.deposit', npc_id=npc_id) }}">存入物品</a><br/>
+<br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

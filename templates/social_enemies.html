@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>仇人</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    <a href="{{ url_for('social.friends') }}">好友</a>
+    <a href="{{ url_for('social.hongyan') }}">红颜</a>
+    <a href="{{ url_for('social.zhiji') }}">知己</a>
+    <a href="{{ url_for('social.blacklist') }}">黑名单</a>
+    仇人<br/>
+    仇人列表({{ enemies_list|length }}/30)<br/>
+    ----------------<br/>
+
+    {% for enemy in enemies_list %}
+    {{ enemy.nickname }}({{ enemy.level }}级){{ enemy.location }}
+    <a href="{{ url_for('social.hunt_enemy', username=enemy.username) }}">追杀</a>
+    <a href="{{ url_for('social.remove_enemy', username=enemy.username) }}">删除</a><br/>
+    {% endfor %}
+
+    {% if not enemies_list %}
+    目前没有仇人！<br/>
+    {% endif %}
+    <br/>
+
+    提示：使用追杀令可快速传送到仇人所在位置<br/>
+    <br/>
+
+    <a href="{{ url_for('social.social_index') }}">返回社交</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

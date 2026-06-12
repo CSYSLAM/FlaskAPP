@@ -1,0 +1,83 @@
+{
+  "name": "汉中南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "hanzhong_center.南城楼",
+        "south": "hanzhong_south.古镇"
+      }
+    },
+    "古镇": {
+      "name": "古镇",
+      "exits": {
+        "north": "hanzhong_south.南门",
+        "south": "hanzhong_south.蜀前营"
+      },
+      "monster_type": "monster_hanzhong_south_灵火道人"
+    },
+    "蜀前营": {
+      "name": "蜀前营",
+      "exits": {
+        "north": "hanzhong_south.古镇",
+        "west": "hanzhong_south.蜀仓库",
+        "east": "hanzhong_south.蜀火库",
+        "south": "hanzhong_south.蜀中营"
+      },
+      "monster_type": "monster_hanzhong_south_蜀军前锋"
+    },
+    "蜀中营": {
+      "name": "蜀中营",
+      "exits": {
+        "north": "hanzhong_south.蜀前营",
+        "west": "hanzhong_south.蜀左营",
+        "east": "hanzhong_south.蜀右营",
+        "south": "hanzhong_south.蜀后营"
+      }
+    },
+    "蜀左营": {
+      "name": "蜀左营",
+      "exits": {
+        "north": "hanzhong_south.蜀仓库",
+        "east": "hanzhong_south.蜀中营"
+      },
+      "monster_type": "monster_hanzhong_south_法正"
+    },
+    "蜀右营": {
+      "name": "蜀右营",
+      "exits": {
+        "north": "hanzhong_south.蜀火库",
+        "west": "hanzhong_south.蜀中营"
+      },
+      "monster_type": "monster_hanzhong_south_廖化"
+    },
+    "蜀后营": {
+      "name": "蜀后营",
+      "exits": {
+        "north": "hanzhong_south.蜀中营",
+        "south": "hanzhong_south.汉中南界"
+      }
+    },
+    "蜀仓库": {
+      "name": "蜀仓库",
+      "exits": {
+        "east": "hanzhong_south.蜀前营",
+        "south": "hanzhong_south.蜀左营"
+      }
+    },
+    "蜀火库": {
+      "name": "蜀火库",
+      "exits": {
+        "west": "hanzhong_south.蜀前营",
+        "south": "hanzhong_south.蜀右营"
+      }
+    },
+    "汉中南界": {
+      "name": "汉中南界",
+      "exits": {
+        "north": "hanzhong_south.蜀后营",
+        "south": "chengdu_north.成都北界"
+      }
+    }
+  }
+}

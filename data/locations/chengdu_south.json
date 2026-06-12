@@ -1,0 +1,43 @@
+{
+  "name": "成都南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "chengdu_center.南城楼",
+        "south": "chengdu_south.镜水河"
+      },
+      "monster_type": "monster_chengdu_south_韦康"
+    },
+    "镜水河": {
+      "name": "镜水河",
+      "exits": {
+        "north": "chengdu_south.南门",
+        "west": "chengdu_south.寒水洞",
+        "east": "chengdu_south.云崖山",
+        "south": "chengdu_south.成都南界"
+      }
+    },
+    "云崖山": {
+      "name": "云崖山",
+      "exits": {
+        "west": "chengdu_south.镜水河"
+      },
+      "monster_type": "monster_chengdu_south_刘进"
+    },
+    "寒水洞": {
+      "name": "寒水洞",
+      "exits": {
+        "east": "chengdu_south.镜水河"
+      },
+      "monster_type": "monster_chengdu_south_黑熊"
+    },
+    "成都南界": {
+      "name": "成都南界",
+      "exits": {
+        "north": "chengdu_south.镜水河",
+        "south": "yong_an_north.永安北界"
+      }
+    }
+  }
+}

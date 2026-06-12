@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>魂魄分解</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+{% if tier == 3 %}
+三级魂魄
+{% else %}<a href="{{ url_for('commander.decompose', tier=3) }}">三级魂魄</a>{% endif %}
+|
+{% if tier == 2 %}
+二级魂魄
+{% else %}<a href="{{ url_for('commander.decompose', tier=2) }}">二级魂魄</a>{% endif %}
+|
+{% if tier == 1 %}
+一级魂魄
+{% else %}<a href="{{ url_for('commander.decompose', tier=1) }}">一级魂魄</a>{% endif %}
+<br/>
+{% if tier == 1 %}
+单个一级魂魄分解需要{{ decompose_cost }}银两！
+{% elif tier == 2 %}
+单个二级魂魄分解需要{{ decompose_cost }}银两
+{% else %}
+单个三级魂魄分解需要{{ decompose_cost }}银两
+{% endif %}
+<br/>
+名称|数量|价值<br/>
+{% for soul in souls %}
+{{ soul.name }}魂魄|{{ soul.quantity }}|{{ soul.fragments }}
+<a href="{{ url_for('commander.do_decompose', soul_item_id=soul.item_id) }}">分解</a><br/>
+{% else %}
+无魂魄可分解<br/>
+{% endfor %}
+{% if total_pages > 1 %}
+<br/>
+{% if page > 1 %}
+<a href="{{ url_for('commander.decompose', tier=tier, page=page-1) }}">上.页</a>
+{% else %}上.页{% endif %}
+{% if page < total_pages %}
+<a href="{{ url_for('commander.decompose', tier=tier, page=page+1) }}">下.页</a>
+{% else %}下.页{% endif %}
+{% if page > 1 %}
+<a href="{{ url_for('commander.decompose', tier=tier, page=1) }}">首.页</a>
+{% endif %}
+{% if page < total_pages %}
+<a href="{{ url_for('commander.decompose', tier=tier, page=total_pages) }}">末.页</a>
+{% endif %}
+<br/>
+{% endif %}
+<br/>
+银两:{{ player.gold }}<br/>
+<a href="{{ url_for('commander.index') }}">返回</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

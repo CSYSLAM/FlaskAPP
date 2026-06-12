@@ -1,0 +1,1979 @@
+{
+  "npc_beiping_east_左慈副本": {
+    "name": "左慈【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "左慈，鹤发童颜，仙风道骨，不容小觑。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_huangjin_copy_灵帝": {
+    "name": "灵帝",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "灵帝，负责黄巾起义副本任务。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "monster_huangjin_copy_黄巾士兵": {
+    "name": "黄巾士兵",
+    "level": 6,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】黄巾士兵，负责前线骚扰。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_1",
+    "base_stats": {
+      "health": 180,
+      "mana": 40,
+      "attack": 15,
+      "defense": 5,
+      "crit_rate": 0.03,
+      "dodge_rate": 0.02
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.08,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1"
+        ],
+        "rarity_weights": {
+          "common": 70,
+          "uncommon": 30
+        }
+      },
+      "items": {
+        "potion_heal": 0.1,
+        "potion_mana": 0.05
+      },
+      "money": {
+        "min": 6,
+        "max": 12
+      },
+      "experience": 30
+    }
+  },
+  "monster_huangjin_copy_黄巾头目": {
+    "name": "黄巾头目",
+    "level": 6,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】黄巾头目，徐州前线的指挥者。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_2",
+    "base_stats": {
+      "health": 300,
+      "mana": 60,
+      "attack": 18,
+      "defense": 8,
+      "crit_rate": 0.03,
+      "dodge_rate": 0.02
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1"
+        ],
+        "rarity_weights": {
+          "common": 65,
+          "uncommon": 35
+        }
+      },
+      "items": {
+        "potion_heal": 0.1,
+        "potion_mana": 0.05
+      },
+      "money": {
+        "min": 8,
+        "max": 14
+      },
+      "experience": 40
+    }
+  },
+  "monster_huangjin_copy_波才": {
+    "name": "波才",
+    "level": 6,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】波才，黄巾大将。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 1800,
+      "mana": 120,
+      "attack": 34,
+      "defense": 18,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.16,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "uncommon": 45,
+          "rare": 35,
+          "epic": 20
+        }
+      },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 12,
+        "max": 22
+      },
+      "experience": 80
+    }
+  },
+  "monster_huangjin_copy_张曼成": {
+    "name": "张曼成",
+    "level": 6,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】张曼成，南阳黄巾军主将。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 2000,
+      "mana": 120,
+      "attack": 36,
+      "defense": 20,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.16,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "uncommon": 45,
+          "rare": 35,
+          "epic": 20
+        }
+      },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 12,
+        "max": 22
+      },
+      "experience": 63
+    }
+  },
+  "monster_huangjin_copy_张宝": {
+    "name": "张宝",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】张宝，黄巾前线首领。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 3000,
+      "mana": 70,
+      "attack": 24,
+      "defense": 12,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.02
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "uncommon": 45,
+          "rare": 35,
+          "epic": 20
+        }
+      },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 10,
+        "max": 20
+      },
+      "experience": 60
+    }
+  },
+  "monster_huangjin_copy_张梁": {
+    "name": "张梁",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】张梁，黄巾中军首领。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 3000,
+      "mana": 80,
+      "attack": 26,
+      "defense": 14,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.02
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "uncommon": 45,
+          "rare": 35,
+          "epic": 20
+        }
+      },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 10,
+        "max": 20
+      },
+      "experience": 60
+    }
+  },
+  "monster_huangjin_copy_张角": {
+    "name": "张角",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】天公将军张角，黄巾起义最终首领。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_5",
+    "copy_final_boss": true,
+    "base_stats": {
+      "health": 3000,
+      "mana": 100,
+      "attack": 34,
+      "defense": 18,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.18,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "uncommon": 40,
+          "rare": 35,
+          "epic": 25
+        }
+      },
+      "items": {
+        "potion_heal": 0.14,
+        "potion_mana": 0.07
+      },
+      "money": {
+        "min": 14,
+        "max": 28
+      },
+      "experience": 90
+    }
+  },
+  "monster_huangjin_copy_偷伐人": {
+    "name": "偷伐人",
+    "level": 6,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】偷伐人，负责偷砍渡河木材。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 300,
+      "mana": 50,
+      "attack": 16,
+      "defense": 6,
+      "crit_rate": 0.03,
+      "dodge_rate": 0.02
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.05,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1"
+        ],
+        "rarity_weights": {
+          "common": 70,
+          "uncommon": 30
+        }
+      },
+      "items": {
+        "wood_raft": 1,
+        "potion_mana": 0.05
+      },
+      "money": {
+        "min": 6,
+        "max": 12
+      },
+      "experience": 63
+    }
+  },
+  "npc_beiping_center_郭嘉副本": {
+    "name": "郭嘉【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "郭嘉，字奉孝，曹操帐下第一谋士，计定辽东。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jiding_copy_曹操": {
+    "name": "曹操",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "曹操，魏王，坐镇易州城指挥辽东战事。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jiding_copy_华佗": {
+    "name": "华佗",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "华佗，神医，在神医坊制药救人。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jiding_copy_郭嘉": {
+    "name": "郭嘉",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "郭嘉，在神医坊服药养病，谋划辽东之计。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_jiding_copy_田畴": {
+    "name": "田畴",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "田畴，卢龙口守将，协助曹操征讨辽东。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "monster_jiding_copy_冒牌神医": {
+    "name": "冒牌神医",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】冒牌神医，假借华佗之名在神医坊行骗。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_1",
+    "base_stats": {
+      "health": 800,
+      "mana": 100,
+      "attack": 45,
+      "defense": 22,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 16,
+        "max": 32
+      },
+      "experience": 80
+    }
+  },
+  "monster_jiding_copy_山中精怪": {
+    "name": "山中精怪",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】山中精怪，守护天香草的妖怪。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_2",
+    "base_stats": {
+      "health": 900,
+      "mana": 120,
+      "attack": 48,
+      "defense": 24,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "tianxiang_cao": 1,
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 32
+      },
+      "experience": 85
+    }
+  },
+  "monster_jiding_copy_毒蝎": {
+    "name": "毒蝎",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】毒蝎，北沙漠中的剧毒蝎子，蝎毒可入药。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 850,
+      "mana": 100,
+      "attack": 50,
+      "defense": 20,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "xie_du": 1,
+        "potion_mana": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 32
+      },
+      "experience": 85
+    }
+  },
+  "monster_jiding_copy_敌军探子": {
+    "name": "敌军探子",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】敌军探子，辽东派来的侦察兵。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_6",
+    "base_stats": {
+      "health": 950,
+      "mana": 110,
+      "attack": 52,
+      "defense": 26,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.12,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "uncommon": 50,
+          "rare": 35,
+          "epic": 15
+        }
+      },
+      "items": {
+        "potion_heal": 0.14,
+        "potion_mana": 0.07
+      },
+      "money": {
+        "min": 20,
+        "max": 40
+      },
+      "experience": 100
+    }
+  },
+  "monster_jiding_copy_他顿": {
+    "name": "【精】他顿",
+    "level": 16,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】他顿，匈奴首领，驻扎白狼山前。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 4800,
+      "mana": 300,
+      "attack": 90,
+      "defense": 50,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.18,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "uncommon": 40,
+          "rare": 35,
+          "epic": 25
+        }
+      },
+      "items": {
+        "potion_heal": 0.16,
+        "potion_mana": 0.08
+      },
+      "money": {
+        "min": 30,
+        "max": 60
+      },
+      "experience": 200
+    }
+  },
+  "monster_jiding_copy_辽东兵": {
+    "name": "辽东兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】辽东兵，公孙瓒的精锐部队。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 1000,
+      "mana": 120,
+      "attack": 55,
+      "defense": 28,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.12,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "uncommon": 50,
+          "rare": 35,
+          "epic": 15
+        }
+      },
+      "items": {
+        "potion_heal": 0.14,
+        "potion_mana": 0.07
+      },
+      "money": {
+        "min": 20,
+        "max": 40
+      },
+      "experience": 100
+    }
+  },
+  "monster_jiding_copy_袁尚": {
+    "name": "【精】袁尚",
+    "level": 16,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】袁尚，袁绍之子，盘踞柳城。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 5000,
+      "mana": 350,
+      "attack": 95,
+      "defense": 55,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.2,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "uncommon": 40,
+          "rare": 35,
+          "epic": 25
+        }
+      },
+      "items": {
+        "craft_huangtongkuang": 0.5,
+        "potion_heal": 0.16,
+        "potion_mana": 0.08
+      },
+      "money": {
+        "min": 35,
+        "max": 70
+      },
+      "experience": 220
+    }
+  },
+  "monster_jiding_copy_公孙瓒": {
+    "name": "【精】公孙瓒",
+    "level": 20,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】公孙瓒，辽东之主，最终BOSS。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_stage": "step_10",
+    "copy_final_boss": true,
+    "base_stats": {
+      "health": 6000,
+      "mana": 400,
+      "attack": 110,
+      "defense": 60,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.22,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5",
+          "qingbu_helmet_10",
+          "qingbu_armor_10",
+          "qingbu_gloves_10",
+          "qingbu_pants_10",
+          "qingbu_shoes_10"
+        ],
+        "rarity_weights": {
+          "uncommon": 35,
+          "rare": 35,
+          "epic": 30
+        }
+      },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 40,
+        "max": 80
+      },
+      "experience": 300
+    }
+  },
+  "npc_qiqin_copy_诸葛亮": {
+    "name": "诸葛亮【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "诸葛亮，字孔明，身长八尺，面如冠玉，头戴纶巾，身披鹤氅，飘飘然有神仙之概。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": { "min": 0, "max": 0 },
+      "experience": 0
+    }
+  },
+  "npc_qiqin_copy_吕四娘": {
+    "name": "吕四娘",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "吕四娘，南征军斥候队长，驻守沙口打探敌情。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": { "min": 0, "max": 0 },
+      "experience": 0
+    }
+  },
+  "npc_qiqin_copy_赵云": {
+    "name": "赵云",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "赵云，字子龙，常山赵子龙，一身是胆。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": { "min": 0, "max": 0 },
+      "experience": 0
+    }
+  },
+  "npc_qiqin_copy_马谡": {
+    "name": "马谡",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "马谡，熟读兵法，狂傲自大。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": { "min": 0, "max": 0 },
+      "experience": 0
+    }
+  },
+  "monster_qiqin_copy_金环三结": {
+    "name": "【精】金环三结",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】金环三结，孟获手下大将。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_1",
+    "base_stats": {
+      "health": 18000,
+      "mana": 800,
+      "attack": 280,
+      "defense": 150,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.2,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 40, "rare": 35, "epic": 25 }
+      },
+      "items": { "potion_heal": 0.16, "potion_mana": 0.08 },
+      "money": { "min": 46, "max": 92 },
+      "experience": 460
+    }
+  },
+  "monster_qiqin_copy_忙牙长": {
+    "name": "【精】忙牙长",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】忙牙长，孟获手下大将。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_2",
+    "base_stats": {
+      "health": 19000,
+      "mana": 850,
+      "attack": 290,
+      "defense": 155,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.2,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 40, "rare": 35, "epic": 25 }
+      },
+      "items": { "potion_heal": 0.16, "potion_mana": 0.08 },
+      "money": { "min": 46, "max": 92 },
+      "experience": 460
+    }
+  },
+  "monster_qiqin_copy_土人": {
+    "name": "土人",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】泸水土著，守护轻木筏。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 4500,
+      "mana": 400,
+      "attack": 200,
+      "defense": 100,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.14,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+        ],
+        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+      },
+      "items": { "qing_mufa": 1, "potion_heal": 0.12 },
+      "money": { "min": 40, "max": 80 },
+      "experience": 350
+    }
+  },
+  "monster_qiqin_copy_南蛮运粮兵": {
+    "name": "南蛮运粮兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】南蛮运粮兵，为孟获大军运送粮草。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 4800,
+      "mana": 420,
+      "attack": 210,
+      "defense": 105,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.14,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+        ],
+        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+      },
+      "items": { "potion_heal": 0.12, "potion_mana": 0.06 },
+      "money": { "min": 42, "max": 84 },
+      "experience": 360
+    }
+  },
+  "monster_qiqin_copy_祝融": {
+    "name": "【精】祝融",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】祝融，孟获之妻，善使飞刀。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 22000,
+      "mana": 900,
+      "attack": 310,
+      "defense": 160,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.22,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
+      "money": { "min": 50, "max": 100 },
+      "experience": 500
+    }
+  },
+  "monster_qiqin_copy_孟优": {
+    "name": "【精】孟优",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】孟优，孟获之弟。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_6",
+    "base_stats": {
+      "health": 21000,
+      "mana": 880,
+      "attack": 300,
+      "defense": 158,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.21,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.17, "potion_mana": 0.08 },
+      "money": { "min": 48, "max": 96 },
+      "experience": 480
+    }
+  },
+  "monster_qiqin_copy_神凤": {
+    "name": "神凤",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】神凤，栖息于凤凰山，守护方竹。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 5000,
+      "mana": 450,
+      "attack": 220,
+      "defense": 110,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.14,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+        ],
+        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+      },
+      "items": { "fangzhu": 1, "potion_heal": 0.12 },
+      "money": { "min": 42, "max": 84 },
+      "experience": 370
+    }
+  },
+  "monster_qiqin_copy_药鬼": {
+    "name": "药鬼",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】药鬼，出没于西洱山，守护荟香草。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 5000,
+      "mana": 450,
+      "attack": 220,
+      "defense": 110,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.14,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+        ],
+        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+      },
+      "items": { "huixiangcao": 1, "potion_heal": 0.12 },
+      "money": { "min": 42, "max": 84 },
+      "experience": 370
+    }
+  },
+  "monster_qiqin_copy_朵思大王": {
+    "name": "【精】朵思大王",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】朵思大王，秃龙洞洞主。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 24000,
+      "mana": 950,
+      "attack": 320,
+      "defense": 170,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.22,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
+      "money": { "min": 52, "max": 104 },
+      "experience": 520
+    }
+  },
+  "monster_qiqin_copy_木鹿大王": {
+    "name": "【精】木鹿大王",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】木鹿大王，八纳洞洞主，善驱兽。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 25000,
+      "mana": 980,
+      "attack": 330,
+      "defense": 175,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.23,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
+      "money": { "min": 54, "max": 108 },
+      "experience": 540
+    }
+  },
+  "monster_qiqin_copy_兀突骨": {
+    "name": "【精】兀突骨",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本精英】兀突骨，藤甲兵首领，盘蛇谷守将。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 55200,
+      "mana": 1000,
+      "attack": 350,
+      "defense": 200,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.06
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.25,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.2, "potion_mana": 0.1 },
+      "money": { "min": 56, "max": 112 },
+      "experience": 560
+    }
+  },
+  "monster_qiqin_copy_孟获": {
+    "name": "【精】孟获",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】孟获，南蛮之王，最终BOSS。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo",
+    "copy_stage": "step_12",
+    "copy_final_boss": true,
+    "base_stats": {
+      "health": 60000,
+      "mana": 1200,
+      "attack": 400,
+      "defense": 220,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.06
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.28,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.22, "potion_mana": 0.11 },
+      "money": { "min": 60, "max": 120 },
+      "experience": 600
+    }
+  },
+  "npc_jinyang_west_李典副本": {
+    "name": "李典【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "为人谦和，典好学问，贵儒雅。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": { "min": 0, "max": 0 },
+      "experience": 0
+    }
+  },
+  "npc_xiaoyaojin_copy_张辽": {
+    "name": "张辽",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "头面如紫玉，目若朗星，年二十岁。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": { "min": 0, "max": 0 },
+      "experience": 0
+    }
+  },
+  "mon_xiaoyaojin_dongwu_tanzi": {
+    "name": "东吴探子",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】东吴探子，在南郊刺探军情。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_1",
+    "base_stats": {
+      "health": 1300,
+      "mana": 60,
+      "attack": 55,
+      "defense": 28,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.02
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+      },
+      "items": { "potion_heal": 0.12, "potion_mana": 0.06 },
+      "money": { "min": 20, "max": 50 },
+      "experience": 80
+    }
+  },
+  "mon_xiaoyaojin_dongwu_xizuo": {
+    "name": "东吴细作",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】东吴细作，在北郊传递密函。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_2",
+    "base_stats": {
+      "health": 1300,
+      "mana": 60,
+      "attack": 55,
+      "defense": 28,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.02
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+      },
+      "items": { "wujun_mihan": 0.7, "potion_heal": 0.12, "potion_mana": 0.06 },
+      "money": { "min": 20, "max": 50 },
+      "experience": 80
+    }
+  },
+  "mon_xiaoyaojin_dongwu_qiangbing": {
+    "name": "东吴枪兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】东吴枪兵，在大师桥运送火药。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 1300,
+      "mana": 60,
+      "attack": 55,
+      "defense": 28,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.02
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+      },
+      "items": { "jiangdong_huoyao": 0.7, "potion_heal": 0.12, "potion_mana": 0.06 },
+      "money": { "min": 20, "max": 50 },
+      "experience": 80
+    }
+  },
+  "mon_xiaoyaojin_taishici": {
+    "name": "【精】太史慈",
+    "level": 26,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】太史慈，东吴名将，箭术超群。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 15600,
+      "mana": 300,
+      "attack": 120,
+      "defense": 65,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.22,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
+      "money": { "min": 40, "max": 80 },
+      "experience": 300
+    }
+  },
+  "mon_xiaoyaojin_jinwei": {
+    "name": "【精】近卫",
+    "level": 26,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】孙权近卫，精锐护卫。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 15600,
+      "mana": 300,
+      "attack": 120,
+      "defense": 65,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.22,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
+      "money": { "min": 40, "max": 80 },
+      "experience": 300
+    }
+  },
+  "mon_xiaoyaojin_lingtong": {
+    "name": "【精】凌统",
+    "level": 26,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】凌统，东吴猛将，骁勇善战。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_6",
+    "base_stats": {
+      "health": 15600,
+      "mana": 300,
+      "attack": 120,
+      "defense": 65,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.22,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+      },
+      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
+      "money": { "min": 40, "max": 80 },
+      "experience": 300
+    }
+  },
+  "mon_xiaoyaojin_sunquan": {
+    "name": "【精】孙权",
+    "level": 30,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本首领】孙权，东吴之主，最终BOSS。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_7",
+    "copy_final_boss": true,
+    "base_stats": {
+      "health": 18000,
+      "mana": 400,
+      "attack": 140,
+      "defense": 75,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.25,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "uncommon": 25, "rare": 40, "epic": 35 }
+      },
+      "items": { "potion_heal": 0.2, "potion_mana": 0.1 },
+      "money": { "min": 50, "max": 100 },
+      "experience": 500
+    }
+  },
+  "mon_xiaoyaojin_yeniu": {
+    "name": "野牛",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】野牛，乌龙山中的野牛，犒劳三军。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 1300,
+      "mana": 60,
+      "attack": 55,
+      "defense": 28,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.02
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
+          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
+          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
+          "xuanwu_pants_45", "xuanwu_shoes_45"
+        ],
+        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+      },
+      "items": { "potion_heal": 0.12, "potion_mana": 0.06 },
+      "money": { "min": 20, "max": 50 },
+      "experience": 80
+    }
+  }
+}

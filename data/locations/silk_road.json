@@ -1,0 +1,18 @@
+{
+  "name": "丝绸之路",
+  "scenes": {
+    "玉门关": {
+      "name": "玉门关",
+      "exits": {
+        "north": "silk_road.鸣沙山",
+        "south": "luoyang_north.洛阳北界"
+      }
+    },
+    "鸣沙山": {
+      "name": "鸣沙山",
+      "exits": {
+        "south": "silk_road.玉门关"
+      }
+    }
+  }
+}
