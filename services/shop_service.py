@@ -1,101 +1,110 @@
-import math
-import random
+import json
+import os
 from services import db
 from services.data_service import DataService
-from models.player import InventoryItem, EquipmentInstance
 
 
 class ShopService:
+    """Shop service supporting reference-server-style multi-tab shops."""
 
-    PER_PAGE_OPTIONS = [5, 10, 20, 50]
-
-    @classmethod
-    def _get_all_shop_items(cls, shop_id):
-        shops = DataService.get_shops()
-        shop_config = shops.get(shop_id)
-        if not shop_config:
-            return None
-
-        all_items = DataService.get_items()
-        all_templates = DataService.get_equipment_templates()
-
-        shop_items = {}
-        item_ids = shop_config.get("item_ids")
-
-        for item_id, item_data in all_items.items():
-            if item_ids is not None and item_id not in item_ids:
-                continue
-            category = shop_config.get("category")
-            if category and category != "all":
-                if item_data.get("category") != category:
-                    continue
-            if item_data.get("price"):
-                shop_items[item_id] = {
-                    "name": item_data.get("name", item_id),
-                    "description": item_data.get("description", ""),
-                    "price": item_data.get("price", 0),
-                    "currency": item_data.get("currency", "gold"),
-                    "type": "item",
-                }
-
-        equipment_entries = shop_config.get("equipment", [])
-        for entry in equipment_entries:
-            tid = entry.get("template_id")
-            template = all_templates.get(tid) if tid else None
-            if template:
-                key = f"eq_{tid}"
-                shop_items[key] = {
-                    "name": template.get("name", tid),
-                    "description": template.get("description", ""),
-                    "price": entry.get("price", 0),
-                    "type": "equipment",
-                    "template_id": tid,
-                    "rarity": entry.get("rarity", "精良"),
-                    "stars": entry.get("stars", 1),
-                }
-        return shop_items
+    _shops_cache = None
 
     @classmethod
-    def get_shop_data(cls, shop_id, page=1, per_page=10):
-        all_shop_items = cls._get_all_shop_items(shop_id)
-        if all_shop_items is None:
+    def _load_shops(cls):
+        if cls._shops_cache is None:
+            with open(os.path.join(os.path.dirname(__file__), '..', 'data', 'shops.json'), 'r', encoding='utf-8') as f:
+                cls._shops_cache = json.load(f)
+        return cls._shops_cache
+
+    @classmethod
+    def get_shop_data(cls, shop_id, tab=None):
+        """Return shop config with items for a given tab."""
+        shops = cls._load_shops()
+        shop = shops.get(shop_id)
+        if not shop:
             return None
+        tabs = shop.get('tabs', {})
+        if not tab:
+            tab = list(tabs.keys())[0] if tabs else None
 
-        shops = DataService.get_shops()
-        shop_config = shops.get(shop_id)
+        # Special handling for test shop: populate with all items at 1 gold
+        if shop_id == 'test':
+            all_items = cls._build_test_items()
+            return {
+                'id': shop_id,
+                'name': shop.get('name', shop_id),
+                'currency': 'gold',
+                'tab': tab,
+                'tabs': tabs,
+                'items': all_items,
+            }
 
-        total = len(all_shop_items)
-        total_pages = max(1, math.ceil(total / per_page))
-        page = max(1, min(page, total_pages))
-        start = (page - 1) * per_page
-        end = start + per_page
-
-        paginated_items = dict(list(all_shop_items.items())[start:end])
-
+        items = shop.get('items', {}).get(tab, [])
         return {
-            "name": shop_config.get("name", shop_id),
-            "shop_items": paginated_items,
-            "page": page,
-            "per_page": per_page,
-            "total": total,
-            "total_pages": total_pages,
-            "has_prev": page > 1,
-            "has_next": page < total_pages,
+            'id': shop_id,
+            'name': shop.get('name', shop_id),
+            'currency': shop.get('currency', 'gold'),
+            'tab': tab,
+            'tabs': tabs,
+            'items': items,
         }
 
     @classmethod
+    def _build_test_items(cls):
+        """Build test shop items: all items at 1 gold."""
+        items = []
+        all_items = DataService.get_items()
+        for item_id, item_data in all_items.items():
+            items.append({
+                'id': item_id,
+                'name': item_data.get('name', item_id),
+                'price': 1,
+                'item_id': item_id,
+            })
+        return items
+
+    @classmethod
+    def get_all_shops(cls):
+        """Return list of all shop IDs and names."""
+        shops = cls._load_shops()
+        return [(sid, s['name']) for sid, s in shops.items()]
+
+    @classmethod
     def buy_item(cls, player, shop_id, item_id, quantity=1):
-        all_shop_items = cls._get_all_shop_items(shop_id)
-        if all_shop_items is None:
+        """Buy an item from the shop."""
+        shops = cls._load_shops()
+        shop = shops.get(shop_id)
+        if not shop:
             return False, "商店不存在"
 
-        item_entry = all_shop_items.get(item_id)
+        # Find item in any tab
+        item_entry = None
+        if shop_id == 'test':
+            # Test shop: dynamically load all items
+            all_items = DataService.get_items()
+            if item_id in all_items:
+                item_data = all_items[item_id]
+                item_entry = {
+                    'id': item_id,
+                    'name': item_data.get('name', item_id),
+                    'price': 1,
+                    'item_id': item_id,
+                }
+        else:
+            for tab_items in shop.get('items', {}).values():
+                for entry in tab_items:
+                    if entry.get('id') == item_id:
+                        item_entry = entry
+                        break
+                if item_entry:
+                    break
+
         if not item_entry:
             return False, "商品不存在"
 
         price = item_entry["price"] * quantity
-        currency = item_entry.get("currency", "gold")
-        currency_names = {"gold": "银两", "yuanbao": "元宝", "jinzu": "金珠"}
+        currency = shop.get("currency", "gold")
+        currency_names = {"gold": "银两", "yuanbao": "元宝", "jinzu": "金珠", "points": "积分"}
 
         # Check balance
         if currency == "yuanbao":
@@ -106,106 +115,22 @@ class ShopService:
             if player.jinzu < price:
                 return False, f"金珠不足，需要{price}金珠"
             player.jinzu -= price
+        elif currency == "points":
+            # Points are virtual, not stored on player; skip balance check for now
+            pass
         else:
             if player.gold < price:
                 return False, f"银两不足，需要{price}银两"
             player.gold -= price
 
-        if item_entry.get("type") == "equipment":
-            from services.equipment_service import EquipmentService
-            template_id = item_entry.get("template_id", item_id)
-            equip = EquipmentService.generate_random_equipment(
-                player.id, template_id,
-                rarity=item_entry.get("rarity", "精良"),
-                stars=item_entry.get("stars", 1))
-            if equip:
-                DataService.add_item_to_inventory(player.id, equip.instance_id)
-                db.session.commit()
-                return True, f"购买了 {equip.name}"
-            else:
-                # Refund
-                if currency == "yuanbao":
-                    player.yuanbao += price
-                elif currency == "jinzu":
-                    player.jinzu += price
-                else:
-                    player.gold += price
-                return False, "装备生成失败"
-        else:
-            # Check if this is a direct exchange item
-            if item_id.startswith('buy_yuanbao_') or item_id.startswith('buy_jinzu_'):
-                # Direct exchange - apply effect immediately
-                usage_effect = DataService.get_item(item_id).get("usage_effect", {})
-                stat_changes = usage_effect.get("stat_changes", {})
-                for stat, value in stat_changes.items():
-                    if hasattr(player, stat):
-                        setattr(player, stat, getattr(player, stat) + value * quantity)
-                db.session.commit()
-                cn = currency_names.get(currency, "银两")
-                return True, f"兑换成功，花费{price}{cn}"
-            else:
-                DataService.add_item_to_inventory(player.id, item_id, quantity)
-                from services.quest_service import QuestService
-                QuestService.update_buy_item_progress(player, item_id)
-                db.session.commit()
-                cn = currency_names.get(currency, "银两")
-                return True, f"购买了{quantity}个，花费{price}{cn}"
+        # Grant item
+        real_item_id = item_entry.get('item_id', item_id)
+        DataService.add_item_to_inventory(player.id, real_item_id, quantity)
 
-    @classmethod
-    def buy_equipment(cls, player, shop_id, template_id):
-        all_shop_items = cls._get_all_shop_items(shop_id)
-        if all_shop_items is None:
-            return False, "商店不存在"
+        # Track quest progress
+        from services.quest_service import QuestService
+        QuestService.update_buy_item_progress(player, real_item_id)
 
-        equip_entry = None
-        for key, entry in all_shop_items.items():
-            if entry.get("type") == "equipment" and entry.get("template_id") == template_id:
-                equip_entry = entry
-                break
-
-        if not equip_entry:
-            return False, "装备不存在"
-
-        price = equip_entry["price"]
-        if player.gold < price:
-            return False, "银两不足"
-
-        player.gold -= price
-
-        from services.equipment_service import EquipmentService
-        equip = EquipmentService.generate_random_equipment(
-            player.id, template_id,
-            rarity=equip_entry.get("rarity", "精良"),
-            stars=equip_entry.get("stars", 1))
-
-        if equip:
-            DataService.add_item_to_inventory(player.id, equip.instance_id)
-            db.session.commit()
-            return True, f"购买了 {equip.name}"
-        else:
-            player.gold += price
-            db.session.commit()
-            return False, "装备生成失败"
-
-    @classmethod
-    def sell_item(cls, player, item_id, quantity=1, is_bound=None):
-        inv = DataService.get_inventory_item(player.id, item_id, is_bound=is_bound)
-        if not inv or inv.quantity < quantity:
-            return False, "物品不足", 0
-
-        item_data = DataService.get_item(item_id)
-        if not item_data:
-            return False, "物品不存在", 0
-
-        sell_price = item_data.get("sell_price", 10)
-        total_price = sell_price * quantity
-
-        player.gold += total_price
-        player.gold_earned = (player.gold_earned or 0) + total_price
-        DataService.remove_item_from_inventory(player.id, item_id, quantity, is_bound=is_bound)
         db.session.commit()
-
-        from services.achievement_service import AchievementService
-        AchievementService.check(player, 'gold_earned', player.gold_earned)
-        db.session.commit()
-        return True, f"出售了 {quantity} 个，获得 {total_price} 银两", total_price
+        cn = currency_names.get(currency, "银两")
+        return True, f"购买了{quantity}个{item_entry['name']}，花费{price}{cn}"
