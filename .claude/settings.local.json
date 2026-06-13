@@ -45,7 +45,13 @@
       "Bash(python app.py)",
       "Bash(taskkill //F //PID 14020)",
       "Bash(taskkill //F //PID 12344)",
-      "Bash(taskkill *)"
+      "Bash(taskkill *)",
+      "Bash(pkill -f \"python.*app.py\")",
+      "mcp__playwright__browser_console_messages",
+      "Bash(pkill -f \"python.*app\")",
+      "Bash(pkill -f \"flask\")",
+      "Bash(pkill -9 -f \"python\")",
+      "Bash(cmd *)"
     ]
   },
   "mcpServers": {

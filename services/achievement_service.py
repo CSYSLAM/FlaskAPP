@@ -1,15 +1,17 @@
 from services import db
 from services.data_service import DataService
 from models.player import Achievement
+from services.achievement_catalog import ALIGNED_CATEGORIES
 
 
 class AchievementService:
 
     @classmethod
     def check_all(cls, player):
-        for ctype in ['level', 'kill', 'elite_kill', 'pk_win', 'enhance',
+        for ctype in ['level', 'kill', 'elite_kill', 'pk_win', 'pk_loss', 'enhance',
                        'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level',
-                       'lieutenant_owned']:
+                       'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
+                       'boss_kill', 'quest']:
             cls.check(player, ctype)
 
     @classmethod
@@ -38,6 +40,8 @@ class AchievementService:
             return player.elite_kill_count >= val
         elif ctype == 'pk_win':
             return player.pk_win_count >= val
+        elif ctype == 'pk_loss':
+            return (player.pk_loss_count or 0) >= val
         elif ctype == 'enhance':
             from models.player import EquipmentInstance
             max_enh = db.session.query(
@@ -62,6 +66,16 @@ class AchievementService:
             from models.lieutenant import Lieutenant
             name = adef.get('lt_name', '')
             return Lieutenant.query.filter_by(owner_id=player.id, name=name).first() is not None
+        elif ctype == 'item_use':
+            return cls._get_item_use_progress(player, adef) >= val
+        elif ctype == 'dungeon_clear':
+            return cls._get_dungeon_clear_progress(player, adef) >= val
+        elif ctype == 'dungeon_tower':
+            return cls._get_dungeon_tower_progress(player, adef) >= val
+        elif ctype == 'boss_kill':
+            return cls._get_boss_kill_progress(player, adef) >= val
+        elif ctype == 'quest':
+            return cls._get_quest_progress(player, adef) >= val
         return False
 
     @classmethod
@@ -118,7 +132,7 @@ class AchievementService:
         completed_map = {a.achievement_id: a for a in records}
 
         for aid, adef in achievements.items():
-            cat = adef.get('category', '成长')
+            cat = cls._normalize_category(adef)
             progress = cls._get_progress(player, aid, adef)
             record = completed_map.get(aid)
             entry = {
@@ -126,6 +140,7 @@ class AchievementService:
                 'name': adef['name'],
                 'description': adef['description'],
                 'reward': adef.get('reward', {}),
+                'points': adef.get('points', 0),
                 'completed': record is not None,
                 'claimed': record.claimed if record else False,
                 'progress': progress,
@@ -149,6 +164,8 @@ class AchievementService:
             return player.elite_kill_count or 0
         elif ctype == 'pk_win':
             return player.pk_win_count or 0
+        elif ctype == 'pk_loss':
+            return player.pk_loss_count or 0
         elif ctype == 'enhance':
             from models.player import EquipmentInstance
             return db.session.query(
@@ -169,6 +186,16 @@ class AchievementService:
             from models.lieutenant import Lieutenant
             name = adef.get('lt_name', '')
             return 1 if Lieutenant.query.filter_by(owner_id=player.id, name=name).first() else 0
+        elif ctype == 'item_use':
+            return cls._get_item_use_progress(player, adef)
+        elif ctype == 'dungeon_clear':
+            return cls._get_dungeon_clear_progress(player, adef)
+        elif ctype == 'dungeon_tower':
+            return cls._get_dungeon_tower_progress(player, adef)
+        elif ctype == 'boss_kill':
+            return cls._get_boss_kill_progress(player, adef)
+        elif ctype == 'quest':
+            return cls._get_quest_progress(player, adef)
         return 0
 
     @classmethod
@@ -185,3 +212,100 @@ class AchievementService:
                     if isinstance(value, (int, float)):
                         bonuses[stat] = bonuses.get(stat, 0) + value
         return bonuses
+
+    @classmethod
+    def get_points(cls, player):
+        try:
+            records = Achievement.query.filter_by(player_id=player.id).all()
+            achievements = DataService.get_achievements()
+            points = 0
+            for record in records:
+                adef = achievements.get(record.achievement_id)
+                if adef:
+                    points += int(adef.get('points', 0) or 0)
+            return points
+        except Exception:
+            return 0
+
+    @classmethod
+    def _get_item_use_progress(cls, player, adef):
+        usage = player.item_usage
+        tracking_keys = []
+        tracking_key = adef.get('tracking_key')
+        if tracking_key:
+            tracking_keys.append(tracking_key)
+        tracking_keys.extend(adef.get('tracking_keys', []))
+        item_name = adef.get('item_name')
+        if item_name:
+            tracking_keys.append(f"name:{item_name}")
+        item_id = adef.get('item_id')
+        if item_id:
+            tracking_keys.append(item_id)
+        for key in tracking_keys:
+            if key in usage:
+                return usage.get(key, 0)
+        return 0
+
+    @classmethod
+    def _get_dungeon_clear_progress(cls, player, adef):
+        dungeon_id = adef.get('dungeon_id')
+        if not dungeon_id:
+            return 0
+        clears = getattr(player, 'dungeon_clears', None)
+        if clears is None:
+            clears = player.dungeon_clears
+        return clears.get(dungeon_id, 0) if isinstance(clears, dict) else 0
+
+    @classmethod
+    def _get_dungeon_tower_progress(cls, player, adef):
+        return getattr(player, 'tower_max_floor', 0) or 0
+
+    @classmethod
+    def _get_boss_kill_progress(cls, player, adef):
+        boss_name = adef.get('boss_name', '')
+        if not boss_name:
+            return 0
+        kills = getattr(player, 'boss_kills', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(boss_name, 0)
+
+    @classmethod
+    def _get_quest_progress(cls, player, adef):
+        import json
+        try:
+            completed = json.loads(player.completed_quests) if player.completed_quests else []
+            return len(completed) if isinstance(completed, list) else 0
+        except (json.JSONDecodeError, TypeError):
+            return 0
+
+    @classmethod
+    def _normalize_category(cls, adef):
+        category = adef.get('category')
+        if category in ALIGNED_CATEGORIES:
+            return category
+
+        condition_type = adef.get('condition_type')
+        if condition_type == 'item_use':
+            return '道具'
+        if condition_type in ('level', 'enhance'):
+            return '成长'
+        if condition_type in ('kill', 'elite_kill', 'boss_kill'):
+            return '杀怪'
+        if condition_type in ('pk_win', 'pk_loss'):
+            return 'P K'
+        if condition_type == 'equip_full':
+            return '装备'
+        if condition_type == 'gold_earned':
+            return '财富'
+        if condition_type in ('gift', 'chat'):
+            return '社交'
+        if condition_type == 'lieutenant_owned':
+            return '副将'
+        if condition_type == 'vip_level':
+            return '活动'
+        if condition_type in ('dungeon_clear', 'dungeon_tower'):
+            return '副本'
+        if condition_type == 'quest':
+            return '任务'
+        return '其他'

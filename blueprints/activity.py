@@ -177,7 +177,30 @@ def card_flip_page():
 @login_required
 def do_card_flip():
     player = current_user
-    use_jinzu = request.args.get('currency', 'jinzu') == 'jinzu'
-    success, msg = ActivityService.card_flip(player, use_jinzu=use_jinzu)
+    success, msg = ActivityService.card_flip(player)
     flash(msg)
     return redirect(url_for('activity.card_flip_page'))
+
+
+# --- Lucky Coin Exchange ---
+
+@activity_bp.route("/lucky_exchange")
+@login_required
+def lucky_exchange():
+    player = current_user
+    exchange_items = ActivityService.LUCKY_COIN_EXCHANGE
+    coin_item = DataService.get_inventory_item(player.id, 'lucky_coin')
+    coin_count = coin_item.quantity if coin_item else 0
+    return render_template("lucky_exchange.html",
+                         player=player,
+                         exchange_items=exchange_items,
+                         coin_count=coin_count)
+
+
+@activity_bp.route("/do_lucky_exchange/<item_id>")
+@login_required
+def do_lucky_exchange(item_id):
+    player = current_user
+    success, msg = ActivityService.exchange_lucky_coin(player, item_id)
+    flash(msg)
+    return redirect(url_for('activity.lucky_exchange'))

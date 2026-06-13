@@ -27,30 +27,44 @@
     ----------------<br/>
     {% endif %}
     {% endwith %}
-    {% set bonuses = AchievementService.get_bonuses(player) %}
-    {% if bonuses %}
-    总属性:{% for stat, val in bonuses.items() %}{{ stat_names.get(stat, stat) }}+{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.1f"|format(val * 100) }}%{% else %}{{ val }}{% endif %}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
+    成就点:{{ achievement_points }}<br/>
+    ----------------<br/>
+    {% if achievement_bonuses %}
+    总属性:{% for stat, val in achievement_bonuses.items() %}{{ stat_names.get(stat, stat) }}+{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.1f"|format(val * 100) }}%{% else %}{{ val }}{% endif %}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
     {% else %}
     总属性:无<br/>
     {% endif %}
     ----------------<br/>
     {% for cat in categories %}
-    {% if cat == current_category %}{{ cat }}{% else %}<a href="{{ url_for('player.achievements', category=cat) }}">{{ cat }}</a>{% endif %}|
+    {% if cat == current_category %}{{ cat }}{% else %}<a href="{{ url_for('player.achievements', category=cat, page=1, per_page=per_page) }}">{{ cat }}</a>{% endif %}|
     {% endfor %}
     <br/>
     ----------------<br/>
 
     {% for a in achievement_list %}
     {% if a.claimed %}
-    <a href="{{ url_for('player.achievement_detail', achievement_id=a.id) }}">{{ a.name }}</a> 已完成<br/>
+    <a href="{{ url_for('player.achievement_detail', achievement_id=a.id, page=page, per_page=per_page) }}">{{ a.name }}</a> 已完成<br/>
     {% elif a.completed %}
-    <a href="{{ url_for('player.achievement_detail', achievement_id=a.id) }}">{{ a.name }}</a> <a href="{{ url_for('player.claim_achievement', achievement_id=a.id) }}">领取</a><br/>
+    <a href="{{ url_for('player.achievement_detail', achievement_id=a.id, page=page, per_page=per_page) }}">{{ a.name }}</a> <a href="{{ url_for('player.claim_achievement', achievement_id=a.id, page=page, per_page=per_page) }}">领取</a><span style="color:#666;">({{ a.points }}点)</span><br/>
     {% else %}
-    <a href="{{ url_for('player.achievement_detail', achievement_id=a.id) }}">{{ a.name }}</a>({{ a.progress }}/{{ a.condition_value }})<br/>
+    <a href="{{ url_for('player.achievement_detail', achievement_id=a.id, page=page, per_page=per_page) }}">{{ a.name }}</a>({{ a.progress }}/{{ a.condition_value }})<span style="color:#666;">({{ a.points }}点)</span><br/>
     {% endif %}
     {% endfor %}
     {% if not achievement_list %}
     该分类暂无成就<br/>
+    {% endif %}
+    {% if total_pages > 1 %}
+    ----------------<br/>
+    第{{ page }}页/共{{ total_pages }}页，共{{ total }}条<br/>
+    {% if page > 1 %}
+    <a href="{{ url_for('player.achievements', category=current_category, page=1, per_page=per_page) }}">首.页</a>
+    <a href="{{ url_for('player.achievements', category=current_category, page=page - 1, per_page=per_page) }}">上.页</a>
+    {% endif %}
+    {% if page < total_pages %}
+    <a href="{{ url_for('player.achievements', category=current_category, page=page + 1, per_page=per_page) }}">下.页</a>
+    <a href="{{ url_for('player.achievements', category=current_category, page=total_pages, per_page=per_page) }}">末.页</a>
+    {% endif %}
+    <br/>
     {% endif %}
     <br/>
     <a href="{{ url_for('player.character') }}">返回上级<br/></a>

@@ -507,6 +507,16 @@ class CopyDungeonService:
             return_location_data = DataService.get_location(return_location) if return_location else None
             player.current_location = return_location
             cls.clear_state(player, dungeon_id)
+            # Track dungeon clear count
+            clears = player.dungeon_clears
+            clears[dungeon_id] = clears.get(dungeon_id, 0) + 1
+            player.dungeon_clears = clears
+            # Track tower floor progress
+            if dungeon_id == 'ice_tower':
+                player.tower_max_floor = max(player.tower_max_floor or 0, definition.get('max_floor', 0))
+            from services.achievement_service import AchievementService
+            AchievementService.check(player, 'dungeon_clear')
+            AchievementService.check(player, 'dungeon_tower')
             db.session.commit()
             return True, '副本已通关', True, {
                 'dungeon': definition,

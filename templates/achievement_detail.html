@@ -19,7 +19,8 @@
 
     成就名称:{{ achievement.name }}<br/>
     达成条件:<br/>
-    {{ achievement.description }}{% if achievement.claimed %}(已完成){% elif achievement.completed %}(已完成){% endif %}<br/>
+    {{ achievement.description }}{% if achievement.claimed or achievement.completed %}(已完成){% else %}({{ achievement.progress }}/{{ achievement.condition_value }}){% endif %}<br/>
+    奖励成就点:{{ achievement.points }}<br/>
     奖励:{% for stat, val in achievement.reward.items() %}{{ stat_names.get(stat, stat) }}+{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.1f"|format(val * 100) }}%{% else %}{{ val }}{% endif %}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
     成就难度:{{ achievement.difficulty }}<br/>
     成就分类:{{ achievement.category }}<br/>
@@ -29,10 +30,10 @@
     {% endif %}
     描述:{{ achievement.description }}<br/>
     {% if achievement.completed and not achievement.claimed %}
-    <a href="{{ url_for('player.claim_achievement', achievement_id=achievement.id) }}">领取奖励</a><br/>
+    <a href="{{ url_for('player.claim_achievement', achievement_id=achievement.id, page=achievement.page, per_page=achievement.per_page) }}">领取奖励</a><br/>
     {% endif %}
     <br/>
-    <a href="{{ url_for('player.achievements', category=achievement.category) }}">返回上级<br/></a>
+    <a href="{{ url_for('player.achievements', category=achievement.category, page=achievement.page, per_page=achievement.per_page) }}">返回上级<br/></a>
     <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 
     <script>
