@@ -51,7 +51,12 @@
       "Bash(pkill -f \"python.*app\")",
       "Bash(pkill -f \"flask\")",
       "Bash(pkill -9 -f \"python\")",
-      "Bash(cmd *)"
+      "Bash(cmd *)",
+      "Bash(python3 *)",
+      "Bash(where node *)",
+      "Bash(where python *)",
+      "Bash(/c/software/anaconda3/python *)",
+      "mcp__playwright__browser_select_option"
     ]
   },
   "mcpServers": {

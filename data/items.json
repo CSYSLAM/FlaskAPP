@@ -4093,5 +4093,236 @@
     "sell_price": 100,
     "is_usable": true,
     "capacity": 0.1
+  },
+  "baiyu_token": {
+    "name": "白玉令",
+    "type": "material",
+    "description": "用于兑换白玉系列物品",
+    "price": 0,
+    "sell_price": 100,
+    "capacity": 0.1
+  },
+  "changan_token": {
+    "name": "长安令",
+    "type": "material",
+    "description": "用于兑换长安系列物品",
+    "price": 0,
+    "sell_price": 50,
+    "capacity": 0.1
+  },
+  "change_country": {
+    "name": "角色转国令",
+    "type": "material",
+    "description": "使用后可转换所属国家",
+    "price": 0,
+    "sell_price": 10000,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "chest_changan": {
+    "name": "长安宝匣",
+    "type": "chest",
+    "description": "开启后随机获得物品",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "craft_bailiangang": {
+    "name": "百炼钢",
+    "type": "material",
+    "description": "打造装备的材料",
+    "price": 0,
+    "sell_price": 250,
+    "capacity": 0.1
+  },
+  "craft_hantieding": {
+    "name": "寒铁锭",
+    "type": "material",
+    "description": "打造装备的材料",
+    "price": 0,
+    "sell_price": 160,
+    "capacity": 0.1
+  },
+  "craft_shengtieding": {
+    "name": "生铁锭",
+    "type": "material",
+    "description": "打造装备的材料",
+    "price": 0,
+    "sell_price": 130,
+    "capacity": 0.1
+  },
+  "craft_xitiesha": {
+    "name": "细铁砂",
+    "type": "material",
+    "description": "打造装备的材料",
+    "price": 0,
+    "sell_price": 100,
+    "capacity": 0.1
+  },
+  "craft_xuantieding": {
+    "name": "玄铁锭",
+    "type": "material",
+    "description": "打造装备的材料",
+    "price": 0,
+    "sell_price": 200,
+    "capacity": 0.1
+  },
+  "duanchang_cao": {
+    "name": "断肠草",
+    "type": "material",
+    "description": "用于与红颜或知己断交",
+    "price": 0,
+    "sell_price": 200,
+    "capacity": 0.1
+  },
+  "dutong_token": {
+    "name": "都统令",
+    "type": "material",
+    "description": "用于兑换都统系列物品",
+    "price": 0,
+    "sell_price": 20,
+    "capacity": 0.1
+  },
+  "enhance_lucky": {
+    "name": "强化小幸运符",
+    "type": "material",
+    "description": "使用后提高强化成功率",
+    "price": 0,
+    "sell_price": 4200,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "fenglei_pack": {
+    "name": "风雷珠特惠包",
+    "type": "consumable",
+    "description": "打开后获得风雷珠",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "fengyun_token": {
+    "name": "风云令",
+    "type": "material",
+    "description": "用于兑换风云系列物品",
+    "price": 0,
+    "sell_price": 100,
+    "capacity": 0.1
+  },
+  "friend_wine": {
+    "name": "结交酒",
+    "type": "material",
+    "description": "用于与红颜或知己结交",
+    "price": 0,
+    "sell_price": 200,
+    "capacity": 0.1
+  },
+  "gender_change": {
+    "name": "角色变性卡",
+    "type": "material",
+    "description": "使用后可变更角色性别",
+    "price": 0,
+    "sell_price": 3000,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "kongming_lantern": {
+    "name": "孔明灯",
+    "type": "consumable",
+    "description": "使用后发送全服公告",
+    "price": 0,
+    "sell_price": 10,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "legion_rename": {
+    "name": "军团改名卡",
+    "type": "material",
+    "description": "使用后可更改军团名称",
+    "price": 0,
+    "sell_price": 5000,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "legionwar_pack": {
+    "name": "军团战特惠包",
+    "type": "consumable",
+    "description": "打开后获得军团战相关物品",
+    "price": 0,
+    "sell_price": 2700,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_double_exp": {
+    "name": "副将双倍经验卡",
+    "type": "consumable",
+    "description": "使用后副将获得双倍经验",
+    "price": 0,
+    "sell_price": 50,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_forget_page": {
+    "name": "遗忘之章残页",
+    "type": "material",
+    "description": "用于副将遗忘技能",
+    "price": 0,
+    "sell_price": 1000,
+    "capacity": 0.1
+  },
+  "lt_soul_pack_1": {
+    "name": "一级名将魂魄包",
+    "type": "consumable",
+    "description": "打开后随机获得一级名将魂魄",
+    "price": 0,
+    "sell_price": 100000,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "peace_token": {
+    "name": "免战符",
+    "type": "material",
+    "description": "使用后一段时间内不会被其他玩家攻击",
+    "price": 0,
+    "sell_price": 110,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "rename_card": {
+    "name": "角色改名卡",
+    "type": "material",
+    "description": "使用后可更改角色名称",
+    "price": 0,
+    "sell_price": 3000,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "return_scroll": {
+    "name": "回城符",
+    "type": "consumable",
+    "description": "使用后立即返回主城",
+    "price": 0,
+    "sell_price": 10,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "speed_scroll": {
+    "name": "神行符",
+    "type": "consumable",
+    "description": "使用后一段时间内移动速度提升",
+    "price": 0,
+    "sell_price": 10,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "wood_hammer": {
+    "name": "[活]木锤",
+    "type": "material",
+    "description": "活动道具，用于敲击获得奖励",
+    "price": 0,
+    "sell_price": 10,
+    "is_usable": true,
+    "capacity": 0.1
   }
 }
