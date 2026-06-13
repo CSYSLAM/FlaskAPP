@@ -5,6 +5,10 @@ from pathlib import Path
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from services import db, ConcurrentModificationError
+from services.achievement_catalog import (
+    ALIGNED_CATEGORIES,
+    build_aligned_item_achievements,
+)
 from models.player import (
     PlayerModel, EquipmentInstance, InventoryItem,
     EquipmentSlot, PlayerSkill, TempEffect, ChatMessage
@@ -180,11 +184,18 @@ class DataService:
 
     @classmethod
     def get_achievements(cls):
-        return cls._cache.get('achievements', {}).get('achievements', {})
+        base = cls._cache.get('achievements', {}).get('achievements', {})
+        # 用站点对齐后的道具成就覆盖旧版道具定义，其他分类先沿用现有本地数据。
+        merged = {
+            aid: adef for aid, adef in base.items()
+            if adef.get('condition_type') != 'item_use'
+        }
+        merged.update(build_aligned_item_achievements())
+        return merged
 
     @classmethod
     def get_achievement_categories(cls):
-        return cls._cache.get('achievements', {}).get('categories', [])
+        return list(ALIGNED_CATEGORIES)
 
     # --- Title methods ---
     @classmethod

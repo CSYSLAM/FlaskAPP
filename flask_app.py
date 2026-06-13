@@ -185,31 +185,6 @@ def create_app():
             db.session.commit()
         except Exception:
             db.session.rollback()
-        try:
-            db.session.execute(db.text("ALTER TABLE players ADD COLUMN item_usage_raw TEXT DEFAULT '{}'"))
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-        try:
-            db.session.execute(db.text("ALTER TABLE players ADD COLUMN dungeon_clears_raw TEXT DEFAULT '{}'"))
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-        try:
-            db.session.execute(db.text("ALTER TABLE players ADD COLUMN tower_max_floor INTEGER DEFAULT 0"))
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-        try:
-            db.session.execute(db.text("ALTER TABLE players ADD COLUMN boss_kills_raw TEXT DEFAULT '{}'"))
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-        try:
-            db.session.execute(db.text("ALTER TABLE players ADD COLUMN pk_loss_count INTEGER DEFAULT 0"))
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
         # 为没有 player_uid 的旧玩家生成 UID
         import random
         import string
@@ -228,6 +203,4 @@ def create_app():
     return app
 
 
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=False)
+application = create_app()

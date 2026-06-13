@@ -95,9 +95,14 @@ class PlayerModel(db.Model, UserMixin):
     kill_count = db.Column(db.Integer, default=0)
     elite_kill_count = db.Column(db.Integer, default=0)
     pk_win_count = db.Column(db.Integer, default=0)
+    pk_loss_count = db.Column(db.Integer, default=0)
     gold_earned = db.Column(db.Integer, default=0)
     gift_count = db.Column(db.Integer, default=0)
     chat_count = db.Column(db.Integer, default=0)
+    item_usage_raw = db.Column(db.Text, default='{}')  # JSON: {item_id: count}
+    dungeon_clears_raw = db.Column(db.Text, default='{}')  # JSON: {dungeon_id: clear_count}
+    boss_kills_raw = db.Column(db.Text, default='{}')  # JSON: {boss_name: kill_count}
+    tower_max_floor = db.Column(db.Integer, default=0)
     visited_locations_raw = db.Column('visited_locations', db.Text, default='[]')
 
     title_prefix_id = db.Column(db.String(64), nullable=True)
@@ -213,6 +218,39 @@ class PlayerModel(db.Model, UserMixin):
     @visited_locations.setter
     def visited_locations(self, value):
         self.visited_locations_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def item_usage(self):
+        try:
+            return json.loads(self.item_usage_raw) if self.item_usage_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @item_usage.setter
+    def item_usage(self, value):
+        self.item_usage_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def dungeon_clears(self):
+        try:
+            return json.loads(self.dungeon_clears_raw) if self.dungeon_clears_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @dungeon_clears.setter
+    def dungeon_clears(self, value):
+        self.dungeon_clears_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def boss_kills(self):
+        try:
+            return json.loads(self.boss_kills_raw) if self.boss_kills_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @boss_kills.setter
+    def boss_kills(self, value):
+        self.boss_kills_raw = json.dumps(value, ensure_ascii=False)
 
     @property
     def owned_titles(self):

@@ -640,17 +640,13 @@
   },
   "money_small": {
     "name": "小银两包",
-    "type": "material",
-    "description": "使用后获得5万银两",
-    "price": 1000,
+    "type": "consumable",
+    "description": "打开获得少量银两",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "stat_changes": {
-        "gold": 50000
-      },
-      "effect_descriptions": {
-        "gold": "获得{value}点银两"
-      }
+      "grant_gold": 10000
     },
     "capacity": 0.1
   },
@@ -3175,7 +3171,9 @@
     "price": 0,
     "sell_price": 0,
     "is_usable": true,
-    "usage_effect": {"expand_backpack": 5},
+    "usage_effect": {
+      "expand_backpack": 5
+    },
     "capacity": 0
   },
   "battle_challenge_token": {
@@ -3348,5 +3346,752 @@
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0
+  },
+  "badge_gejie": {
+    "name": "哥姐徽章",
+    "type": "material",
+    "description": "稀有徽章，可在兑换商店兑换珍贵物品",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "wedding_ring_pack": {
+    "name": "新婚草戒包",
+    "type": "consumable",
+    "description": "打开获得一对婚戒",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_item": [
+        "wedding_ring",
+        2
+      ]
+    },
+    "capacity": 0.1
+  },
+  "wedding_diamond_pack": {
+    "name": "新婚钻戒包",
+    "type": "consumable",
+    "description": "打开获得一对钻石婚戒",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_item": [
+        "wedding_ring_diamond",
+        2
+      ]
+    },
+    "capacity": 0.1
+  },
+  "seed_big_exp": {
+    "name": "大经验丹种子",
+    "type": "material",
+    "description": "种植可获得大经验丹",
+    "price": 0,
+    "sell_price": 50,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "ripening_agent": {
+    "name": "催熟剂",
+    "type": "consumable",
+    "description": "使用后加速植物生长",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "vitality_card": {
+    "name": "活力卡",
+    "type": "consumable",
+    "description": "使用后恢复全部活力",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "usage_effect": {
+      "restore_vitality": 999
+    },
+    "capacity": 0.1
+  },
+  "craft_houpi": {
+    "name": "厚皮",
+    "type": "material",
+    "description": "高级防具制作材料",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": false,
+    "capacity": 0.2
+  },
+  "craft_nirong": {
+    "name": "呢绒",
+    "type": "material",
+    "description": "高级防具制作材料",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": false,
+    "capacity": 0.2
+  },
+  "equip_reshape_talisman": {
+    "name": "装备重塑符",
+    "type": "consumable",
+    "description": "使用后重置装备的附加属性",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "money_large": {
+    "name": "大银两包",
+    "type": "consumable",
+    "description": "打开获得大量银两",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_gold": 100000
+    },
+    "capacity": 0.1
+  },
+  "death_substitute": {
+    "name": "死亡替身符",
+    "type": "consumable",
+    "description": "死亡时自动消耗，免除死亡惩罚",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "card_flip_token": {
+    "name": "翻牌令",
+    "type": "material",
+    "description": "可用于金珠幸运翻牌",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lucky_coin": {
+    "name": "幸运币",
+    "type": "material",
+    "description": "可在兑换商店兑换稀有物品",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.01
+  },
+  "sui_pi_pack": {
+    "name": "碎皮包",
+    "type": "consumable",
+    "description": "打开获得碎皮x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "huangyang_mu_pack": {
+    "name": "黄杨木包",
+    "type": "consumable",
+    "description": "打开获得黄杨木x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "ma_bu_pack": {
+    "name": "麻布包",
+    "type": "consumable",
+    "description": "打开获得麻布x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "huangtong_kuang_pack": {
+    "name": "黄铜矿包",
+    "type": "consumable",
+    "description": "打开获得黄铜矿x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "ying_pi_pack": {
+    "name": "硬皮包",
+    "type": "consumable",
+    "description": "打开获得硬皮x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "chenxiang_mu_pack": {
+    "name": "沉香木包",
+    "type": "consumable",
+    "description": "打开获得沉香木x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "mian_bu_pack": {
+    "name": "棉布包",
+    "type": "consumable",
+    "description": "打开获得棉布x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "heitie_kuang_pack": {
+    "name": "黑铁矿包",
+    "type": "consumable",
+    "description": "打开获得黑铁矿x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "hou_pi_pack": {
+    "name": "厚皮包",
+    "type": "consumable",
+    "description": "打开获得厚皮x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "zitan_mu_pack": {
+    "name": "紫檀木包",
+    "type": "consumable",
+    "description": "打开获得紫檀木x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "nirong_pack": {
+    "name": "呢绒包",
+    "type": "consumable",
+    "description": "打开获得呢绒x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "jingjin_kuang_pack": {
+    "name": "精金矿包",
+    "type": "consumable",
+    "description": "打开获得精金矿x10",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "mi_yao_pack": {
+    "name": "秘药礼包",
+    "type": "consumable",
+    "description": "打开获得随机秘药",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "double_exp_card": {
+    "name": "双倍经验卡",
+    "type": "consumable",
+    "description": "使用后1小时内获得双倍经验",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "shen_you_guo": {
+    "name": "神游果",
+    "type": "consumable",
+    "description": "使用后立即完成当前挂机",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "bag_expand": {
+    "name": "背包扩容卷",
+    "type": "consumable",
+    "description": "使用后背包容量+5",
+    "price": 0,
+    "sell_price": 300,
+    "is_usable": true,
+    "usage_effect": {
+      "expand_backpack": 5
+    },
+    "capacity": 0.1
+  },
+  "rose": {
+    "name": "玫瑰花",
+    "type": "consumable",
+    "description": "送给他人增加好感度",
+    "price": 0,
+    "sell_price": 50,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "small_horn": {
+    "name": "小喇叭",
+    "type": "consumable",
+    "description": "使用后发送全服公告",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "hunt_order": {
+    "name": "追杀令",
+    "type": "consumable",
+    "description": "使用后可直接传送到指定玩家位置",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "duke_token_1d": {
+    "name": "诸侯令(1天)",
+    "type": "material",
+    "description": "使用后获得1天诸侯身份",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "duke_token_7d": {
+    "name": "诸侯令(7天)",
+    "type": "material",
+    "description": "使用后获得7天诸侯身份",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "duke_token_30d": {
+    "name": "诸侯令(30天)",
+    "type": "material",
+    "description": "使用后获得30天诸侯身份",
+    "price": 0,
+    "sell_price": 2000,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "rose_seed": {
+    "name": "玫瑰花种子",
+    "type": "material",
+    "description": "种植可获得玫瑰花",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "exp_seed": {
+    "name": "经验丹种子",
+    "type": "material",
+    "description": "种植可获得经验丹",
+    "price": 0,
+    "sell_price": 40,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "big_hp_stone": {
+    "name": "大血石",
+    "type": "consumable",
+    "description": "使用后永久增加最大生命值",
+    "price": 0,
+    "sell_price": 300,
+    "is_usable": true,
+    "usage_effect": {
+      "add_max_hp": 50
+    },
+    "capacity": 0.1
+  },
+  "big_mp_stone": {
+    "name": "大魔石",
+    "type": "consumable",
+    "description": "使用后永久增加最大法力值",
+    "price": 0,
+    "sell_price": 300,
+    "is_usable": true,
+    "usage_effect": {
+      "add_max_mp": 50
+    },
+    "capacity": 0.1
+  },
+  "soul_flag_shard": {
+    "name": "聚魂幡碎片",
+    "type": "material",
+    "description": "集齐可合成聚魂幡",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_recruit": {
+    "name": "副将招募令",
+    "type": "consumable",
+    "description": "使用后招募随机副将",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_exp_low": {
+    "name": "副将经验丹(低)",
+    "type": "consumable",
+    "description": "副将使用获得少量经验",
+    "price": 0,
+    "sell_price": 50,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_exp_mid": {
+    "name": "副将经验丹(中)",
+    "type": "consumable",
+    "description": "副将使用获得中量经验",
+    "price": 0,
+    "sell_price": 150,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_exp_high": {
+    "name": "副将经验丹(高)",
+    "type": "consumable",
+    "description": "副将使用获得大量经验",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_aptitude": {
+    "name": "副将资质丹",
+    "type": "consumable",
+    "description": "使用后提升副将资质",
+    "price": 0,
+    "sell_price": 300,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_life": {
+    "name": "副将增寿丹",
+    "type": "consumable",
+    "description": "使用后延长副将寿命",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_loyalty": {
+    "name": "副将忠诚丹",
+    "type": "consumable",
+    "description": "使用后提升副将忠诚度",
+    "price": 0,
+    "sell_price": 200,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_enhance": {
+    "name": "副将强化丹",
+    "type": "consumable",
+    "description": "使用后强化副将属性",
+    "price": 0,
+    "sell_price": 400,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "lt_wuxing": {
+    "name": "副将悟性丹",
+    "type": "consumable",
+    "description": "使用后提升副将悟性",
+    "price": 0,
+    "sell_price": 300,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "sui_pi": {
+    "name": "碎皮",
+    "type": "material",
+    "description": "制作材料-碎皮",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "huangyang_mu": {
+    "name": "黄杨木",
+    "type": "material",
+    "description": "制作材料-黄杨木",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "ma_bu": {
+    "name": "麻布",
+    "type": "material",
+    "description": "制作材料-麻布",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "huangtong_kuang": {
+    "name": "黄铜矿",
+    "type": "material",
+    "description": "制作材料-黄铜矿",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "ying_pi": {
+    "name": "硬皮",
+    "type": "material",
+    "description": "制作材料-硬皮",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "chenxiang_mu": {
+    "name": "沉香木",
+    "type": "material",
+    "description": "制作材料-沉香木",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "mian_bu": {
+    "name": "棉布",
+    "type": "material",
+    "description": "制作材料-棉布",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "heitie_kuang": {
+    "name": "黑铁矿",
+    "type": "material",
+    "description": "制作材料-黑铁矿",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "zitan_mu": {
+    "name": "紫檀木",
+    "type": "material",
+    "description": "制作材料-紫檀木",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "jingjin_kuang": {
+    "name": "精金矿",
+    "type": "material",
+    "description": "制作材料-精金矿",
+    "price": 0,
+    "sell_price": 30,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "skill_page_absorb_0": {
+    "name": "技能残页·入门·吸收",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_protect_0": {
+    "name": "技能残页·入门·护佑",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_blood_0": {
+    "name": "技能残页·入门·嗜血",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_thunder_0": {
+    "name": "技能残页·入门·狂雷",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_fire_0": {
+    "name": "技能残页·入门·火神",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_ice_0": {
+    "name": "技能残页·入门·冰封",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_wind_0": {
+    "name": "技能残页·入门·风行",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_rock_0": {
+    "name": "技能残页·入门·磐石",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_dispel_0": {
+    "name": "技能残页·入门·驱散",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_absorb_1": {
+    "name": "技能残页·进阶·吸收",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_protect_1": {
+    "name": "技能残页·进阶·护佑",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_blood_1": {
+    "name": "技能残页·进阶·嗜血",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_absorb_2": {
+    "name": "技能残页·精通·吸收",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_protect_2": {
+    "name": "技能残页·精通·护佑",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_blood_2": {
+    "name": "技能残页·精通·嗜血",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_thunder_2": {
+    "name": "技能残页·精通·狂雷",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_fire_2": {
+    "name": "技能残页·精通·火神",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_ice_2": {
+    "name": "技能残页·精通·冰封",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_wind_2": {
+    "name": "技能残页·精通·风行",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_rock_2": {
+    "name": "技能残页·精通·磐石",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
+  },
+  "skill_page_dispel_2": {
+    "name": "技能残页·精通·驱散",
+    "type": "consumable",
+    "description": "使用后可学习技能",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
+    "capacity": 0.1
   }
 }

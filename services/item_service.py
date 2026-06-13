@@ -245,6 +245,16 @@ class ItemService:
         # Consume the item
         DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
 
+        # Track item usage for achievements
+        usage = player.item_usage
+        usage[item_id] = usage.get(item_id, 0) + 1
+        track_name = item_data.get("name")
+        if track_name:
+            usage[f"name:{track_name}"] = usage.get(f"name:{track_name}", 0) + 1
+        player.item_usage = usage
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'item_use')
+
         # Process grant_lieutenant effect (soul items) — actually grant the lieutenant
         if grant_lieutenant:
             from services.lieutenant_service import LieutenantService, SOUL_TO_LT as SLT, LIEUTENANT_DATA as LTD

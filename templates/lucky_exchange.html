@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>元宝砸蛋</title>
+    <title>幸运币兑换</title>
     <style>
     body { font-size: 16px; margin: 0; line-height: 1.6; }
     a:link { color: #136ec2; text-decoration: none; }
@@ -24,31 +24,21 @@
     {% endif %}
     {% endwith %}
 
-    元宝砸蛋<br/>
+    幸运币兑换<br/>
     ----------------<br/>
-    元宝:{{ player.yuanbao }}<br/>
-    今日免费砸蛋:{{ free_remaining }}次<br/>
-    {% if free_remaining > 0 %}
-    <a href="{{ url_for('activity.do_smash_egg', free=1) }}">免费砸蛋</a><br/>
+    当前幸运币:{{ coin_count }}枚<br/>
+    ----------------<br/>
+    {% for item in exchange_items %}
+    {{ item.name }}({{ item.cost }}币)
+    {% if coin_count >= item.cost %}
+    <a href="{{ url_for('activity.do_lucky_exchange', item_id=item.item_id) }}">兑换</a>
+    {% else %}
+    [不足]
     {% endif %}
-    <a href="{{ url_for('activity.do_smash_egg', free=0) }}">元宝砸蛋(50元宝)</a><br/>
-    ----------------<br/>
-    砸蛋奖池<br/>
-    哥姐徽章(0.001%) 秘药礼包(5%) 双倍经验卡(5%)<br/>
-    神游果(2%) 背包扩容卷(5%) 玫瑰花(5%)<br/>
-    小喇叭(2%) 续命灯(5%) 强化宝玉(5%)<br/>
-    宝匣钥匙(2%) 追杀令(1%) 新婚草戒包(1%)<br/>
-    诸侯令1天(2%) 诸侯令7天(0.5%) 小银两包(0.1%)<br/>
-    玫瑰花种子(5%) 经验丹种子(2%) 大经验丹种子(1%)<br/>
-    催熟剂(3%) 大血石(2%) 大魔石(2%) 活力卡(3%)<br/>
-    聚魂幡碎片(3%) 副将招募令(3%)<br/>
-    副将经验丹低/中/高(各3%)<br/>
-    副将资质丹/增寿丹/忠诚丹/强化丹/悟性丹(各3%)<br/>
-    碎皮/黄杨木/麻布/黄铜矿(各0.7%)<br/>
-    硬皮/沉香木/棉布/黑铁矿(各0.5%)<br/>
-    厚皮/紫檀木/呢绒/精金矿(各0.3%)<br/>
-    技能残页入门9种(各0.5%) 技能残页进阶3种(各0.3%)<br/>
     <br/>
+    {% endfor %}
+    <br/>
+    <a href="{{ url_for('activity.card_flip_page') }}">返回翻牌<br/></a>
     <a href="{{ url_for('activity.index') }}">返回活动<br/></a>
     <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 

@@ -31,6 +31,7 @@
     徽章:{% if vip_level > 0 %}<a href="{{ url_for('vip.index') }}">VIP{{ vip_level }}</a><img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="20"/>{% else %}<a href="{{ url_for('vip.index') }}">VIP1</a><img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="20" style="opacity:0.3;filter:grayscale(1);"/>{% endif %}<br/>
     军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>
     荣誉:{{ player.honor }}<br/>
+    成就点:{{ achievement_points }}<br/>
     等级:{{ player.level }}<br/>
     经验:{{ player.experience }}/{{ player.exp_to_next_level }}<br/>
     生命:{{ player.health }}/{{ player.effective_max_health }}<br/>

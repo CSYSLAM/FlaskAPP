@@ -770,6 +770,8 @@ class BattleService:
 
         from services.achievement_service import AchievementService
         AchievementService.check(attacker, 'pk_win', attacker.pk_win_count)
+        defender.pk_loss_count = (defender.pk_loss_count or 0) + 1
+        AchievementService.check(defender, 'pk_loss', defender.pk_loss_count)
 
         return attacker.last_battle_result
 

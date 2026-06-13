@@ -20,11 +20,14 @@ def character():
     db.session.commit()
     can_level_up = player.experience >= player.exp_to_next_level
     from services.vip_service import VipService
+    from services.achievement_service import AchievementService
     vip_level = VipService.get_active_vip_level(player)
+    achievement_points = AchievementService.get_points(player)
     return render_template("character.html",
                          player=player,
                          can_level_up=can_level_up,
                          vip_level=vip_level,
+                         achievement_points=achievement_points,
                          EquipmentInstance=EquipmentInstance,
                          PlayerModel=PlayerModel,
                          DataService=DataService,
@@ -169,18 +172,41 @@ def military_ranks():
 def achievements(category=None):
     from services.achievement_service import AchievementService
     player = current_user
-    AchievementService.check_all(player)
-    db.session.commit()
-    result, categories = AchievementService.get_all(player)
+    page = max(1, int(request.args.get('page', 1)))
+    per_page = max(1, int(request.args.get('per_page', 12)))
+    achievement_points = 0
+    achievement_bonuses = {}
+    try:
+        AchievementService.check_all(player)
+        db.session.commit()
+        result, categories = AchievementService.get_all(player)
+        achievement_points = AchievementService.get_points(player)
+        achievement_bonuses = AchievementService.get_bonuses(player)
+    except Exception:
+        db.session.rollback()
+        categories = DataService.get_achievement_categories()
+        result = {cat: [] for cat in categories}
+        achievement_points = 0
+        achievement_bonuses = {}
     if not category:
         category = categories[0] if categories else None
-    achievement_list = result.get(category, []) if category else []
+    all_achievements = result.get(category, []) if category else []
+    total = len(all_achievements)
+    total_pages = max(1, (total + per_page - 1) // per_page)
+    page = min(page, total_pages)
+    start = (page - 1) * per_page
+    achievement_list = all_achievements[start:start + per_page]
     return render_template("achievements.html",
                          player=player,
                          achievement_list=achievement_list,
                          categories=categories,
                          current_category=category,
-                         AchievementService=AchievementService)
+                         page=page,
+                         per_page=per_page,
+                         total_pages=total_pages,
+                         total=total,
+                         achievement_points=achievement_points,
+                         achievement_bonuses=achievement_bonuses)
 
 
 @player_bp.route("/achievement/<achievement_id>")
@@ -190,6 +216,8 @@ def achievement_detail(achievement_id):
     from services.data_service import DataService
     from models.player import Achievement
     player = current_user
+    page = max(1, int(request.args.get('page', 1)))
+    per_page = max(1, int(request.args.get('per_page', 12)))
     adef = DataService.get_achievements().get(achievement_id)
     if not adef:
         flash("成就不存在")
@@ -201,9 +229,9 @@ def achievement_detail(achievement_id):
         player_id=player.id, achievement_id=achievement_id).first()
     # Determine difficulty based on condition_value
     val = adef['condition_value']
-    if val <= 5:
+    if val <= 20:
         difficulty = '简单'
-    elif val <= 30:
+    elif val <= 100:
         difficulty = '普通'
     else:
         difficulty = '困难'
@@ -212,13 +240,16 @@ def achievement_detail(achievement_id):
         'name': adef['name'],
         'description': adef['description'],
         'reward': adef.get('reward', {}),
-        'category': adef.get('category', '成长'),
+        'points': adef.get('points', 0),
+        'category': AchievementService._normalize_category(adef),
         'difficulty': difficulty,
         'completed': is_completed,
         'claimed': is_claimed,
         'completed_at': completed_record.completed_at if completed_record else None,
         'progress': progress,
         'condition_value': val,
+        'page': page,
+        'per_page': per_page,
     }
     return render_template("achievement_detail.html",
                          player=player,
@@ -231,12 +262,14 @@ def claim_achievement(achievement_id):
     from services.achievement_service import AchievementService
     from services.data_service import DataService
     player = current_user
+    page = max(1, int(request.args.get('page', 1)))
+    per_page = max(1, int(request.args.get('per_page', 12)))
     success, msg = AchievementService.claim(player, achievement_id)
     flash(msg)
     db.session.commit()
     adef = DataService.get_achievements().get(achievement_id)
-    category = adef.get('category', '成长') if adef else '成长'
-    return redirect(url_for('player.achievements', category=category))
+    category = AchievementService._normalize_category(adef) if adef else '成长'
+    return redirect(url_for('player.achievements', category=category, page=page, per_page=per_page))
 
 
 # --- Equipment ---
