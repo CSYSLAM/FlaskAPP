@@ -273,9 +273,9 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endif %}
 {% elif monster.is_elite %}
 {% if monster.respawning %}
-{% if monster.is_copy %}【副本】{% endif %}{% if '【精】' not in monster.name %}【精】{% endif %}{{ monster.name }}({{ monster.level }}级精,复活中)
+{% if monster.is_copy %}【副本】{% endif %}{% if '【稀有】' in monster.description %}【稀有】{% elif '【精】' not in monster.name %}【精】{% endif %}{{ monster.name }}({{ monster.level }}级精,复活中)
 {% else %}
-<a href="{{ url_for('game.encounter') }}">{% if monster.is_copy %}【副本】{% endif %}{% if '【精】' not in monster.name %}【精】{% endif %}{{ monster.name }}({{ monster.level }}级精)</a>
+<a href="{{ url_for('game.encounter') }}">{% if monster.is_copy %}【副本】{% endif %}{% if '【稀有】' in monster.description %}【稀有】{% elif '【精】' not in monster.name %}【精】{% endif %}{{ monster.name }}({{ monster.level }}级精)</a>
 {% endif %}
 {% else %}
 <a href="{{ url_for('game.encounter') if monster.killable else url_for('game.view_npc', monster_id=monster.monster_id) }}">{% if monster.is_copy %}【副本】{% endif %}{{ monster.name }}</a>({{ monster.level }}级){% endif %}{% if not loop.last %}、{% endif %}

@@ -27,6 +27,22 @@
     活动<br/>
     ----------------<br/>
     活跃度:{{ total_points }}<br/>
+    {% if reward_tiers %}
+    ----------------<br/>
+    活跃度领奖<br/>
+    {% for tier in reward_tiers %}
+    {{ tier.tier_points }}活跃:
+    {% if tier.claimed %}
+    {{ tier.name }}(已领取)
+    {% elif tier.claimable %}
+    <a href="{{ url_for('activity.claim_activity_reward', tier_points=tier.tier_points) }}">{{ tier.name }}</a>(可领取)
+    {% else %}
+    {{ tier.name }}(未达成)
+    {% endif %}
+    <br/>
+    {% endfor %}
+    {% endif %}
+    ----------------<br/>
     <a href="{{ url_for('activity.sign_in_page') }}">每日签到</a><br/>
     <a href="{{ url_for('activity.rps_page') }}">每日猜拳</a><br/>
     <a href="{{ url_for('activity.smash_egg_page') }}">砸金蛋赢神器</a><br/>
@@ -36,7 +52,11 @@
     ----------------<br/>
     每日必做【活跃度】<br/>
     {% for item in daily_progress %}
+    {% if item.key == 'daily_tasks' %}
+    <a href="{{ url_for('activity.daily_tasks') }}">{{ item.name }}({{ item.done }}/{{ item.max }})</a>【+{{ item.points }}】{% if item.completed %}(已完成){% endif %}<br/>
+    {% else %}
     {{ item.name }}({{ item.done }}/{{ item.max }})【+{{ item.points }}】{% if item.completed %}(已完成){% endif %}<br/>
+    {% endif %}
     {% endfor %}
     <br/>
     <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>

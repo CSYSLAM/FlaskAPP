@@ -386,6 +386,9 @@ def view_npc(monster_id):
                              already_full=already_full,
                              npc_quests=npc_quests)
 
+    if '任务使者' in monster_id:
+        return redirect(url_for('activity.npc_daily_tasks'))
+
     # Check for quests from this NPC
     from services.quest_service import QuestService
     QuestService.update_talk_progress(player, monster_id)

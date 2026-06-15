@@ -11,11 +11,10 @@
         },
         "items": {
             "promo": [
-                {"id": "fenglei_pack", "name": "风雷珠特惠包", "price": 500, "item_id": "fenglei_pack"},
                 {"id": "legionwar_pack", "name": "军团战特惠包", "price": 2700, "item_id": "legionwar_pack"},
-                {"id": "big_hp_stone_pack", "name": "大血石特惠包", "price": 1200, "item_id": "big_hp_stone"},
-                {"id": "big_mp_stone_pack", "name": "大魔石特惠包", "price": 1200, "item_id": "big_mp_stone"},
-                {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn"}
+                {"id": "big_hp_stone_pack", "name": "大血石特惠包", "price": 1200, "item_id": "big_hp_stone_pack"},
+                {"id": "big_mp_stone_pack", "name": "大魔石特惠包", "price": 1200, "item_id": "big_mp_stone_pack"},
+                {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn_pack"}
             ],
             "other": [
                 {"id": "mi_yao_pack", "name": "秘药礼包", "price": 10, "item_id": "mi_yao_pack"},
@@ -24,6 +23,10 @@
                 {"id": "bag_expand", "name": "背包扩容卷", "price": 50, "item_id": "bag_expand"},
                 {"id": "rose", "name": "玫瑰花", "price": 10, "item_id": "rose"},
                 {"id": "small_horn", "name": "小喇叭", "price": 100, "item_id": "small_horn"},
+                {"id": "battle_flag_1", "name": "战场令旗(低级)", "price": 100, "item_id": "battle_flag_1"},
+                {"id": "battle_flag_2", "name": "战场令旗(中级)", "price": 200, "item_id": "battle_flag_2"},
+                {"id": "battle_flag_3", "name": "战场令旗(高级)", "price": 500, "item_id": "battle_flag_3"},
+                {"id": "battle_revive_lamp", "name": "战场续命灯", "price": 200, "item_id": "battle_revive_lamp"},
                 {"id": "potion_revive", "name": "续命灯", "price": 20, "item_id": "potion_revive"},
                 {"id": "kongming_lantern", "name": "孔明灯", "price": 10, "item_id": "kongming_lantern"},
                 {"id": "enhance_gem", "name": "强化宝玉", "price": 50, "item_id": "enhance_gem"},
@@ -31,15 +34,9 @@
                 {"id": "hunt_order", "name": "追杀令", "price": 200, "item_id": "hunt_order"},
                 {"id": "legion_rename", "name": "军团改名卡", "price": 5000, "item_id": "legion_rename"},
                 {"id": "wood_hammer", "name": "[活]木锤", "price": 10, "item_id": "wood_hammer"},
-                {"id": "fengyun_token", "name": "风云令", "price": 100, "item_id": "fengyun_token"},
-                {"id": "changan_token", "name": "长安令", "price": 50, "item_id": "changan_token"},
                 {"id": "lt_double_exp", "name": "副将双倍经验卡", "price": 50, "item_id": "lt_double_exp"},
-                {"id": "baiyu_token", "name": "白玉令", "price": 100, "item_id": "baiyu_token"},
                 {"id": "rename_card", "name": "角色改名卡", "price": 3000, "item_id": "rename_card"},
-                {"id": "change_country", "name": "角色转国令", "price": 10000, "item_id": "change_country"},
-                {"id": "enhance_lucky", "name": "强化小幸运符", "price": 4200, "item_id": "enhance_lucky"},
-                {"id": "dutong_token", "name": "都统令", "price": 20, "item_id": "dutong_token"},
-                {"id": "gender_change", "name": "角色变性卡", "price": 3000, "item_id": "gender_change"}
+                {"id": "enhance_lucky", "name": "强化小幸运符", "price": 4200, "item_id": "enhance_lucky"}
             ],
             "equip": [
                 {"id": "wedding_diamond_pack", "name": "新婚钻戒包", "price": 2000, "item_id": "wedding_diamond_pack"},
@@ -107,11 +104,10 @@
         },
         "items": {
             "promo": [
-                {"id": "fenglei_pack", "name": "风雷珠特惠包", "price": 500, "item_id": "fenglei_pack"},
                 {"id": "legionwar_pack", "name": "军团战特惠包", "price": 2700, "item_id": "legionwar_pack"},
-                {"id": "big_hp_stone_pack", "name": "大血石特惠包", "price": 1200, "item_id": "big_hp_stone"},
-                {"id": "big_mp_stone_pack", "name": "大魔石特惠包", "price": 1200, "item_id": "big_mp_stone"},
-                {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn"}
+                {"id": "big_hp_stone_pack", "name": "大血石特惠包", "price": 1200, "item_id": "big_hp_stone_pack"},
+                {"id": "big_mp_stone_pack", "name": "大魔石特惠包", "price": 1200, "item_id": "big_mp_stone_pack"},
+                {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn_pack"}
             ],
             "other": [
                 {"id": "mi_yao_pack", "name": "秘药礼包", "price": 10, "item_id": "mi_yao_pack"},
@@ -120,6 +116,10 @@
                 {"id": "bag_expand", "name": "背包扩容卷", "price": 50, "item_id": "bag_expand"},
                 {"id": "rose", "name": "玫瑰花", "price": 10, "item_id": "rose"},
                 {"id": "small_horn", "name": "小喇叭", "price": 100, "item_id": "small_horn"},
+                {"id": "battle_flag_1", "name": "战场令旗(低级)", "price": 100, "item_id": "battle_flag_1"},
+                {"id": "battle_flag_2", "name": "战场令旗(中级)", "price": 200, "item_id": "battle_flag_2"},
+                {"id": "battle_flag_3", "name": "战场令旗(高级)", "price": 500, "item_id": "battle_flag_3"},
+                {"id": "battle_revive_lamp", "name": "战场续命灯", "price": 200, "item_id": "battle_revive_lamp"},
                 {"id": "potion_revive", "name": "续命灯", "price": 20, "item_id": "potion_revive"},
                 {"id": "kongming_lantern", "name": "孔明灯", "price": 10, "item_id": "kongming_lantern"},
                 {"id": "enhance_gem", "name": "强化宝玉", "price": 50, "item_id": "enhance_gem"},
@@ -127,15 +127,9 @@
                 {"id": "hunt_order", "name": "追杀令", "price": 200, "item_id": "hunt_order"},
                 {"id": "legion_rename", "name": "军团改名卡", "price": 5000, "item_id": "legion_rename"},
                 {"id": "wood_hammer", "name": "[活]木锤", "price": 10, "item_id": "wood_hammer"},
-                {"id": "fengyun_token", "name": "风云令", "price": 100, "item_id": "fengyun_token"},
-                {"id": "changan_token", "name": "长安令", "price": 50, "item_id": "changan_token"},
                 {"id": "lt_double_exp", "name": "副将双倍经验卡", "price": 50, "item_id": "lt_double_exp"},
-                {"id": "baiyu_token", "name": "白玉令", "price": 100, "item_id": "baiyu_token"},
                 {"id": "rename_card", "name": "角色改名卡", "price": 3000, "item_id": "rename_card"},
-                {"id": "change_country", "name": "角色转国令", "price": 10000, "item_id": "change_country"},
-                {"id": "enhance_lucky", "name": "强化小幸运符", "price": 4200, "item_id": "enhance_lucky"},
-                {"id": "dutong_token", "name": "都统令", "price": 20, "item_id": "dutong_token"},
-                {"id": "gender_change", "name": "角色变性卡", "price": 3000, "item_id": "gender_change"}
+                {"id": "enhance_lucky", "name": "强化小幸运符", "price": 4200, "item_id": "enhance_lucky"}
             ],
             "equip": [
                 {"id": "wedding_diamond_pack", "name": "新婚钻戒包", "price": 2000, "item_id": "wedding_diamond_pack"},

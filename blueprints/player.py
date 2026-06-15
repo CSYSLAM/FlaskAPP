@@ -23,29 +23,136 @@ def character():
     from services.achievement_service import AchievementService
     vip_level = VipService.get_active_vip_level(player)
     achievement_points = AchievementService.get_points(player)
+    star_count = min(achievement_points // 2000, 5)
+
+    # Villa
+    villa_name = '我的山庄'
+    try:
+        from models.villa import Villa
+        villa = Villa.query.filter_by(owner_id=player.id).first()
+        if villa:
+            villa_name = villa.name
+    except Exception:
+        pass
+
+    # Spouse
+    spouse_name = None
+    try:
+        from models.relationship import Relationship
+        spouse_rel = Relationship.query.filter(
+            ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
+            Relationship.rel_type == 'spouse'
+        ).first()
+        if spouse_rel:
+            other_id = spouse_rel.get_other_player_id(player.id)
+            spouse_p = PlayerModel.query.get(other_id)
+            if spouse_p:
+                spouse_name = spouse_p.name
+    except Exception:
+        pass
+
+    # Hongyan / Zhiji counts and total fate
+    hongyan_count = 0
+    zhiji_count = 0
+    total_fate = 0
+    try:
+        from models.relationship import Relationship
+        hongyan_count = Relationship.count_relationships(player.id, 'hongyan')
+        zhiji_count = Relationship.count_relationships(player.id, 'zhiji')
+        rels = Relationship.get_relationships(player.id)
+        total_fate = sum(r.fate_value for r in rels)
+    except Exception:
+        pass
+
+    # Legion
+    legion_info = None
+    try:
+        from models.legion import LegionMember, Legion
+        lm = LegionMember.query.filter_by(player_id=player.id).first()
+        if lm:
+            legion = Legion.query.get(lm.legion_id)
+            if legion:
+                legion_info = {'name': legion.name, 'country': legion.country}
+    except Exception:
+        pass
+
+    # Party
+    party_info = None
+    try:
+        if player.party_id:
+            from models.party import Party
+            party = Party.query.get(player.party_id)
+            if party:
+                pcount = PlayerModel.query.filter_by(party_id=party.id).count()
+                party_info = {'name': party.name, 'count': pcount}
+    except Exception:
+        pass
+
     return render_template("character.html",
                          player=player,
                          can_level_up=can_level_up,
                          vip_level=vip_level,
                          achievement_points=achievement_points,
+                         star_count=star_count,
+                         villa_name=villa_name,
+                         spouse_name=spouse_name,
+                         hongyan_count=hongyan_count,
+                         zhiji_count=zhiji_count,
+                         total_fate=total_fate,
+                         legion_info=legion_info,
+                         party_info=party_info,
                          EquipmentInstance=EquipmentInstance,
                          PlayerModel=PlayerModel,
                          DataService=DataService,
                          now=datetime.now())
 
 
+@player_bp.route("/edit_signature", methods=["GET", "POST"])
+@login_required
+def edit_signature():
+    player = current_user
+    if request.method == "POST":
+        sig = request.form.get("signature", "").strip()[:100]
+        player.signature = sig
+        db.session.commit()
+        flash("签名已更新")
+        return redirect(url_for("player.character"))
+    return render_template("edit_signature.html", player=player)
+
+
+@player_bp.route("/marriage")
+@login_required
+def marriage():
+    player = current_user
+    spouse_name = None
+    try:
+        from models.relationship import Relationship
+        spouse_rel = Relationship.query.filter(
+            ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
+            Relationship.rel_type == 'spouse'
+        ).first()
+        if spouse_rel:
+            other_id = spouse_rel.get_other_player_id(player.id)
+            spouse_p = PlayerModel.query.get(other_id)
+            if spouse_p:
+                spouse_name = spouse_p.name
+    except Exception:
+        pass
+    return render_template("marriage.html", player=player, spouse_name=spouse_name)
+
+
 @player_bp.route("/status")
 @login_required
 def character_status():
     player = current_user
-    # Compute 精怪活跃 (based on elite kills)
     jingguai_activity = "低" if player.elite_kill_count < 10 else (
         "中" if player.elite_kill_count < 50 else "高")
-    # Compute social bonuses (friends + hongyan + zhiji count * multiplier)
     from services.social_service import SocialService
     social_attack_bonus, social_defense_bonus = SocialService.get_social_bonus(player)
-    # Get lieutenant passives
+
+    # Lieutenant passives with detailed stat bonuses
     lt_passives = []
+    lt_bonuses = {'max_health': 0, 'max_mana': 0, 'attack': 0, 'defense': 0, 'crit_rate': 0, 'dodge_rate': 0}
     try:
         from models.lieutenant import Lieutenant
         from services.lieutenant_service import LIEUTENANT_DATA
@@ -55,14 +162,39 @@ def character_status():
             passives = tier_data.get('passive_skills', [])
             for ps in passives:
                 lt_passives.append({'name': ps.get('name', ''), 'desc': ps.get('description', '')})
+                for stat in ['max_health', 'max_mana', 'attack', 'defense', 'crit_rate', 'dodge_rate']:
+                    lt_bonuses[stat] += ps.get(stat, 0)
     except Exception:
         pass
+
+    # Legion bonuses
+    legion_bonuses = {}
+    try:
+        from services.legion_service import LegionService
+        legion_bonuses = LegionService.get_legion_skill_bonuses(player)
+    except Exception:
+        pass
+
+    # Team bonus
+    team_exp_bonus = 0
+    try:
+        if player.party_id:
+            from models.party import Party
+            party = Party.query.get(player.party_id)
+            if party and party.member_count > 1:
+                team_exp_bonus = 5
+    except Exception:
+        pass
+
     return render_template("character_status.html",
                          player=player,
                          jingguai_activity=jingguai_activity,
                          social_attack_bonus=social_attack_bonus,
                          social_defense_bonus=social_defense_bonus,
-                         lt_passives=lt_passives)
+                         lt_passives=lt_passives,
+                         lt_bonuses=lt_bonuses,
+                         legion_bonuses=legion_bonuses,
+                         team_exp_bonus=team_exp_bonus)
 
 
 @player_bp.route("/toggle_reserve/<reserve_type>")
@@ -479,6 +611,8 @@ def use_item(item_id):
     elif is_bound == '0':
         bound_val = False
     success, msg = ItemService.use_item(player, item_id, is_bound=bound_val)
+    if msg == "RENAME_CARD_USED":
+        return redirect(url_for("player.rename_character"))
     flash(msg)
     return redirect(url_for("player.inventory", category=cat, page=page, per_page=per_page))
 
@@ -1022,6 +1156,30 @@ def unequip_title(title_type):
     else:
         flash("已卸下称号")
     return redirect(url_for('player.titles', title_type=title_type))
+
+
+@player_bp.route("/rename", methods=["GET", "POST"])
+@login_required
+def rename_character():
+    player = current_user
+    if request.method == "GET":
+        return render_template("rename_character.html", player=player)
+    new_name = request.form.get("new_name", "").strip()
+    if not new_name:
+        flash("请输入新名字")
+        return redirect(url_for("player.rename_character"))
+    if len(new_name) > 12:
+        flash("名字长度不能超过12个字符")
+        return redirect(url_for("player.rename_character"))
+    existing = DataService.get_player_by_username(new_name)
+    if existing and existing.id != player.id:
+        flash("该名字已被使用")
+        return redirect(url_for("player.rename_character"))
+    player.nickname = new_name
+    player.username = new_name
+    db.session.commit()
+    flash(f"改名成功，新名字：{new_name}")
+    return redirect(url_for("player.character"))
 
 
 from services import db

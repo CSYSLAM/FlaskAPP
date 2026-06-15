@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>角色</title>
     <style>
-    body { font-size: 16px; }
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
     a:link { color: #136ec2; text-decoration: none; }
     .buff-effect { color: #2e7d32; }
     .current-rank { color: #ff6600; }
-    .on { color: #2e7d32; }
-    .off { color: #888; }
     #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
     #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -19,32 +17,39 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
-    <a href="{{ url_for('player.equipment_list') }}">装备</a> <a href="{{ url_for('player.achievements') }}">成就</a> <a href="{{ url_for('player.skill_view') }}">技能</a> <a href="{{ url_for('player.inventory') }}">背包</a><br/>
+    <a href="{{ url_for('player.equipment_list') }}">装备</a>|<a href="{{ url_for('player.skill_view') }}">技能</a>|<a href="{{ url_for('player.titles') }}">称号</a>|<a href="{{ url_for('player.achievements') }}">成就</a>|<a href="{{ url_for('player.marriage') }}">婚姻</a><br/>
 
     <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" border="0" height="53" width="45"/><br/>
 
+    炫酷彩色昵称:<a href="{{ url_for('vip.index') }}">查看</a><br/>
+    姓名:{{ player.name }} 国家:{{ player.country }}<br/>
+    性别:{{ player.gender }} 职业:{{ player.player_class }}<br/>
+    <a href="{{ url_for('player.achievements') }}">成就</a>:{{ '★' * star_count }}{% if vip_level > 0 %}<img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="18" width="45"/>{% else %}<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="18" width="45"/>{% endif %}<br/>
+    山庄:<a href="{{ url_for('villa.index') }}">{{ villa_name }}</a><br/>
+    {% if player.gender == '女' %}夫君:{% else %}夫人:{% endif %}{% if spouse_name %}<a href="{{ url_for('player.view_player', username=spouse_name) }}">{{ spouse_name }}</a>{% else %}无{% endif %}<br/>
     {% set title_display = player.get_title_display() %}
     称号:{% if title_display %}<a href="{{ url_for('player.titles') }}">{{ title_display }}</a>{% else %}无{% endif %}<br/>
-    姓名:{{ player.name }}<br/>
-    ID:{{ player.player_uid }}<br/>
-    性别:{{ player.gender }} 职业:{{ player.player_class }} 国家:{{ player.country }}<br/>
-    徽章:{% if vip_level > 0 %}<a href="{{ url_for('vip.index') }}">VIP{{ vip_level }}</a><img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="20"/>{% else %}<a href="{{ url_for('vip.index') }}">VIP1</a><img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="20" style="opacity:0.3;filter:grayscale(1);"/>{% endif %}<br/>
     军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>
     荣誉:{{ player.honor }}<br/>
-    成就点:{{ achievement_points }}<br/>
     等级:{{ player.level }}<br/>
     经验:{{ player.experience }}/{{ player.exp_to_next_level }}<br/>
     生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
     魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
-    攻击:{{ player.effective_attack }}{% if player.rank_attack > 0 %}<span class="buff-effect">(+{{ player.rank_attack }}军衔)</span>{% endif %}<br/>
+    物攻:{{ player.effective_attack }}{% if player.rank_attack > 0 %}<span class="buff-effect">(+{{ player.rank_attack }}军衔)</span>{% endif %}<br/>
     防御:{{ player.effective_defense }}<br/>
     暴击率:{{ "%.1f"|format(player.effective_crit_rate * 100) }}% 闪避率:{{ "%.1f"|format(player.effective_dodge_rate * 100) }}%<br/>
+    <a href="{{ url_for('player.character_status') }}">状态</a>:无<br/>
+    队伍:{% if party_info %}<a href="{{ url_for('party.index') }}">{{ party_info.name }}({{ party_info.count }}人)</a>{% else %}无{% endif %}<br/>
+    军团:{% if legion_info %}<a href="{{ url_for('legion.index') }}">{{ legion_info.name }}({{ legion_info.country }})</a>{% else %}无{% endif %}<br/>
+    红颜:{{ hongyan_count }}知己:{{ zhiji_count }}<br/>
+    缘分值:{{ total_fate }}<br/>
+    {% if player.signature %}{{ player.signature }}{% else %}这个家伙很懒，没留下任何签名。{% endif %}<br/>
+    <a href="{{ url_for('player.edit_signature') }}">修改</a><br/>
 
     {% if can_level_up %}
     <a href="{{ url_for('player.level_up') }}">升级</a><br/>
     {% endif %}
 
-    <a href="{{ url_for('player.character_status') }}">状态</a><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>

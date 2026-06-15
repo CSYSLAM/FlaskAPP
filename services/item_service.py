@@ -20,9 +20,26 @@ class ItemService:
         if not item_data.get("is_usable", True):
             return False, "该物品不可使用"
 
+        usage_effect = item_data.get("usage_effect", {})
+
         # Block lieutenant-specific items from inventory use (must use from lieutenant interface)
-        if item_id.startswith('lt_') and item_id not in ('lt_potion_heal', 'lt_potion_mana'):
+        if item_id.startswith('lt_') and item_id not in ('lt_potion_heal', 'lt_potion_mana', 'lt_double_exp'):
             return False, "该物品需在副将界面使用"
+
+        # Special: enhance_lucky — set enhance bonus, prevent stacking
+        if usage_effect.get("special") == "enhance_lucky":
+            if player.enhance_bonus_rate and player.enhance_bonus_rate > 0:
+                return False, "强化幸运符效果已存在，不可叠加使用"
+            player.enhance_bonus_rate = 0.05
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, "下一次强化成功率+5%"
+
+        # Special: rename_card — redirect to rename flow
+        if usage_effect.get("special") == "rename":
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, "RENAME_CARD_USED"
 
         # VIP items use their own service
         if item_data.get("type") == "vip":
@@ -49,7 +66,6 @@ class ItemService:
                     req_name = req_data.get("name", req_id) if req_data else req_id
                     return False, f"需要{req_count}个{req_name}"
 
-        usage_effect = item_data.get("usage_effect", {})
         effect_text_parts = []
 
         # Process stat changes

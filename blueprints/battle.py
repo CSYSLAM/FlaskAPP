@@ -173,6 +173,9 @@ def continue_battle():
     player = current_user
     monster, error = BattleService.start_pve(player)
     if not monster:
+        if error and "被击败" in error:
+            flash(error)
+            return redirect(url_for("battle.revive"))
         flash(error or "这里没有怪物")
         return redirect(url_for("game.scene"))
     return redirect(url_for("battle.battle"))

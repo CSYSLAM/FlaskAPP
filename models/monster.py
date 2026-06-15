@@ -44,6 +44,7 @@ class Monster:
         self.last_skill = data.get("last_skill", "")
         self.respawning = False
         self.respawn_remaining = 0
+        self.guaranteed_items = data.get("guaranteed_items", [])
 
     @classmethod
     def _sanitize_monster_rarity_weights(cls, weights, is_elite):
@@ -129,7 +130,7 @@ class Monster:
                     "stars": stars,
                 }
 
-        for item_id, chance in self.drops["items"].items():
+        for item_id, chance in self.drops.get("items", {}).items():
             if random.random() < chance:
                 return ("item", item_id)
         return None

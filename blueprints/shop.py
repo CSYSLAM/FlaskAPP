@@ -25,7 +25,8 @@ def shop(shop_id='jinzu'):
                          player=player,
                          shop_data=shop_data,
                          shop_id=shop_id,
-                         all_shops=all_shops)
+                         all_shops=all_shops,
+                         DataService=DataService)
 
 
 @shop_bp.route("/buy/<shop_id>/<item_id>", methods=["POST"])
