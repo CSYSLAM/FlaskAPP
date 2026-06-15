@@ -2016,14 +2016,6 @@
     "currency": "yuanbao",
     "capacity": 0.1
   },
-  "hunt_token": {
-    "name": "追杀令",
-    "type": "material",
-    "description": "使用后可快速传送到仇人所在位置",
-    "price": 200,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
   "zhuhouling_1d": {
     "name": "诸侯令1天",
     "type": "vip",
@@ -3187,8 +3179,8 @@
   },
   "battle_revive_lamp": {
     "name": "战场续命灯",
-    "type": "material",
-    "description": "可在战场中复活",
+    "type": "other",
+    "description": "在战场被击败后15秒内使用可原地复活，否则传送出战场。普通续命灯在战场无效",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
@@ -3322,7 +3314,7 @@
   },
   "battle_flag_1": {
     "name": "战场令旗(低级)",
-    "type": "material",
+    "type": "other",
     "description": "进入低级战场的凭证",
     "price": 0,
     "sell_price": 0,
@@ -3331,7 +3323,7 @@
   },
   "battle_flag_2": {
     "name": "战场令旗(中级)",
-    "type": "material",
+    "type": "other",
     "description": "进入中级战场的凭证",
     "price": 0,
     "sell_price": 0,
@@ -3340,7 +3332,7 @@
   },
   "battle_flag_3": {
     "name": "战场令旗(高级)",
-    "type": "material",
+    "type": "other",
     "description": "进入高级战场的凭证",
     "price": 0,
     "sell_price": 0,
@@ -3593,29 +3585,42 @@
   "mi_yao_pack": {
     "name": "秘药礼包",
     "type": "consumable",
-    "description": "打开获得随机秘药",
+    "description": "打开获得随机属性秘药",
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
+    "usage_effect": {
+      "random_items": [
+        {"item_id": "pill_attack", "guaranteed_count": 0, "max_count": 1, "chance": 0.25},
+        {"item_id": "pill_defense", "guaranteed_count": 0, "max_count": 1, "chance": 0.25},
+        {"item_id": "pill_max_health", "guaranteed_count": 0, "max_count": 1, "chance": 0.25},
+        {"item_id": "pill_max_mana", "guaranteed_count": 0, "max_count": 1, "chance": 0.25}
+      ]
+    },
     "capacity": 0.1
   },
   "double_exp_card": {
     "name": "双倍经验卡",
     "type": "consumable",
-    "description": "使用后1小时内获得双倍经验",
+    "description": "使用后1小时内打怪经验增加1倍",
     "price": 0,
     "sell_price": 200,
     "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {"stat": "exp_rate", "rate": 1.0, "duration": 3600, "effect_name": "双倍经验卡"}
+      ]
+    },
     "capacity": 0.1
   },
   "shen_you_guo": {
     "name": "神游果",
-    "type": "consumable",
-    "description": "使用后立即完成当前挂机",
+    "type": "other",
+    "description": "进入副本的门票消耗品",
     "price": 0,
     "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
+    "is_usable": false,
+    "capacity": 0
   },
   "bag_expand": {
     "name": "背包扩容卷",
@@ -3649,38 +3654,47 @@
   },
   "hunt_order": {
     "name": "追杀令",
-    "type": "consumable",
-    "description": "使用后可直接传送到指定玩家位置",
+    "type": "other",
+    "description": "在仇人列表点击追杀消耗一个，可快速传送到仇人所在位置",
     "price": 0,
     "sell_price": 200,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "duke_token_1d": {
     "name": "诸侯令(1天)",
-    "type": "material",
+    "type": "vip",
     "description": "使用后获得1天诸侯身份",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
+    "usage_effect": {
+      "vip_days": 1
+    },
     "capacity": 0.1
   },
   "duke_token_7d": {
     "name": "诸侯令(7天)",
-    "type": "material",
+    "type": "vip",
     "description": "使用后获得7天诸侯身份",
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
+    "usage_effect": {
+      "vip_days": 7
+    },
     "capacity": 0.1
   },
   "duke_token_30d": {
     "name": "诸侯令(30天)",
-    "type": "material",
+    "type": "vip",
     "description": "使用后获得30天诸侯身份",
     "price": 0,
     "sell_price": 2000,
     "is_usable": true,
+    "usage_effect": {
+      "vip_days": 30
+    },
     "capacity": 0.1
   },
   "rose_seed": {
@@ -3704,24 +3718,76 @@
   "big_hp_stone": {
     "name": "大血石",
     "type": "consumable",
-    "description": "使用后永久增加最大生命值",
+    "description": "使用后增加20000点生命储备",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
-      "add_max_hp": 50
+      "stat_changes": {
+        "blood_reserve": 20000
+      },
+      "effect_descriptions": {
+        "blood_reserve": "生命储备+20000"
+      }
     },
     "capacity": 0.1
   },
   "big_mp_stone": {
     "name": "大魔石",
     "type": "consumable",
-    "description": "使用后永久增加最大法力值",
+    "description": "使用后增加20000点魔法储备",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
-      "add_max_mp": 50
+      "stat_changes": {
+        "mana_reserve": 20000
+      },
+      "effect_descriptions": {
+        "mana_reserve": "魔法储备+20000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "big_hp_stone_pack": {
+    "name": "大血石特惠包",
+    "type": "consumable",
+    "description": "打开后获得15个大血石",
+    "price": 0,
+    "sell_price": 1200,
+    "is_usable": true,
+    "usage_effect": {
+      "random_items": [
+        {"item_id": "big_hp_stone", "guaranteed_count": 15, "max_count": 15, "chance": 1.0}
+      ]
+    },
+    "capacity": 0.1
+  },
+  "big_mp_stone_pack": {
+    "name": "大魔石特惠包",
+    "type": "consumable",
+    "description": "打开后获得15个大魔石",
+    "price": 0,
+    "sell_price": 1200,
+    "is_usable": true,
+    "usage_effect": {
+      "random_items": [
+        {"item_id": "big_mp_stone", "guaranteed_count": 15, "max_count": 15, "chance": 1.0}
+      ]
+    },
+    "capacity": 0.1
+  },
+  "small_horn_pack": {
+    "name": "小喇叭特惠包",
+    "type": "consumable",
+    "description": "打开后获得15个小喇叭",
+    "price": 0,
+    "sell_price": 1200,
+    "is_usable": true,
+    "usage_effect": {
+      "random_items": [
+        {"item_id": "small_horn", "guaranteed_count": 15, "max_count": 15, "chance": 1.0}
+      ]
     },
     "capacity": 0.1
   },
@@ -4094,31 +4160,6 @@
     "is_usable": true,
     "capacity": 0.1
   },
-  "baiyu_token": {
-    "name": "白玉令",
-    "type": "material",
-    "description": "用于兑换白玉系列物品",
-    "price": 0,
-    "sell_price": 100,
-    "capacity": 0.1
-  },
-  "changan_token": {
-    "name": "长安令",
-    "type": "material",
-    "description": "用于兑换长安系列物品",
-    "price": 0,
-    "sell_price": 50,
-    "capacity": 0.1
-  },
-  "change_country": {
-    "name": "角色转国令",
-    "type": "material",
-    "description": "使用后可转换所属国家",
-    "price": 0,
-    "sell_price": 10000,
-    "is_usable": true,
-    "capacity": 0.1
-  },
   "chest_changan": {
     "name": "长安宝匣",
     "type": "chest",
@@ -4176,38 +4217,25 @@
     "sell_price": 200,
     "capacity": 0.1
   },
-  "dutong_token": {
-    "name": "都统令",
-    "type": "material",
-    "description": "用于兑换都统系列物品",
-    "price": 0,
-    "sell_price": 20,
-    "capacity": 0.1
-  },
   "enhance_lucky": {
     "name": "强化小幸运符",
-    "type": "material",
-    "description": "使用后提高强化成功率",
+    "type": "other",
+    "description": "使用后下一次强化成功率+5%，不可叠加",
     "price": 0,
     "sell_price": 4200,
     "is_usable": true,
+    "usage_effect": {
+      "special": "enhance_lucky"
+    },
     "capacity": 0.1
   },
   "fenglei_pack": {
-    "name": "风雷珠特惠包",
+    "name": "风雷珠特惠包(已下架)",
     "type": "consumable",
-    "description": "打开后获得风雷珠",
-    "price": 0,
-    "sell_price": 500,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "fengyun_token": {
-    "name": "风云令",
-    "type": "material",
-    "description": "用于兑换风云系列物品",
+    "description": "已下架物品，无法使用",
     "price": 0,
     "sell_price": 100,
+    "is_usable": false,
     "capacity": 0.1
   },
   "friend_wine": {
@@ -4218,22 +4246,13 @@
     "sell_price": 200,
     "capacity": 0.1
   },
-  "gender_change": {
-    "name": "角色变性卡",
-    "type": "material",
-    "description": "使用后可变更角色性别",
-    "price": 0,
-    "sell_price": 3000,
-    "is_usable": true,
-    "capacity": 0.1
-  },
   "kongming_lantern": {
     "name": "孔明灯",
-    "type": "consumable",
-    "description": "使用后发送全服公告",
+    "type": "other",
+    "description": "传送时消耗的道具，非VIP传送需消耗一个孔明灯",
     "price": 0,
     "sell_price": 10,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "legion_rename": {
@@ -4248,19 +4267,32 @@
   "legionwar_pack": {
     "name": "军团战特惠包",
     "type": "consumable",
-    "description": "打开后获得军团战相关物品",
+    "description": "打开后获得15个战场令旗(低级)+10个战场令旗(中级)+5个战场令旗(高级)+10个战场续命灯",
     "price": 0,
     "sell_price": 2700,
     "is_usable": true,
+    "usage_effect": {
+      "random_items": [
+        {"item_id": "battle_flag_1", "guaranteed_count": 15, "max_count": 15, "chance": 1.0},
+        {"item_id": "battle_flag_2", "guaranteed_count": 10, "max_count": 10, "chance": 1.0},
+        {"item_id": "battle_flag_3", "guaranteed_count": 5, "max_count": 5, "chance": 1.0},
+        {"item_id": "battle_revive_lamp", "guaranteed_count": 10, "max_count": 10, "chance": 1.0}
+      ]
+    },
     "capacity": 0.1
   },
   "lt_double_exp": {
     "name": "副将双倍经验卡",
-    "type": "consumable",
-    "description": "使用后副将获得双倍经验",
+    "type": "other",
+    "description": "使用后1小时内副将出战杀怪经验翻倍",
     "price": 0,
     "sell_price": 50,
     "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {"stat": "lt_exp_rate", "value": 0, "rate": 1.0, "duration": 3600}
+      ]
+    },
     "capacity": 0.1
   },
   "lt_forget_page": {
@@ -4291,11 +4323,14 @@
   },
   "rename_card": {
     "name": "角色改名卡",
-    "type": "material",
-    "description": "使用后可更改角色名称",
+    "type": "other",
+    "description": "使用后可修改角色姓名",
     "price": 0,
     "sell_price": 3000,
     "is_usable": true,
+    "usage_effect": {
+      "special": "rename"
+    },
     "capacity": 0.1
   },
   "return_scroll": {
@@ -4323,6 +4358,30 @@
     "price": 0,
     "sell_price": 10,
     "is_usable": true,
+    "capacity": 0.1
+  },
+  "kunlun_illustration": {
+    "name": "昆仑游历图鉴",
+    "type": "material",
+    "description": "记录昆仑山脉风物的珍贵图鉴，击败昆仑稀有精怪可获得",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix昆仑"
+    },
+    "capacity": 0.1
+  },
+  "shennong_illustration": {
+    "name": "神农游历图鉴",
+    "type": "material",
+    "description": "记录神农架风物的珍贵图鉴，击败神农稀有精怪可获得",
+    "price": 0,
+    "sell_price": 500,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix神农"
+    },
     "capacity": 0.1
   }
 }

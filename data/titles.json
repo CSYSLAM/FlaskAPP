@@ -77,6 +77,18 @@
       "stars": 5,
       "description": "热血沸腾的传奇",
       "pair_id": "suffix忠义之魂"
+    },
+    "prefix昆仑": {
+      "name": "昆仑的",
+      "stars": 3,
+      "description": "踏遍昆仑山脉的游历者",
+      "pair_id": null
+    },
+    "prefix神农": {
+      "name": "神农的",
+      "stars": 3,
+      "description": "踏遍神农架的游历者",
+      "pair_id": null
     }
   },
   "suffixes": {

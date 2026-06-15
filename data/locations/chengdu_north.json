@@ -5,7 +5,8 @@
       "name": "成都北界",
       "exits": {
         "north": "hanzhong_south.汉中南界",
-        "west": "chengdu_north.九寨沟"
+        "west": "chengdu_north.九寨沟",
+        "east": "kunlun.太平村"
       }
     },
     "九寨沟": {

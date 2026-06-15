@@ -37,7 +37,8 @@
     {% endfor %}<br/>
     ----------------<br/>
     {% for item in shop_data['items'] %}
-    {{ item['name'] }}|{{ item['price'] }}{% if shop_data['currency'] == 'yuanbao' %}元宝{% elif shop_data['currency'] == 'jinzu' %}金珠{% elif shop_data['currency'] == 'points' %}积分{% else %}银两{% endif %}<br/>
+    {% set item_detail = DataService.get_item(item.get('item_id', item['id'])) %}
+    <span title="{% if item_detail %}{{ item_detail.get('description', '') }}{% if item_detail.get('usage_effect', {}).get('random_items') %}&#10;内含:{% for ri in item_detail['usage_effect']['random_items'] %}{% set ri_data = DataService.get_item(ri['item_id']) %}{{ ri_data.get('name', ri['item_id']) if ri_data else ri['item_id'] }}x{{ ri['guaranteed_count'] }}{% if not loop.last %}、{% endif %}{% endfor %}{% endif %}{% endif %}">{{ item['name'] }}</span>|{{ item['price'] }}{% if shop_data['currency'] == 'yuanbao' %}元宝{% elif shop_data['currency'] == 'jinzu' %}金珠{% elif shop_data['currency'] == 'points' %}积分{% else %}银两{% endif %}<br/>
     <form action="{{ url_for('shop.buy_item', shop_id=shop_id, item_id=item['id'], tab=shop_data['tab']) }}" method="post" style="display:inline;">
         <input type="text" name="quantity" value="1" size="3" maxlength="5">
         <input type="submit" value="购买">

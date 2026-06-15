@@ -13,10 +13,12 @@ def index():
     player = current_user
     daily_progress = ActivityService.get_daily_progress(player)
     total_points = ActivityService.get_total_activity_points(player)
+    reward_tiers = ActivityService.get_reward_tiers_status(player)
     return render_template("activities.html",
                          player=player,
                          daily_progress=daily_progress,
-                         total_points=total_points)
+                         total_points=total_points,
+                         reward_tiers=reward_tiers)
 
 
 # --- Daily Sign In ---
@@ -204,3 +206,93 @@ def do_lucky_exchange(item_id):
     success, msg = ActivityService.exchange_lucky_coin(player, item_id)
     flash(msg)
     return redirect(url_for('activity.lucky_exchange'))
+
+
+# --- Activity Points Reward Claim ---
+
+@activity_bp.route("/claim_activity_reward/<int:tier_points>")
+@login_required
+def claim_activity_reward(tier_points):
+    player = current_user
+    success, msg = ActivityService.claim_activity_reward(player, tier_points)
+    flash(msg)
+    return redirect(url_for('activity.index'))
+
+
+# --- Daily NPC Tasks (任务使者) ---
+
+# Activity page entry: shows task list with teleport links
+@activity_bp.route("/daily_tasks")
+@login_required
+def daily_tasks():
+    player = current_user
+    tasks = ActivityService.get_daily_tasks_status(player)
+    return render_template("daily_tasks.html", player=player, tasks=tasks)
+
+
+# NPC task envoy page: shows tasks with accept/progress/complete
+@activity_bp.route("/npc_daily_tasks")
+@login_required
+def npc_daily_tasks():
+    player = current_user
+    tasks = ActivityService.get_daily_tasks_status(player)
+    return render_template("npc_daily_tasks.html", player=player, tasks=tasks)
+
+
+# Task detail page: accept/progress/complete a single task
+@activity_bp.route("/daily_task_detail/<task_id>")
+@login_required
+def daily_task_detail(task_id):
+    player = current_user
+    tasks = ActivityService.get_daily_tasks_status(player)
+    task = None
+    for t in tasks:
+        if t['id'] == task_id:
+            task = t
+            break
+    if not task:
+        flash("无效的任务")
+        return redirect(url_for('activity.npc_daily_tasks'))
+    return render_template("daily_task_detail.html", player=player, task=task)
+
+
+@activity_bp.route("/accept_daily_task/<task_id>")
+@login_required
+def accept_daily_task(task_id):
+    player = current_user
+    success, msg = ActivityService.accept_daily_task(player, task_id)
+    flash(msg)
+    return redirect(url_for('activity.daily_task_detail', task_id=task_id))
+
+
+@activity_bp.route("/complete_daily_task/<task_id>")
+@login_required
+def complete_daily_task(task_id):
+    player = current_user
+    success, msg = ActivityService.complete_daily_task(player, task_id)
+    flash(msg)
+    return redirect(url_for('activity.daily_task_detail', task_id=task_id))
+
+
+# Teleport to task NPC (任务使者 in player's country center)
+@activity_bp.route("/teleport_to_task_npc/<task_id>")
+@login_required
+def teleport_to_task_npc(task_id):
+    player = current_user
+    location = ActivityService.get_task_npc_location(player)
+    player.current_location = location
+    from services import db
+    db.session.commit()
+    return redirect(url_for('game.scene'))
+
+
+# Teleport to task target location (where target monsters are)
+@activity_bp.route("/teleport_to_target/<task_id>")
+@login_required
+def teleport_to_target(task_id):
+    player = current_user
+    location = ActivityService.get_task_target_location(player)
+    player.current_location = location
+    from services import db
+    db.session.commit()
+    return redirect(url_for('game.scene'))

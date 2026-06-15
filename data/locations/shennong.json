@@ -1,0 +1,437 @@
+{
+  "name": "神农架",
+  "scenes": {
+    "碎石广场": {
+      "name": "碎石广场",
+      "exits": {
+        "west": "shennong.神农茶屋",
+        "south": "shennong.密林路"
+      },
+      "npcs": [
+        "npc_shennong_神农使者副本",
+        "npc_shennong_医师"
+      ]
+    },
+    "密林路": {
+      "name": "密林路",
+      "exits": {
+        "north": "shennong.碎石广场",
+        "south": "shennong.林间路"
+      }
+    },
+    "林间路": {
+      "name": "林间路",
+      "exits": {
+        "north": "shennong.密林路",
+        "west": "shennong.西侧路",
+        "east": "shennong.东侧路"
+      }
+    },
+    "东侧路": {
+      "name": "东侧路",
+      "exits": {
+        "west": "shennong.林间路",
+        "east": "shennong.松树林"
+      }
+    },
+    "松树林": {
+      "name": "松树林",
+      "exits": {
+        "west": "shennong.东侧路",
+        "east": "shennong.松果地"
+      }
+    },
+    "松果地": {
+      "name": "松果地",
+      "exits": {
+        "west": "shennong.松树林",
+        "east": "shennong.松柏林"
+      },
+      "monsters": [
+        "monster_shennong_松针鼠"
+      ]
+    },
+    "松柏林": {
+      "name": "松柏林",
+      "exits": {
+        "west": "shennong.松果地",
+        "south": "shennong.巨龟岩"
+      }
+    },
+    "巨龟岩": {
+      "name": "巨龟岩",
+      "exits": {
+        "north": "shennong.松柏林",
+        "south": "shennong.松柏镇"
+      },
+      "monsters": [
+        "monster_shennong_森林巨龟"
+      ]
+    },
+    "松柏镇": {
+      "name": "松柏镇",
+      "exits": {
+        "north": "shennong.巨龟岩",
+        "south": "shennong.红霞林"
+      }
+    },
+    "红霞林": {
+      "name": "红霞林",
+      "exits": {
+        "north": "shennong.松柏镇",
+        "south": "shennong.落叶谷"
+      },
+      "monsters": [
+        "monster_shennong_遮光巨树"
+      ]
+    },
+    "落叶谷": {
+      "name": "落叶谷",
+      "exits": {
+        "north": "shennong.红霞林",
+        "south": "shennong.小药"
+      }
+    },
+    "小药": {
+      "name": "小药",
+      "exits": {
+        "north": "shennong.落叶谷",
+        "south": "shennong.银松径"
+      }
+    },
+    "银松径": {
+      "name": "银松径",
+      "exits": {
+        "north": "shennong.小药",
+        "south": "shennong.野狼坡"
+      },
+      "monsters": [
+        "monster_shennong_九尾狐"
+      ]
+    },
+    "野狼坡": {
+      "name": "野狼坡",
+      "exits": {
+        "north": "shennong.银松径",
+        "south": "shennong.香溪河"
+      },
+      "monsters": [
+        "monster_shennong_坡脚狼"
+      ]
+    },
+    "香溪河": {
+      "name": "香溪河",
+      "exits": {
+        "north": "shennong.野狼坡",
+        "south": "shennong.向阳路"
+      }
+    },
+    "向阳路": {
+      "name": "向阳路",
+      "exits": {
+        "north": "shennong.香溪河",
+        "west": "shennong.盘龙谷"
+      }
+    },
+    "盘龙谷": {
+      "name": "盘龙谷",
+      "exits": {
+        "east": "shennong.向阳路",
+        "west": "shennong.木鱼村"
+      },
+      "monsters": [
+        "monster_shennong_盘岩龙"
+      ]
+    },
+    "木鱼村": {
+      "name": "木鱼村",
+      "exits": {
+        "east": "shennong.盘龙谷",
+        "west": "shennong.木鱼林"
+      }
+    },
+    "木鱼林": {
+      "name": "木鱼林",
+      "exits": {
+        "east": "shennong.木鱼村",
+        "west": "shennong.怒水河"
+      }
+    },
+    "怒水河": {
+      "name": "怒水河",
+      "exits": {
+        "east": "shennong.木鱼林",
+        "west": "shennong.大吊桥"
+      }
+    },
+    "大吊桥": {
+      "name": "大吊桥",
+      "exits": {
+        "east": "shennong.怒水河",
+        "west": "shennong.龙泉瀑_南"
+      }
+    },
+    "龙泉瀑_南": {
+      "name": "龙泉瀑",
+      "exits": {
+        "east": "shennong.大吊桥",
+        "west": "shennong.野人路",
+        "north": "shennong.棕峡峡谷"
+      },
+      "monsters": [
+        "monster_shennong_巨蟒"
+      ]
+    },
+    "棕峡峡谷": {
+      "name": "棕峡峡谷",
+      "exits": {
+        "south": "shennong.龙泉瀑_南",
+        "north": "shennong.冷热洞"
+      }
+    },
+    "野人路": {
+      "name": "野人路",
+      "exits": {
+        "east": "shennong.龙泉瀑_南",
+        "west": "shennong.野人洞"
+      }
+    },
+    "野人洞": {
+      "name": "野人洞",
+      "exits": {
+        "east": "shennong.野人路",
+        "west": "shennong.野人林"
+      },
+      "monsters": [
+        "monster_shennong_野人"
+      ]
+    },
+    "野人林": {
+      "name": "野人林",
+      "exits": {
+        "east": "shennong.野人洞",
+        "north": "shennong.野人谷"
+      },
+      "monsters": [
+        "monster_shennong_野人头目"
+      ]
+    },
+    "野人谷": {
+      "name": "野人谷",
+      "exits": {
+        "south": "shennong.野人林",
+        "north": "shennong.黑风口"
+      }
+    },
+    "黑风口": {
+      "name": "黑风口",
+      "exits": {
+        "south": "shennong.野人谷",
+        "north": "shennong.红坪镇"
+      },
+      "monsters": [
+        "monster_shennong_黑风野猪"
+      ]
+    },
+    "红坪镇": {
+      "name": "红坪镇",
+      "exits": {
+        "south": "shennong.黑风口",
+        "north": "shennong.红月森"
+      },
+      "monsters": [
+        "monster_shennong_红狐_稀有"
+      ]
+    },
+    "红月森": {
+      "name": "红月森",
+      "exits": {
+        "south": "shennong.红坪镇",
+        "north": "shennong.避日谷"
+      },
+      "monsters": [
+        "monster_shennong_红狐"
+      ]
+    },
+    "避日谷": {
+      "name": "避日谷",
+      "exits": {
+        "south": "shennong.红月森",
+        "north": "shennong.下谷坪"
+      }
+    },
+    "下谷坪": {
+      "name": "下谷坪",
+      "exits": {
+        "south": "shennong.避日谷",
+        "north": "shennong.柳木林"
+      }
+    },
+    "柳木林": {
+      "name": "柳木林",
+      "exits": {
+        "south": "shennong.下谷坪",
+        "north": "shennong.潮水洞"
+      }
+    },
+    "潮水洞": {
+      "name": "潮水洞",
+      "exits": {
+        "south": "shennong.柳木林",
+        "north": "shennong.潮水河"
+      },
+      "monsters": [
+        "monster_shennong_潮水龟"
+      ]
+    },
+    "潮水河": {
+      "name": "潮水河",
+      "exits": {
+        "south": "shennong.潮水洞",
+        "north": "shennong.潮水河岸"
+      }
+    },
+    "潮水河岸": {
+      "name": "潮水河岸",
+      "exits": {
+        "south": "shennong.潮水河",
+        "north": "shennong.潮水河口"
+      }
+    },
+    "潮水河口": {
+      "name": "潮水河口",
+      "exits": {
+        "south": "shennong.潮水河岸",
+        "east": "shennong.清泉畔"
+      }
+    },
+    "清泉畔": {
+      "name": "清泉畔",
+      "exits": {
+        "west": "shennong.潮水河口",
+        "east": "shennong.鲜花小径"
+      }
+    },
+    "鲜花小径": {
+      "name": "鲜花小径",
+      "exits": {
+        "west": "shennong.清泉畔",
+        "east": "shennong.浅草坪"
+      }
+    },
+    "浅草坪": {
+      "name": "浅草坪",
+      "exits": {
+        "west": "shennong.鲜花小径",
+        "east": "shennong.西侧路"
+      },
+      "monsters": [
+        "monster_shennong_大脚怪"
+      ]
+    },
+    "西侧路": {
+      "name": "西侧路",
+      "exits": {
+        "west": "shennong.浅草坪",
+        "east": "shennong.林间路"
+      }
+    },
+    "冷热洞": {
+      "name": "冷热洞",
+      "exits": {
+        "south": "shennong.棕峡峡谷",
+        "west": "shennong.一线天",
+        "east": "shennong.宋洛乡",
+        "north": "shennong.龙泉瀑_北"
+      }
+    },
+    "龙泉瀑_北": {
+      "name": "龙泉瀑",
+      "exits": {
+        "south": "shennong.冷热洞"
+      }
+    },
+    "一线天": {
+      "name": "一线天",
+      "exits": {
+        "east": "shennong.冷热洞",
+        "north": "shennong.清泉洞"
+      }
+    },
+    "清泉洞": {
+      "name": "清泉洞",
+      "exits": {
+        "south": "shennong.一线天",
+        "north": "shennong.石板桥"
+      }
+    },
+    "石板桥": {
+      "name": "石板桥",
+      "exits": {
+        "south": "shennong.清泉洞",
+        "west": "shennong.燕子洞",
+        "east": "shennong.神农洞"
+      }
+    },
+    "燕子洞": {
+      "name": "燕子洞",
+      "exits": {
+        "east": "shennong.石板桥"
+      },
+      "monsters": [
+        "monster_shennong_穷奇"
+      ]
+    },
+    "神农洞": {
+      "name": "神农洞",
+      "exits": {
+        "west": "shennong.石板桥",
+        "east": "shennong.九湖乡"
+      },
+      "monsters": [
+        "monster_shennong_炎帝之影"
+      ]
+    },
+    "九湖乡": {
+      "name": "九湖乡",
+      "exits": {
+        "west": "shennong.神农洞",
+        "east": "shennong.灵草谷",
+        "south": "shennong.大九湖"
+      }
+    },
+    "灵草谷": {
+      "name": "灵草谷",
+      "exits": {
+        "west": "shennong.九湖乡"
+      },
+      "monsters": [
+        "monster_shennong_刑天之影",
+        "monster_shennong_雪狼王"
+      ]
+    },
+    "大九湖": {
+      "name": "大九湖",
+      "exits": {
+        "north": "shennong.九湖乡",
+        "south": "shennong.宋洛乡"
+      },
+      "monsters": [
+        "monster_shennong_龙蛇"
+      ]
+    },
+    "宋洛乡": {
+      "name": "宋洛乡",
+      "exits": {
+        "north": "shennong.大九湖",
+        "west": "shennong.冷热洞"
+      }
+    },
+    "神农茶屋": {
+      "name": "神农茶屋",
+      "exits": {
+        "east": "shennong.碎石广场"
+      }
+    }
+  }
+}

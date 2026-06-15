@@ -88,7 +88,7 @@
     已阵亡<br/>
     {% endif %}
 
-    成就:<br/>
+    成就:{% if target_vip_level > 0 %}<img src="{{ url_for('static', filename='vip/vip_' ~ target_vip_level ~ '.jpg') }}" border="0" height="18" width="45"/>{% else %}<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="18" width="45"/>{% endif %}<br/>
 
     {% if target_player.homestead_name %}
     山庄:<a href="{{ url_for('villa.view_villa', villa_id=target_player.id) }}">{{ target_player.homestead_name }}</a><br/>

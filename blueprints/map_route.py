@@ -48,6 +48,23 @@ def teleport():
     return render_template("map_teleport.html", player=player, msg=msg, copy_dungeons=DataService.get_copy_dungeons())
 
 
+@map_bp.route("/teleport_go/<target>")
+@login_required
+def teleport_go(target):
+    """传送链接点击 - 直接传送"""
+    player = current_user
+    location = DataService.get_location(player.current_location)
+    if location and location.get('is_copy_map'):
+        flash("副本内无法使用传送，请先放弃副本再离开")
+        return redirect(url_for('game.scene'))
+
+    result = MapService.teleport(player, target)
+    flash(result['msg'])
+    if result['success']:
+        return redirect(url_for('game.scene'))
+    return redirect(url_for('map.teleport'))
+
+
 @map_bp.route("/town")
 @login_required
 def town():

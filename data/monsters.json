@@ -18166,5 +18166,1868 @@
       },
       "experience": 40
     }
+  },
+  "npc_beiping_center_任务使者": {
+    "name": "任务使者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "任务使者",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {},
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_小白兔": {
+    "name": "小白兔",
+    "level": 53,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "小白兔",
+    "base_stats": {
+      "health": 3180,
+      "mana": 795,
+      "attack": 212,
+      "defense": 159,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 35,
+        "max": 80
+      },
+      "experience": 795
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_灰毛熊": {
+    "name": "灰毛熊",
+    "level": 54,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "灰毛熊",
+    "base_stats": {
+      "health": 3240,
+      "mana": 810,
+      "attack": 216,
+      "defense": 162,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 36,
+        "max": 82
+      },
+      "experience": 810
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_雪鹞": {
+    "name": "雪鹞",
+    "level": 55,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "雪鹞",
+    "base_stats": {
+      "health": 3300,
+      "mana": 825,
+      "attack": 220,
+      "defense": 165,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 37,
+        "max": 85
+      },
+      "experience": 825
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_五毒蟾蜍": {
+    "name": "五毒蟾蜍",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "五毒蟾蜍",
+    "base_stats": {
+      "health": 3360,
+      "mana": 840,
+      "attack": 224,
+      "defense": 168,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 38,
+        "max": 88
+      },
+      "experience": 840
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_灰岩巨蟒": {
+    "name": "灰岩巨蟒",
+    "level": 57,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "灰岩巨蟒",
+    "base_stats": {
+      "health": 3420,
+      "mana": 855,
+      "attack": 228,
+      "defense": 171,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 39,
+        "max": 90
+      },
+      "experience": 855
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_小山精": {
+    "name": "小山精",
+    "level": 58,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "小山精",
+    "base_stats": {
+      "health": 3480,
+      "mana": 870,
+      "attack": 232,
+      "defense": 174,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 92
+      },
+      "experience": 870
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_迷幻草": {
+    "name": "迷幻草",
+    "level": 59,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "迷幻草",
+    "base_stats": {
+      "health": 3540,
+      "mana": 885,
+      "attack": 236,
+      "defense": 177,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 41,
+        "max": 95
+      },
+      "experience": 885
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_枯萎之藤": {
+    "name": "枯萎之藤",
+    "level": 60,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "枯萎之藤",
+    "base_stats": {
+      "health": 3600,
+      "mana": 900,
+      "attack": 240,
+      "defense": 180,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.03
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 900
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_kunlun_妖女树": {
+    "name": "妖女树",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】妖女树",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1150,
+      "attack": 275,
+      "defense": 210,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_赢鱼": {
+    "name": "赢鱼",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】赢鱼",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1150,
+      "attack": 275,
+      "defense": 210,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_白梦蝶": {
+    "name": "白梦蝶",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】白梦蝶",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1150,
+      "attack": 275,
+      "defense": 210,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_昆仑仙道": {
+    "name": "昆仑仙道",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】昆仑仙道",
+    "base_stats": {
+      "health": 4700,
+      "mana": 1175,
+      "attack": 280,
+      "defense": 215,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_金倪兽": {
+    "name": "金倪兽",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】金倪兽",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1150,
+      "attack": 275,
+      "defense": 210,
+      "crit_rate": 0.09,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_幻影狼": {
+    "name": "幻影狼",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】幻影狼",
+    "base_stats": {
+      "health": 4500,
+      "mana": 1125,
+      "attack": 285,
+      "defense": 200,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.07
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_海霆蛇": {
+    "name": "海霆蛇",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】海霆蛇",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1150,
+      "attack": 280,
+      "defense": 210,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_大白兔": {
+    "name": "大白兔",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】大白兔",
+    "base_stats": {
+      "health": 4500,
+      "mana": 1125,
+      "attack": 270,
+      "defense": 205,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_mianbu": 0.25,
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_九色神鹿": {
+    "name": "九色神鹿",
+    "level": 62,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【圣兽】九色神鹿",
+    "base_stats": {
+      "health": 5200,
+      "mana": 1300,
+      "attack": 310,
+      "defense": 230,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "qisheng_dao",
+        "artifact_drop_rate": 1.0
+      },
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
+      "money": {
+        "min": 55,
+        "max": 120
+      },
+      "experience": 1500
+    },
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_火凤凰": {
+    "name": "火凤凰",
+    "level": 62,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【圣兽】火凤凰",
+    "base_stats": {
+      "health": 5200,
+      "mana": 1300,
+      "attack": 310,
+      "defense": 230,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "qisheng_dao",
+        "artifact_drop_rate": 1.0
+      },
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
+      "money": {
+        "min": 55,
+        "max": 120
+      },
+      "experience": 1500
+    },
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "monster_kunlun_精卫": {
+    "name": "精卫",
+    "level": 62,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【圣兽】精卫",
+    "base_stats": {
+      "health": 5200,
+      "mana": 1300,
+      "attack": 310,
+      "defense": 230,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        },
+        "artifact_template": "qinghong_jian",
+        "artifact_drop_rate": 1.0
+      },
+      "items": {
+        "craft_yingpi": 0.33,
+        "craft_mianbu": 0.33,
+        "craft_chenxiangmu": 0.33,
+        "craft_heitiekuang": 0.33
+      },
+      "money": {
+        "min": 55,
+        "max": 120
+      },
+      "experience": 1500
+    },
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["kunlun_illustration"],
+    "max_health": 100
+  },
+  "npc_kunlun_昆仑车夫": {
+    "name": "昆仑车夫",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "昆仑车夫",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_kunlun_昆仑使者副本": {
+    "name": "昆仑使者",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "昆仑使者【副本】",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_kunlun_医师": {
+    "name": "医师",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "医师",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_松针鼠": {
+    "name": "松针鼠",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "松针鼠",
+    "base_stats": {
+      "health": 2800,
+      "mana": 700,
+      "attack": 180,
+      "defense": 140,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_huangyangmu": 0.3, "craft_heitiekuang": 0.2},
+      "money": {"min": 30, "max": 60},
+      "experience": 600
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_森林巨龟": {
+    "name": "森林巨龟",
+    "level": 57,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "森林巨龟",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 190,
+      "defense": 200,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.03
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_yingpi": 0.3, "craft_chenxiangmu": 0.2},
+      "money": {"min": 35, "max": 70},
+      "experience": 650
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_遮光巨树": {
+    "name": "遮光巨树",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】遮光巨树",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1150,
+      "attack": 275,
+      "defense": 210,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["heilong_helmet_54", "heilong_armor_53", "fengluan_helmet_54", "fengluan_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_九尾狐": {
+    "name": "九尾狐",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】九尾狐",
+    "base_stats": {
+      "health": 4500,
+      "mana": 1200,
+      "attack": 280,
+      "defense": 180,
+      "crit_rate": 0.10,
+      "dodge_rate": 0.08
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["yanling_helmet_54", "yanling_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_坡脚狼": {
+    "name": "坡脚狼",
+    "level": 59,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "坡脚狼",
+    "base_stats": {
+      "health": 3400,
+      "mana": 850,
+      "attack": 220,
+      "defense": 160,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_yingpi": 0.3, "craft_mianbu": 0.2},
+      "money": {"min": 40, "max": 80},
+      "experience": 700
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_盘岩龙": {
+    "name": "盘岩龙",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】盘岩龙",
+    "base_stats": {
+      "health": 4800,
+      "mana": 1100,
+      "attack": 290,
+      "defense": 220,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["heilong_helmet_54", "heilong_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_巨蟒": {
+    "name": "巨蟒",
+    "level": 61,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "巨蟒",
+    "base_stats": {
+      "health": 3600,
+      "mana": 900,
+      "attack": 240,
+      "defense": 170,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_yingpi": 0.3, "craft_chenxiangmu": 0.2},
+      "money": {"min": 45, "max": 90},
+      "experience": 750
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_野人": {
+    "name": "野人",
+    "level": 60,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "野人",
+    "base_stats": {
+      "health": 3500,
+      "mana": 850,
+      "attack": 230,
+      "defense": 180,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_yingpi": 0.3, "craft_heitiekuang": 0.2},
+      "money": {"min": 40, "max": 85},
+      "experience": 700
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_野人头目": {
+    "name": "野人头目",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】野人头目",
+    "base_stats": {
+      "health": 4700,
+      "mana": 1150,
+      "attack": 285,
+      "defense": 200,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["heilong_helmet_54", "heilong_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_yingpi": 0.25, "craft_heitiekuang": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_黑风野猪": {
+    "name": "黑风野猪",
+    "level": 62,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "黑风野猪",
+    "base_stats": {
+      "health": 3800,
+      "mana": 950,
+      "attack": 250,
+      "defense": 190,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_houpi": 0.3, "craft_zitanmu": 0.2},
+      "money": {"min": 50, "max": 100},
+      "experience": 800
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_红狐_稀有": {
+    "name": "红狐",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】红狐",
+    "base_stats": {
+      "health": 4500,
+      "mana": 1100,
+      "attack": 270,
+      "defense": 190,
+      "crit_rate": 0.09,
+      "dodge_rate": 0.07
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["fengluan_helmet_54", "fengluan_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_yingpi": 0.25, "craft_chenxiangmu": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_红狐": {
+    "name": "红狐",
+    "level": 58,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "红狐",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 210,
+      "defense": 150,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.05
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_yingpi": 0.3, "craft_mianbu": 0.2},
+      "money": {"min": 38, "max": 75},
+      "experience": 680
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_潮水龟": {
+    "name": "潮水龟",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】潮水龟",
+    "base_stats": {
+      "health": 4900,
+      "mana": 1000,
+      "attack": 260,
+      "defense": 230,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["heilong_helmet_54", "heilong_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_yingpi": 0.25, "craft_chenxiangmu": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_大脚怪": {
+    "name": "大脚怪",
+    "level": 55,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "大脚怪",
+    "base_stats": {
+      "health": 2700,
+      "mana": 680,
+      "attack": 175,
+      "defense": 130,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.04
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
+      "items": {"craft_yingpi": 0.3, "craft_huangyangmu": 0.2},
+      "money": {"min": 28, "max": 55},
+      "experience": 580
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_穷奇": {
+    "name": "穷奇",
+    "level": 62,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "穷奇(62级精)",
+    "base_stats": {
+      "health": 5200,
+      "mana": 1300,
+      "attack": 320,
+      "defense": 240,
+      "crit_rate": 0.10,
+      "dodge_rate": 0.06
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.4,
+        "templates": ["heilong_helmet_60", "heilong_armor_60", "fengluan_helmet_60", "fengluan_armor_60"],
+        "rarity_weights": {"common": 10, "uncommon": 25, "rare": 35, "epic": 25, "legendary": 5}
+      },
+      "items": {"craft_zitanmu": 0.3, "craft_jingjinkuang": 0.3},
+      "money": {"min": 60, "max": 120},
+      "experience": 1500
+    },
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_炎帝之影": {
+    "name": "炎帝之影",
+    "level": 62,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "炎帝之影(62级精)",
+    "base_stats": {
+      "health": 5500,
+      "mana": 1400,
+      "attack": 340,
+      "defense": 250,
+      "crit_rate": 0.12,
+      "dodge_rate": 0.08
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.4,
+        "templates": ["yanling_helmet_60", "yanling_armor_60"],
+        "rarity_weights": {"common": 10, "uncommon": 25, "rare": 35, "epic": 25, "legendary": 5}
+      },
+      "items": {"craft_zitanmu": 0.3, "craft_jingjinkuang": 0.3},
+      "money": {"min": 70, "max": 140},
+      "experience": 1600
+    },
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_刑天之影": {
+    "name": "刑天之影",
+    "level": 62,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "刑天之影(62级精)",
+    "base_stats": {
+      "health": 5800,
+      "mana": 1500,
+      "attack": 360,
+      "defense": 260,
+      "crit_rate": 0.14,
+      "dodge_rate": 0.10
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.5,
+        "templates": ["heilong_helmet_60", "heilong_armor_60", "fengluan_helmet_60", "fengluan_armor_60", "yanling_helmet_60", "yanling_armor_60"],
+        "rarity_weights": {"common": 5, "uncommon": 20, "rare": 40, "epic": 30, "legendary": 5}
+      },
+      "items": {"craft_zitanmu": 0.35, "craft_jingjinkuang": 0.35},
+      "money": {"min": 80, "max": 160},
+      "experience": 1800
+    },
+    "is_divine_beast": true,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_shennong_雪狼王": {
+    "name": "雪狼王",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】雪狼王",
+    "base_stats": {
+      "health": 4600,
+      "mana": 1200,
+      "attack": 290,
+      "defense": 200,
+      "crit_rate": 0.10,
+      "dodge_rate": 0.08
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["heilong_helmet_54", "heilong_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
+  },
+  "monster_shennong_龙蛇": {
+    "name": "龙蛇",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【稀有】龙蛇",
+    "base_stats": {
+      "health": 4800,
+      "mana": 1150,
+      "attack": 285,
+      "defense": 210,
+      "crit_rate": 0.09,
+      "dodge_rate": 0.06
+    },
+    "skills": ["normal_attack"],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": ["yanling_helmet_54", "yanling_armor_53"],
+        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+      },
+      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
+      "money": {"min": 45, "max": 100},
+      "experience": 1200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "guaranteed_items": ["shennong_illustration"],
+    "max_health": 100
   }
 }

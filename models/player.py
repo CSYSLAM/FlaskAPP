@@ -142,6 +142,9 @@ class PlayerModel(db.Model, UserMixin):
     # Designer
     is_designer = db.Column(db.Boolean, default=False)
 
+    # Signature
+    signature = db.Column(db.String(256), default='')
+
     @property
     def is_vip(self):
         from datetime import datetime

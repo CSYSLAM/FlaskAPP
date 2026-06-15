@@ -15,6 +15,45 @@ class ActivityService:
         'study': {'name': '陪太子读书', 'max': 5, 'points': 10},
         'quiz': {'name': '每日答题拿奖励', 'max': 5, 'points': 10},
         'card_flip': {'name': '幸运金珠翻牌', 'max': 1, 'points': 25},
+        'daily_tasks': {'name': '每日任务', 'max': 10, 'points': 10},
+    }
+
+    # Daily NPC task definitions (任务使者)
+    DAILY_NPC_TASKS = [
+        {
+            'id': 'daily_money',
+            'name': '日·金钱任务',
+            'min_level': 30,
+            'reward_type': 'gold',
+            'reward_amount': 2000,
+            'reward_text': '银两+2000',
+        },
+        {
+            'id': 'daily_exp',
+            'name': '日·经验任务',
+            'min_level': 30,
+            'reward_type': 'exp',
+            'reward_amount': 20000,
+            'reward_text': '经验+20000',
+        },
+    ]
+
+    # Country -> city info for task NPC and target monsters
+    COUNTRY_CITY = {
+        '魏': {'name': '北平', 'center': 'beiping_center.广场', 'north': 'beiping_north',
+               'target_monster': '冀州步兵', 'target_count': 10, 'scene': '燕山'},
+        '蜀': {'name': '建宁', 'center': 'jianing_center.广场', 'north': 'jianing_north',
+               'target_monster': '流民', 'target_count': 10, 'scene': '金雁塔'},
+        '吴': {'name': '吴郡', 'center': 'wujun_center.广场', 'north': 'wujun_north',
+               'target_monster': '淘金者', 'target_count': 10, 'scene': '涌金洞'},
+    }
+
+    # Activity points reward tiers (活跃度领奖)
+    ACTIVITY_REWARD_TIERS = {
+        30: {'name': '活跃度30奖励', 'items': [('potion_heal', 10), ('potion_mana', 10)], 'yuanbao': 3},
+        50: {'name': '活跃度50奖励', 'items': [('enhance_gem', 2), ('money_small', 1)], 'yuanbao': 5},
+        80: {'name': '活跃度80奖励', 'items': [('enhance_gem', 3), ('potion_revive', 2), ('money_large', 1)], 'yuanbao': 10},
+        100: {'name': '活跃度100奖励', 'items': [('mi_yao_pack', 1), ('double_exp_card', 1), ('bag_expand', 1)], 'yuanbao': 20},
     }
 
     # Smash egg prize pool (weighted random) - 52 items matching reference server
@@ -208,8 +247,17 @@ class ActivityService:
     def get_total_activity_points(cls, player):
         """Get total earned activity points today."""
         total = 0
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            return 0
         for key, info in cls.DAILY_ACTIVITIES.items():
-            done = cls.get_today_value(player, f'{key}_done')
+            if key == 'daily_tasks':
+                tasks = daily.get('npc_tasks', {})
+                done = sum(1 for t in tasks.values() if t.get('accepted'))
+            else:
+                done = daily.get(f'{key}_done', 0)
             max_val = info['max']
             if done >= max_val:
                 total += info['points']
@@ -219,8 +267,18 @@ class ActivityService:
     def get_daily_progress(cls, player):
         """Get all daily activity progress."""
         result = []
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            daily = {}
         for key, info in cls.DAILY_ACTIVITIES.items():
-            done = cls.get_today_value(player, f'{key}_done')
+            if key == 'daily_tasks':
+                # Count accepted tasks (including completed/claimed)
+                tasks = daily.get('npc_tasks', {})
+                done = sum(1 for t in tasks.values() if t.get('accepted'))
+            else:
+                done = daily.get(f'{key}_done', 0)
             result.append({
                 'key': key,
                 'name': info['name'],
@@ -230,6 +288,70 @@ class ActivityService:
                 'completed': done >= info['max'],
             })
         return result
+
+    @classmethod
+    def get_claimed_tiers(cls, player):
+        """Get list of already-claimed reward tier thresholds for today."""
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            return []
+        return daily.get('claimed_tiers', [])
+
+    @classmethod
+    def get_reward_tiers_status(cls, player):
+        """Get status of all reward tiers for display."""
+        current_points = cls.get_total_activity_points(player)
+        claimed = cls.get_claimed_tiers(player)
+        result = []
+        for tier_points, reward in cls.ACTIVITY_REWARD_TIERS.items():
+            claimable = current_points >= tier_points and tier_points not in claimed
+            result.append({
+                'tier_points': tier_points,
+                'name': reward['name'],
+                'claimed': tier_points in claimed,
+                'claimable': claimable,
+                'locked': current_points < tier_points,
+                'items': reward['items'],
+                'yuanbao': reward['yuanbao'],
+            })
+        return result
+
+    @classmethod
+    def claim_activity_reward(cls, player, tier_points):
+        """Claim a reward at the given activity points tier."""
+        if tier_points not in cls.ACTIVITY_REWARD_TIERS:
+            return False, "无效的奖励档位"
+
+        current_points = cls.get_total_activity_points(player)
+        if current_points < tier_points:
+            return False, f"活跃度不足{tier_points}，当前{current_points}"
+
+        claimed = cls.get_claimed_tiers(player)
+        if tier_points in claimed:
+            return False, "该奖励今日已领取"
+
+        reward = cls.ACTIVITY_REWARD_TIERS[tier_points]
+
+        for item_id, count in reward.get('items', []):
+            DataService.add_item_to_inventory(player.id, item_id, count)
+
+        player.yuanbao += reward.get('yuanbao', 0)
+
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            daily = {'_date': today}
+        claimed_list = daily.get('claimed_tiers', [])
+        claimed_list.append(tier_points)
+        daily['claimed_tiers'] = claimed_list
+        data['daily'] = daily
+        player.activity_data = data
+
+        db.session.commit()
+        return True, f"领取【{reward['name']}】成功！"
 
     # --- Sign In ---
     @classmethod
@@ -584,3 +706,165 @@ class ActivityService:
         DataService.add_item_to_inventory(player.id, item_id, 1)
         db.session.commit()
         return True, f"兑换成功！获得{entry['name']}"
+
+    # --- Daily NPC Tasks (任务使者) ---
+
+    @classmethod
+    def get_daily_task_progress(cls, player, task_id):
+        """Get progress for a daily NPC task. Returns dict with accepted, killed, completed, claimed."""
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            return {'accepted': False, 'killed': 0, 'completed': False, 'claimed': False}
+        tasks = daily.get('npc_tasks', {})
+        t = tasks.get(task_id, {})
+        return {
+            'accepted': t.get('accepted', False),
+            'killed': t.get('killed', 0),
+            'completed': t.get('completed', False),
+            'claimed': t.get('claimed', False),
+        }
+
+    @classmethod
+    def accept_daily_task(cls, player, task_id):
+        """Accept a daily NPC task."""
+        task_def = None
+        for t in cls.DAILY_NPC_TASKS:
+            if t['id'] == task_id:
+                task_def = t
+                break
+        if not task_def:
+            return False, "无效的任务"
+
+        if player.level < task_def['min_level']:
+            return False, f"需要{task_def['min_level']}级才能接受此任务"
+
+        progress = cls.get_daily_task_progress(player, task_id)
+        if progress['accepted']:
+            return False, "今日已接受此任务"
+
+        if progress['claimed']:
+            return False, "今日已完成此任务"
+
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            daily = {'_date': today}
+        tasks = daily.get('npc_tasks', {})
+        tasks[task_id] = {'accepted': True, 'killed': 0, 'completed': False, 'claimed': False}
+        daily['npc_tasks'] = tasks
+        data['daily'] = daily
+        player.activity_data = data
+        db.session.commit()
+        return True, f"接受任务【{task_def['name']}】成功！"
+
+    @classmethod
+    def record_daily_task_kill(cls, player, monster_name):
+        """Record a kill for active daily NPC tasks. Call after defeating a monster."""
+        city_info = cls.COUNTRY_CITY.get(player.country, cls.COUNTRY_CITY['魏'])
+        target_monster = city_info['target_monster']
+        target_count = city_info['target_count']
+        if monster_name != target_monster:
+            return
+
+        data = player.activity_data
+        today = str(date.today())
+        daily = data.get('daily', {})
+        if daily.get('_date') != today:
+            return
+        tasks = daily.get('npc_tasks', {})
+        updated = False
+        for task_def in cls.DAILY_NPC_TASKS:
+            tid = task_def['id']
+            t = tasks.get(tid)
+            if not t or not t.get('accepted') or t.get('claimed'):
+                continue
+            t['killed'] = t.get('killed', 0) + 1
+            if t['killed'] >= target_count:
+                t['completed'] = True
+            updated = True
+        if updated:
+            daily['npc_tasks'] = tasks
+            data['daily'] = daily
+            player.activity_data = data
+
+    @classmethod
+    def complete_daily_task(cls, player, task_id):
+        """Complete a daily NPC task and claim reward."""
+        task_def = None
+        for t in cls.DAILY_NPC_TASKS:
+            if t['id'] == task_id:
+                task_def = t
+                break
+        if not task_def:
+            return False, "无效的任务"
+
+        progress = cls.get_daily_task_progress(player, task_id)
+        if not progress['accepted']:
+            return False, "请先接受任务"
+        if progress['claimed']:
+            return False, "今日已领取此任务奖励"
+        city_info = cls.COUNTRY_CITY.get(player.country, cls.COUNTRY_CITY['魏'])
+        target_count = city_info['target_count']
+        if not progress['completed']:
+            return False, f"任务未完成（{progress['killed']}/{target_count}）"
+
+        # Grant reward
+        if task_def['reward_type'] == 'gold':
+            player.gold += task_def['reward_amount']
+        elif task_def['reward_type'] == 'exp':
+            player.experience += task_def['reward_amount']
+
+        # Mark claimed
+        data = player.activity_data
+        daily = data.get('daily', {})
+        tasks = daily.get('npc_tasks', {})
+        tasks[task_id] = {'accepted': True, 'killed': target_count, 'completed': True, 'claimed': True}
+        daily['npc_tasks'] = tasks
+
+        # Increment daily tasks done count for activity points
+        daily_tasks_done = daily.get('daily_tasks_done', 0) + 1
+        daily['daily_tasks_done'] = daily_tasks_done
+
+        data['daily'] = daily
+        player.activity_data = data
+        db.session.commit()
+        return True, f"任务完成！获得{task_def['reward_text']}"
+
+    @classmethod
+    def get_daily_tasks_status(cls, player):
+        """Get status of all daily NPC tasks for display."""
+        city_info = cls.COUNTRY_CITY.get(player.country, cls.COUNTRY_CITY['魏'])
+        result = []
+        for task_def in cls.DAILY_NPC_TASKS:
+            progress = cls.get_daily_task_progress(player, task_def['id'])
+            level_ok = player.level >= task_def['min_level']
+            result.append({
+                'id': task_def['id'],
+                'name': task_def['name'],
+                'min_level': task_def['min_level'],
+                'level_ok': level_ok,
+                'description': f'前往「{city_info["scene"]}」({city_info["name"]}北区)收拾{city_info["target_count"]}只『{city_info["target_monster"]}』',
+                'killed': progress['killed'],
+                'target_count': city_info['target_count'],
+                'accepted': progress['accepted'],
+                'completed': progress['completed'],
+                'claimed': progress['claimed'],
+                'reward_text': task_def['reward_text'],
+                'city_name': city_info['name'],
+            })
+        return result
+
+    @classmethod
+    def get_task_npc_location(cls, player):
+        """Get the location of the task NPC for the player's country."""
+        city_info = cls.COUNTRY_CITY.get(player.country, cls.COUNTRY_CITY['魏'])
+        return city_info['center']
+
+    @classmethod
+    def get_task_target_location(cls, player):
+        """Get the location where task target monsters are."""
+        city_info = cls.COUNTRY_CITY.get(player.country, cls.COUNTRY_CITY['魏'])
+        return city_info['north'] + '.' + city_info['scene']

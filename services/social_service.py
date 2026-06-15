@@ -307,7 +307,7 @@ class SocialService:
     @classmethod
     def hunt_enemy(cls, player, target_username):
         """Use hunt token to teleport to enemy location."""
-        inv = DataService.get_inventory_item(player.id, 'hunt_token')
+        inv = DataService.get_inventory_item(player.id, 'hunt_order')
         if not inv or inv.quantity <= 0:
             return False, "没有追杀令"
 
@@ -318,7 +318,7 @@ class SocialService:
         if target_username not in player.enemies:
             return False, "该玩家不在仇人列表中"
 
-        DataService.remove_item_from_inventory(player.id, 'hunt_token', 1)
+        DataService.remove_item_from_inventory(player.id, 'hunt_order', 1)
         player.current_location = target.current_location
         db.session.commit()
         return True, f"已传送到{target.nickname}所在位置"

@@ -464,9 +464,30 @@ class BattleService:
         vip_exp_rate = VipService.get_exp_bonus_rate(player)
         if vip_exp_rate > 0:
             exp = int(exp * (1 + vip_exp_rate))
+        # TempEffect exp bonus (e.g. double_exp_card)
+        from models.player import TempEffect
+        import time as _time
+        exp_effects = TempEffect.query.filter_by(player_id=player.id, stat='exp_rate').all()
+        for te in exp_effects:
+            if te.expire_time > _time.time() and te.rate > 0:
+                exp = int(exp * (1 + te.rate))
         player.gold += money
         player.gold_earned = (player.gold_earned or 0) + money
         PlayerService.gain_experience(player, exp)
+
+        # Lieutenant also gains experience from battle
+        lt = Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
+        if lt and lt.current_health > 0:
+            lt_exp = exp // 2
+            if lt_exp > 0:
+                from models.player import TempEffect
+                import time as _time2
+                lt_exp_effects = TempEffect.query.filter_by(player_id=player.id, stat='lt_exp_rate').all()
+                for te in lt_exp_effects:
+                    if te.expire_time > _time2.time() and te.rate > 0:
+                        lt_exp = int(lt_exp * (1 + te.rate))
+                from services.lieutenant_service import LieutenantService
+                LieutenantService.gain_experience(lt, lt_exp)
 
         # Track kill counts
         if monster.is_elite:
@@ -495,6 +516,9 @@ class BattleService:
         daily_kills = ActivityService.get_today_value(player, 'kill_count')
         ActivityService.set_today_value(player, 'kill_count', daily_kills + 1)
 
+        # Track daily NPC task kills
+        ActivityService.record_daily_task_kill(player, monster.name)
+
         loot = monster.get_loot()
         loot_text = ""
         is_bound = not monster.is_elite  # 普通怪掉绑定，精英掉非绑定
@@ -515,6 +539,21 @@ class BattleService:
                     DataService.add_item_to_inventory(player.id, equip.instance_id)
                     bind_text = "(绑定)" if is_bound else ""
                     loot_text = f"获得了装备 {equip.name}{bind_text}"
+
+        # Guaranteed item drops (always drop, independent of random loot)
+        guaranteed_items = getattr(monster, 'guaranteed_items', [])
+        if guaranteed_items:
+            guaranteed_names = []
+            for g_item_id in guaranteed_items:
+                DataService.add_item_to_inventory(player.id, g_item_id, is_bound=False)
+                g_item_data = DataService.get_item(g_item_id)
+                g_name = g_item_data.get("name", g_item_id) if g_item_data else g_item_id
+                guaranteed_names.append(g_name)
+            guaranteed_text = "、".join(guaranteed_names)
+            if loot_text:
+                loot_text += f"；必定获得 {guaranteed_text}"
+            else:
+                loot_text = f"必定获得 {guaranteed_text}"
 
         dungeon_note = CopyDungeonService.record_monster_defeat(player, monster)
         if dungeon_note:

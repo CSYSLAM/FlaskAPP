@@ -17,6 +17,8 @@ class MapService:
         '柴桑': 'chaisang_center.广场',
         '吴郡': 'wujun_center.广场',
         '成都': 'chengdu_center.广场',
+        '昆仑': 'kunlun.镇中街',
+        '神农架': 'shennong.碎石广场',
     }
 
     # 各区域驿站
@@ -31,6 +33,7 @@ class MapService:
         'jianye_center': 'jianye_center.驿站',
         'chaisang_center': 'chaisang_center.驿站',
         'wujun_center': 'wujun_center.驿站',
+        'kunlun': 'kunlun.太平村',
     }
 
     @classmethod
@@ -50,10 +53,10 @@ class MapService:
         # 检查VIP
         if not player.is_vip:
             # 非VIP消耗孔明灯
-            inv = DataService.get_inventory_item(player.id, 'kongming_light')
+            inv = DataService.get_inventory_item(player.id, 'kongming_lantern')
             if not inv or inv.quantity < 1:
                 return {'success': False, 'msg': '非VIP传送需要消耗1个孔明灯，您没有孔明灯'}
-            DataService.remove_item_from_inventory(player.id, 'kongming_light', 1)
+            DataService.remove_item_from_inventory(player.id, 'kongming_lantern', 1)
 
         # 执行传送
         player.current_location = target_location
