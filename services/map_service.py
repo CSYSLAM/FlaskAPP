@@ -19,6 +19,7 @@ class MapService:
         '成都': 'chengdu_center.广场',
         '昆仑': 'kunlun.镇中街',
         '神农架': 'shennong.碎石广场',
+        '倭寇岛': 'wokou.倭岛码头',
     }
 
     # 各区域驿站

@@ -59,7 +59,9 @@
       "mcp__playwright__browser_select_option",
       "Bash(taskkill /f /im python.exe)",
       "Bash(taskkill //f //im python.exe)",
-      "mcp__playwright__browser_press_key"
+      "mcp__playwright__browser_press_key",
+      "Bash(pyinstaller FlaskAPP.spec --noconfirm)",
+      "Bash(./FlaskAPP.exe)"
     ]
   },
   "mcpServers": {

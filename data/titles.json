@@ -89,6 +89,12 @@
       "stars": 3,
       "description": "踏遍神农架的游历者",
       "pair_id": null
+    },
+    "prefix倭寇": {
+      "name": "倭寇的",
+      "stars": 3,
+      "description": "踏遍倭寇岛的游历者",
+      "pair_id": null
     }
   },
   "suffixes": {

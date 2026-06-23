@@ -5,3 +5,8 @@ instance/
 .env
 .playwright-mcp/
 ref/
+
+# PyInstaller打包输出
+build/
+dist/
+*.spec
