@@ -1,0 +1,368 @@
+{
+  "name": "倭寇岛",
+  "scenes": {
+    "倭岛码头": {
+      "name": "倭岛码头",
+      "exits": {
+        "east": "wokou.伊岐"
+      },
+      "npcs": [
+        "npc_wokou_镇倭大将军",
+        "npc_wokou_医师"
+      ]
+    },
+    "伊岐": {
+      "name": "伊岐",
+      "exits": {
+        "west": "wokou.倭岛码头",
+        "south": "wokou.多兿"
+      },
+      "npcs": [
+        "npc_wokou_倭岛车夫"
+      ]
+    },
+    "多兿": {
+      "name": "多兿",
+      "exits": {
+        "north": "wokou.伊岐",
+        "east": "wokou.西海道"
+      },
+      "monsters": [
+        "monster_wokou_金环蛇王"
+      ]
+    },
+    "西海道": {
+      "name": "西海道",
+      "exits": {
+        "west": "wokou.多兿",
+        "east": "wokou.坂良城"
+      }
+    },
+    "坂良城": {
+      "name": "坂良城",
+      "exits": {
+        "north": "wokou.滨山",
+        "west": "wokou.西海道"
+      },
+      "monsters": [
+        "monster_wokou_无极忍者"
+      ]
+    },
+    "滨山": {
+      "name": "滨山",
+      "exits": {
+        "east": "wokou.伊豫",
+        "south": "wokou.坂良城"
+      },
+      "monsters": [
+        "monster_wokou_发疯的海盗"
+      ]
+    },
+    "伊豫": {
+      "name": "伊豫",
+      "exits": {
+        "west": "wokou.滨山",
+        "east": "wokou.和歌山"
+      }
+    },
+    "和歌山": {
+      "name": "和歌山",
+      "exits": {
+        "west": "wokou.伊豫",
+        "east": "wokou.南海道"
+      }
+    },
+    "南海道": {
+      "name": "南海道",
+      "exits": {
+        "north": "wokou.纪伊",
+        "west": "wokou.和歌山"
+      },
+      "monsters": [
+        "monster_wokou_滨山护卫"
+      ]
+    },
+    "纪伊": {
+      "name": "纪伊",
+      "exits": {
+        "east": "wokou.和泉",
+        "south": "wokou.南海道"
+      },
+      "monsters": [
+        "monster_wokou_邪马狼将"
+      ]
+    },
+    "和泉": {
+      "name": "和泉",
+      "exits": {
+        "north": "wokou.石见",
+        "west": "wokou.纪伊"
+      }
+    },
+    "石见": {
+      "name": "石见",
+      "exits": {
+        "north": "wokou.山城",
+        "south": "wokou.和泉"
+      }
+    },
+    "山城": {
+      "name": "山城",
+      "exits": {
+        "north": "wokou.神奈川",
+        "west": "wokou.山阴道",
+        "east": "wokou.大和国",
+        "south": "wokou.石见"
+      }
+    },
+    "山阴道": {
+      "name": "山阴道",
+      "exits": {
+        "west": "wokou.出云国",
+        "east": "wokou.山城"
+      },
+      "monsters": [
+        "monster_wokou_倭国探子"
+      ]
+    },
+    "出云国": {
+      "name": "出云国",
+      "exits": {
+        "west": "wokou.安云寺",
+        "east": "wokou.山阴道"
+      }
+    },
+    "安云寺": {
+      "name": "安云寺",
+      "exits": {
+        "north": "wokou.周舫",
+        "east": "wokou.出云国"
+      }
+    },
+    "周舫": {
+      "name": "周舫",
+      "exits": {
+        "west": "wokou.长门",
+        "south": "wokou.安云寺"
+      },
+      "monsters": [
+        "monster_wokou_天象火魔"
+      ]
+    },
+    "长门": {
+      "name": "长门",
+      "exits": {
+        "east": "wokou.周舫"
+      }
+    },
+    "神奈川": {
+      "name": "神奈川",
+      "exits": {
+        "south": "wokou.山城"
+      }
+    },
+    "大和国": {
+      "name": "大和国",
+      "exits": {
+        "west": "wokou.山城",
+        "east": "wokou.伯幡"
+      }
+    },
+    "伯幡": {
+      "name": "伯幡",
+      "exits": {
+        "west": "wokou.大和国",
+        "east": "wokou.内河",
+        "north": "wokou.石川"
+      }
+    },
+    "石川": {
+      "name": "石川",
+      "exits": {
+        "south": "wokou.伯幡"
+      },
+      "monsters": [
+        "monster_wokou_八岐邪神"
+      ]
+    },
+    "内河": {
+      "name": "内河",
+      "exits": {
+        "west": "wokou.伯幡",
+        "east": "wokou.丹后"
+      },
+      "monsters": [
+        "monster_wokou_亡命囚徒"
+      ]
+    },
+    "丹后": {
+      "name": "丹后",
+      "exits": {
+        "north": "wokou.近江",
+        "west": "wokou.内河",
+        "south": "wokou.伹马"
+      }
+    },
+    "近江": {
+      "name": "近江",
+      "exits": {
+        "north": "wokou.信濃",
+        "east": "wokou.邪马台",
+        "south": "wokou.丹后"
+      }
+    },
+    "邪马台": {
+      "name": "邪马台",
+      "exits": {
+        "west": "wokou.近江"
+      }
+    },
+    "信濃": {
+      "name": "信濃",
+      "exits": {
+        "north": "wokou.东三道",
+        "west": "wokou.飞潭",
+        "south": "wokou.近江"
+      }
+    },
+    "飞潭": {
+      "name": "飞潭",
+      "exits": {
+        "east": "wokou.信濃"
+      },
+      "monsters": [
+        "monster_wokou_鬼蛛夜魔海"
+      ]
+    },
+    "东三道": {
+      "name": "东三道",
+      "exits": {
+        "east": "wokou.三河",
+        "south": "wokou.信濃"
+      },
+      "monsters": [
+        "monster_wokou_无间杀手"
+      ]
+    },
+    "三河": {
+      "name": "三河",
+      "exits": {
+        "west": "wokou.东三道",
+        "east": "wokou.伊豆"
+      }
+    },
+    "伊豆": {
+      "name": "伊豆",
+      "exits": {
+        "north": "wokou.北海道",
+        "west": "wokou.三河",
+        "east": "wokou.武藏阁",
+        "south": "wokou.俊河"
+      }
+    },
+    "北海道": {
+      "name": "北海道",
+      "exits": {
+        "south": "wokou.伊豆"
+      },
+      "monsters": [
+        "monster_wokou_九变妖媸"
+      ]
+    },
+    "武藏阁": {
+      "name": "武藏阁",
+      "exits": {
+        "west": "wokou.伊豆",
+        "east": "wokou.宫城"
+      }
+    },
+    "宫城": {
+      "name": "宫城",
+      "exits": {
+        "north": "wokou.筑紫国",
+        "west": "wokou.武藏阁"
+      },
+      "monsters": [
+        "monster_wokou_扶桑武士"
+      ]
+    },
+    "筑紫国": {
+      "name": "筑紫国",
+      "exits": {
+        "north": "wokou.女王营帐",
+        "south": "wokou.宫城"
+      },
+      "monsters": [
+        "monster_wokou_缺颅蛮妖"
+      ]
+    },
+    "女王营帐": {
+      "name": "女王营帐",
+      "exits": {
+        "west": "wokou.偏营",
+        "east": "wokou.偏营2",
+        "south": "wokou.筑紫国"
+      }
+    },
+    "偏营": {
+      "name": "偏营",
+      "exits": {
+        "east": "wokou.女王营帐"
+      },
+      "monsters": [
+        "monster_wokou_月读"
+      ]
+    },
+    "偏营2": {
+      "name": "偏营",
+      "exits": {
+        "west": "wokou.女王营帐"
+      },
+      "monsters": [
+        "monster_wokou_天照"
+      ]
+    },
+    "东海道": {
+      "name": "东海道",
+      "exits": {
+        "north": "wokou.武藏阁",
+        "south": "wokou.出羽国"
+      },
+      "monsters": [
+        "monster_wokou_滨山流匪"
+      ]
+    },
+    "俊河": {
+      "name": "俊河",
+      "exits": {
+        "north": "wokou.伊豆"
+      }
+    },
+    "出羽国": {
+      "name": "出羽国",
+      "exits": {
+        "north": "wokou.东海道",
+        "south": "wokou.上野国"
+      }
+    },
+    "上野国": {
+      "name": "上野国",
+      "exits": {
+        "north": "wokou.出羽国",
+        "east": "wokou.陆嶴"
+      },
+      "monsters": [
+        "monster_wokou_落魄浪人"
+      ]
+    },
+    "陆嶴": {
+      "name": "陆嶴",
+      "exits": {
+        "west": "wokou.上野国"
+      },
+      "monsters": [
+        "monster_wokou_倭国武剑士"
+      ]
+    }
+  }
+}

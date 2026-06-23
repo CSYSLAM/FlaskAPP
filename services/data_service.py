@@ -1,6 +1,7 @@
 import json
 import time
 import random
+import sys
 from pathlib import Path
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,6 +14,16 @@ from models.player import (
     PlayerModel, EquipmentInstance, InventoryItem,
     EquipmentSlot, PlayerSkill, TempEffect, ChatMessage
 )
+
+
+def get_base_path():
+    """获取基础路径，支持PyInstaller打包"""
+    if getattr(sys, 'frozen', False):
+        # 打包后的exe运行时
+        return Path(sys.executable).parent
+    else:
+        # 正常Python运行时
+        return Path(__file__).parent.parent
 
 
 class DataService:
@@ -28,7 +39,7 @@ class DataService:
 
     @classmethod
     def _load_all_data(cls):
-        data_dir = Path("data")
+        data_dir = get_base_path() / "data"
         files = {
             'items': 'items.json',
             'monsters': 'monsters.json',
