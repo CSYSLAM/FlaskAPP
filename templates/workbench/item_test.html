@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>物品测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 110px; }
+        input, select { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .result-box { margin: 6px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .result-title { font-weight: bold; margin-bottom: 4px; }
+        .sim-line { padding: 1px 0 1px 12px; }
+        .sim-stat { color: #2e7d32; }
+        .sim-item { color: #ff6600; }
+        .sim-eq { color: #c62828; }
+        .sim-effect { color: #136ec2; }
+        .no-effect { color: #999; }
+        .hint { color: #888; font-size: 13px; }
+        .explain { color: #888; font-size: 13px; padding: 4px 12px; border-left: 3px solid #ddd; margin: 4px 0; }
+        .summary { margin: 8px 0; padding: 8px; border: 1px solid #2e7d32; border-radius: 4px; background: #f1f8f1; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>物品测试</h3>
+    <a href="{{ url_for('workbench.item_view', item_id=item_id) }}">返回详情</a><br/><br/>
+
+    物品: <b>{{ item.name }}</b> ({{ type_names.get(item.type, item.type) }})<br/>
+    {% if not item.is_usable %}
+    <span class="no-effect">该物品不可使用（is_usable=false），测试仅展示效果配置</span><br/>
+    {% endif %}
+
+    {% if item.get('usage_effect') %}
+    <div class="explain">
+        效果说明：<br/>
+        属性变化(stat_changes) — 固定值属性修改<br/>
+        随机属性(stat_changes_rng) — 范围内随机值<br/>
+        临时效果(temp_effects) — 有持续时间的增益<br/>
+        装备生成(equipment_generators/generate_equipment) — 生成随机装备<br/>
+        随机物品(random_items/random_one_of) — 概率给予物品<br/>
+    </div>
+    {% else %}
+    <div class="no-effect">该物品无使用效果配置</div>
+    {% endif %}
+
+    <div class="section">测试参数</div>
+    <form method="post">
+        <span class="label">模拟次数:</span>
+        <input type="number" name="count" value="5" min="1" max="20" style="width:80px"><br/>
+        <button type="submit" class="btn">开始模拟</button>
+    </form>
+
+    {% if results %}
+    <div class="section">模拟结果 ({{ results|length }}次)</div>
+    {% for result in results %}
+    <div class="result-box">
+        <div class="result-title">第{{ loop.index }}次模拟</div>
+        {% if result.sim_lines %}
+        {% for line in result.sim_lines %}
+        {% if '属性' in line or '随机属性' in line %}
+        <div class="sim-line sim-stat">{{ line }}</div>
+        {% elif '物品' in line %}
+        <div class="sim-line sim-item">{{ line }}</div>
+        {% elif '装备' in line %}
+        <div class="sim-line sim-eq">{{ line }}</div>
+        {% elif '魂魄' in line %}
+        <div class="sim-line sim-effect">{{ line }}</div>
+        {% else %}
+        <div class="sim-line sim-effect">{{ line }}</div>
+        {% endif %}
+        {% endfor %}
+        {% elif result.effect_lines %}
+        {% for line in result.effect_lines %}
+        <div class="sim-line">{{ line }}</div>
+        {% endfor %}
+        {% else %}
+        <div class="sim-line no-effect">{{ result.effect_summary }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="summary">
+        <b>说明:</b> 模拟展示随机效果的实际随机结果。固定效果（如stat_changes、grant_gold等）每次相同，只有随机效果才会变化。<br/>
+        实际游戏中使用物品还会检查使用条件、扣除物品、写入数据库等，此测试仅预览效果。
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

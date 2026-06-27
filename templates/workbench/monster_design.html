@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>怪物设计系统</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .elite { color: #c62828; font-weight: bold; }
+        .divine { color: #ff6600; font-weight: bold; }
+        .npc { color: #2e7d32; }
+        .monster-group { margin: 8px 0; padding: 5px 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .group-name { font-weight: bold; color: #333; }
+        .item-line { padding: 2px 0 2px 12px; }
+        .level-tag { color: #666; font-size: 14px; }
+        .section { margin: 15px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .btn { display: inline-block; padding: 4px 10px; margin: 2px; border: 1px solid #136ec2; border-radius: 3px; color: #136ec2; text-decoration: none; font-size: 14px; }
+        .btn:hover { background: #136ec2; color: #fff; }
+        .btn-success { border-color: #2e7d32; color: #2e7d32; }
+        .btn-success:hover { background: #2e7d32; color: #fff; }
+        .count { color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>怪物设计系统</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a> |
+    <a href="{{ url_for('game.scene') }}">返回场景</a><br/><br/>
+
+    <a href="{{ url_for('workbench.monster_add') }}" class="btn">+ 添加怪物</a>
+    <br/><br/>
+
+    <div class="section">世界怪物 <span class="count">({{ monster_index.world|length }})</span></div>
+    {% if monster_index.world %}
+    <div class="monster-group">
+        {% for m in monster_index.world %}
+        <div class="item-line">
+            <a href="{{ url_for('workbench.monster_view', monster_id=m.monster_id) }}">{{ m.name }}</a>
+            <span class="level-tag">{{ m.level }}级</span>
+            {% if m.is_elite %}<span class="elite">[精英]</span>{% endif %}
+            {% if m.is_divine_beast %}<span class="divine">[兽王]</span>{% endif %}
+            <a href="{{ url_for('workbench.monster_test', monster_id=m.monster_id) }}" class="btn btn-success">测试</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="color:#888;padding:4px 12px;">暂无世界怪物</div>
+    {% endif %}
+
+    <div class="section">副本怪物 <span class="count">({{ monster_index.dungeon|length }})</span></div>
+    {% if monster_index.dungeon %}
+    <div class="monster-group">
+        {% for m in monster_index.dungeon %}
+        <div class="item-line">
+            <a href="{{ url_for('workbench.monster_view', monster_id=m.monster_id) }}">{{ m.name }}</a>
+            <span class="level-tag">{{ m.level }}级</span>
+            {% if m.is_elite %}<span class="elite">[精英]</span>{% endif %}
+            <a href="{{ url_for('workbench.monster_test', monster_id=m.monster_id) }}" class="btn btn-success">测试</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="color:#888;padding:4px 12px;">暂无副本怪物</div>
+    {% endif %}
+
+    <div class="section">NPC <span class="count">({{ monster_index.npc|length }})</span></div>
+    {% if monster_index.npc %}
+    <div class="monster-group">
+        {% for m in monster_index.npc %}
+        <div class="item-line">
+            <a href="{{ url_for('workbench.monster_view', monster_id=m.monster_id) }}">{{ m.name }}</a>
+            <span class="npc">[NPC]</span>
+            <span class="level-tag">{{ m.level }}级</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="color:#888;padding:4px 12px;">暂无NPC</div>
+    {% endif %}
+</div>
+</body>
+</html>

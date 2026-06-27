@@ -1103,7 +1103,10 @@
         "rarity_weights": {}
       },
       "items": {},
-      "money": { "min": 0, "max": 0 },
+      "money": {
+        "min": 0,
+        "max": 0
+      },
       "experience": 0
     }
   },
@@ -1134,7 +1137,10 @@
         "rarity_weights": {}
       },
       "items": {},
-      "money": { "min": 0, "max": 0 },
+      "money": {
+        "min": 0,
+        "max": 0
+      },
       "experience": 0
     }
   },
@@ -1165,7 +1171,10 @@
         "rarity_weights": {}
       },
       "items": {},
-      "money": { "min": 0, "max": 0 },
+      "money": {
+        "min": 0,
+        "max": 0
+      },
       "experience": 0
     }
   },
@@ -1196,7 +1205,10 @@
         "rarity_weights": {}
       },
       "items": {},
-      "money": { "min": 0, "max": 0 },
+      "money": {
+        "min": 0,
+        "max": 0
+      },
       "experience": 0
     }
   },
@@ -1219,20 +1231,39 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.2,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 40, "rare": 35, "epic": 25 }
+        "rarity_weights": {
+          "uncommon": 40,
+          "rare": 35,
+          "epic": 25
+        }
       },
-      "items": { "potion_heal": 0.16, "potion_mana": 0.08 },
-      "money": { "min": 46, "max": 92 },
+      "items": {
+        "potion_heal": 0.16,
+        "potion_mana": 0.08
+      },
+      "money": {
+        "min": 46,
+        "max": 92
+      },
       "experience": 460
     }
   },
@@ -1255,20 +1286,39 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.2,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 40, "rare": 35, "epic": 25 }
+        "rarity_weights": {
+          "uncommon": 40,
+          "rare": 35,
+          "epic": 25
+        }
       },
-      "items": { "potion_heal": 0.16, "potion_mana": 0.08 },
-      "money": { "min": 46, "max": 92 },
+      "items": {
+        "potion_heal": 0.16,
+        "potion_mana": 0.08
+      },
+      "money": {
+        "min": 46,
+        "max": 92
+      },
       "experience": 460
     }
   },
@@ -1291,18 +1341,34 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.03
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.14,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40"
         ],
-        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 35,
+          "rare": 15
+        }
       },
-      "items": { "qing_mufa": 1, "potion_heal": 0.12 },
-      "money": { "min": 40, "max": 80 },
+      "items": {
+        "qing_mufa": 1,
+        "potion_heal": 0.12
+      },
+      "money": {
+        "min": 40,
+        "max": 80
+      },
       "experience": 350
     }
   },
@@ -1325,18 +1391,34 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.03
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.14,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40"
         ],
-        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 35,
+          "rare": 15
+        }
       },
-      "items": { "potion_heal": 0.12, "potion_mana": 0.06 },
-      "money": { "min": 42, "max": 84 },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 42,
+        "max": 84
+      },
       "experience": 360
     }
   },
@@ -1359,20 +1441,39 @@
       "crit_rate": 0.07,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.22,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 35,
+          "rare": 35,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
-      "money": { "min": 50, "max": 100 },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 50,
+        "max": 100
+      },
       "experience": 500
     }
   },
@@ -1395,20 +1496,39 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.21,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 35,
+          "rare": 35,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.17, "potion_mana": 0.08 },
-      "money": { "min": 48, "max": 96 },
+      "items": {
+        "potion_heal": 0.17,
+        "potion_mana": 0.08
+      },
+      "money": {
+        "min": 48,
+        "max": 96
+      },
       "experience": 480
     }
   },
@@ -1431,18 +1551,34 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.14,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40"
         ],
-        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 35,
+          "rare": 15
+        }
       },
-      "items": { "fangzhu": 1, "potion_heal": 0.12 },
-      "money": { "min": 42, "max": 84 },
+      "items": {
+        "fangzhu": 1,
+        "potion_heal": 0.12
+      },
+      "money": {
+        "min": 42,
+        "max": 84
+      },
       "experience": 370
     }
   },
@@ -1465,18 +1601,34 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.14,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40"
         ],
-        "rarity_weights": { "common": 50, "uncommon": 35, "rare": 15 }
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 35,
+          "rare": 15
+        }
       },
-      "items": { "huixiangcao": 1, "potion_heal": 0.12 },
-      "money": { "min": 42, "max": 84 },
+      "items": {
+        "huixiangcao": 1,
+        "potion_heal": 0.12
+      },
+      "money": {
+        "min": 42,
+        "max": 84
+      },
       "experience": 370
     }
   },
@@ -1499,20 +1651,39 @@
       "crit_rate": 0.07,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.22,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 35,
+          "rare": 35,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
-      "money": { "min": 52, "max": 104 },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 52,
+        "max": 104
+      },
       "experience": 520
     }
   },
@@ -1535,20 +1706,39 @@
       "crit_rate": 0.07,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.23,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 35, "rare": 35, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 35,
+          "rare": 35,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
-      "money": { "min": 54, "max": 108 },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 54,
+        "max": 108
+      },
       "experience": 540
     }
   },
@@ -1571,20 +1761,39 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.25,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 30,
+          "rare": 40,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.2, "potion_mana": 0.1 },
-      "money": { "min": 56, "max": 112 },
+      "items": {
+        "potion_heal": 0.2,
+        "potion_mana": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 112
+      },
       "experience": 560
     }
   },
@@ -1608,20 +1817,39 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.28,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 30,
+          "rare": 40,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.22, "potion_mana": 0.11 },
-      "money": { "min": 60, "max": 120 },
+      "items": {
+        "potion_heal": 0.22,
+        "potion_mana": 0.11
+      },
+      "money": {
+        "min": 60,
+        "max": 120
+      },
       "experience": 600
     }
   },
@@ -1652,7 +1880,10 @@
         "rarity_weights": {}
       },
       "items": {},
-      "money": { "min": 0, "max": 0 },
+      "money": {
+        "min": 0,
+        "max": 0
+      },
       "experience": 0
     }
   },
@@ -1683,7 +1914,10 @@
         "rarity_weights": {}
       },
       "items": {},
-      "money": { "min": 0, "max": 0 },
+      "money": {
+        "min": 0,
+        "max": 0
+      },
       "experience": 0
     }
   },
@@ -1706,20 +1940,40 @@
       "crit_rate": 0.02,
       "dodge_rate": 0.02
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 10
+        }
       },
-      "items": { "potion_heal": 0.12, "potion_mana": 0.06 },
-      "money": { "min": 20, "max": 50 },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 20,
+        "max": 50
+      },
       "experience": 80
     }
   },
@@ -1742,20 +1996,41 @@
       "crit_rate": 0.02,
       "dodge_rate": 0.02
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 10
+        }
       },
-      "items": { "wujun_mihan": 0.7, "potion_heal": 0.12, "potion_mana": 0.06 },
-      "money": { "min": 20, "max": 50 },
+      "items": {
+        "wujun_mihan": 0.7,
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 20,
+        "max": 50
+      },
       "experience": 80
     }
   },
@@ -1778,20 +2053,41 @@
       "crit_rate": 0.02,
       "dodge_rate": 0.02
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 10
+        }
       },
-      "items": { "jiangdong_huoyao": 0.7, "potion_heal": 0.12, "potion_mana": 0.06 },
-      "money": { "min": 20, "max": 50 },
+      "items": {
+        "jiangdong_huoyao": 0.7,
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 20,
+        "max": 50
+      },
       "experience": 80
     }
   },
@@ -1814,20 +2110,39 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.22,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 30,
+          "rare": 40,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
-      "money": { "min": 40, "max": 80 },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 40,
+        "max": 80
+      },
       "experience": 300
     }
   },
@@ -1850,20 +2165,39 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.22,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 30,
+          "rare": 40,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
-      "money": { "min": 40, "max": 80 },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 40,
+        "max": 80
+      },
       "experience": 300
     }
   },
@@ -1886,20 +2220,39 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.22,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 30, "rare": 40, "epic": 30 }
+        "rarity_weights": {
+          "uncommon": 30,
+          "rare": 40,
+          "epic": 30
+        }
       },
-      "items": { "potion_heal": 0.18, "potion_mana": 0.09 },
-      "money": { "min": 40, "max": 80 },
+      "items": {
+        "potion_heal": 0.18,
+        "potion_mana": 0.09
+      },
+      "money": {
+        "min": 40,
+        "max": 80
+      },
       "experience": 300
     }
   },
@@ -1923,20 +2276,39 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.25,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "uncommon": 25, "rare": 40, "epic": 35 }
+        "rarity_weights": {
+          "uncommon": 25,
+          "rare": 40,
+          "epic": 35
+        }
       },
-      "items": { "potion_heal": 0.2, "potion_mana": 0.1 },
-      "money": { "min": 50, "max": 100 },
+      "items": {
+        "potion_heal": 0.2,
+        "potion_mana": 0.1
+      },
+      "money": {
+        "min": 50,
+        "max": 100
+      },
       "experience": 500
     }
   },
@@ -1959,20 +2331,40 @@
       "crit_rate": 0.02,
       "dodge_rate": 0.02
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
         "templates": [
-          "tianlong_sword_40", "tianlong_helmet_40", "tianlong_armor_40",
-          "tianlong_gloves_40", "tianlong_pants_40", "tianlong_shoes_40",
-          "xuanwu_helmet_45", "xuanwu_armor_45", "xuanwu_gloves_45",
-          "xuanwu_pants_45", "xuanwu_shoes_45"
+          "tianlong_sword_40",
+          "tianlong_helmet_40",
+          "tianlong_armor_40",
+          "tianlong_gloves_40",
+          "tianlong_pants_40",
+          "tianlong_shoes_40",
+          "xuanwu_helmet_45",
+          "xuanwu_armor_45",
+          "xuanwu_gloves_45",
+          "xuanwu_pants_45",
+          "xuanwu_shoes_45"
         ],
-        "rarity_weights": { "common": 40, "uncommon": 30, "rare": 20, "epic": 10 }
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 10
+        }
       },
-      "items": { "potion_heal": 0.12, "potion_mana": 0.06 },
-      "money": { "min": 20, "max": 50 },
+      "items": {
+        "potion_heal": 0.12,
+        "potion_mana": 0.06
+      },
+      "money": {
+        "min": 20,
+        "max": 50
+      },
       "experience": 80
     }
   }

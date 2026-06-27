@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>编辑怪物</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 110px; }
+        input, select, textarea { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        input[type="text"], input[type="number"], textarea { width: 220px; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .stat-grid { display: grid; grid-template-columns: auto auto; gap: 2px 8px; padding-left: 12px; }
+        .stat-grid label { font-size: 14px; color: #666; }
+        .stat-grid input { width: 80px; font-size: 14px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .hint { color: #888; font-size: 13px; }
+        .picker { border: 1px solid #ddd; border-radius: 4px; background: #f9f9f9; margin: 6px 0; padding: 6px 8px; }
+        .picker-list { max-height: 120px; overflow-y: auto; font-size: 13px; }
+        .picker-list a { display: block; padding: 1px 4px; color: #136ec2; }
+        .picker-list a:hover { background: #e8e8e8; }
+        .picker-search { width: 100%; font-size: 14px; margin-bottom: 4px; }
+        .disabled-rw { opacity: 0.4; background: #f0f0f0; }
+        .rw-hint { color: #c62828; font-size: 13px; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>编辑怪物</h3>
+    <a href="{{ url_for('workbench.monster_view', monster_id=monster_id) }}">返回详情</a><br/><br/>
+
+    <form method="post" id="monsterForm">
+        <div class="section">基本信息</div>
+        怪物ID: <b>{{ monster_id }}</b> (不可修改)<br/>
+        来源文件: <b>{{ source_file }}</b><br/>
+        <span class="label">怪物名称:</span>
+        <input type="text" name="name" required value="{{ monster.name }}"><br/>
+        <span class="label">描述:</span>
+        <input type="text" name="description" value="{{ monster.get('description', '') }}"><br/>
+        <span class="label">等级:</span>
+        <input type="number" name="level" value="{{ monster.level }}" min="1"><br/>
+        <span class="label">精英:</span>
+        <input type="checkbox" name="is_elite" value="1" {% if monster.is_elite %}checked{% endif %} id="is_elite_cb" onclick="toggleEliteRestriction()"><br/>
+        <span class="label">可攻击:</span>
+        <input type="checkbox" name="killable" value="1" {% if monster.killable %}checked{% endif %}><br/>
+        <span class="label">不死:</span>
+        <input type="checkbox" name="immortal" value="1" {% if monster.immortal %}checked{% endif %}><br/>
+        <span class="label">神兽:</span>
+        <input type="checkbox" name="is_divine_beast" value="1" {% if monster.is_divine_beast %}checked{% endif %} id="is_divine_cb" onclick="toggleEliteRestriction()"><br/>
+        <span class="label">复活时间:</span>
+        <input type="number" name="respawn_time" value="{{ monster.get('respawn_time', 0) }}" min="0" style="width:80px"> 秒
+        <span class="hint">0=由系统根据区域自动计算</span><br/>
+
+        <div class="section">基础属性 (base_stats)</div>
+        <div class="stat-grid">
+            {% for sk in stat_keys %}
+            <label>{{ stat_names.get(sk, sk) }}({{ sk }}):</label>
+            <input type="number" step="any" name="base_{{ sk }}" value="{{ monster.base_stats.get(sk, '') }}">
+            {% endfor %}
+        </div>
+
+        <div class="section">技能 (skills)</div>
+        <span class="label">技能列表:</span>
+        <input type="text" name="skills" value="{{ monster.skills|join(', ') }}">
+        <span class="hint">逗号分隔</span><br/>
+
+        <div class="section">装备掉落 (equipment_drop)</div>
+        <span class="label">掉落率:</span>
+        <input type="number" step="0.01" name="eq_drop_rate" value="{{ monster.drops.equipment_drop.drop_rate }}" min="0" max="1">
+        <span class="hint">每次击杀触发装备掉落的概率</span><br/>
+        <span class="label">掉落模板:</span>
+        <textarea name="eq_templates" rows="1" style="width:300px;height:30px" id="eq_templates_input">{{ monster.drops.equipment_drop.templates|join(', ') }}</textarea>
+        <span class="hint">逗号分隔</span><br/>
+        <div class="picker">
+            <div style="margin-bottom:4px">
+                <b>按套装添加:</b>
+                <select id="set_select" style="font-size:14px;max-width:200px">
+                    <option value="">-- 选择套装 --</option>
+                </select>
+                <button type="button" onclick="addSetToPool()" style="font-size:13px;padding:2px 8px;cursor:pointer">添加整套</button>
+            </div>
+            <div style="margin-bottom:4px">
+                <b>按等级筛选:</b>
+                <input type="number" id="lv_min" placeholder="最低" min="1" max="99" style="width:50px;font-size:14px"> ~
+                <input type="number" id="lv_max" placeholder="最高" min="1" max="99" style="width:50px;font-size:14px">
+                <button type="button" onclick="filterByLevel()" style="font-size:13px;padding:2px 8px;cursor:pointer">筛选</button>
+            </div>
+            <input type="text" class="picker-search" placeholder="搜索装备模板(输入名称或ID)..." id="eq_picker_search">
+            <div class="picker-list" id="eq_picker_list"></div>
+        </div>
+        <span class="label">品质权重:</span><br/>
+        <div id="rw_hint" class="rw-hint" style="display:none">⚠ 非神兽精英怪不能设置神器品质权重（提交时自动归零）</div>
+        <div class="stat-grid">
+            {% for rk in rarity_weight_keys %}
+            <label>{{ rarity_weight_names.get(rk, rk) }}({{ rk }}):</label>
+            <input type="number" name="rw_{{ rk }}" value="{{ monster.drops.equipment_drop.rarity_weights.get(rk, 0) }}" min="0" style="width:60px"
+            {% if rk == 'legendary' %}id="rw_legendary_input"{% endif %}>
+            {% endfor %}
+        </div>
+        <div class="hint">权重决定品质分配比例。精英怪实际只出精良/卓越/史诗；普通怪只出普通/精良</div>
+
+        <div class="section">物品掉落 (items)</div>
+        <span class="label">掉落物品:</span>
+        <textarea name="drop_items" rows="2" style="width:300px;height:50px" id="drop_items_input">{% for item_id, chance in monster.drops['items'].items() %}{{ item_id }}:{{ chance }}{% if not loop.last %}, {% endif %}{% endfor %}</textarea>
+        <span class="hint">格式: item_id:概率</span><br/>
+        <div class="picker">
+            <input type="text" class="picker-search" placeholder="搜索物品(输入名称或ID)..." id="item_picker_search">
+            <div class="picker-list" id="item_picker_list"></div>
+        </div>
+
+        <div class="section">银两/经验</div>
+        <span class="label">银两最小:</span>
+        <input type="number" name="money_min" value="{{ monster.drops.money.min }}" min="0" style="width:80px">
+        <span class="label">银两最大:</span>
+        <input type="number" name="money_max" value="{{ monster.drops.money.max }}" min="0" style="width:80px"><br/>
+        <span class="label">经验:</span>
+        <input type="number" name="experience" value="{{ monster.drops.experience }}" min="0"><br/>
+
+        <div class="section">神器掉落 (仅神兽)</div>
+        <span class="label">神器模板:</span>
+        <input type="text" name="artifact_template" value="{{ monster.drops.equipment_drop.get('artifact_template', '') }}"><br/>
+        <span class="label">神器掉率:</span>
+        <input type="number" step="0.01" name="artifact_drop_rate" value="{{ monster.drops.equipment_drop.get('artifact_drop_rate', 0) }}" min="0" max="1" style="width:80px"><br/>
+
+        <div class="section">副本字段</div>
+        <span class="label">副本怪物:</span>
+        <input type="checkbox" name="is_copy" value="1" {% if monster.is_copy %}checked{% endif %}><br/>
+        <span class="label">仅副本:</span>
+        <input type="checkbox" name="copy_only" value="1" {% if monster.copy_only %}checked{% endif %}><br/>
+        <span class="label">副本ID:</span>
+        <input type="text" name="copy_dungeon_id" value="{{ monster.get('copy_dungeon_id', '') }}"><br/>
+        <span class="label">副本阶段:</span>
+        <input type="text" name="copy_stage" value="{{ monster.get('copy_stage', '') }}"><br/>
+        <span class="label">副本BOSS:</span>
+        <input type="checkbox" name="copy_final_boss" value="1" {% if monster.get('copy_final_boss') %}checked{% endif %}><br/>
+        <span class="label">NPC角色:</span>
+        <input type="text" name="copy_role" value="{{ monster.get('copy_role', '') }}"><br/>
+
+        <div class="section">必掉物品</div>
+        <span class="label">必掉物品:</span>
+        <input type="text" name="guaranteed_items" value="{{ monster.get('guaranteed_items', [])|join(', ') }}" id="guaranteed_items_input">
+        <span class="hint">逗号分隔</span><br/>
+        <div class="picker">
+            <input type="text" class="picker-search" placeholder="搜索必掉物品(输入名称或ID)..." id="gi_picker_search">
+            <div class="picker-list" id="gi_picker_list"></div>
+        </div>
+
+        <br/>
+        <button type="submit" class="btn">保存修改</button>
+        <a href="{{ url_for('workbench.monster_view', monster_id=monster_id) }}">取消</a>
+    </form>
+</div>
+
+<script>
+var allItems = {{ item_choices | tojson }};
+var allEq = {{ eq_choices | tojson }};
+var setIndex = {{ set_index | tojson }};
+
+// Populate set selector
+var setSelect = document.getElementById('set_select');
+var setNames = Object.keys(setIndex).sort(function(a, b) {
+    return setIndex[a].min_level - setIndex[b].min_level;
+});
+for (var i = 0; i < setNames.length; i++) {
+    var sname = setNames[i];
+    var s = setIndex[sname];
+    var opt = document.createElement('option');
+    opt.value = sname;
+    var artTag = s.is_artifact ? '[神器]' : '';
+    opt.textContent = sname + ' ' + artTag + '(Lv' + s.min_level + '-' + s.max_level + ', ' + s.items.length + '件)';
+    setSelect.appendChild(opt);
+}
+
+function addToPool(ids) {
+    var el = document.getElementById('eq_templates_input');
+    var current = el.value.trim();
+    for (var i = 0; i < ids.length; i++) {
+        if (current && !current.endsWith(',')) current += ',';
+        current += ids[i];
+    }
+    el.value = current;
+}
+
+function addSetToPool() {
+    var sname = document.getElementById('set_select').value;
+    if (!sname || !setIndex[sname]) return;
+    var items = setIndex[sname].items;
+    var ids = [];
+    for (var i = 0; i < items.length; i++) ids.push(items[i].id);
+    addToPool(ids);
+}
+
+function filterByLevel() {
+    var lvMin = parseInt(document.getElementById('lv_min').value) || 0;
+    var lvMax = parseInt(document.getElementById('lv_max').value) || 999;
+    var listEl = document.getElementById('eq_picker_list');
+    listEl.innerHTML = '';
+    var matches = allEq.filter(function(x) {
+        return x.level >= lvMin && x.level <= lvMax;
+    });
+    matches.sort(function(a, b) { return a.level - b.level; });
+    var shown = Math.min(matches.length, 50);
+    for (var i = 0; i < shown; i++) {
+        var a = document.createElement('a');
+        var m = matches[i];
+        a.textContent = m.name + '(Lv' + m.level + ' ' + m.slot + ') ' + m.id;
+        a.href = '#';
+        a.onclick = (function(id) {
+            return function(e) {
+                e.preventDefault();
+                addToPool([id]);
+            };
+        })(m.id);
+        listEl.appendChild(a);
+    }
+    if (matches.length > shown) {
+        var more = document.createElement('div');
+        more.textContent = '... 共' + matches.length + '件，只显示前50件，请缩小等级范围';
+        more.style.color = '#888';
+        more.style.fontSize = '12px';
+        more.style.padding = '2px 4px';
+        listEl.appendChild(more);
+    }
+    if (matches.length === 0) {
+        var noResult = document.createElement('div');
+        noResult.textContent = '该等级范围内无装备';
+        noResult.style.color = '#999';
+        noResult.style.fontSize = '13px';
+        noResult.style.padding = '2px 4px';
+        listEl.appendChild(noResult);
+    }
+}
+
+function setupPicker(searchId, listId, targetInputId, dataSource, mode) {
+    var searchEl = document.getElementById(searchId);
+    var listEl = document.getElementById(listId);
+    var targetEl = document.getElementById(targetInputId);
+
+    searchEl.addEventListener('input', function() {
+        var q = this.value.toLowerCase();
+        listEl.innerHTML = '';
+        if (!q) return;
+        var matches = dataSource.filter(function(x) {
+            return x.id.toLowerCase().indexOf(q) >= 0 || x.name.toLowerCase().indexOf(q) >= 0;
+        }).slice(0, 20);
+        for (var i = 0; i < matches.length; i++) {
+            var a = document.createElement('a');
+            var m = matches[i];
+            if (mode === 'eq') {
+                a.textContent = m.name + '(Lv' + m.level + ' ' + m.slot + ') ' + m.id;
+            } else {
+                a.textContent = m.name + '(' + m.id + ')';
+            }
+            a.href = '#';
+            a.onclick = (function(id, m) {
+                return function(e) {
+                    e.preventDefault();
+                    if (mode === 'items') {
+                        var current = targetEl.value.trim();
+                        if (current && !current.endsWith(',')) current += ',';
+                        targetEl.value = current + id + ':0.5';
+                    } else if (mode === 'eq') {
+                        addToPool([id]);
+                    } else if (mode === 'gi') {
+                        var current = targetEl.value.trim();
+                        if (current && !current.endsWith(',')) current += ',';
+                        targetEl.value = current + id;
+                    }
+                    listEl.innerHTML = '';
+                    searchEl.value = '';
+                };
+            })(m.id, m);
+            listEl.appendChild(a);
+        }
+    });
+}
+
+setupPicker('item_picker_search', 'item_picker_list', 'drop_items_input', allItems, 'items');
+setupPicker('eq_picker_search', 'eq_picker_list', 'eq_templates_input', allEq, 'eq');
+setupPicker('gi_picker_search', 'gi_picker_list', 'guaranteed_items_input', allItems, 'gi');
+
+function toggleEliteRestriction() {
+    var isElite = document.getElementById('is_elite_cb').checked;
+    var isDivine = document.getElementById('is_divine_cb').checked;
+    var rwInput = document.getElementById('rw_legendary_input');
+    var hint = document.getElementById('rw_hint');
+    if (isElite && !isDivine) {
+        rwInput.classList.add('disabled-rw');
+        rwInput.value = '0';
+        rwInput.disabled = true;
+        hint.style.display = '';
+    } else {
+        rwInput.classList.remove('disabled-rw');
+        rwInput.disabled = false;
+        hint.style.display = 'none';
+    }
+}
+
+// Init on page load
+toggleEliteRestriction();
+</script>
+</body>
+</html>

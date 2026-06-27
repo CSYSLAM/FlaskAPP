@@ -6,6 +6,9 @@ instance/
 .playwright-mcp/
 ref/
 
+# 数据备份目录
+data_back/
+
 # PyInstaller打包输出
 build/
 dist/
