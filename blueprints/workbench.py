@@ -20,6 +20,22 @@ STAT_KEYS = ['attack', 'defense', 'max_health', 'max_mana', 'crit_rate', 'dodge_
 STAT_NAMES = {'attack': '攻击', 'defense': '防御', 'max_health': '生命上限', 'max_mana': '魔法上限', 'crit_rate': '暴击率', 'dodge_rate': '闪避率'}
 RARITY_NAMES = ["普通", "精良", "卓越", "史诗", "神器"]
 
+# ─── Monster Design Constants ───
+MONSTER_DATA_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'monsters.json')
+COPY_MONSTER_DATA_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'copy_monsters.json')
+MONSTER_STAT_KEYS = ['health', 'mana', 'attack', 'defense', 'crit_rate', 'dodge_rate']
+MONSTER_STAT_NAMES = {
+    'health': '生命值', 'mana': '魔法值', 'attack': '攻击力',
+    'defense': '防御力', 'crit_rate': '暴击率', 'dodge_rate': '闪避率'
+}
+MONSTER_TYPE_CHOICES = ['world', 'copy']  # 世界怪物 / 副本怪物
+MONSTER_TYPE_NAMES = {'world': '世界怪物', 'copy': '副本怪物'}
+RARITY_WEIGHT_KEYS = ['common', 'uncommon', 'rare', 'epic', 'legendary']
+RARITY_WEIGHT_NAMES = {
+    'common': '普通', 'uncommon': '精良', 'rare': '卓越',
+    'epic': '史诗', 'legendary': '神器'
+}
+
 
 def _find_player(target_id):
     """查找玩家：支持 player_uid > username > 数字 id"""
@@ -1132,3 +1148,549 @@ def _build_template_from_form(form, existing=None):
         tpl["description"] = description
 
     return tpl
+
+
+# ═══════════════════════════════════════════════════════════
+# Monster Design System (怪物设计系统)
+# ═══════════════════════════════════════════════════════════
+
+def _load_monster_data():
+    """读取 monsters.json"""
+    if not os.path.exists(MONSTER_DATA_FILE):
+        return {}
+    with open(MONSTER_DATA_FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def _save_monster_data(data):
+    """写入 monsters.json"""
+    with open(MONSTER_DATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def _load_copy_monster_data():
+    """读取 copy_monsters.json"""
+    if not os.path.exists(COPY_MONSTER_DATA_FILE):
+        return {}
+    with open(COPY_MONSTER_DATA_FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def _save_copy_monster_data(data):
+    """写入 copy_monsters.json"""
+    with open(COPY_MONSTER_DATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def _build_monster_index():
+    """构建怪物索引：按类型分组（世界怪物 / 副本怪物 / NPC），返回分组字典"""
+    monsters = DataService.get_monsters()
+    world_monsters = []
+    copy_monsters = []
+    npc_list = []
+    for mid, m in monsters.items():
+        item = {
+            'monster_id': mid,
+            'name': m.get('name', mid),
+            'level': m.get('level', 0),
+            'is_elite': m.get('is_elite', False),
+            'is_divine_beast': m.get('is_divine_beast', False),
+            'killable': m.get('killable', True),
+            'is_copy': m.get('is_copy', False),
+            'copy_only': m.get('copy_only', False),
+        }
+        if not m.get('killable', True):
+            npc_list.append(item)
+        elif m.get('is_copy', False) or m.get('copy_only', False):
+            copy_monsters.append(item)
+        else:
+            world_monsters.append(item)
+    # 排序
+    world_monsters.sort(key=lambda x: (x['level'], x['monster_id']))
+    copy_monsters.sort(key=lambda x: (x['level'], x['monster_id']))
+    npc_list.sort(key=lambda x: (x['level'], x['monster_id']))
+    return {
+        'world': world_monsters,
+        'dungeon': copy_monsters,
+        'npc': npc_list,
+    }
+
+def _find_monster_source(mid):
+    """查找怪物数据在哪个文件：monsters.json 或 copy_monsters.json"""
+    monsters = _load_monster_data()
+    if mid in monsters:
+        return 'monsters.json'
+    copy_monsters = _load_copy_monster_data()
+    if mid in copy_monsters:
+        return 'copy_monsters.json'
+    return None
+
+def _simulate_monster_battle(mid, player_level=1):
+    """模拟怪物战斗：计算伤害/掉落预览（不写入数据库）"""
+    m = DataService.get_monster(mid)
+    if not m:
+        return None
+    from models.monster import Monster
+    monster = Monster.from_dict(mid, m)
+    result = {
+        'monster_id': mid,
+        'name': m.get('name', mid),
+        'level': m.get('level', 0),
+        'is_elite': m.get('is_elite', False),
+        'is_divine_beast': m.get('is_divine_beast', False),
+        'base_stats': m.get('base_stats', {}),
+        'killable': m.get('killable', True),
+        'loot_preview': None,
+    }
+    if m.get('killable', True):
+        # 模拟掉落
+        loot = monster.get_loot()
+        equipment_result = None
+        item_results = []
+        if loot is not None:
+            if isinstance(loot, tuple) and loot[0] == "item":
+                item_results.append(loot[1])
+            elif isinstance(loot, dict):
+                equipment_result = loot
+        # 额外尝试一次物品掉落（独立于装备掉落）
+        for item_id, chance in m.get('drops', {}).get('items', {}).items():
+            if _random.random() < chance:
+                item_results.append(item_id)
+        result['loot_preview'] = {
+            'equipment': equipment_result,
+            'dropped_items': item_results,
+            'money': monster.get_money_drop(),
+            'experience': monster.get_experience_drop(),
+        }
+        # 模拟伤害信息
+        result['damage_preview'] = {
+            'attack_power': monster.attack,
+            'crit_rate': f"{monster.crit_rate * 100:.1f}%",
+        }
+    return result
+
+
+# --- Monster Design: Main Page ---
+
+@workbench_bp.route("/monster_design")
+@login_required
+def monster_design():
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    monster_index = _build_monster_index()
+    return render_template("workbench/monster_design.html",
+                           monster_index=monster_index)
+
+
+# --- Monster Design: View Single Monster ---
+
+@workbench_bp.route("/monster_view/<monster_id>")
+@login_required
+def monster_view(monster_id):
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    monster = DataService.get_monster(monster_id)
+    if not monster:
+        flash("找不到该怪物")
+        return redirect(url_for('workbench.monster_design'))
+    source_file = _find_monster_source(monster_id)
+
+    # 计算实际品质权重（经过 _sanitize 后）
+    from models.monster import Monster
+    raw_rw = monster.get('drops', {}).get('equipment_drop', {}).get('rarity_weights', {})
+    is_elite = monster.get('is_elite', False)
+    sanitized_rw = Monster._sanitize_monster_rarity_weights(raw_rw, is_elite) or {}
+    # 检查是否有被过滤的品质
+    filtered_rarities = []
+    if raw_rw and sanitized_rw:
+        for rk in raw_rw:
+            if rk not in sanitized_rw and raw_rw[rk] > 0:
+                filtered_rarities.append(rk)
+    # 计算世界boss复活时间
+    respawn_desc = ''
+    if monster.get('killable') and is_elite and not monster.get('is_copy') and not monster.get('copy_only'):
+        from services.world_boss_service import WorldBossService
+        rt = WorldBossService._get_respawn_time(monster_id, monster)
+        respawn_desc = f'{rt}秒({rt // 60}分钟)'
+        if monster.get('respawn_time'):
+            respawn_desc += ' [数据自定义]'
+
+    return render_template("workbench/monster_view.html",
+                           monster_id=monster_id,
+                           monster=monster,
+                           source_file=source_file,
+                           stat_names=MONSTER_STAT_NAMES,
+                           rarity_weight_names=RARITY_WEIGHT_NAMES,
+                           sanitized_rw=sanitized_rw,
+                           filtered_rarities=filtered_rarities,
+                           respawn_desc=respawn_desc)
+
+
+# --- Monster Design: Add Monster ---
+
+@workbench_bp.route("/monster_add", methods=["GET", "POST"])
+@login_required
+def monster_add():
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    if request.method == "POST":
+        monster_id = request.form.get("monster_id", "").strip()
+        if not monster_id:
+            flash("怪物ID不能为空")
+            return redirect(url_for('workbench.monster_add'))
+
+        # 检查ID是否已存在
+        if DataService.get_monster(monster_id):
+            flash(f"怪物ID '{monster_id}' 已存在")
+            return redirect(url_for('workbench.monster_add'))
+
+        monster_data = _build_monster_from_form(request.form)
+        if monster_data is None:
+            return redirect(url_for('workbench.monster_add'))
+
+        # 写入文件
+        target_file = request.form.get("target_file", "monsters.json")
+        if target_file == "copy_monsters.json":
+            data = _load_copy_monster_data()
+            if data is None:
+                data = {}
+            data[monster_id] = monster_data
+            _save_copy_monster_data(data)
+        else:
+            data = _load_monster_data()
+            if data is None:
+                data = {}
+            data[monster_id] = monster_data
+            _save_monster_data(data)
+
+        # 刷新缓存
+        DataService._cache['monsters'][monster_id] = monster_data
+
+        flash(f"怪物 '{monster_data.get('name', monster_id)}' 已添加到 {target_file}")
+        return redirect(url_for('workbench.monster_view', monster_id=monster_id))
+
+    # GET: 显示添加表单
+    # 构建物品选择器数据
+    item_choices, eq_choices, set_index = _build_picker_data()
+    return render_template("workbench/monster_add.html",
+                           stat_keys=MONSTER_STAT_KEYS,
+                           stat_names=MONSTER_STAT_NAMES,
+                           rarity_weight_keys=RARITY_WEIGHT_KEYS,
+                           rarity_weight_names=RARITY_WEIGHT_NAMES,
+                           item_choices=item_choices,
+                           eq_choices=eq_choices,
+                           set_index=set_index)
+
+
+# --- Monster Design: Edit Monster ---
+
+@workbench_bp.route("/monster_edit/<monster_id>", methods=["GET", "POST"])
+@login_required
+def monster_edit(monster_id):
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    monster = DataService.get_monster(monster_id)
+    if not monster:
+        flash("找不到该怪物")
+        return redirect(url_for('workbench.monster_design'))
+
+    source_file = _find_monster_source(monster_id)
+    if not source_file:
+        flash("找不到该怪物的数据文件")
+        return redirect(url_for('workbench.monster_view', monster_id=monster_id))
+
+    if request.method == "POST":
+        monster_data = _build_monster_from_form(request.form, existing=monster)
+        if monster_data is None:
+            return redirect(url_for('workbench.monster_edit', monster_id=monster_id))
+
+        # 写入文件
+        if source_file == "copy_monsters.json":
+            data = _load_copy_monster_data()
+        else:
+            data = _load_monster_data()
+        if data is None:
+            data = {}
+        data[monster_id] = monster_data
+        if source_file == "copy_monsters.json":
+            _save_copy_monster_data(data)
+        else:
+            _save_monster_data(data)
+
+        # 刷新缓存
+        DataService._cache['monsters'][monster_id] = monster_data
+
+        flash(f"怪物 '{monster_data.get('name', monster_id)}' 已更新")
+        return redirect(url_for('workbench.monster_view', monster_id=monster_id))
+
+    # GET: 显示编辑表单
+    item_choices, eq_choices, set_index = _build_picker_data()
+    return render_template("workbench/monster_edit.html",
+                           monster_id=monster_id,
+                           monster=monster,
+                           source_file=source_file,
+                           stat_keys=MONSTER_STAT_KEYS,
+                           stat_names=MONSTER_STAT_NAMES,
+                           rarity_weight_keys=RARITY_WEIGHT_KEYS,
+                           rarity_weight_names=RARITY_WEIGHT_NAMES,
+                           item_choices=item_choices,
+                           eq_choices=eq_choices,
+                           set_index=set_index)
+
+
+# --- Monster Design: Delete Monster ---
+
+@workbench_bp.route("/monster_delete/<monster_id>", methods=["GET", "POST"])
+@login_required
+def monster_delete(monster_id):
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    monster = DataService.get_monster(monster_id)
+    if not monster:
+        flash("找不到该怪物")
+        return redirect(url_for('workbench.monster_design'))
+
+    source_file = _find_monster_source(monster_id)
+    if not source_file:
+        flash("找不到该怪物的数据文件")
+        return redirect(url_for('workbench.monster_view', monster_id=monster_id))
+
+    if request.method == "POST":
+        confirm = request.form.get("confirm")
+        if confirm == "yes":
+            if source_file == "copy_monsters.json":
+                data = _load_copy_monster_data()
+            else:
+                data = _load_monster_data()
+            if data and monster_id in data:
+                del data[monster_id]
+                if source_file == "copy_monsters.json":
+                    _save_copy_monster_data(data)
+                else:
+                    _save_monster_data(data)
+                # 刷新缓存
+                DataService._cache['monsters'].pop(monster_id, None)
+                flash(f"怪物 '{monster.get('name', monster_id)}' 已从 {source_file} 删除")
+            else:
+                flash("文件中未找到该怪物")
+            return redirect(url_for('workbench.monster_design'))
+        else:
+            return redirect(url_for('workbench.monster_view', monster_id=monster_id))
+
+    return render_template("workbench/monster_delete.html",
+                           monster_id=monster_id,
+                           monster=monster,
+                           source_file=source_file)
+
+
+# --- Monster Design: Test Battle/Loot ---
+
+@workbench_bp.route("/monster_test/<monster_id>", methods=["GET", "POST"])
+@login_required
+def monster_test(monster_id):
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    monster = DataService.get_monster(monster_id)
+    if not monster:
+        flash("找不到该怪物")
+        return redirect(url_for('workbench.monster_design'))
+
+    results = []
+    if request.method == "POST":
+        count = int(request.form.get("count", 1))
+        player_level = int(request.form.get("player_level", 1))
+        count = min(count, 20)
+        for _ in range(count):
+            result = _simulate_monster_battle(monster_id, player_level)
+            if result:
+                results.append(result)
+
+    return render_template("workbench/monster_test.html",
+                           monster_id=monster_id,
+                           monster=monster,
+                           results=results,
+                           stat_names=MONSTER_STAT_NAMES,
+                           rarity_weight_names=RARITY_WEIGHT_NAMES)
+
+
+# ─── Helper: Build Picker Data ───
+
+def _build_picker_data():
+    """构建选择器数据：物品列表、装备模板列表、套装索引"""
+    all_items = DataService.get_items()
+    item_choices = [{'id': iid, 'name': item.get('name', iid)} for iid, item in all_items.items()]
+
+    all_eq_templates = DataService.get_equipment_templates()
+    eq_choices = [{'id': tid, 'name': tpl.get('name', tid), 'level': tpl.get('level_required', 0),
+                   'slot': tpl.get('slot', ''), 'set_name': tpl.get('set_name', ''),
+                   'is_artifact': tpl.get('is_artifact', False)}
+                  for tid, tpl in all_eq_templates.items()]
+
+    # 构建套装索引: {set_name: {name, is_artifact, min_level, max_level, items: [{id, name, level, slot}]}}
+    set_index = {}
+    for tid, tpl in all_eq_templates.items():
+        sname = tpl.get('set_name', '')
+        if not sname:
+            continue
+        if sname not in set_index:
+            set_index[sname] = {
+                'name': sname,
+                'is_artifact': tpl.get('is_artifact', False),
+                'min_level': tpl.get('level_required', 999),
+                'max_level': tpl.get('level_required', 0),
+                'items': [],
+            }
+        lv = tpl.get('level_required', 0)
+        entry = set_index[sname]
+        entry['min_level'] = min(entry['min_level'], lv)
+        entry['max_level'] = max(entry['max_level'], lv)
+        entry['is_artifact'] = entry['is_artifact'] or tpl.get('is_artifact', False)
+        entry['items'].append({
+            'id': tid,
+            'name': tpl.get('name', tid),
+            'level': lv,
+            'slot': tpl.get('slot', ''),
+        })
+
+    return item_choices, eq_choices, set_index
+
+
+# ─── Helper: Build Monster from Form ───
+
+def _build_monster_from_form(form, existing=None):
+    """从表单数据构建怪物字典"""
+    name = form.get("name", "").strip()
+    if not name:
+        flash("怪物名称不能为空")
+        return None
+
+    level = int(form.get("level", 1))
+    is_elite = form.get("is_elite") == "1"
+    killable = form.get("killable") == "1"
+    immortal = form.get("immortal") == "1"
+    is_divine_beast = form.get("is_divine_beast") == "1"
+    description = form.get("description", "").strip()
+
+    # respawn_time (精英/神兽复活秒数)
+    respawn_time = int(form.get("respawn_time", 0) or 0)
+
+    # base_stats
+    base_stats = {}
+    for sk in MONSTER_STAT_KEYS:
+        val = form.get(f"base_{sk}", "").strip()
+        if val:
+            try:
+                base_stats[sk] = float(val) if sk in ('crit_rate', 'dodge_rate') else int(val)
+            except ValueError:
+                flash(f"基础{MONSTER_STAT_NAMES.get(sk, sk)}格式错误")
+                return None
+    if not base_stats:
+        flash("至少需要一个基础属性")
+        return None
+
+    # skills
+    skills_str = form.get("skills", "").strip()
+    skills = [s.strip() for s in skills_str.split(",") if s.strip()] if skills_str else []
+
+    # drops - equipment_drop
+    eq_drop_rate = float(form.get("eq_drop_rate", 0))
+    eq_templates_str = form.get("eq_templates", "").strip()
+    eq_templates = [t.strip() for t in eq_templates_str.split(",") if t.strip()] if eq_templates_str else []
+    rarity_weights = {}
+    for rk in RARITY_WEIGHT_KEYS:
+        val = form.get(f"rw_{rk}", "").strip()
+        if val:
+            try:
+                rarity_weights[rk] = int(val)
+            except ValueError:
+                flash(f"{RARITY_WEIGHT_NAMES.get(rk, rk)}权重格式错误")
+                return None
+
+    # 精英怪品质限制：非神兽精英不能有神器权重
+    if is_elite and not is_divine_beast and rarity_weights.get('legendary', 0) > 0:
+        rarity_weights['legendary'] = 0
+        flash("非神兽精英怪不能设置神器品质权重，已自动归零")
+
+    # drops - items
+    items_str = form.get("drop_items", "").strip()
+    drop_items = {}
+    if items_str:
+        for pair in items_str.split(","):
+            pair = pair.strip()
+            if ":" in pair:
+                item_id, chance = pair.split(":", 1)
+                try:
+                    drop_items[item_id.strip()] = float(chance.strip())
+                except ValueError:
+                    flash(f"掉落物品 '{pair}' 格式错误，应为 item_id:概率")
+                    return None
+
+    # drops - money
+    money_min = int(form.get("money_min", 0))
+    money_max = int(form.get("money_max", 0))
+
+    # drops - experience
+    experience = int(form.get("experience", 0))
+
+    # artifact (divine beast)
+    artifact_template = form.get("artifact_template", "").strip() or None
+    artifact_drop_rate = float(form.get("artifact_drop_rate", 0)) if artifact_template else 0
+
+    # copy fields
+    is_copy = form.get("is_copy") == "1"
+    copy_only = form.get("copy_only") == "1"
+    copy_dungeon_id = form.get("copy_dungeon_id", "").strip() or None
+    copy_stage = form.get("copy_stage", "").strip() or None
+    copy_final_boss = form.get("copy_final_boss") == "1"
+    copy_role = form.get("copy_role", "").strip() or None
+
+    # guaranteed_items
+    gi_str = form.get("guaranteed_items", "").strip()
+    guaranteed_items = [i.strip() for i in gi_str.split(",") if i.strip()] if gi_str else []
+
+    monster_data = {
+        "name": name,
+        "level": level,
+        "is_elite": is_elite,
+        "killable": killable,
+        "immortal": immortal,
+        "description": description or name,
+        "base_stats": base_stats,
+        "skills": skills,
+        "drops": {
+            "equipment_drop": {
+                "drop_rate": eq_drop_rate,
+                "templates": eq_templates,
+                "rarity_weights": rarity_weights,
+            },
+            "items": drop_items,
+            "money": {
+                "min": money_min,
+                "max": money_max,
+            },
+            "experience": experience,
+        },
+        "is_divine_beast": is_divine_beast,
+        "is_copy": is_copy,
+        "copy_only": copy_only,
+    }
+
+    # Optional fields
+    if artifact_template:
+        monster_data["drops"]["equipment_drop"]["artifact_template"] = artifact_template
+        monster_data["drops"]["equipment_drop"]["artifact_drop_rate"] = artifact_drop_rate
+    if copy_dungeon_id:
+        monster_data["copy_dungeon_id"] = copy_dungeon_id
+    if copy_stage:
+        monster_data["copy_stage"] = copy_stage
+    if copy_final_boss:
+        monster_data["copy_final_boss"] = True
+    if copy_role:
+        monster_data["copy_role"] = copy_role
+    if guaranteed_items:
+        monster_data["guaranteed_items"] = guaranteed_items
+    if respawn_time > 0:
+        monster_data["respawn_time"] = respawn_time
+    monster_data["max_health"] = 100
+
+    return monster_data
