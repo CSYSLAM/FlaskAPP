@@ -427,6 +427,11 @@ class ActivityService:
         # Pick prize
         prize = cls._weighted_random(cls.EGG_PRIZES)
         reward_msg = cls._grant_prize(player, prize)
+
+        # 系统公告
+        prize_name = prize.get('name', '奖励')
+        DataService.broadcast_system(f"{player.nickname}参与砸蛋活动：拿下了{prize_name}，太有实力啦！")
+
         db.session.commit()
         return True, reward_msg
 
@@ -637,6 +642,10 @@ class ActivityService:
 
         # Give lucky coin for each flip
         DataService.add_item_to_inventory(player.id, 'lucky_coin', 1)
+
+        # 系统公告
+        prize_name = prize.get('name', '奖励')
+        DataService.broadcast_system(f"{player.nickname}参与翻牌活动：拿下了{prize_name}，太有实力啦！")
 
         db.session.commit()
         return True, reward_msg + "，获得幸运币x1"

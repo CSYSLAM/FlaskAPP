@@ -538,8 +538,13 @@ def inventory(category='全部'):
         if not item_data:
             continue
         it_type = item_data.get('type', 'other')
+        # 分类逻辑：材料包(consumable但名字含"包")归到"其他"
+        item_name = item_data.get('name', '')
         if it_type in ('consumable', 'potion'):
-            cat = '药品'
+            if '包' in item_name:
+                cat = '其他'
+            else:
+                cat = '药品'
         elif it_type == 'material':
             cat = '材料'
         elif it_type == 'chest':
@@ -647,6 +652,7 @@ def bulk_use_item(item_id):
 def view_item(item_id):
     player = current_user
     is_bound = request.args.get('is_bound')
+    from_page = request.args.get('from', 'inventory')  # 来源页面：inventory 或 equipment
     bound_val = None
     if is_bound == '1':
         bound_val = True
@@ -665,7 +671,8 @@ def view_item(item_id):
                                  is_equipped={'val': False},
                                  old_equip=old_equip,
                                  EquipmentInstance=EquipmentInstance,
-                                 DataService=DataService)
+                                 DataService=DataService,
+                                 from_page=from_page)
     else:
         item_data = DataService.get_item(item_id)
         inv = DataService.get_inventory_item(player.id, item_id, is_bound=bound_val)
@@ -674,7 +681,8 @@ def view_item(item_id):
                                  item=item_data,
                                  item_id=item_id,
                                  is_bound=inv.is_bound if inv else False,
-                                 quantity=inv.quantity if inv else 0)
+                                 quantity=inv.quantity if inv else 0,
+                                 from_page=from_page)
     return redirect(url_for('player.inventory'))
 
 

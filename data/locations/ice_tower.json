@@ -15,8 +15,261 @@
     "寒冰塔一层": {
       "name": "寒冰塔一层",
       "exits": {
-        "south": "ice_tower.寒冰塔入口"
-      }
+        "north": "ice_tower.寒冰塔二层",
+        "south": "ice_tower.寒冰塔入口",
+        "west": "ice_tower.一层左侧_1",
+        "east": "ice_tower.一层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_一层守卫_1"
+      ]
+    },
+    "一层左侧_1": {
+      "name": "一层左侧",
+      "exits": {
+        "east": "ice_tower.寒冰塔一层",
+        "west": "ice_tower.一层左侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_一层守卫_2"
+      ]
+    },
+    "一层左侧_2": {
+      "name": "一层左侧",
+      "exits": {
+        "east": "ice_tower.一层左侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_一层守卫_3"
+      ]
+    },
+    "一层右侧_1": {
+      "name": "一层右侧",
+      "exits": {
+        "west": "ice_tower.寒冰塔一层",
+        "east": "ice_tower.一层右侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_一层守卫_4"
+      ]
+    },
+    "一层右侧_2": {
+      "name": "一层右侧",
+      "exits": {
+        "west": "ice_tower.一层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_一层守卫_5"
+      ]
+    },
+    "寒冰塔二层": {
+      "name": "寒冰塔二层",
+      "exits": {
+        "north": "ice_tower.寒冰塔三层",
+        "south": "ice_tower.寒冰塔一层",
+        "west": "ice_tower.二层左侧_1",
+        "east": "ice_tower.二层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_二层守卫_1"
+      ]
+    },
+    "二层左侧_1": {
+      "name": "二层左侧",
+      "exits": {
+        "east": "ice_tower.寒冰塔二层",
+        "west": "ice_tower.二层左侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_二层守卫_2"
+      ]
+    },
+    "二层左侧_2": {
+      "name": "二层左侧",
+      "exits": {
+        "east": "ice_tower.二层左侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_二层守卫_3"
+      ]
+    },
+    "二层右侧_1": {
+      "name": "二层右侧",
+      "exits": {
+        "west": "ice_tower.寒冰塔二层",
+        "east": "ice_tower.二层右侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_二层守卫_4"
+      ]
+    },
+    "二层右侧_2": {
+      "name": "二层右侧",
+      "exits": {
+        "west": "ice_tower.二层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_二层守卫_5"
+      ]
+    },
+    "寒冰塔三层": {
+      "name": "寒冰塔三层",
+      "exits": {
+        "north": "ice_tower.寒冰塔四层",
+        "south": "ice_tower.寒冰塔二层",
+        "west": "ice_tower.三层左侧_1",
+        "east": "ice_tower.三层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_三层守卫_1"
+      ]
+    },
+    "三层左侧_1": {
+      "name": "三层左侧",
+      "exits": {
+        "east": "ice_tower.寒冰塔三层",
+        "west": "ice_tower.三层左侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_三层守卫_2"
+      ]
+    },
+    "三层左侧_2": {
+      "name": "三层左侧",
+      "exits": {
+        "east": "ice_tower.三层左侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_三层守卫_3"
+      ]
+    },
+    "三层右侧_1": {
+      "name": "三层右侧",
+      "exits": {
+        "west": "ice_tower.寒冰塔三层",
+        "east": "ice_tower.三层右侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_三层守卫_4"
+      ]
+    },
+    "三层右侧_2": {
+      "name": "三层右侧",
+      "exits": {
+        "west": "ice_tower.三层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_三层守卫_5"
+      ]
+    },
+    "寒冰塔四层": {
+      "name": "寒冰塔四层",
+      "exits": {
+        "north": "ice_tower.寒冰塔五层",
+        "south": "ice_tower.寒冰塔三层",
+        "west": "ice_tower.四层左侧_1",
+        "east": "ice_tower.四层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_四层守卫_1"
+      ]
+    },
+    "四层左侧_1": {
+      "name": "四层左侧",
+      "exits": {
+        "east": "ice_tower.寒冰塔四层",
+        "west": "ice_tower.四层左侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_四层守卫_2"
+      ]
+    },
+    "四层左侧_2": {
+      "name": "四层左侧",
+      "exits": {
+        "east": "ice_tower.四层左侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_四层守卫_3"
+      ]
+    },
+    "四层右侧_1": {
+      "name": "四层右侧",
+      "exits": {
+        "west": "ice_tower.寒冰塔四层",
+        "east": "ice_tower.四层右侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_四层守卫_4"
+      ]
+    },
+    "四层右侧_2": {
+      "name": "四层右侧",
+      "exits": {
+        "west": "ice_tower.四层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_四层守卫_5"
+      ]
+    },
+    "寒冰塔五层": {
+      "name": "寒冰塔五层",
+      "exits": {
+        "north": "ice_tower.寒冰塔顶层",
+        "south": "ice_tower.寒冰塔四层",
+        "west": "ice_tower.五层左侧_1",
+        "east": "ice_tower.五层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_五层守卫_1"
+      ]
+    },
+    "五层左侧_1": {
+      "name": "五层左侧",
+      "exits": {
+        "east": "ice_tower.寒冰塔五层",
+        "west": "ice_tower.五层左侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_五层守卫_2"
+      ]
+    },
+    "五层左侧_2": {
+      "name": "五层左侧",
+      "exits": {
+        "east": "ice_tower.五层左侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_五层守卫_3"
+      ]
+    },
+    "五层右侧_1": {
+      "name": "五层右侧",
+      "exits": {
+        "west": "ice_tower.寒冰塔五层",
+        "east": "ice_tower.五层右侧_2"
+      },
+      "monsters": [
+        "monster_ice_tower_五层守卫_4"
+      ]
+    },
+    "五层右侧_2": {
+      "name": "五层右侧",
+      "exits": {
+        "west": "ice_tower.五层右侧_1"
+      },
+      "monsters": [
+        "monster_ice_tower_五层守卫_5"
+      ]
+    },
+    "寒冰塔顶层": {
+      "name": "寒冰塔顶层",
+      "exits": {
+        "south": "ice_tower.寒冰塔五层"
+      },
+      "monsters": [
+        "monster_ice_tower_顶层守卫"
+      ]
     }
   }
 }

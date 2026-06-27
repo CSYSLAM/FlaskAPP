@@ -57,5 +57,49 @@
       "max_health": 30,
       "crit_rate": 0.03
     }
+  },
+  "wedding_diamond_ring": {
+    "name": "新婚钻戒",
+    "description": "象征永恒爱情的钻石戒指，20级神器饰品",
+    "slot": "accessory",
+    "is_bound": false,
+    "level_required": 20,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 30,
+      "defense": 20
+    },
+    "max_extra_stats": {
+      "max_health": 500,
+      "max_mana": 300,
+      "attack": 50,
+      "defense": 40,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
+    }
+  },
+  "wedding_grass_ring": {
+    "name": "新婚草戒",
+    "description": "用草编织的简易戒指，象征朴素的爱情",
+    "slot": "accessory",
+    "is_bound": false,
+    "level_required": 20,
+    "class_required": null,
+    "base_price": 100,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 10,
+      "defense": 8
+    },
+    "max_extra_stats": {
+      "max_health": 100,
+      "max_mana": 80,
+      "attack": 15,
+      "defense": 12,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    }
   }
 }

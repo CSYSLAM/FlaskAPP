@@ -170,6 +170,17 @@ class ItemService:
                             player.id, change_id, take, is_bound=is_b)
                         remaining -= take
 
+        # Process grant_item effect (grant items directly)
+        grant_item = usage_effect.get("grant_item")
+        if grant_item:
+            if isinstance(grant_item, list) and len(grant_item) >= 2:
+                granted_id = grant_item[0]
+                granted_count = grant_item[1]
+                DataService.add_item_to_inventory(player.id, granted_id, granted_count, is_bound=False)
+                granted_data = DataService.get_item(granted_id)
+                granted_name = granted_data.get("name", granted_id) if granted_data else granted_id
+                effect_text_parts.append(f"获得{granted_name}*{granted_count}")
+
         # Process random items
         random_items = usage_effect.get("random_items", [])
         from services.item_reward_registry import handle_reward
@@ -223,6 +234,38 @@ class ItemService:
                             if equip.rarity == "神器":
                                 DataService.broadcast_system(
                                     f"恭喜{player.nickname}获得神器{equip.name}")
+
+        # Process generate_equipment effect (single equipment from template)
+        generate_equipment = usage_effect.get("generate_equipment")
+        if generate_equipment:
+            template_id = generate_equipment.get("template_id")
+            template = DataService.get_equipment_template(template_id)
+            if template:
+                # Determine rarity
+                rarity = generate_equipment.get("rarity")
+                rarity_range = generate_equipment.get("rarity_range")
+                if rarity_range:
+                    rarity = random.choice(rarity_range)
+
+                # Determine stars
+                stars_range = generate_equipment.get("stars_range", [1, 5])
+                stars = random.randint(int(stars_range[0]), int(stars_range[1]))
+
+                # Generate equipment
+                from services.equipment_service import EquipmentService
+                equip = EquipmentService.generate_random_equipment(
+                    player.id, template_id, rarity, stars)
+                if equip:
+                    DataService.add_item_to_inventory(player.id, equip.instance_id)
+                    effect_text_parts.append(f"获得装备{equip.name}")
+
+                    # 新婚戒指包特殊公告
+                    if item_id in ('wedding_diamond_pack', 'wedding_ring_pack'):
+                        DataService.broadcast_system(
+                            f"{player.nickname}打开{item_data.get('name')}，获得了{equip.name}，恭喜恭喜！")
+                    elif equip.rarity == "神器":
+                        DataService.broadcast_system(
+                            f"恭喜{player.nickname}获得神器{equip.name}")
 
         # Process lieutenant potion effects
         if item_id == 'lt_potion_heal':

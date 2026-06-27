@@ -31,8 +31,8 @@ def scene():
     try:
         player = current_user
 
-        # Check if need revive
-        if player.need_revive:
+        # Check if need revive (health <= 0 or need_revive flag)
+        if player.need_revive or player.health <= 0:
             return redirect(url_for('battle.revive'))
 
         # Check if in battlefield
