@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ lieutenant.name }}</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .stat-line { margin: 2px 0; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+{{ lieutenant.name }}({{ lieutenant.quality_name }}{{ lieutenant.class_name }})<br/>
+<br/>
+等级:{{ lieutenant.level }} 经验:{{ lieutenant.experience }}/{{ LieutenantService._exp_to_next(lieutenant.level) }}<br/>
+性别:{{ lieutenant.gender_name }} 职业:{{ lieutenant.class_name }}<br/>
+品质:{{ lieutenant.quality }}({{ lieutenant.quality_name }}){% if lieutenant.quality < 20 %} <a href="{{ url_for('lieutenant.wash_quality', lt_id=lieutenant.id) }}">洗资质</a>{% endif %}<br/>
+悟性:{{ lieutenant.enlightenment }} <a href="{{ url_for('lieutenant.enlighten', lt_id=lieutenant.id) }}">提升悟性</a><br/>
+强化:+{{ lieutenant.reinforce }} <a href="{{ url_for('lieutenant.reinforce', lt_id=lieutenant.id) }}">强化</a><br/>
+忠诚:{{ lieutenant.loyalty }}/100 <a href="{{ url_for('lieutenant.restore_loyalty', lt_id=lieutenant.id) }}">补忠诚</a><br/>
+寿命:{{ lieutenant.lifespan }}/100 <a href="{{ url_for('lieutenant.restore_lifespan', lt_id=lieutenant.id) }}">补寿命</a><br/>
+<br/>
+<b>属性</b><br/>
+生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>
+魔法:{{ lieutenant.current_mana }}/{{ lieutenant.get_max_mana() }}<br/>
+攻击:{{ lieutenant.get_attack() }}<br/>
+防御:{{ lieutenant.get_defense() }}<br/>
+<br/>
+<b>出战状态</b><br/>
+{% if lieutenant.is_deployed %}
+当前:出战{% if lieutenant.position == 'front' %}(前置){% else %}(后置){% endif %}
+{% if not lieutenant.is_alive %}<font color="red">(已阵亡)</font>{% endif %}
+<br/>
+<a href="{{ url_for('lieutenant.recall', lt_id=lieutenant.id) }}">休息</a>
+{% if lieutenant.position == 'front' %}
+<a href="{{ url_for('lieutenant.set_position', lt_id=lieutenant.id, position='back') }}">切换后置</a>
+{% else %}
+<a href="{{ url_for('lieutenant.set_position', lt_id=lieutenant.id, position='front') }}">切换前置</a>
+{% endif %}
+{% else %}
+{% if lieutenant.is_alive and lieutenant.loyalty >= 30 and lieutenant.lifespan >= 30 %}
+当前:休息<br/>
+<a href="{{ url_for('lieutenant.deploy', lt_id=lieutenant.id) }}">出战</a>
+{% else %}
+当前:休息(无法出战: {% if not lieutenant.is_alive %}已阵亡{% elif lieutenant.loyalty < 30 %}忠诚不足{% elif lieutenant.lifespan < 30 %}寿命不足{% endif %})<br/>
+{% endif %}
+{% endif %}
+<br/>
+<br/>
+<b>技能</b>({{ lieutenant.skills|length }}/{{ lieutenant.skill_slots }})<br/>
+<a href="{{ url_for('lieutenant.skills_page', lt_id=lieutenant.id) }}">查看技能</a><br/>
+<br/>
+<a href="{{ url_for('lieutenant.index') }}">返回副将列表</a><br/>
+<a href="{{ url_for('lieutenant.banish', lt_id=lieutenant.id) }}" onclick="return confirm('确定要赶走{{ lieutenant.name }}吗？')">赶走{{ lieutenant.name }}</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

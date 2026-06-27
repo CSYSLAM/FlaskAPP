@@ -1,0 +1,173 @@
+{
+  "name": "北平中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "beiping_center.太守府",
+        "west": "beiping_center.钱庄",
+        "east": "beiping_center.技能馆",
+        "south": "beiping_center.驿站"
+      },
+      "monster_type": "monster_beiping_center_人妖",
+      "npcs": [
+        "npc_beiping_center_长宁道长",
+        "npc_beiping_center_郭嘉副本",
+        "npc_beiping_center_任务使者"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "north": "beiping_center.北街",
+        "south": "beiping_center.广场"
+      },
+      "npcs": [
+        "npc_beiping_center_公孙瓒荣誉"
+      ]
+    },
+    "北街": {
+      "name": "北街",
+      "exits": {
+        "north": "beiping_center.北城楼",
+        "west": "beiping_center.观星台",
+        "east": "beiping_center.药铺_北",
+        "south": "beiping_center.太守府"
+      }
+    },
+    "观星台": {
+      "name": "观星台",
+      "exits": {
+        "east": "beiping_center.北街"
+      },
+      "npcs": [
+        "npc_beiping_center_程昱"
+      ]
+    },
+    "药铺_北": {
+      "name": "药铺",
+      "exits": {
+        "west": "beiping_center.北街"
+      },
+      "npcs": [
+        "npc_beiping_center_华大夫"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "beiping_north.北门",
+        "south": "beiping_center.北街"
+      }
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "west": "beiping_center.广场",
+        "east": "beiping_center.东城楼"
+      },
+      "npcs": [
+        "npc_beiping_center_技能教官",
+        "npc_beiping_center_学徒"
+      ]
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "north": "beiping_center.药铺_东",
+        "west": "beiping_center.技能馆",
+        "east": "beiping_east.东门",
+        "south": "beiping_center.小巷"
+      },
+      "monster_type": "monster_beiping_center_铜人",
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
+    },
+    "药铺_东": {
+      "name": "药铺",
+      "exits": {
+        "south": "beiping_center.东城楼"
+      },
+      "npcs": [
+        "npc_beiping_center_华大夫"
+      ]
+    },
+    "小巷": {
+      "name": "小巷",
+      "exits": {
+        "north": "beiping_center.东城楼"
+      },
+      "npcs": [
+        "npc_beiping_center_智者"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "beiping_center.西城楼",
+        "east": "beiping_center.广场"
+      },
+      "monster_type": "monster_beiping_center_小偷",
+      "npcs": [
+        "npc_beiping_center_金掌柜仓库",
+        "npc_beiping_center_钱掌柜"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "beiping_west.西门",
+        "east": "beiping_center.钱庄"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "beiping_center.广场",
+        "south": "beiping_center.南街"
+      },
+      "npcs": [
+        "npc_beiping_center_北平车夫",
+        "npc_postmaster"
+      ]
+    },
+    "南街": {
+      "name": "南街",
+      "exits": {
+        "north": "beiping_center.驿站",
+        "west": "beiping_center.客栈_南",
+        "east": "beiping_center.铁匠铺_南",
+        "south": "beiping_center.南城楼"
+      }
+    },
+    "客栈_南": {
+      "name": "客栈",
+      "exits": {
+        "east": "beiping_center.南街"
+      },
+      "npcs": [
+        "npc_beiping_center_王老板"
+      ]
+    },
+    "铁匠铺_南": {
+      "name": "铁匠铺",
+      "exits": {
+        "west": "beiping_center.南街"
+      },
+      "npcs": [
+        "npc_beiping_center_北平铁匠"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "beiping_center.南街",
+        "south": "beiping_south.南门"
+      },
+      "npcs": [
+        "npc_beiping_center_城南守将"
+      ]
+    }
+  }
+}

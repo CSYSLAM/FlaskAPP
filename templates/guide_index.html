@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>攻略中心</title>
+<style>
+body { font-size: 16px; }
+a:link { color: #136ec2; text-decoration: none; }
+
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body style="margin-left:10px;margin-right:10px">
+
+<div id="loading"><span></span></div>
+
+<a href="{{ url_for('game.scene') }}">返回游戏</a>
+
+<h3>攻略中心</h3>
+
+【新手入门】<br/>
+<a href="{{ url_for('guide.detail', guide_id='新手指导') }}">新手指导</a>
+<a href="{{ url_for('guide.detail', guide_id='日常进阶') }}">日常进阶</a>
+<a href="{{ url_for('guide.detail', guide_id='新手解答') }}">新手解答①</a><br/>
+<a href="{{ url_for('guide.detail', guide_id='银两获取') }}">银两获取</a>
+<a href="{{ url_for('guide.detail', guide_id='金珠获取') }}">金珠获取</a>
+<a href="{{ url_for('guide.detail', guide_id='元宝获取') }}">元宝获取</a><br/>
+<br/>
+【系统攻略】<br/>
+<a href="{{ url_for('guide.detail', guide_id='装备系统') }}">装备系统</a>
+<a href="{{ url_for('guide.detail', guide_id='技能系统') }}">技能系统</a>
+<a href="{{ url_for('guide.detail', guide_id='称号系统') }}">称号系统</a><br/>
+<a href="{{ url_for('guide.detail', guide_id='成就系统') }}">成就系统</a>
+<a href="{{ url_for('guide.detail', guide_id='社交系统') }}">社交系统</a>
+<a href="{{ url_for('guide.detail', guide_id='山庄系统') }}">山庄系统</a><br/>
+<a href="{{ url_for('guide.detail', guide_id='军衔系统') }}">军衔系统</a>
+<a href="{{ url_for('guide.detail', guide_id='副将系统') }}">副将系统</a>
+<a href="{{ url_for('guide.detail', guide_id='军团系统') }}">军团系统</a><br/>
+<br/>
+【玩法攻略】<br/>
+<a href="{{ url_for('guide.detail', guide_id='神兽玩法') }}">神兽玩法</a>
+<a href="{{ url_for('guide.detail', guide_id='精怪玩法') }}">精怪玩法</a>
+<a href="{{ url_for('guide.detail', guide_id='PK玩法') }}">PK玩法</a><br/>
+<br/>
+客服QQ：2164609513 <a href="mqqwpa://im/chat?chat_type=wpa&uin=2164609513&version=1&src_type=web&web_src=oicqzone.com">联系</a><br/>
+如果有好的建议或意见可联系客服反馈，反馈采纳将会有金珠、元宝奖励。<br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
+</body>
+</html>

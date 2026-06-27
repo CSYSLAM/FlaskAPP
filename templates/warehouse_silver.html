@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>存取银两</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+存取银两<br/>
+<br/>
+存银:{{ player.warehouse_gold }}<br/>
+<form action="{{ url_for('warehouse.withdraw_silver', npc_id=npc_id) }}" method="post" style="display:inline;">
+    <input type="text" name="amount" value="1" maxlength="10" style="width:80px;">
+    <input type="submit" value="取出">
+</form>
+<br/>
+<br/>
+银两:{{ player.gold }}<br/>
+<form action="{{ url_for('warehouse.deposit_silver', npc_id=npc_id) }}" method="post" style="display:inline;">
+    <input type="text" name="amount" value="1" maxlength="10" style="width:80px;">
+    <input type="submit" value="存入">
+</form>
+<br/>
+<br/>
+<a href="{{ url_for('warehouse.warehouse', npc_id=npc_id) }}">返回上级</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

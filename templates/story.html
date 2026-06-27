@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>天命三国2-剧情</title>
+<style>
+body { font-size: 16px; margin: 0; line-height: 1.8; }
+a:link { color: #136ec2; text-decoration: none; }
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body style="margin-left:10px;margin-right:10px">
+
+<div id="loading"><span></span></div>
+
+{% if story_lines is defined and story_lines %}
+{% if story_title %}
+<b>{{ story_title }}</b><br/><br/>
+{% endif %}
+{% for line in story_lines %}
+{{ line }}<br/>
+{% endfor %}
+<br/>
+<a href="{{ continue_url or url_for('game.scene') }}">继续</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+{% else %}
+{% if story_id == 0 or story_id == 1 %}
+<b>—— 序章·三国叹 ——</b><br/>
+谁仗雌雄剑，谁纵赤兔马<br/>
+谁凤仪连环一笑倾天下<br/>
+谁青梅煮酒，谁雄姿英发<br/>
+谁傲笑长坂飞枪舞梨花<br/>
+谁祁山六出，谁中原九伐<br/>
+谁计定辽东遗魂葬天涯<br/>
+……<br/>
+<b>第一章 初入江湖</b><br/><br/>
+"滚滚长江东逝水，浪花淘尽英雄。是非成败转头空，青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢，古今多少事，都付笑谈中，长发你可知这首词是谁写的呀？"<br/>
+是谁在说话？长发又是谁？<br/>
+{% elif story_id == 2 %}
+<img src="{{ url_for('static', filename='images/story/001.gif') }}" border="0" height="53"/><br/>
+【郭大侠】：<br/>
+"少侠莫惊慌，我叫郭大侠！这里是三国时期是我把你带到这里的"<br/><br/>
+<img src="{{ url_for('static', filename='images/story/02.gif') }}" border="0" height="53"/><br/>
+【我】：<br/>
+"你把我带到这里来干嘛！我该回我的床上去了再见！！"<br/>
+{% elif story_id == 3 %}
+<img src="{{ url_for('static', filename='images/story/001.gif') }}" border="0" height="53"/><br/>
+【郭大侠】：<br/>
+"小兄弟，请留步！老夫看你骨骼惊奇，根骨奇佳乃是百年不遇的天人，如今天下形势，分久必合。此时，魏、蜀、吴三足鼎立，虽能一方称雄，而邻国却虎视眈眈。时无英雄，让竖子成名，让人感慨啊~~~我看与你有缘未来拯救世界的任务就要你来完成了！"<br/><br/>
+<img src="{{ url_for('static', filename='images/story/03.gif') }}" border="0" height="53"/><br/>
+【我】：<br/>
+听起来很不错，交给我吧我就是救世主！哈哈哈……<br/>
+（我是英雄？我有那么大的能力吗！无所谓了。人生能有几时搏？此时不搏何时搏！）<br/>
+{% elif story_id == 4 %}
+<img src="{{ url_for('static', filename='images/story/001.gif') }}" border="0" height="53"/><br/>
+【郭大侠】：<br/>
+"且慢，少侠！那边有位姑娘好像有话对你说。"<br/><br/>
+<img src="{{ url_for('static', filename='images/story/04.gif') }}" border="0" height="53"/><br/>
+【我】：<br/>
+"有妹子~~在哪里。在哪里。"<br/>
+（言毕，郭大侠就消失了。）<br/>
+{% elif story_id == 5 %}
+【*——是否前往三国？——*】<br/><br/>
+潇洒走一回，大河向东流啊……<br/>
+{% endif %}
+<br/>
+{% if story_id == 0 %}
+<a href="{{ url_for('auth.story', story_id=1) }}">下一页</a><br/>
+{% elif story_id < 5 %}
+<a href="{{ url_for('auth.story', story_id=story_id+1) }}">下一页</a><br/>
+{% elif story_id == 5 %}
+<a href="{{ url_for('auth.story_complete') }}">进入厢房</a><br/>
+{% endif %}
+<a href="{{ url_for('auth.logout') }}">退出登录</a><br/>
+{% endif %}
+
+<script>
+var aLinks = document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    document.getElementById('loading').style.display='block';
+}; }
+setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);
+</script>
+</body>
+</html>

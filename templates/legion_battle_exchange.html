@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>团战积分兑换</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    团战积分兑换<br/>
+    {% for cat_key, cat_info in categories.items() %}
+    {% if cat_key == current_cat %}
+    {{ cat_info.name }}
+    {% else %}
+    <a href="{{ url_for('legion.battle_exchange', cat=cat_key) }}">{{ cat_info.name }}</a>
+    {% endif %}
+    {% endfor %}
+    <br/>
+    ----------------<br/>
+    名称|价格<br/>
+    {% for key, item in items.items() %}
+    {{ item.name }}|{{ item.cost }}积分<br/>
+    <form method="post" action="{{ url_for('legion.battle_exchange_item', item_key=key) }}" style="display:inline">
+        <input type="hidden" name="cat" value="{{ current_cat }}"/>
+        <input type="number" name="quantity" value="1" min="1" max="99" style="width:40px"/>
+        <input type="submit" value="兑换"/>
+    </form>
+    <br/>
+    {% endfor %}
+    团战积分:{{ member.personal_battle_points }}<br/>
+    <br/>
+    <a href="{{ url_for('legion.hall') }}">返回军团大厅</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+{
+  "name": "建宁中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "jianing_center.太守府",
+        "west": "jianing_center.技能馆",
+        "east": "jianing_center.钱庄",
+        "south": "jianing_center.驿站"
+      },
+      "npcs": [
+        "npc_jianing_center_长宁道长",
+        "npc_jianing_center_任务使者",
+        "npc_jianing_center_活动礼官活动"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "north": "jianing_center.建北街",
+        "south": "jianing_center.广场"
+      },
+      "npcs": [
+        "npc_jianing_center_霍弋荣誉"
+      ]
+    },
+    "建北街": {
+      "name": "建北街",
+      "exits": {
+        "north": "jianing_center.北城楼",
+        "west": "jianing_center.观星台",
+        "east": "jianing_center.药铺_北",
+        "south": "jianing_center.太守府"
+      }
+    },
+    "观星台": {
+      "name": "观星台",
+      "exits": {
+        "east": "jianing_center.建北街"
+      },
+      "npcs": [
+        "npc_jianing_center_马良"
+      ]
+    },
+    "药铺_北": {
+      "name": "药铺",
+      "exits": {
+        "west": "jianing_center.建北街"
+      },
+      "npcs": [
+        "npc_jianing_center_华大夫"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "jianing_north.北门",
+        "south": "jianing_center.建北街"
+      }
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "jianing_center.广场",
+        "east": "jianing_center.东城楼"
+      },
+      "monster_type": "monster_jianing_center_小偷",
+      "npcs": [
+        "npc_jianing_center_金掌柜仓库"
+      ]
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "jianing_center.钱庄",
+        "east": "jianing_east.东门"
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "west": "jianing_center.西城楼",
+        "east": "jianing_center.广场"
+      },
+      "npcs": [
+        "npc_jianing_center_技能教官",
+        "npc_jianing_center_学徒"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "jianing_west.西门",
+        "east": "jianing_center.技能馆",
+        "south": "jianing_center.宣威桥"
+      },
+      "monster_type": "monster_jianing_center_铜人"
+    },
+    "宣威桥": {
+      "name": "宣威桥",
+      "exits": {
+        "north": "jianing_center.西城楼"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "jianing_center.广场",
+        "south": "jianing_center.建南街"
+      },
+      "npcs": [
+        "npc_jianing_center_建宁车夫",
+        "npc_postmaster"
+      ]
+    },
+    "建南街": {
+      "name": "建南街",
+      "exits": {
+        "north": "jianing_center.驿站",
+        "west": "jianing_center.客栈_南",
+        "east": "jianing_center.铁匠铺_南",
+        "south": "jianing_center.南城楼"
+      }
+    },
+    "铁匠铺_南": {
+      "name": "铁匠铺",
+      "exits": {
+        "west": "jianing_center.建南街"
+      },
+      "npcs": [
+        "npc_jianing_center_建宁铁匠"
+      ]
+    },
+    "客栈_南": {
+      "name": "客栈",
+      "exits": {
+        "east": "jianing_center.建南街"
+      },
+      "npcs": [
+        "npc_jianing_center_王老板"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "jianing_center.建南街",
+        "south": "jianing_south.南门"
+      },
+      "npcs": [
+        "npc_jianing_center_城南守将"
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>战场排名</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    战场排名<br/>
+    ----------------<br/>
+    {% for city_key, data in all_rankings.items() %}
+    {{ data.city.name }}({{ data.city.tier }})<br/>
+    {% if data.player_ranking %}
+    玩家:<br/>
+    {% for r in data.player_ranking %}
+    {{ loop.index }}.{{ r.name }}({{ r.country }}) {{ r.score }}分<br/>
+    {% endfor %}
+    {% endif %}
+    {% if data.legion_ranking %}
+    军团:<br/>
+    {% for r in data.legion_ranking %}
+    {{ loop.index }}.{{ r.name }}({{ r.country }}) {{ r.score }}分<br/>
+    {% endfor %}
+    {% endif %}
+    ---<br/>
+    {% endfor %}
+    <br/>
+    {% if player.in_battlefield %}
+    <a href="{{ url_for('battlefield.city_view') }}">返回战场</a><br/>
+    {% else %}
+    <a href="{{ url_for('battlefield.index') }}">返回战场入口</a><br/>
+    {% endif %}
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

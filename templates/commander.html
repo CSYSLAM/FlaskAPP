@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>副将统领</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+副将统领<br/>
+在我这里可以招募副将.<br/>
+{% if npc_quests %}
+{% for q in npc_quests %}
+<a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+{% endfor %}
+{% endif %}
+<br/>
+<a href="{{ url_for('commander.recruit_page') }}">副将招募</a><br/>
+<a href="{{ url_for('commander.decompose') }}">魂魄分解</a><br/>
+<a href="{{ url_for('commander.synthesize') }}">聚魂幡合成</a><br/>
+<br/>
+副将数量:{{ lt_count }}/{{ max_slots }}<br/>
+<br/>
+<a href="{{ url_for('lieutenant.index') }}">查看副将</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{
+  "name": "江陵西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "east": "jiangling_center.西城楼",
+        "west": "jiangling_west.西郊"
+      }
+    },
+    "西郊": {
+      "name": "西郊",
+      "exits": {
+        "east": "jiangling_west.西门",
+        "west": "jiangling_west.龙子湖"
+      }
+    },
+    "龙子湖": {
+      "name": "龙子湖",
+      "exits": {
+        "east": "jiangling_west.西郊",
+        "west": "jiangling_west.蜀前营"
+      }
+    },
+    "蜀前营": {
+      "name": "蜀前营",
+      "exits": {
+        "east": "jiangling_west.龙子湖",
+        "west": "jiangling_west.蜀中营",
+        "north": "jiangling_west.蜀仓库",
+        "south": "jiangling_west.蜀火库"
+      },
+      "monster_type": "monster_hanzhong_south_蜀军前锋"
+    },
+    "蜀中营": {
+      "name": "蜀中营",
+      "exits": {
+        "north": "jiangling_west.蜀左营",
+        "west": "jiangling_west.蜀后营",
+        "east": "jiangling_west.蜀前营",
+        "south": "jiangling_west.蜀右营"
+      }
+    },
+    "蜀后营": {
+      "name": "蜀后营",
+      "exits": {
+        "east": "jiangling_west.蜀中营",
+        "west": "jiangling_west.江陵西界"
+      }
+    },
+    "蜀左营": {
+      "name": "蜀左营",
+      "exits": {
+        "east": "jiangling_west.蜀仓库",
+        "south": "jiangling_west.蜀中营"
+      }
+    },
+    "蜀仓库": {
+      "name": "蜀仓库",
+      "exits": {
+        "west": "jiangling_west.蜀左营",
+        "south": "jiangling_west.蜀前营"
+      },
+      "monster_type": "monster_jiangling_west_糜芳"
+    },
+    "蜀右营": {
+      "name": "蜀右营",
+      "exits": {
+        "north": "jiangling_west.蜀中营",
+        "east": "jiangling_west.蜀火库"
+      }
+    },
+    "蜀火库": {
+      "name": "蜀火库",
+      "exits": {
+        "north": "jiangling_west.蜀前营",
+        "west": "jiangling_west.蜀右营"
+      },
+      "monster_type": "monster_jiangling_west_刘封"
+    },
+    "江陵西界": {
+      "name": "江陵西界",
+      "exits": {
+        "east": "jiangling_west.蜀后营",
+        "west": "chengdu_east.成都东界"
+      }
+    }
+  }
+}

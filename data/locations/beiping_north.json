@@ -1,0 +1,92 @@
+{
+  "name": "北平北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "beiping_north.将军营",
+        "south": "beiping_center.北城楼"
+      },
+      "can_pk": true
+    },
+    "将军营": {
+      "name": "将军营",
+      "exits": {
+        "north": "beiping_north.燕山",
+        "south": "beiping_north.北门"
+      },
+      "can_pk": true
+    },
+    "燕山": {
+      "name": "燕山",
+      "exits": {
+        "north": "beiping_north.辽东平原",
+        "west": "beiping_north.乌恒部落",
+        "east": "beiping_north.菊花山",
+        "south": "beiping_north.将军营"
+      },
+      "monster_type": "monster_beiping_north_翼州步兵",
+      "can_pk": true,
+      "monsters": [
+        "monster_beiping_north_冀州步兵"
+      ]
+    },
+    "乌恒部落": {
+      "name": "乌恒部落",
+      "exits": {
+        "west": "beiping_north.白马草原",
+        "east": "beiping_north.燕山"
+      },
+      "can_pk": true
+    },
+    "白马草原": {
+      "name": "白马草原",
+      "exits": {
+        "east": "beiping_north.乌恒部落"
+      },
+      "monster_type": "monster_beiping_north_乌恒骑兵",
+      "can_pk": true
+    },
+    "菊花山": {
+      "name": "菊花山",
+      "exits": {
+        "west": "beiping_north.燕山",
+        "east": "beiping_north.雪花谷"
+      },
+      "can_pk": true
+    },
+    "雪花谷": {
+      "name": "雪花谷",
+      "exits": {
+        "north": "beiping_north.谷底洞天",
+        "west": "beiping_north.菊花山"
+      },
+      "monster_type": "monster_beiping_north_逢纪",
+      "can_pk": true
+    },
+    "谷底洞天": {
+      "name": "谷底洞天",
+      "exits": {
+        "south": "beiping_north.雪花谷"
+      },
+      "monster_type": "monster_beiping_north_公孙碧",
+      "can_pk": true
+    },
+    "辽东平原": {
+      "name": "辽东平原",
+      "exits": {
+        "north": "beiping_north.北平北界",
+        "south": "beiping_north.燕山"
+      },
+      "monster_type": "monster_beiping_north_翼州斧兵",
+      "can_pk": true
+    },
+    "北平北界": {
+      "name": "北平北界",
+      "exits": {
+        "south": "beiping_north.辽东平原"
+      },
+      "can_pk": true
+    }
+  }
+}

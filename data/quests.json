@@ -1,0 +1,1228 @@
+{
+  "main_01": {
+    "id": "main_01",
+    "name": "主·初入三国",
+    "type": "main",
+    "npc_id": "npc_beiping_east_香凝",
+    "npc_name": "香凝",
+    "npc_location": "beiping_east.大院",
+    "npc_location_name": "大院(北平东区)",
+    "level_required": 1,
+    "description": "前往「大院」与『香凝』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_香凝",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "香凝",
+          "text": "将军！将军！"
+        },
+        {
+          "speaker": "你",
+          "text": "姑娘慌慌张张何事(你脑袋晕乎乎心想不是在做梦？)！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "香凝",
+          "text": "刚刚我看到一个黑影鬼鬼祟祟从小姐房中出来，将军快进屋救小姐！"
+        },
+        {
+          "speaker": "你",
+          "text": "啊？啊？啊？"
+        }
+      ]
+    },
+    "next_hint": "前往「厢房」与『曹樱』对话",
+    "next_quest": "main_02"
+  },
+  "main_02": {
+    "id": "main_02",
+    "name": "主·少女初逢",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹樱",
+    "npc_name": "曹樱",
+    "npc_location": "beiping_east.厢房",
+    "npc_location_name": "厢房(北平东区)",
+    "level_required": 1,
+    "prerequisite": "main_01",
+    "description": "前往「厢房」与『曹樱』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_曹樱",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹樱",
+          "text": "将军从天上来，难道会是凡人吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "应该不是吧(这是梦还是不是梦呢？)！"
+        },
+        {
+          "speaker": "",
+          "text": "(曹樱微微一笑，你顿时看呆了)"
+        },
+        {
+          "speaker": "曹樱",
+          "text": "(小小声)将军和梦中长的一样呢..."
+        }
+      ]
+    },
+    "next_quest": "main_03"
+  },
+  "main_03": {
+    "id": "main_03",
+    "name": "主·小菜一碟",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹樱",
+    "npc_name": "曹樱",
+    "npc_location": "beiping_east.厢房",
+    "npc_location_name": "厢房(北平东区)",
+    "level_required": 1,
+    "prerequisite": "main_02",
+    "description": "前往「大院」击杀『窃贼』收集1本[青囊书]",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_qingnangshu",
+      "item_name": "青囊书",
+      "count": 1,
+      "monster_name": "窃贼"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹樱",
+          "text": "将军刚刚有个『窃贼』把我的[青囊书]偷走了，将军可否帮我抢回来？"
+        },
+        {
+          "speaker": "你",
+          "text": "原来那黑影是窃贼，看我这就去取回来。"
+        },
+        {
+          "speaker": "曹樱",
+          "text": "窃贼还在大院，将军一定要小心。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹樱",
+          "text": "感谢将军，将军果然勇猛过人"
+        },
+        {
+          "speaker": "你",
+          "text": "嘿嘿，我也这么认为"
+        },
+        {
+          "speaker": "曹樱",
+          "text": "将军这么勇猛，不如帮我带封信吧？"
+        },
+        {
+          "speaker": "你",
+          "text": "额，行吧..."
+        },
+        {
+          "speaker": "曹樱",
+          "text": "略略略，谢谢将军。"
+        }
+      ]
+    },
+    "next_hint": "前往「军营」与『曹彰』对话",
+    "next_quest": "main_04",
+    "grant_item": {
+      "item_id": "quest_jiashu",
+      "item_name": "家书",
+      "count": 1
+    }
+  },
+  "main_04": {
+    "id": "main_04",
+    "name": "主·初遇曹彰",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹彰",
+    "npc_name": "曹彰",
+    "npc_location": "beiping_east.军营",
+    "npc_location_name": "军营(北平东区)",
+    "level_required": 1,
+    "prerequisite": "main_03",
+    "description": "前往「军营」与『曹彰』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_jiashu",
+      "item_name": "家书",
+      "count": 1,
+      "target_npc": "npc_beiping_east_曹彰"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹彰",
+          "text": "是曹樱叫你来的吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "是的，这里有封你的家信。"
+        },
+        {
+          "speaker": "曹彰",
+          "text": "那就谢过将军了。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹彰",
+          "text": "我这就回一封，还请将军带回去一趟。"
+        },
+        {
+          "speaker": "你",
+          "text": "好，小事一桩！"
+        }
+      ]
+    },
+    "next_hint": "前往「厢房」与『曹樱』对话",
+    "next_quest": "main_05",
+    "grant_item": {
+      "item_id": "quest_jiashu",
+      "item_name": "家书",
+      "count": 1
+    }
+  },
+  "main_05": {
+    "id": "main_05",
+    "name": "主·飞书传人",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹樱",
+    "npc_name": "曹樱",
+    "npc_location": "beiping_east.厢房",
+    "npc_location_name": "厢房(北平东区)",
+    "level_required": 1,
+    "prerequisite": "main_04",
+    "description": "前往「厢房」与『曹樱』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_jiashu",
+      "item_name": "家书",
+      "count": 1,
+      "target_npc": "npc_beiping_east_曹樱"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹樱",
+          "text": "将军这么这么快就回来了？"
+        },
+        {
+          "speaker": "你",
+          "text": "这是曹将军给你回的一封信。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹樱",
+          "text": "嘻嘻，谢谢将军！"
+        },
+        {
+          "speaker": "你",
+          "text": "这次没有啥事了吧？"
+        },
+        {
+          "speaker": "曹樱",
+          "text": "麻烦将军把这饭菜带给父亲一下。"
+        },
+        {
+          "speaker": "你",
+          "text": "我真多嘴，行吧！"
+        }
+      ]
+    },
+    "next_hint": "前往「军营」与『曹彰』对话",
+    "next_quest": "main_06",
+    "grant_item": {
+      "item_id": "quest_fancai",
+      "item_name": "饭菜",
+      "count": 1
+    }
+  },
+  "main_06": {
+    "id": "main_06",
+    "name": "主·又见曹彰",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹彰",
+    "npc_name": "曹彰",
+    "npc_location": "beiping_east.军营",
+    "npc_location_name": "军营(北平东区)",
+    "level_required": 1,
+    "prerequisite": "main_05",
+    "description": "前往「军营」与『曹彰』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_fancai",
+      "item_name": "饭菜",
+      "count": 1,
+      "target_npc": "npc_beiping_east_曹彰"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹彰",
+          "text": "将军怎么又回来了？"
+        },
+        {
+          "speaker": "你",
+          "text": "...你以为我想啊，这是曹樱给你的饭菜。"
+        }
+      ]
+    },
+    "next_quest": "main_07"
+  },
+  "main_07": {
+    "id": "main_07",
+    "name": "主·初见智者",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 3,
+    "prerequisite": "main_06",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "哈哈，将军人可不能貌相，若是将军不信可去问问技能馆的学徒。"
+        },
+        {
+          "speaker": "你",
+          "text": "老先生告辞，我这就去。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军一路走好(终于走了)。"
+        },
+        {
+          "speaker": "你",
+          "text": "不过技能馆在哪里？"
+        },
+        {
+          "speaker": "智者",
+          "text": "「技能馆」(北平中部)就在「东城门」(北平中部)西面。"
+        }
+      ]
+    },
+    "next_quest": "main_08"
+  },
+  "main_08": {
+    "id": "main_08",
+    "name": "主·询问学徒",
+    "type": "main",
+    "npc_id": "npc_beiping_center_学徒",
+    "npc_name": "学徒",
+    "npc_location": "beiping_center.技能馆",
+    "npc_location_name": "技能馆(北平中区)",
+    "level_required": 3,
+    "prerequisite": "main_07",
+    "description": "前往「技能馆」与『学徒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_学徒",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_09"
+  },
+  "main_09": {
+    "id": "main_09",
+    "name": "主·学习技能",
+    "type": "main",
+    "npc_id": "npc_beiping_center_技能教官",
+    "npc_name": "技能教官",
+    "npc_location": "beiping_center.技能馆",
+    "npc_location_name": "技能馆(北平中区)",
+    "level_required": 3,
+    "prerequisite": "main_08",
+    "description": "前往「技能馆」找『技能教官』学习一个技能",
+    "objective": {
+      "type": "learn_skill",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "技能教官",
+          "text": "将军来了，我已经在此等候多时。"
+        },
+        {
+          "speaker": "你",
+          "text": "你怎么知道我要来的？"
+        },
+        {
+          "speaker": "技能教官",
+          "text": "你是来学习技能的吧。"
+        },
+        {
+          "speaker": "你",
+          "text": "你怎么也知道？"
+        },
+        {
+          "speaker": "技能教官",
+          "text": "先别问我为什么知道，赶紧把技能学了！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "技能教官",
+          "text": "将军悟性不错，必能名扬三国！"
+        },
+        {
+          "speaker": "你",
+          "text": "谢谢教官，我这就去找学徒试试技能。"
+        }
+      ]
+    },
+    "next_quest": "main_10"
+  },
+  "main_10": {
+    "id": "main_10",
+    "name": "主·挑战学徒",
+    "type": "main",
+    "npc_id": "npc_beiping_center_学徒",
+    "npc_name": "学徒",
+    "npc_location": "beiping_center.技能馆",
+    "npc_location_name": "技能馆(北平中区)",
+    "level_required": 3,
+    "prerequisite": "main_09",
+    "description": "前往「技能馆」与『学徒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_学徒",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_11"
+  },
+  "main_11": {
+    "id": "main_11",
+    "name": "主·回复智者",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 4,
+    "prerequisite": "main_10",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 300,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "咦！你变了，我怎么感觉你的气质变了。"
+        },
+        {
+          "speaker": "你",
+          "text": "你没发现吗？我现在可是学了技能的。"
+        },
+        {
+          "speaker": "智者",
+          "text": "是吗？我怎么感觉没变厉害啊？"
+        },
+        {
+          "speaker": "你",
+          "text": "那我证明给你看看？"
+        }
+      ]
+    },
+    "next_quest": "main_12"
+  },
+  "main_12": {
+    "id": "main_12",
+    "name": "主·证明实力",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.东城楼",
+    "npc_location_name": "东城楼(北平中区)",
+    "level_required": 4,
+    "prerequisite": "main_11",
+    "description": "前往「东城楼」收拾10名『铜人』",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "铜人",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 300,
+      "gold": 100
+    },
+    "next_quest": "main_13"
+  },
+  "main_13": {
+    "id": "main_13",
+    "name": "主·关于副将",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹彰",
+    "npc_name": "曹彰",
+    "npc_location": "beiping_east.军营",
+    "npc_location_name": "军营(北平东区)",
+    "level_required": 5,
+    "prerequisite": "main_12",
+    "description": "前往「军营」与『曹彰』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_曹彰",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹彰",
+          "text": "将军有什么事吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "曹将军，这次有点事想请教你。"
+        },
+        {
+          "speaker": "曹彰",
+          "text": "哦？将军请讲。"
+        },
+        {
+          "speaker": "你",
+          "text": "就是，副将哪里搞啊？"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹彰",
+          "text": "很简单，你看到旁边的『副将统领』没有，你去找他，他会告诉你的。"
+        }
+      ]
+    },
+    "next_quest": "main_14"
+  },
+  "main_14": {
+    "id": "main_14",
+    "name": "主·获得副将",
+    "type": "main",
+    "npc_id": "npc_beiping_east_副将统领",
+    "npc_name": "副将统领",
+    "npc_location": "beiping_east.军营",
+    "npc_location_name": "军营(北平东区)",
+    "level_required": 5,
+    "prerequisite": "main_13",
+    "description": "前往「军营」与『副将统领』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_副将统领",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "grant_item": {
+      "item_id": "lt_recruit_token",
+      "item_name": "副将招募令",
+      "count": 1
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "副将统领",
+          "text": "记住，副将要出战才能与你并肩作战！"
+        },
+        {
+          "speaker": "你",
+          "text": "怎么出战呢？"
+        },
+        {
+          "speaker": "副将统领",
+          "text": "场景下方有个副将，你点进去就会了。"
+        },
+        {
+          "speaker": "你",
+          "text": "那我就告辞了(去给智者秀一秀我的副将)。"
+        }
+      ]
+    },
+    "next_quest": "main_15"
+  },
+  "main_15": {
+    "id": "main_15",
+    "name": "主·炫耀副将",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 5,
+    "prerequisite": "main_14",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "嗯...孺子可教，你可越来越聪明了。"
+        }
+      ]
+    },
+    "next_quest": "main_16"
+  },
+  "main_16": {
+    "id": "main_16",
+    "name": "主·再次证明",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.箭楼",
+    "npc_location_name": "箭楼(北平中区)",
+    "level_required": 5,
+    "prerequisite": "main_15",
+    "description": "前往「箭楼」收拾10条『野狗』",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "野狗",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_17"
+  },
+  "main_17": {
+    "id": "main_17",
+    "name": "主·易物换钱",
+    "type": "main",
+    "npc_id": "npc_beiping_east_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "beiping_east.铁匠铺",
+    "npc_location_name": "铁匠铺(北平东区)",
+    "level_required": 6,
+    "prerequisite": "main_16",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军可还有什么事？"
+        },
+        {
+          "speaker": "你",
+          "text": "那个我想知道怎么卖东西..."
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "看到我下面的操作栏有卖道具没有？你想卖什么都可以！"
+        },
+        {
+          "speaker": "你",
+          "text": "这样呀，我回去找智者了。"
+        }
+      ]
+    },
+    "next_quest": "main_18"
+  },
+  "main_18": {
+    "id": "main_18",
+    "name": "主·回复智者",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 6,
+    "prerequisite": "main_17",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_19"
+  },
+  "main_19": {
+    "id": "main_19",
+    "name": "主·打造兵器",
+    "type": "main",
+    "npc_id": "npc_beiping_east_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "beiping_east.铁匠铺",
+    "npc_location_name": "铁匠铺(北平东区)",
+    "level_required": 6,
+    "prerequisite": "main_18",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "grant_item": {
+      "item_id": "equipment_tie_sword_quest",
+      "item_name": "铁剑",
+      "count": 1
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "我看你未来前途无量，我老李看人从来没失败过，我有把祖传的宝剑就赠与你了！"
+        },
+        {
+          "speaker": "你",
+          "text": "铁匠大哥你真好(流出感动的泪水)。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "以后发达了别忘了多来照顾照顾我的生意，记住我的铁匠铺可是连锁店，各大城市都有！"
+        },
+        {
+          "speaker": "你",
+          "text": "知道了！知道了！我一定会来的，我现在就回去告诉智者！"
+        }
+      ]
+    },
+    "next_quest": "main_20"
+  },
+  "main_20": {
+    "id": "main_20",
+    "name": "主·回复智者",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 6,
+    "prerequisite": "main_19",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_21"
+  },
+  "main_21": {
+    "id": "main_21",
+    "name": "主·强化装备",
+    "type": "main",
+    "npc_id": "npc_beiping_east_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "beiping_east.铁匠铺",
+    "npc_location_name": "铁匠铺(北平东区)",
+    "level_required": 7,
+    "prerequisite": "main_20",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军来了，这次需要什么？"
+        },
+        {
+          "speaker": "你",
+          "text": "智者说武器要有灵性，需要来强化。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "哦？强化装备需要强化宝玉和银两，你准备好了吗？"
+        }
+      ]
+    },
+    "next_quest": "main_22",
+    "grant_item": {
+      "item_id": "enhance_gem",
+      "item_name": "强化宝玉",
+      "count": 2
+    }
+  },
+  "main_22": {
+    "id": "main_22",
+    "name": "主·小试牛刀",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.箭楼",
+    "npc_location_name": "箭楼(北平东区)",
+    "level_required": 7,
+    "prerequisite": "main_21",
+    "description": "前往「箭楼」收拾10条『野狗』",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "野狗",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 700,
+      "gold": 100
+    },
+    "next_quest": "main_23"
+  },
+  "main_23": {
+    "id": "main_23",
+    "name": "主·住店休息",
+    "type": "main",
+    "npc_id": "npc_beiping_center_王老板",
+    "npc_name": "王老板",
+    "npc_location": "beiping_center.客栈_南",
+    "npc_location_name": "客栈(北平中区)",
+    "level_required": 7,
+    "prerequisite": "main_22",
+    "description": "前往「客栈」与『王老板』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_王老板",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "王老板",
+          "text": "将军是第一次来，我们可以免费哦，而且我们这里真的不贵。"
+        },
+        {
+          "speaker": "你",
+          "text": "那太好了，我试试(休息后，精力充沛)！"
+        },
+        {
+          "speaker": "王老板",
+          "text": "将军感觉如何？"
+        },
+        {
+          "speaker": "你",
+          "text": "我的伤真的好了，我要回去找智者！"
+        }
+      ]
+    },
+    "next_quest": "main_24"
+  },
+  "main_24": {
+    "id": "main_24",
+    "name": "主·再见智者",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 7,
+    "prerequisite": "main_23",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_25"
+  },
+  "main_25": {
+    "id": "main_25",
+    "name": "主·了解称号",
+    "type": "main",
+    "npc_id": "npc_beiping_east_曹樱",
+    "npc_name": "曹樱",
+    "npc_location": "beiping_east.厢房",
+    "npc_location_name": "厢房(北平东区)",
+    "level_required": 8,
+    "prerequisite": "main_24",
+    "description": "前往「厢房」与『曹樱』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_曹樱",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "grant_item": {
+      "item_id": "title_prefix_mangmang",
+      "item_name": "称号卷轴-迷茫的",
+      "count": 2
+    },
+    "next_quest": "main_26"
+  },
+  "main_26": {
+    "id": "main_26",
+    "name": "主·回复智者",
+    "type": "main",
+    "npc_id": "npc_beiping_center_智者",
+    "npc_name": "智者",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
+    "level_required": 8,
+    "prerequisite": "main_25",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_27",
+    "grant_item": {
+      "item_id": "shenyou_guo",
+      "item_name": "神游果",
+      "count": 2
+    }
+  },
+  "main_27": {
+    "id": "main_27",
+    "name": "主·了解神游果",
+    "type": "main",
+    "npc_id": "npc_beiping_east_左慈",
+    "npc_name": "左慈",
+    "npc_location": "beiping_east.箭楼",
+    "npc_location_name": "箭楼(北平东区)",
+    "level_required": 8,
+    "prerequisite": "main_26",
+    "description": "前往「箭楼」与『左慈』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_左慈",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_28"
+  },
+  "main_28": {
+    "id": "main_28",
+    "name": "主·了解地图",
+    "type": "main",
+    "npc_id": "npc_beiping_east_左慈",
+    "npc_name": "左慈",
+    "npc_location": "beiping_east.箭楼",
+    "npc_location_name": "箭楼(北平东区)",
+    "level_required": 8,
+    "prerequisite": "main_27",
+    "description": "前往「箭楼」与『左慈』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_左慈",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "左慈",
+          "text": "每个城市都有一个广场，在广场内没出城门属于中区，比如北区就是出了北城门。"
+        },
+        {
+          "speaker": "你",
+          "text": "原来是这样，我终于搞懂了！"
+        }
+      ]
+    },
+    "next_quest": "main_29"
+  },
+  "main_29": {
+    "id": "main_29",
+    "name": "主·接下来的路",
+    "type": "main",
+    "npc_id": "npc_beiping_east_左慈",
+    "npc_name": "左慈",
+    "npc_location": "beiping_east.箭楼",
+    "npc_location_name": "箭楼(北平东区)",
+    "level_required": 9,
+    "prerequisite": "main_28",
+    "description": "前往「箭楼」与『左慈』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_east_左慈",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "左慈",
+          "text": "不知将军以后有何打算？"
+        },
+        {
+          "speaker": "你",
+          "text": "不知道啊，才刚来这里，人生地不熟的，有点小迷茫(挠挠头)。"
+        },
+        {
+          "speaker": "左慈",
+          "text": "老朽倒是可以推荐将军去见一个人！"
+        },
+        {
+          "speaker": "你",
+          "text": "程昱？他在哪？"
+        },
+        {
+          "speaker": "左慈",
+          "text": "他在「观星台」(北平中区)，将军你..."
+        }
+      ]
+    },
+    "next_quest": "main_30"
+  },
+  "main_30": {
+    "id": "main_30",
+    "name": "主·拜访程昱",
+    "type": "main",
+    "npc_id": "npc_beiping_center_程昱",
+    "npc_name": "程昱",
+    "npc_location": "beiping_center.观星台",
+    "npc_location_name": "观星台(北平中区)",
+    "level_required": 9,
+    "prerequisite": "main_29",
+    "description": "前往「观星台」与『程昱』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_程昱",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_31"
+  },
+  "main_31": {
+    "id": "main_31",
+    "name": "主·购买金疮药",
+    "type": "main",
+    "npc_id": "npc_beiping_center_华大夫",
+    "npc_name": "华大夫",
+    "npc_location": "beiping_center.药铺",
+    "npc_location_name": "药铺(北平中区)",
+    "level_required": 10,
+    "prerequisite": "main_30",
+    "description": "前往「药铺」在『华大夫』处购买1个[金疮药]",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_beiping_center_华大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_32"
+  },
+  "main_32": {
+    "id": "main_32",
+    "name": "主·拜见太守",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 10,
+    "prerequisite": "main_31",
+    "description": "前往「太守府」与『公孙瓒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_公孙瓒荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "我最近刚好有一些麻烦的事情，让我去翻翻本子。"
+        },
+        {
+          "speaker": "你",
+          "text": "我怎么感觉不妙呢..."
+        }
+      ]
+    },
+    "next_quest": "main_33"
+  },
+  "main_33": {
+    "id": "main_33",
+    "name": "主·教训小偷",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.钱庄",
+    "npc_location_name": "钱庄(北平中区)",
+    "level_required": 11,
+    "prerequisite": "main_32",
+    "description": "前往「广场」收拾5名『小偷』",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "小偷",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_34"
+  },
+  "main_34": {
+    "id": "main_34",
+    "name": "主·了解荣誉",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 11,
+    "prerequisite": "main_33",
+    "description": "前往「太守府」与『公孙瓒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_公孙瓒荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_35"
+  },
+  "main_35": {
+    "id": "main_35",
+    "name": "主·教训冀州步兵",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_north.燕山",
+    "npc_location_name": "燕山(北平北区)",
+    "level_required": 12,
+    "prerequisite": "main_34",
+    "description": "前往「燕山」教训5名『冀州步兵』",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "冀州步兵",
+      "count": 5
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_36"
+  }
+}

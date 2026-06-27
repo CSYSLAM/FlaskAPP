@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIP特权</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    特权 <a href="{{ url_for('vip.intro') }}">介绍</a><br/>
+    ----------------<br/>
+
+    三国特权VIP<br/>
+    VIP等级:{{ player.vip_level if vip_level > 0 else 1 }}{% if vip_level <= 0 %}(未生效){% endif %}<br/>
+    VIP经验:{{ vip_exp }}{% if next_exp_cost %}/{{ next_exp_cost }}{% elif player.vip_level >= 5 %}/已满{% endif %}<br/>
+
+    {% if vip_level > 0 %}
+    剩余时间:{% set secs = remaining.total_seconds()|int %}{% set days = (secs // 86400) %}{% set hours = ((secs % 86400) // 3600) %}{% set mins = ((secs % 3600) // 60) %}{% if days > 0 %}{{ days }}天{% endif %}{{ hours }}:{{ "%02d"|format(mins) }}<br/>
+
+    {{ player.nickname }}大人，您尊享以下特权：<br/>
+    {% for p in privileges %}
+    {{ loop.index }}. {{ p }}<br/>
+    {% endfor %}
+    <br/>
+
+    {% if can_claim_gift %}
+    {{ privileges|length + 1 }}. 每日特权礼包 <a href="{{ url_for('vip.claim_daily') }}">领取</a><br/>
+    {% else %}
+    每日特权礼包 已领<br/>
+    {% endif %}
+
+    {% if has_free_teleport %}
+    <br/>特权免费传送 <a href="{{ url_for('vip.teleport_page') }}">传送</a><br/>
+    {% endif %}
+
+    {% else %}
+    <br/>使用诸侯令可激活VIP特权<br/>
+    {% endif %}
+    <br/>
+
+    --- 提升经验 ---<br/>
+    每消耗1天诸侯时长增加10VIP经验<br/>
+    当前诸侯剩余:{% set secs2 = remaining.total_seconds()|int %}{% set d = (secs2 // 86400) %}{% set h = ((secs2 % 86400) // 3600) %}{{ d }}天{{ h }}时<br/>
+    {% if remaining.total_seconds()|int >= 86400 %}
+    <a href="{{ url_for('vip.convert_exp', count=1) }}">消耗1天(+10经验)</a><br/>
+    {% if remaining.total_seconds()|int >= 432000 %}
+    <a href="{{ url_for('vip.convert_exp', count=5) }}">消耗5天(+50经验)</a><br/>
+    {% endif %}
+    {% else %}
+    诸侯时长不足1天<br/>
+    {% endif %}
+    <br/>
+
+    {% if can_claim_daily_exp %}
+    每日VIP经验 <a href="{{ url_for('vip.claim_daily_exp') }}">领取(5经验)</a><br/>
+    {% else %}
+    每日VIP经验 已领<br/>
+    {% endif %}
+
+    {% if can_upgrade %}
+    VIP升级 <a href="{{ url_for('vip.upgrade_vip') }}">升级至VIP{{ player.vip_level + 1 }}</a>(消耗{{ next_exp_cost }}经验)<br/>
+    {% elif player.vip_level < 5 %}
+    VIP升级:经验不足(需要{{ next_exp_cost }}VIP经验)<br/>
+    {% else %}
+    VIP已满级<br/>
+    {% endif %}
+    <br/>
+
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

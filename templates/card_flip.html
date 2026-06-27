@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>金珠幸运翻牌</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    金珠幸运翻牌<br/>
+    ----------------<br/>
+    金珠:{{ player.jinzu }} 元宝:{{ player.yuanbao }}<br/>
+    今日已翻:{{ done }}次<br/>
+    <a href="{{ url_for('activity.do_card_flip') }}">金珠翻牌(50金珠)</a><br/>
+    <a href="{{ url_for('activity.lucky_exchange') }}">幸运币兑换</a><br/>
+    ----------------<br/>
+    每次翻牌获得1幸运币，可在兑换商店兑换稀有物品<br/>
+    ----------------<br/>
+    翻牌奖池<br/>
+    哥姐徽章(0.001%) 副将扩技符(0.001%) 装备重塑符(0.001%)<br/>
+    秘药礼包(5%) 双倍经验卡(5%) 神游果(2%)<br/>
+    背包扩容卷(5%) 玫瑰花x2(5%) 小喇叭(2%)<br/>
+    续命灯(5%) 强化宝玉(5%) 宝匣钥匙(2%)<br/>
+    追杀令(1%) 新婚草戒包(1%) 新婚钻戒包(0.13%)<br/>
+    诸侯令1天(2%) 诸侯令7天(0.5%) 诸侯令30天(0.05%)<br/>
+    小银两包(0.1%) 大银两包(0.05%) 死亡替身符(5%)<br/>
+    玫瑰花种子(5%) 经验丹种子(2%) 大经验丹种子(1%)<br/>
+    催熟剂(3%) 大血石(2%) 大魔石(2%) 活力卡(3%)<br/>
+    聚魂幡碎片(3%) 副将招募令(3%)<br/>
+    副将经验丹低/中/高(各3%)<br/>
+    副将资质丹/增寿丹/忠诚丹/强化丹/悟性丹(各3%)<br/>
+    碎皮包/黄杨木包/麻布包/黄铜矿包(各0.7%)<br/>
+    硬皮包/沉香木包/棉布包/黑铁矿包(各0.5%)<br/>
+    厚皮包/紫檀木包/呢绒包/精金矿包(各0.3%)<br/>
+    技能残页入门9种(各0.5%) 技能残页进阶3种(各0.5%)<br/>
+    技能残页精通9种(各0.1-0.2%)<br/>
+    <br/>
+    <a href="{{ url_for('activity.index') }}">返回活动<br/></a>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{
+  "vip_levels": {
+    "1": {
+      "name": "VIP1",
+      "required_exp": 0,
+      "stat_bonus_rate": 0.01,
+      "exp_bonus_rate": 0.05,
+      "storage_bonus": 100,
+      "pk_drop_reduction": 0.5,
+      "non_pk_loss_exempt": true,
+      "free_teleport": true,
+      "free_rest": true,
+      "free_stage_teleport": true,
+      "daily_gift": [
+        {"item_id": "revive_lamp", "quantity": 1},
+        {"item_id": "horn_small", "quantity": 1}
+      ],
+      "achievement": "vip1",
+      "title": null,
+      "color_nick": false,
+      "broadcast": false
+    },
+    "2": {
+      "name": "VIP2",
+      "required_exp": 100,
+      "stat_bonus_rate": 0.02,
+      "exp_bonus_rate": 0.10,
+      "storage_bonus": 200,
+      "pk_drop_reduction": 0.5,
+      "non_pk_loss_exempt": true,
+      "free_teleport": true,
+      "free_rest": true,
+      "free_stage_teleport": true,
+      "daily_gift": [
+        {"item_id": "revive_lamp", "quantity": 2},
+        {"item_id": "horn_small", "quantity": 2}
+      ],
+      "achievement": "vip2",
+      "title": "suffixVIP用户",
+      "color_nick": false,
+      "broadcast": false
+    },
+    "3": {
+      "name": "VIP3",
+      "required_exp": 200,
+      "stat_bonus_rate": 0.03,
+      "exp_bonus_rate": 0.15,
+      "storage_bonus": 300,
+      "pk_drop_reduction": 0.5,
+      "non_pk_loss_exempt": true,
+      "free_teleport": true,
+      "free_rest": true,
+      "free_stage_teleport": true,
+      "daily_gift": [
+        {"item_id": "revive_lamp", "quantity": 3},
+        {"item_id": "horn_small", "quantity": 3},
+        {"item_id": "box_key", "quantity": 1}
+      ],
+      "achievement": "vip3",
+      "title": null,
+      "color_nick": false,
+      "broadcast": false
+    },
+    "4": {
+      "name": "VIP4",
+      "required_exp": 300,
+      "stat_bonus_rate": 0.04,
+      "exp_bonus_rate": 0.20,
+      "storage_bonus": 400,
+      "pk_drop_reduction": 0.5,
+      "non_pk_loss_exempt": true,
+      "free_teleport": true,
+      "free_rest": true,
+      "free_stage_teleport": true,
+      "daily_gift": [
+        {"item_id": "revive_lamp", "quantity": 4},
+        {"item_id": "horn_small", "quantity": 4},
+        {"item_id": "box_key", "quantity": 1}
+      ],
+      "achievement": "vip4",
+      "title": null,
+      "color_nick": true,
+      "broadcast": false
+    },
+    "5": {
+      "name": "VIP5",
+      "required_exp": 500,
+      "stat_bonus_rate": 0.05,
+      "exp_bonus_rate": 0.25,
+      "storage_bonus": 500,
+      "pk_drop_reduction": 0.5,
+      "non_pk_loss_exempt": true,
+      "free_teleport": true,
+      "free_rest": true,
+      "free_stage_teleport": true,
+      "daily_gift": [
+        {"item_id": "revive_lamp", "quantity": 5},
+        {"item_id": "horn_small", "quantity": 5},
+        {"item_id": "box_key", "quantity": 1},
+        {"item_id": "reinforce_gem", "quantity": 1}
+      ],
+      "achievement": "vip5",
+      "title": null,
+      "color_nick": true,
+      "broadcast": true
+    }
+  },
+  "zhuhouling_items": {
+    "zhuhouling_1d": {
+      "name": "诸侯令1天",
+      "vip_days": 1,
+      "vip_exp": 10,
+      "bound": false,
+      "description": "使用后可以获得1天VIP特权"
+    },
+    "zhuhouling_1d_bound": {
+      "name": "诸侯令1天(绑)",
+      "vip_days": 1,
+      "vip_exp": 10,
+      "bound": true,
+      "description": "使用后可以获得1天VIP特权"
+    },
+    "zhuhouling_7d": {
+      "name": "诸侯令7天",
+      "vip_days": 7,
+      "vip_exp": 70,
+      "bound": false,
+      "description": "使用后可以获得7天VIP特权"
+    },
+    "zhuhouling_7d_bound": {
+      "name": "诸侯令7天(绑)",
+      "vip_days": 7,
+      "vip_exp": 70,
+      "bound": true,
+      "description": "使用后可以获得7天VIP特权"
+    },
+    "zhuhouling_30d": {
+      "name": "诸侯令30天",
+      "vip_days": 30,
+      "vip_exp": 300,
+      "bound": false,
+      "description": "使用后可以获得30天VIP特权"
+    },
+    "zhuhouling_30d_bound": {
+      "name": "诸侯令30天(绑)",
+      "vip_days": 30,
+      "vip_exp": 300,
+      "bound": true,
+      "description": "使用后可以获得30天VIP特权"
+    }
+  }
+}

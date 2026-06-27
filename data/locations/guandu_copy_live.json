@@ -1,0 +1,139 @@
+{
+  "name": "官渡之战副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "guandu_battle",
+  "scenes": {
+    "曹军大营": {
+      "name": "曹军大营(副本)",
+      "exits": {
+        "north": "guandu_copy_live.官渡渡口",
+        "west": "guandu_copy_live.土丘",
+        "east": "guandu_copy_live.东营",
+        "south": "guandu_copy_live.南营"
+      },
+      "npcs": [
+        "npc_guandu_copy_曹操"
+      ]
+    },
+    "官渡渡口": {
+      "name": "官渡渡口",
+      "exits": {
+        "north": "guandu_copy_live.前营",
+        "south": "guandu_copy_live.曹军大营"
+      },
+      "monsters": [
+        "monster_guandu_copy_韩猛"
+      ]
+    },
+    "前营": {
+      "name": "前营",
+      "exits": {
+        "west": "guandu_copy_live.左营",
+        "east": "guandu_copy_live.密山山路",
+        "south": "guandu_copy_live.官渡渡口"
+      },
+      "monsters": [
+        "monster_guandu_copy_袁军前锋"
+      ]
+    },
+    "左营": {
+      "name": "左营",
+      "exits": {
+        "north": "guandu_copy_live.后营",
+        "east": "guandu_copy_live.前营"
+      },
+      "monsters": [
+        "monster_guandu_copy_袁军弩手"
+      ]
+    },
+    "后营": {
+      "name": "后营",
+      "exits": {
+        "south": "guandu_copy_live.左营"
+      }
+    },
+    "密山山路": {
+      "name": "密山山路",
+      "exits": {
+        "north": "guandu_copy_live.密山小路",
+        "west": "guandu_copy_live.前营"
+      },
+      "monsters": [
+        "monster_guandu_copy_高览"
+      ]
+    },
+    "密山小路": {
+      "name": "密山小路",
+      "exits": {
+        "east": "guandu_copy_live.后山",
+        "south": "guandu_copy_live.密山山路"
+      }
+    },
+    "后山": {
+      "name": "后山",
+      "exits": {
+        "north": "guandu_copy_live.粮营前关",
+        "west": "guandu_copy_live.密山小路"
+      },
+      "npcs": [
+        "npc_guandu_copy_张辽"
+      ]
+    },
+    "粮营前关": {
+      "name": "粮营前关",
+      "exits": {
+        "north": "guandu_copy_live.粮营",
+        "south": "guandu_copy_live.后山"
+      },
+      "monsters": [
+        "monster_guandu_copy_押粮兵"
+      ]
+    },
+    "粮营": {
+      "name": "粮营",
+      "exits": {
+        "south": "guandu_copy_live.粮营前关"
+      },
+      "monsters": [
+        "monster_guandu_copy_郭玉琼"
+      ]
+    },
+    "土丘": {
+      "name": "土丘",
+      "exits": {
+        "north": "guandu_copy_live.土山",
+        "east": "guandu_copy_live.曹军大营"
+      },
+      "monsters": [
+        "monster_guandu_copy_掘子军"
+      ]
+    },
+    "土山": {
+      "name": "土山",
+      "exits": {
+        "south": "guandu_copy_live.土丘"
+      },
+      "monsters": [
+        "monster_guandu_copy_赵睿"
+      ]
+    },
+    "东营": {
+      "name": "东营",
+      "exits": {
+        "west": "guandu_copy_live.曹军大营"
+      },
+      "monsters": [
+        "monster_guandu_copy_蒋奇"
+      ]
+    },
+    "南营": {
+      "name": "南营",
+      "exits": {
+        "north": "guandu_copy_live.曹军大营"
+      },
+      "monsters": [
+        "monster_guandu_copy_张郃"
+      ]
+    }
+  }
+}

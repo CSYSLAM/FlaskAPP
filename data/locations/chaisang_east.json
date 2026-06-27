@@ -1,0 +1,78 @@
+{
+  "name": "柴桑东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "chaisang_center.东城楼",
+        "east": "chaisang_east.东阴村"
+      }
+    },
+    "东阴村": {
+      "name": "东阴村",
+      "exits": {
+        "north": "chaisang_east.芯竹林",
+        "west": "chaisang_east.东门",
+        "east": "chaisang_east.浔阳",
+        "south": "chaisang_east.鲁公地"
+      }
+    },
+    "鲁公地": {
+      "name": "鲁公地",
+      "exits": {
+        "north": "chaisang_east.东阴村"
+      }
+    },
+    "芯竹林": {
+      "name": "芯竹林",
+      "exits": {
+        "north": "chaisang_east.林外林",
+        "south": "chaisang_east.东阴村"
+      }
+    },
+    "林外林": {
+      "name": "林外林",
+      "exits": {
+        "south": "chaisang_east.芯竹林"
+      },
+      "monster_type": "monster_chaisang_east_黄能"
+    },
+    "浔阳": {
+      "name": "浔阳",
+      "exits": {
+        "west": "chaisang_east.东阴村",
+        "east": "chaisang_east.乌牧场"
+      },
+      "monster_type": "monster_chaisang_east_银狐"
+    },
+    "乌牧场": {
+      "name": "乌牧场",
+      "exits": {
+        "north": "chaisang_east.黄山",
+        "west": "chaisang_east.浔阳",
+        "east": "chaisang_east.柴桑东界",
+        "south": "chaisang_east.镇关西"
+      }
+    },
+    "镇关西": {
+      "name": "镇关西",
+      "exits": {
+        "north": "chaisang_east.乌牧场"
+      },
+      "monster_type": "monster_chaisang_east_太平流寇"
+    },
+    "黄山": {
+      "name": "黄山",
+      "exits": {
+        "south": "chaisang_east.乌牧场"
+      }
+    },
+    "柴桑东界": {
+      "name": "柴桑东界",
+      "exits": {
+        "west": "chaisang_east.乌牧场",
+        "east": "wujun_west.吴郡西界"
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "建宁北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "jianing_north.落凤坡",
+        "south": "jianing_center.北城楼"
+      }
+    },
+    "落凤坡": {
+      "name": "落凤坡",
+      "exits": {
+        "north": "jianing_north.循江亭",
+        "south": "jianing_north.北门"
+      },
+      "monster_type": "monster_jianing_north_娘子军"
+    },
+    "循江亭": {
+      "name": "循江亭",
+      "exits": {
+        "north": "jianing_north.涪水窟",
+        "west": "jianing_north.金雁塔",
+        "east": "jianing_north.金峰塔",
+        "south": "jianing_north.落凤坡"
+      }
+    },
+    "金雁塔": {
+      "name": "金雁塔",
+      "exits": {
+        "east": "jianing_north.循江亭"
+      },
+      "monster_type": "monster_jianing_north_流民"
+    },
+    "金峰塔": {
+      "name": "金峰塔",
+      "exits": {
+        "west": "jianing_north.循江亭",
+        "east": "jianing_north.白壁峡"
+      },
+      "monster_type": "monster_jianing_north_凤蝶"
+    },
+    "白壁峡": {
+      "name": "白壁峡",
+      "exits": {
+        "west": "jianing_north.金峰塔"
+      },
+      "monster_type": "monster_jianing_north_杨怀"
+    },
+    "涪水窟": {
+      "name": "涪水窟",
+      "exits": {
+        "north": "jianing_north.建宁北界",
+        "south": "jianing_north.循江亭"
+      }
+    },
+    "建宁北界": {
+      "name": "建宁北界",
+      "exits": {
+        "south": "jianing_north.涪水窟"
+      }
+    }
+  }
+}

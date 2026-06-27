@@ -1,0 +1,78 @@
+{
+  "name": "北平南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "beiping_center.南城楼",
+        "east": "beiping_south.断桥",
+        "south": "beiping_south.易水湖"
+      },
+      "can_pk": true
+    },
+    "断桥": {
+      "name": "断桥",
+      "exits": {
+        "west": "beiping_south.南门"
+      },
+      "monster_type": "monster_beiping_south_郭图",
+      "can_pk": true
+    },
+    "易水湖": {
+      "name": "易水湖",
+      "exits": {
+        "north": "beiping_south.南门",
+        "west": "beiping_south.水畔",
+        "south": "beiping_south.磐河"
+      },
+      "can_pk": true
+    },
+    "水畔": {
+      "name": "水畔",
+      "exits": {
+        "east": "beiping_south.易水湖"
+      },
+      "can_pk": true
+    },
+    "磐河": {
+      "name": "磐河",
+      "exits": {
+        "north": "beiping_south.易水湖",
+        "west": "beiping_south.常山",
+        "east": "beiping_south.界桥",
+        "south": "beiping_south.冀南"
+      },
+      "monster_type": "monster_beiping_south_白龟",
+      "can_pk": true
+    },
+    "常山": {
+      "name": "常山",
+      "exits": {
+        "east": "beiping_south.磐河"
+      },
+      "can_pk": true
+    },
+    "界桥": {
+      "name": "界桥",
+      "exits": {
+        "west": "beiping_south.磐河"
+      },
+      "can_pk": true
+    },
+    "冀南": {
+      "name": "冀南",
+      "exits": {
+        "north": "beiping_south.磐河",
+        "south": "beiping_south.北平南界"
+      },
+      "can_pk": true
+    },
+    "北平南界": {
+      "name": "北平南界",
+      "exits": {
+        "north": "beiping_south.冀南"
+      },
+      "can_pk": true
+    }
+  }
+}

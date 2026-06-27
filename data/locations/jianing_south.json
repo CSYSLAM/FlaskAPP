@@ -1,0 +1,50 @@
+{
+  "name": "建宁南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "jianing_center.南城楼",
+        "south": "jianing_south.栈道"
+      }
+    },
+    "栈道": {
+      "name": "栈道",
+      "exits": {
+        "north": "jianing_south.南门",
+        "west": "jianing_south.南越",
+        "east": "jianing_south.青龙湾",
+        "south": "jianing_south.交趾"
+      },
+      "monster_type": "monster_jianing_south_越女"
+    },
+    "青龙湾": {
+      "name": "青龙湾",
+      "exits": {
+        "west": "jianing_south.栈道"
+      },
+      "monster_type": "monster_jianing_south_水贼"
+    },
+    "南越": {
+      "name": "南越",
+      "exits": {
+        "west": "jianing_south.版纳",
+        "east": "jianing_south.栈道"
+      },
+      "monster_type": "monster_jianing_south_苗族先锋"
+    },
+    "版纳": {
+      "name": "版纳",
+      "exits": {
+        "east": "jianing_south.南越"
+      },
+      "monster_type": "monster_jianing_south_高沛"
+    },
+    "交趾": {
+      "name": "交趾",
+      "exits": {
+        "north": "jianing_south.栈道"
+      }
+    }
+  }
+}

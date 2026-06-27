@@ -1,0 +1,102 @@
+{
+  "jinxiu_helmet_49": {
+    "name": "锦绣盔",
+    "description": "术士专属，以锦绣灵丝编织的头盔，华贵典雅",
+    "slot": "helmet",
+    "is_bound": false,
+    "level_required": 49,
+    "class_required": "术士",
+    "base_price": 11000,
+    "is_artifact": false,
+    "set_name": "锦绣套",
+    "base_stats": {
+      "defense": 52
+    },
+    "max_extra_stats": {
+      "defense": 26,
+      "max_health": 85,
+      "max_mana": 65,
+      "dodge_rate": 0.06
+    }
+  },
+  "jinxiu_armor_48": {
+    "name": "锦绣长袍",
+    "description": "术士专属，以锦绣灵丝织成的长袍，锦绣华章",
+    "slot": "armor",
+    "is_bound": false,
+    "level_required": 48,
+    "class_required": "术士",
+    "base_price": 13000,
+    "is_artifact": false,
+    "set_name": "锦绣套",
+    "base_stats": {
+      "defense": 64
+    },
+    "max_extra_stats": {
+      "defense": 32,
+      "max_health": 105,
+      "max_mana": 85,
+      "crit_rate": 0.06
+    }
+  },
+  "jinxiu_gloves_46": {
+    "name": "锦绣手套",
+    "description": "术士专属，以锦绣灵丝编织的手套，法力涌动",
+    "slot": "gloves",
+    "is_bound": false,
+    "level_required": 46,
+    "class_required": "术士",
+    "base_price": 9500,
+    "is_artifact": false,
+    "set_name": "锦绣套",
+    "base_stats": {
+      "defense": 42
+    },
+    "max_extra_stats": {
+      "attack": 22,
+      "crit_rate": 0.07,
+      "max_mana": 50,
+      "dodge_rate": 0.06
+    }
+  },
+  "jinxiu_pants_47": {
+    "name": "锦绣长裤",
+    "description": "术士专属，以锦绣灵丝织成的护腿，雍容华贵",
+    "slot": "pants",
+    "is_bound": false,
+    "level_required": 47,
+    "class_required": "术士",
+    "base_price": 11500,
+    "is_artifact": false,
+    "set_name": "锦绣套",
+    "base_stats": {
+      "defense": 54
+    },
+    "max_extra_stats": {
+      "defense": 26,
+      "max_health": 90,
+      "max_mana": 55,
+      "dodge_rate": 0.06
+    }
+  },
+  "jinxiu_shoes_45": {
+    "name": "锦绣靴",
+    "description": "术士专属，以锦绣灵丝编织的布靴，步步生莲",
+    "slot": "shoes",
+    "is_bound": false,
+    "level_required": 45,
+    "class_required": "术士",
+    "base_price": 9000,
+    "is_artifact": false,
+    "set_name": "锦绣套",
+    "base_stats": {
+      "defense": 37
+    },
+    "max_extra_stats": {
+      "dodge_rate": 0.07,
+      "defense": 18,
+      "max_mana": 50,
+      "max_health": 55
+    }
+  }
+}

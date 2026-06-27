@@ -1,0 +1,96 @@
+{
+  "name": "江陵东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "jiangling_center.东城楼",
+        "north": "jiangling_east.城隍庙",
+        "east": "jiangling_east.东郊"
+      }
+    },
+    "城隍庙": {
+      "name": "城隍庙",
+      "exits": {
+        "south": "jiangling_east.东门"
+      }
+    },
+    "东郊": {
+      "name": "东郊",
+      "exits": {
+        "west": "jiangling_east.东门",
+        "east": "jiangling_east.东岳庙"
+      }
+    },
+    "东岳庙": {
+      "name": "东岳庙",
+      "exits": {
+        "west": "jiangling_east.东郊",
+        "east": "jiangling_east.吴前营"
+      }
+    },
+    "吴前营": {
+      "name": "吴前营",
+      "exits": {
+        "north": "jiangling_east.吴仓库",
+        "west": "jiangling_east.东岳庙",
+        "east": "jiangling_east.吴中营",
+        "south": "jiangling_east.吴火库"
+      },
+      "monster_type": "monster_jiangling_east_吴军前锋"
+    },
+    "吴仓库": {
+      "name": "吴仓库",
+      "exits": {
+        "east": "jiangling_east.吴右营",
+        "south": "jiangling_east.吴前营"
+      },
+      "monster_type": "monster_jiangling_east_孙静"
+    },
+    "吴右营": {
+      "name": "吴右营",
+      "exits": {
+        "west": "jiangling_east.吴仓库",
+        "south": "jiangling_east.吴中营"
+      }
+    },
+    "吴中营": {
+      "name": "吴中营",
+      "exits": {
+        "north": "jiangling_east.吴右营",
+        "west": "jiangling_east.吴前营",
+        "east": "jiangling_east.吴后营",
+        "south": "jiangling_east.吴左营"
+      }
+    },
+    "吴左营": {
+      "name": "吴左营",
+      "exits": {
+        "north": "jiangling_east.吴中营",
+        "west": "jiangling_east.吴火库"
+      }
+    },
+    "吴火库": {
+      "name": "吴火库",
+      "exits": {
+        "north": "jiangling_east.吴前营",
+        "east": "jiangling_east.吴左营"
+      },
+      "monster_type": "monster_jiangling_east_潘章"
+    },
+    "吴后营": {
+      "name": "吴后营",
+      "exits": {
+        "west": "jiangling_east.吴中营",
+        "east": "jiangling_east.江陵东界"
+      }
+    },
+    "江陵东界": {
+      "name": "江陵东界",
+      "exits": {
+        "west": "jiangling_east.吴后营",
+        "east": "jianye_west.建邺西界"
+      }
+    }
+  }
+}

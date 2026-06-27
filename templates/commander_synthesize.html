@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>聚魂幡合成</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+聚魂幡合成<br/>
+<br/>
+聚魂幡碎片:{{ frag_count }}<br/>
+聚魂幡:{{ banner_count }}<br/>
+<br/>
+<a href="{{ url_for('commander.do_synthesize') }}">合成聚魂幡({{ required_frags }}个碎片)</a><br/>
+<br/>
+{% if banner_count > 0 %}
+<a href="{{ url_for('commander.use_banner') }}">使用聚魂幡</a><br/>
+使用聚魂幡可以随机获得1个副将魂魄（80%概率三级魂魄，19%概率二级魂魄，1%概率一级魂魄）<br/>
+{% endif %}
+<br/>
+<a href="{{ url_for('commander.index') }}">返回上级</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

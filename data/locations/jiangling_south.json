@@ -1,0 +1,41 @@
+{
+  "name": "江陵南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "jiangling_center.南城楼",
+        "south": "jiangling_south.南郊"
+      }
+    },
+    "南郊": {
+      "name": "南郊",
+      "exits": {
+        "north": "jiangling_south.南门",
+        "west": "jiangling_south.荆水门",
+        "east": "jiangling_south.江城河",
+        "south": "jiangling_south.江陵南界"
+      }
+    },
+    "荆水门": {
+      "name": "荆水门",
+      "exits": {
+        "east": "jiangling_south.南郊"
+      },
+      "monster_type": "monster_jiangling_south_蛟龙"
+    },
+    "江城河": {
+      "name": "江城河",
+      "exits": {
+        "west": "jiangling_south.南郊"
+      },
+      "monster_type": "monster_jiangling_south_辟邪"
+    },
+    "江陵南界": {
+      "name": "江陵南界",
+      "exits": {
+        "north": "jiangling_south.南郊"
+      }
+    }
+  }
+}

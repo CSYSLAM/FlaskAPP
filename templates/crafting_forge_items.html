@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ title }}</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .tooltip { position: relative; display: inline-block; color: #136ec2; }
+    .tooltip .tooltiptext { visibility: hidden; width: 200px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -100px; opacity: 0; transition: opacity 0.3s; font-size: 13px; }
+    .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+    .forge-row { margin: 2px 0; }
+    .forge-row .name { color: #000; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% if page_type == 'weapons' %}
+    {% for cls in ['战士', '术士', '刺客'] %}
+    {% if cls == active_class %}
+    {{ cls }}
+    {% else %}
+    <a href="{{ url_for('crafting.epic_forge_weapons', class_name=cls) }}">{{ cls }}</a>
+    {% endif %}
+    {% endfor %}
+    <br/>
+    {% endif %}
+    ----------------
+    {% for item in items %}
+    <div class="forge-row">
+        <div class="tooltip"><span class="name">{{ item.name }}({{ item.level_required }}级{% if item.class_required %}{{ item.class_required[:1] }}{% else %}全{% endif %})</span>
+            <span class="tooltiptext">打造需要: 银两x{{ item.silver }}{% for m in item.materials %}、{{ m.name }}x{{ m.quantity }}{% endfor %}</span>
+        </div>|
+        <form method="POST" action="{{ url_for('crafting.forge_equipment', template_id=item.template_id) }}" style="display:inline;">
+            <a href="#" class="forge-link" onclick="this.parentNode.submit();return false;">打造</a>
+        </form>
+    </div>
+    {% endfor %}
+    <br/>
+    <a href="{{ url_for('crafting.epic_forge') }}">返回</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){
+        if(aLinks[i].className.indexOf('forge-link')===-1){
+            aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};
+        }
+    }
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "name": "成都东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "chengdu_center.东城楼",
+        "east": "chengdu_east.五虎地"
+      }
+    },
+    "五虎地": {
+      "name": "五虎地",
+      "exits": {
+        "north": "chengdu_east.涴花溪",
+        "west": "chengdu_east.东门",
+        "east": "chengdu_east.永陵",
+        "south": "chengdu_east.十二桥"
+      },
+      "monster_type": "monster_chengdu_east_关平"
+    },
+    "涴花溪": {
+      "name": "涴花溪",
+      "exits": {
+        "south": "chengdu_east.五虎地"
+      },
+      "monster_type": "monster_chengdu_east_黄巾信徒"
+    },
+    "十二桥": {
+      "name": "十二桥",
+      "exits": {
+        "north": "chengdu_east.五虎地"
+      },
+      "monster_type": "monster_chengdu_east_刘安"
+    },
+    "永陵": {
+      "name": "永陵",
+      "exits": {
+        "west": "chengdu_east.五虎地",
+        "east": "chengdu_east.成都东界"
+      },
+      "monster_type": "monster_chengdu_east_黑老大"
+    },
+    "成都东界": {
+      "name": "成都东界",
+      "exits": {
+        "west": "chengdu_east.永陵",
+        "east": "jiangling_west.江陵西界"
+      }
+    }
+  }
+}

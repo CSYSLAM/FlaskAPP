@@ -1,100 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>角色页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>角色</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #003366;
-        }
-        .section {
-            margin-top: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .equipment-slot {
-            margin: 10px 0;
-        }
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .buff-effect { color: #2e7d32; }
+    .current-rank { color: #ff6600; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
-    <h1>角色信息</h1>
-    
-    <div class="section">
-        <a href="{{ url_for('player.equipment_list') }}">装备</a>
-    </div>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
 
-    <div class="section">
-        <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" alt="角色头像" style="width: auto; height: 100px; object-fit: contain;">
-    </div>
+    <a href="{{ url_for('player.equipment_list') }}">装备</a>|<a href="{{ url_for('player.skill_view') }}">技能</a>|<a href="{{ url_for('player.titles') }}">称号</a>|<a href="{{ url_for('player.achievements') }}">成就</a>|<a href="{{ url_for('player.marriage') }}">婚姻</a><br/>
 
-    <div class="section">
-        <p>名字: {{ player.name }}</p>
-        <p>职业: {{ player.player_class }}</p>
-        <p>等级: {{ player.level }}</p>
-        <p>性别: {{ player.gender }}</p>
-        <p>荣誉值: {{ player.honor }}</p>
-        <p>军衔: <a href="{{ url_for('player.military_ranks') }}">{{ player.military_rank }}</a></p>
-        <p>生命值: {{ player.health }}/{{ player.max_health }}</p>
-        <p>魔法值: {{ player.mana }}/{{ player.max_mana }}</p>
-        <p>攻击: {{ player.attack }}</p>
-        <p>防御: {{ player.defense }}</p>
-        <p>暴击率: {{ "%.1f"|format(player.crit_rate * 100) }}%</p>
-        <p>闪避率: {{ "%.1f"|format(player.dodge_rate * 100) }}%</p>
-        <p>经验: {{ player.experience }}/{{ player.exp_to_next_level }}</p>
-        {% if can_level_up %}
-            <a href="{{ url_for('player.level_up') }}">升级</a>
-        {% else %}
-            <p>需要更多经验才能升级。</p>
-        {% endif %}
-    </div>
+    <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" border="0" height="53" width="45"/><br/>
 
-    <div class="section">
-        <h2>状态</h2>
-        {% if player.temp_effects %}
-            {% for stat, effects in player.temp_effects.items() %}
-                {% if effects %}
-                    {% for effect in effects %}
-                        <p class="buff-effect">
-                            {{ player.STAT_NAMES[stat] }}提升:
-                            {% if effect.rate %}
-                                {{ effect.rate * 100 }}%
-                            {% endif %}
-                            {% if effect.value %}
-                                {{ effect.value }}点
-                            {% endif %}
-                            (剩余{{ (effect.expire_time - now.timestamp())|int }}秒)
-                        </p>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <p>无状态效果</p>
-        {% endif %}
-    </div>
-    
-    <div style="margin-top: 10px;">
-        <a href="{{ url_for('game.scene') }}">返回场景</a>
-    </div>
+    炫酷彩色昵称:<a href="{{ url_for('vip.index') }}">查看</a><br/>
+    ID:{{ player.player_uid }}<br/>
+    姓名:{{ player.name }} 国家:{{ player.country }}<br/>
+    性别:{{ player.gender }} 职业:{{ player.player_class }}<br/>
+    <a href="{{ url_for('player.achievements') }}">成就</a>:{{ '★' * star_count }}{% if vip_level > 0 %}<img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="18" width="45"/>{% else %}<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="18" width="45"/>{% endif %}<br/>
+    山庄:<a href="{{ url_for('villa.index') }}">{{ villa_name }}</a><br/>
+    {% if player.gender == '女' %}夫君:{% else %}夫人:{% endif %}{% if spouse_name %}<a href="{{ url_for('player.view_player', username=spouse_name) }}">{{ spouse_name }}</a>{% else %}无{% endif %}<br/>
+    {% set title_display = player.get_title_display() %}
+    称号:{% if title_display %}<a href="{{ url_for('player.titles') }}">{{ title_display }}</a>{% else %}无{% endif %}<br/>
+    军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>
+    荣誉:{{ player.honor }}<br/>
+    等级:{{ player.level }}<br/>
+    经验:{{ player.experience }}/{{ player.exp_to_next_level }}<br/>
+    生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
+    物攻:{{ player.effective_attack }}{% if player.rank_attack > 0 %}<span class="buff-effect">(+{{ player.rank_attack }}军衔)</span>{% endif %}<br/>
+    防御:{{ player.effective_defense }}<br/>
+    暴击率:{{ "%.1f"|format(player.effective_crit_rate * 100) }}% 闪避率:{{ "%.1f"|format(player.effective_dodge_rate * 100) }}%<br/>
+    <a href="{{ url_for('player.character_status') }}">状态</a>:无<br/>
+    队伍:{% if party_info %}<a href="{{ url_for('party.index') }}">{{ party_info.name }}({{ party_info.count }}人)</a>{% else %}无{% endif %}<br/>
+    军团:{% if legion_info %}<a href="{{ url_for('legion.index') }}">{{ legion_info.name }}({{ legion_info.country }})</a>{% else %}无{% endif %}<br/>
+    红颜:{{ hongyan_count }}知己:{{ zhiji_count }}<br/>
+    缘分值:{{ total_fate }}<br/>
+    {% if player.signature %}{{ player.signature }}{% else %}这个家伙很懒，没留下任何签名。{% endif %}<br/>
+    <a href="{{ url_for('player.edit_signature') }}">修改</a><br/>
+
+    {% if can_level_up %}
+    <a href="{{ url_for('player.level_up') }}">升级</a><br/>
+    {% endif %}
+
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
 </body>
 </html>

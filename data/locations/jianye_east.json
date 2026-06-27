@@ -1,0 +1,48 @@
+{
+  "name": "建邺东区",
+  "scenes": {
+    "东门": {
+      "name": "东门",
+      "exits": {
+        "west": "jianye_center.东城楼",
+        "east": "jianye_east.群英地"
+      }
+    },
+    "群英地": {
+      "name": "群英地",
+      "exits": {
+        "north": "jianye_east.六合彩",
+        "west": "jianye_east.东门",
+        "east": "jianye_east.秦淮山",
+        "south": "jianye_east.西霞谷"
+      }
+    },
+    "六合彩": {
+      "name": "六合彩",
+      "exits": {
+        "south": "jianye_east.群英地"
+      },
+      "monster_type": "monster_jianye_east_赌徒"
+    },
+    "西霞谷": {
+      "name": "西霞谷",
+      "exits": {
+        "north": "jianye_east.群英地"
+      },
+      "monster_type": "monster_jianye_east_凤鸟"
+    },
+    "秦淮山": {
+      "name": "秦淮山",
+      "exits": {
+        "west": "jianye_east.群英地",
+        "east": "jianye_east.建邺东界"
+      }
+    },
+    "建邺东界": {
+      "name": "建邺东界",
+      "exits": {
+        "west": "jianye_east.秦淮山"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>{{ quest.name }}</title><style>body{font-size:16px}a:link{color:#136ec2;text-decoration:none}#loading{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3);z-index:9999}#loading span{display:block;width:40px;height:40px;margin:40vh auto;border:4px solid #fff;border-top-color:#136ec2;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}</style></head><body style='margin-left:10px;margin-right:10px'><div id="loading"><span></span></div>
+{{ quest.name }}{% if not is_active and not can_accept %}(已完成){% endif %}<br/>
+任务来自:{{ quest.npc_name }}<br/>
+{% if quest.npc_location_name %}
+<a href="{{ url_for('quest.go_to_quest', quest_id=quest.id) }}">传送</a><br/>
+{% endif %}
+{{ quest.description }}<br/>
+{% if is_active %}
+进度:{{ quest.progress }}/{{ quest.target }}<br/>
+{% endif %}
+任务奖励:<br/>
+经验+{{ quest.rewards.experience }}<br/>
+银两+{{ quest.rewards.gold }}{% if quest.rewards.get('bound_gold') %}(非贵宾为绑银){% endif %}<br/>
+{% if from_npc %}
+{% if is_active and is_ready %}
+<a href="{{ url_for('quest.complete_quest', quest_id=quest.id) }}">完成任务</a><br/>
+<a href="{{ url_for('quest.abandon_quest', quest_id=quest.id) }}">放弃任务</a><br/>
+{% elif is_active %}
+<a href="{{ url_for('quest.go_to_quest', quest_id=quest.id) }}">快速前往目的地</a><br/>
+<a href="{{ url_for('quest.abandon_quest', quest_id=quest.id) }}">放弃任务</a><br/>
+{% elif can_accept %}
+<a href="{{ url_for('quest.accept_quest', quest_id=quest.id) }}">接受任务</a><br/>
+{% else %}
+{{ reason }}<br/>
+{% endif %}
+{% else %}
+<a href="{{ url_for('quest.go_to_quest', quest_id=quest.id) }}">快速前往目的地</a><br/>
+{% endif %}
+<a href="{{ url_for('quest.quest_list') }}">返回</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+<script>var a=document.getElementsByTagName("a");for(var i=0;i<a.length;i++){a[i].onclick=function(){document.getElementById('loading').style.display='block'}}setTimeout(function(){document.getElementById('loading').style.display='none'},350)</script></body></html>

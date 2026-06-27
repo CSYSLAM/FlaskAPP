@@ -5,6 +5,7 @@ from models.location import Location
 from models.equipment import Equipment
 from models.item import Item
 from services.data_service import DataService
+from services.public_chat import broadcast_system
 
 class GameService:
     current_monster = None
@@ -36,6 +37,9 @@ class GameService:
             new_id = f"equipment_{int(time.time())}_{random.randint(1000, 9999)}"
             player.inventory[new_id] = loot.to_dict()
             loot_name = loot.name
+            # 精英怪掉落装备时广播
+            if cls.current_monster.is_elite:
+                broadcast_system(f"{player.name}在{Location.get_locations()[player.current_location].name}击杀精英{cls.current_monster.name}，掉落{loot_name}")
         elif loot:
             items = Item.load_items()
             if loot in items:

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>军团战</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    军团战<br/>
+    {% if is_war_time %}
+    战场开放中<br/>
+    {% else %}
+    战场未开放(每周六20:00-20:30)<br/>
+    {% endif %}
+    <a href="{{ url_for('battlefield.rankings') }}">战况排行</a><br/>
+    ----------------<br/>
+
+    {% if player.level < 20 %}
+    需要等级达到20级并加入军团才能进入战场<br/>
+    {% elif not is_entry_allowed %}
+    战场已关闭，无法进入<br/>
+    {% else %}
+
+    【低级战场】本国玩家限定<br/>
+    {% if player.country == '蜀' %}
+    <a href="{{ url_for('battlefield.enter', city_key='chengdu') }}">成都</a>
+    <a href="{{ url_for('battlefield.enter', city_key='yongan') }}">永安</a>
+    <a href="{{ url_for('battlefield.enter', city_key='jianing') }}">建宁</a>
+    {% elif player.country == '魏' %}
+    <a href="{{ url_for('battlefield.enter', city_key='beiping') }}">北平</a>
+    <a href="{{ url_for('battlefield.enter', city_key='jinyang') }}">晋阳</a>
+    <a href="{{ url_for('battlefield.enter', city_key='xuchang') }}">许昌</a>
+    {% elif player.country == '吴' %}
+    <a href="{{ url_for('battlefield.enter', city_key='jianye') }}">建邺</a>
+    <a href="{{ url_for('battlefield.enter', city_key='wujun') }}">吴郡</a>
+    <a href="{{ url_for('battlefield.enter', city_key='chaisang') }}">柴桑</a>
+    {% else %}
+    你不属于任何国家<br/>
+    {% endif %}
+    (需战场令旗(低级))<br/>
+    ---<br/>
+
+    【中级战场】所有玩家<br/>
+    <a href="{{ url_for('battlefield.enter', city_key='jiangling') }}">江陵</a>
+    <a href="{{ url_for('battlefield.enter', city_key='xiapi') }}">下邳</a>
+    <a href="{{ url_for('battlefield.enter', city_key='hanzhong') }}">汉中</a>
+    (需战场令旗(中级))<br/>
+    ---<br/>
+
+    【高级战场】所有玩家<br/>
+    <a href="{{ url_for('battlefield.enter', city_key='luoyang') }}">洛阳</a>
+    (需战场令旗(高级))<br/>
+    {% endif %}
+
+    <br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

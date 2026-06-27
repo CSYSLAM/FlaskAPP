@@ -1,0 +1,90 @@
+{
+  "name": "晋阳南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "jinyang_center.南城楼",
+        "south": "jinyang_south.南地"
+      },
+      "can_pk": true
+    },
+    "南地": {
+      "name": "南地",
+      "exits": {
+        "north": "jinyang_south.南门",
+        "west": "jinyang_south.密林",
+        "east": "jinyang_south.火药库",
+        "south": "jinyang_south.白马寺"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_south_南蛮兵"
+    },
+    "密林": {
+      "name": "密林",
+      "exits": {
+        "east": "jinyang_south.南地"
+      },
+      "can_pk": true
+    },
+    "火药库": {
+      "name": "火药库",
+      "exits": {
+        "west": "jinyang_south.南地"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_south_张泉"
+    },
+    "白马寺": {
+      "name": "白马寺",
+      "exits": {
+        "north": "jinyang_south.南地",
+        "south": "jinyang_south.乌巢"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_south_酒肉和尚"
+    },
+    "乌巢": {
+      "name": "乌巢",
+      "exits": {
+        "north": "jinyang_south.白马寺",
+        "west": "jinyang_south.冀州",
+        "east": "jinyang_south.官渡",
+        "south": "jinyang_south.晋阳南界"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_south_墨鸦"
+    },
+    "冀州": {
+      "name": "冀州",
+      "exits": {
+        "east": "jinyang_south.乌巢"
+      },
+      "can_pk": true
+    },
+    "官渡": {
+      "name": "官渡",
+      "exits": {
+        "west": "jinyang_south.乌巢",
+        "east": "jinyang_south.文津巷"
+      },
+      "can_pk": true,
+      "monster_type": "monster_jinyang_south_张先"
+    },
+    "文津巷": {
+      "name": "文津巷",
+      "exits": {
+        "west": "jinyang_south.官渡"
+      },
+      "can_pk": true
+    },
+    "晋阳南界": {
+      "name": "晋阳南界",
+      "exits": {
+        "north": "jinyang_south.乌巢",
+        "south": "xuchang_north.许昌北界"
+      },
+      "can_pk": true
+    }
+  }
+}

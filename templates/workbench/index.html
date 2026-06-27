@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>工作台</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>工作台</h3>
+    <a href="{{ url_for('game.scene') }}">返回场景</a><br/><br/>
+
+    功能列表：<br/>
+    1. <a href="{{ url_for('workbench.edit_player') }}">修改玩家属性</a> — 查询玩家并修改各项属性值<br/>
+    2. <a href="{{ url_for('workbench.view_player') }}">查看玩家详情</a> — 查看属性公式拆解明细<br/>
+    3. <a href="{{ url_for('workbench.announce') }}">发送系统公告</a> — 发送全服系统公告<br/>
+    4. <a href="{{ url_for('workbench.set_designer') }}">设置设计师</a> — 一键设置/取消设计师权限<br/>
+</div>
+</body>
+</html>

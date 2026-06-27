@@ -1,0 +1,126 @@
+{
+  "name": "下邳南区",
+  "scenes": {
+    "南门": {
+      "name": "南门",
+      "exits": {
+        "north": "xiapi_center.南城楼",
+        "south": "xiapi_south.南郊"
+      }
+    },
+    "南郊": {
+      "name": "南郊",
+      "exits": {
+        "north": "xiapi_south.南门",
+        "south": "xiapi_south.颍川"
+      },
+      "monster_type": "monster_xiapi_south_倭寇细作"
+    },
+    "颍川": {
+      "name": "颍川",
+      "exits": {
+        "north": "xiapi_south.南郊",
+        "south": "xiapi_south.葛坡"
+      },
+      "monster_type": "monster_xiapi_south_黄巾守卫"
+    },
+    "葛坡": {
+      "name": "葛坡",
+      "exits": {
+        "north": "xiapi_south.颍川",
+        "south": "xiapi_south.张中营"
+      },
+      "monster_type": "monster_xiapi_south_黄巾力士"
+    },
+    "张中营": {
+      "name": "张中营",
+      "exits": {
+        "north": "xiapi_south.葛坡",
+        "west": "xiapi_south.张左营",
+        "east": "xiapi_south.张右营"
+      },
+      "monster_type": "monster_xiapi_south_张角"
+    },
+    "张左营": {
+      "name": "张左营",
+      "exits": {
+        "east": "xiapi_south.张中营",
+        "west": "xiapi_south.诛仙阵",
+        "south": "xiapi_south.峡道"
+      },
+      "monster_type": "monster_xiapi_south_张宝"
+    },
+    "张右营": {
+      "name": "张右营",
+      "exits": {
+        "west": "xiapi_south.张中营",
+        "east": "xiapi_south.密道一"
+      },
+      "monster_type": "monster_xiapi_south_张梁"
+    },
+    "诛仙阵": {
+      "name": "诛仙阵",
+      "exits": {
+        "east": "xiapi_south.张左营",
+        "north": "xiapi_south.阵口"
+      }
+    },
+    "峡道": {
+      "name": "峡道",
+      "exits": {
+        "north": "xiapi_south.张左营"
+      },
+      "monster_type": "monster_xiapi_south_应龙"
+    },
+    "阵口": {
+      "name": "阵口",
+      "exits": {
+        "south": "xiapi_south.诛仙阵",
+        "north": "xiapi_south.阵一"
+      }
+    },
+    "阵一": {
+      "name": "阵一",
+      "exits": {
+        "north": "xiapi_south.阵二",
+        "south": "xiapi_south.阵口"
+      }
+    },
+    "阵二": {
+      "name": "阵二",
+      "exits": {
+        "north": "xiapi_south.阵三",
+        "south": "xiapi_south.阵一"
+      }
+    },
+    "阵三": {
+      "name": "阵三",
+      "exits": {
+        "south": "xiapi_south.阵二"
+      }
+    },
+    "密道一": {
+      "name": "密道一",
+      "exits": {
+        "west": "xiapi_south.张右营",
+        "north": "xiapi_south.密道二"
+      },
+      "monster_type": "monster_xiapi_south_张梁"
+    },
+    "密道二": {
+      "name": "密道二",
+      "exits": {
+        "south": "xiapi_south.密道一",
+        "north": "xiapi_south.粮草营"
+      },
+      "monster_type": "monster_xiapi_south_毕方"
+    },
+    "粮草营": {
+      "name": "粮草营",
+      "exits": {
+        "south": "xiapi_south.密道二"
+      },
+      "monster_type": "monster_xiapi_south_黄巾上将"
+    }
+  }
+}

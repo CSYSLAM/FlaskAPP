@@ -1,103 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>技能馆</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>技能教官</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #003366;
-        }
-        .section {
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .alert {
-            margin: 10px 0;
-            padding: 10px 0;
-            color: #666;
-        }
-        .alert-success {
-            color: #3c763d;
-        }
-        .alert-error {
-            color: #a94442;
-        }
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
-    <h1>技能馆</h1>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    
-    <div class="section">
-        <h2>可学习的技能:</h2>
-        {% for skill in skills.values() %}
-            {% if skill.class_required in [None, player.player_class] and skill.skill_id not in player.learned_skills %}
-                <div class="section">
-                    <p>{{ skill.name }}</p>
-                    <p>描述: {{ skill.description }}</p>
-                    <p>基础伤害倍率: {{ "%.1f"|format(skill.base_damage_rate) }}</p>
-                    <p>基础魔法消耗: {{ skill.base_mana_cost }}</p>
-                    {% if skill.effect_description %}
-                        <p>特殊效果: {{ skill.effect_description }}</p>
-                    {% endif %}
-                    {% set exp_cost, money_cost = skill.level_up_cost() %}
-                    <p>学习需要: {{ exp_cost }}经验值, {{ money_cost }}银两</p>
-                    <a href="{{ url_for('player.learn_skill', skill=skill.skill_id) }}">学习</a>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    
-    <div class="section">
-        <h2>已学习的技能:</h2>
-        {% for skill_id in player.learned_skills %}
-            {% set skill = skills[skill_id] %}
-            <div class="section">
-                <p>{{ skill.name }} (等级:{{ skill.level }}/{{ skill.max_level }})</p>
-                <p>当前伤害倍率: {{ "%.1f"|format(skill.get_current_damage_rate()) }}</p>
-                <p>当前魔法消耗: {{ skill.get_current_mana_cost() }}</p>
-                {% if skill.effect_description %}
-                    <p>特殊效果: {{ skill.effect_description }}</p>
-                {% endif %}
-                {% if skill.level < skill.max_level %}
-                    {% set exp_cost, money_cost = skill.level_up_cost() %}
-                    <p>升级需要: {{ exp_cost }}经验值, {{ money_cost }}银两</p>
-                    <a href="{{ url_for('player.upgrade_skill', skill=skill.skill_id) }}">升级</a>
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
+    技能教官<br/>
+    在我这里可以习得与升级技能.<br/>
+    {% if npc_quests %}
+    {% for q in npc_quests %}
+    <a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+    {% endfor %}
+    {% endif %}
+    <a href="{{ url_for('player.skill_list', npc_id=npc_id) }}">技能学习</a><br/><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 
-    <div class="section">
-        <a href="{{ url_for('game.scene') }}">返回场景</a>
-    </div>
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
 </body>
 </html>

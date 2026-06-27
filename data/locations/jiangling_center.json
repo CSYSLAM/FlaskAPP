@@ -1,0 +1,186 @@
+{
+  "name": "江陵中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "jiangling_center.北前街",
+        "west": "jiangling_center.西前街",
+        "east": "jiangling_center.东前街",
+        "south": "jiangling_center.南前街"
+      },
+      "npcs": [
+        "npc_jiangling_center_任务使者"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "east": "jiangling_center.北前街"
+      },
+      "npcs": [
+        "npc_jiangling_center_刘表荣誉"
+      ]
+    },
+    "北前街": {
+      "name": "北前街",
+      "exits": {
+        "north": "jiangling_center.北后街",
+        "west": "jiangling_center.太守府",
+        "east": "jiangling_center.钱庄",
+        "south": "jiangling_center.广场"
+      }
+    },
+    "北后街": {
+      "name": "北后街",
+      "exits": {
+        "north": "jiangling_center.北城楼",
+        "east": "jiangling_center.军营",
+        "south": "jiangling_center.北前街"
+      }
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "jiangling_north.北门",
+        "south": "jiangling_center.北后街"
+      },
+      "monster_type": "monster_jiangling_center_守城兵"
+    },
+    "军营": {
+      "name": "军营",
+      "exits": {
+        "west": "jiangling_center.北后街"
+      },
+      "npcs": [
+        "npc_jiangling_center_副将统领"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "jiangling_center.北前街"
+      },
+      "npcs": [
+        "npc_jiangling_center_金掌柜仓库"
+      ]
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "south": "jiangling_center.东后街"
+      },
+      "npcs": [
+        "npc_jiangling_center_王老板"
+      ]
+    },
+    "西前街": {
+      "name": "西前街",
+      "exits": {
+        "east": "jiangling_center.广场",
+        "west": "jiangling_center.西中街"
+      }
+    },
+    "西中街": {
+      "name": "西中街",
+      "exits": {
+        "east": "jiangling_center.西前街",
+        "west": "jiangling_center.西后街",
+        "south": "jiangling_center.酒馆"
+      }
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "north": "jiangling_center.西中街"
+      },
+      "npcs": [
+        "npc_jiangling_center_店小二"
+      ]
+    },
+    "西后街": {
+      "name": "西后街",
+      "exits": {
+        "north": "jiangling_center.铁匠铺",
+        "west": "jiangling_center.西城楼",
+        "east": "jiangling_center.西中街"
+      }
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "south": "jiangling_center.西后街"
+      },
+      "npcs": [
+        "npc_jiangling_center_江陵铁匠"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "east": "jiangling_center.西后街",
+        "west": "jiangling_west.西门"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "north": "jiangling_center.东后街"
+      },
+      "npcs": [
+        "npc_jiangling_center_许大夫"
+      ]
+    },
+    "东前街": {
+      "name": "东前街",
+      "exits": {
+        "west": "jiangling_center.广场",
+        "east": "jiangling_center.东后街"
+      }
+    },
+    "东后街": {
+      "name": "东后街",
+      "exits": {
+        "north": "jiangling_center.客栈",
+        "west": "jiangling_center.东前街",
+        "east": "jiangling_center.东城楼",
+        "south": "jiangling_center.药铺"
+      }
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "jiangling_center.东后街",
+        "east": "jiangling_east.东门"
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
+    },
+    "南前街": {
+      "name": "南前街",
+      "exits": {
+        "north": "jiangling_center.广场",
+        "west": "jiangling_center.驿站",
+        "south": "jiangling_center.南城楼"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "east": "jiangling_center.南前街"
+      },
+      "npcs": [
+        "npc_jiangling_center_江陵车夫",
+        "npc_postmaster"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "jiangling_center.南前街",
+        "south": "jiangling_south.南门"
+      }
+    }
+  }
+}

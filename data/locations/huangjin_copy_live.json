@@ -1,0 +1,104 @@
+{
+  "name": "黄巾起义副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "huangjin_trial",
+  "scenes": {
+    "洛阳皇宫": {
+      "name": "洛阳皇宫(副本)",
+      "exits": {
+        "north": "huangjin_copy_live.黄河岸边",
+        "south": "huangjin_copy_live.豫州"
+      },
+      "npcs": [
+        "npc_huangjin_copy_灵帝"
+      ]
+    },
+    "黄河岸边": {
+      "name": "黄河岸边",
+      "exits": {
+        "south": "huangjin_copy_live.洛阳皇宫",
+        "east": "huangjin_copy_live.兖州"
+      }
+    },
+    "兖州": {
+      "name": "兖州",
+      "exits": {
+        "west": "huangjin_copy_live.黄河岸边",
+        "north": "huangjin_copy_live.冀州",
+        "east": "huangjin_copy_live.小渔村"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张宝"
+      ]
+    },
+    "冀州": {
+      "name": "冀州",
+      "exits": {
+        "south": "huangjin_copy_live.兖州",
+        "east": "huangjin_copy_live.巨鹿"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张梁"
+      ]
+    },
+    "巨鹿": {
+      "name": "巨鹿",
+      "exits": {
+        "west": "huangjin_copy_live.冀州"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张角"
+      ]
+    },
+    "小渔村": {
+      "name": "小渔村",
+      "exits": {
+        "west": "huangjin_copy_live.兖州",
+        "east": "huangjin_copy_live.南阳"
+      },
+      "monsters": [
+        "monster_huangjin_copy_偷伐人"
+      ]
+    },
+    "豫州": {
+      "name": "豫州",
+      "exits": {
+        "north": "huangjin_copy_live.洛阳皇宫",
+        "west": "huangjin_copy_live.颖州",
+        "east": "huangjin_copy_live.徐州",
+        "south": "huangjin_copy_live.南阳"
+      },
+      "monsters": [
+        "monster_huangjin_copy_黄巾士兵"
+      ]
+    },
+    "徐州": {
+      "name": "徐州",
+      "exits": {
+        "west": "huangjin_copy_live.豫州"
+      },
+      "monsters": [
+        "monster_huangjin_copy_黄巾头目"
+      ]
+    },
+    "颖州": {
+      "name": "颖州",
+      "exits": {
+        "east": "huangjin_copy_live.豫州"
+      },
+      "monsters": [
+        "monster_huangjin_copy_波才"
+      ]
+    },
+    "南阳": {
+      "name": "南阳",
+      "exits": {
+        "north": "huangjin_copy_live.豫州",
+        "west": "huangjin_copy_live.小渔村"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张曼成"
+      ]
+    }
+  }
+}

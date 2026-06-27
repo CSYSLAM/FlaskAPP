@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>幸运币兑换</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    幸运币兑换<br/>
+    ----------------<br/>
+    当前幸运币:{{ coin_count }}枚<br/>
+    ----------------<br/>
+    {% for item in exchange_items %}
+    {{ item.name }}({{ item.cost }}币)
+    {% if coin_count >= item.cost %}
+    <a href="{{ url_for('activity.do_lucky_exchange', item_id=item.item_id) }}">兑换</a>
+    {% else %}
+    [不足]
+    {% endif %}
+    <br/>
+    {% endfor %}
+    <br/>
+    <a href="{{ url_for('activity.card_flip_page') }}">返回翻牌<br/></a>
+    <a href="{{ url_for('activity.index') }}">返回活动<br/></a>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

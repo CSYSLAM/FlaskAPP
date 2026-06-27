@@ -1,70 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>物品详情</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ item.name }}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        h1 {
-            margin-bottom: 10px;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        a {
-            display: inline-block;
-            margin-top: 10px;
-        }
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .bound { color: #999; font-size: 14px; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
-    <h1>物品详情</h1>
-    <div>
-        <p>{{ item.name }}</p>
-        <p>类型: {{ item.item_type }}</p>
-        <p>描述: {{ item.description }}</p>
-        <p>数量: {{ quantity }}</p>
-        
-        <p>物品属性:</p>
-        <ul>
-            <li>可使用: {% if item.is_usable %}是{% else %}否{% endif %}</li>
-            <li>价格: {{ item.price }}银两</li>
-            
-            {% if item.usage_condition %}
-                {% if item.usage_condition.level_required > 0 %}
-                <li>需要等级: {{ item.usage_condition.level_required }}</li>
-                {% endif %}
-            {% endif %}
-        </ul>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
 
-        {% if item.is_usable %}
-        <div class="item-actions">
-            <a href="{{ url_for('player.use_item', item=item_id) }}" class="btn">使用</a>
-            
-            {% if item.can_bulk_use %}
-            <div class="bulk-use">
-                <form action="{{ url_for('player.bulk_use_item', item_id=item_id) }}" method="post">
-                    <input type="number" name="quantity" value="1" min="1" max="{{ quantity }}" style="width: 60px;">
-                    <button type="submit" class="btn">一键使用</button>
-                </form>
-            </div>
-            {% endif %}
-        </div>
-        {% endif %}
-    </div>
-    
-    <a href="{{ url_for('player.inventory') }}" class="btn">返回背包</a>
+    <a href="{{ url_for('player.inventory') }}">背包</a><br/>
+
+    {{ item.name }}{% if is_bound %}<span class="bound">(绑定)</span>{% endif %}x{{ quantity }}<br/>
+
+    {% if item.get('description') %}
+    {{ item.description }}<br/>
+    {% endif %}
+
+    {% if item.get('type') %}
+    类型:{{ '药品' if item.type in ('consumable', 'potion') else ('材料' if item.type == 'material' else ('宝箱' if item.type == 'chest' else '其他')) }}<br/>
+    {% endif %}
+
+    {% if item.get('sell_price') %}
+    售价:{{ item.sell_price }}<br/>
+    {% endif %}
+
+    {% if item.get('usage_condition', {}).get('level_required') %}
+    需要等级:{{ item.usage_condition.level_required }}<br/>
+    {% endif %}
+
+    {% if item.get('effects') %}
+    效果:{% for eff in item.effects %}{{ eff.get('description', '') }}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
+    {% endif %}
+
+    {% if item.get('chest_contents') %}
+    包含:{% for content in item.chest_contents %}{{ content.get('name', '') }}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
+    {% endif %}
+
+    <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">使用</a>
+    <a href="{{ url_for('player.sell_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">出售</a>
+    <a href="{{ url_for('player.destroy_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">丢弃</a><br/>
+
+    <a href="{{ url_for('player.inventory') }}">返回背包</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
 </body>
 </html>

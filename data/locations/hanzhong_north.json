@@ -1,0 +1,89 @@
+{
+  "name": "汉中北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "hanzhong_north.华阳镇",
+        "south": "hanzhong_center.北城楼"
+      }
+    },
+    "华阳镇": {
+      "name": "华阳镇",
+      "exits": {
+        "north": "hanzhong_north.诸葛亭",
+        "south": "hanzhong_north.北门"
+      }
+    },
+    "诸葛亭": {
+      "name": "诸葛亭",
+      "exits": {
+        "north": "hanzhong_north.魏前营",
+        "south": "hanzhong_north.华阳镇"
+      }
+    },
+    "魏前营": {
+      "name": "魏前营",
+      "exits": {
+        "north": "hanzhong_north.魏中营",
+        "west": "hanzhong_north.魏仓库",
+        "east": "hanzhong_north.魏火库",
+        "south": "hanzhong_north.诸葛亭"
+      },
+      "monster_type": "monster_hanzhong_north_魏军前锋"
+    },
+    "魏中营": {
+      "name": "魏中营",
+      "exits": {
+        "north": "hanzhong_north.魏后营",
+        "west": "hanzhong_north.魏右营",
+        "east": "hanzhong_north.魏左营",
+        "south": "hanzhong_north.魏前营"
+      }
+    },
+    "魏后营": {
+      "name": "魏后营",
+      "exits": {
+        "north": "hanzhong_north.汉中北界",
+        "south": "hanzhong_north.魏中营"
+      }
+    },
+    "汉中北界": {
+      "name": "汉中北界",
+      "exits": {
+        "south": "hanzhong_north.魏后营",
+        "east": "xuchang_west.许昌西界"
+      }
+    },
+    "魏右营": {
+      "name": "魏右营",
+      "exits": {
+        "east": "hanzhong_north.魏中营",
+        "south": "hanzhong_north.魏仓库"
+      },
+      "monster_type": "monster_hanzhong_north_侯成"
+    },
+    "魏左营": {
+      "name": "魏左营",
+      "exits": {
+        "west": "hanzhong_north.魏中营",
+        "south": "hanzhong_north.魏火库"
+      },
+      "monster_type": "monster_hanzhong_north_李典"
+    },
+    "魏仓库": {
+      "name": "魏仓库",
+      "exits": {
+        "north": "hanzhong_north.魏右营",
+        "east": "hanzhong_north.魏前营"
+      }
+    },
+    "魏火库": {
+      "name": "魏火库",
+      "exits": {
+        "north": "hanzhong_north.魏左营",
+        "west": "hanzhong_north.魏前营"
+      }
+    }
+  }
+}

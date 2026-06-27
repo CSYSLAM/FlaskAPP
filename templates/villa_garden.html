@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>百草园</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    百草园<br/>
+    等级:{{ villa.level }}<br/>
+    经验:{{ villa.experience }}/{{ villa.get_exp_to_next_level() }}<br/>
+    行动力:{{ villa.action_points }}/{{ villa.max_action_points }}<br/>
+    ----------------<br/>
+
+    {% for plot in plots %}
+    土地{{ plot.index + 1 }}:
+    {% if plot.status == 'empty' %}
+    闲置
+    {% if seeds_inv %}
+    <form action="{{ url_for('villa.plant_seed', plot_index=plot.index) }}" method="post" style="display:inline;">
+        <select name="seed_id">
+            {% for seed_id, count in seeds_inv.items() %}
+            <option value="{{ seed_id }}">{{ SEEDS[seed_id].name }}(x{{ count }})</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="种植">
+    </form>
+    {% endif %}
+    {% elif plot.status == 'growing' %}
+    {{ plot.seed_name }}(生长中，剩余{{ plot.remaining }}秒)
+    {% elif plot.status == 'ready' %}
+    {{ plot.harvest_name }}(x{{ plot.ready_count }}) <a href="{{ url_for('villa.harvest_plot', plot_index=plot.index) }}">采摘</a>
+    {% endif %}
+    <br/>
+    {% endfor %}
+    <br/>
+
+    提示：种植消耗2行动力，山庄等级越高可开垦土地越多。<br/>
+    <br/>
+
+    <a href="{{ url_for('villa.index') }}">返回<br/></a>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
+</body>
+</html>

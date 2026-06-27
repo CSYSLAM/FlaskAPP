@@ -1,113 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>查看角色</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #003366;
-        }
-        .section {
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .message {
-            background-color: #e8f5e9;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .chat-form {
-            margin: 10px 0;
-        }
-        .chat-input {
-            padding: 5px;
-            width: 200px;
-            margin-right: 5px;
-        }
-        .equipment-slot {
-            margin: 10px 0;
-        }
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
     {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div class="message">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
     {% endwith %}
 
-    <div class="section">
-        <form action="{{ url_for('social.send_message', to_username=target_player.username) }}" method="post" class="chat-form">
-            <input type="text" name="message" placeholder="输入私聊内容..." required class="chat-input">
-            <button type="submit">发送私聊</button>
-        </form>
-        <a href="{{ url_for('social.gift_page', username=target_player.username) }}">赠送物品</a>
-    </div>
+    {% if tab == 'info' %}
+    <!-- 操作按钮行 -->
+    {% if player.current_location == target_player.current_location and not target_player.in_pk %}
+    <a href="{{ url_for('battle.start_pk', username=target_player.username) }}">攻击</a>
+    {% endif %}
+    <a href="{{ url_for('social.gift_page', username=target_player.username) }}">赠送</a>
+    摊位(0)
+    <a href="{{ url_for('player.view_player', username=target_player.username, tab='info') }}">属性</a>
+    <a href="{{ url_for('player.view_player', username=target_player.username, tab='equip') }}">装备</a>
+    <a href="{{ url_for('player.view_player', username=target_player.username, tab='achieve') }}">成就</a>
+    <a href="{{ url_for('player.view_player', username=target_player.username, tab='lieutenant') }}">副将</a><br/>
 
-    <div class="section">
-        {% if player.current_location == target_player.current_location and not target_player.in_pk %}
-            <form action="{{ url_for('battle.start_pk', username=target_player.username) }}" method="post">
-                <button type="submit">发起PK</button>
-            </form>
-        {% endif %}
-    </div>
+    <!-- 私聊 -->
+    <form action="{{ url_for('social.private_chat', username=target_player.username) }}" method="get" style="display:inline;">
+        <input type="text" name="msg" style="width:100px;"/>
+        <input type="submit" value="私聊"/>
+    </form><br/>
 
-    <div class="section">
-        <img src="{{ url_for('static', filename=target_player.get_avatar_path()) }}" alt="角色头像" style="width: 100px; height: 100px;">
-    </div>
-    
-    <div class="section">
-        <h2>角色信息</h2>
-        <p>名字: {{ target_player.name }}</p>
-        <p>职业: {{ target_player.player_class }}</p>
-        <p>等级: {{ target_player.level }}</p>
-        <p>生命值: {{ target_player.health }}/{{ target_player.max_health }}</p>
-        <p>魔法值: {{ target_player.mana }}/{{ target_player.max_mana }}</p>
-        <p>攻击: {{ target_player.attack }}</p>
-        <p>防御: {{ target_player.defense }}</p>
-        <p>暴击率: {{ "%.1f"|format(target_player.crit_rate * 100) }}%</p>
-        <p>闪避率: {{ "%.1f"|format(target_player.dodge_rate * 100) }}%</p>
-    </div>
-    
-    <div class="section">
-        <h2>装备</h2>
-        {% for slot, equipment in target_player.equipment.items() %}
-        <div class="equipment-slot">
-            <h3>{{ Equipment.SLOTS[slot] }}</h3>
-            {% if equipment %}
-                <p>{{ equipment.name }}</p>
-            {% else %}
-                <p>未装备</p>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-    
-    <div style="margin-top: 10px;">
-        <a href="{{ url_for('game.scene') }}">返回场景</a>
-    </div>
+    <!-- 社交操作 -->
+    {% if target_player.username in player.friends %}
+    <a href="{{ url_for('social.remove_friend', username=target_player.username) }}">删好友</a>
+    {% else %}
+    <a href="{{ url_for('social.add_friend', username=target_player.username) }}">加好友</a>
+    {% endif %}
+    {% if target_player.username in player.blacklist %}
+    <a href="{{ url_for('social.remove_blacklist', username=target_player.username) }}">移出黑名单</a>
+    {% else %}
+    <a href="{{ url_for('social.add_blacklist', username=target_player.username) }}">黑名单</a>
+    {% endif %}<br/>
+
+    <!-- 队伍/社交操作 -->
+    {% if target_party and target_party.leader_id == target_player.id %}
+    <a href="{{ url_for('party.apply', party_id=target_party.party_id) }}">加入队伍</a>
+    {% elif not target_party and my_party %}
+    <a href="{{ url_for('party.invite', target_id=target_player.id) }}">邀请入队</a>
+    {% else %}
+    加入队伍
+    {% endif %}
+    {% if target_player.gender != player.gender %}
+    <a href="{{ url_for('social.request_relation', username=target_player.username, rel_type='hongyan') }}">结交</a>
+    {% else %}
+    <a href="{{ url_for('social.request_relation', username=target_player.username, rel_type='zhiji') }}">结交</a>
+    {% endif %}
+    婚姻<br/>
+
+    <a href="{{ url_for('game.scene') }}">返回上级</a><br/>
+
+    <!-- 基本信息区 -->
+    姓名:{{ target_player.name }}<br/>
+    <img src="{{ url_for('static', filename=target_player.get_avatar_path()) }}" border="0" height="64" width="56"/><br/>
+    {{ target_player.level }}级{{ target_player.country }}{{ target_player.gender }}{{ target_player.player_class }}<br/>
+
+    {% if target_player.health >= target_player.effective_max_health %}
+    气血充盈，毫发无损<br/>
+    {% elif target_player.health >= target_player.effective_max_health * 0.7 %}
+    受了一点轻伤<br/>
+    {% elif target_player.health >= target_player.effective_max_health * 0.4 %}
+    受伤不轻<br/>
+    {% elif target_player.health > 0 %}
+    奄奄一息，快不行了<br/>
+    {% else %}
+    已阵亡<br/>
+    {% endif %}
+
+    成就:{% if target_vip_level > 0 %}<img src="{{ url_for('static', filename='vip/vip_' ~ target_vip_level ~ '.jpg') }}" border="0" height="18" width="45"/>{% else %}<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="18" width="45"/>{% endif %}<br/>
+
+    {% if target_player.homestead_name %}
+    山庄:<a href="{{ url_for('villa.view_villa', villa_id=target_player.id) }}">{{ target_player.homestead_name }}</a><br/>
+    {% else %}
+    山庄:无<br/>
+    {% endif %}
+
+    {% if target_spouse %}
+    {% if target_player.gender == '男' %}
+    夫人:<a href="{{ url_for('player.view_player', username=target_spouse.username) }}">{{ target_spouse.nickname }}</a><br/>
+    {% else %}
+    夫君:<a href="{{ url_for('player.view_player', username=target_spouse.username) }}">{{ target_spouse.nickname }}</a><br/>
+    {% endif %}
+    {% endif %}
+
+    {% if target_player.title %}
+    称号:{{ target_player.title }}<br/>
+    {% endif %}
+
+    军衔:{{ target_player.military_rank }}<br/>
+    荣誉:{{ target_player.honor }}<br/>
+
+    {% if target_player.status_effect %}
+    状态:{{ target_player.status_effect }}<br/>
+    {% else %}
+    状态:无<br/>
+    {% endif %}
+
+    {% if target_party %}
+    队伍:<a href="{{ url_for('party.index') }}">{{ target_party_name }}({{ target_party_count }}人)</a><br/>
+    {% else %}
+    队伍:无<br/>
+    {% endif %}
+
+    {% if target_legion %}
+    军团:<a href="{{ url_for('legion.detail', legion_id=target_legion.id) }}">{{ target_legion.name }}({{ target_player.country }})</a><br/>
+    {% endif %}
+
+    红颜:{{ hongyan_count }}知己:{{ zhiji_count }}<br/>
+
+    {% set fate = SocialService.get_fate_value(player.id, target_player.id) %}
+    缘分值:{{ fate }}<br/>
+
+    {% if target_player.signature %}
+    {{ target_player.signature }}<br/>
+    {% endif %}
+
+    {% elif tab == 'equip' %}
+    查看 <a href="{{ url_for('player.view_player', username=target_player.username) }}">{{ target_player.nickname }}</a> 装备<br/>
+    ----------------<br/>
+    {% for slot_name in EquipmentInstance.SLOTS %}
+        {% set equip = target_equipped.get(slot_name) %}
+        {{ EquipmentInstance.SLOT_NAMES[slot_name] }}:{% if equip %}<a href="#">{{ equip.name }}</a>{% else %}未装备{% endif %}<br/>
+    {% endfor %}
+    <a href="{{ url_for('player.view_player', username=target_player.username) }}">返回</a><br/>
+
+    {% elif tab == 'achieve' %}
+    查看 <a href="{{ url_for('player.view_player', username=target_player.username) }}">{{ target_player.nickname }}</a> 成就<br/>
+    ----------------<br/>
+    {% if target_achievements %}
+    {% for cat in achievement_categories %}
+    【{{ cat }}】<br/>
+    {% for a in target_achievements.get(cat, []) %}
+    {% if a.completed %}<img src="{{ url_for('static', filename='achievement/' ~ a.id ~ '.gif') }}" border="0" height="16" onerror="this.style.display='none'"/>{% endif %}{{ a.name }}{% if a.completed %}(已完成){% else %}(未完成){% endif %}<br/>
+    {% endfor %}
+    {% endfor %}
+    {% else %}
+    暂无成就<br/>
+    {% endif %}
+    <a href="{{ url_for('player.view_player', username=target_player.username) }}">返回</a><br/>
+
+    {% elif tab == 'lieutenant' %}
+    查看 <a href="{{ url_for('player.view_player', username=target_player.username) }}">{{ target_player.nickname }}</a> 副将<br/>
+    ----------------<br/>
+    {% if target_lieutenant %}
+    副将:{{ target_lieutenant.name }}({{ target_lieutenant.level }}级)<br/>
+    {% else %}
+    暂无副将<br/>
+    {% endif %}
+    <a href="{{ url_for('player.view_player', username=target_player.username) }}">返回</a><br/>
+    {% endif %}
+
+    <br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
 </body>
 </html>

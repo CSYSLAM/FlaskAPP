@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>查看玩家详情</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.7; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .stat-block { margin: 8px 0; padding: 5px; border: 1px solid #ddd; background: #fafafa; }
+        .stat-name { font-weight: bold; color: #c00; }
+        .formula { color: #555; font-size: 14px; }
+        .result { font-weight: bold; font-size: 18px; color: #136ec2; }
+        .flash { color: green; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}<span class="flash">{{ messages[0] }}</span><br/>{% endif %}
+    {% endwith %}
+
+    <h3>查看玩家详情</h3>
+
+    <form method="post">
+        玩家ID/用户名: <input type="text" name="target_id" placeholder="输入ID或用户名">
+        <button type="submit">查询</button>
+    </form>
+
+    {% if target %}
+    <p>玩家: {{ target.nickname }}(ID:{{ target.id }}) | {{ target.player_class }} | Lv.{{ target.level }} | {{ target.country }} | VIP{{ target.vip_level }}</p>
+
+    {% for stat_key, d in details.items() %}
+    <div class="stat-block">
+        <div class="stat-name">{{ d.name }}</div>
+        <div class="formula">
+            = ({% for part in d.flat_parts %}{{ part[0] }}: {{ part[1] }}{% if not loop.last %} + {% endif %}{% endfor %})
+            {% if d.rate_parts %}
+            &times; (1{% for part in d.rate_parts %} + {{ part[0] }}: {{ part[1] }}{% endfor %})
+            {% endif %}
+            <br/>
+            = {{ d.flat_sum }}{% if d.rate_sum != 1 %} &times; {{ d.rate_sum }}{% endif %}
+            = <span class="result">{{ d.result }}</span>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>

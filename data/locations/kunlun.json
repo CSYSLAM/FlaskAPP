@@ -1,0 +1,319 @@
+{
+  "name": "昆仑山脉",
+  "scenes": {
+    "镇中街": {
+      "name": "镇中街",
+      "exits": {
+        "north": "kunlun.登山路_南",
+        "west": "kunlun.太平村",
+        "east": "kunlun.清风亭",
+        "south": "kunlun.登山路_北"
+      },
+      "npcs": [
+        "npc_kunlun_昆仑使者副本",
+        "npc_kunlun_医师"
+      ]
+    },
+    "太平村": {
+      "name": "太平村",
+      "exits": {
+        "east": "kunlun.镇中街",
+        "west": "chengdu_north.成都北界"
+      },
+      "npcs": [
+        "npc_kunlun_昆仑车夫"
+      ]
+    },
+    "清风亭": {
+      "name": "清风亭",
+      "exits": {
+        "west": "kunlun.镇中街"
+      }
+    },
+    "登山路_南": {
+      "name": "登山路",
+      "exits": {
+        "south": "kunlun.镇中街",
+        "west": "kunlun.树屋"
+      }
+    },
+    "登山路_北": {
+      "name": "登山路",
+      "exits": {
+        "north": "kunlun.镇中街",
+        "east": "kunlun.流风阵"
+      }
+    },
+    "树屋": {
+      "name": "树屋",
+      "exits": {
+        "east": "kunlun.登山路_南"
+      },
+      "monsters": [
+        "monster_kunlun_妖女树"
+      ]
+    },
+    "流风阵": {
+      "name": "流风阵",
+      "exits": {
+        "west": "kunlun.登山路_北"
+      }
+    },
+    "紫藤小径": {
+      "name": "紫藤小径",
+      "exits": {
+        "north": "kunlun.青鸾古道",
+        "south": "kunlun.登山路_南"
+      }
+    },
+    "青鸾古道": {
+      "name": "青鸾古道",
+      "exits": {
+        "north": "kunlun.绿萝岩",
+        "south": "kunlun.紫藤小径",
+        "west": "kunlun.石沉溪洞"
+      },
+      "monsters": [
+        "monster_kunlun_小白兔"
+      ]
+    },
+    "石沉溪洞": {
+      "name": "石沉溪洞",
+      "exits": {
+        "east": "kunlun.青鸾古道"
+      }
+    },
+    "绿萝岩": {
+      "name": "绿萝岩",
+      "exits": {
+        "north": "kunlun.石丘山",
+        "south": "kunlun.青鸾古道"
+      }
+    },
+    "石丘山": {
+      "name": "石丘山",
+      "exits": {
+        "north": "kunlun.幻尘道",
+        "south": "kunlun.绿萝岩",
+        "east": "kunlun.青庭湖"
+      },
+      "monsters": [
+        "monster_kunlun_灰毛熊"
+      ]
+    },
+    "青庭湖": {
+      "name": "青庭湖",
+      "exits": {
+        "west": "kunlun.石丘山"
+      },
+      "monsters": [
+        "monster_kunlun_赢鱼"
+      ]
+    },
+    "幻尘道": {
+      "name": "幻尘道",
+      "exits": {
+        "north": "kunlun.须弥幻境",
+        "south": "kunlun.石丘山"
+      }
+    },
+    "须弥幻境": {
+      "name": "须弥幻境",
+      "exits": {
+        "north": "kunlun.登仙路",
+        "south": "kunlun.幻尘道"
+      },
+      "monsters": [
+        "monster_kunlun_迷幻草"
+      ]
+    },
+    "登仙路": {
+      "name": "登仙路",
+      "exits": {
+        "north": "kunlun.通天路",
+        "south": "kunlun.须弥幻境",
+        "west": "kunlun.剑林"
+      }
+    },
+    "剑林": {
+      "name": "剑林",
+      "exits": {
+        "east": "kunlun.登仙路"
+      }
+    },
+    "通天路": {
+      "name": "通天路",
+      "exits": {
+        "north": "kunlun.太一仙境",
+        "south": "kunlun.登仙路",
+        "west": "kunlun.仙雾池",
+        "east": "kunlun.醉华荫"
+      }
+    },
+    "仙雾池": {
+      "name": "仙雾池",
+      "exits": {
+        "east": "kunlun.通天路",
+        "west": "kunlun.雾隐泉"
+      },
+      "monsters": [
+        "monster_kunlun_雪鹞"
+      ]
+    },
+    "雾隐泉": {
+      "name": "雾隐泉",
+      "exits": {
+        "east": "kunlun.仙雾池",
+        "west": "kunlun.道藏密室"
+      },
+      "monsters": [
+        "monster_kunlun_九色神鹿"
+      ]
+    },
+    "道藏密室": {
+      "name": "道藏密室",
+      "exits": {
+        "east": "kunlun.雾隐泉"
+      }
+    },
+    "醉华荫": {
+      "name": "醉华荫",
+      "exits": {
+        "west": "kunlun.通天路",
+        "east": "kunlun.隐香山"
+      },
+      "monsters": [
+        "monster_kunlun_五毒蟾蜍"
+      ]
+    },
+    "隐香山": {
+      "name": "隐香山",
+      "exits": {
+        "north": "kunlun.清风小径",
+        "west": "kunlun.醉华荫",
+        "south": "kunlun.隐仙居"
+      },
+      "monsters": [
+        "monster_kunlun_白梦蝶"
+      ]
+    },
+    "隐仙居": {
+      "name": "隐仙居",
+      "exits": {
+        "north": "kunlun.隐香山"
+      },
+      "monsters": [
+        "monster_kunlun_昆仑仙道"
+      ]
+    },
+    "清风小径": {
+      "name": "清风小径",
+      "exits": {
+        "south": "kunlun.隐香山",
+        "east": "kunlun.仙幽林"
+      }
+    },
+    "仙幽林": {
+      "name": "仙幽林",
+      "exits": {
+        "west": "kunlun.清风小径",
+        "east": "kunlun.炙焰道"
+      },
+      "monsters": [
+        "monster_kunlun_灰岩巨蟒"
+      ]
+    },
+    "炙焰道": {
+      "name": "炙焰道",
+      "exits": {
+        "north": "kunlun.升仙台",
+        "west": "kunlun.仙幽林",
+        "south": "kunlun.幻瞑界"
+      }
+    },
+    "幻瞑界": {
+      "name": "幻瞑界",
+      "exits": {
+        "north": "kunlun.炙焰道"
+      },
+      "monsters": [
+        "monster_kunlun_枯萎之藤"
+      ]
+    },
+    "升仙台": {
+      "name": "升仙台",
+      "exits": {
+        "north": "kunlun.月牙湾",
+        "south": "kunlun.炙焰道",
+        "east": "kunlun.问心阵"
+      },
+      "monsters": [
+        "monster_kunlun_金倪兽",
+        "monster_kunlun_小山精"
+      ]
+    },
+    "问心阵": {
+      "name": "问心阵",
+      "exits": {
+        "north": "kunlun.天池",
+        "west": "kunlun.升仙台"
+      },
+      "monsters": [
+        "monster_kunlun_幻影狼"
+      ]
+    },
+    "月牙湾": {
+      "name": "月牙湾",
+      "exits": {
+        "south": "kunlun.升仙台",
+        "east": "kunlun.天池"
+      },
+      "monsters": [
+        "monster_kunlun_海霆蛇"
+      ]
+    },
+    "天池": {
+      "name": "天池",
+      "exits": {
+        "west": "kunlun.月牙湾",
+        "east": "kunlun.瑶池",
+        "south": "kunlun.问心阵"
+      }
+    },
+    "瑶池": {
+      "name": "瑶池",
+      "exits": {
+        "west": "kunlun.天池"
+      },
+      "monsters": [
+        "monster_kunlun_火凤凰"
+      ]
+    },
+    "太一仙境": {
+      "name": "太一仙境",
+      "exits": {
+        "north": "kunlun.雾道",
+        "south": "kunlun.通天路"
+      }
+    },
+    "雾道": {
+      "name": "雾道",
+      "exits": {
+        "south": "kunlun.太一仙境",
+        "west": "kunlun.封神陵"
+      },
+      "monsters": [
+        "monster_kunlun_精卫"
+      ]
+    },
+    "封神陵": {
+      "name": "封神陵",
+      "exits": {
+        "east": "kunlun.雾道"
+      },
+      "monsters": [
+        "monster_kunlun_大白兔"
+      ]
+    }
+  }
+}

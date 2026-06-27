@@ -1,0 +1,238 @@
+{
+    "jinzu": {
+        "name": "金珠商城",
+        "currency": "jinzu",
+        "tabs": {
+            "promo": {"name": "促销"},
+            "other": {"name": "其他"},
+            "equip": {"name": "装备"},
+            "assist": {"name": "辅助"},
+            "lieutenant": {"name": "副将"}
+        },
+        "items": {
+            "promo": [
+                {"id": "legionwar_pack", "name": "军团战特惠包", "price": 2700, "item_id": "legionwar_pack"},
+                {"id": "big_hp_stone_pack", "name": "大血石特惠包", "price": 1200, "item_id": "big_hp_stone_pack"},
+                {"id": "big_mp_stone_pack", "name": "大魔石特惠包", "price": 1200, "item_id": "big_mp_stone_pack"},
+                {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn_pack"}
+            ],
+            "other": [
+                {"id": "mi_yao_pack", "name": "秘药礼包", "price": 10, "item_id": "mi_yao_pack"},
+                {"id": "double_exp_card", "name": "双倍经验卡", "price": 50, "item_id": "double_exp_card"},
+                {"id": "shen_you_guo", "name": "神游果", "price": 100, "item_id": "shen_you_guo"},
+                {"id": "bag_expand", "name": "背包扩容卷", "price": 50, "item_id": "bag_expand"},
+                {"id": "rose", "name": "玫瑰花", "price": 10, "item_id": "rose"},
+                {"id": "small_horn", "name": "小喇叭", "price": 100, "item_id": "small_horn"},
+                {"id": "battle_flag_1", "name": "战场令旗(低级)", "price": 100, "item_id": "battle_flag_1"},
+                {"id": "battle_flag_2", "name": "战场令旗(中级)", "price": 200, "item_id": "battle_flag_2"},
+                {"id": "battle_flag_3", "name": "战场令旗(高级)", "price": 500, "item_id": "battle_flag_3"},
+                {"id": "battle_revive_lamp", "name": "战场续命灯", "price": 200, "item_id": "battle_revive_lamp"},
+                {"id": "potion_revive", "name": "续命灯", "price": 20, "item_id": "potion_revive"},
+                {"id": "kongming_lantern", "name": "孔明灯", "price": 10, "item_id": "kongming_lantern"},
+                {"id": "enhance_gem", "name": "强化宝玉", "price": 50, "item_id": "enhance_gem"},
+                {"id": "chest_key", "name": "宝匣钥匙", "price": 100, "item_id": "chest_key"},
+                {"id": "hunt_order", "name": "追杀令", "price": 200, "item_id": "hunt_order"},
+                {"id": "legion_rename", "name": "军团改名卡", "price": 5000, "item_id": "legion_rename"},
+                {"id": "wood_hammer", "name": "[活]木锤", "price": 10, "item_id": "wood_hammer"},
+                {"id": "lt_double_exp", "name": "副将双倍经验卡", "price": 50, "item_id": "lt_double_exp"},
+                {"id": "rename_card", "name": "角色改名卡", "price": 3000, "item_id": "rename_card"},
+                {"id": "enhance_lucky", "name": "强化小幸运符", "price": 4200, "item_id": "enhance_lucky"}
+            ],
+            "equip": [
+                {"id": "wedding_diamond_pack", "name": "新婚钻戒包", "price": 2000, "item_id": "wedding_diamond_pack"},
+                {"id": "wedding_ring_pack", "name": "新婚草戒包", "price": 100, "item_id": "wedding_ring_pack"},
+                {"id": "sui_pi_pack", "name": "碎皮包", "price": 400, "item_id": "sui_pi_pack"},
+                {"id": "huangyang_mu_pack", "name": "黄杨木包", "price": 400, "item_id": "huangyang_mu_pack"},
+                {"id": "ma_bu_pack", "name": "麻布包", "price": 400, "item_id": "ma_bu_pack"},
+                {"id": "huangtong_kuang_pack", "name": "黄铜矿包", "price": 400, "item_id": "huangtong_kuang_pack"},
+                {"id": "ying_pi_pack", "name": "硬皮包", "price": 600, "item_id": "ying_pi_pack"},
+                {"id": "chenxiang_mu_pack", "name": "沉香木包", "price": 600, "item_id": "chenxiang_mu_pack"},
+                {"id": "mian_bu_pack", "name": "棉布包", "price": 600, "item_id": "mian_bu_pack"},
+                {"id": "heitie_kuang_pack", "name": "黑铁矿包", "price": 600, "item_id": "heitie_kuang_pack"},
+                {"id": "hou_pi_pack", "name": "厚皮包", "price": 800, "item_id": "hou_pi_pack"},
+                {"id": "zitan_mu_pack", "name": "紫檀木包", "price": 800, "item_id": "zitan_mu_pack"},
+                {"id": "nirong_pack", "name": "呢绒包", "price": 800, "item_id": "nirong_pack"},
+                {"id": "jingjin_kuang_pack", "name": "精金矿包", "price": 800, "item_id": "jingjin_kuang_pack"}
+            ],
+            "assist": [
+                {"id": "duke_token_1d", "name": "诸侯令1天", "price": 200, "item_id": "duke_token_1d"},
+                {"id": "duke_token_7d", "name": "诸侯令7天", "price": 1200, "item_id": "duke_token_7d"},
+                {"id": "duke_token_30d", "name": "诸侯令30天", "price": 5000, "item_id": "duke_token_30d"},
+                {"id": "money_small", "name": "小银两包", "price": 1000, "item_id": "money_small"},
+                {"id": "money_large", "name": "大银两包", "price": 5000, "item_id": "money_large"},
+                {"id": "return_scroll", "name": "回城符", "price": 10, "item_id": "return_scroll"},
+                {"id": "speed_scroll", "name": "神行符", "price": 10, "item_id": "speed_scroll"},
+                {"id": "death_substitute", "name": "死亡替身符", "price": 50, "item_id": "death_substitute"},
+                {"id": "exp_seed", "name": "经验丹种子", "price": 10, "item_id": "exp_seed"},
+                {"id": "seed_big_exp", "name": "大经验丹种子", "price": 50, "item_id": "seed_big_exp"},
+                {"id": "friend_wine", "name": "结交酒", "price": 200, "item_id": "friend_wine"},
+                {"id": "break_wine", "name": "断交酒", "price": 200, "item_id": "break_wine"},
+                {"id": "duanchang_cao", "name": "断肠草", "price": 200, "item_id": "duanchang_cao"},
+                {"id": "ripening_agent", "name": "催熟剂", "price": 50, "item_id": "ripening_agent"},
+                {"id": "blood_stone_small", "name": "小血石", "price": 20, "item_id": "blood_stone_small"},
+                {"id": "mana_stone_small", "name": "小魔石", "price": 20, "item_id": "mana_stone_small"},
+                {"id": "blood_stone_medium", "name": "中血石", "price": 40, "item_id": "blood_stone_medium"},
+                {"id": "mana_stone_medium", "name": "中魔石", "price": 40, "item_id": "mana_stone_medium"},
+                {"id": "big_hp_stone", "name": "大血石", "price": 100, "item_id": "big_hp_stone"},
+                {"id": "big_mp_stone", "name": "大魔石", "price": 100, "item_id": "big_mp_stone"},
+                {"id": "vitality_card", "name": "活力卡", "price": 10, "item_id": "vitality_card"},
+                {"id": "peace_token", "name": "免战符", "price": 110, "item_id": "peace_token"}
+            ],
+            "lieutenant": [
+                {"id": "soul_banner", "name": "聚魂幡", "price": 800, "item_id": "soul_banner"},
+                {"id": "lt_recruit", "name": "副将招募令", "price": 50, "item_id": "lt_recruit"},
+                {"id": "lt_slot_expand", "name": "副将栏扩充令", "price": 2000, "item_id": "lt_slot_expand"},
+                {"id": "lt_aptitude", "name": "副将资质丹", "price": 50, "item_id": "lt_aptitude"},
+                {"id": "lt_life", "name": "副将增寿丹", "price": 50, "item_id": "lt_life"},
+                {"id": "lt_loyalty", "name": "副将忠诚丹", "price": 50, "item_id": "lt_loyalty"},
+                {"id": "lt_enhance", "name": "副将强化丹", "price": 50, "item_id": "lt_enhance"},
+                {"id": "lt_wuxing", "name": "副将悟性丹", "price": 50, "item_id": "lt_wuxing"},
+                {"id": "lt_exp_high", "name": "副将高级经验丹", "price": 12, "item_id": "lt_exp_high"},
+                {"id": "lt_skill_expand", "name": "副将扩技符", "price": 11000, "item_id": "lt_skill_expand"}
+            ]
+        }
+    },
+    "yuanbao": {
+        "name": "元宝商城",
+        "currency": "yuanbao",
+        "tabs": {
+            "promo": {"name": "促销"},
+            "other": {"name": "其他"},
+            "equip": {"name": "装备"},
+            "assist": {"name": "辅助"},
+            "lieutenant": {"name": "副将"}
+        },
+        "items": {
+            "promo": [
+                {"id": "legionwar_pack", "name": "军团战特惠包", "price": 2700, "item_id": "legionwar_pack"},
+                {"id": "big_hp_stone_pack", "name": "大血石特惠包", "price": 1200, "item_id": "big_hp_stone_pack"},
+                {"id": "big_mp_stone_pack", "name": "大魔石特惠包", "price": 1200, "item_id": "big_mp_stone_pack"},
+                {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn_pack"}
+            ],
+            "other": [
+                {"id": "mi_yao_pack", "name": "秘药礼包", "price": 10, "item_id": "mi_yao_pack"},
+                {"id": "double_exp_card", "name": "双倍经验卡", "price": 50, "item_id": "double_exp_card"},
+                {"id": "shen_you_guo", "name": "神游果", "price": 100, "item_id": "shen_you_guo"},
+                {"id": "bag_expand", "name": "背包扩容卷", "price": 50, "item_id": "bag_expand"},
+                {"id": "rose", "name": "玫瑰花", "price": 10, "item_id": "rose"},
+                {"id": "small_horn", "name": "小喇叭", "price": 100, "item_id": "small_horn"},
+                {"id": "battle_flag_1", "name": "战场令旗(低级)", "price": 100, "item_id": "battle_flag_1"},
+                {"id": "battle_flag_2", "name": "战场令旗(中级)", "price": 200, "item_id": "battle_flag_2"},
+                {"id": "battle_flag_3", "name": "战场令旗(高级)", "price": 500, "item_id": "battle_flag_3"},
+                {"id": "battle_revive_lamp", "name": "战场续命灯", "price": 200, "item_id": "battle_revive_lamp"},
+                {"id": "potion_revive", "name": "续命灯", "price": 20, "item_id": "potion_revive"},
+                {"id": "kongming_lantern", "name": "孔明灯", "price": 10, "item_id": "kongming_lantern"},
+                {"id": "enhance_gem", "name": "强化宝玉", "price": 50, "item_id": "enhance_gem"},
+                {"id": "chest_key", "name": "宝匣钥匙", "price": 100, "item_id": "chest_key"},
+                {"id": "hunt_order", "name": "追杀令", "price": 200, "item_id": "hunt_order"},
+                {"id": "legion_rename", "name": "军团改名卡", "price": 5000, "item_id": "legion_rename"},
+                {"id": "wood_hammer", "name": "[活]木锤", "price": 10, "item_id": "wood_hammer"},
+                {"id": "lt_double_exp", "name": "副将双倍经验卡", "price": 50, "item_id": "lt_double_exp"},
+                {"id": "rename_card", "name": "角色改名卡", "price": 3000, "item_id": "rename_card"},
+                {"id": "enhance_lucky", "name": "强化小幸运符", "price": 4200, "item_id": "enhance_lucky"}
+            ],
+            "equip": [
+                {"id": "wedding_diamond_pack", "name": "新婚钻戒包", "price": 2000, "item_id": "wedding_diamond_pack"},
+                {"id": "wedding_ring_pack", "name": "新婚草戒包", "price": 100, "item_id": "wedding_ring_pack"},
+                {"id": "sui_pi_pack", "name": "碎皮包", "price": 400, "item_id": "sui_pi_pack"},
+                {"id": "huangyang_mu_pack", "name": "黄杨木包", "price": 400, "item_id": "huangyang_mu_pack"},
+                {"id": "ma_bu_pack", "name": "麻布包", "price": 400, "item_id": "ma_bu_pack"},
+                {"id": "huangtong_kuang_pack", "name": "黄铜矿包", "price": 400, "item_id": "huangtong_kuang_pack"},
+                {"id": "ying_pi_pack", "name": "硬皮包", "price": 600, "item_id": "ying_pi_pack"},
+                {"id": "chenxiang_mu_pack", "name": "沉香木包", "price": 600, "item_id": "chenxiang_mu_pack"},
+                {"id": "mian_bu_pack", "name": "棉布包", "price": 600, "item_id": "mian_bu_pack"},
+                {"id": "heitie_kuang_pack", "name": "黑铁矿包", "price": 600, "item_id": "heitie_kuang_pack"},
+                {"id": "hou_pi_pack", "name": "厚皮包", "price": 800, "item_id": "hou_pi_pack"},
+                {"id": "zitan_mu_pack", "name": "紫檀木包", "price": 800, "item_id": "zitan_mu_pack"},
+                {"id": "nirong_pack", "name": "呢绒包", "price": 800, "item_id": "nirong_pack"},
+                {"id": "jingjin_kuang_pack", "name": "精金矿包", "price": 800, "item_id": "jingjin_kuang_pack"}
+            ],
+            "assist": [
+                {"id": "duke_token_1d", "name": "诸侯令1天", "price": 200, "item_id": "duke_token_1d"},
+                {"id": "duke_token_7d", "name": "诸侯令7天", "price": 1200, "item_id": "duke_token_7d"},
+                {"id": "duke_token_30d", "name": "诸侯令30天", "price": 5000, "item_id": "duke_token_30d"},
+                {"id": "money_small", "name": "小银两包", "price": 1000, "item_id": "money_small"},
+                {"id": "money_large", "name": "大银两包", "price": 5000, "item_id": "money_large"},
+                {"id": "return_scroll", "name": "回城符", "price": 10, "item_id": "return_scroll"},
+                {"id": "speed_scroll", "name": "神行符", "price": 10, "item_id": "speed_scroll"},
+                {"id": "death_substitute", "name": "死亡替身符", "price": 50, "item_id": "death_substitute"},
+                {"id": "exp_seed", "name": "经验丹种子", "price": 10, "item_id": "exp_seed"},
+                {"id": "seed_big_exp", "name": "大经验丹种子", "price": 50, "item_id": "seed_big_exp"},
+                {"id": "friend_wine", "name": "结交酒", "price": 200, "item_id": "friend_wine"},
+                {"id": "break_wine", "name": "断交酒", "price": 200, "item_id": "break_wine"},
+                {"id": "duanchang_cao", "name": "断肠草", "price": 200, "item_id": "duanchang_cao"},
+                {"id": "ripening_agent", "name": "催熟剂", "price": 50, "item_id": "ripening_agent"},
+                {"id": "blood_stone_small", "name": "小血石", "price": 20, "item_id": "blood_stone_small"},
+                {"id": "mana_stone_small", "name": "小魔石", "price": 20, "item_id": "mana_stone_small"},
+                {"id": "blood_stone_medium", "name": "中血石", "price": 40, "item_id": "blood_stone_medium"},
+                {"id": "mana_stone_medium", "name": "中魔石", "price": 40, "item_id": "mana_stone_medium"},
+                {"id": "big_hp_stone", "name": "大血石", "price": 100, "item_id": "big_hp_stone"},
+                {"id": "big_mp_stone", "name": "大魔石", "price": 100, "item_id": "big_mp_stone"},
+                {"id": "vitality_card", "name": "活力卡", "price": 10, "item_id": "vitality_card"},
+                {"id": "peace_token", "name": "免战符", "price": 110, "item_id": "peace_token"}
+            ],
+            "lieutenant": [
+                {"id": "soul_banner", "name": "聚魂幡", "price": 800, "item_id": "soul_banner"},
+                {"id": "lt_recruit", "name": "副将招募令", "price": 50, "item_id": "lt_recruit"},
+                {"id": "lt_slot_expand", "name": "副将栏扩充令", "price": 2000, "item_id": "lt_slot_expand"},
+                {"id": "lt_aptitude", "name": "副将资质丹", "price": 50, "item_id": "lt_aptitude"},
+                {"id": "lt_life", "name": "副将增寿丹", "price": 50, "item_id": "lt_life"},
+                {"id": "lt_loyalty", "name": "副将忠诚丹", "price": 50, "item_id": "lt_loyalty"},
+                {"id": "lt_enhance", "name": "副将强化丹", "price": 50, "item_id": "lt_enhance"},
+                {"id": "lt_wuxing", "name": "副将悟性丹", "price": 50, "item_id": "lt_wuxing"},
+                {"id": "lt_exp_high", "name": "副将高级经验丹", "price": 12, "item_id": "lt_exp_high"},
+                {"id": "lt_skill_expand", "name": "副将扩技符", "price": 11000, "item_id": "lt_skill_expand"}
+            ]
+        }
+    },
+    "points": {
+        "name": "积分商城",
+        "currency": "points",
+        "tabs": {
+            "other": {"name": "其他"},
+            "equip": {"name": "装备"},
+            "assist": {"name": "辅助"},
+            "lieutenant": {"name": "副将"}
+        },
+        "items": {
+            "other": [
+                {"id": "mi_yao_pack", "name": "秘药礼包", "price": 100, "item_id": "mi_yao_pack"},
+                {"id": "chest_iron", "name": "铁质宝匣", "price": 100, "item_id": "chest_iron"},
+                {"id": "chest_silver", "name": "银质宝匣", "price": 200, "item_id": "chest_silver"},
+                {"id": "chest_gold", "name": "金质宝匣", "price": 300, "item_id": "chest_gold"},
+                {"id": "chest_changan", "name": "长安宝匣", "price": 500, "item_id": "chest_changan"}
+            ],
+            "equip": [
+                {"id": "equip_reshape_talisman", "name": "装备重塑符", "price": 50000, "item_id": "equip_reshape_talisman"},
+                {"id": "craft_xitiesha", "name": "细铁砂", "price": 100, "item_id": "craft_xitiesha"},
+                {"id": "craft_shengtieding", "name": "生铁锭", "price": 130, "item_id": "craft_shengtieding"},
+                {"id": "craft_hantieding", "name": "寒铁锭", "price": 160, "item_id": "craft_hantieding"},
+                {"id": "craft_xuantieding", "name": "玄铁锭", "price": 200, "item_id": "craft_xuantieding"},
+                {"id": "craft_bailiangang", "name": "百炼钢", "price": 250, "item_id": "craft_bailiangang"}
+            ],
+            "assist": [
+                {"id": "death_substitute", "name": "死亡替身符", "price": 500, "item_id": "death_substitute"},
+                {"id": "exp_seed", "name": "经验丹种子", "price": 100, "item_id": "exp_seed"},
+                {"id": "seed_big_exp", "name": "大经验丹种子", "price": 500, "item_id": "seed_big_exp"},
+                {"id": "ripening_agent", "name": "催熟剂", "price": 500, "item_id": "ripening_agent"},
+                {"id": "blood_stone_small", "name": "小血石", "price": 200, "item_id": "blood_stone_small"},
+                {"id": "mana_stone_small", "name": "小魔石", "price": 200, "item_id": "mana_stone_small"}
+            ],
+            "lieutenant": [
+                {"id": "lt_soul_pack_1", "name": "一级名将魂魄包", "price": 100000, "item_id": "lt_soul_pack_1"},
+                {"id": "lt_skill_expand", "name": "副将扩技符", "price": 50000, "item_id": "lt_skill_expand"},
+                {"id": "lt_forget_page", "name": "遗忘之章残页", "price": 1000, "item_id": "lt_forget_page"}
+            ]
+        }
+    },
+    "test": {
+        "name": "测试栏(全部1银两)",
+        "currency": "gold",
+        "tabs": {
+            "all": {"name": "全部"}
+        },
+        "items": {
+            "all": []
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "汉中西区",
+  "scenes": {
+    "汉中西界": {
+      "name": "汉中西界",
+      "exits": {
+        "east": "hanzhong_west.青亭"
+      }
+    },
+    "青亭": {
+      "name": "青亭",
+      "exits": {
+        "east": "hanzhong_west.鼓楼",
+        "west": "hanzhong_west.汉中西界"
+      }
+    },
+    "云台山": {
+      "name": "云台山",
+      "exits": {
+        "south": "hanzhong_west.鼓楼"
+      }
+    },
+    "鼓楼": {
+      "name": "鼓楼",
+      "exits": {
+        "north": "hanzhong_west.云台山",
+        "west": "hanzhong_west.青亭",
+        "east": "hanzhong_west.西郊",
+        "south": "hanzhong_west.西柳湖"
+      }
+    },
+    "西柳湖": {
+      "name": "西柳湖",
+      "exits": {
+        "north": "hanzhong_west.鼓楼"
+      }
+    },
+    "西郊": {
+      "name": "西郊",
+      "exits": {
+        "east": "hanzhong_west.西门",
+        "west": "hanzhong_west.鼓楼"
+      }
+    },
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "east": "hanzhong_center.西城楼",
+        "west": "hanzhong_west.西郊"
+      }
+    }
+  }
+}

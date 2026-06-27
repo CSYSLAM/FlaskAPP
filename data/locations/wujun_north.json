@@ -1,0 +1,66 @@
+{
+  "name": "吴郡北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "wujun_north.金牛门",
+        "south": "wujun_center.北城楼"
+      }
+    },
+    "金牛门": {
+      "name": "金牛门",
+      "exits": {
+        "north": "wujun_north.余杭山",
+        "south": "wujun_north.北门"
+      }
+    },
+    "余杭山": {
+      "name": "余杭山",
+      "exits": {
+        "north": "wujun_north.吴郡北界",
+        "west": "wujun_north.涌金洞",
+        "east": "wujun_north.药王谷",
+        "south": "wujun_north.金牛门"
+      },
+      "monster_type": "monster_wujun_north_黑野猪"
+    },
+    "涌金洞": {
+      "name": "涌金洞",
+      "exits": {
+        "east": "wujun_north.余杭山"
+      },
+      "monster_type": "monster_wujun_north_淘金者"
+    },
+    "药王谷": {
+      "name": "药王谷",
+      "exits": {
+        "west": "wujun_north.余杭山",
+        "east": "wujun_north.一线天"
+      },
+      "monster_type": "monster_wujun_north_花妖"
+    },
+    "一线天": {
+      "name": "一线天",
+      "exits": {
+        "north": "wujun_north.白虎秘库",
+        "west": "wujun_north.药王谷"
+      },
+      "monster_type": "monster_wujun_north_周昕"
+    },
+    "白虎秘库": {
+      "name": "白虎秘库",
+      "exits": {
+        "south": "wujun_north.一线天"
+      },
+      "monster_type": "monster_wujun_north_王朗"
+    },
+    "吴郡北界": {
+      "name": "吴郡北界",
+      "exits": {
+        "north": "chaisang_south.柴桑南界",
+        "south": "wujun_north.余杭山"
+      }
+    }
+  }
+}

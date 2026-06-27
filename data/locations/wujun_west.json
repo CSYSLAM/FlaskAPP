@@ -1,0 +1,40 @@
+{
+  "name": "吴郡西区",
+  "scenes": {
+    "吴郡西界": {
+      "name": "吴郡西界",
+      "exits": {
+        "west": "chaisang_east.柴桑东界",
+        "east": "wujun_west.残雪地"
+      }
+    },
+    "残雪地": {
+      "name": "残雪地",
+      "exits": {
+        "west": "wujun_west.吴郡西界",
+        "east": "wujun_west.西门"
+      }
+    },
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "north": "wujun_west.西郊草坡",
+        "west": "wujun_west.断桥",
+        "east": "wujun_center.西城楼"
+      }
+    },
+    "断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "wujun_west.西门"
+      }
+    },
+    "西郊草坡": {
+      "name": "西郊草坡",
+      "exits": {
+        "south": "wujun_west.西门"
+      },
+      "monster_type": "monster_wujun_west_严旺"
+    }
+  }
+}

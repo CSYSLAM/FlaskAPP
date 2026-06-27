@@ -1,0 +1,60 @@
+{
+  "name": "洛阳西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "north": "luoyang_west.华府",
+        "west": "luoyang_west.西郊",
+        "east": "luoyang_center.西城楼"
+      }
+    },
+    "华府": {
+      "name": "华府",
+      "exits": {
+        "south": "luoyang_west.西门"
+      },
+      "monster_type": "monster_luoyang_west_华安"
+    },
+    "西郊": {
+      "name": "西郊",
+      "exits": {
+        "west": "luoyang_west.女兵营",
+        "east": "luoyang_west.西门"
+      }
+    },
+    "女兵营": {
+      "name": "女兵营",
+      "exits": {
+        "west": "luoyang_west.洛阳西界",
+        "east": "luoyang_west.西郊",
+        "south": "luoyang_west.函谷关"
+      },
+      "monster_type": "monster_luoyang_west_越女兵长"
+    },
+    "洛阳西界": {
+      "name": "洛阳西界",
+      "exits": {
+        "west": "hanzhong_east.汉中东界",
+        "east": "luoyang_west.女兵营"
+      }
+    },
+    "函谷关": {
+      "name": "函谷关",
+      "exits": {
+        "north": "luoyang_west.流风阵",
+        "south": "luoyang_west.女兵营"
+      },
+      "npcs": [
+        "npc_luoyang_west_诸葛亮副本"
+      ]
+    },
+    "流风阵": {
+      "name": "流风阵",
+      "exits": {
+        "south": "luoyang_west.函谷关"
+      },
+      "monster_type": "monster_luoyang_west_于吉"
+    }
+  }
+}

@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>查看NPC</title>
+    <title>{{ monster.name }}{% if monster.is_copy %}【副本NPC】{% endif %}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .section {
-            margin: 10px 0;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        a {
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+        body { font-size: 16px;  margin: 0; line-height: 1.6; }
+        a { text-decoration: none; color: #136ec2; }
+        
+        .section { margin: 10px 0; padding: 10px 0; }
+    
+#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
 </head>
-<body>
-    <div class="section">
-        <h2>{{ monster.name }}</h2>
-        <p>等级: {{ monster.level }}</p>
-        <p>描述: {{ monster.description }}</p>
-    </div>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
 
-    <div class="section">
-        <a href="{{ url_for('game.scene') }}">返回场景</a>
-    </div>
+    {{ monster.name }}<br/>
+    {{ monster.description }}<br/>
+
+    {% if npc_quests %}
+    {% for q in npc_quests %}
+    <a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
 </body>
 </html>

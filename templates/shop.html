@@ -1,117 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ shop_data.name }}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            text-align: left;
-        }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #0066cc;
-        }
-        a:hover {
-            text-decoration: underline;
-            color: #003366;
-        }
-        .shop-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .item-name {
-            margin-right: 20px;
-            min-width: 150px;
-        }
-        .item-price {
-            margin-right: 20px;
-            color: #666;
-            min-width: 80px;
-        }
-        .quantity-input {
-            width: 60px;
-            margin-right: 10px;
-            padding: 3px;
-        }
-        button {
-            padding: 3px 10px;
-        }
-        .tooltip {
-            position: absolute;
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 10px;
-            z-index: 100;
-            display: none;
-        }
-        .message {
-            margin: 10px 0;
-            padding: 5px;
-        }
-        .message.success {
-            color: green;
-        }
-        .message.error {
-            color: red;
-        }
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
-    <h1>商城</h1>
-    <p>当前银两: {{ player.money }}</p>
-    
-    {% if message %}
-    <p class="message {% if success %}success{% else %}error{% endif %}">{{ message }}</p>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
     {% endif %}
-    
-    <div class="shop-items">
-        {% for item_id, item in shop_items.items() %}
-        <div class="shop-item">
-            <span class="item-name" onmouseover="showTooltip(event, '{{ item.description }}')" onmouseout="hideTooltip()">
-                {{ item.name }}
-            </span>
-            <span class="item-price">{{ item.price }}银两</span>
-            <form action="{{ url_for('shop.buy_item') }}" method="post" style="display: inline;">
-                <input type="hidden" name="item_id" value="{{ item_id }}">
-                <input type="number" name="quantity" value="1" min="1" class="quantity-input">
-                <button type="submit">购买</button>
-            </form>
-        </div>
-        {% endfor %}
-    </div>
-    
-    <div id="tooltip" class="tooltip"></div>
-    
-    <div style="margin-top: 20px;">
-        <a href="{{ url_for('game.scene') }}">返回场景</a>
-    </div>
+    {% endwith %}
+
+    {{ shop_data.name }}<br/>
+    ----------------<br/>
+    {% if shop_data.currency == 'gold' %}银两:{{ player.gold }}{% elif shop_data.currency == 'yuanbao' %}元宝:{{ player.yuanbao }}{% elif shop_data.currency == 'jinzu' %}金珠:{{ player.jinzu }}{% else %}积分{% endif %}<br/>
+    ----------------<br/>
+    {% for sid, sname in all_shops %}
+    <a href="{{ url_for('shop.shop', shop_id=sid) }}">{{ sname }}</a>
+    {% endfor %}<br/>
+    ----------------<br/>
+    {% for tid, tinfo in shop_data.tabs.items() %}
+    <a href="{{ url_for('shop.shop', shop_id=shop_id, tab=tid) }}">{{ tinfo.name }}</a>
+    {% endfor %}<br/>
+    ----------------<br/>
+    {% for item in shop_data['items'] %}
+    {% set item_detail = DataService.get_item(item.get('item_id', item['id'])) %}
+    <span title="{% if item_detail %}{{ item_detail.get('description', '') }}{% if item_detail.get('usage_effect', {}).get('random_items') %}&#10;内含:{% for ri in item_detail['usage_effect']['random_items'] %}{% set ri_data = DataService.get_item(ri['item_id']) %}{{ ri_data.get('name', ri['item_id']) if ri_data else ri['item_id'] }}x{{ ri['guaranteed_count'] }}{% if not loop.last %}、{% endif %}{% endfor %}{% endif %}{% endif %}">{{ item['name'] }}</span>|{{ item['price'] }}{% if shop_data['currency'] == 'yuanbao' %}元宝{% elif shop_data['currency'] == 'jinzu' %}金珠{% elif shop_data['currency'] == 'points' %}积分{% else %}银两{% endif %}<br/>
+    <form action="{{ url_for('shop.buy_item', shop_id=shop_id, item_id=item['id'], tab=shop_data['tab']) }}" method="post" style="display:inline;">
+        <input type="text" name="quantity" value="1" size="3" maxlength="5">
+        <input type="submit" value="购买">
+    </form><br/>
+    {% endfor %}<br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>
-        function showTooltip(event, text) {
-            const tooltip = document.getElementById('tooltip');
-            tooltip.textContent = text;
-            tooltip.style.display = 'block';
-            tooltip.style.left = (event.pageX + 10) + 'px';
-            tooltip.style.top = (event.pageY + 10) + 'px';
-        }
-
-        function hideTooltip() {
-            document.getElementById('tooltip').style.display = 'none';
-        }
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
     </script>
 </body>
 </html>

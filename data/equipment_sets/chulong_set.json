@@ -1,0 +1,116 @@
+{
+  "chulong_sword_1": {
+    "name": "雏龙长剑",
+    "description": "以雏龙之魂锻造的入门长剑",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 500,
+    "is_artifact": false,
+    "set_name": "雏龙套",
+    "base_stats": {
+      "attack": 5
+    },
+    "max_extra_stats": {
+      "attack": 3,
+      "crit_rate": 0.02,
+      "defense": 1
+    }
+  },
+  "chulong_helmet_1": {
+    "name": "雏龙头巾",
+    "description": "以雏龙鳞片织就的束巾",
+    "slot": "helmet",
+    "is_bound": false,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 400,
+    "is_artifact": false,
+    "set_name": "雏龙套",
+    "base_stats": {
+      "defense": 3
+    },
+    "max_extra_stats": {
+      "defense": 2,
+      "max_health": 10,
+      "dodge_rate": 0.01
+    }
+  },
+  "chulong_armor_1": {
+    "name": "雏龙衣",
+    "description": "以雏龙皮缝制的轻便战衣",
+    "slot": "armor",
+    "is_bound": false,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 600,
+    "is_artifact": false,
+    "set_name": "雏龙套",
+    "base_stats": {
+      "defense": 5
+    },
+    "max_extra_stats": {
+      "defense": 3,
+      "max_health": 15,
+      "crit_rate": 0.01
+    }
+  },
+  "chulong_gloves_1": {
+    "name": "雏龙手套",
+    "description": "以雏龙爪为饰的灵巧手套",
+    "slot": "gloves",
+    "is_bound": false,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 350,
+    "is_artifact": false,
+    "set_name": "雏龙套",
+    "base_stats": {
+      "defense": 3
+    },
+    "max_extra_stats": {
+      "attack": 2,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.01
+    }
+  },
+  "chulong_pants_1": {
+    "name": "雏龙裤子",
+    "description": "以雏龙筋编织的坚韧护腿",
+    "slot": "pants",
+    "is_bound": false,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 450,
+    "is_artifact": false,
+    "set_name": "雏龙套",
+    "base_stats": {
+      "defense": 4
+    },
+    "max_extra_stats": {
+      "defense": 2,
+      "max_health": 10,
+      "dodge_rate": 0.01
+    }
+  },
+  "chulong_shoes_1": {
+    "name": "雏龙鞋",
+    "description": "以雏龙骨打磨的轻便战靴",
+    "slot": "shoes",
+    "is_bound": false,
+    "level_required": 1,
+    "class_required": null,
+    "base_price": 400,
+    "is_artifact": false,
+    "set_name": "雏龙套",
+    "base_stats": {
+      "defense": 2
+    },
+    "max_extra_stats": {
+      "dodge_rate": 0.02,
+      "defense": 2,
+      "max_health": 10
+    }
+  }
+}

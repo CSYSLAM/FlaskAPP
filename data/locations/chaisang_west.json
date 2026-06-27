@@ -1,0 +1,71 @@
+{
+  "name": "柴桑西区",
+  "scenes": {
+    "西门": {
+      "name": "西门",
+      "exits": {
+        "west": "chaisang_west.西涧亭",
+        "east": "chaisang_center.西城楼"
+      }
+    },
+    "西涧亭": {
+      "name": "西涧亭",
+      "exits": {
+        "north": "chaisang_west.大帆谷",
+        "west": "chaisang_west.东篱村",
+        "east": "chaisang_west.西门",
+        "south": "chaisang_west.追风谷"
+      }
+    },
+    "大帆谷": {
+      "name": "大帆谷",
+      "exits": {
+        "south": "chaisang_west.西涧亭"
+      },
+      "monster_type": "monster_chaisang_west_黄巾暴徒"
+    },
+    "追风谷": {
+      "name": "追风谷",
+      "exits": {
+        "north": "chaisang_west.西涧亭"
+      },
+      "monster_type": "monster_chaisang_west_金钱豹"
+    },
+    "东篱村": {
+      "name": "东篱村",
+      "exits": {
+        "west": "chaisang_west.悠然山",
+        "east": "chaisang_west.西涧亭"
+      }
+    },
+    "悠然山": {
+      "name": "悠然山",
+      "exits": {
+        "north": "chaisang_west.菊花池",
+        "west": "chaisang_west.柴桑西界",
+        "east": "chaisang_west.东篱村",
+        "south": "chaisang_west.南山"
+      }
+    },
+    "菊花池": {
+      "name": "菊花池",
+      "exits": {
+        "south": "chaisang_west.悠然山"
+      },
+      "monster_type": "monster_chaisang_west_毒蜥蜴"
+    },
+    "南山": {
+      "name": "南山",
+      "exits": {
+        "north": "chaisang_west.悠然山"
+      },
+      "monster_type": "monster_chaisang_west_苍狼"
+    },
+    "柴桑西界": {
+      "name": "柴桑西界",
+      "exits": {
+        "east": "chaisang_west.悠然山"
+      }
+    }
+  }
+}

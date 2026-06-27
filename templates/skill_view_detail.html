@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ skill_def['name'] }}</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% set stat_names = {'attack': '攻击力', 'defense': '防御力', 'max_health': '生命值', 'max_mana': '魔法值', 'crit_rate': '暴击率', 'dodge_rate': '闪避率'} %}
+
+    {{ skill_def['name'] }}<br/>
+    ----------------<br/>
+    类型:{% if skill_def.get('skill_type') == 'active' %}主动技能{% else %}被动技能{% endif %}<br/>
+    {% if skill_def.get('class_required') %}
+    职业:{{ skill_def['class_required'] }}<br/>
+    {% endif %}
+    描述:{{ skill_def['description'] }}<br/>
+    {% if player_skill %}
+    等级:{{ player_skill.skill_level }}/{{ skill_def.get('max_level', 10) }}<br/>
+    {% endif %}
+    {% if skill_def.get('skill_type') == 'active' and player_skill %}
+    {% set slvl = player_skill.skill_level %}
+    {% set dmg_rate = skill_def['base_damage_rate'] + skill_def.get('damage_rate_per_level', 0) * (slvl - 1) %}
+    {% set mana_cost = skill_def['base_mana_cost'] + skill_def.get('mana_cost_per_level', 0) * (slvl - 1) %}
+    伤害:{{ "%.0f"|format(dmg_rate * 100) }}%{% if skill_def.get('damage_rate_per_level') %}(+{{ "%.0f"|format(skill_def['damage_rate_per_level'] * 100) }}%/级){% endif %}<br/>
+    耗魔:{{ mana_cost }}{% if skill_def.get('mana_cost_per_level') %}(+{{ skill_def['mana_cost_per_level'] }}/级){% endif %}<br/>
+    {% if skill_def.get('hits', 1) > 1 %}
+    连击:{{ skill_def['hits'] }}次<br/>
+    {% endif %}
+    {% if skill_def.get('effect_description') %}
+    效果:{{ skill_def['effect_description'] }}<br/>
+    {% endif %}
+    {% endif %}
+    {% if skill_def.get('skill_type') == 'passive' and player_skill %}
+    {% set btype = skill_def.get('bonus_type') %}
+    {% set bval = skill_def.get('bonus_value_per_level', 0) %}
+    {% set slvl = player_skill.skill_level %}
+    {% if btype in ('attack', 'defense', 'max_health', 'max_mana') %}
+    加成:{{ stat_names.get(btype, btype) }}+{{ "%.0f"|format(bval * slvl * 100) }}%<br/>
+    {% elif btype in ('crit_rate', 'dodge_rate') %}
+    加成:{{ stat_names.get(btype, btype) }}+{{ "%.1f"|format(bval * slvl * 100) }}%<br/>
+    {% endif %}
+    {% endif %}
+    {% if skill_def.get('skill_type') == 'active' and player_skill %}
+    快捷键:{% if shortcut_slot %}{{ shortcut_slot }}{% else %}未设置{% endif %}<br/>
+    {% if not shortcut_slot %}
+    设置快捷键:{% for i in range(1, 5) %}<a href="{{ url_for('player.set_skill_shortcut', skill_id=skill_id, slot=i) }}">{{ i }}</a> {% endfor %}<br/>
+    {% else %}
+    <a href="{{ url_for('player.set_skill_shortcut', skill_id=skill_id, slot=0) }}">取消快捷键</a><br/>
+    {% endif %}
+    {% endif %}
+    <br/>
+    <a href="{{ url_for('player.skill_view', skill_type=skill_def.get('skill_type', 'active')) }}">返回上级<br/></a>
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

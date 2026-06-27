@@ -1,0 +1,84 @@
+{
+  "name": "下邳北区",
+  "scenes": {
+    "北门": {
+      "name": "北门",
+      "exits": {
+        "north": "xiapi_north.北郊",
+        "south": "xiapi_center.北城楼"
+      }
+    },
+    "北郊": {
+      "name": "北郊",
+      "exits": {
+        "north": "xiapi_north.濡须",
+        "south": "xiapi_north.北门"
+      }
+    },
+    "濡须": {
+      "name": "濡须",
+      "exits": {
+        "north": "xiapi_north.东岭",
+        "south": "xiapi_north.北郊"
+      },
+      "monster_type": "monster_xiapi_north_灵水道人"
+    },
+    "东岭": {
+      "name": "东岭",
+      "exits": {
+        "north": "xiapi_north.魏中营",
+        "west": "xiapi_north.魏火库",
+        "east": "xiapi_north.魏仓库",
+        "south": "xiapi_north.濡须"
+      },
+      "monster_type": "monster_xiapi_north_魏军守卫"
+    },
+    "魏中营": {
+      "name": "魏中营",
+      "exits": {
+        "north": "xiapi_north.下邳北界",
+        "west": "xiapi_north.魏左营",
+        "east": "xiapi_north.魏右营",
+        "south": "xiapi_north.东岭"
+      },
+      "monster_type": "monster_xiapi_north_魏军亲卫"
+    },
+    "魏左营": {
+      "name": "魏左营",
+      "exits": {
+        "east": "xiapi_north.魏中营",
+        "south": "xiapi_north.魏火库"
+      },
+      "monster_type": "monster_xiapi_north_李典"
+    },
+    "魏右营": {
+      "name": "魏右营",
+      "exits": {
+        "west": "xiapi_north.魏中营",
+        "south": "xiapi_north.魏仓库"
+      },
+      "monster_type": "monster_xiapi_north_庞德"
+    },
+    "魏火库": {
+      "name": "魏火库",
+      "exits": {
+        "north": "xiapi_north.魏左营",
+        "east": "xiapi_north.东岭"
+      }
+    },
+    "魏仓库": {
+      "name": "魏仓库",
+      "exits": {
+        "north": "xiapi_north.魏右营",
+        "west": "xiapi_north.东岭"
+      }
+    },
+    "下邳北界": {
+      "name": "下邳北界",
+      "exits": {
+        "south": "xiapi_north.魏中营",
+        "north": "xuchang_south.许昌南界"
+      }
+    }
+  }
+}

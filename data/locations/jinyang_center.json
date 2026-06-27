@@ -1,0 +1,159 @@
+{
+  "name": "晋阳中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "jinyang_center.太守府",
+        "west": "jinyang_center.停云阁",
+        "south": "jinyang_center.驿站"
+      },
+      "npcs": [
+        "npc_jinyang_center_任务使者"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "north": "jinyang_center.北街",
+        "west": "jinyang_center.技能馆",
+        "east": "jinyang_center.酒馆",
+        "south": "jinyang_center.广场"
+      },
+      "npcs": [
+        "npc_jinyang_center_张扬荣誉"
+      ]
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "east": "jinyang_center.太守府"
+      },
+      "npcs": [
+        "npc_jinyang_center_技能教官",
+        "npc_jinyang_center_学徒"
+      ]
+    },
+    "酒馆": {
+      "name": "酒馆",
+      "exits": {
+        "west": "jinyang_center.太守府",
+        "east": "jinyang_center.东城楼"
+      },
+      "npcs": [
+        "npc_jinyang_center_店小二"
+      ]
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "jinyang_center.酒馆",
+        "east": "jinyang_east.东门"
+      },
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
+    },
+    "北街": {
+      "name": "北街",
+      "exits": {
+        "north": "jinyang_center.北城楼",
+        "west": "jinyang_center.药铺",
+        "south": "jinyang_center.太守府"
+      }
+    },
+    "药铺": {
+      "name": "药铺",
+      "exits": {
+        "east": "jinyang_center.北街"
+      },
+      "npcs": [
+        "npc_jinyang_center_许大夫"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "jinyang_north.北门",
+        "south": "jinyang_center.北街"
+      }
+    },
+    "停云阁": {
+      "name": "停云阁",
+      "exits": {
+        "east": "jinyang_center.广场"
+      }
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "jinyang_center.广场",
+        "west": "jinyang_center.杂货铺",
+        "east": "jinyang_center.钱庄",
+        "south": "jinyang_center.南街"
+      },
+      "npcs": [
+        "npc_jinyang_center_晋阳车夫",
+        "npc_postmaster"
+      ]
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "jinyang_center.驿站"
+      },
+      "npcs": [
+        "npc_jinyang_center_金掌柜仓库"
+      ]
+    },
+    "南街": {
+      "name": "南街",
+      "exits": {
+        "north": "jinyang_center.驿站",
+        "west": "jinyang_center.客栈",
+        "east": "jinyang_center.铁匠铺",
+        "south": "jinyang_center.南城楼"
+      }
+    },
+    "客栈": {
+      "name": "客栈",
+      "exits": {
+        "east": "jinyang_center.南街"
+      },
+      "npcs": [
+        "npc_jinyang_center_王老板"
+      ]
+    },
+    "铁匠铺": {
+      "name": "铁匠铺",
+      "exits": {
+        "west": "jinyang_center.南街"
+      },
+      "npcs": [
+        "npc_jinyang_center_晋阳铁匠"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "jinyang_center.南街",
+        "south": "jinyang_south.南门"
+      }
+    },
+    "杂货铺": {
+      "name": "杂货铺",
+      "exits": {
+        "west": "jinyang_center.西城楼",
+        "east": "jinyang_center.驿站"
+      }
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "jinyang_west.西门",
+        "east": "jinyang_center.杂货铺"
+      },
+      "can_pk": true
+    }
+  }
+}

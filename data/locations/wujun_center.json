@@ -1,0 +1,148 @@
+{
+  "name": "吴郡中区",
+  "scenes": {
+    "广场": {
+      "name": "广场",
+      "exits": {
+        "north": "wujun_center.太守府",
+        "west": "wujun_center.钱庄",
+        "east": "wujun_center.技能馆",
+        "south": "wujun_center.驿站"
+      },
+      "npcs": [
+        "npc_wujun_center_长宁道长",
+        "npc_wujun_center_任务使者",
+        "npc_wujun_center_活动礼官活动"
+      ]
+    },
+    "太守府": {
+      "name": "太守府",
+      "exits": {
+        "north": "wujun_center.北街",
+        "south": "wujun_center.广场"
+      }
+    },
+    "北街": {
+      "name": "北街",
+      "exits": {
+        "north": "wujun_center.北城楼",
+        "west": "wujun_center.观星台",
+        "east": "wujun_center.药铺_北",
+        "south": "wujun_center.太守府"
+      }
+    },
+    "观星台": {
+      "name": "观星台",
+      "exits": {
+        "east": "wujun_center.北街"
+      },
+      "npcs": [
+        "npc_wujun_center_张昭副本"
+      ]
+    },
+    "药铺_北": {
+      "name": "药铺",
+      "exits": {
+        "west": "wujun_center.北街"
+      },
+      "npcs": [
+        "npc_wujun_center_华大夫"
+      ]
+    },
+    "北城楼": {
+      "name": "北城楼",
+      "exits": {
+        "north": "wujun_north.北门",
+        "south": "wujun_center.北街"
+      }
+    },
+    "钱庄": {
+      "name": "钱庄",
+      "exits": {
+        "west": "wujun_center.西城楼",
+        "east": "wujun_center.广场"
+      },
+      "monster_type": "monster_wujun_center_小偷",
+      "npcs": [
+        "npc_wujun_center_金掌柜仓库"
+      ]
+    },
+    "西城楼": {
+      "name": "西城楼",
+      "exits": {
+        "west": "wujun_west.西门",
+        "east": "wujun_center.钱庄"
+      }
+    },
+    "技能馆": {
+      "name": "技能馆",
+      "exits": {
+        "west": "wujun_center.广场",
+        "east": "wujun_center.东城楼"
+      },
+      "npcs": [
+        "npc_wujun_center_技能教官",
+        "npc_wujun_center_学徒"
+      ]
+    },
+    "东城楼": {
+      "name": "东城楼",
+      "exits": {
+        "west": "wujun_center.技能馆",
+        "east": "wujun_east.东门"
+      },
+      "monster_type": "monster_wujun_center_铜人",
+      "monsters": [
+        "monster_beiping_center_铜人"
+      ]
+    },
+    "驿站": {
+      "name": "驿站",
+      "exits": {
+        "north": "wujun_center.广场",
+        "south": "wujun_center.南街"
+      },
+      "npcs": [
+        "npc_wujun_center_吴郡车夫",
+        "npc_postmaster"
+      ]
+    },
+    "南街": {
+      "name": "南街",
+      "exits": {
+        "north": "wujun_center.驿站",
+        "west": "wujun_center.铁匠铺_南",
+        "east": "wujun_center.客栈_南",
+        "south": "wujun_center.南城楼"
+      }
+    },
+    "客栈_南": {
+      "name": "客栈",
+      "exits": {
+        "west": "wujun_center.南街"
+      },
+      "npcs": [
+        "npc_wujun_center_王老板"
+      ]
+    },
+    "铁匠铺_南": {
+      "name": "铁匠铺",
+      "exits": {
+        "east": "wujun_center.南街"
+      },
+      "npcs": [
+        "npc_wujun_center_吴郡铁匠"
+      ]
+    },
+    "南城楼": {
+      "name": "南城楼",
+      "exits": {
+        "north": "wujun_center.南街",
+        "south": "wujun_south.南门"
+      },
+      "npcs": [
+        "npc_wujun_center_城南守将"
+      ]
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "黄巾起义副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "huangjin_trial",
+  "scenes": {
+    "洛阳皇宫": {
+      "name": "洛阳皇宫(副本)",
+      "exits": {
+        "north": "huangjin_copy.黄河岸边",
+        "south": "huangjin_copy.豫州"
+      },
+      "npcs": [
+        "npc_huangjin_copy_灵帝"
+      ]
+    },
+    "黄河岸边": {
+      "name": "黄河岸边",
+      "exits": {
+        "south": "huangjin_copy.洛阳皇宫",
+        "east": "huangjin_copy.兖州"
+      }
+    },
+    "兖州": {
+      "name": "兖州",
+      "exits": {
+        "west": "huangjin_copy.黄河岸边",
+        "east": "huangjin_copy.冀州"
+      }
+    },
+    "豫州": {
+      "name": "豫州",
+      "exits": {
+        "north": "huangjin_copy.洛阳皇宫",
+        "south": "huangjin_copy.徐州"
+      },
+      "monsters": [
+        "monster_huangjin_copy_黄巾士兵"
+      ]
+    },
+    "徐州": {
+      "name": "徐州",
+      "exits": {
+        "north": "huangjin_copy.豫州",
+        "south": "huangjin_copy.颍川"
+      },
+      "monsters": [
+        "monster_huangjin_copy_黄巾士兵"
+      ]
+    },
+    "颍川": {
+      "name": "颍川",
+      "exits": {
+        "north": "huangjin_copy.徐州",
+        "south": "huangjin_copy.南阳"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张宝"
+      ]
+    },
+    "南阳": {
+      "name": "南阳",
+      "exits": {
+        "north": "huangjin_copy.颍川",
+        "south": "huangjin_copy.冀州"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张梁"
+      ]
+    },
+    "冀州": {
+      "name": "冀州",
+      "exits": {
+        "north": "huangjin_copy.南阳",
+        "west": "huangjin_copy.兖州"
+      },
+      "monsters": [
+        "monster_huangjin_copy_张角"
+      ]
+    }
+  }
+}
