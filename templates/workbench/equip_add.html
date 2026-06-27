@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>添加装备</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 100px; }
+        input, select, textarea { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        input[type="text"], input[type="number"], textarea { width: 200px; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .stat-grid { display: grid; grid-template-columns: auto auto; gap: 2px 8px; padding-left: 12px; }
+        .stat-grid label { font-size: 14px; color: #666; }
+        .stat-grid input { width: 80px; font-size: 14px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .hint { color: #888; font-size: 13px; }
+        .file-mode { margin: 4px 0; }
+        .file-mode label { cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>添加单件装备</h3>
+    <a href="{{ url_for('workbench.equip_design') }}">返回列表</a><br/><br/>
+
+    <form method="post">
+        <div class="section">基本信息</div>
+        <span class="label">模板ID:</span>
+        <input type="text" name="template_id" required placeholder="如: chulong_sword_1">
+        <span class="hint">唯一标识，英文/数字/下划线</span><br/>
+        <span class="label">装备名称:</span>
+        <input type="text" name="name" required placeholder="如: 雏龙长剑"><br/>
+        <span class="label">描述:</span>
+        <input type="text" name="description" placeholder="可选"><br/>
+        <span class="label">部位:</span>
+        <select name="slot">
+            {% for s in slot_choices %}
+            <option value="{{ s }}">{{ slot_names.get(s, s) }} ({{ s }})</option>
+            {% endfor %}
+        </select><br/>
+        <span class="label">套装名:</span>
+        <input type="text" name="set_name" placeholder="如: 雏龙套"><br/>
+        <span class="label">需求等级:</span>
+        <input type="number" name="level_required" value="1" min="1"><br/>
+        <span class="label">职业限制:</span>
+        <select name="class_required">
+            {% for c in class_choices %}
+            <option value="{{ c if c else '' }}">{% if c %}{{ c }}{% else %}全职业{% endif %}</option>
+            {% endfor %}
+        </select><br/>
+        <span class="label">是否神器:</span>
+        <input type="checkbox" name="is_artifact" value="1"><br/>
+        <span class="label">是否绑定:</span>
+        <input type="checkbox" name="is_bound" value="1"><br/>
+        <span class="label">基础价格:</span>
+        <input type="number" name="base_price" value="0" min="0"><br/>
+
+        <div class="section">基础属性 (base_stats)</div>
+        <div class="stat-grid">
+            {% for sk in stat_keys %}
+            <label>{{ stat_names.get(sk, sk) }}({{ sk }}):</label>
+            <input type="number" step="any" name="base_{{ sk }}" placeholder="0">
+            {% endfor %}
+        </div>
+        <span class="hint">暴击率/闪避率填小数，如0.05=5%。至少填一个。</span><br/>
+
+        <div class="section">最大额外属性 (max_extra_stats, 5星满值)</div>
+        <div class="stat-grid">
+            {% for sk in stat_keys %}
+            <label>{{ stat_names.get(sk, sk) }}({{ sk }}):</label>
+            <input type="number" step="any" name="max_{{ sk }}" placeholder="0">
+            {% endfor %}
+        </div>
+        <span class="hint">额外属性在生成时按星级比例缩放。暴击率/闪避率填小数。</span><br/>
+
+        <div class="section">目标文件</div>
+        <div class="file-mode">
+            <label><input type="radio" name="file_mode" value="existing" checked onclick="toggleFileMode()"> 写入已有文件</label><br/>
+            <label><input type="radio" name="file_mode" value="new" onclick="toggleFileMode()"> 新建文件</label>
+        </div>
+        <div id="existing_file">
+            <span class="label">选择文件:</span>
+            <select name="target_file">
+                {% for f in set_files %}
+                <option value="{{ f }}">{{ f }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="new_file" style="display:none">
+            <span class="label">文件名:</span>
+            <input type="text" name="new_filename" placeholder="如: baopi_set"><br/>
+            <span class="hint">只能用小写英文、数字、下划线，以字母开头，自动补.json后缀<br/>
+            现有风格: chulong_set / baopi_set / leiting_set / artifact_weapons / craft_accessories</span>
+        </div>
+
+        <br/>
+        <button type="submit" class="btn">确认添加</button>
+        <a href="{{ url_for('workbench.equip_design') }}">取消</a>
+    </form>
+</div>
+<script>
+function toggleFileMode() {
+    var existing = document.querySelector('input[name="file_mode"][value="existing"]').checked;
+    document.getElementById('existing_file').style.display = existing ? '' : 'none';
+    document.getElementById('new_file').style.display = existing ? 'none' : '';
+}
+</script>
+</body>
+</html>

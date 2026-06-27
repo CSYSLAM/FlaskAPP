@@ -1,0 +1,102 @@
+{
+  "jifeng_helmet_39": {
+    "name": "疾风头带",
+    "description": "刺客专属，以疾风之灵编织的头带，迅捷如风",
+    "slot": "helmet",
+    "is_bound": false,
+    "level_required": 39,
+    "class_required": "刺客",
+    "base_price": 8000,
+    "is_artifact": false,
+    "set_name": "疾风套",
+    "base_stats": {
+      "defense": 40
+    },
+    "max_extra_stats": {
+      "defense": 20,
+      "max_health": 70,
+      "dodge_rate": 0.06,
+      "crit_rate": 0.05
+    }
+  },
+  "jifeng_armor_38": {
+    "name": "疾风轻甲",
+    "description": "刺客专属，以疾风之丝织成的轻甲，疾行无影",
+    "slot": "armor",
+    "is_bound": false,
+    "level_required": 38,
+    "class_required": "刺客",
+    "base_price": 9500,
+    "is_artifact": false,
+    "set_name": "疾风套",
+    "base_stats": {
+      "defense": 50
+    },
+    "max_extra_stats": {
+      "defense": 24,
+      "max_health": 80,
+      "dodge_rate": 0.05,
+      "crit_rate": 0.06
+    }
+  },
+  "jifeng_gloves_36": {
+    "name": "疾风手套",
+    "description": "刺客专属，以疾风之力加持的护手，出手如电",
+    "slot": "gloves",
+    "is_bound": false,
+    "level_required": 36,
+    "class_required": "刺客",
+    "base_price": 7000,
+    "is_artifact": false,
+    "set_name": "疾风套",
+    "base_stats": {
+      "defense": 42
+    },
+    "max_extra_stats": {
+      "attack": 20,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05,
+      "max_health": 40
+    }
+  },
+  "jifeng_pants_37": {
+    "name": "疾风护腿",
+    "description": "刺客专属，以疾风之灵织成的护腿，疾风迅雷",
+    "slot": "pants",
+    "is_bound": false,
+    "level_required": 37,
+    "class_required": "刺客",
+    "base_price": 8500,
+    "is_artifact": false,
+    "set_name": "疾风套",
+    "base_stats": {
+      "defense": 42
+    },
+    "max_extra_stats": {
+      "defense": 21,
+      "max_health": 70,
+      "dodge_rate": 0.06,
+      "crit_rate": 0.05
+    }
+  },
+  "jifeng_shoes_35": {
+    "name": "疾风短靴",
+    "description": "刺客专属，以疾风之灵织成的短靴，踏风而行",
+    "slot": "shoes",
+    "is_bound": false,
+    "level_required": 35,
+    "class_required": "刺客",
+    "base_price": 6500,
+    "is_artifact": false,
+    "set_name": "疾风套",
+    "base_stats": {
+      "defense": 28
+    },
+    "max_extra_stats": {
+      "dodge_rate": 0.07,
+      "defense": 13,
+      "crit_rate": 0.05,
+      "max_health": 40
+    }
+  }
+}

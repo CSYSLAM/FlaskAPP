@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>删除装备</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .artifact { color: #ff6600; font-weight: bold; }
+        .warning { color: #c62828; font-weight: bold; padding: 8px; border: 1px solid #c62828; border-radius: 4px; margin: 8px 0; display: inline-block; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .btn-danger { background: #c62828; border-color: #c62828; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>删除装备</h3>
+    <a href="{{ url_for('workbench.equip_view', template_id=template_id) }}">返回详情</a><br/><br/>
+
+    <div class="warning">⚠ 确认删除？此操作不可撤销！</div><br/><br/>
+
+    模板ID: {{ template_id }}<br/>
+    名称: {{ template.name }}<br/>
+    部位: {{ template.slot }}<br/>
+    套装: {{ template.set_name }}<br/>
+    来源文件: {{ source_file }}<br/>
+    {% if template.is_artifact %}<span class="artifact">★ 神器 ★</span><br/>{% endif %}
+
+    <br/>
+    <form method="post" style="display:inline">
+        <input type="hidden" name="confirm" value="yes">
+        <button type="submit" class="btn btn-danger">确认删除</button>
+    </form>
+    <a href="{{ url_for('workbench.equip_view', template_id=template_id) }}">取消</a>
+</div>
+</body>
+</html>
