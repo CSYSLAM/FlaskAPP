@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>删除物品</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 110px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .btn-danger { background: #c62828; border-color: #c62828; }
+        .warn { color: #c62828; font-weight: bold; margin: 8px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>删除物品</h3>
+    <a href="{{ url_for('workbench.item_view', item_id=item_id) }}">返回详情</a><br/><br/>
+
+    <div class="warn">⚠ 确定要删除以下物品？此操作不可撤销！</div>
+
+    <span class="label">物品ID:</span> <b>{{ item_id }}</b><br/>
+    <span class="label">名称:</span> {{ item.name }}<br/>
+    <span class="label">类型:</span> {{ type_names.get(item.type, item.type) }}({{ item.type }})<br/>
+    <span class="label">描述:</span> {{ item.description }}<br/>
+
+    <form method="post">
+        <button type="submit" name="confirm" value="yes" class="btn btn-danger">确认删除</button>
+        <button type="submit" name="confirm" value="no" class="btn">取消</button>
+    </form>
+</div>
+</body>
+</html>

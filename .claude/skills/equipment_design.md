@@ -169,6 +169,7 @@ stat_stars = random(min(1, stars-1), min(5, stars+1))
 | 2026-06-27 | 工作台怪物设计系统：查看/增删改/战斗掉落测试功能 |
 | 2026-06-27 | 精英怪神器权重数据修复：130个非神兽精英legendary归零 |
 | 2026-06-27 | 怪物设计：套装批量添加装备到掉落池、等级区间筛选、复活时间、掉落说明 |
+| 2026-06-27 | 工作台物品设计系统：查看/增删改/使用效果测试功能 |
 
 ## 工作台装备设计系统
 
@@ -360,3 +361,154 @@ stat_stars = random(min(1, stars-1), min(5, stars+1))
 | `models/monster.py` | `Monster` 类、`_sanitize_monster_rarity_weights()`、`get_loot()`、`MONSTER_ALLOWED_RARITIES` |
 | `services/world_boss_service.py` | 精英怪复活时间计算 `_get_respawn_time()` |
 | `services/data_service.py` | 怪物数据加载/缓存 `get_monsters()`/`get_monster()` |
+
+## 工作台物品设计系统
+
+设计师账号（`is_designer=True`）可通过工作台 → 物品设计系统对 `data/items.json` 中的物品数据进行增删改查和使用效果测试。
+
+### 访问入口
+
+- 主页：`/workbench/item_design`
+- 需要设计师权限，非设计师自动跳转回场景
+
+### 功能与路由
+
+| 路由 | 方法 | 功能 |
+|------|------|------|
+| `/workbench/item_design` | GET | 主页面：按类型分组浏览（材料/药水/消耗品/宝箱/其他/VIP/任务/装备/物品） |
+| `/workbench/item_view/<item_id>` | GET | 查看物品详情（基本信息、使用条件、使用效果预览、完整JSON） |
+| `/workbench/item_add` | GET/POST | 添加物品（基本信息表单 + usage_condition/usage_effect JSON编辑） |
+| `/workbench/item_edit/<item_id>` | GET/POST | 编辑已有物品 |
+| `/workbench/item_delete/<item_id>` | GET/POST | 删除物品（二次确认） |
+| `/workbench/item_test/<item_id>` | GET/POST | 使用效果模拟测试（随机效果实际模拟，固定效果直接展示） |
+
+### 物品数据文件
+
+| 文件 | 内容 | 说明 |
+|------|------|------|
+| `data/items.json` | 361条 | 所有物品数据，增删改直接操作此文件 |
+| 缓存 `DataService._cache['items']` | — | 增删改后直接刷新此缓存 |
+
+### 物品分类（9种类型）
+
+| 类型 | type值 | 数量 | 说明 |
+|------|--------|------|------|
+| 材料 | material | 179 | 打造/任务材料，最常见类型 |
+| 消耗品 | consumable | 73 | 银两包、血石、活力卡、扩展卷等 |
+| 其他 | other | 46 | 大喇叭、药丸、改名卡、强化符等 |
+| 药水 | potion | 27 | 临时增益药水 |
+| 宝箱 | chest | 15 | 礼包/宝匣，含装备生成器 |
+| VIP | vip | 9 | 诸侯令 |
+| 任务 | quest | 6 | 任务物品，不可使用不可出售 |
+| 装备 | equipment | 5 | 预定义装备（史诗戒指等） |
+| 物品 | item | 1 | 扩展卷（极少使用） |
+
+### 物品 JSON 完整字段
+
+```json
+{
+  "name": "物品名称",
+  "type": "material|potion|consumable|chest|other|vip|quest|equipment|item",
+  "description": "描述文本",
+  "price": 100,
+  "sell_price": 50,
+  "currency": "yuanbao|jinzu",
+  "is_usable": true,
+  "is_permanent_buff": false,
+  "can_bulk_use": false,
+  "capacity": 0.1,
+  "usage_condition": {
+    "level_required": 10,
+    "required_items": { "chest_key": 1 }
+  },
+  "usage_effect": {
+    "stat_changes": { "experience": 100, "gold": 50 },
+    "stat_changes_rng": { "experience": [100, 200], "gold": [200, 500] },
+    "effect_descriptions": { "experience": "获得{value}点经验" },
+    "temp_effects": [{ "stat": "attack", "rate": 0.1, "duration": 300, "effect_name": "攻击秘药" }],
+    "grant_title": "prefix迷茫",
+    "grant_gold": 100000,
+    "grant_item": ["item_id", 1],
+    "random_one_of": ["potion_health", "potion_mana"],
+    "random_items": [{ "item_id": "craft_huangyangmu", "max_count": 4, "chance": 0.6, "guaranteed_count": 1 }],
+    "item_changes": { "chest_key": -1 },
+    "equipment_generators": [{ "count": 1, "chance": 1.0, "template_ids": [...], "rarity_weights": {...}, "star_weights": {...} }],
+    "generate_equipment": { "template_id": "xxx", "rarity_range": ["普通","精良","卓越","史诗"] },
+    "special": "enhance_lucky|rename",
+    "vip_days": 1,
+    "restore_vitality": 10,
+    "expand_backpack": 5,
+    "expand_warehouse": 5,
+    "grant_lieutenant": "adou",
+    "random_soul": true,
+    "peace_status": 300
+  }
+}
+```
+
+必填字段：`name`, `type`, `description`, `price`, `is_usable`, `capacity`
+可选字段：`sell_price`, `currency`, `is_permanent_buff`, `can_bulk_use`, `usage_condition`, `usage_effect`
+
+### 关键业务规则
+
+#### 表单设计策略
+
+- **基本信息字段**用表单控件（文本框/数字框/下拉框/复选框），便于快速编辑
+- **usage_condition 和 usage_effect** 用 JSON 文本框编辑，因为：
+  - usage_effect 有 20 种可能的键，每种键的值结构不同
+  - equipment_generators 等嵌套结构复杂（数组→对象→权重字典）
+  - 直接编辑 JSON 更灵活，不易遗漏字段
+- 添加页提供 JSON 示例模板，方便参考
+
+#### 使用效果测试
+
+- **固定效果**（stat_changes, grant_gold, grant_title 等）：每次结果相同，直接展示
+- **随机效果**（stat_changes_rng, random_one_of, random_items, equipment_generators, generate_equipment, random_soul）：每次模拟做实际随机
+- 装备生成调用 `EquipmentGenerator.generate_from_template()`，与实际游戏逻辑一致
+- 模拟不写入数据库，仅预览效果
+
+#### usage_effect 20 种键
+
+| 键 | 类型 | 说明 |
+|----|------|------|
+| stat_changes | {stat: int} | 固定属性变化 |
+| stat_changes_rng | {stat: [min, max]} | 随机属性变化（范围内） |
+| effect_descriptions | {stat: "text"} | 效果描述文本，{value}占位 |
+| temp_effects | [{stat, value, rate, duration, effect_name}] | 临时增益效果 |
+| grant_title | string | 授予称号ID |
+| grant_gold | int | 直接给银两 |
+| grant_item | [item_id, count] | 直接给指定物品 |
+| random_one_of | [item_id, ...] | 随机选一个物品 |
+| random_items | [{item_id, max_count, chance, guaranteed_count}] | 概率物品掉落 |
+| item_changes | {item_id: int} | 物品变动（负数=扣除） |
+| equipment_generators | [{count, chance, template_ids, rarity_weights, star_weights, ...}] | 装备生成器 |
+| generate_equipment | {template_id, rarity_range} | 指定模板生成装备 |
+| special | string | 特殊效果（enhance_lucky/rename） |
+| vip_days | int | VIP天数 |
+| restore_vitality | int | 恢复活力值 |
+| expand_backpack | int | 扩展背包容量 |
+| expand_warehouse | int | 扩展仓库容量 |
+| grant_lieutenant | string | 授予副将（pinyin ID） |
+| random_soul | bool | 随机副将魂魄 |
+| peace_status | int | 免战状态（分钟） |
+
+#### stat_changes 可修改属性
+
+health, mana, experience, gold, honor, yuanbao, jinzu, pill_attack, pill_defense, pill_max_health, pill_max_mana, blood_reserve, mana_reserve
+
+### 数据操作范围
+
+- **只修改** `data/items.json`
+- 增删改操作同步刷新 `DataService._cache['items']` 缓存
+- 删除操作有二次确认页面
+- 添加时检查物品ID唯一性
+
+### 关键代码位置
+
+| 文件 | 说明 |
+|------|------|
+| `blueprints/workbench.py` | 物品设计系统所有路由、辅助函数（`_build_item_index`、`_build_item_from_form`、`_simulate_item_use`、`_load_item_data`、`_save_item_data`） |
+| `templates/workbench/item_*.html` | 6个物品设计模板 |
+| `data/items.json` | 物品数据（361条） |
+| `services/item_service.py` | `ItemService.use_item()` 物品使用逻辑（20种效果处理） |
+| `services/data_service.py` | 物品数据加载/缓存 `get_items()`/`get_item()`/`get_item_effect_hint()` |

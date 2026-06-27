@@ -3128,16 +3128,16 @@
     "capacity": 0
   },
   "bag_expand_scroll": {
-    "name": "秘背包扩容卷",
+    "name": "背包扩容卷",
     "type": "item",
     "description": "使用后增加背包容量5格",
     "price": 0,
-    "sell_price": 0,
     "is_usable": true,
+    "capacity": 0.0,
+    "sell_price": 0,
     "usage_effect": {
       "expand_backpack": 5
-    },
-    "capacity": 0
+    }
   },
   "battle_challenge_token": {
     "name": "战场请战符",
