@@ -61,7 +61,11 @@
     <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a>
     {% endif %}<br/>
 
+    {% if from_page == 'equipment' %}
     <a href="{{ url_for('player.equipment_list') }}">返回装备</a><br/>
+    {% else %}
+    <a href="{{ url_for('player.inventory') }}">返回背包</a><br/>
+    {% endif %}
 
     <script>
     var aLinks=document.getElementsByTagName("a");

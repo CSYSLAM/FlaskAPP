@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, session, flash
 from flask_login import login_required, current_user
-from datetime import datetime
+from datetime import datetime, timedelta
 from models.player import PlayerModel, EquipmentInstance
 from models.relationship import Relationship
 from services import db
@@ -233,7 +233,8 @@ def chat():
                          messages=messages,
                          notifications=notifications,
                          tab=tab,
-                         now=datetime.now())
+                         now=datetime.now(),
+                         timedelta=timedelta)
 
 
 @social_bp.route("/send_message", methods=["POST"])

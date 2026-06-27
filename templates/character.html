@@ -22,6 +22,7 @@
     <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" border="0" height="53" width="45"/><br/>
 
     炫酷彩色昵称:<a href="{{ url_for('vip.index') }}">查看</a><br/>
+    ID:{{ player.player_uid }}<br/>
     姓名:{{ player.name }} 国家:{{ player.country }}<br/>
     性别:{{ player.gender }} 职业:{{ player.player_class }}<br/>
     <a href="{{ url_for('player.achievements') }}">成就</a>:{{ '★' * star_count }}{% if vip_level > 0 %}<img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="18" width="45"/>{% else %}<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="18" width="45"/>{% endif %}<br/>

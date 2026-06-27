@@ -18714,7 +18714,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_赢鱼": {
@@ -18778,7 +18780,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_白梦蝶": {
@@ -18842,7 +18846,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_昆仑仙道": {
@@ -18906,7 +18912,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_金倪兽": {
@@ -18970,7 +18978,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_幻影狼": {
@@ -19034,7 +19044,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_海霆蛇": {
@@ -19098,7 +19110,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_大白兔": {
@@ -19162,7 +19176,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_九色神鹿": {
@@ -19228,7 +19244,9 @@
     "is_divine_beast": true,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_火凤凰": {
@@ -19294,7 +19312,9 @@
     "is_divine_beast": true,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "monster_kunlun_精卫": {
@@ -19360,7 +19380,9 @@
     "is_divine_beast": true,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["kunlun_illustration"],
+    "guaranteed_items": [
+      "kunlun_illustration"
+    ],
     "max_health": 100
   },
   "npc_kunlun_昆仑车夫": {
@@ -19480,11 +19502,23 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_huangyangmu": 0.3, "craft_heitiekuang": 0.2},
-      "money": {"min": 30, "max": 60},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_huangyangmu": 0.3,
+        "craft_heitiekuang": 0.2
+      },
+      "money": {
+        "min": 30,
+        "max": 60
+      },
       "experience": 600
     },
     "is_divine_beast": false,
@@ -19507,11 +19541,23 @@
       "crit_rate": 0.04,
       "dodge_rate": 0.03
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_yingpi": 0.3, "craft_chenxiangmu": 0.2},
-      "money": {"min": 35, "max": 70},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_yingpi": 0.3,
+        "craft_chenxiangmu": 0.2
+      },
+      "money": {
+        "min": 35,
+        "max": 70
+      },
       "experience": 650
     },
     "is_divine_beast": false,
@@ -19534,21 +19580,42 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53", "fengluan_helmet_54", "fengluan_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "fengluan_helmet_54",
+          "fengluan_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_九尾狐": {
@@ -19563,24 +19630,43 @@
       "mana": 1200,
       "attack": 280,
       "defense": 180,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["yanling_helmet_54", "yanling_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "yanling_helmet_54",
+          "yanling_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_坡脚狼": {
@@ -19598,11 +19684,23 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_yingpi": 0.3, "craft_mianbu": 0.2},
-      "money": {"min": 40, "max": 80},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_yingpi": 0.3,
+        "craft_mianbu": 0.2
+      },
+      "money": {
+        "min": 40,
+        "max": 80
+      },
       "experience": 700
     },
     "is_divine_beast": false,
@@ -19625,21 +19723,40 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_巨蟒": {
@@ -19657,11 +19774,23 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_yingpi": 0.3, "craft_chenxiangmu": 0.2},
-      "money": {"min": 45, "max": 90},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_yingpi": 0.3,
+        "craft_chenxiangmu": 0.2
+      },
+      "money": {
+        "min": 45,
+        "max": 90
+      },
       "experience": 750
     },
     "is_divine_beast": false,
@@ -19684,11 +19813,23 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_yingpi": 0.3, "craft_heitiekuang": 0.2},
-      "money": {"min": 40, "max": 85},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_yingpi": 0.3,
+        "craft_heitiekuang": 0.2
+      },
+      "money": {
+        "min": 40,
+        "max": 85
+      },
       "experience": 700
     },
     "is_divine_beast": false,
@@ -19711,21 +19852,40 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_yingpi": 0.25, "craft_heitiekuang": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_黑风野猪": {
@@ -19743,11 +19903,23 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_houpi": 0.3, "craft_zitanmu": 0.2},
-      "money": {"min": 50, "max": 100},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_houpi": 0.3,
+        "craft_zitanmu": 0.2
+      },
+      "money": {
+        "min": 50,
+        "max": 100
+      },
       "experience": 800
     },
     "is_divine_beast": false,
@@ -19770,21 +19942,40 @@
       "crit_rate": 0.09,
       "dodge_rate": 0.07
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["fengluan_helmet_54", "fengluan_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "fengluan_helmet_54",
+          "fengluan_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_yingpi": 0.25, "craft_chenxiangmu": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_chenxiangmu": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_红狐": {
@@ -19802,11 +19993,23 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_yingpi": 0.3, "craft_mianbu": 0.2},
-      "money": {"min": 38, "max": 75},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_yingpi": 0.3,
+        "craft_mianbu": 0.2
+      },
+      "money": {
+        "min": 38,
+        "max": 75
+      },
       "experience": 680
     },
     "is_divine_beast": false,
@@ -19829,21 +20032,40 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_yingpi": 0.25, "craft_chenxiangmu": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_yingpi": 0.25,
+        "craft_chenxiangmu": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_大脚怪": {
@@ -19861,11 +20083,23 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.04
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
-      "equipment_drop": {"drop_rate": 0, "templates": [], "rarity_weights": {}},
-      "items": {"craft_yingpi": 0.3, "craft_huangyangmu": 0.2},
-      "money": {"min": 28, "max": 55},
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "craft_yingpi": 0.3,
+        "craft_huangyangmu": 0.2
+      },
+      "money": {
+        "min": 28,
+        "max": 55
+      },
       "experience": 580
     },
     "is_divine_beast": false,
@@ -19885,18 +20119,37 @@
       "mana": 1300,
       "attack": 320,
       "defense": 240,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.4,
-        "templates": ["heilong_helmet_60", "heilong_armor_60", "fengluan_helmet_60", "fengluan_armor_60"],
-        "rarity_weights": {"common": 10, "uncommon": 25, "rare": 35, "epic": 25, "legendary": 5}
+        "templates": [
+          "heilong_helmet_60",
+          "heilong_armor_60",
+          "fengluan_helmet_60",
+          "fengluan_armor_60"
+        ],
+        "rarity_weights": {
+          "common": 10,
+          "uncommon": 25,
+          "rare": 35,
+          "epic": 25,
+          "legendary": 5
+        }
       },
-      "items": {"craft_zitanmu": 0.3, "craft_jingjinkuang": 0.3},
-      "money": {"min": 60, "max": 120},
+      "items": {
+        "craft_zitanmu": 0.3,
+        "craft_jingjinkuang": 0.3
+      },
+      "money": {
+        "min": 60,
+        "max": 120
+      },
       "experience": 1500
     },
     "is_divine_beast": true,
@@ -19919,15 +20172,32 @@
       "crit_rate": 0.12,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.4,
-        "templates": ["yanling_helmet_60", "yanling_armor_60"],
-        "rarity_weights": {"common": 10, "uncommon": 25, "rare": 35, "epic": 25, "legendary": 5}
+        "templates": [
+          "yanling_helmet_60",
+          "yanling_armor_60"
+        ],
+        "rarity_weights": {
+          "common": 10,
+          "uncommon": 25,
+          "rare": 35,
+          "epic": 25,
+          "legendary": 5
+        }
       },
-      "items": {"craft_zitanmu": 0.3, "craft_jingjinkuang": 0.3},
-      "money": {"min": 70, "max": 140},
+      "items": {
+        "craft_zitanmu": 0.3,
+        "craft_jingjinkuang": 0.3
+      },
+      "money": {
+        "min": 70,
+        "max": 140
+      },
       "experience": 1600
     },
     "is_divine_beast": true,
@@ -19948,17 +20218,38 @@
       "attack": 360,
       "defense": 260,
       "crit_rate": 0.14,
-      "dodge_rate": 0.10
+      "dodge_rate": 0.1
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.5,
-        "templates": ["heilong_helmet_60", "heilong_armor_60", "fengluan_helmet_60", "fengluan_armor_60", "yanling_helmet_60", "yanling_armor_60"],
-        "rarity_weights": {"common": 5, "uncommon": 20, "rare": 40, "epic": 30, "legendary": 5}
+        "templates": [
+          "heilong_helmet_60",
+          "heilong_armor_60",
+          "fengluan_helmet_60",
+          "fengluan_armor_60",
+          "yanling_helmet_60",
+          "yanling_armor_60"
+        ],
+        "rarity_weights": {
+          "common": 5,
+          "uncommon": 20,
+          "rare": 40,
+          "epic": 30,
+          "legendary": 5
+        }
       },
-      "items": {"craft_zitanmu": 0.35, "craft_jingjinkuang": 0.35},
-      "money": {"min": 80, "max": 160},
+      "items": {
+        "craft_zitanmu": 0.35,
+        "craft_jingjinkuang": 0.35
+      },
+      "money": {
+        "min": 80,
+        "max": 160
+      },
       "experience": 1800
     },
     "is_divine_beast": true,
@@ -19978,24 +20269,43 @@
       "mana": 1200,
       "attack": 290,
       "defense": 200,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_shennong_龙蛇": {
@@ -20013,21 +20323,40 @@
       "crit_rate": 0.09,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["yanling_helmet_54", "yanling_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "yanling_helmet_54",
+          "yanling_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_chenxiangmu": 0.25, "craft_heitiekuang": 0.25},
-      "money": {"min": 45, "max": 100},
+      "items": {
+        "craft_chenxiangmu": 0.25,
+        "craft_heitiekuang": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["shennong_illustration"],
+    "guaranteed_items": [
+      "shennong_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_金环蛇王": {
@@ -20045,15 +20374,32 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["canglang_helmet_48", "canglang_armor_47"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "canglang_helmet_48",
+          "canglang_armor_47"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 25, "max": 50},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 25,
+        "max": 50
+      },
       "experience": 450
     },
     "is_divine_beast": false,
@@ -20073,24 +20419,43 @@
       "mana": 1000,
       "attack": 250,
       "defense": 170,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["canglang_helmet_48", "canglang_armor_47"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "canglang_helmet_48",
+          "canglang_armor_47"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 40, "max": 85},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 40,
+        "max": 85
+      },
       "experience": 1000
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_发疯的海盗": {
@@ -20108,15 +20473,32 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["canglang_helmet_48", "canglang_armor_47"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "canglang_helmet_48",
+          "canglang_armor_47"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 28, "max": 55},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 28,
+        "max": 55
+      },
       "experience": 480
     },
     "is_divine_beast": false,
@@ -20139,15 +20521,32 @@
       "crit_rate": 0.06,
       "dodge_rate": 0.05
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["canglang_helmet_48", "canglang_armor_47"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "canglang_helmet_48",
+          "canglang_armor_47"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 30, "max": 60},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 30,
+        "max": 60
+      },
       "experience": 520
     },
     "is_divine_beast": false,
@@ -20167,24 +20566,43 @@
       "mana": 1050,
       "attack": 255,
       "defense": 175,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["canglang_helmet_48", "canglang_armor_47"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "canglang_helmet_48",
+          "canglang_armor_47"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 42, "max": 88},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 42,
+        "max": 88
+      },
       "experience": 1050
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_倭国探子": {
@@ -20202,15 +20620,32 @@
       "crit_rate": 0.07,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 32, "max": 65},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 32,
+        "max": 65
+      },
       "experience": 560
     },
     "is_divine_beast": false,
@@ -20230,24 +20665,43 @@
       "mana": 1100,
       "attack": 260,
       "defense": 180,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 45, "max": 90},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 45,
+        "max": 90
+      },
       "experience": 1100
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_八岐邪神": {
@@ -20262,24 +20716,43 @@
       "mana": 1150,
       "attack": 265,
       "defense": 185,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 48, "max": 95},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 48,
+        "max": 95
+      },
       "experience": 1150
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_亡命囚徒": {
@@ -20297,15 +20770,32 @@
       "crit_rate": 0.07,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 35, "max": 70},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 35,
+        "max": 70
+      },
       "experience": 600
     },
     "is_divine_beast": false,
@@ -20325,24 +20815,43 @@
       "mana": 1200,
       "attack": 270,
       "defense": 190,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 50, "max": 100},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 50,
+        "max": 100
+      },
       "experience": 1200
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_无间杀手": {
@@ -20360,15 +20869,32 @@
       "crit_rate": 0.07,
       "dodge_rate": 0.06
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 38, "max": 75},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 38,
+        "max": 75
+      },
       "experience": 650
     },
     "is_divine_beast": false,
@@ -20388,24 +20914,43 @@
       "mana": 1250,
       "attack": 275,
       "defense": 195,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 52, "max": 105},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 52,
+        "max": 105
+      },
       "experience": 1250
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_扶桑武士": {
@@ -20423,15 +20968,32 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.07
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 45, "max": 90},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 45,
+        "max": 90
+      },
       "experience": 750
     },
     "is_divine_beast": false,
@@ -20451,24 +21013,43 @@
       "mana": 1300,
       "attack": 280,
       "defense": 200,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 55, "max": 110},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 55,
+        "max": 110
+      },
       "experience": 1300
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
   },
   "monster_wokou_月读": {
@@ -20486,15 +21067,32 @@
       "crit_rate": 0.12,
       "dodge_rate": 0.09
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.35,
-        "templates": ["yanling_helmet_60", "yanling_armor_60"],
-        "rarity_weights": {"common": 10, "uncommon": 25, "rare": 35, "epic": 25, "legendary": 5}
+        "templates": [
+          "yanling_helmet_60",
+          "yanling_armor_60"
+        ],
+        "rarity_weights": {
+          "common": 10,
+          "uncommon": 25,
+          "rare": 35,
+          "epic": 25,
+          "legendary": 5
+        }
       },
-      "items": {"craft_zitanmu": 0.3, "craft_jingjinkuang": 0.3},
-      "money": {"min": 60, "max": 120},
+      "items": {
+        "craft_zitanmu": 0.3,
+        "craft_jingjinkuang": 0.3
+      },
+      "money": {
+        "min": 60,
+        "max": 120
+      },
       "experience": 1400
     },
     "is_divine_beast": true,
@@ -20517,15 +21115,32 @@
       "crit_rate": 0.12,
       "dodge_rate": 0.09
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.35,
-        "templates": ["yanling_helmet_60", "yanling_armor_60"],
-        "rarity_weights": {"common": 10, "uncommon": 25, "rare": 35, "epic": 25, "legendary": 5}
+        "templates": [
+          "yanling_helmet_60",
+          "yanling_armor_60"
+        ],
+        "rarity_weights": {
+          "common": 10,
+          "uncommon": 25,
+          "rare": 35,
+          "epic": 25,
+          "legendary": 5
+        }
       },
-      "items": {"craft_zitanmu": 0.3, "craft_jingjinkuang": 0.3},
-      "money": {"min": 65, "max": 130},
+      "items": {
+        "craft_zitanmu": 0.3,
+        "craft_jingjinkuang": 0.3
+      },
+      "money": {
+        "min": 65,
+        "max": 130
+      },
       "experience": 1500
     },
     "is_divine_beast": true,
@@ -20548,15 +21163,32 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.07
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 42, "max": 85},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 42,
+        "max": 85
+      },
       "experience": 700
     },
     "is_divine_beast": false,
@@ -20579,15 +21211,32 @@
       "crit_rate": 0.08,
       "dodge_rate": 0.07
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.15,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 40, "uncommon": 30, "rare": 20, "epic": 8, "legendary": 2}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 40,
+          "uncommon": 30,
+          "rare": 20,
+          "epic": 8,
+          "legendary": 2
+        }
       },
-      "items": {"craft_houpi": 0.15, "craft_baopi": 0.1},
-      "money": {"min": 44, "max": 88},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_baopi": 0.1
+      },
+      "money": {
+        "min": 44,
+        "max": 88
+      },
       "experience": 720
     },
     "is_divine_beast": false,
@@ -20607,24 +21256,1616 @@
       "mana": 1350,
       "attack": 285,
       "defense": 205,
-      "crit_rate": 0.10,
+      "crit_rate": 0.1,
       "dodge_rate": 0.08
     },
-    "skills": ["normal_attack"],
+    "skills": [
+      "normal_attack"
+    ],
     "drops": {
       "equipment_drop": {
         "drop_rate": 0.3,
-        "templates": ["heilong_helmet_54", "heilong_armor_53"],
-        "rarity_weights": {"common": 15, "uncommon": 30, "rare": 30, "epic": 20, "legendary": 5}
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
       },
-      "items": {"craft_houpi": 0.25, "craft_zitanmu": 0.25},
-      "money": {"min": 58, "max": 115},
+      "items": {
+        "craft_houpi": 0.25,
+        "craft_zitanmu": 0.25
+      },
+      "money": {
+        "min": 58,
+        "max": 115
+      },
       "experience": 1350
     },
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "guaranteed_items": ["wokou_illustration"],
+    "guaranteed_items": [
+      "wokou_illustration"
+    ],
     "max_health": 100
+  },
+  "monster_ice_tower_一层守卫_1": {
+    "name": "一层守卫",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】一层守卫(10级)",
+    "base_stats": {
+      "health": 800,
+      "mana": 200,
+      "attack": 50,
+      "defense": 25,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 50
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_一层守卫_2": {
+    "name": "一层守卫",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】一层守卫(10级)",
+    "base_stats": {
+      "health": 800,
+      "mana": 200,
+      "attack": 50,
+      "defense": 25,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 50
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_一层守卫_3": {
+    "name": "一层守卫",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】一层守卫(10级)",
+    "base_stats": {
+      "health": 800,
+      "mana": 200,
+      "attack": 50,
+      "defense": 25,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 50
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_一层守卫_4": {
+    "name": "一层守卫",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】一层守卫(10级)",
+    "base_stats": {
+      "health": 800,
+      "mana": 200,
+      "attack": 50,
+      "defense": 25,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 50
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_一层守卫_5": {
+    "name": "一层守卫",
+    "level": 10,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】一层守卫(10级)",
+    "base_stats": {
+      "health": 800,
+      "mana": 200,
+      "attack": 50,
+      "defense": 25,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "chulong_sword_1",
+          "chulong_helmet_1",
+          "chulong_armor_1",
+          "chulong_gloves_1",
+          "chulong_pants_1",
+          "chulong_shoes_1",
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 20,
+        "max": 50
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_二层守卫_1": {
+    "name": "二层守卫",
+    "level": 20,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】二层守卫(20级)",
+    "base_stats": {
+      "health": 1600,
+      "mana": 400,
+      "attack": 100,
+      "defense": 50,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 30,
+        "max": 70
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_二层守卫_2": {
+    "name": "二层守卫",
+    "level": 20,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】二层守卫(20级)",
+    "base_stats": {
+      "health": 1600,
+      "mana": 400,
+      "attack": 100,
+      "defense": 50,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 30,
+        "max": 70
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_二层守卫_3": {
+    "name": "二层守卫",
+    "level": 20,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】二层守卫(20级)",
+    "base_stats": {
+      "health": 1600,
+      "mana": 400,
+      "attack": 100,
+      "defense": 50,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 30,
+        "max": 70
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_二层守卫_4": {
+    "name": "二层守卫",
+    "level": 20,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】二层守卫(20级)",
+    "base_stats": {
+      "health": 1600,
+      "mana": 400,
+      "attack": 100,
+      "defense": 50,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 30,
+        "max": 70
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_二层守卫_5": {
+    "name": "二层守卫",
+    "level": 20,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】二层守卫(20级)",
+    "base_stats": {
+      "health": 1600,
+      "mana": 400,
+      "attack": 100,
+      "defense": 50,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "leiting_helmet_29",
+          "leiting_armor_28",
+          "leiting_pants_27",
+          "leiting_gloves_26",
+          "leiting_shoes_25",
+          "riguang_helmet_29",
+          "riguang_armor_28",
+          "riguang_pants_27",
+          "riguang_gloves_26",
+          "riguang_shoes_25",
+          "yese_helmet_29",
+          "yese_armor_28",
+          "yese_pants_27",
+          "yese_gloves_26",
+          "yese_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 30,
+        "max": 70
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_三层守卫_1": {
+    "name": "三层守卫",
+    "level": 30,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】三层守卫(30级)",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 150,
+      "defense": 75,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 600
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_三层守卫_2": {
+    "name": "三层守卫",
+    "level": 30,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】三层守卫(30级)",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 150,
+      "defense": 75,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 600
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_三层守卫_3": {
+    "name": "三层守卫",
+    "level": 30,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】三层守卫(30级)",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 150,
+      "defense": 75,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 600
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_三层守卫_4": {
+    "name": "三层守卫",
+    "level": 30,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】三层守卫(30级)",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 150,
+      "defense": 75,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 600
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_三层守卫_5": {
+    "name": "三层守卫",
+    "level": 30,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】三层守卫(30级)",
+    "base_stats": {
+      "health": 2400,
+      "mana": 600,
+      "attack": 150,
+      "defense": 75,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.04
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 40,
+        "max": 90
+      },
+      "experience": 600
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_四层守卫_1": {
+    "name": "四层守卫",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】四层守卫(40级)",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 200,
+      "defense": 100,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 50,
+        "max": 100
+      },
+      "experience": 800
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_四层守卫_2": {
+    "name": "四层守卫",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】四层守卫(40级)",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 200,
+      "defense": 100,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 50,
+        "max": 100
+      },
+      "experience": 800
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_四层守卫_3": {
+    "name": "四层守卫",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】四层守卫(40级)",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 200,
+      "defense": 100,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 50,
+        "max": 100
+      },
+      "experience": 800
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_四层守卫_4": {
+    "name": "四层守卫",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】四层守卫(40级)",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 200,
+      "defense": 100,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 50,
+        "max": 100
+      },
+      "experience": 800
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_四层守卫_5": {
+    "name": "四层守卫",
+    "level": 40,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】四层守卫(40级)",
+    "base_stats": {
+      "health": 3200,
+      "mana": 800,
+      "attack": 200,
+      "defense": 100,
+      "crit_rate": 0.07,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 50,
+        "max": 100
+      },
+      "experience": 800
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_五层守卫_1": {
+    "name": "五层守卫",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】五层守卫(50级)",
+    "base_stats": {
+      "health": 4000,
+      "mana": 1000,
+      "attack": 250,
+      "defense": 150,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 55,
+        "max": 110
+      },
+      "experience": 1000
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_五层守卫_2": {
+    "name": "五层守卫",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】五层守卫(50级)",
+    "base_stats": {
+      "health": 4000,
+      "mana": 1000,
+      "attack": 250,
+      "defense": 150,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 55,
+        "max": 110
+      },
+      "experience": 1000
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_五层守卫_3": {
+    "name": "五层守卫",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】五层守卫(50级)",
+    "base_stats": {
+      "health": 4000,
+      "mana": 1000,
+      "attack": 250,
+      "defense": 150,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 55,
+        "max": 110
+      },
+      "experience": 1000
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_五层守卫_4": {
+    "name": "五层守卫",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】五层守卫(50级)",
+    "base_stats": {
+      "health": 4000,
+      "mana": 1000,
+      "attack": 250,
+      "defense": 150,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 55,
+        "max": 110
+      },
+      "experience": 1000
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_五层守卫_5": {
+    "name": "五层守卫",
+    "level": 50,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】五层守卫(50级)",
+    "base_stats": {
+      "health": 4000,
+      "mana": 1000,
+      "attack": 250,
+      "defense": 150,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 55,
+        "max": 110
+      },
+      "experience": 1000
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
+  },
+  "monster_ice_tower_顶层守卫": {
+    "name": "顶层守卫",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【精】顶层守卫(60级)",
+    "base_stats": {
+      "health": 5000,
+      "mana": 1250,
+      "attack": 300,
+      "defense": 200,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.06
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 5
+        }
+      },
+      "items": {},
+      "money": {
+        "min": 60,
+        "max": 120
+      },
+      "experience": 1500
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "guaranteed_items": [
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass",
+      "ice_tower_pass"
+    ]
   }
 }

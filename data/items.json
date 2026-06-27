@@ -3351,30 +3351,39 @@
   "wedding_ring_pack": {
     "name": "新婚草戒包",
     "type": "consumable",
-    "description": "打开获得一对婚戒",
+    "description": "打开可获得20级饰品【新婚草戒】，品质随机(普通-史诗)",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
     "usage_effect": {
-      "grant_item": [
-        "wedding_ring",
-        2
-      ]
+      "generate_equipment": {
+        "template_id": "wedding_grass_ring",
+        "rarity_range": [
+          "普通",
+          "精良",
+          "卓越",
+          "史诗"
+        ]
+      }
     },
     "capacity": 0.1
   },
   "wedding_diamond_pack": {
     "name": "新婚钻戒包",
     "type": "consumable",
-    "description": "打开获得一对钻石婚戒",
+    "description": "打开可获得20级神器饰品【新婚钻戒】，星级随机(1-5星)",
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
-      "grant_item": [
-        "wedding_ring_diamond",
-        2
-      ]
+      "generate_equipment": {
+        "template_id": "wedding_diamond_ring",
+        "rarity": "神器",
+        "stars_range": [
+          1,
+          5
+        ]
+      }
     },
     "capacity": 0.1
   },
@@ -3477,110 +3486,182 @@
   "sui_pi_pack": {
     "name": "碎皮包",
     "type": "consumable",
-    "description": "打开获得碎皮x10",
+    "description": "打开获得碎皮x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_suipi",
+        20
+      ]
+    }
   },
   "huangyang_mu_pack": {
     "name": "黄杨木包",
     "type": "consumable",
-    "description": "打开获得黄杨木x10",
+    "description": "打开获得黄杨木x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_huangyangmu",
+        20
+      ]
+    }
   },
   "ma_bu_pack": {
     "name": "麻布包",
     "type": "consumable",
-    "description": "打开获得麻布x10",
+    "description": "打开获得麻布x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_mabu",
+        20
+      ]
+    }
   },
   "huangtong_kuang_pack": {
     "name": "黄铜矿包",
     "type": "consumable",
-    "description": "打开获得黄铜矿x10",
+    "description": "打开获得黄铜矿x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_huangtongkuang",
+        20
+      ]
+    }
   },
   "ying_pi_pack": {
     "name": "硬皮包",
     "type": "consumable",
-    "description": "打开获得硬皮x10",
+    "description": "打开获得硬皮x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_yingpi",
+        20
+      ]
+    }
   },
   "chenxiang_mu_pack": {
     "name": "沉香木包",
     "type": "consumable",
-    "description": "打开获得沉香木x10",
+    "description": "打开获得沉香木x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_chenxiangmu",
+        20
+      ]
+    }
   },
   "mian_bu_pack": {
     "name": "棉布包",
     "type": "consumable",
-    "description": "打开获得棉布x10",
+    "description": "打开获得棉布x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_mianbu",
+        20
+      ]
+    }
   },
   "heitie_kuang_pack": {
     "name": "黑铁矿包",
     "type": "consumable",
-    "description": "打开获得黑铁矿x10",
+    "description": "打开获得黑铁矿x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_heitiekuang",
+        20
+      ]
+    }
   },
   "hou_pi_pack": {
     "name": "厚皮包",
     "type": "consumable",
-    "description": "打开获得厚皮x10",
+    "description": "打开获得厚皮x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_houpi",
+        20
+      ]
+    }
   },
   "zitan_mu_pack": {
     "name": "紫檀木包",
     "type": "consumable",
-    "description": "打开获得紫檀木x10",
+    "description": "打开获得紫檀木x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_zitanmu",
+        20
+      ]
+    }
   },
   "nirong_pack": {
     "name": "呢绒包",
     "type": "consumable",
-    "description": "打开获得呢绒x10",
+    "description": "打开获得呢绒x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_nirong",
+        20
+      ]
+    }
   },
   "jingjin_kuang_pack": {
     "name": "精金矿包",
     "type": "consumable",
-    "description": "打开获得精金矿x10",
+    "description": "打开获得精金矿x20",
     "price": 0,
     "sell_price": 100,
     "is_usable": true,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "usage_effect": {
+      "grant_item": [
+        "craft_jingjinkuang",
+        20
+      ]
+    }
   },
   "mi_yao_pack": {
     "name": "秘药礼包",
@@ -3591,10 +3672,30 @@
     "is_usable": true,
     "usage_effect": {
       "random_items": [
-        {"item_id": "pill_attack", "guaranteed_count": 0, "max_count": 1, "chance": 0.25},
-        {"item_id": "pill_defense", "guaranteed_count": 0, "max_count": 1, "chance": 0.25},
-        {"item_id": "pill_max_health", "guaranteed_count": 0, "max_count": 1, "chance": 0.25},
-        {"item_id": "pill_max_mana", "guaranteed_count": 0, "max_count": 1, "chance": 0.25}
+        {
+          "item_id": "pill_attack",
+          "guaranteed_count": 0,
+          "max_count": 1,
+          "chance": 0.25
+        },
+        {
+          "item_id": "pill_defense",
+          "guaranteed_count": 0,
+          "max_count": 1,
+          "chance": 0.25
+        },
+        {
+          "item_id": "pill_max_health",
+          "guaranteed_count": 0,
+          "max_count": 1,
+          "chance": 0.25
+        },
+        {
+          "item_id": "pill_max_mana",
+          "guaranteed_count": 0,
+          "max_count": 1,
+          "chance": 0.25
+        }
       ]
     },
     "capacity": 0.1
@@ -3608,7 +3709,12 @@
     "is_usable": true,
     "usage_effect": {
       "temp_effects": [
-        {"stat": "exp_rate", "rate": 1.0, "duration": 3600, "effect_name": "双倍经验卡"}
+        {
+          "stat": "exp_rate",
+          "rate": 1.0,
+          "duration": 3600,
+          "effect_name": "双倍经验卡"
+        }
       ]
     },
     "capacity": 0.1
@@ -3758,7 +3864,12 @@
     "is_usable": true,
     "usage_effect": {
       "random_items": [
-        {"item_id": "big_hp_stone", "guaranteed_count": 15, "max_count": 15, "chance": 1.0}
+        {
+          "item_id": "big_hp_stone",
+          "guaranteed_count": 15,
+          "max_count": 15,
+          "chance": 1.0
+        }
       ]
     },
     "capacity": 0.1
@@ -3772,7 +3883,12 @@
     "is_usable": true,
     "usage_effect": {
       "random_items": [
-        {"item_id": "big_mp_stone", "guaranteed_count": 15, "max_count": 15, "chance": 1.0}
+        {
+          "item_id": "big_mp_stone",
+          "guaranteed_count": 15,
+          "max_count": 15,
+          "chance": 1.0
+        }
       ]
     },
     "capacity": 0.1
@@ -3786,7 +3902,12 @@
     "is_usable": true,
     "usage_effect": {
       "random_items": [
-        {"item_id": "small_horn", "guaranteed_count": 15, "max_count": 15, "chance": 1.0}
+        {
+          "item_id": "small_horn",
+          "guaranteed_count": 15,
+          "max_count": 15,
+          "chance": 1.0
+        }
       ]
     },
     "capacity": 0.1
@@ -4273,10 +4394,30 @@
     "is_usable": true,
     "usage_effect": {
       "random_items": [
-        {"item_id": "battle_flag_1", "guaranteed_count": 15, "max_count": 15, "chance": 1.0},
-        {"item_id": "battle_flag_2", "guaranteed_count": 10, "max_count": 10, "chance": 1.0},
-        {"item_id": "battle_flag_3", "guaranteed_count": 5, "max_count": 5, "chance": 1.0},
-        {"item_id": "battle_revive_lamp", "guaranteed_count": 10, "max_count": 10, "chance": 1.0}
+        {
+          "item_id": "battle_flag_1",
+          "guaranteed_count": 15,
+          "max_count": 15,
+          "chance": 1.0
+        },
+        {
+          "item_id": "battle_flag_2",
+          "guaranteed_count": 10,
+          "max_count": 10,
+          "chance": 1.0
+        },
+        {
+          "item_id": "battle_flag_3",
+          "guaranteed_count": 5,
+          "max_count": 5,
+          "chance": 1.0
+        },
+        {
+          "item_id": "battle_revive_lamp",
+          "guaranteed_count": 10,
+          "max_count": 10,
+          "chance": 1.0
+        }
       ]
     },
     "capacity": 0.1
@@ -4290,7 +4431,12 @@
     "is_usable": true,
     "usage_effect": {
       "temp_effects": [
-        {"stat": "lt_exp_rate", "value": 0, "rate": 1.0, "duration": 3600}
+        {
+          "stat": "lt_exp_rate",
+          "value": 0,
+          "rate": 1.0,
+          "duration": 3600
+        }
       ]
     },
     "capacity": 0.1
@@ -4394,6 +4540,15 @@
     "usage_effect": {
       "grant_title": "prefix倭寇"
     },
+    "capacity": 0.1
+  },
+  "ice_tower_pass": {
+    "name": "寒冰塔通行证",
+    "type": "material",
+    "description": "寒冰塔的通行凭证，可用于兑换珍贵物品",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": false,
     "capacity": 0.1
   }
 }

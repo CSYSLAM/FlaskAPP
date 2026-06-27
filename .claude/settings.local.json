@@ -61,7 +61,8 @@
       "Bash(taskkill //f //im python.exe)",
       "mcp__playwright__browser_press_key",
       "Bash(pyinstaller FlaskAPP.spec --noconfirm)",
-      "Bash(./FlaskAPP.exe)"
+      "Bash(./FlaskAPP.exe)",
+      "Bash(sort -t':' -k3 -n)"
     ]
   },
   "mcpServers": {

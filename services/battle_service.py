@@ -156,6 +156,7 @@ class BattleService:
             player.in_battle = False
             player.last_battle_result = "你被击败了..."
             player.current_encounter = None
+            player.need_revive = True
             if lt and lt.is_alive:
                 from services.lieutenant_service import LieutenantService
                 LieutenantService.handle_death(lt, owner_died=True)
@@ -214,6 +215,7 @@ class BattleService:
             'last_action': monster.last_action,
             'last_skill': monster.last_skill,
             'is_world_boss': monster.is_elite and not getattr(monster, 'is_copy', False),
+            'guaranteed_items': getattr(monster, 'guaranteed_items', []),
         }
         player.set_current_encounter_data(encounter)
 
@@ -294,6 +296,7 @@ class BattleService:
             player.in_battle = False
             player.last_battle_result = "你被击败了..."
             player.current_encounter = None
+            player.need_revive = True
             # Lieutenant loses loyalty/lifespan when owner dies
             if lt and lt.is_alive:
                 from services.lieutenant_service import LieutenantService
@@ -445,6 +448,7 @@ class BattleService:
             player.in_battle = False
             player.last_battle_result = "你被击败了..."
             player.current_encounter = None
+            player.need_revive = True
             if lt and lt.is_alive:
                 from services.lieutenant_service import LieutenantService
                 LieutenantService.handle_death(lt, owner_died=True)
@@ -543,17 +547,27 @@ class BattleService:
         # Guaranteed item drops (always drop, independent of random loot)
         guaranteed_items = getattr(monster, 'guaranteed_items', [])
         if guaranteed_items:
-            guaranteed_names = []
+            # 统计物品数量
+            item_counts = {}
             for g_item_id in guaranteed_items:
                 DataService.add_item_to_inventory(player.id, g_item_id, is_bound=False)
                 g_item_data = DataService.get_item(g_item_id)
                 g_name = g_item_data.get("name", g_item_id) if g_item_data else g_item_id
-                guaranteed_names.append(g_name)
+                item_counts[g_name] = item_counts.get(g_name, 0) + 1
+
+            # 合并显示：物品名*数量
+            guaranteed_names = []
+            for g_name, count in item_counts.items():
+                if count > 1:
+                    guaranteed_names.append(f"{g_name}*{count}")
+                else:
+                    guaranteed_names.append(g_name)
+
             guaranteed_text = "、".join(guaranteed_names)
             if loot_text:
-                loot_text += f"；必定获得 {guaranteed_text}"
+                loot_text += f"；{guaranteed_text}"
             else:
-                loot_text = f"必定获得 {guaranteed_text}"
+                loot_text = guaranteed_text
 
         dungeon_note = CopyDungeonService.record_monster_defeat(player, monster)
         if dungeon_note:
@@ -625,6 +639,7 @@ class BattleService:
                 player.in_battle = False
                 player.last_battle_result = "逃跑失败，被击败了"
                 player.current_encounter = None
+                player.need_revive = True
                 db.session.commit()
                 return False, "逃跑失败，被击败了"
             db.session.commit()

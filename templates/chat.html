@@ -54,18 +54,19 @@
     {% endwith %}
 
     {% if messages %}
-    {% for msg in messages|reverse %}
+    {% for msg in messages %}
+        {% set msg_time = msg.created_at + timedelta(hours=8) %}
         {% if msg.message_type == 'system' %}
-            【系统】{{ msg.content }}<br/>
+            【系统】{{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
         {% elif msg.message_type == 'public' %}
-            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg.created_at.strftime('%H:%M') }})<br/>
+            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
         {% elif msg.message_type == 'country' %}
-            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg.created_at.strftime('%H:%M') }})<br/>
+            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
         {% elif msg.message_type == 'private' %}
             {% if msg.sender_id == player.id %}
-            你对 <a href="{{ url_for('player.view_player', username=msg.receiver.username) if msg.receiver else '#' }}">{{ msg.receiver.nickname if msg.receiver else '未知' }}</a>: {{ msg.content }}({{ msg.created_at.strftime('%H:%M') }})<br/>
+            你对 <a href="{{ url_for('player.view_player', username=msg.receiver.username) if msg.receiver else '#' }}">{{ msg.receiver.nickname if msg.receiver else '未知' }}</a>: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
             {% else %}
-            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a> 对你说: {{ msg.content }}({{ msg.created_at.strftime('%H:%M') }})<br/>
+            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a> 对你说: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
             {% endif %}
         {% endif %}
     {% endfor %}
