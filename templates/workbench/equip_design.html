@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>装备设计系统</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .artifact { color: #ff6600; font-weight: bold; }
+        .set-group { margin: 8px 0; padding: 5px 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .set-name { font-weight: bold; color: #333; }
+        .item-line { padding: 2px 0 2px 12px; }
+        .slot-tag { color: #888; font-size: 14px; }
+        .level-tag { color: #666; font-size: 14px; }
+        .class-tag { color: #2e7d32; font-size: 14px; }
+        .section { margin: 15px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .btn { display: inline-block; padding: 4px 10px; margin: 2px; border: 1px solid #136ec2; border-radius: 3px; color: #136ec2; text-decoration: none; font-size: 14px; }
+        .btn:hover { background: #136ec2; color: #fff; }
+        .btn-danger { border-color: #c62828; color: #c62828; }
+        .btn-danger:hover { background: #c62828; color: #fff; }
+        .btn-success { border-color: #2e7d32; color: #2e7d32; }
+        .btn-success:hover { background: #2e7d32; color: #fff; }
+        .no-set { color: #999; font-size: 13px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>装备设计系统</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a> |
+    <a href="{{ url_for('game.scene') }}">返回场景</a><br/><br/>
+
+    <a href="{{ url_for('workbench.equip_add') }}" class="btn">+ 添加单件装备</a>
+    <a href="{{ url_for('workbench.equip_add_set') }}" class="btn">+ 添加套装</a>
+    <br/><br/>
+
+    <div class="section">装备总览</div>
+    {% for sname, items in set_index.items() %}
+    <div class="set-group">
+        <span class="set-name">{{ sname }}</span>
+        {% if items[0].is_artifact %}<span class="artifact">[神器]</span>{% endif %}
+        ({{ items|length }}件)
+        <a href="{{ url_for('workbench.equip_set', set_name=sname) }}">查看套装</a>
+        <a href="{{ url_for('workbench.equip_test_set', set_name=sname) }}" class="btn btn-success">测试生成</a>
+        <br/>
+        {% for item in items %}
+        <div class="item-line">
+            <a href="{{ url_for('workbench.equip_view', template_id=item.template_id) }}">{{ item.name }}</a>
+            <span class="slot-tag">[{{ slot_names.get(item.slot, item.slot) }}]</span>
+            <span class="level-tag">{{ item.level_required }}级</span>
+            {% if item.class_required %}<span class="class-tag">{{ item.class_required }}</span>{% endif %}
+            {% if item.is_artifact %}<span class="artifact">神器</span>{% endif %}
+            <a href="{{ url_for('workbench.equip_test', template_id=item.template_id) }}" class="btn btn-success">测试</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% if ungrouped %}
+    <div class="set-group">
+        <span class="set-name">未分类</span>
+        <span class="no-set">(无套装归属，无法测试套装生成)</span>
+        ({{ ungrouped|length }}件)<br/>
+        {% for item in ungrouped %}
+        <div class="item-line">
+            <a href="{{ url_for('workbench.equip_view', template_id=item.template_id) }}">{{ item.name }}</a>
+            <span class="slot-tag">[{{ slot_names.get(item.slot, item.slot) }}]</span>
+            <span class="level-tag">{{ item.level_required }}级</span>
+            {% if item.class_required %}<span class="class-tag">{{ item.class_required }}</span>{% endif %}
+            {% if item.is_artifact %}<span class="artifact">神器</span>{% endif %}
+            <a href="{{ url_for('workbench.equip_test', template_id=item.template_id) }}" class="btn btn-success">测试</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="section">数据文件</div>
+    {% for fname in set_files %}
+    <a href="{{ url_for('workbench.equip_file', filename=fname) }}">{{ fname }}</a><br/>
+    {% endfor %}
+</div>
+</body>
+</html>

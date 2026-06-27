@@ -623,6 +623,34 @@ class PlayerModel(db.Model, UserMixin):
                     f"{e.effect_name or stat}({'+'.join(parts)})剩余{time_str}")
         return descriptions
 
+    @property
+    def status_effect(self):
+        """根据活跃临时效果生成状态摘要文本，如 '生↑ 攻↑'"""
+        from services.data_service import DataService
+        DataService.clear_expired_effects(self.id)
+        now = time.time()
+        effects = TempEffect.query.filter_by(player_id=self.id).all()
+        if not effects:
+            return None
+        # 秘药缩写映射
+        potion_short = {
+            'max_health': '生', 'max_mana': '魔',
+            'attack': '攻', 'defense': '防',
+            'crit_rate': '暴', 'dodge_rate': '闪',
+            'experience': '经', 'exp_rate': '经',
+            'lt_exp_rate': '副经',
+        }
+        seen = {}
+        for e in effects:
+            if e.expire_time <= now:
+                continue
+            stat = e.stat
+            short = potion_short.get(stat, stat[:2])
+            if stat not in seen:
+                seen[stat] = short
+        parts = [f"{v}↑" for v in seen.values()]
+        return ' '.join(parts) if parts else None
+
     def get_shortcuts(self):
         try:
             return json.loads(self.shortcuts_raw) if self.shortcuts_raw else {}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>测试生成</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 80px; }
+        input, select { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .result-box { margin: 6px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .rarity-common { color: #666; }
+        .rarity-uncommon { color: #2e7d32; }
+        .rarity-rare { color: #1565c0; }
+        .rarity-epic { color: #7b1fa2; }
+        .rarity-legendary { color: #ff6600; font-weight: bold; }
+        .stat-line { padding: 1px 0 1px 12px; font-size: 14px; }
+        .base-stat { color: #333; }
+        .extra-stat { color: #2e7d32; }
+        .hint { color: #888; font-size: 13px; }
+        .artifact-hint { color: #ff6600; font-size: 13px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>测试生成 - {{ template.name }}</h3>
+    <a href="{{ url_for('workbench.equip_view', template_id=template_id) }}">返回详情</a> |
+    <a href="{{ url_for('workbench.equip_design') }}">返回列表</a><br/><br/>
+
+    模板ID: {{ template_id }}<br/>
+    部位: {{ slot_names.get(template.slot, template.slot) }} |
+    等级: {{ template.level_required }} |
+    {% if is_artifact %}<span style="color:#ff6600;font-weight:bold">神器(只能生成神器品质)</span>
+    {% else %}<span class="hint">非神器(不能生成神器品质)</span>{% endif %}<br/>
+
+    <div class="section">生成参数</div>
+    <form method="post">
+        <span class="label">生成数量:</span>
+        <input type="number" name="count" value="5" min="1" max="20" style="width:60px"><br/>
+        <span class="label">指定品质:</span>
+        <select name="rarity">
+            <option value="">随机</option>
+            {% for r in available_rarities %}
+            <option value="{{ r }}">{{ r }}</option>
+            {% endfor %}
+        </select>
+        {% if is_artifact %}<span class="artifact-hint">神器装备固定为神器品质</span>{% endif %}
+        <br/>
+        <span class="label">指定星级:</span>
+        <select name="stars">
+            <option value="">随机</option>
+            <option value="1">1星</option>
+            <option value="2">2星</option>
+            <option value="3">3星</option>
+            <option value="4">4星</option>
+            <option value="5">5星</option>
+        </select><br/>
+        <button type="submit" class="btn">生成</button>
+    </form>
+
+    {% if results %}
+    <div class="section">生成结果 ({{ results|length }}件)</div>
+    {% for r in results %}
+    <div class="result-box">
+        {% if r.rarity == '神器' %}<span class="rarity-legendary">{{ r.name }}</span>
+        {% elif r.rarity == '史诗' %}<span class="rarity-epic">{{ r.name }}</span>
+        {% elif r.rarity == '卓越' %}<span class="rarity-rare">{{ r.name }}</span>
+        {% elif r.rarity == '精良' %}<span class="rarity-uncommon">{{ r.name }}</span>
+        {% else %}<span class="rarity-common">{{ r.name }}</span>{% endif %}
+        <br/>
+        <div class="stat-line"><span class="base-stat">基础属性:</span></div>
+        {% for sk, sv in r.base_stats.items() %}
+        <div class="stat-line"><span class="base-stat">{{ stat_names.get(sk, sk) }}: {% if sk in ('crit_rate', 'dodge_rate') %}{{ "%.2f%%"|format(sv * 100) }}{% else %}{{ sv }}{% endif %}</span></div>
+        {% endfor %}
+        <div class="stat-line"><span class="extra-stat">额外属性:</span></div>
+        {% for sk, sv in r.extra_stats.items() %}
+        <div class="stat-line"><span class="extra-stat">{{ stat_names.get(sk, sk) }}: {% if sk in ('crit_rate', 'dodge_rate') %}{{ "%.2f%%"|format(sv[0] * 100) }}{% else %}{{ sv[0]|round(1) }}{% endif %} ({{ sv[1] }}星)</span></div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>

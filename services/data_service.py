@@ -130,6 +130,64 @@ class DataService:
         return cls._cache.get('items', {}).get(item_id)
 
     @classmethod
+    def get_item_effect_hint(cls, item_id):
+        """返回物品使用效果摘要文本，如 '攻击+5%' '经验+50000' 等"""
+        item = cls.get_item(item_id)
+        if not item or not item.get('is_usable', False):
+            return ''
+        effect = item.get('usage_effect', {})
+        hints = []
+        # stat_changes
+        for stat, value in effect.get('stat_changes', {}).items():
+            stat_names = {
+                'experience': '经验', 'honor': '荣誉', 'gold': '银两',
+                'yuanbao': '元宝', 'jinzu': '金珠',
+                'pill_attack': '攻击', 'pill_defense': '防御',
+                'pill_max_health': '生命', 'pill_max_mana': '魔法',
+                'blood_reserve': '生命储备', 'mana_reserve': '魔法储备',
+                'health': '生命', 'mana': '魔法',
+            }
+            name = stat_names.get(stat, stat)
+            hints.append(f"{name}+{value}")
+        # temp_effects
+        for te in effect.get('temp_effects', []):
+            stat = te.get('stat', '')
+            rate = te.get('rate', 0)
+            value = te.get('value', 0)
+            stat_names = {
+                'max_health': '生命', 'max_mana': '魔法',
+                'attack': '攻击', 'defense': '防御',
+                'crit_rate': '暴击', 'dodge_rate': '闪避',
+                'experience': '经验', 'exp_rate': '经验',
+                'lt_exp_rate': '副将经验',
+            }
+            name = stat_names.get(stat, stat)
+            if rate > 0:
+                hints.append(f"{name}+{rate*100:.0f}%")
+            elif value > 0:
+                hints.append(f"{name}+{value}")
+        # grant_gold
+        grant_gold = effect.get('grant_gold')
+        if grant_gold:
+            hints.append(f"银两+{grant_gold}")
+        # vip_days
+        vip_days = effect.get('vip_days')
+        if vip_days:
+            hints.append(f"VIP+{vip_days}天")
+        # restore_vitality
+        restore_vitality = effect.get('restore_vitality')
+        if restore_vitality:
+            hints.append(f"行动力+{restore_vitality}")
+        # expand_backpack / expand_warehouse
+        expand_bp = effect.get('expand_backpack')
+        if expand_bp:
+            hints.append(f"背包+{expand_bp}")
+        expand_wh = effect.get('expand_warehouse')
+        if expand_wh:
+            hints.append(f"仓库+{expand_wh}")
+        return ' '.join(hints) if hints else ''
+
+    @classmethod
     def get_monsters(cls):
         return cls._cache.get('monsters', {})
 

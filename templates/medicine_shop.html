@@ -36,7 +36,7 @@
 名称|价格<br/>
 {% for item in items %}
     {{ item.name }}|{{ item.price }}银两
-    <form action="{{ url_for('medicine.buy', npc_id=npc_id, item_id=item.item_id) }}" method="post" style="display:inline;">
+    <form action="{{ url_for('medicine.buy', npc_id=npc_id, item_id=item.item_id, tab=tab, page=page) }}" method="post" style="display:inline;">
         <input type="text" name="quantity" value="1" maxlength="5" style="width:50px;">
         <input type="submit" value="购买">
     </form>

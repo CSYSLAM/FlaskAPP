@@ -39,7 +39,7 @@
     物攻:{{ player.effective_attack }}{% if player.rank_attack > 0 %}<span class="buff-effect">(+{{ player.rank_attack }}军衔)</span>{% endif %}<br/>
     防御:{{ player.effective_defense }}<br/>
     暴击率:{{ "%.1f"|format(player.effective_crit_rate * 100) }}% 闪避率:{{ "%.1f"|format(player.effective_dodge_rate * 100) }}%<br/>
-    <a href="{{ url_for('player.character_status') }}">状态</a>:无<br/>
+    <a href="{{ url_for('player.character_status') }}">状态</a>:{% if player.status_effect %}{{ player.status_effect }}{% else %}无{% endif %}<br/>
     队伍:{% if party_info %}<a href="{{ url_for('party.index') }}">{{ party_info.name }}({{ party_info.count }}人)</a>{% else %}无{% endif %}<br/>
     军团:{% if legion_info %}<a href="{{ url_for('legion.index') }}">{{ legion_info.name }}({{ legion_info.country }})</a>{% else %}无{% endif %}<br/>
     红颜:{{ hongyan_count }}知己:{{ zhiji_count }}<br/>

@@ -77,6 +77,32 @@ class ItemService:
                 if desc:
                     effect_text_parts.append(desc.format(value=value))
 
+        # Process random_one_of effect (随机获得列表中的一种物品x1)
+        random_one_of = usage_effect.get("random_one_of")
+        if random_one_of and isinstance(random_one_of, list):
+            chosen_id = random.choice(random_one_of)
+            DataService.add_item_to_inventory(player.id, chosen_id, 1)
+            chosen_data = DataService.get_item(chosen_id)
+            chosen_name = chosen_data.get("name", chosen_id) if chosen_data else chosen_id
+            effect_text_parts.append(f"获得{chosen_name}x1")
+
+        # Process grant_gold effect (银两包)
+        grant_gold = usage_effect.get("grant_gold")
+        if grant_gold:
+            player.gold += grant_gold
+            effect_text_parts.append(f"获得{grant_gold}银两")
+
+        # Process restore_vitality effect (活力卡)
+        restore_vitality = usage_effect.get("restore_vitality")
+        if restore_vitality:
+            from models.villa import Villa
+            villa = Villa.query.filter_by(owner_id=player.id).first()
+            if villa:
+                villa.action_points = min(villa.max_action_points, villa.action_points + restore_vitality)
+                effect_text_parts.append(f"恢复{restore_vitality}点行动力")
+            else:
+                effect_text_parts.append("没有山庄，无法使用")
+
         # Process random stat changes
         stat_changes_rng = usage_effect.get("stat_changes_rng", {})
         for stat, rng_range in stat_changes_rng.items():
