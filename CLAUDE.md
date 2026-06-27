@@ -76,3 +76,32 @@ Key rules:
 ## Authentication
 
 Flask-Login with `Player` model implementing `UserMixin`. Passwords hashed via werkzeug. `login_manager.login_view = 'auth.login'`. `@login_required` from Flask-Login protects routes. No role-based access control.
+
+## Item Usage Rules
+
+Certain items have restricted usage contexts — they **cannot be used from the backpack** and must be consumed in specific game interfaces:
+
+| Item | Item ID | Usage Context | Rule |
+|------|---------|---------------|------|
+| 回城符 | `return_scroll` | 地图→回城→【点击回城】 | Only consumed when clicking 回城 in map interface; `is_usable: false` in backpack |
+| 神行符 | `speed_scroll` | 地图→神行→选择传送点 | Only consumed when executing 神行 teleport; `is_usable: false` in backpack |
+| 活力卡 | `vitality_card` | 山庄→行动力旁【补充】按钮 | Only consumed via "补充(+10)" link when AP not full; `is_usable: false` in backpack. Each card restores 10 AP, max 120 |
+| 催熟剂 | `ripening_agent` | 百草园→生长中作物旁【催熟】链接 | Only consumed via "催熟" link on growing plots; `is_usable: false` in backpack |
+| 死亡替身符 | `death_substitute` | PK死亡时自动消耗 | Auto-consumed on PK death, not manually usable; `is_usable: false` |
+| 断肠草 | `duanchang_cao` | 离婚专用道具 | Used in marriage/divorce flow, not from backpack; `is_usable: false` |
+| 结交酒 | `friend_wine` / `bond_wine` | 红颜/知己结交流程 | Used in social interaction flow; `is_usable: false` |
+| 断交酒 | `break_wine` | 红颜/知己断交流程 | Used in social interaction flow; `is_usable: false` |
+| 经验丹种子 | `exp_seed` / `seed_jingyandan` | 百草园种植 | Used in garden planting, not consumable; type is `seed` or `material` |
+| 大经验丹种子 | `seed_big_exp` | 百草园种植(需4级) | Used in garden planting; requires garden level 4 |
+
+**Key principle**: Items with `is_usable: false` must NOT be used from the backpack (player inventory). They are consumed by specific game mechanics or UI interactions. When adding new items, set `is_usable: false` if the item should only work in a specific context.
+
+## Garden (百草园) System
+
+- Seeds defined in `services/villa_service.py` SEEDS dict (21 seed types)
+- Base seeds: seed_herb, seed_flower, seed_ginseng, seed_dragon (old system with HARVEST_ITEMS mapping)
+- New seeds: seed_jinchuangyao through seed_big_exp (direct item_id in harvest field)
+- Garden level requirement: `min_level` field in SEEDS (default 1)
+- Action point cost: `ap_cost` field in SEEDS (default 2, higher-tier seeds cost more)
+- Ripening agent: Instantly matures a growing crop (consumes 1 ripening_agent item)
+- Garden slots: `3 + (villa.level - 1) // 5`

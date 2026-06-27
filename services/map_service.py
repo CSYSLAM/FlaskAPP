@@ -81,12 +81,12 @@ class MapService:
             return {'success': False, 'msg': '当前区域没有驿站'}
 
         # 检查回城符
-        inv = DataService.get_inventory_item(player.id, 'town_scroll')
+        inv = DataService.get_inventory_item(player.id, 'return_scroll')
         if not inv or inv.quantity < 1:
             return {'success': False, 'msg': '回城需要消耗1个回城符，您没有回城符'}
 
         # 消耗回城符
-        DataService.remove_item_from_inventory(player.id, 'town_scroll', 1)
+        DataService.remove_item_from_inventory(player.id, 'return_scroll', 1)
 
         # 执行回城
         player.current_location = station_id
@@ -103,12 +103,12 @@ class MapService:
             return {'success': False, 'msg': '目标场景不存在'}
 
         # 检查神行符
-        inv = DataService.get_inventory_item(player.id, 'shenxing_scroll')
+        inv = DataService.get_inventory_item(player.id, 'speed_scroll')
         if not inv or inv.quantity < 1:
             return {'success': False, 'msg': '神行需要消耗1个神行符，您没有神行符'}
 
         # 消耗神行符
-        DataService.remove_item_from_inventory(player.id, 'shenxing_scroll', 1)
+        DataService.remove_item_from_inventory(player.id, 'speed_scroll', 1)
 
         # 执行传送
         player.current_location = scene_id

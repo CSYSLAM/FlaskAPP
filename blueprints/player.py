@@ -564,6 +564,7 @@ def inventory(category='全部'):
                 'quantity': inv.quantity,
                 'item_data': item_data,
                 'category': cat,
+                'effect_hint': DataService.get_item_effect_hint(inv.item_id),
             })
 
     # Equipment instances (unequipped)

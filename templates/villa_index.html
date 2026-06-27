@@ -29,7 +29,10 @@
     昵称:{{ player.nickname }}<br/>
     等级:{{ villa.level }}<br/>
     经验:{{ villa.experience }}/{{ villa.get_exp_to_next_level() }}<br/>
-    行动力:{{ villa.action_points }}/{{ villa.max_action_points }}<br/>
+    行动力:{{ villa.action_points }}/{{ villa.max_action_points }}
+{% if villa.action_points < villa.max_action_points and vitality_count > 0 %}
+<a href="{{ url_for('villa.use_vitality_card') }}">补充(+10)</a>(活力卡x{{ vitality_count }})
+{% endif %}<br/>
     守将:{% if defender %}{{ defender.name }}(防御力:{{ villa.get_defense_power() }}){% else %}无{% endif %}<br/>
     祈福:{{ villa.blessing_count }}/10
     {% if villa.blessing_count >= 10 %}<a href="{{ url_for('villa.claim_blessing') }}">领取礼包</a>{% endif %}<br/>

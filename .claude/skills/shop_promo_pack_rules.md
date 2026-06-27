@@ -19,6 +19,64 @@
 |--------|--------|------|
 | 风雷珠特惠包 | 500 | 已下架，is_usable=false |
 
+## 装备分类商品（材料包）
+
+| 商品 | 价格(金珠/元宝) | 使用后获得 | 物品ID |
+|------|----------------|-----------|--------|
+| 碎皮包 | 400 | 碎皮x20 | sui_pi_pack |
+| 黄杨木包 | 400 | 黄杨木x20 | huangyang_mu_pack |
+| 麻布包 | 400 | 麻布x20 | ma_bu_pack |
+| 黄铜矿包 | 400 | 黄铜矿x20 | huangtong_kuang_pack |
+| 硬皮包 | 600 | 硬皮x20 | ying_pi_pack |
+| 沉香木包 | 600 | 沉香木x20 | chenxiang_mu_pack |
+| 棉布包 | 600 | 棉布x20 | mian_bu_pack |
+| 黑铁矿包 | 600 | 黑铁矿x20 | heitie_kuang_pack |
+| 厚皮包 | 800 | 厚皮x20 | hou_pi_pack |
+| 紫檀木包 | 800 | 紫檀木x20 | zitan_mu_pack |
+| 呢绒包 | 800 | 呢绒x20 | nirong_pack |
+| 精金矿包 | 800 | 精金矿x20 | jingjin_kuang_pack |
+
+### 材料包使用效果配置
+
+```json
+{
+  "usage_effect": {
+    "grant_item": ["craft_材料id", 20]
+  }
+}
+```
+
+材料包type为consumable，背包分类时名字含"包"的显示在"其他"分类。
+
+## 装备分类商品（新婚戒指包）
+
+| 商品 | 价格(金珠/元宝) | 使用后获得 | 系统公告 |
+|------|----------------|-----------|----------|
+| 新婚钻戒包 | 2000 | 20级神器饰品【新婚钻戒】(1-5星随机) | XXX打开新婚钻戒包，获得了XX，恭喜恭喜！ |
+| 新婚草戒包 | 100 | 20级饰品【新婚草戒】(普通-史诗随机) | XXX打开新婚草戒包，获得了XX，恭喜恭喜！ |
+
+### 新婚戒指包使用效果配置
+
+```json
+{
+  "usage_effect": {
+    "generate_equipment": {
+      "template_id": "wedding_diamond_ring",  // 或 wedding_grass_ring
+      "rarity": "神器",  // 钻戒包固定神器
+      "rarity_range": ["普通", "精良", "卓越", "史诗"],  // 草戒包品质范围
+      "stars_range": [1, 5]  // 星级随机范围
+    }
+  }
+}
+```
+
+### 相关装备模板
+
+| 模板ID | 名称 | 等级 | 类型 | 品质 |
+|--------|------|------|------|------|
+| wedding_diamond_ring | 新婚钻戒 | 20 | accessory | 神器 |
+| wedding_grass_ring | 新婚草戒 | 20 | accessory | 普通-史诗 |
+
 ## 物品详细说明
 
 ### 战场令旗
@@ -64,10 +122,20 @@
 
 ## 背包分类规则
 
-战场令旗、战场续命灯属于**其他**类(type=other)，在背包中显示在"其他"分类下。
+材料包（名字含"包"的consumable）显示在"其他"分类，材料（type=material）显示在"材料"分类。
+
+代码位置：`blueprints/player.py` inventory函数：
+```python
+if it_type in ('consumable', 'potion'):
+    if '包' in item_name:
+        cat = '其他'
+    else:
+        cat = '药品'
+```
 
 ## 特惠包usage_effect配置格式
 
+### 固定数量发放（random_items）
 ```json
 {
   "usage_effect": {
@@ -78,7 +146,30 @@
 }
 ```
 
-使用`guaranteed_count`和`max_count`相同且`chance=1.0`表示固定数量发放，无随机性。
+### 直接授予物品（grant_item）
+```json
+{
+  "usage_effect": {
+    "grant_item": ["物品id", 数量]
+  }
+}
+```
+
+### 生成装备（generate_equipment）
+```json
+{
+  "usage_effect": {
+    "generate_equipment": {
+      "template_id": "装备模板id",
+      "rarity": "神器",  // 固定品质
+      "rarity_range": ["普通", "精良", "卓越", "史诗"],  // 品质范围
+      "stars_range": [1, 5]  // 星级范围
+    }
+  }
+}
+```
+
+代码位置：`services/item_service.py` use_item方法处理这些效果。
 
 ## 规则变更记录
 
@@ -97,3 +188,7 @@
 | 2026-06-14 | 副将双倍经验卡：type=other，usage_effect.temp_effects(lt_exp_rate rate=1.0 1h)，battle_service副将获50%经验×加成 | csy |
 | 2026-06-14 | 角色改名卡：type=other，usage_effect.special=rename，使用后跳转改名页面 | csy |
 | 2026-06-14 | 强化小幸运符：type=other，usage_effect.special=enhance_lucky，设置player.enhance_bonus_rate=0.05不可叠加 | csy |
+| 2026-06-27 | 材料包：grant_item获得对应材料x20，背包分类显示在"其他" | csy |
+| 2026-06-27 | 新婚钻戒包：generate_equipment生成20级神器饰品(1-5星)，使用时系统公告 | csy |
+| 2026-06-27 | 新婚草戒包：generate_equipment生成20级饰品(普通-史诗)，使用时系统公告 | csy |
+| 2026-06-27 | item_service添加grant_item和generate_equipment效果处理 | csy |

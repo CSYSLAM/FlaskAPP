@@ -1,3 +1,12 @@
+# # 1. 丢弃 app.py 和 game1.db 的本地修改，恢复成远程版本
+# git checkout -- app.py instance/game1.db
+
+# # 2. 删除本地多余的 flask_app.py（因为远程也有这个文件，会冲突）
+# rm flask_app.py
+
+# # 3. 重新拉取远程代码
+# git pull
+
 import os
 import traceback
 from pathlib import Path

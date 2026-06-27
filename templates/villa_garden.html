@@ -46,6 +46,9 @@
     {% endif %}
     {% elif plot.status == 'growing' %}
     {{ plot.seed_name }}(生长中，剩余{{ plot.remaining }}秒)
+    {% if ripening_count > 0 %}
+    <a href="{{ url_for('villa.ripen_plot', plot_index=plot.index) }}">催熟</a>
+    {% endif %}
     {% elif plot.status == 'ready' %}
     {{ plot.harvest_name }}(x{{ plot.ready_count }}) <a href="{{ url_for('villa.harvest_plot', plot_index=plot.index) }}">采摘</a>
     {% endif %}

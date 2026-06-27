@@ -504,43 +504,13 @@
     "price": 150,
     "is_usable": true,
     "usage_effect": {
-      "random_items": [
-        {
-          "item_id": "potion_attack",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_defense",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_health",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_mana_temp",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_crit",
-          "max_count": 1,
-          "chance": 0.1,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_dodge",
-          "max_count": 1,
-          "chance": 0.1,
-          "guaranteed_count": 1
-        }
+      "random_one_of": [
+        "potion_health",
+        "potion_mana_temp",
+        "potion_attack",
+        "potion_defense",
+        "potion_crit",
+        "potion_dodge"
       ]
     },
     "capacity": 0
@@ -641,12 +611,12 @@
   "money_small": {
     "name": "小银两包",
     "type": "consumable",
-    "description": "打开获得少量银两",
+    "description": "使用后可获100000银两",
     "price": 0,
     "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "grant_gold": 10000
+      "grant_gold": 100000
     },
     "capacity": 0.1
   },
@@ -752,7 +722,7 @@
   },
   "potion_revive": {
     "name": "续命灯",
-    "type": "potion",
+    "type": "other",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
@@ -762,26 +732,9 @@
   "blood_stone_small": {
     "name": "小血石",
     "type": "consumable",
-    "description": "使用后增加1000点生命储备，战斗中可自动回复",
+    "description": "使用可获生命储备5000点",
     "price": 200,
     "sell_price": 50,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "blood_reserve": 1000
-      },
-      "effect_descriptions": {
-        "blood_reserve": "生命储备+1000"
-      }
-    },
-    "capacity": 0.1
-  },
-  "blood_stone_medium": {
-    "name": "中血石",
-    "type": "consumable",
-    "description": "使用后增加5000点生命储备，战斗中可自动回复",
-    "price": 800,
-    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -789,6 +742,23 @@
       },
       "effect_descriptions": {
         "blood_reserve": "生命储备+5000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "blood_stone_medium": {
+    "name": "中血石",
+    "type": "consumable",
+    "description": "使用可获生命储备10000点",
+    "price": 800,
+    "sell_price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "blood_reserve": 10000
+      },
+      "effect_descriptions": {
+        "blood_reserve": "生命储备+10000"
       }
     },
     "capacity": 0.1
@@ -813,26 +783,9 @@
   "mana_stone_small": {
     "name": "小魔石",
     "type": "consumable",
-    "description": "使用后增加1000点魔法储备，战斗中可自动回复",
+    "description": "使用可获魔法储备5000点",
     "price": 200,
     "sell_price": 50,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "mana_reserve": 1000
-      },
-      "effect_descriptions": {
-        "mana_reserve": "魔法储备+1000"
-      }
-    },
-    "capacity": 0.1
-  },
-  "mana_stone_medium": {
-    "name": "中魔石",
-    "type": "consumable",
-    "description": "使用后增加5000点魔法储备，战斗中可自动回复",
-    "price": 800,
-    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -840,6 +793,23 @@
       },
       "effect_descriptions": {
         "mana_reserve": "魔法储备+5000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "mana_stone_medium": {
+    "name": "中魔石",
+    "type": "consumable",
+    "description": "使用可获魔法储备10000点",
+    "price": 800,
+    "sell_price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana_reserve": 10000
+      },
+      "effect_descriptions": {
+        "mana_reserve": "魔法储备+10000"
       }
     },
     "capacity": 0.1
@@ -1493,7 +1463,7 @@
   },
   "yb_revive": {
     "name": "续命灯",
-    "type": "material",
+    "type": "other",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
@@ -1511,7 +1481,7 @@
   },
   "jz_revive": {
     "name": "续命灯",
-    "type": "material",
+    "type": "other",
     "description": "可以满血复活",
     "price": 200,
     "currency": "jinzu",
@@ -1618,7 +1588,7 @@
   },
   "lt_quality_pill": {
     "name": "副将资质丹",
-    "type": "material",
+    "type": "other",
     "description": "洗副将资质，随机刷新品质(0-20)",
     "price": 500,
     "currency": "yuanbao",
@@ -1626,7 +1596,7 @@
   },
   "lt_enlighten_pill": {
     "name": "副将悟性丹",
-    "type": "material",
+    "type": "other",
     "description": "提升副将悟性，成功悟性+1，失败不变",
     "price": 800,
     "currency": "yuanbao",
@@ -1634,7 +1604,7 @@
   },
   "lt_reinforce_pill": {
     "name": "副将强化丹",
-    "type": "material",
+    "type": "other",
     "description": "强化副将，成功+1，失败不变",
     "price": 600,
     "currency": "yuanbao",
@@ -1642,7 +1612,7 @@
   },
   "lt_loyalty_pill": {
     "name": "副将忠诚丹",
-    "type": "material",
+    "type": "other",
     "description": "恢复副将忠诚度+20",
     "price": 300,
     "currency": "yuanbao",
@@ -1650,7 +1620,7 @@
   },
   "lt_lifespan_pill": {
     "name": "副将寿命丹",
-    "type": "material",
+    "type": "other",
     "description": "恢复副将寿命+20",
     "price": 300,
     "currency": "yuanbao",
@@ -1666,7 +1636,7 @@
   },
   "lt_slot_expand": {
     "name": "副将扩充符",
-    "type": "material",
+    "type": "other",
     "description": "扩充副将位+1",
     "price": 2000,
     "currency": "yuanbao",
@@ -1674,14 +1644,14 @@
   },
   "lt_potion_heal": {
     "name": "副将补药",
-    "type": "potion",
+    "type": "other",
     "description": "恢复副将生命值100",
     "price": 200,
     "capacity": 0
   },
   "lt_potion_mana": {
     "name": "副将魔药",
-    "type": "potion",
+    "type": "other",
     "description": "恢复副将魔法值50",
     "price": 200,
     "capacity": 0
@@ -1984,6 +1954,7 @@
     "description": "送给异性增加魅力和缘分",
     "sell_price": 50,
     "price": 100,
+    "is_usable": false,
     "capacity": 0.1
   },
   "ginseng": {
@@ -2103,7 +2074,7 @@
   },
   "revive_lamp": {
     "name": "续命灯",
-    "type": "material",
+    "type": "other",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
@@ -2518,7 +2489,7 @@
   },
   "seed_jinchuangyao": {
     "name": "金疮药种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植金疮药。",
     "price": 240,
     "is_usable": false,
@@ -2526,7 +2497,7 @@
   },
   "seed_jumosan": {
     "name": "凝魔散种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植聚魔散。",
     "price": 240,
     "is_usable": false,
@@ -2534,7 +2505,7 @@
   },
   "seed_yangshengwan": {
     "name": "养生丸种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植养生丸。",
     "price": 480,
     "is_usable": false,
@@ -2542,7 +2513,7 @@
   },
   "seed_xingshenshui": {
     "name": "醒神水种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植醒神水。",
     "price": 480,
     "is_usable": false,
@@ -2550,7 +2521,7 @@
   },
   "seed_dabuwan": {
     "name": "大补丸种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植大补丸。",
     "price": 960,
     "is_usable": false,
@@ -2558,7 +2529,7 @@
   },
   "seed_yeshanshen": {
     "name": "野山参种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植野山参。",
     "price": 1920,
     "is_usable": false,
@@ -2566,7 +2537,7 @@
   },
   "seed_xuelianlu": {
     "name": "雪莲露种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植雪莲露。",
     "price": 1920,
     "is_usable": false,
@@ -2574,7 +2545,7 @@
   },
   "seed_zhenzhubei": {
     "name": "珍珠贝种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植珍珠贝。",
     "price": 2440,
     "is_usable": false,
@@ -2582,7 +2553,7 @@
   },
   "seed_huanyangdan": {
     "name": "还阳丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植还阳丹。",
     "price": 2980,
     "is_usable": false,
@@ -2590,7 +2561,7 @@
   },
   "seed_guanyinshui": {
     "name": "观音水种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植观音水。",
     "price": 2980,
     "is_usable": false,
@@ -2598,7 +2569,7 @@
   },
   "seed_tiancandan": {
     "name": "天蚕丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植天蚕丹。",
     "price": 4960,
     "is_usable": false,
@@ -2606,7 +2577,7 @@
   },
   "seed_huashenshui": {
     "name": "化神水种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植化神水。",
     "price": 4960,
     "is_usable": false,
@@ -2614,7 +2585,7 @@
   },
   "seed_jingyandan": {
     "name": "经验丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植经验丹。",
     "price": 10000,
     "is_usable": false,
@@ -2622,7 +2593,7 @@
   },
   "seed_shenxuedan": {
     "name": "神血丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植神血丹。",
     "price": 5960,
     "is_usable": false,
@@ -2630,7 +2601,7 @@
   },
   "seed_qinglinglu": {
     "name": "清灵露种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植清灵露。",
     "price": 5960,
     "is_usable": false,
@@ -3140,7 +3111,7 @@
   },
   "lt_recruit_token": {
     "name": "副将招募令",
-    "type": "quest",
+    "type": "other",
     "description": "可在副将统领处招募一名副将",
     "price": 0,
     "sell_price": 0,
@@ -3398,22 +3369,22 @@
   },
   "ripening_agent": {
     "name": "催熟剂",
-    "type": "consumable",
-    "description": "使用后加速植物生长",
+    "type": "other",
+    "description": "用于百草园作物催熟的道具",
     "price": 0,
     "sell_price": 30,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "vitality_card": {
     "name": "活力卡",
     "type": "consumable",
-    "description": "使用后恢复全部活力",
+    "description": "每张卡可恢复10点山庄行动力",
     "price": 0,
     "sell_price": 100,
-    "is_usable": true,
+    "is_usable": false,
     "usage_effect": {
-      "restore_vitality": 999
+      "restore_vitality": 10
     },
     "capacity": 0.1
   },
@@ -3447,19 +3418,19 @@
   "money_large": {
     "name": "大银两包",
     "type": "consumable",
-    "description": "打开获得大量银两",
+    "description": "使用后可获500000银两",
     "price": 0,
     "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "grant_gold": 100000
+      "grant_gold": 500000
     },
     "capacity": 0.1
   },
   "death_substitute": {
     "name": "死亡替身符",
-    "type": "consumable",
-    "description": "死亡时自动消耗，免除死亡惩罚",
+    "type": "other",
+    "description": "蕴含神奇保护力量的符咒，PK死亡后不会损失经验与掉落银两、道具、荣誉，每次PK死亡自动消耗1个",
     "price": 0,
     "sell_price": 200,
     "is_usable": false,
@@ -3666,43 +3637,25 @@
   "mi_yao_pack": {
     "name": "秘药礼包",
     "type": "consumable",
-    "description": "打开获得随机属性秘药",
+    "description": "打开随机获得一种属性秘药",
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
-      "random_items": [
-        {
-          "item_id": "pill_attack",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        },
-        {
-          "item_id": "pill_defense",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        },
-        {
-          "item_id": "pill_max_health",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        },
-        {
-          "item_id": "pill_max_mana",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        }
+      "random_one_of": [
+        "potion_health",
+        "potion_mana_temp",
+        "potion_attack",
+        "potion_defense",
+        "potion_crit",
+        "potion_dodge"
       ]
     },
     "capacity": 0.1
   },
   "double_exp_card": {
     "name": "双倍经验卡",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后1小时内打怪经验增加1倍",
     "price": 0,
     "sell_price": 200,
@@ -3824,16 +3777,16 @@
   "big_hp_stone": {
     "name": "大血石",
     "type": "consumable",
-    "description": "使用后增加20000点生命储备",
+    "description": "使用可获生命储备25000点",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "blood_reserve": 20000
+        "blood_reserve": 25000
       },
       "effect_descriptions": {
-        "blood_reserve": "生命储备+20000"
+        "blood_reserve": "生命储备+25000"
       }
     },
     "capacity": 0.1
@@ -3841,16 +3794,16 @@
   "big_mp_stone": {
     "name": "大魔石",
     "type": "consumable",
-    "description": "使用后增加20000点魔法储备",
+    "description": "使用可获魔法储备25000点",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "mana_reserve": 20000
+        "mana_reserve": 25000
       },
       "effect_descriptions": {
-        "mana_reserve": "魔法储备+20000"
+        "mana_reserve": "魔法储备+25000"
       }
     },
     "capacity": 0.1
@@ -3923,7 +3876,7 @@
   },
   "lt_recruit": {
     "name": "副将招募令",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后招募随机副将",
     "price": 0,
     "sell_price": 500,
@@ -4333,9 +4286,10 @@
   "duanchang_cao": {
     "name": "断肠草",
     "type": "material",
-    "description": "用于与红颜或知己断交",
+    "description": "斩断情丝，忘却因缘！离婚必备道具。",
     "price": 0,
     "sell_price": 200,
+    "is_usable": false,
     "capacity": 0.1
   },
   "enhance_lucky": {
@@ -4362,9 +4316,10 @@
   "friend_wine": {
     "name": "结交酒",
     "type": "material",
-    "description": "用于与红颜或知己结交",
+    "description": "用于红颜、知己结交的道具",
     "price": 0,
     "sell_price": 200,
+    "is_usable": false,
     "capacity": 0.1
   },
   "kongming_lantern": {
@@ -4460,11 +4415,14 @@
   },
   "peace_token": {
     "name": "免战符",
-    "type": "material",
-    "description": "使用后一段时间内不会被其他玩家攻击",
+    "type": "other",
+    "description": "120分钟内未主动攻击他人可使用，使用后将进入300分免战状态，可叠加但无法提前结束；免战状态期间除特定活动外将无法攻击与被其他玩家攻击。",
     "price": 0,
     "sell_price": 110,
     "is_usable": true,
+    "usage_effect": {
+      "peace_status": 300
+    },
     "capacity": 0.1
   },
   "rename_card": {
@@ -4482,19 +4440,19 @@
   "return_scroll": {
     "name": "回城符",
     "type": "consumable",
-    "description": "使用后立即返回主城",
+    "description": "仅在城镇地图可用，可在[场景]-[地图]-[回城]中快速前往所在城镇驿站！",
     "price": 0,
     "sell_price": 10,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "speed_scroll": {
     "name": "神行符",
     "type": "consumable",
-    "description": "使用后一段时间内移动速度提升",
+    "description": "仅在城镇地图可用，可在[场景]-[地图]-[神行]中进行城镇快捷传送！",
     "price": 0,
     "sell_price": 10,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "wood_hammer": {

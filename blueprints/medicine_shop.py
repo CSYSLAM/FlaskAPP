@@ -86,13 +86,17 @@ def buy(npc_id, item_id):
 
     if not item_entry:
         flash("物品不存在")
-        return redirect(url_for('medicine.shop', npc_id=npc_id))
+        tab = request.args.get('tab', 'medicine')
+        page = request.args.get('page', 1)
+        return redirect(url_for('medicine.shop', npc_id=npc_id, tab=tab, page=page))
 
     # Check item definition exists
     item_def = DataService.get_item(item_id)
     if not item_def:
         flash("物品未定义")
-        return redirect(url_for('medicine.shop', npc_id=npc_id))
+        tab = request.args.get('tab', 'medicine')
+        page = request.args.get('page', 1)
+        return redirect(url_for('medicine.shop', npc_id=npc_id, tab=tab, page=page))
 
     total_price = item_entry['price'] * quantity
 
@@ -101,7 +105,9 @@ def buy(npc_id, item_id):
     available_gold = player.gold
     if available_gold < total_price:
         flash(f"银两不足，需要{total_price}银两")
-        return redirect(url_for('medicine.shop', npc_id=npc_id))
+        tab = request.args.get('tab', 'medicine')
+        page = request.args.get('page', 1)
+        return redirect(url_for('medicine.shop', npc_id=npc_id, tab=tab, page=page))
 
     # Deduct gold and add item
     player.gold -= total_price
@@ -112,4 +118,6 @@ def buy(npc_id, item_id):
 
     item_name = item_entry.get('name', item_def.get('name', '物品'))
     flash(f"成功花费{total_price}银两购买{quantity}个{item_name}")
-    return redirect(url_for('medicine.shop', npc_id=npc_id))
+    tab = request.args.get('tab', 'medicine')
+    page = request.args.get('page', 1)
+    return redirect(url_for('medicine.shop', npc_id=npc_id, tab=tab, page=page))
