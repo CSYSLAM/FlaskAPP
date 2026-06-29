@@ -60,6 +60,14 @@ class DataService:
             else:
                 cls._cache[key] = {}
 
+        # Finance stocks (理财·股市) static definitions
+        finance_path = data_dir / 'finance_stocks.json'
+        if finance_path.exists():
+            with open(finance_path, 'r', encoding='utf-8') as f:
+                cls._cache['finance_stocks'] = json.load(f).get('stocks', [])
+        else:
+            cls._cache['finance_stocks'] = []
+
         copy_monsters_path = data_dir / 'copy_monsters.json'
         if copy_monsters_path.exists():
             with open(copy_monsters_path, 'r', encoding='utf-8') as f:
@@ -190,6 +198,11 @@ class DataService:
     @classmethod
     def get_monsters(cls):
         return cls._cache.get('monsters', {})
+
+    @classmethod
+    def get_finance_stocks(cls):
+        """Return list of finance stock definitions (理财·股市)."""
+        return cls._cache.get('finance_stocks', [])
 
     @classmethod
     def get_monster(cls, monster_id):
@@ -410,8 +423,11 @@ class DataService:
             selected = deduped
 
         for stat in selected:
-            stat_stars = min(5, max(1, random.randint(stars - 1, stars + 1)))
             max_value = template.get("max_extra_stats", {}).get(stat, 0)
+            # 模板中 max_value 为 0 的属性：不参与随机星级生成、不计入总体星级、不显示
+            if not max_value or max_value == 0:
+                continue
+            stat_stars = min(5, max(1, random.randint(stars - 1, stars + 1)))
             actual_value = max_value * (stat_stars / 5)
             extra_stats[stat] = [actual_value, stat_stars]
 

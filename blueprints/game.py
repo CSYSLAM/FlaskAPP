@@ -88,6 +88,21 @@ def scene():
                             m.respawn_remaining = remaining
                     monsters_list.append(m)
 
+        # Finance bandit: if a bandit is alive at this location, show it as a world boss (理财·劫匪)
+        # 击杀后（复活中）不在场景显示，仅在金珠股市劫匪情报中显示复活倒计时
+        from services.finance_service import FinanceService
+        bandit_info = FinanceService.get_bandit_at_location(location_id)
+        if bandit_info:
+            bandit_mid, bandit_city, bandit_respawn = bandit_info
+            if bandit_respawn <= 0:  # 在场才显示，复活中则跳过
+                all_monsters = DataService.get_monsters()
+                bdata = all_monsters.get(bandit_mid)
+                if bdata:
+                    from models.monster import Monster
+                    bm = Monster.from_dict(bandit_mid, bdata)
+                    bm.is_bandit = True
+                    monsters_list.append(bm)
+
         # Get NPCs in this location
         npcs = []
         npc_ids = location.get("npcs", [])
@@ -269,7 +284,8 @@ def encounter():
     if player.in_battle:
         return redirect(url_for("battle.battle"))
 
-    success, msg = BattleService.start_pve(player)
+    monster_id = request.args.get("mid") or None
+    success, msg = BattleService.start_pve(player, monster_id=monster_id)
     if not success:
         flash(msg)
         return redirect(url_for("game.scene"))
@@ -285,6 +301,10 @@ def view_npc(monster_id):
     monster_data = monsters.get(monster_id)
     if not monster_data:
         return redirect(url_for("game.scene"))
+
+    # Finance popularity: count NPC visits for stock market (理财·人气)
+    from services.finance_service import FinanceService
+    FinanceService.record_npc_visit(monster_id, player.id)
 
     from models.monster import Monster
     monster = Monster.from_dict(monster_id, monster_data)
@@ -343,6 +363,9 @@ def view_npc(monster_id):
         from services.quest_service import QuestService
         QuestService.update_talk_progress(player, monster_id)
         npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
+        # 金掌柜快捷入口：前往股市（理财）
+        if request.args.get('to') == 'finance':
+            return redirect(url_for('activity.finance_page'))
         if npc_quests:
             return render_template("view_npc.html", player=player, monster=monster,
                                  npc_quests=npc_quests, QuestService=QuestService)

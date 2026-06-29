@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>股市规则说明</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.7; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .up { color: #2e8b57; }
+    .down { color: #d9534f; }
+    .flat { color: #888; }
+    .sep { color: #888; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    股市规则说明<br/>
+    ----------------<br/>
+    <b>一、货币与交易</b><br/>
+    · 投资货币为<span class="up">金珠</span>，买卖均以金珠结算<br/>
+    · 手续费<span class="down">万五（0.05%）</span>，买入卖出各收一次<br/>
+    · T+0 交易，随时买入卖出，无持有时间限制<br/>
+    · 每股设有发行总量上限，买入受可买量（发行量－流通量）限制<br/>
+    · 单笔最少1股，数量须为整数<br/>
+    · 卖出数量不得超过当前持仓<br/>
+    ----------------<br/>
+    <b>二、持仓与盈亏</b><br/>
+    · 买入后按加权平均计算持仓均价<br/>
+    · 浮动盈亏 = 持仓市值 － 持仓成本<br/>
+    · 已实现盈亏 = 卖出收入 － 对应成本 － 手续费<br/>
+    · 股神榜按「已实现盈亏＋浮动盈亏」排名<br/>
+    ----------------<br/>
+    <b>三、股价涨跌规则</b><br/>
+    · 每日累计涨跌幅不超过 <span class="up">±10%</span>（涨停/跌停）<br/>
+    · 涨跌由三部分合成：<br/>
+    &nbsp;&nbsp;① 纯随机 <span class="flat">±8%</span>：开盘时一次性确定<br/>
+    &nbsp;&nbsp;② 人气 <span class="up">+1%</span> / <span class="down">-0.5%</span>：当日该股票关联NPC被玩家访问越多，涨幅上限越高，但仍有概率小幅下跌<br/>
+    &nbsp;&nbsp;③ 劫匪 <span class="up">+1%</span> / <span class="down">-0.4%</span>：当日该城市击杀劫匪越多，涨幅上限越高，但仍有概率小幅下跌<br/>
+    · 每位玩家每日对同一NPC的人气只计1次（防刷）<br/>
+    ----------------<br/>
+    <b>四、实时股价</b><br/>
+    · 股价每 <span class="up">5分钟</span> 刷新一次（实时tick）<br/>
+    · 相邻两次刷新的差值不超过 <span class="flat">±1%</span><br/>
+    · 实时价围绕当日趋势线（开盘价×(1+当日涨跌)）波动<br/>
+    · 页面显示距下次刷新倒计时，到点自动刷新<br/>
+    ----------------<br/>
+    <b>五、劫匪系统</b><br/>
+    · 劫匪为世界BOSS，每个城市随机出没1名，<span class="down">未击杀则持续存在</span><br/>
+    · 劫匪随机出没于该城市区域内的某个场景（非固定广场）<br/>
+    · 前往劫匪所在场景，地图怪物列表中可见「【劫】城市劫匪」，点击即可开战<br/>
+    · 击杀劫匪可救济富商，获<span class="up">积分+1</span>，每满100积分兑换1金珠（等效每次0.01金珠）<br/>
+    · 击杀后 <span class="up">5分钟</span> 复活，并<span class="up">随机刷新</span>到该城市另一场景<br/>
+    · 击杀计入该城市义士榜，并提振对应股票涨幅上限<br/>
+    ----------------<br/>
+    <b>六、人气来源</b><br/>
+    · 股票名为各城市主要NPC处（北平客栈、下邳铁匠铺等）<br/>
+    · 玩家在地图中点击对应NPC对话，即为该股票积累人气<br/>
+    · 人气越高，当日涨幅上限越高（最多+1%）<br/>
+    ----------------<br/>
+    <span class="flat">* 股市有风险，投资需谨慎 *</span><br/>
+    <br/>
+    <a href="{{ url_for('activity.finance_page') }}">返回行情</a><br/>
+    <a href="{{ url_for('activity.index') }}">返回活动</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

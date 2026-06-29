@@ -1,20 +1,23 @@
 {
-    "tie_sword_5": {
-        "name": "铁剑",
-        "description": "以精铁打造的长剑，朴实无华却锋利耐用，全职业通用",
-        "slot": "weapon",
-        "is_bound": false,
-        "level_required": 5,
-        "class_required": null,
-        "base_price": 900,
-        "is_artifact": false,
-        "base_stats": {
-            "attack": 12
-        },
-        "max_extra_stats": {
-            "attack": 7,
-            "crit_rate": 0.03,
-            "defense": 2
-        }
+  "tie_sword_5": {
+    "name": "铁剑",
+    "description": "以精铁打造的长剑，朴实无华却锋利耐用，全职业通用",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 5,
+    "class_required": null,
+    "base_price": 900,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 12
+    },
+    "max_extra_stats": {
+      "attack": 7,
+      "crit_rate": 0.03,
+      "defense": 2,
+      "max_health": 0.0,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
+  }
 }

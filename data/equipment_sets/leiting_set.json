@@ -16,7 +16,9 @@
       "defense": 20,
       "max_health": 70,
       "attack": 5,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "leiting_armor_28": {
@@ -36,7 +38,9 @@
       "defense": 24,
       "max_health": 80,
       "attack": 6,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "leiting_gloves_26": {
@@ -56,7 +60,9 @@
       "attack": 14,
       "crit_rate": 0.04,
       "defense": 7,
-      "max_health": 35
+      "max_health": 35,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "leiting_pants_27": {
@@ -76,7 +82,9 @@
       "defense": 20,
       "max_health": 70,
       "attack": 4,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.03,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "leiting_shoes_25": {
@@ -96,7 +104,9 @@
       "defense": 14,
       "max_health": 40,
       "attack": 3,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   }
 }

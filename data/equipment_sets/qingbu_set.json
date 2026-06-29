@@ -14,7 +14,8 @@
       "max_health": 60,
       "crit_rate": 0.05,
       "max_mana": 30,
-      "defense": 8
+      "defense": 8,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_helmet_10": {
@@ -32,7 +33,8 @@
       "max_health": 60,
       "max_mana": 30,
       "crit_rate": 0.03,
-      "attack": 5
+      "attack": 5,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_armor_10": {
@@ -50,7 +52,8 @@
       "max_health": 80,
       "max_mana": 40,
       "crit_rate": 0.03,
-      "attack": 5
+      "attack": 5,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_gloves_10": {
@@ -68,7 +71,8 @@
       "crit_rate": 0.03,
       "max_health": 30,
       "max_mana": 25,
-      "defense": 5
+      "defense": 5,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_pants_10": {
@@ -86,7 +90,8 @@
       "max_health": 70,
       "max_mana": 35,
       "crit_rate": 0.03,
-      "attack": 5
+      "attack": 5,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_shoes_10": {

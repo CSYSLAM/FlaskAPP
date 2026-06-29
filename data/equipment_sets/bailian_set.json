@@ -16,7 +16,9 @@
       "defense": 32,
       "max_health": 110,
       "attack": 8,
-      "crit_rate": 0.05
+      "crit_rate": 0.05,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "bailian_armor_48": {
@@ -36,7 +38,9 @@
       "defense": 38,
       "max_health": 130,
       "attack": 10,
-      "crit_rate": 0.05
+      "crit_rate": 0.05,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "bailian_gloves_46": {
@@ -56,7 +60,9 @@
       "attack": 22,
       "crit_rate": 0.06,
       "defense": 11,
-      "max_health": 55
+      "max_health": 55,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "bailian_pants_47": {
@@ -76,7 +82,9 @@
       "defense": 32,
       "max_health": 110,
       "attack": 6,
-      "dodge_rate": 0.05
+      "dodge_rate": 0.05,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "bailian_shoes_45": {
@@ -96,7 +104,9 @@
       "defense": 22,
       "max_health": 65,
       "attack": 5,
-      "crit_rate": 0.05
+      "crit_rate": 0.05,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   }
 }

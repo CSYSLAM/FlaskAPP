@@ -16,7 +16,9 @@
       "defense": 26,
       "max_health": 85,
       "max_mana": 65,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.06,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   },
   "jinxiu_armor_48": {
@@ -36,7 +38,9 @@
       "defense": 32,
       "max_health": 105,
       "max_mana": 85,
-      "crit_rate": 0.06
+      "crit_rate": 0.06,
+      "attack": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "jinxiu_gloves_46": {
@@ -56,7 +60,9 @@
       "attack": 22,
       "crit_rate": 0.07,
       "max_mana": 50,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.06,
+      "defense": 0.0,
+      "max_health": 0.0
     }
   },
   "jinxiu_pants_47": {
@@ -76,7 +82,9 @@
       "defense": 26,
       "max_health": 90,
       "max_mana": 55,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.06,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   },
   "jinxiu_shoes_45": {
@@ -96,7 +104,9 @@
       "dodge_rate": 0.07,
       "defense": 18,
       "max_mana": 50,
-      "max_health": 55
+      "max_health": 55,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   }
 }

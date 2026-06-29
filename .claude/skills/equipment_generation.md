@@ -192,6 +192,7 @@ if generate_equipment:
 - 默认星级范围：(1,5)
 - 模板 is_artifact=true 时强制”神器”
 - 品质使用中文：普通/精良/卓越/史诗/神器（不是英文）
+- **零值属性规则**：`max_extra_stats` 中值为 `0`（或 `0.0`）的属性在 `_generate_extra_stats` 生成附加属性时被跳过——不参与随机星级生成、不占用品质条数名额、不计入总体星级、不在装备详情显示。所有装备/武器模板的 `max_extra_stats` 均包含全部 6 个属性（attack/defense/max_health/max_mana/crit_rate/dodge_rate），缺失默认补 `0.0`，不修改已有非零值。详见 `.claude/skills/equipment_design.md`「零值属性规则」。
 
 九、怪物掉落实现约束
 - 普通怪默认回退品质只能是：`普通 / 精良`
@@ -223,5 +224,6 @@ if generate_equipment:
 |------|---------|
 | 2026-06-27 | 添加generate_equipment效果处理，用于物品使用生成装备 |
 | 2026-06-27 | 品质必须使用中文，rarity_range配置改为中文数组 |
+| 2026-06-29 | 零值属性规则：max_extra_stats值为0的属性跳过生成/不显示/不计入星级；全部模板补齐6属性 |
 
 

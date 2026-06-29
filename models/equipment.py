@@ -116,11 +116,14 @@ class Equipment:
         
         for stat in selected_stats:
             # 在平均星级的基础上随机浮动，确保在1-5星之间
-            stat_stars = min(5, max(1, random.randint(avg_stars - 1, avg_stars + 1)))
             max_value = self.template["max_extra_stats"].get(stat, 0)
+            # 模板中 max_value 为 0 的属性：不参与随机星级生成、不计入总体星级、不显示
+            if not max_value or max_value == 0:
+                continue
+            stat_stars = min(5, max(1, random.randint(avg_stars - 1, avg_stars + 1)))
             actual_value = max_value * (stat_stars / 5)
             extra_stats[stat] = (actual_value, stat_stars)
-        
+
         return extra_stats
 
 

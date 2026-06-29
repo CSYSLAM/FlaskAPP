@@ -49,4 +49,7 @@ UPDATE players SET is_designer = 1 WHERE player_uid = '目标UID';
 ## _find_player() 查询逻辑
 - 10位字母数字组合 → 按 player_uid 查找
 - 纯数字 → 按数据库 id 查找
+
+## 装备附加属性零值规则（2026-06-29）
+装备/武器模板的 `max_extra_stats` 必须包含全部 6 个属性（attack/defense/max_health/max_mana/crit_rate/dodge_rate，缺失补 `0.0`，不改已有非零值）。值为 `0` 的属性在生成附加属性时被跳过：不参与随机星级生成、不占用品质条数名额、不计入总体星级、不在装备详情显示。实现位于 `services/data_service.py:_generate_extra_stats()` 与 `models/equipment.py:Equipment._generate_extra_stats()`。详见 `.claude/skills/equipment_design.md`「零值属性规则」。
 - 其他 → 按 username 查找
