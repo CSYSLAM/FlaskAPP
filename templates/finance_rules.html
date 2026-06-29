@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>股市规则说明</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.7; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .up { color: #2e8b57; }
+    .down { color: #d9534f; }
+    .flat { color: #888; }
+    .sep { color: #888; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    股市规则说明<br/>
+    ----------------<br/>
+    <b>一、货币与交易</b><br/>
+    · 投资货币为<span class="up">金珠</span>，买卖均以金珠结算<br/>
+    · 手续费<span class="down">万五（0.05%）</span>，买入卖出各收一次<br/>
+    · 每股发行总量上限约5000股，买入受可买量（发行量－流通量）限制<br/>
+    · 单笔最少1股，数量须为整数；卖出数量不得超过当前持仓<br/>
+    · 保留增股接口，后续活动可扩容发行量<br/>
+    ----------------<br/>
+    <b>二、交易时段</b><br/>
+    · <span class="up">09:30-18:00</span> 连续交易：可即时买卖，显示实时股价<br/>
+    · <span class="flat">09:00-09:30</span> 集合竞价：<span class="flat">不显示股价</span>，委托单按开盘价撮合<br/>
+    · <span class="down">00:00-09:00</span> 盘前：<span class="flat">不显示股价</span>，可提交委托单，9:00开盘后按开盘价撮合<br/>
+    · <span class="down">18:00-24:00</span> 盘后：已休市，<span class="flat">不可即时交易</span>，可提交委托单（次日开盘后撮合）<br/>
+    · <span class="up">9:00 开盘价 = 前一交易日收盘价</span>（昨收）<br/>
+    · 连续交易段股价每 <span class="up">5分钟</span> 刷新一次（实时tick），相邻两次差值不超过 <span class="flat">±1%</span><br/>
+    ----------------<br/>
+    <b>三、委托单（限价单）</b><br/>
+    · 任何时段（盘前/盘后/盘中）都可提交委托单<br/>
+    · 成交判定（统一按<span class="up">委托价</span>结算）：<br/>
+    &nbsp;&nbsp;① <span class="up">买单</span>：委托价 ≥ 当前价 × <span class="up">95%</span> 即成交<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;例：股价10金珠，挂9.5（=10×95%）能买到；挂11也能买到，但按11金珠结算<br/>
+    &nbsp;&nbsp;② <span class="down">卖单</span>：委托价 ≤ 当前价 即成交<br/>
+    · 盘前/集合竞价委托单：9:00开盘后按开盘价撮合；连续交易段按实时价逐tick撮合<br/>
+    · 买单挂单时预冻结金珠（委托价×数量+手续费），成交后按比例退回多余冻结<br/>
+    · 卖单挂单时预冻结持仓，成交后按委托价结算到账<br/>
+    · 未成交委托单可随时撤销，撤销后冻结资金/持仓即时退回<br/>
+    · 委托单隔日作废（跨天清空），请在当日盘内成交或撤销<br/>
+    ----------------<br/>
+    <b>三之一、流通量限制</b><br/>
+    · 每股发行总量上限约5000股，流通量 = 发行总量 － 玩家总持仓<br/>
+    · 买单成交受流通量限制：<span class="up">本次成交股数 = min(委托股数, 可流通量)</span><br/>
+    · 持仓已满5000股时，他人高价也无法买入<br/>
+    · 例：你买3000股剩2000可流通，他人挂3000股买单，最多成交2000股，剩余1000股继续挂单<br/>
+    ----------------<br/>
+    <b>四、持仓与盈亏</b><br/>
+    · 买入后按加权平均计算持仓均价<br/>
+    · 浮动盈亏 = 持仓市值 － 持仓成本<br/>
+    · 已实现盈亏 = 卖出收入 － 对应成本 － 手续费<br/>
+    · 股神榜按「已实现盈亏＋浮动盈亏」排名<br/>
+    ----------------<br/>
+    <b>五、股价涨跌与K线</b><br/>
+    · 每日累计涨跌幅不超过 <span class="up">±10%</span>（涨停/跌停）<br/>
+    · 开盘时随机确定当日总涨跌（自己也未知涨跌多少），由三部分合成：<br/>
+    &nbsp;&nbsp;① 纯随机 <span class="flat">±8%</span>：开盘一次性确定<br/>
+    &nbsp;&nbsp;② 人气（排名制）：按全市场NPC访问次数排名，人气最高股区间<span class="up">-0.5%~+1%</span>，最低股区间<span class="down">-1%~+0.5%</span>，中间线性插值<br/>
+    &nbsp;&nbsp;③ 劫匪（排名制）：按全市场当日击杀数排名，规则同人气<br/>
+    · <span class="up">50种K线走势策略</span>随机抽取：先跌后涨、先涨后跌、双底W、双顶M、阶梯、开盘拉满、地板拉回、V型、倒V型、锯齿震荡、尾盘急拉/跳水、圆弧、头肩等，分时段随机波动，非单调走直线<br/>
+    · 实时价围绕当日K线路径插值推进，相邻tick差≤1%<br/>
+    ----------------<br/>
+    <b>六、劫匪系统</b><br/>
+    · 劫匪为世界BOSS，<span class="down">每个城市随机出没1名</span>，未击杀则持续存在<br/>
+    · 劫匪随机出没于该城市区域内的某个场景（非固定广场）<br/>
+    · 前往劫匪所在场景，地图怪物列表中可见「【劫】城市劫匪」，点击即可开战<br/>
+    · 击杀劫匪可救济富商，获<span class="up">积分+1</span>，每满100积分兑换1金珠（等效每次0.01金珠）<br/>
+    · 击杀后 <span class="up">5分钟</span> 复活，并<span class="up">随机刷新</span>到该城市另一场景<br/>
+    · <span class="up">击杀某城市劫匪，该城市所有股票当日劫匪击杀数+1</span>（如击杀北平劫匪→北平客栈、北平钱庄均+1）<br/>
+    · 击杀计入该城市义士榜，并提振对应股票涨幅上限<br/>
+    · <span class="flat">击杀后劫匪从场景消失，仅在金珠股市劫匪情报显示复活倒计时</span><br/>
+    ----------------<br/>
+    <b>七、人气来源</b><br/>
+    · 股票名为各城市主要NPC处（北平客栈、下邳铁匠铺等）<br/>
+    · 玩家在地图中点击对应NPC对话，即为该股票积累人气（每人每日每NPC计1次）<br/>
+    · 人气按全市场排名分配当日涨幅区间，人气越高区间越偏涨<br/>
+    ----------------<br/>
+    <span class="flat">* 股市有风险，投资需谨慎 *</span><br/>
+    <br/>
+    <a href="{{ url_for('activity.finance_page') }}">返回行情</a><br/>
+    <a href="{{ url_for('activity.index') }}">返回活动</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    </script>
+</body>
+</html>

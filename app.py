@@ -55,6 +55,10 @@ def create_app():
     from services.world_boss_service import WorldBossService
     WorldBossService.init_bosses()
 
+    # Inject bandit monsters into monsters cache for finance (理财·股市) feature
+    from services.finance_service import FinanceService
+    FinanceService.register_bandit_monster(DataService.get_monsters())
+
     from blueprints.auth import auth_bp
     from blueprints.game import game_bp
     from blueprints.player import player_bp
@@ -216,6 +220,11 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN pk_loss_count INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN finance_data TEXT DEFAULT '{}'"))
             db.session.commit()
         except Exception:
             db.session.rollback()

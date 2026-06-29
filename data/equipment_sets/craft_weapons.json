@@ -1,482 +1,596 @@
 {
   "chelun_fu_20_zhanshi": {
     "name": "车轮斧",
-    "description": "战士专属，斧大如轮，横扫千军",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 20,
     "class_required": "战士",
-    "base_price": 5000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 42
+      "attack": 134
     },
     "max_extra_stats": {
-      "attack": 22,
-      "max_health": 80,
-      "crit_rate": 0.04,
-      "defense": 10
-    }
+      "attack": 141,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 340,
+      "crit_rate": 0.006,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5000,
+    "description": "战士专属，斧大如轮，横扫千军"
   },
   "baisheng_dao_20_zhanshi": {
     "name": "百胜刀",
-    "description": "战士专属，百战百胜之刀，锋芒毕露",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 20,
     "class_required": "战士",
-    "base_price": 5000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 40
+      "attack": 134
     },
     "max_extra_stats": {
-      "attack": 24,
-      "crit_rate": 0.05,
-      "max_health": 60,
-      "defense": 8
-    }
+      "attack": 141,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 340,
+      "crit_rate": 0.006,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5000,
+    "description": "战士专属，百战百胜之刀，锋芒毕露"
   },
   "kaishan_fu_30_zhanshi": {
     "name": "开山斧",
-    "description": "战士专属，力能开山，威不可挡",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 30,
     "class_required": "战士",
-    "base_price": 7500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 60
+      "attack": 223
     },
     "max_extra_stats": {
-      "attack": 30,
-      "max_health": 100,
-      "crit_rate": 0.05,
-      "defense": 14
-    }
+      "attack": 237,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 572,
+      "crit_rate": 0.009,
+      "dodge_rate": 0.0
+    },
+    "base_price": 7500,
+    "description": "战士专属，力能开山，威不可挡"
   },
   "bailu_dao_30_zhanshi": {
     "name": "白鹿刀",
-    "description": "战士专属，刀身如白鹿踏雪，轻灵锋利",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 30,
     "class_required": "战士",
-    "base_price": 7500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 58
+      "attack": 223
     },
     "max_extra_stats": {
-      "attack": 32,
-      "crit_rate": 0.06,
-      "max_health": 80,
-      "defense": 10
-    }
+      "attack": 234,
+      "defense": 0,
+      "max_mana": 572,
+      "crit_rate": 0.009,
+      "max_health": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 7500,
+    "description": "战士专属，刀身如白鹿踏雪，轻灵锋利"
   },
   "pojun_fu_40_zhanshi": {
     "name": "破军斧",
-    "description": "战士专属，破军之势，一斧当千",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 40,
     "class_required": "战士",
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 80
+      "attack": 372
     },
     "max_extra_stats": {
-      "attack": 38,
-      "max_health": 120,
-      "crit_rate": 0.06,
-      "defense": 18
-    }
+      "attack": 391,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 962,
+      "crit_rate": 0.032,
+      "dodge_rate": 0.0
+    },
+    "base_price": 10500,
+    "description": "战士专属，破军之势，一斧当千"
   },
   "xuezhan_dao_40_zhanshi": {
     "name": "血战刀",
-    "description": "战士专属，浴血奋战之刀，越战越勇",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 40,
     "class_required": "战士",
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 82
+      "attack": 372
     },
     "max_extra_stats": {
-      "attack": 36,
-      "crit_rate": 0.07,
-      "max_health": 100,
-      "defense": 14
-    }
+      "attack": 394,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 962,
+      "crit_rate": 0.032,
+      "dodge_rate": 0.0
+    },
+    "base_price": 10500,
+    "description": "战士专属，浴血奋战之刀，越战越勇"
   },
   "shanhe_fu_50_zhanshi": {
     "name": "山河斧",
-    "description": "战士专属，斧撼山河，力劈天下",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 50,
     "class_required": "战士",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 98
+      "attack": 480
     },
     "max_extra_stats": {
-      "attack": 46,
-      "max_health": 150,
-      "crit_rate": 0.07,
-      "defense": 22
-    }
+      "attack": 504,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 1249,
+      "crit_rate": 0.034,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "战士专属，斧撼山河，力劈天下"
   },
   "langyabang_50_zhanshi": {
     "name": "狼牙棒",
-    "description": "战士专属，狼牙密布，摧枯拉朽",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 50,
     "class_required": "战士",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 102
+      "attack": 480
     },
     "max_extra_stats": {
-      "attack": 42,
-      "crit_rate": 0.08,
-      "max_health": 120,
-      "defense": 16
-    }
+      "attack": 507,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 1249,
+      "crit_rate": 0.034,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "战士专属，狼牙密布，摧枯拉朽"
   },
   "huojing_jian_20_shushi": {
     "name": "火精剑",
-    "description": "术士专属，剑含火精，焚尽八荒",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 20,
     "class_required": "术士",
-    "base_price": 5000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 36
+      "attack": 123
     },
     "max_extra_stats": {
-      "attack": 18,
-      "max_mana": 80,
-      "crit_rate": 0.05,
-      "max_health": 40
-    }
+      "attack": 127,
+      "max_health": 0,
+      "max_mana": 645,
+      "crit_rate": 0.003,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5000,
+    "description": "术士专属，剑含火精，焚尽八荒"
   },
   "emao_shan_20_shushi": {
     "name": "鹅毛扇",
-    "description": "术士专属，以鹅毛制成的法扇，轻灵飘逸",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 20,
     "class_required": "术士",
-    "base_price": 5000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 34
+      "attack": 123
     },
     "max_extra_stats": {
-      "attack": 20,
-      "crit_rate": 0.05,
-      "max_mana": 60,
-      "max_health": 30
-    }
+      "attack": 127,
+      "max_health": 0,
+      "max_mana": 645,
+      "crit_rate": 0.003,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5000,
+    "description": "术士专属，以鹅毛制成的法扇，轻灵飘逸"
   },
   "duanshui_jian_30_shushi": {
     "name": "断水剑",
-    "description": "术士专属，剑出断水，法力无边",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 30,
     "class_required": "术士",
-    "base_price": 7500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 52
+      "attack": 206
     },
     "max_extra_stats": {
-      "attack": 28,
-      "max_mana": 110,
-      "crit_rate": 0.06,
-      "max_health": 55
-    }
+      "attack": 211,
+      "max_health": 0,
+      "max_mana": 1086,
+      "crit_rate": 0.005,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 7500,
+    "description": "术士专属，剑出断水，法力无边"
   },
   "moya_yushan_30_shushi": {
     "name": "墨鸦羽扇",
-    "description": "术士专属，墨鸦之羽所制，扇动风云变",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 30,
     "class_required": "术士",
-    "base_price": 7500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 50
+      "attack": 206
     },
     "max_extra_stats": {
-      "attack": 30,
-      "crit_rate": 0.06,
-      "max_mana": 90,
-      "max_health": 40
-    }
+      "attack": 211,
+      "max_health": 0,
+      "max_mana": 1086,
+      "crit_rate": 0.005,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 7500,
+    "description": "术士专属，墨鸦之羽所制，扇动风云变"
   },
   "qingyun_jian_40_shushi": {
     "name": "青云剑",
-    "description": "术士专属，剑指青云，法力通天",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 40,
     "class_required": "术士",
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 70
+      "attack": 342
     },
     "max_extra_stats": {
-      "attack": 36,
-      "max_mana": 150,
-      "crit_rate": 0.07,
-      "max_health": 70
-    }
+      "attack": 352,
+      "max_health": 0,
+      "max_mana": 1829,
+      "crit_rate": 0.028,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 10500,
+    "description": "术士专属，剑指青云，法力通天"
   },
   "kongque_yushan_40_shushi": {
     "name": "孔雀羽扇",
-    "description": "术士专属，孔雀之羽所制，绚丽夺目",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 40,
     "class_required": "术士",
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 72
+      "attack": 342
     },
     "max_extra_stats": {
-      "attack": 34,
-      "crit_rate": 0.07,
-      "max_mana": 120,
-      "max_health": 55
-    }
+      "attack": 352,
+      "max_health": 0,
+      "max_mana": 1829,
+      "crit_rate": 0.028,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 10500,
+    "description": "术士专属，孔雀之羽所制，绚丽夺目"
   },
   "feifeng_jian_50_shushi": {
     "name": "飞凤剑",
-    "description": "术士专属，剑气如凤，翱翔九天",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 50,
     "class_required": "术士",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 90
+      "attack": 442
     },
     "max_extra_stats": {
-      "attack": 46,
-      "max_mana": 190,
-      "crit_rate": 0.08,
-      "max_health": 90
-    }
+      "attack": 454,
+      "max_health": 0,
+      "max_mana": 2372,
+      "crit_rate": 0.029,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "术士专属，剑气如凤，翱翔九天"
   },
   "fengling_yushan_50_shushi": {
     "name": "凤翎羽扇",
-    "description": "术士专属，凤翎所制，扇动天地变",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 50,
     "class_required": "术士",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 92
+      "attack": 442
     },
     "max_extra_stats": {
-      "attack": 42,
-      "crit_rate": 0.08,
-      "max_mana": 160,
-      "max_health": 75
-    }
+      "attack": 454,
+      "max_health": 0,
+      "max_mana": 2375,
+      "crit_rate": 0.029,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "术士专属，凤翎所制，扇动天地变"
   },
   "duanying_20_cike": {
     "name": "断影",
-    "description": "刺客专属，刀如断影，出手无痕",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 20,
     "class_required": "刺客",
-    "base_price": 5000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 38
+      "attack": 100
     },
     "max_extra_stats": {
-      "attack": 20,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04,
-      "max_health": 60
-    }
+      "attack": 103,
+      "max_health": 0,
+      "max_mana": 266,
+      "crit_rate": 0.013,
+      "dodge_rate": 0.0,
+      "defense": 0.0
+    },
+    "base_price": 5000,
+    "description": "刺客专属，刀如断影，出手无痕"
   },
   "taomujian_20_cike": {
     "name": "桃木剑",
-    "description": "刺客专属，以百年桃木制成的短剑，辟邪镇煞",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 20,
     "class_required": "刺客",
-    "base_price": 5000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 40
+      "attack": 100
     },
     "max_extra_stats": {
-      "attack": 18,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05,
-      "max_mana": 40
-    }
+      "attack": 103,
+      "max_mana": 266,
+      "crit_rate": 0.013,
+      "dodge_rate": 0.0,
+      "defense": 0.0,
+      "max_health": 0.0
+    },
+    "base_price": 5000,
+    "description": "刺客专属，以百年桃木制成的短剑，辟邪镇煞"
   },
   "qingyun_jian_30_cike": {
     "name": "轻云剑",
-    "description": "刺客专属，剑身如云般轻盈，快若闪电",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 30,
     "class_required": "刺客",
-    "base_price": 7500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 55
+      "attack": 177
     },
     "max_extra_stats": {
-      "attack": 28,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05,
-      "max_health": 80
-    }
+      "attack": 182,
+      "max_health": 0,
+      "max_mana": 519,
+      "crit_rate": 0.018,
+      "dodge_rate": 0.0,
+      "defense": 0.0
+    },
+    "base_price": 7500,
+    "description": "刺客专属，剑身如云般轻盈，快若闪电"
   },
   "hanguang_bishou_30_cike": {
     "name": "寒光匕首",
-    "description": "刺客专属，刃泛寒光，一击致命",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 30,
     "class_required": "刺客",
-    "base_price": 7500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 58
+      "attack": 177
     },
     "max_extra_stats": {
-      "attack": 26,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.06,
-      "max_mana": 50
-    }
+      "attack": 182,
+      "max_mana": 519,
+      "crit_rate": 0.018,
+      "dodge_rate": 0.0,
+      "defense": 0.0,
+      "max_health": 0.0
+    },
+    "base_price": 7500,
+    "description": "刺客专属，刃泛寒光，一击致命"
   },
   "jifengci_40_cike": {
     "name": "疾风刺",
-    "description": "刺客专属，疾风般的刺击，令敌措手不及",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 40,
     "class_required": "刺客",
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 75
+      "attack": 312
     },
     "max_extra_stats": {
-      "attack": 36,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06,
-      "max_health": 100
-    }
+      "attack": 324,
+      "max_health": 0,
+      "max_mana": 1014,
+      "crit_rate": 0.054,
+      "dodge_rate": 0.0,
+      "defense": 0.0
+    },
+    "base_price": 10500,
+    "description": "刺客专属，疾风般的刺击，令敌措手不及"
   },
   "yangjiao_bishou_40_cike": {
     "name": "羊角匕首",
-    "description": "刺客专属，以羊角为柄的奇形匕首，诡异莫测",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 40,
     "class_required": "刺客",
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 78
+      "attack": 312
     },
     "max_extra_stats": {
-      "attack": 34,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.07,
-      "max_mana": 60
-    }
+      "attack": 321,
+      "max_mana": 1014,
+      "crit_rate": 0.054,
+      "dodge_rate": 0.0,
+      "defense": 0.0,
+      "max_health": 0.0
+    },
+    "base_price": 10500,
+    "description": "刺客专属，以羊角为柄的奇形匕首，诡异莫测"
   },
   "hanbing_jian_50_cike": {
     "name": "寒冰剑",
-    "description": "刺客专属，剑身寒气逼人，出手封喉",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 50,
     "class_required": "刺客",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 95
+      "attack": 415
     },
     "max_extra_stats": {
-      "attack": 45,
-      "crit_rate": 0.09,
-      "dodge_rate": 0.07,
-      "max_health": 120
-    }
+      "attack": 426,
+      "max_health": 0,
+      "max_mana": 1417,
+      "crit_rate": 0.057,
+      "dodge_rate": 0.0,
+      "defense": 0.0
+    },
+    "base_price": 14000,
+    "description": "刺客专属，剑身寒气逼人，出手封喉"
   },
   "feilong_qiang_50_cike": {
     "name": "飞龙枪",
-    "description": "刺客专属，枪出如龙，形影无踪",
     "slot": "weapon",
-    "is_bound": false,
+    "set_name": "史诗武器",
     "level_required": 50,
     "class_required": "刺客",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "史诗武器",
+    "is_bound": false,
     "base_stats": {
-      "attack": 98
+      "attack": 415
     },
     "max_extra_stats": {
-      "attack": 42,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.08,
-      "max_mana": 70
-    }
+      "attack": 426,
+      "max_mana": 1417,
+      "crit_rate": 0.057,
+      "dodge_rate": 0.0,
+      "defense": 0.0,
+      "max_health": 0.0
+    },
+    "base_price": 14000,
+    "description": "刺客专属，枪出如龙，形影无踪"
+  },
+  "zhanyue_60_zhanshi": {
+    "name": "斩月",
+    "slot": "weapon",
+    "set_name": "史诗武器",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "attack": 560
+    },
+    "max_extra_stats": {
+      "attack": 588,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 1460,
+      "crit_rate": 0.036,
+      "dodge_rate": 0.0
+    },
+    "base_price": 17500,
+    "description": "战士专属，刀光如月，一斩断魂，力劈天下"
+  },
+  "qixing_longyuan_60_shushi": {
+    "name": "七星龙渊剑",
+    "slot": "weapon",
+    "set_name": "史诗武器",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "attack": 515
+    },
+    "max_extra_stats": {
+      "attack": 530,
+      "max_health": 0,
+      "max_mana": 2770,
+      "crit_rate": 0.031,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 17500,
+    "description": "术士专属，剑藏七星，龙渊深不可测，法力通天"
+  },
+  "suipo_60_cike": {
+    "name": "碎魄",
+    "slot": "weapon",
+    "set_name": "史诗武器",
+    "level_required": 60,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "attack": 485
+    },
+    "max_extra_stats": {
+      "attack": 500,
+      "max_health": 0,
+      "max_mana": 1660,
+      "crit_rate": 0.061,
+      "dodge_rate": 0.0,
+      "defense": 0.0
+    },
+    "base_price": 17500,
+    "description": "刺客专属，刃名碎魄，一击夺魂，令敌胆寒"
   }
 }

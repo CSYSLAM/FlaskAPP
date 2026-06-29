@@ -1,102 +1,109 @@
 {
   "jinggang_helmet_39": {
     "name": "精钢重盔",
-    "description": "战士专属，以精钢锻造的重盔，坚不可摧",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "精钢套",
     "level_required": 39,
     "class_required": "战士",
-    "base_price": 8000,
     "is_artifact": false,
-    "set_name": "精钢套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 50
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 26,
-      "max_health": 90,
-      "attack": 6,
-      "crit_rate": 0.04
-    }
+      "defense": 325,
+      "max_health": 1100,
+      "max_mana": 911,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 8000,
+    "description": "战士专属，以精钢锻造的重盔，坚不可摧"
   },
   "jinggang_armor_38": {
     "name": "精钢战甲",
-    "description": "战士专属，以精钢铸造的战甲，铜墙铁壁",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "精钢套",
     "level_required": 38,
     "class_required": "战士",
-    "base_price": 9500,
     "is_artifact": false,
-    "set_name": "精钢套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 60
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 30,
-      "max_health": 100,
-      "attack": 8,
-      "crit_rate": 0.04
-    }
+      "attack": 0,
+      "defense": 325,
+      "max_health": 1100,
+      "max_mana": 911,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 9500,
+    "description": "战士专属，以精钢铸造的战甲，铜墙铁壁"
   },
   "jinggang_gloves_36": {
     "name": "银丝手套",
-    "description": "战士专属，以银丝编织的护手，力大无穷",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "精钢套",
     "level_required": 36,
     "class_required": "战士",
-    "base_price": 7000,
     "is_artifact": false,
-    "set_name": "精钢套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 325
     },
     "max_extra_stats": {
-      "attack": 18,
-      "crit_rate": 0.05,
-      "defense": 9,
-      "max_health": 45
-    }
+      "attack": 0,
+      "defense": 325,
+      "max_health": 0,
+      "max_mana": 911,
+      "crit_rate": 0.0102,
+      "dodge_rate": 0.0
+    },
+    "base_price": 7000,
+    "description": "战士专属，以银丝编织的护手，力大无穷"
   },
   "jinggang_pants_37": {
     "name": "银丝裤",
-    "description": "战士专属，以银丝编织的护腿，坚韧耐用",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "精钢套",
     "level_required": 37,
     "class_required": "战士",
-    "base_price": 8500,
     "is_artifact": false,
-    "set_name": "精钢套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 52
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 26,
-      "max_health": 90,
-      "attack": 5,
-      "dodge_rate": 0.04
-    }
+      "attack": 0,
+      "defense": 325,
+      "max_health": 1100,
+      "max_mana": 911,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 8500,
+    "description": "战士专属，以银丝编织的护腿，坚韧耐用"
   },
   "jinggang_shoes_35": {
     "name": "精钢靴",
-    "description": "战士专属，以精钢铸造的战靴，稳固如山",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "精钢套",
     "level_required": 35,
     "class_required": "战士",
-    "base_price": 6500,
     "is_artifact": false,
-    "set_name": "精钢套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 36
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 18,
-      "max_health": 55,
-      "attack": 4,
-      "crit_rate": 0.04
-    }
+      "defense": 325,
+      "max_health": 1100,
+      "max_mana": 911,
+      "dodge_rate": 0.009
+    },
+    "base_price": 6500,
+    "description": "战士专属，以精钢铸造的战靴，稳固如山"
   }
 }

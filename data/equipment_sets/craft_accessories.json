@@ -1,165 +1,178 @@
 {
   "huangtong_jiezhi_10": {
     "name": "黄铜戒指",
-    "description": "以黄铜打造的戒指，虽朴素却蕴含微弱的灵力",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 10,
     "class_required": null,
-    "base_price": 2500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 12
+      "defense": 126
     },
     "max_extra_stats": {
-      "attack": 8,
-      "max_health": 30,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 126,
+      "max_health": 718,
+      "max_mana": 395,
+      "crit_rate": 0.005,
+      "dodge_rate": 0.0
+    },
+    "base_price": 2500,
+    "description": "以黄铜打造的戒指，虽朴素却蕴含微弱的灵力"
   },
   "xuanhuang_jiezhi_14": {
     "name": "玄黄戒指",
-    "description": "以玄黄之石打造的戒指，天地初开之力蕴于其中",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 14,
     "class_required": null,
-    "base_price": 3500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 16
+      "defense": 144
     },
     "max_extra_stats": {
-      "attack": 10,
-      "max_health": 40,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
-    }
+      "attack": 0,
+      "defense": 144,
+      "max_health": 821,
+      "max_mana": 451,
+      "crit_rate": 0.01,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3500,
+    "description": "以玄黄之石打造的戒指，天地初开之力蕴于其中"
   },
   "maoyan_jiezhi_24": {
     "name": "猫眼戒指",
-    "description": "镶嵌猫眼石的戒指，在暗夜中闪烁神秘光芒",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 24,
     "class_required": null,
-    "base_price": 5500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 24
+      "defense": 164
     },
     "max_extra_stats": {
-      "attack": 14,
-      "max_health": 60,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.04
-    }
+      "attack": 164,
+      "defense": 0,
+      "max_health": 932,
+      "max_mana": 516,
+      "crit_rate": 0.015,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5500,
+    "description": "镶嵌猫眼石的戒指，在暗夜中闪烁神秘光芒"
   },
   "hongyan_jiezhi_28": {
     "name": "红眼戒指",
-    "description": "镶嵌红色宝石的戒指，如血瞳般注视着敌人",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 28,
     "class_required": null,
-    "base_price": 6500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 28
+      "defense": 180
     },
     "max_extra_stats": {
-      "attack": 16,
-      "max_health": 70,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
-    }
+      "attack": 0,
+      "defense": 180,
+      "max_health": 950,
+      "max_mana": 600,
+      "crit_rate": 0.0018,
+      "dodge_rate": 0.0
+    },
+    "base_price": 6500,
+    "description": "镶嵌红色宝石的戒指，如血瞳般注视着敌人"
   },
   "hongxue_jiezhi_34": {
     "name": "红血戒指",
-    "description": "以血淬炼的戒指，蕴含着不屈的战意",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 34,
     "class_required": null,
-    "base_price": 8500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 34
+      "defense": 188
     },
     "max_extra_stats": {
-      "attack": 20,
-      "max_health": 80,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
-    }
+      "attack": 0,
+      "defense": 188,
+      "max_health": 1072,
+      "max_mana": 590,
+      "crit_rate": 0.02,
+      "dodge_rate": 0.0
+    },
+    "base_price": 8500,
+    "description": "以血淬炼的戒指，蕴含着不屈的战意"
   },
   "lingxi_xianglian_40": {
     "name": "灵犀项链",
-    "description": "以灵犀之角制成的项链，心有灵犀一点通",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 40,
     "class_required": null,
-    "base_price": 10500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 214
     },
     "max_extra_stats": {
-      "attack": 24,
-      "max_health": 100,
-      "max_mana": 60,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
-    }
+      "attack": 214,
+      "defense": 0,
+      "max_health": 1228,
+      "max_mana": 674,
+      "crit_rate": 0.03,
+      "dodge_rate": 0.0
+    },
+    "base_price": 10500,
+    "description": "以灵犀之角制成的项链，心有灵犀一点通"
   },
   "ziyu_xianglian_46": {
     "name": "紫玉项链",
-    "description": "以紫玉制成的项链，紫气东来，祥瑞之物",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 46,
     "class_required": null,
-    "base_price": 12500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 46
+      "defense": 245
     },
     "max_extra_stats": {
-      "attack": 28,
-      "max_health": 120,
-      "max_mana": 70,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06
-    }
+      "attack": 0,
+      "defense": 245,
+      "max_health": 1400,
+      "max_mana": 770,
+      "crit_rate": 0.035,
+      "dodge_rate": 0.0
+    },
+    "base_price": 12500,
+    "description": "以紫玉制成的项链，紫气东来，祥瑞之物"
   },
   "feicui_zhihuan_54": {
     "name": "翡翠指环",
-    "description": "以翡翠制成的指环，翠色欲滴，灵力充沛",
     "slot": "accessory",
-    "is_bound": false,
+    "set_name": "史诗饰品",
     "level_required": 54,
     "class_required": null,
-    "base_price": 15500,
     "is_artifact": false,
-    "set_name": "史诗饰品",
+    "is_bound": false,
     "base_stats": {
-      "defense": 54
+      "defense": 280
     },
     "max_extra_stats": {
-      "attack": 32,
-      "max_health": 140,
-      "max_mana": 90,
-      "crit_rate": 0.09,
-      "dodge_rate": 0.07
-    }
+      "attack": 0,
+      "defense": 280,
+      "max_health": 1600,
+      "max_mana": 880,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.0
+    },
+    "base_price": 15500,
+    "description": "以翡翠制成的指环，翠色欲滴，灵力充沛"
   }
 }

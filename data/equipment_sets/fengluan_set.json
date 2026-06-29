@@ -1,63 +1,69 @@
 {
   "fengluan_helmet_54": {
     "name": "凤鸾盔",
-    "description": "术士专属，以凤鸾之羽编织的头盔，凤鸣九天",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "凤鸾套",
     "level_required": 54,
     "class_required": "术士",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "凤鸾套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 60
+      "defense": 312
     },
     "max_extra_stats": {
-      "defense": 30,
-      "max_health": 100,
-      "max_mana": 75,
-      "dodge_rate": 0.07
-    }
+      "attack": 0,
+      "defense": 312,
+      "max_health": 1794,
+      "max_mana": 1170,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "术士专属，以凤鸾之羽编织的头盔，凤鸣九天"
   },
   "fengluan_armor_53": {
     "name": "凤鸾羽衣",
-    "description": "术士专属，以凤鸾之羽织成的羽衣，凤舞九天",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "凤鸾套",
     "level_required": 53,
     "class_required": "术士",
-    "base_price": 16500,
     "is_artifact": false,
-    "set_name": "凤鸾套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 74
+      "defense": 312
     },
     "max_extra_stats": {
-      "defense": 37,
-      "max_health": 120,
-      "max_mana": 100,
-      "crit_rate": 0.07
-    }
+      "attack": 0,
+      "defense": 312,
+      "max_health": 1794,
+      "max_mana": 1170,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16500,
+    "description": "术士专属，以凤鸾之羽织成的羽衣，凤舞九天"
   },
   "fengluan_gloves_51": {
     "name": "凤鸾手套",
-    "description": "术士专属，以凤鸾之羽编织的手套，法力无边",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "凤鸾套",
     "level_required": 51,
     "class_required": "术士",
-    "base_price": 12000,
     "is_artifact": false,
-    "set_name": "凤鸾套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 48
+      "defense": 312
     },
     "max_extra_stats": {
-      "attack": 26,
-      "crit_rate": 0.08,
-      "max_mana": 55,
-      "dodge_rate": 0.07
-    }
+      "attack": 0,
+      "defense": 312,
+      "max_health": 0,
+      "max_mana": 1170,
+      "crit_rate": 0.027,
+      "dodge_rate": 0.0
+    },
+    "base_price": 12000,
+    "description": "术士专属，以凤鸾之羽编织的手套，法力无边"
   },
   "fengluan_pants_52": {
     "name": "凤鸾羽裤",
@@ -76,27 +82,31 @@
       "defense": 30,
       "max_health": 105,
       "max_mana": 65,
-      "dodge_rate": 0.07
+      "dodge_rate": 0.07,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   },
   "fengluan_shoes_50": {
     "name": "凤鸾靴",
-    "description": "术士专属，以凤鸾之羽编织的布靴，踏凤而行",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "凤鸾套",
     "level_required": 50,
     "class_required": "术士",
-    "base_price": 11500,
     "is_artifact": false,
-    "set_name": "凤鸾套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 42
+      "defense": 312
     },
     "max_extra_stats": {
-      "dodge_rate": 0.08,
-      "defense": 20,
-      "max_mana": 55,
-      "max_health": 65
-    }
+      "attack": 0,
+      "defense": 312,
+      "max_health": 0,
+      "max_mana": 1170,
+      "crit_rate": 0.026,
+      "dodge_rate": 0.0
+    },
+    "base_price": 11500,
+    "description": "术士专属，以凤鸾之羽编织的布靴，踏凤而行"
   }
 }

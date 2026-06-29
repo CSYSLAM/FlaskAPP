@@ -8,16 +8,17 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 120
+      "attack": 605
     },
     "max_extra_stats": {
-      "attack": 80,
-      "defense": 40,
-      "max_health": 300,
-      "max_mana": 150,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
-    }
+      "attack": 633,
+      "defense": 0,
+      "max_health": 2334,
+      "max_mana": 999,
+      "crit_rate": 0.036,
+      "dodge_rate": 0.0
+    },
+    "description": "神厨庖丁用来宰牛的刀。"
   },
   "longlin": {
     "name": "龙鳞",
@@ -28,15 +29,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 120
+      "attack": 499
     },
     "max_extra_stats": {
-      "attack": 60,
-      "max_health": 300,
-      "crit_rate": 0.08,
-      "max_mana": 150,
-      "defense": 40,
-      "dodge_rate": 0.05
+      "attack": 540,
+      "defense": 0,
+      "max_health": 2257,
+      "max_mana": 1172,
+      "crit_rate": 0.057,
+      "dodge_rate": 0.0
     }
   },
   "chixiao_jian": {
@@ -48,15 +49,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 120
+      "attack": 563
     },
     "max_extra_stats": {
-      "attack": 60,
-      "max_health": 300,
-      "crit_rate": 0.08,
-      "max_mana": 150,
-      "defense": 40,
-      "dodge_rate": 0.05
+      "attack": 609,
+      "defense": 0,
+      "max_health": 1663,
+      "max_mana": 1773,
+      "crit_rate": 0.032,
+      "dodge_rate": 0.0
     }
   },
   "longhun_zhu": {
@@ -68,15 +69,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "defense": 30
+      "defense": 312
     },
     "max_extra_stats": {
-      "attack": 40,
-      "defense": 40,
-      "max_health": 300,
-      "max_mana": 200,
+      "attack": 0,
+      "defense": 312,
+      "max_health": 1300,
+      "max_mana": 800,
       "crit_rate": 0.06,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.0
     }
   },
   "wuhu_duanhun_dao": {
@@ -88,15 +89,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 150
+      "attack": 781
     },
     "max_extra_stats": {
-      "attack": 75,
-      "max_health": 400,
-      "crit_rate": 0.1,
-      "max_mana": 200,
-      "defense": 50,
-      "dodge_rate": 0.06
+      "attack": 816,
+      "defense": 0,
+      "max_health": 3129,
+      "max_mana": 1341,
+      "crit_rate": 0.038,
+      "dodge_rate": 0.0
     }
   },
   "qinghong_jian": {
@@ -108,15 +109,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 150
+      "attack": 726
     },
     "max_extra_stats": {
-      "attack": 75,
-      "max_health": 400,
-      "crit_rate": 0.1,
-      "max_mana": 200,
-      "defense": 50,
-      "dodge_rate": 0.06
+      "attack": 786,
+      "defense": 0,
+      "max_health": 2232,
+      "max_mana": 2462,
+      "crit_rate": 0.034,
+      "dodge_rate": 0.0
     }
   },
   "yuchang_jian": {
@@ -128,15 +129,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 150
+      "attack": 663
     },
     "max_extra_stats": {
-      "attack": 75,
-      "max_health": 400,
-      "crit_rate": 0.1,
-      "max_mana": 200,
-      "defense": 50,
-      "dodge_rate": 0.06
+      "attack": 718,
+      "defense": 0,
+      "max_health": 2929,
+      "max_mana": 1606,
+      "crit_rate": 0.06,
+      "dodge_rate": 0.0
     }
   },
   "yu_lingzhi": {
@@ -148,15 +149,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 390
     },
     "max_extra_stats": {
-      "attack": 50,
-      "defense": 50,
-      "max_health": 400,
-      "max_mana": 250,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.07
+      "attack": 0,
+      "defense": 390,
+      "max_health": 1500,
+      "max_mana": 980,
+      "crit_rate": 0.075,
+      "dodge_rate": 0.0
     }
   },
   "qisheng_dao": {
@@ -168,15 +169,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 180
+      "attack": 1008
     },
     "max_extra_stats": {
-      "attack": 90,
-      "max_health": 500,
-      "crit_rate": 0.12,
-      "max_mana": 250,
-      "defense": 60,
-      "dodge_rate": 0.07
+      "attack": 1054,
+      "defense": 0,
+      "max_health": 4060,
+      "max_mana": 1800,
+      "crit_rate": 0.04,
+      "dodge_rate": 0.0
     }
   },
   "juque_jian": {
@@ -188,15 +189,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 180
+      "attack": 881
     },
     "max_extra_stats": {
-      "attack": 90,
-      "max_health": 500,
-      "crit_rate": 0.12,
-      "max_mana": 250,
-      "defense": 60,
-      "dodge_rate": 0.07
+      "attack": 953,
+      "defense": 0,
+      "max_health": 3600,
+      "max_mana": 2200,
+      "crit_rate": 0.09,
+      "dodge_rate": 0.0
     }
   },
   "chengying_jian": {
@@ -208,15 +209,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "attack": 180
+      "attack": 937
     },
     "max_extra_stats": {
-      "attack": 90,
-      "max_health": 500,
-      "crit_rate": 0.12,
-      "max_mana": 250,
-      "defense": 60,
-      "dodge_rate": 0.07
+      "attack": 1014,
+      "defense": 0,
+      "max_health": 2480,
+      "max_mana": 3420,
+      "crit_rate": 0.036,
+      "dodge_rate": 0.0
     }
   },
   "heshi_bi": {
@@ -228,15 +229,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "defense": 50
+      "defense": 468
     },
     "max_extra_stats": {
-      "attack": 60,
-      "defense": 60,
-      "max_health": 500,
-      "max_mana": 300,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.08
+      "attack": 0,
+      "defense": 468,
+      "max_health": 1872,
+      "max_mana": 1450,
+      "crit_rate": 0.101,
+      "dodge_rate": 0.0
     }
   }
 }

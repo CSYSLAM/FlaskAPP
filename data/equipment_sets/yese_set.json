@@ -1,102 +1,109 @@
 {
   "yese_helmet_29": {
     "name": "夜色头巾",
-    "description": "刺客专属，以夜色之暗编织的头巾，隐匿于黑暗之中",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "夜色套",
     "level_required": 29,
     "class_required": "刺客",
-    "base_price": 5500,
     "is_artifact": false,
-    "set_name": "夜色套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 30
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 15,
-      "max_health": 55,
-      "dodge_rate": 0.05,
-      "crit_rate": 0.04
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 881,
+      "max_mana": 482,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5500,
+    "description": "刺客专属，以夜色之暗编织的头巾，隐匿于黑暗之中"
   },
   "yese_armor_28": {
     "name": "夜行衣",
-    "description": "刺客专属，以夜色之丝织成的夜行衣，如影随形",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "夜色套",
     "level_required": 28,
     "class_required": "刺客",
-    "base_price": 6500,
     "is_artifact": false,
-    "set_name": "夜色套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 38
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 18,
-      "max_health": 60,
-      "dodge_rate": 0.04,
-      "crit_rate": 0.05
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 881,
+      "max_mana": 482,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 6500,
+    "description": "刺客专属，以夜色之丝织成的夜行衣，如影随形"
   },
   "yese_gloves_26": {
     "name": "清风手套",
-    "description": "刺客专属，轻盈如风的护手，出手如电",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "夜色套",
     "level_required": 26,
     "class_required": "刺客",
-    "base_price": 4800,
     "is_artifact": false,
-    "set_name": "夜色套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 32
+      "defense": 226
     },
     "max_extra_stats": {
-      "attack": 16,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04,
-      "max_health": 30
-    }
+      "defense": 226,
+      "max_health": 0,
+      "max_mana": 402,
+      "crit_rate": 0.0087,
+      "dodge_rate": 0.0
+    },
+    "base_price": 4800,
+    "description": "刺客专属，轻盈如风的护手，出手如电"
   },
   "yese_pants_27": {
     "name": "清风护腿",
-    "description": "刺客专属，轻盈如风的护腿，疾行无影",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "夜色套",
     "level_required": 27,
     "class_required": "刺客",
-    "base_price": 5800,
     "is_artifact": false,
-    "set_name": "夜色套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 32
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 16,
-      "max_health": 55,
-      "dodge_rate": 0.05,
-      "crit_rate": 0.04
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 881,
+      "max_mana": 482
+    },
+    "base_price": 5800,
+    "description": "刺客专属，轻盈如风的护腿，疾行无影"
   },
   "yese_shoes_25": {
     "name": "清风长靴",
-    "description": "刺客专属，轻盈如风的战靴，踏雪无痕",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "夜色套",
     "level_required": 25,
     "class_required": "刺客",
-    "base_price": 4500,
     "is_artifact": false,
-    "set_name": "夜色套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 22
+      "defense": 226
     },
     "max_extra_stats": {
-      "dodge_rate": 0.06,
-      "defense": 10,
-      "crit_rate": 0.04,
-      "max_health": 30
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 0,
+      "max_mana": 482,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0077
+    },
+    "base_price": 4500,
+    "description": "刺客专属，轻盈如风的战靴，踏雪无痕"
   }
 }

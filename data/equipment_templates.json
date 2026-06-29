@@ -55,7 +55,10 @@
     "max_extra_stats": {
       "attack": 8,
       "max_health": 30,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "defense": 0.0,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "wedding_diamond_ring": {

@@ -1,102 +1,112 @@
 {
   "baopi_helmet_19": {
     "name": "豹皮头盔",
-    "description": "战士专属，以豹皮缝制的坚固头盔，威风凛凛",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "豹皮套",
     "level_required": 19,
     "class_required": "战士",
-    "base_price": 3500,
     "is_artifact": false,
-    "set_name": "豹皮套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 26
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 14,
-      "max_health": 50,
-      "attack": 3,
-      "crit_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 647,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3500,
+    "description": "战士专属，以豹皮缝制的坚固头盔，威风凛凛"
   },
   "baopi_armor_18": {
     "name": "豹皮战甲",
-    "description": "战士专属，以豹皮与铁甲打造的战甲，坚不可摧",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "豹皮套",
     "level_required": 18,
     "class_required": "战士",
-    "base_price": 4200,
     "is_artifact": false,
-    "set_name": "豹皮套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 32
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 16,
-      "max_health": 55,
-      "attack": 4,
-      "crit_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 647,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 4200,
+    "description": "战士专属，以豹皮与铁甲打造的战甲，坚不可摧"
   },
   "baopi_gloves_16": {
     "name": "豹皮手套",
-    "description": "战士专属，以豹皮缝制的护手，力大无穷",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "豹皮套",
     "level_required": 16,
     "class_required": "战士",
-    "base_price": 3000,
     "is_artifact": false,
-    "set_name": "豹皮套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 20
+      "defense": 226
     },
     "max_extra_stats": {
-      "attack": 10,
-      "crit_rate": 0.03,
-      "defense": 5,
-      "max_health": 25
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 647,
+      "max_mana": 426,
+      "crit_rate": 0.0074,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3000,
+    "description": "战士专属，以豹皮缝制的护手，力大无穷"
   },
   "baopi_pants_17": {
     "name": "豹皮裤子",
-    "description": "战士专属，以豹皮缝制的护腿，坚韧耐用",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "豹皮套",
     "level_required": 17,
     "class_required": "战士",
-    "base_price": 3800,
     "is_artifact": false,
-    "set_name": "豹皮套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 28
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 14,
-      "max_health": 50,
-      "attack": 3,
-      "dodge_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 647,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3800,
+    "description": "战士专属，以豹皮缝制的护腿，坚韧耐用"
   },
   "baopi_shoes_15": {
     "name": "豹皮鞋",
-    "description": "战士专属，以豹皮缝制的战靴，稳固如山",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "豹皮套",
     "level_required": 15,
     "class_required": "战士",
-    "base_price": 2800,
     "is_artifact": false,
-    "set_name": "豹皮套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 20
+      "defense": 226
     },
     "max_extra_stats": {
-      "defense": 10,
-      "max_health": 30,
-      "attack": 2,
-      "crit_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 226,
+      "max_health": 647,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0065
+    },
+    "base_price": 2800,
+    "description": "战士专属，以豹皮缝制的战靴，稳固如山"
   }
 }

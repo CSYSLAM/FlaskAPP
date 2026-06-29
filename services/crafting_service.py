@@ -21,13 +21,17 @@ class CraftingService:
             "items": {"craft_yingpi": 20, "craft_mianbu": 20, "craft_chenxiangmu": 20, "craft_heitiekuang": 20},
             "silver": 6440,
         },
-        (45, 50): {
+        (45, 49): {
             "items": {"craft_yingpi": 20, "craft_mianbu": 20, "craft_chenxiangmu": 20, "craft_heitiekuang": 20},
             "silver": 8440,
         },
-        (50, 55): {
+        (50, 54): {
             "items": {"craft_yingpi": 20, "craft_mianbu": 20, "craft_chenxiangmu": 20, "craft_heitiekuang": 20},
             "silver": 10440,
+        },
+        (55, 59): {
+            "items": {"craft_houpi": 20, "craft_nirong": 20, "craft_zitanmu": 20, "craft_jingjinkuang": 20},
+            "silver": 14440,
         },
     }
 
@@ -37,6 +41,7 @@ class CraftingService:
         30: {"items": {"craft_huangyangmu": 20, "craft_huangtongkuang": 20}, "silver": 4440},
         40: {"items": {"craft_chenxiangmu": 20, "craft_heitiekuang": 20}, "silver": 6440},
         50: {"items": {"craft_chenxiangmu": 20, "craft_heitiekuang": 20}, "silver": 8440},
+        60: {"items": {"craft_zitanmu": 20, "craft_jingjinkuang": 20}, "silver": 14440},
     }
 
     # Material costs for accessories (by exact level)
@@ -55,78 +60,93 @@ class CraftingService:
     SET_DEFINITIONS = [
         {
             "set_id": "baopi", "name": "豹皮套", "class_name": "战士",
-            "level_range": "15-20级",
+            "level_range": "15-20级", "group": "15-20级",
             "templates": ["baopi_helmet_19", "baopi_armor_18", "baopi_pants_17", "baopi_gloves_16", "baopi_shoes_15"],
         },
         {
             "set_id": "shuiwen", "name": "水纹套", "class_name": "术士",
-            "level_range": "15-20级",
+            "level_range": "15-20级", "group": "15-20级",
             "templates": ["shuiwen_helmet_19", "shuiwen_armor_18", "shuiwen_pants_17", "shuiwen_gloves_16", "shuiwen_shoes_15"],
         },
         {
             "set_id": "canglang", "name": "苍狼套", "class_name": "刺客",
-            "level_range": "15-20级",
+            "level_range": "15-20级", "group": "15-20级",
             "templates": ["canglang_helmet_19", "canglang_armor_18", "canglang_pants_17", "canglang_gloves_16", "canglang_shoes_15"],
         },
         {
             "set_id": "leiting", "name": "雷霆套", "class_name": "战士",
-            "level_range": "25-30级",
+            "level_range": "25-30级", "group": "25-30级",
             "templates": ["leiting_helmet_29", "leiting_armor_28", "leiting_pants_27", "leiting_gloves_26", "leiting_shoes_25"],
         },
         {
             "set_id": "riguang", "name": "日光套", "class_name": "术士",
-            "level_range": "25-30级",
+            "level_range": "25-30级", "group": "25-30级",
             "templates": ["riguang_helmet_29", "riguang_armor_28", "riguang_pants_27", "riguang_gloves_26", "riguang_shoes_25"],
         },
         {
             "set_id": "yese", "name": "夜色套", "class_name": "刺客",
-            "level_range": "25-30级",
+            "level_range": "25-30级", "group": "25-30级",
             "templates": ["yese_helmet_29", "yese_armor_28", "yese_pants_27", "yese_gloves_26", "yese_shoes_25"],
         },
         {
             "set_id": "jinggang", "name": "精钢套", "class_name": "战士",
-            "level_range": "35-40级",
+            "level_range": "35-40级", "group": "35-40级",
             "templates": ["jinggang_helmet_39", "jinggang_armor_38", "jinggang_pants_37", "jinggang_gloves_36", "jinggang_shoes_35"],
         },
         {
             "set_id": "yuanlv", "name": "远虑套", "class_name": "术士",
-            "level_range": "35-40级",
+            "level_range": "35-40级", "group": "35-40级",
             "templates": ["yuanlv_helmet_39", "yuanlv_armor_38", "yuanlv_pants_37", "yuanlv_gloves_36", "yuanlv_shoes_35"],
         },
         {
             "set_id": "jifeng", "name": "疾风套", "class_name": "刺客",
-            "level_range": "35-40级",
+            "level_range": "35-40级", "group": "35-40级",
             "templates": ["jifeng_helmet_39", "jifeng_armor_38", "jifeng_pants_37", "jifeng_gloves_36", "jifeng_shoes_35"],
         },
         {
             "set_id": "bailian", "name": "百炼套", "class_name": "战士",
-            "level_range": "45-50级",
+            "level_range": "45-50级", "group": "45-50级",
             "templates": ["bailian_helmet_49", "bailian_armor_48", "bailian_pants_47", "bailian_gloves_46", "bailian_shoes_45"],
         },
         {
             "set_id": "jinxiu", "name": "锦绣套", "class_name": "术士",
-            "level_range": "45-50级",
+            "level_range": "45-50级", "group": "45-50级",
             "templates": ["jinxiu_helmet_49", "jinxiu_armor_48", "jinxiu_pants_47", "jinxiu_gloves_46", "jinxiu_shoes_45"],
         },
         {
             "set_id": "queling", "name": "雀翔套", "class_name": "刺客",
-            "level_range": "45-50级",
+            "level_range": "45-50级", "group": "45-50级",
             "templates": ["queling_helmet_49", "queling_armor_48", "queling_pants_47", "queling_gloves_46", "queling_shoes_45"],
         },
         {
             "set_id": "heilong", "name": "黑龙套", "class_name": "战士",
-            "level_range": "50-55级",
+            "level_range": "50-55级", "group": "50-55级",
             "templates": ["heilong_helmet_54", "heilong_armor_53", "heilong_pants_52", "heilong_gloves_51", "heilong_shoes_50"],
         },
         {
             "set_id": "fengluan", "name": "凤鸾套", "class_name": "术士",
-            "level_range": "50-55级",
+            "level_range": "50-55级", "group": "50-55级",
             "templates": ["fengluan_helmet_54", "fengluan_armor_53", "fengluan_pants_52", "fengluan_gloves_51", "fengluan_shoes_50"],
         },
         {
             "set_id": "yanling", "name": "雁翔套", "class_name": "刺客",
-            "level_range": "50-55级",
+            "level_range": "50-55级", "group": "50-55级",
             "templates": ["yanling_helmet_54", "yanling_armor_53", "yanling_pants_52", "yanling_gloves_51", "yanling_shoes_50"],
+        },
+        {
+            "set_id": "qinglong", "name": "青龙套", "class_name": "战士",
+            "level_range": "55-59级", "group": "55-59级",
+            "templates": ["qinglong_helmet_59", "qinglong_armor_58", "qinglong_pants_57", "qinglong_gloves_56", "qinglong_shoes_55"],
+        },
+        {
+            "set_id": "zhuque", "name": "朱雀套", "class_name": "术士",
+            "level_range": "55-59级", "group": "55-59级",
+            "templates": ["zhuque_helmet_59", "zhuque_armor_58", "zhuque_pants_57", "zhuque_gloves_56", "zhuque_shoes_55"],
+        },
+        {
+            "set_id": "baihu", "name": "白虎套", "class_name": "刺客",
+            "level_range": "55-59级", "group": "55-59级",
+            "templates": ["baihu_helmet_59", "baihu_armor_58", "baihu_pants_57", "baihu_gloves_56", "baihu_shoes_55"],
         },
     ]
 
@@ -137,18 +157,21 @@ class CraftingService:
             "kaishan_fu_30_zhanshi", "bailu_dao_30_zhanshi",
             "pojun_fu_40_zhanshi", "xuezhan_dao_40_zhanshi",
             "shanhe_fu_50_zhanshi", "langyabang_50_zhanshi",
+            "zhanyue_60_zhanshi",
         ],
         "术士": [
             "huojing_jian_20_shushi", "emao_shan_20_shushi",
             "duanshui_jian_30_shushi", "moya_yushan_30_shushi",
             "qingyun_jian_40_shushi", "kongque_yushan_40_shushi",
             "feifeng_jian_50_shushi", "fengling_yushan_50_shushi",
+            "qixing_longyuan_60_shushi",
         ],
         "刺客": [
             "duanying_20_cike", "taomujian_20_cike",
             "qingyun_jian_30_cike", "hanguang_bishou_30_cike",
             "jifengci_40_cike", "yangjiao_bishou_40_cike",
             "hanbing_jian_50_cike", "feilong_qiang_50_cike",
+            "suipo_60_cike",
         ],
     }
 
@@ -163,6 +186,43 @@ class CraftingService:
     @classmethod
     def get_sets_by_class(cls, player_class):
         return [s for s in cls.SET_DEFINITIONS if s["class_name"] == player_class]
+
+    @classmethod
+    def get_set_by_id(cls, set_id):
+        for s in cls.SET_DEFINITIONS:
+            if s["set_id"] == set_id:
+                return s
+        return None
+
+    @classmethod
+    def get_set_class_tabs(cls, set_def):
+        """Return list of classes that share this set's group (for in-page class tabs).
+
+        Sets without a ``group`` field are single-class and return an empty list
+        (no tabs rendered). Sets sharing a group (e.g. 青龙/朱雀/白虎 55-59) return
+        the ordered class list [战士, 术士, 刺客] of all sets in that group.
+        """
+        group = set_def.get("group") if set_def else None
+        if not group:
+            return []
+        seen = []
+        for s in cls.SET_DEFINITIONS:
+            if s.get("group") == group and s["class_name"] not in seen:
+                seen.append(s["class_name"])
+        return seen
+
+    @classmethod
+    def get_set_in_group_by_class(cls, set_def, class_name):
+        """Find the set of ``class_name`` within the same group as ``set_def``.
+
+        Falls back to ``set_def`` itself when there is no group or no match.
+        """
+        group = set_def.get("group") if set_def else None
+        if group:
+            for s in cls.SET_DEFINITIONS:
+                if s.get("group") == group and s["class_name"] == class_name:
+                    return s
+        return set_def
 
     @classmethod
     def get_weapon_templates_by_class(cls, player_class):

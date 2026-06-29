@@ -15,7 +15,10 @@
     "max_extra_stats": {
       "attack": 3,
       "crit_rate": 0.02,
-      "defense": 1
+      "defense": 1,
+      "max_health": 0.0,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "chulong_helmet_1": {
@@ -34,7 +37,10 @@
     "max_extra_stats": {
       "defense": 2,
       "max_health": 10,
-      "dodge_rate": 0.01
+      "dodge_rate": 0.01,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "chulong_armor_1": {
@@ -53,7 +59,10 @@
     "max_extra_stats": {
       "defense": 3,
       "max_health": 15,
-      "crit_rate": 0.01
+      "crit_rate": 0.01,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "chulong_gloves_1": {
@@ -72,7 +81,10 @@
     "max_extra_stats": {
       "attack": 2,
       "crit_rate": 0.02,
-      "dodge_rate": 0.01
+      "dodge_rate": 0.01,
+      "defense": 0.0,
+      "max_health": 0.0,
+      "max_mana": 0.0
     }
   },
   "chulong_pants_1": {
@@ -91,7 +103,10 @@
     "max_extra_stats": {
       "defense": 2,
       "max_health": 10,
-      "dodge_rate": 0.01
+      "dodge_rate": 0.01,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "chulong_shoes_1": {
@@ -110,7 +125,10 @@
     "max_extra_stats": {
       "dodge_rate": 0.02,
       "defense": 2,
-      "max_health": 10
+      "max_health": 10,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   }
 }

@@ -1,102 +1,111 @@
 {
   "leiting_helmet_29": {
     "name": "雷霆战盔",
-    "description": "战士专属，以雷霆之力锻造的战盔，威武霸气",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "雷霆套",
     "level_required": 29,
     "class_required": "战士",
-    "base_price": 5500,
     "is_artifact": false,
-    "set_name": "雷霆套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 38
+      "defense": 271
     },
     "max_extra_stats": {
-      "defense": 20,
-      "max_health": 70,
-      "attack": 5,
-      "crit_rate": 0.03
-    }
+      "attack": 0,
+      "defense": 271,
+      "max_health": 843,
+      "max_mana": 482,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5500,
+    "description": "战士专属，以雷霆之力锻造的战盔，威武霸气"
   },
   "leiting_armor_28": {
     "name": "雷霆战甲",
-    "description": "战士专属，以雷霆之力铸造的战甲，坚不可摧",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "雷霆套",
     "level_required": 28,
     "class_required": "战士",
-    "base_price": 6500,
     "is_artifact": false,
-    "set_name": "雷霆套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 46
+      "defense": 271
     },
     "max_extra_stats": {
-      "defense": 24,
-      "max_health": 80,
-      "attack": 6,
-      "crit_rate": 0.03
-    }
+      "attack": 0,
+      "defense": 271,
+      "max_health": 843,
+      "max_mana": 482,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 6500,
+    "description": "战士专属，以雷霆之力铸造的战甲，坚不可摧"
   },
   "leiting_gloves_26": {
     "name": "雷霆手套",
-    "description": "战士专属，以雷霆之力淬炼的护手，雷霆万钧",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "雷霆套",
     "level_required": 26,
     "class_required": "战士",
-    "base_price": 4800,
     "is_artifact": false,
-    "set_name": "雷霆套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 30
+      "defense": 271
     },
     "max_extra_stats": {
-      "attack": 14,
-      "crit_rate": 0.04,
-      "defense": 7,
-      "max_health": 35
-    }
+      "defense": 271,
+      "max_health": 843,
+      "max_mana": 482,
+      "crit_rate": 0.0087,
+      "dodge_rate": 0.0
+    },
+    "base_price": 4800,
+    "description": "战士专属，以雷霆之力淬炼的护手，雷霆万钧"
   },
   "leiting_pants_27": {
     "name": "雷霆护腿",
-    "description": "战士专属，以雷霆之力铸造的护腿，坚如磐石",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "雷霆套",
     "level_required": 27,
     "class_required": "战士",
-    "base_price": 5800,
     "is_artifact": false,
-    "set_name": "雷霆套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 271
     },
     "max_extra_stats": {
-      "defense": 20,
-      "max_health": 70,
-      "attack": 4,
-      "dodge_rate": 0.03
-    }
+      "attack": 0,
+      "defense": 271,
+      "max_health": 843,
+      "max_mana": 482,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5800,
+    "description": "战士专属，以雷霆之力铸造的护腿，坚如磐石"
   },
   "leiting_shoes_25": {
     "name": "雷霆战靴",
-    "description": "战士专属，以雷霆之力铸造的战靴，踏地如雷",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "雷霆套",
     "level_required": 25,
     "class_required": "战士",
-    "base_price": 4500,
     "is_artifact": false,
-    "set_name": "雷霆套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 28
+      "defense": 271
     },
     "max_extra_stats": {
-      "defense": 14,
-      "max_health": 40,
-      "attack": 3,
-      "crit_rate": 0.03
-    }
+      "attack": 0,
+      "defense": 271,
+      "max_health": 843,
+      "max_mana": 482,
+      "crit_rate": 0.0077,
+      "dodge_rate": 0.0
+    },
+    "base_price": 4500,
+    "description": "战士专属，以雷霆之力铸造的战靴，踏地如雷"
   }
 }

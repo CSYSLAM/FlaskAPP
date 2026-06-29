@@ -62,7 +62,18 @@
       "mcp__playwright__browser_press_key",
       "Bash(pyinstaller FlaskAPP.spec --noconfirm)",
       "Bash(./FlaskAPP.exe)",
-      "Bash(sort -t':' -k3 -n)"
+      "Bash(sort -t':' -k3 -n)",
+      "Read(//c/Users/Administrator/.claude/**)",
+      "Read(//c/Users/Administrator/**)",
+      "Bash(node *)",
+      "Bash(rm -f forge_test_out.txt forge_all_out.txt)",
+      "Bash(rm -f test.db *.db instance/test.db)",
+      "Bash(ls *.db)",
+      "Bash(git ls-files *)",
+      "Bash(git log *)",
+      "Bash(rm -f set_test_out.txt forge_back.txt seg.txt)",
+      "Bash(git checkout *)",
+      "Bash(rm -f tabs_test.txt bk.txt)"
     ]
   },
   "mcpServers": {
