@@ -16,7 +16,9 @@
       "defense": 14,
       "max_health": 50,
       "attack": 3,
-      "crit_rate": 0.02
+      "crit_rate": 0.02,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "baopi_armor_18": {
@@ -36,7 +38,9 @@
       "defense": 16,
       "max_health": 55,
       "attack": 4,
-      "crit_rate": 0.02
+      "crit_rate": 0.02,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "baopi_gloves_16": {
@@ -56,7 +60,9 @@
       "attack": 10,
       "crit_rate": 0.03,
       "defense": 5,
-      "max_health": 25
+      "max_health": 25,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "baopi_pants_17": {
@@ -76,7 +82,9 @@
       "defense": 14,
       "max_health": 50,
       "attack": 3,
-      "dodge_rate": 0.02
+      "dodge_rate": 0.02,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "baopi_shoes_15": {
@@ -96,7 +104,9 @@
       "defense": 10,
       "max_health": 30,
       "attack": 2,
-      "crit_rate": 0.02
+      "crit_rate": 0.02,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   }
 }

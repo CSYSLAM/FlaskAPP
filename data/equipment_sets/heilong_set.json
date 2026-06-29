@@ -16,7 +16,9 @@
       "defense": 37,
       "max_health": 125,
       "attack": 9,
-      "crit_rate": 0.06
+      "crit_rate": 0.06,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "heilong_armor_53": {
@@ -36,7 +38,9 @@
       "defense": 44,
       "max_health": 150,
       "attack": 12,
-      "crit_rate": 0.06
+      "crit_rate": 0.06,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "heilong_gloves_51": {
@@ -56,7 +60,9 @@
       "attack": 26,
       "crit_rate": 0.07,
       "defense": 13,
-      "max_health": 65
+      "max_health": 65,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "heilong_pants_52": {
@@ -76,7 +82,9 @@
       "defense": 37,
       "max_health": 125,
       "attack": 7,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.06,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "heilong_shoes_50": {
@@ -96,7 +104,9 @@
       "defense": 25,
       "max_health": 75,
       "attack": 6,
-      "crit_rate": 0.06
+      "crit_rate": 0.06,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   }
 }

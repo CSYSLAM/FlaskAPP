@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ stock.name }}</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .up { color: #2e8b57; }
+    .down { color: #d9534f; }
+    .flat { color: #888; }
+    .limit { color: #ff6600; font-weight: bold; }
+    input[type=text] { width: 80px; font-size: 16px; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    {{ stock.name }}（{{ stock.city }}）<br/>
+    ----------------<br/>
+    现价：{{ stock.price }}金珠<br/>
+    今日开盘：{{ stock.open_price }}<br/>
+    {% set cls = 'up' if stock.change_pct > 0 else ('down' if stock.change_pct < 0 else 'flat') %}
+    {% set limit_tag = ' 涨停' if stock.change_pct >= 9.9 else (' 跌停' if stock.change_pct <= -9.9 else '') %}
+    今日涨跌：<span class="{{ cls }}">{{ '%.2f'|format(stock.change_pct) }}%{{ limit_tag }}</span><br/>
+    发行总量：{{ stock.total_shares }}股<br/>
+    可买入：{{ stock.available }}股<br/>
+    距下次刷新：<span id="refresh">{{ next_refresh }}</span>秒<br/>
+    ----------------<br/>
+    人气（NPC对话）：{{ stock.npc_visits }}次（{{ '%.0f'|format(stock.pop_factor*100) }}%）<br/>
+    劫匪击杀：{{ stock.bandit_kills }}次（{{ '%.0f'|format(stock.bandit_factor*100) }}%）<br/>
+    <span class="flat">每日涨跌≤10%（随机8%+人气1%+劫匪1%）</span><br/>
+    ----------------<br/>
+    {% if holding %}
+    我的持仓：{{ holding.shares }}股<br/>
+    持仓均价：{{ holding.avg_cost }}金珠<br/>
+    浮动盈亏：<span class="{{ 'up' if (stock.price-holding.avg_cost) > 0 else ('down' if (stock.price-holding.avg_cost) < 0 else 'flat') }}">{{ '%.2f'|format((stock.price-holding.avg_cost)*holding.shares) }}</span>金珠<br/>
+    {% else %}
+    我的持仓：无<br/>
+    {% endif %}
+    金珠余额：{{ summary.jinzu }}<br/>
+    ----------------<br/>
+    买入（万五手续费）<br/>
+    <form action="{{ url_for('activity.finance_buy') }}" method="post">
+        <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
+        数量<input type="text" name="shares" value="1">
+        <input type="submit" value="买入">
+    </form>
+    卖出（万五手续费）<br/>
+    <form action="{{ url_for('activity.finance_sell') }}" method="post">
+        <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
+        数量<input type="text" name="shares" value="{{ holding.shares if holding else 0 }}">
+        <input type="submit" value="卖出">
+    </form>
+    ----------------<br/>
+    近期走势<br/>
+    {% for p in stock.history[-12:] %}
+    {{ '%.2f'|format(p) }} {% if not loop.last %}→ {% endif %}
+    {% endfor %}<br/>
+    ----------------<br/>
+    <a href="{{ url_for('activity.finance_page') }}">返回行情</a><br/>
+    <a href="{{ url_for('activity.finance_holdings') }}">我的持仓</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+
+    <script>
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    var forms=document.getElementsByTagName("form");
+    for(var i=0;i<forms.length;i++){forms[i].onsubmit=function(){document.getElementById('loading').style.display='block';};}
+    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    var r={{ next_refresh }};
+    var el=document.getElementById('refresh');
+    var t=setInterval(function(){ r=r-1; if(r<0){r=0;} el.textContent=r; },1000);
+    </script>
+</body>
+</html>

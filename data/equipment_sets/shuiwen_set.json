@@ -16,7 +16,9 @@
       "defense": 12,
       "max_health": 40,
       "max_mana": 30,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.03,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   },
   "shuiwen_armor_18": {
@@ -36,7 +38,9 @@
       "defense": 15,
       "max_health": 50,
       "max_mana": 40,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "attack": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "shuiwen_gloves_16": {
@@ -56,7 +60,9 @@
       "attack": 10,
       "crit_rate": 0.04,
       "max_mana": 20,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.03,
+      "defense": 0.0,
+      "max_health": 0.0
     }
   },
   "shuiwen_pants_17": {
@@ -76,7 +82,9 @@
       "defense": 12,
       "max_health": 45,
       "max_mana": 25,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.03,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   },
   "shuiwen_shoes_15": {
@@ -96,7 +104,9 @@
       "dodge_rate": 0.04,
       "defense": 8,
       "max_mana": 20,
-      "max_health": 25
+      "max_health": 25,
+      "attack": 0.0,
+      "crit_rate": 0.0
     }
   }
 }

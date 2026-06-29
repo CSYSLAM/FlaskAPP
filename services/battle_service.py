@@ -100,7 +100,7 @@ class BattleService:
                         player.item_effect += f"|{lt.name}{sk['name']}回复{heal_amount}"
 
     @classmethod
-    def start_pve(cls, player):
+    def start_pve(cls, player, monster_id=None):
         if player.in_battle:
             return None, "你已经处于战斗中"
 
@@ -112,10 +112,22 @@ class BattleService:
         killable_ids = [mid for mid in monster_ids
                         if all_monsters.get(mid, {}).get("killable", True)
                         and CopyDungeonService.should_show_monster_in_scene(player, mid)]
-        if not killable_ids:
+        if not killable_ids and not monster_id:
             return None, "这里没有怪物"
 
-        monster_id = random.choice(killable_ids)
+        # Finance bandit: a bandit present at this location may be targeted (理财·劫匪, 世界BOSS)
+        from services.finance_service import FinanceService
+        if monster_id is None:
+            monster_id = random.choice(killable_ids) if killable_ids else None
+        else:
+            # 指定怪物：劫匪需在该场景且在场，其它怪需属于该场景
+            bandit_info = FinanceService.get_bandit_at_location(player.current_location)
+            is_bandit = bandit_info and bandit_info[0] == monster_id
+            if not is_bandit and monster_id not in killable_ids:
+                return None, "该怪物不在此处"
+
+        if not monster_id:
+            return None, "这里没有怪物"
         monster_data = all_monsters.get(monster_id, {})
         is_elite = monster_data.get("is_elite", False)
         is_copy_monster = monster_data.get("is_copy") or monster_data.get("copy_only")
@@ -591,6 +603,16 @@ class BattleService:
             player.last_battle_result += f"。任务掉落: {'、'.join(set(quest_drops_final))}"
         player.current_encounter = None
         monster.reset_health()
+
+        # Finance bandit kill: record to city ranking + points reward (理财·劫匪, 世界BOSS)
+        if monster.monster_id and monster.monster_id.startswith("bandit_"):
+            from services.finance_service import FinanceService, BANDIT_POINTS_PER_JINZU
+            info = FinanceService.record_bandit_kill(monster.monster_id, player)
+            if info:
+                pts_msg = f"积分+{info['points']}（{info['total_points']}/{BANDIT_POINTS_PER_JINZU}）"
+                if info['jinzu'] > 0:
+                    pts_msg += f"，兑换金珠{info['jinzu']}枚"
+                player.last_battle_result += f"。救济富商，{pts_msg}"
 
         # World boss: broadcast defeat via last_battle_result
         if monster.is_elite and not getattr(monster, 'is_copy', False):

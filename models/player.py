@@ -111,6 +111,9 @@ class PlayerModel(db.Model, UserMixin):
 
     activity_data_raw = db.Column('activity_data', db.Text, default='{}')
 
+    # Finance (理财·股市) holdings: {holdings:{stock_id:{shares,avg_cost}}, realized_profit, total_traded}
+    finance_data_raw = db.Column('finance_data', db.Text, default='{}')
+
     # Enemy list (仇人)
     enemies_raw = db.Column('enemies', db.Text, default='[]')
 
@@ -276,6 +279,17 @@ class PlayerModel(db.Model, UserMixin):
     @activity_data.setter
     def activity_data(self, value):
         self.activity_data_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def finance_data(self):
+        try:
+            return json.loads(self.finance_data_raw) if self.finance_data_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @finance_data.setter
+    def finance_data(self, value):
+        self.finance_data_raw = json.dumps(value, ensure_ascii=False)
 
     @property
     def enemies(self):

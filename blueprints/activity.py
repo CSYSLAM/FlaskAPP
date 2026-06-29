@@ -296,3 +296,148 @@ def teleport_to_target(task_id):
     from services import db
     db.session.commit()
     return redirect(url_for('game.scene'))
+
+
+# --- Finance (三国理财·股市) ---
+
+@activity_bp.route("/finance")
+@login_required
+def finance_page():
+    player = current_user
+    from services.finance_service import FinanceService
+    market = FinanceService.get_market()
+    summary = FinanceService.get_player_summary(player)
+    next_refresh = FinanceService.get_next_refresh_in()
+    bandits = FinanceService.get_bandit_status()
+    return render_template("finance.html",
+                         player=player,
+                         market=market,
+                         summary=summary,
+                         next_refresh=next_refresh,
+                         bandits=bandits)
+
+
+@activity_bp.route("/finance/rules")
+@login_required
+def finance_rules():
+    player = current_user
+    return render_template("finance_rules.html", player=player)
+
+
+@activity_bp.route("/finance/stock/<stock_id>")
+@login_required
+def finance_stock_page(stock_id):
+    player = current_user
+    from services.finance_service import FinanceService
+    stock = FinanceService.get_stock(stock_id)
+    if not stock:
+        flash("无此股票")
+        return redirect(url_for('activity.finance_page'))
+    summary = FinanceService.get_player_summary(player)
+    holding = None
+    fd = player.finance_data or {}
+    h = (fd.get('holdings') or {}).get(stock_id)
+    if h and h.get('shares', 0) > 0:
+        holding = {
+            'shares': int(h['shares']),
+            'avg_cost': round(float(h.get('avg_cost', 0)), 2),
+        }
+    next_refresh = FinanceService.get_next_refresh_in()
+    return render_template("finance_stock.html",
+                         player=player,
+                         stock=stock,
+                         summary=summary,
+                         holding=holding,
+                         next_refresh=next_refresh)
+
+
+@activity_bp.route("/finance/buy", methods=["POST"])
+@login_required
+def finance_buy():
+    player = current_user
+    stock_id = request.form.get('stock_id', '')
+    shares = request.form.get('shares', '0')
+    from services.finance_service import FinanceService
+    success, msg = FinanceService.buy(player, stock_id, shares)
+    flash(msg)
+    return redirect(url_for('activity.finance_stock_page', stock_id=stock_id))
+
+
+@activity_bp.route("/finance/sell", methods=["POST"])
+@login_required
+def finance_sell():
+    player = current_user
+    stock_id = request.form.get('stock_id', '')
+    shares = request.form.get('shares', '0')
+    from services.finance_service import FinanceService
+    success, msg = FinanceService.sell(player, stock_id, shares)
+    flash(msg)
+    return redirect(url_for('activity.finance_stock_page', stock_id=stock_id))
+
+
+@activity_bp.route("/finance/holdings")
+@login_required
+def finance_holdings():
+    player = current_user
+    from services.finance_service import FinanceService
+    holdings = FinanceService.get_player_holdings(player)
+    summary = FinanceService.get_player_summary(player)
+    return render_template("finance_holdings.html",
+                         player=player,
+                         holdings=holdings,
+                         summary=summary)
+
+
+@activity_bp.route("/finance/rank/finance")
+@login_required
+def finance_rank_finance():
+    """股神榜：按股市总盈亏排行（仅在金珠理财界面显示）。"""
+    player = current_user
+    from services.finance_service import FinanceService
+    from models.player import PlayerModel
+    rows = PlayerModel.query.all()
+    entries = []
+    for p in rows:
+        profit = FinanceService.get_player_profit(p)
+        if abs(profit) > 0.001 or (p.finance_data or {}).get('holdings'):
+            entries.append((p, round(profit, 2)))
+    entries.sort(key=lambda x: x[1], reverse=True)
+    entries = entries[:30]
+    my_val = round(FinanceService.get_player_profit(player), 2)
+    my_rank = None
+    for i, (p, v) in enumerate(entries):
+        if p.id == player.id:
+            my_rank = i + 1
+            break
+    if my_rank is None and my_val > 0:
+        my_rank = sum(1 for p, v in entries if v > my_val) + 1
+    from services.social_service import SocialService
+    return render_template("finance_rank.html",
+                         player=player,
+                         rank_type='finance',
+                         title='股神榜',
+                         unit='珠',
+                         entries=entries,
+                         my_val=my_val,
+                         my_rank=my_rank,
+                         is_online=SocialService._is_online)
+
+
+@activity_bp.route("/finance/rank/bandit")
+@login_required
+def finance_rank_bandit():
+    """义士榜：按各城市击杀劫匪总数排行（城市维度，仅在金珠理财界面显示）。"""
+    player = current_user
+    from services.finance_service import FinanceService
+    city_rows = FinanceService.get_city_kill_rank(30)
+    return render_template("finance_rank.html",
+                         player=player,
+                         rank_type='bandit',
+                         title='义士榜',
+                         unit='次',
+                         entries=city_rows,
+                         my_val=0,
+                         my_rank=None,
+                         is_online=None)
+
+

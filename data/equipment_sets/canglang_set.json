@@ -16,7 +16,9 @@
       "defense": 10,
       "max_health": 40,
       "dodge_rate": 0.04,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "attack": 0.0,
+      "max_mana": 0.0
     }
   },
   "canglang_armor_18": {
@@ -36,7 +38,9 @@
       "defense": 13,
       "max_health": 45,
       "dodge_rate": 0.03,
-      "crit_rate": 0.04
+      "crit_rate": 0.04,
+      "attack": 0.0,
+      "max_mana": 0.0
     }
   },
   "canglang_gloves_16": {
@@ -56,7 +60,9 @@
       "attack": 12,
       "crit_rate": 0.05,
       "dodge_rate": 0.03,
-      "max_health": 20
+      "max_health": 20,
+      "defense": 0.0,
+      "max_mana": 0.0
     }
   },
   "canglang_pants_17": {
@@ -76,7 +82,9 @@
       "defense": 11,
       "max_health": 40,
       "dodge_rate": 0.04,
-      "crit_rate": 0.03
+      "crit_rate": 0.03,
+      "attack": 0.0,
+      "max_mana": 0.0
     }
   },
   "canglang_shoes_15": {
@@ -96,7 +104,9 @@
       "dodge_rate": 0.05,
       "defense": 7,
       "crit_rate": 0.03,
-      "max_health": 20
+      "max_health": 20,
+      "attack": 0.0,
+      "max_mana": 0.0
     }
   }
 }

@@ -15,7 +15,10 @@
     "max_extra_stats": {
       "defense": 5,
       "max_health": 20,
-      "dodge_rate": 0.02
+      "dodge_rate": 0.02,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "mabu_armor_5": {
@@ -34,7 +37,10 @@
     "max_extra_stats": {
       "defense": 7,
       "max_health": 30,
-      "crit_rate": 0.02
+      "crit_rate": 0.02,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "mabu_gloves_5": {
@@ -53,7 +59,10 @@
     "max_extra_stats": {
       "attack": 4,
       "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "dodge_rate": 0.02,
+      "defense": 0.0,
+      "max_health": 0.0,
+      "max_mana": 0.0
     }
   },
   "mabu_pants_5": {
@@ -72,7 +81,10 @@
     "max_extra_stats": {
       "defense": 5,
       "max_health": 25,
-      "dodge_rate": 0.02
+      "dodge_rate": 0.02,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   },
   "mabu_shoes_5": {
@@ -91,7 +103,10 @@
     "max_extra_stats": {
       "dodge_rate": 0.03,
       "defense": 4,
-      "max_health": 15
+      "max_health": 15,
+      "attack": 0.0,
+      "max_mana": 0.0,
+      "crit_rate": 0.0
     }
   }
 }
