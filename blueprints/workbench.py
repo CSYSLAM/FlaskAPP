@@ -573,9 +573,15 @@ def _simulate_generate(template_id, rarity=None, stars=None):
             rarity = "史诗"
     if stars is None:
         stars = _random.randint(1, 5)
-    ratio = stars / 5
-    base_stats = {stat: int(value * ratio) for stat, value in template.get("base_stats", {}).items()}
-    extra_stats = DataService._generate_extra_stats(template, rarity, stars)
+    # 基础属性只与品质有关，与星级无关；模板值即最高品质（史诗/神器）属性
+    base_ratio = DataService.RARITY_BASE_RATIO.get(rarity, 1.0)
+    base_stats = {
+        stat: (value if stat in ("crit_rate", "dodge_rate")
+               else int(value * base_ratio))
+        for stat, value in template.get("base_stats", {}).items()
+    }
+    extra_stats, derived_stars = DataService._generate_extra_stats(template, rarity, stars)
+    stars = derived_stars
     name = f"【{rarity}】{template.get('name', template_id)}({stars}星)({template.get('level_required', 1)}级)"
     return {
         'template_id': template_id,

@@ -59,9 +59,14 @@ class Equipment:
         return int(base_price * rarity_multipliers[self.rarity] * (self.stars / 5))
 
     def _calculate_base_stats(self) -> Dict[str, int]:
-        ratio = self.stars / 5
+        # 基础属性只与品质有关，与星级无关；模板值即最高品质（史诗/神器）属性
+        rarity_ratio = {
+            "普通": 0.80, "精良": 0.90, "卓越": 0.95,
+            "史诗": 1.00, "神器": 1.00,
+        }.get(self.rarity, 1.0)
         return {
-            stat: int(value * ratio)
+            stat: (value if stat in ("crit_rate", "dodge_rate")
+                   else int(value * rarity_ratio))
             for stat, value in self.template["base_stats"].items()
         }
 
@@ -114,6 +119,8 @@ class Equipment:
         avg_stars = self.stars
         num_stats = len(selected_stats)
         
+        # 每条附加属性独立星级，按各自星级系数区间随机
+        stat_stars_list = []
         for stat in selected_stats:
             # 在平均星级的基础上随机浮动，确保在1-5星之间
             max_value = self.template["max_extra_stats"].get(stat, 0)
@@ -121,8 +128,21 @@ class Equipment:
             if not max_value or max_value == 0:
                 continue
             stat_stars = min(5, max(1, random.randint(avg_stars - 1, avg_stars + 1)))
-            actual_value = max_value * (stat_stars / 5)
+            star_ranges = {
+                5: (1.00, 1.10), 4: (1.00, 1.06), 3: (1.00, 1.02),
+                2: (0.98, 1.02), 1: (0.96, 1.00),
+            }
+            lo, hi = star_ranges.get(stat_stars, (0.96, 1.00))
+            coef = random.uniform(lo, hi)
+            actual_value = max_value * coef
+            if stat not in ("crit_rate", "dodge_rate"):
+                actual_value = int(actual_value)
             extra_stats[stat] = (actual_value, stat_stars)
+            stat_stars_list.append(stat_stars)
+
+        # 总星级由附加属性星级平均值反推
+        if stat_stars_list:
+            self.stars = int(sum(stat_stars_list) // len(stat_stars_list))
 
         return extra_stats
 
