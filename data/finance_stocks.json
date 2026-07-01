@@ -7,7 +7,7 @@
       "npc_keyword": "王老板",
       "area_id": "beiping_center",
       "base_price": 100.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "beiping_bank",
@@ -16,7 +16,7 @@
       "npc_keyword": "金掌柜",
       "area_id": "beiping_center",
       "base_price": 120.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "xiapi_blacksmith",
@@ -25,7 +25,7 @@
       "npc_keyword": "铁匠",
       "area_id": "xiapi_center",
       "base_price": 80.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "hanzhong_inn",
@@ -34,7 +34,7 @@
       "npc_keyword": "王老板",
       "area_id": "hanzhong_center",
       "base_price": 90.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "chaisang_bank",
@@ -43,7 +43,7 @@
       "npc_keyword": "金掌柜",
       "area_id": "chaisang_center",
       "base_price": 110.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "luoyang_bank",
@@ -52,7 +52,7 @@
       "npc_keyword": "金掌柜",
       "area_id": "luoyang_center",
       "base_price": 150.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "jianye_inn",
@@ -61,7 +61,7 @@
       "npc_keyword": "王老板",
       "area_id": "jianye_center",
       "base_price": 95.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "chengdu_blacksmith",
@@ -70,7 +70,7 @@
       "npc_keyword": "铁匠",
       "area_id": "chengdu_center",
       "base_price": 85.0,
-      "total_shares": 100000
+      "total_shares": 5000
     },
     {
       "stock_id": "xuchang_bank",
@@ -79,7 +79,7 @@
       "npc_keyword": "金掌柜",
       "area_id": "xuchang_center",
       "base_price": 130.0,
-      "total_shares": 100000
+      "total_shares": 5000
     }
   ]
 }

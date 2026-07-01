@@ -1,0 +1,112 @@
+{
+  "zhuque_helmet_59": {
+    "name": "朱雀羽盔",
+    "slot": "helmet",
+    "set_name": "朱雀套",
+    "level_required": 59,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 345
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 345,
+      "max_health": 1990,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16000,
+    "description": "术士专属，以朱雀之羽编织的羽盔，朱雀护首，灵光熠熠"
+  },
+  "zhuque_armor_58": {
+    "name": "朱雀羽衣",
+    "slot": "armor",
+    "set_name": "朱雀套",
+    "level_required": 58,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 345
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 345,
+      "max_health": 1990,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18500,
+    "description": "术士专属，以朱雀之羽织成的羽衣，朱雀覆体，法力流转"
+  },
+  "zhuque_pants_57": {
+    "name": "朱雀羽裤",
+    "slot": "pants",
+    "set_name": "朱雀套",
+    "level_required": 57,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 345
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 345,
+      "max_health": 1990,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16500,
+    "description": "术士专属，以朱雀之羽织成的护腿，朱雀护腿，轻灵飘逸"
+  },
+  "zhuque_gloves_56": {
+    "name": "朱雀手套",
+    "slot": "gloves",
+    "set_name": "朱雀套",
+    "level_required": 56,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 345
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 345,
+      "max_health": 0,
+      "max_mana": 1300,
+      "crit_rate": 0.029,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "术士专属，以朱雀之羽编织的手套，朱雀附手，法术通天"
+  },
+  "zhuque_shoes_55": {
+    "name": "朱雀靴",
+    "slot": "shoes",
+    "set_name": "朱雀套",
+    "level_required": 55,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 345
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 345,
+      "max_health": 0,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.028
+    },
+    "base_price": 13500,
+    "description": "术士专属，以朱雀之羽编织的布靴，踏火而行，朱雀相随"
+  }
+}

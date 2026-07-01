@@ -1,112 +1,113 @@
 {
   "riguang_helmet_29": {
     "name": "日光头带",
-    "description": "术士专属，以日光之辉编织的头带，蕴含光元素之力",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "日光套",
     "level_required": 29,
     "class_required": "术士",
-    "base_price": 5500,
     "is_artifact": false,
-    "set_name": "日光套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 32
+      "defense": 32,
+      "max_health": 150
     },
     "max_extra_stats": {
-      "defense": 16,
-      "max_health": 55,
-      "max_mana": 40,
-      "dodge_rate": 0.04,
-      "attack": 0.0,
-      "crit_rate": 0.0
-    }
+      "attack": 0,
+      "defense": 150,
+      "max_health": 620,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5500,
+    "description": "术士专属，以日光之辉编织的头带，蕴含光元素之力"
   },
   "riguang_armor_28": {
     "name": "月光长袍",
-    "description": "术士专属，以月光之华织成的长袍，流转着月华之光",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "日光套",
     "level_required": 28,
     "class_required": "术士",
-    "base_price": 6500,
     "is_artifact": false,
-    "set_name": "日光套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 150
     },
     "max_extra_stats": {
-      "defense": 20,
-      "max_health": 65,
-      "max_mana": 55,
-      "crit_rate": 0.04,
-      "attack": 0.0,
+      "attack": 0,
+      "defense": 150,
+      "max_health": 620,
+      "max_mana": 426,
+      "crit_rate": 0.0,
       "dodge_rate": 0.0
-    }
+    },
+    "base_price": 6500,
+    "description": "术士专属，以月光之华织成的长袍，流转着月华之光"
   },
   "riguang_gloves_26": {
     "name": "流光手套",
-    "description": "术士专属，以流光之丝编织的手套，增强法术威力",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "日光套",
     "level_required": 26,
     "class_required": "术士",
-    "base_price": 4800,
     "is_artifact": false,
-    "set_name": "日光套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 26
+      "defense": 150
     },
     "max_extra_stats": {
-      "attack": 14,
-      "crit_rate": 0.05,
-      "max_mana": 30,
-      "dodge_rate": 0.04,
-      "defense": 0.0,
-      "max_health": 0.0
-    }
+      "attack": 0,
+      "defense": 150,
+      "max_health": 0,
+      "max_mana": 426,
+      "crit_rate": 0.0087,
+      "dodge_rate": 0.0
+    },
+    "base_price": 4800,
+    "description": "术士专属，以流光之丝编织的手套，增强法术威力"
   },
   "riguang_pants_27": {
     "name": "星光长裤",
-    "description": "术士专属，以星光之辉织成的护腿，璀璨夺目",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "日光套",
     "level_required": 27,
     "class_required": "术士",
-    "base_price": 5800,
     "is_artifact": false,
-    "set_name": "日光套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 34
+      "defense": 150
     },
     "max_extra_stats": {
-      "defense": 16,
-      "max_health": 60,
-      "max_mana": 35,
-      "dodge_rate": 0.04,
-      "attack": 0.0,
-      "crit_rate": 0.0
-    }
+      "attack": 0,
+      "defense": 150,
+      "max_health": 620,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 5800,
+    "description": "术士专属，以星光之辉织成的护腿，璀璨夺目"
   },
   "riguang_shoes_25": {
     "name": "晨光长靴",
-    "description": "术士专属，以晨光之辉编织的布靴，踏光而行",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "日光套",
     "level_required": 25,
     "class_required": "术士",
-    "base_price": 4500,
     "is_artifact": false,
-    "set_name": "日光套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 23
+      "defense": 158
     },
     "max_extra_stats": {
-      "dodge_rate": 0.05,
-      "defense": 11,
-      "max_mana": 30,
-      "max_health": 35,
-      "attack": 0.0,
-      "crit_rate": 0.0
-    }
+      "attack": 0,
+      "defense": 150,
+      "max_health": 0,
+      "max_mana": 426,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0077
+    },
+    "base_price": 4500,
+    "description": "术士专属，以晨光之辉编织的布靴，踏光而行"
   }
 }

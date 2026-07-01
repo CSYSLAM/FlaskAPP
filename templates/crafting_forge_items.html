@@ -29,6 +29,15 @@
     {% endif %}
     {% endfor %}
     <br/>
+    {% elif page_type == 'set' and class_tabs %}
+    {% for cls in class_tabs %}
+    {% if cls == active_class %}
+    {{ cls }}
+    {% else %}
+    <a href="{{ url_for('crafting.epic_forge_set', set_id=set_id, class_name=cls) }}">{{ cls }}</a>
+    {% endif %}
+    {% endfor %}
+    <br/>
     {% endif %}
     ----------------
     {% for item in items %}

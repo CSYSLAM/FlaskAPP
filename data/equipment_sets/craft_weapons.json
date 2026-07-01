@@ -526,5 +526,71 @@
     },
     "base_price": 14000,
     "description": "刺客专属，枪出如龙，形影无踪"
+  },
+  "zhanyue_60_zhanshi": {
+    "name": "斩月",
+    "slot": "weapon",
+    "set_name": "史诗武器",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "attack": 560
+    },
+    "max_extra_stats": {
+      "attack": 588,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 1460,
+      "crit_rate": 0.036,
+      "dodge_rate": 0.0
+    },
+    "base_price": 17500,
+    "description": "战士专属，刀光如月，一斩断魂，力劈天下"
+  },
+  "qixing_longyuan_60_shushi": {
+    "name": "七星龙渊剑",
+    "slot": "weapon",
+    "set_name": "史诗武器",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "attack": 515
+    },
+    "max_extra_stats": {
+      "attack": 530,
+      "max_health": 0,
+      "max_mana": 2770,
+      "crit_rate": 0.031,
+      "defense": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 17500,
+    "description": "术士专属，剑藏七星，龙渊深不可测，法力通天"
+  },
+  "suipo_60_cike": {
+    "name": "碎魄",
+    "slot": "weapon",
+    "set_name": "史诗武器",
+    "level_required": 60,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "attack": 485
+    },
+    "max_extra_stats": {
+      "attack": 500,
+      "max_health": 0,
+      "max_mana": 1660,
+      "crit_rate": 0.061,
+      "dodge_rate": 0.0,
+      "defense": 0.0
+    },
+    "base_price": 17500,
+    "description": "刺客专属，刃名碎魄，一击夺魂，令敌胆寒"
   }
 }

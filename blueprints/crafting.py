@@ -73,31 +73,41 @@ def epic_forge_accessories():
 
 
 @crafting_bp.route("/epic_forge/set/<set_id>")
+@crafting_bp.route("/epic_forge/set/<set_id>/<class_name>")
 @login_required
-def epic_forge_set(set_id):
-    """Epic armor set crafting page."""
+def epic_forge_set(set_id, class_name=None):
+    """Epic armor set crafting page.
+
+    Sets that share a ``group`` (e.g. 青龙/朱雀/白虎 55-59) render in-page class
+    tabs so the player can switch between the three classes' sets from one entry.
+    """
     player = current_user
-    sets = CraftingService.get_sets_by_class(player.player_class)
-
-    target_set = None
-    for s in sets:
-        if s["set_id"] == set_id:
-            target_set = s
-            break
-
+    target_set = CraftingService.get_set_by_id(set_id)
     if not target_set:
         return redirect(url_for('crafting.epic_forge'))
 
+    # Resolve which class to display
+    class_tabs = CraftingService.get_set_class_tabs(target_set)
+    if class_tabs:
+        # Grouped set: honour the requested class tab, default to player's class
+        if class_name not in class_tabs:
+            class_name = player.player_class if player.player_class in class_tabs else class_tabs[0]
+        display_set = CraftingService.get_set_in_group_by_class(target_set, class_name)
+    else:
+        class_name = target_set["class_name"]
+        display_set = target_set
+
     templates = []
-    for tid in target_set["templates"]:
+    for tid in display_set["templates"]:
         info = CraftingService.get_template_info(tid)
         if info:
             templates.append(info)
 
     return render_template("crafting_forge_items.html", player=player,
-                           items=templates, active_class=player.player_class,
-                           page_type="set", title=target_set["name"] + "打造",
-                           set_name=target_set["name"])
+                           items=templates, active_class=class_name,
+                           page_type="set", title=display_set["name"] + "打造",
+                           set_name=display_set["name"],
+                           set_id=set_id, class_tabs=class_tabs)
 
 
 @crafting_bp.route("/forge/<template_id>", methods=["POST"])
@@ -123,15 +133,20 @@ def forge_equipment(template_id):
     elif slot == "accessory":
         back_url = url_for('crafting.epic_forge_accessories')
     else:
-        # Armor set - find which set this template belongs to
-        sets = CraftingService.get_sets_by_class(player.player_class)
+        # Armor set - find which set this template belongs to (across all classes,
+        # since the player may have switched the in-page class tab of a grouped set)
         found_set_id = None
-        for s in sets:
+        found_class = None
+        for s in CraftingService.SET_DEFINITIONS:
             if template_id in s["templates"]:
                 found_set_id = s["set_id"]
+                found_class = s["class_name"]
                 break
         if found_set_id:
-            back_url = url_for('crafting.epic_forge_set', set_id=found_set_id)
+            set_def = CraftingService.get_set_by_id(found_set_id)
+            # For grouped sets, jump back to the class tab of the set just forged
+            back_class = found_class if (set_def and set_def.get("group")) else player.player_class
+            back_url = url_for('crafting.epic_forge_set', set_id=found_set_id, class_name=back_class)
         else:
             back_url = url_for('crafting.epic_forge')
 

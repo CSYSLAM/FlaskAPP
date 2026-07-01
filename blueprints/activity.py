@@ -309,12 +309,14 @@ def finance_page():
     summary = FinanceService.get_player_summary(player)
     next_refresh = FinanceService.get_next_refresh_in()
     bandits = FinanceService.get_bandit_status()
+    phase = FinanceService.get_market_phase()
     return render_template("finance.html",
                          player=player,
                          market=market,
                          summary=summary,
                          next_refresh=next_refresh,
-                         bandits=bandits)
+                         bandits=bandits,
+                         phase=phase)
 
 
 @activity_bp.route("/finance/rules")
@@ -343,12 +345,18 @@ def finance_stock_page(stock_id):
             'avg_cost': round(float(h.get('avg_cost', 0)), 2),
         }
     next_refresh = FinanceService.get_next_refresh_in()
+    phase = FinanceService.get_market_phase()
+    tradable = FinanceService.is_tradable()
+    shows_price = FinanceService.shows_price()
     return render_template("finance_stock.html",
                          player=player,
                          stock=stock,
                          summary=summary,
                          holding=holding,
-                         next_refresh=next_refresh)
+                         next_refresh=next_refresh,
+                         phase=phase,
+                         tradable=tradable,
+                         shows_price=shows_price)
 
 
 @activity_bp.route("/finance/buy", methods=["POST"])
@@ -373,6 +381,47 @@ def finance_sell():
     success, msg = FinanceService.sell(player, stock_id, shares)
     flash(msg)
     return redirect(url_for('activity.finance_stock_page', stock_id=stock_id))
+
+
+@activity_bp.route("/finance/order", methods=["POST"])
+@login_required
+def finance_place_order():
+    """提交委托单（限价单，任何时段可挂单）。"""
+    player = current_user
+    stock_id = request.form.get('stock_id', '')
+    side = request.form.get('side', 'buy')
+    shares = request.form.get('shares', '0')
+    limit_price = request.form.get('limit_price', '0')
+    from services.finance_service import FinanceService
+    success, msg = FinanceService.place_order(player, stock_id, side, shares, limit_price)
+    flash(msg)
+    return redirect(url_for('activity.finance_stock_page', stock_id=stock_id))
+
+
+@activity_bp.route("/finance/orders")
+@login_required
+def finance_orders():
+    """我的委托单列表。"""
+    player = current_user
+    from services.finance_service import FinanceService
+    orders = FinanceService.get_player_orders(player)
+    summary = FinanceService.get_player_summary(player)
+    phase = FinanceService.get_market_phase()
+    return render_template("finance_orders.html",
+                         player=player,
+                         orders=orders,
+                         summary=summary,
+                         phase=phase)
+
+
+@activity_bp.route("/finance/order/cancel/<order_id>", methods=["POST"])
+@login_required
+def finance_cancel_order(order_id):
+    player = current_user
+    from services.finance_service import FinanceService
+    success, msg = FinanceService.cancel_order(player, order_id)
+    flash(msg)
+    return redirect(url_for('activity.finance_orders'))
 
 
 @activity_bp.route("/finance/holdings")

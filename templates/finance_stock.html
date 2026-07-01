@@ -31,18 +31,24 @@
 
     {{ stock.name }}（{{ stock.city }}）<br/>
     ----------------<br/>
+    {% set phase_text = {'pre_open':'盘前（9:00前·不显示股价·可挂委托单）','auction':'集合竞价（9:00-9:30·不显示股价·按开盘价撮合）','open':'交易中（9:30-18:00）','closed':'已休市（18:00后·可挂委托单）'} %}
+    时段：<span class="{{ 'up' if phase=='open' else 'flat' }}">{{ phase_text.get(phase, phase) }}</span><br/>
+    {% if shows_price %}
     现价：{{ stock.price }}金珠<br/>
     今日开盘：{{ stock.open_price }}<br/>
     {% set cls = 'up' if stock.change_pct > 0 else ('down' if stock.change_pct < 0 else 'flat') %}
     {% set limit_tag = ' 涨停' if stock.change_pct >= 9.9 else (' 跌停' if stock.change_pct <= -9.9 else '') %}
     今日涨跌：<span class="{{ cls }}">{{ '%.2f'|format(stock.change_pct) }}%{{ limit_tag }}</span><br/>
+    {% else %}
+    现价：--（集合竞价/盘前不显示股价，9:30开盘后实时变动）<br/>
+    {% endif %}
     发行总量：{{ stock.total_shares }}股<br/>
     可买入：{{ stock.available }}股<br/>
     距下次刷新：<span id="refresh">{{ next_refresh }}</span>秒<br/>
     ----------------<br/>
     人气（NPC对话）：{{ stock.npc_visits }}次（{{ '%.0f'|format(stock.pop_factor*100) }}%）<br/>
     劫匪击杀：{{ stock.bandit_kills }}次（{{ '%.0f'|format(stock.bandit_factor*100) }}%）<br/>
-    <span class="flat">每日涨跌≤10%（随机8%+人气1%+劫匪1%）</span><br/>
+    <span class="flat">每日涨跌≤10%（随机8%+人气排名+劫匪排名），50种K线策略随机走势</span><br/>
     ----------------<br/>
     {% if holding %}
     我的持仓：{{ holding.shares }}股<br/>
@@ -53,18 +59,33 @@
     {% endif %}
     金珠余额：{{ summary.jinzu }}<br/>
     ----------------<br/>
-    买入（万五手续费）<br/>
+    {% if tradable %}
+    买入（万五手续费，即时成交）<br/>
     <form action="{{ url_for('activity.finance_buy') }}" method="post">
         <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
         数量<input type="text" name="shares" value="1">
         <input type="submit" value="买入">
     </form>
-    卖出（万五手续费）<br/>
+    卖出（万五手续费，即时成交）<br/>
     <form action="{{ url_for('activity.finance_sell') }}" method="post">
         <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
         数量<input type="text" name="shares" value="{{ holding.shares if holding else 0 }}">
         <input type="submit" value="卖出">
     </form>
+    {% else %}
+    <span class="flat">非交易时段，即时买卖已关闭，可提交委托单</span><br/>
+    {% endif %}
+    ----------------<br/>
+    委托单（限价单，任何时段可挂）<br/>
+    <span class="flat">买单：委托价≥当前价×95%即成交（按委托价买）；卖单：委托价≤当前价即成交（按委托价卖）。流通量不足时部分成交，剩余继续挂单</span><br/>
+    <form action="{{ url_for('activity.finance_place_order') }}" method="post">
+        <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
+        方向<select name="side"><option value="buy">买入</option><option value="sell">卖出</option></select>
+        数量<input type="text" name="shares" value="1">
+        委托价<input type="text" name="limit_price" value="{{ '%.2f'|format(stock.price) if shows_price else stock.open_price }}">
+        <input type="submit" value="挂单">
+    </form>
+    <a href="{{ url_for('activity.finance_orders') }}">查看我的委托</a><br/>
     ----------------<br/>
     近期走势<br/>
     {% for p in stock.history[-12:] %}

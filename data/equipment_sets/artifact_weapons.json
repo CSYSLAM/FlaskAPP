@@ -69,15 +69,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "defense": 30
+      "defense": 312
     },
     "max_extra_stats": {
-      "attack": 40,
-      "defense": 40,
-      "max_health": 300,
-      "max_mana": 200,
+      "attack": 0,
+      "defense": 312,
+      "max_health": 1300,
+      "max_mana": 800,
       "crit_rate": 0.06,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.0
     }
   },
   "wuhu_duanhun_dao": {
@@ -149,15 +149,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 390
     },
     "max_extra_stats": {
-      "attack": 50,
-      "defense": 50,
-      "max_health": 400,
-      "max_mana": 250,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.07
+      "attack": 0,
+      "defense": 390,
+      "max_health": 1500,
+      "max_mana": 980,
+      "crit_rate": 0.075,
+      "dodge_rate": 0.0
     }
   },
   "qisheng_dao": {
@@ -196,7 +196,7 @@
       "defense": 0,
       "max_health": 3600,
       "max_mana": 2200,
-      "crit_rate": 0.08,
+      "crit_rate": 0.09,
       "dodge_rate": 0.0
     }
   },
@@ -229,15 +229,15 @@
     "is_artifact": true,
     "is_bound": false,
     "base_stats": {
-      "defense": 50
+      "defense": 468
     },
     "max_extra_stats": {
-      "attack": 60,
-      "defense": 60,
-      "max_health": 500,
-      "max_mana": 300,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.08
+      "attack": 0,
+      "defense": 468,
+      "max_health": 1872,
+      "max_mana": 1450,
+      "crit_rate": 0.101,
+      "dodge_rate": 0.0
     }
   }
 }

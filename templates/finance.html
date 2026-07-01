@@ -34,14 +34,18 @@
 
     金珠股市<br/>
     ----------------<br/>
+    {% set phase_text = {'pre_open':'盘前（9:00前·不显示股价·可挂委托单）','auction':'集合竞价（9:00-9:30·不显示股价·按开盘价撮合）','open':'交易中（9:30-18:00）','closed':'已休市（18:00后·可挂委托单）'} %}
+    时段：<span class="{{ 'up' if phase=='open' else 'flat' }}">{{ phase_text.get(phase, phase) }}</span><br/>
     金珠：{{ summary.jinzu }}<br/>
     持仓市值：{{ summary.market_value }}金珠<br/>
     浮动盈亏：<span class="{{ 'up' if summary.floating_profit > 0 else ('down' if summary.floating_profit < 0 else 'flat') }}">{{ summary.floating_profit }}</span>金珠<br/>
     已实现盈亏：<span class="{{ 'up' if summary.realized_profit > 0 else ('down' if summary.realized_profit < 0 else 'flat') }}">{{ summary.realized_profit }}</span>金珠<br/>
+    冻结金珠：{{ summary.frozen if summary.frozen else 0 }}金珠<br/>
     劫匪积分：{{ summary.bandit_points }}/{{ summary.bandit_points_per_jinzu }}（满兑1金珠）<br/>
     距下次刷新：<span id="refresh">{{ next_refresh }}</span>秒<br/>
     ----------------<br/>
     <a href="{{ url_for('activity.finance_holdings') }}">我的持仓</a>
+    <a href="{{ url_for('activity.finance_orders') }}">我的委托</a>
     <a href="{{ url_for('activity.finance_rank_finance') }}">股神榜</a>
     <a href="{{ url_for('activity.finance_rank_bandit') }}">义士榜</a>
     <a href="{{ url_for('activity.finance_rules') }}">规则说明</a><br/>
@@ -63,7 +67,7 @@
     {% set cls = 'up' if s.change_pct > 0 else ('down' if s.change_pct < 0 else 'flat') %}
     {% set limit_tag = ' 涨停' if s.change_pct >= 9.9 else (' 跌停' if s.change_pct <= -9.9 else '') %}
     <a href="{{ url_for('activity.finance_stock_page', stock_id=s.stock_id) }}">{{ s.name }}</a><br/>
-    现价{{ s.price }} <span class="{{ cls }}">{{ '%.2f'|format(s.change_pct) }}%{{ limit_tag }}</span> 量{{ s.available }}<br/>
+    {% if phase in ('pre_open', 'auction') %}现价--（集合竞价/盘前不显示） 量{{ s.available }}{% else %}现价{{ s.price }} <span class="{{ cls }}">{{ '%.2f'|format(s.change_pct) }}%{{ limit_tag }}</span> 量{{ s.available }}{% endif %}<br/>
     人气<span class="bar-bg"><span class="bar" style="width:{{ (s.pop_factor*50)|int }}px"></span></span> 劫匪<span class="bar-bg"><span class="bar" style="width:{{ (s.bandit_factor*50)|int }}px"></span></span><br/>
     ----------------<br/>
     {% endfor %}
