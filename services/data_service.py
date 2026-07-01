@@ -349,23 +349,49 @@ class DataService:
 
     # --- Equipment Instance CRUD ---
 
+    # 基础属性的品质系数：模板 base_stats 定义的是该装备最高品质（史诗）属性，
+    # 低品质按系数衰减。神器与史诗同等（100%）。
+    RARITY_BASE_RATIO = {
+        "普通": 0.80,
+        "精良": 0.90,
+        "卓越": 0.95,
+        "史诗": 1.00,
+        "神器": 1.00,
+    }
+
+    # 附加属性按“该条附加属性各自的星级”独立计算系数（在区间内随机）。
+    # 模板 max_extra_stats 定义的是 5 星上限值；星级越低系数越低。
+    EXTRA_STAT_STAR_RANGES = {
+        5: (1.00, 1.10),
+        4: (1.00, 1.06),
+        3: (1.00, 1.02),
+        2: (0.98, 1.02),
+        1: (0.96, 1.00),
+    }
+
     @classmethod
     def create_equipment_instance(cls, player_id, template_id, rarity, stars):
         template = cls.get_equipment_template(template_id)
         if not template:
             return None
 
-        ratio = stars / 5
-        base_stats = {stat: int(value * ratio) for stat, value in template.get("base_stats", {}).items()}
+        # 基础属性只与品质有关，与星级无关；模板值即最高品质（史诗/神器）属性
+        base_ratio = cls.RARITY_BASE_RATIO.get(rarity, 1.0)
+        base_stats = {
+            stat: (value if stat in ("crit_rate", "dodge_rate")
+                   else int(value * base_ratio))
+            for stat, value in template.get("base_stats", {}).items()
+        }
         initial_stats = base_stats.copy()
-        extra_stats = cls._generate_extra_stats(template, rarity, stars)
+        # 附加属性：每条独立随机星级，并反推装备总星级
+        extra_stats, derived_stars = cls._generate_extra_stats(template, rarity, stars)
 
         equip = EquipmentInstance(
             player_id=player_id,
             template_id=template_id,
             slot=template.get("slot", "weapon"),
             rarity=rarity,
-            stars=stars,
+            stars=derived_stars,
             level_required=template.get("level_required", 1),
             class_required=template.get("class_required"),
             is_bound=template.get("is_bound", False),
@@ -381,7 +407,15 @@ class DataService:
         return equip
 
     @classmethod
-    def _generate_extra_stats(cls, template, rarity, stars):
+    def _generate_extra_stats(cls, template, rarity, target_stars=1):
+        """生成附加属性。
+
+        每条附加属性先独立随机一个星级（在 target_stars ±1 范围内波动，夹在 1-5），
+        再按该星级对应的系数区间随机出实际值。装备总星级由各条附加属性星级
+        的平均值下取整反推得到。
+
+        返回 (extra_stats, derived_stars)。
+        """
         extra_stats = {}
         stat_counts = {"普通": 1, "精良": 2, "卓越": 3, "史诗": 4, "神器": 5}
         count = stat_counts.get(rarity, 1)
@@ -422,16 +456,30 @@ class DataService:
                     deduped.append(s)
             selected = deduped
 
+        stat_stars_list = []
         for stat in selected:
             max_value = template.get("max_extra_stats", {}).get(stat, 0)
             # 模板中 max_value 为 0 的属性：不参与随机星级生成、不计入总体星级、不显示
             if not max_value or max_value == 0:
                 continue
-            stat_stars = min(5, max(1, random.randint(stars - 1, stars + 1)))
-            actual_value = max_value * (stat_stars / 5)
+            # 每条附加属性独立星级，在目标星级 ±1 波动，夹在 1-5
+            stat_stars = min(5, max(1, random.randint(target_stars - 1, target_stars + 1)))
+            lo, hi = cls.EXTRA_STAT_STAR_RANGES.get(stat_stars, (0.96, 1.00))
+            coef = random.uniform(lo, hi)
+            actual_value = max_value * coef
+            # 暴击/闪避保留浮点，其余取整
+            if stat not in ("crit_rate", "dodge_rate"):
+                actual_value = int(actual_value)
             extra_stats[stat] = [actual_value, stat_stars]
+            stat_stars_list.append(stat_stars)
 
-        return extra_stats
+        # 总星级 = 各附加属性星级的平均值下取整；无附加属性时回落到目标星级
+        if stat_stars_list:
+            derived_stars = int(sum(stat_stars_list) // len(stat_stars_list))
+        else:
+            derived_stars = max(1, min(5, target_stars))
+
+        return extra_stats, derived_stars
 
     # --- Inventory CRUD ---
 
