@@ -73,14 +73,17 @@ class Monster:
 
     def attack_player(self, player):
         from services.player_service import PlayerService
+        from services.battle_service import BattleService
         self.last_action = "使用了普通攻击"
         self.last_skill = "普通攻击"
 
         if random.random() >= player.dodge_rate:
             min_damage = self.level * 2 if self.is_elite else self.level
-            damage = max(min_damage, self.attack - player.defense)
+            damage = BattleService._compute_damage(
+                self.attack, PlayerService.get_defense(player),
+                coefficient=1.0, min_damage=min_damage)
             if random.random() <= self.crit_rate:
-                damage *= 2
+                damage = int(damage * 1.5)
                 self.last_damage_dealt = f"{damage}(暴击!)"
             else:
                 self.last_damage_dealt = str(int(damage))

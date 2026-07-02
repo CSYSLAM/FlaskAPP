@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>伤害测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 90px; }
+        input, select { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        input[type=number] { width: 90px; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .side { display: inline-block; vertical-align: top; margin: 4px 8px 4px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px 0; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .hint { color: #888; font-size: 13px; }
+        .explain { color: #888; font-size: 13px; padding: 4px 12px; border-left: 3px solid #ddd; margin: 4px 0; }
+        .result-box { margin: 6px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .stat-row { padding: 1px 0 1px 12px; }
+        .crit { color: #c62828; font-weight: bold; }
+        .dodge { color: #999; }
+        .summary { margin: 8px 0; padding: 8px; border: 1px solid #2e7d32; border-radius: 4px; background: #f1f8f1; }
+        .formula { color: #136ec2; font-size: 13px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>伤害测试</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/><br/>
+
+    <div class="explain">
+        伤害公式：<span class="formula">伤害 = 攻击 × (1 + 攻击 / max(1,防御)) × 系数</span><br/>
+        普攻系数=100%；技能系数=base_damage_rate + per_level×(等级-1)<br/>
+        暴击 ×1.5，闪避归零。本测试基于纯属性，不含装备/称号/军衔等加成。
+    </div>
+
+    <form method="post">
+        <div class="section">我方（攻击方）</div>
+        <div class="side">
+            <span class="label">职业:</span>
+            <select name="attacker_class">
+                {% for c in classes %}<option value="{{ c }}" {{ 'selected' if form.attacker_class==c }}>{{ c }}</option>{% endfor %}
+            </select><br/>
+            {% for key, name, _ in stats %}
+            <span class="label">{{ name }}:</span>
+            <input type="number" step="{{ '0.01' if 'rate' in key else '1' }}" name="attacker_{{ key }}" value="{{ form['attacker_'~key] }}"><br/>
+            {% endfor %}
+        </div>
+        <div class="side">
+            <span class="label">技能:</span>
+            <select name="attacker_skill_id">
+                <option value="attack" {{ 'selected' if form.attacker_skill_id=='attack' }}>普攻</option>
+                {% for cls, sks in skills_by_class.items() if cls != '普攻' %}
+                <optgroup label="{{ cls }}">
+                    {% for sid, s in sks.items() %}
+                    <option value="{{ sid }}" {{ 'selected' if form.attacker_skill_id==sid }}>{{ s["name"] }}</option>
+                    {% endfor %}
+                </optgroup>
+                {% endfor %}
+            </select><br/>
+            <span class="label">技能等级:</span>
+            <input type="number" name="attacker_skill_level" value="{{ form.attacker_skill_level }}" min="1" max="10"><br/>
+        </div>
+
+        <div class="section">对方（防御方）</div>
+        <div class="side">
+            <span class="label">职业:</span>
+            <select name="defender_class">
+                {% for c in classes %}<option value="{{ c }}" {{ 'selected' if form.defender_class==c }}>{{ c }}</option>{% endfor %}
+            </select><br/>
+            {% for key, name, _ in stats %}
+            <span class="label">{{ name }}:</span>
+            <input type="number" step="{{ '0.01' if 'rate' in key else '1' }}" name="defender_{{ key }}" value="{{ form['defender_'~key] }}"><br/>
+            {% endfor %}
+        </div>
+        <div class="side">
+            <span class="label">技能(参考):</span>
+            <select name="defender_skill_id">
+                <option value="attack" {{ 'selected' if form.defender_skill_id=='attack' }}>普攻</option>
+                {% for cls, sks in skills_by_class.items() if cls != '普攻' %}
+                <optgroup label="{{ cls }}">
+                    {% for sid, s in sks.items() %}
+                    <option value="{{ sid }}" {{ 'selected' if form.defender_skill_id==sid }}>{{ s["name"] }}</option>
+                    {% endfor %}
+                </optgroup>
+                {% endfor %}
+            </select><br/>
+            <span class="label">技能等级:</span>
+            <input type="number" name="defender_skill_level" value="{{ form.defender_skill_level }}" min="1" max="10"><br/>
+        </div>
+
+        <div class="section">模拟</div>
+        <span class="label">攻击方向:</span>
+        <select name="attack_side">
+            <option value="attacker" {{ 'selected' if form.attack_side=='attacker' }}>我方 → 对方</option>
+            <option value="defender" {{ 'selected' if form.attack_side=='defender' }}>对方 → 我方</option>
+        </select><br/>
+        <span class="label">模拟次数:</span>
+        <input type="number" name="count" value="{{ form.count }}" min="1" max="50" style="width:80px"><br/>
+        <button type="submit" class="btn">开始模拟</button>
+    </form>
+
+    {% if results %}
+    <div class="section">结果（{{ results.skill_name }} {{ results.skill_level }}级 →
+        {{ results.attacker.class }}打{{ results.defender.class }}）</div>
+    <div class="explain">
+        系数: {{ results.coefficient }} | 有效防御: {{ results.eff_def }} |
+        连击数: {{ results.hits }} | 耗魔: {{ results.mana_cost }}<br/>
+        攻击 {{ results.attacker.attack }} vs 防御 {{ results.defender.defense }} →
+        期望单次(无暴击/闪避): {{ (results.attacker.attack * (1 + results.attacker.attack / (results.eff_def if results.eff_def > 0 else 1)) * results.coefficient)|int }}
+    </div>
+
+    {% for r in results.per_run %}
+    <div class="result-box">
+        <span>第{{ loop.index }}次: </span>
+        {% if r.dodged %}
+        <span class="dodge">全部闪避 (0)</span>
+        {% else %}
+        <b>{{ r.total }}</b>
+        {% if r.hits|length > 1 %}<span class="hint">[{{ r.hits|join('+') }}]</span>{% endif %}
+        {% if r.crit %}<span class="crit">(暴击)</span>{% endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="summary">
+        <b>统计（{{ results.count }}次）</b><br/>
+        总伤害: {{ results.total }}<br/>
+        平均: {{ results.avg }}<br/>
+        命中: {{ results.hit_count }}次 ({{ "%.0f%%"|format(results.hit_count * 100.0 / results.count) }})<br/>
+        闪避: {{ results.dodge_count }}次 ({{ "%.0f%%"|format(results.dodge_count * 100.0 / results.count) }})<br/>
+        暴击: {{ results.crit_count }}次 ({{ "%.0f%%"|format(results.crit_count * 100.0 / results.count) }})
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

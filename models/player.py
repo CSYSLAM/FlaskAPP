@@ -133,6 +133,15 @@ class PlayerModel(db.Model, UserMixin):
     need_revive = db.Column(db.Boolean, default=False)
     killed_by = db.Column(db.String(64), nullable=True)  # Username of killer
 
+    # Battle status effects (rounds remaining; 0 = none)
+    # 混乱: 无法普攻/技能/撤退，且受到攻击伤害减半
+    status_confuse_rounds = db.Column(db.Integer, default=0)
+    # 封魔: 无法使用技能（仅可普攻/撤退）
+    status_silence_rounds = db.Column(db.Integer, default=0)
+    # 流血: 每回合开始流失固定生命值（PK 用，PVE 怪物流血存于 encounter）
+    status_bleed_rounds = db.Column(db.Integer, default=0)
+    status_bleed_value = db.Column(db.Integer, default=0)
+
     # VIP
     vip_level = db.Column(db.Integer, default=1)
     vip_exp = db.Column(db.Integer, default=0)
