@@ -19,17 +19,17 @@
     需等待{{ remaining }}秒才能再次攻击<br/>
     {% endif %}
 
+    {% for slot in ['skill1', 'skill2', 'skill3', 'skill4'] %}
+    {% set sid = player.shortcuts[slot] %}
+    {% set sname = '普攻' if sid == 'attack' else (DataService.get_skill(sid)['name'] if DataService.get_skill(sid) else sid) %}
     {% if is_pk %}
-    <form action="{{ url_for('battle.pk_fight') }}" method="post" style="display:inline;">
+    <a href="{{ url_for('battle.pk_use_skill', opponent=monster.username, skill_id=sid) }}">{{ sname }}</a>
     {% else %}
-    <form action="{{ url_for('battle.fight') }}" method="post" style="display:inline;">
+    <a href="{{ url_for('battle.use_skill', skill_id=sid) }}">{{ sname }}</a>
     {% endif %}
-    <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">{% if player.shortcuts.skill1 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill1 }}{% endif %}</button>
-    <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">{% if player.shortcuts.skill2 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill2 }}{% endif %}</button>
-    <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">{% if player.shortcuts.skill3 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill3 }}{% endif %}</button>
-    <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">{% if player.shortcuts.skill4 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill4 }}{% endif %}</button>
+    {% endfor %}
     <a href="{{ url_for('battle.shortcuts') }}">技键</a>
-    </form><br/>
+    <br/>
 
     {% if is_pk %}
     <form action="{{ url_for('battle.pk_fight') }}" method="post" style="display:inline;">

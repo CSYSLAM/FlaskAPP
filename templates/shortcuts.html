@@ -24,9 +24,10 @@
                 <option value="attack">普通攻击</option>
                 {% for skill_id in player.learned_skills %}
                     {% set skill_data = DataService.get_skill(skill_id) %}
-                    {% if skill_data and skill_data.get('skill_type') == 'active' %}
+                    {% if skill_data and skill_data.get('skill_type') == 'active'
+                          and (not skill_data.get('class_required') or skill_data.get('class_required') == player.player_class) %}
                         <option value="{{ skill_id }}" {% if skill_id == player.shortcuts['skill' ~ i] %}selected{% endif %}>
-                            {{ skill_data.name }}
+                            {{ skill_data['name'] }}
                         </option>
                     {% endif %}
                 {% endfor %}

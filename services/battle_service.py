@@ -12,6 +12,143 @@ from models.lieutenant import Lieutenant
 
 class BattleService:
 
+    # ----- Core damage formula & battle status effects -----
+
+    # 技能特殊效果配置：skill_id -> {effect: {...}}
+    # 状态效果以「剩余回合数」计，存于：
+    #   - 玩家身上：PlayerModel.status_confuse_rounds / status_silence_rounds
+    #   - 怪物身上：encounter['monster_status'] = {bleed: {rounds, value}, ...}
+    #   - PK 双方：PlayerModel 同上（PK 期间也走玩家状态列）
+
+    # 伤害公式（统一）：
+    #   damage = atk × (1 + atk / max(1, def)) × coefficient
+    # 暴击 ×1.5，闪避归零。def 用 max(1, def) 防除零。
+    # min_damage 为保底（仅怪物打玩家保留等级保底）。
+    @classmethod
+    def _compute_damage(cls, atk, defense, coefficient=1.0, min_damage=0):
+        def_eff = max(1, defense)
+        raw = atk * (1.0 + atk / def_eff) * coefficient
+        damage = max(min_damage, int(raw))
+        return max(1, damage) if min_damage == 0 else max(min_damage, damage)
+
+    # ---- 玩家状态效果 helpers ----
+    @classmethod
+    def _player_is_confused(cls, player):
+        return (player.status_confuse_rounds or 0) > 0
+
+    @classmethod
+    def _player_is_silenced(cls, player):
+        return (player.status_silence_rounds or 0) > 0
+
+    @classmethod
+    def _tick_player_status(cls, player):
+        """回合结束时把玩家身上的状态回合数 -1（不低于 0）。流血单独由 _tick_pk_bleed 结算后递减。"""
+        if player.status_confuse_rounds and player.status_confuse_rounds > 0:
+            player.status_confuse_rounds -= 1
+        if player.status_silence_rounds and player.status_silence_rounds > 0:
+            player.status_silence_rounds -= 1
+
+    @classmethod
+    def _tick_pk_bleed(cls, p1, p2):
+        """PK 回合结算：双方若有流血，扣血并递减回合。返回扣血信息写入 last_action 由调用方处理。"""
+        for p in (p1, p2):
+            if p.status_bleed_rounds and p.status_bleed_rounds > 0:
+                val = p.status_bleed_value or 0
+                if val > 0:
+                    p.health -= val
+                    p.last_damage_taken = (p.last_damage_taken or 0) + val
+                p.status_bleed_rounds -= 1
+                if p.status_bleed_rounds <= 0:
+                    p.status_bleed_value = 0
+
+    # ---- 怪物状态效果 helpers（存于 encounter JSON）----
+    @classmethod
+    def _get_monster_status(cls, player):
+        data = player.get_current_encounter_data() or {}
+        return data.get('monster_status', {}) or {}
+
+    @classmethod
+    def _set_monster_status(cls, player, status):
+        data = player.get_current_encounter_data() or {}
+        data['monster_status'] = status or {}
+        player.set_current_encounter_data(data)
+
+    @classmethod
+    def _tick_monster_status(cls, player, monster):
+        """回合结束时递减怪物身上的流血等状态，并即时结算流血伤害。"""
+        status = cls._get_monster_status(player)
+        bleed = status.get('bleed')
+        msgs = []
+        if bleed and bleed.get('rounds', 0) > 0:
+            value = bleed.get('value', 0)
+            if value > 0:
+                monster.health -= value
+                monster.last_damage_taken = (monster.last_damage_taken or 0) + value
+                msgs.append(f"*『{monster.name}』流血损失{value}生命.")
+            bleed['rounds'] -= 1
+            if bleed['rounds'] <= 0:
+                status.pop('bleed', None)
+            else:
+                status['bleed'] = bleed
+        cls._set_monster_status(player, status)
+        return msgs
+
+    # ---- 技能特殊效果应用 ----
+    # skill_data 中 effect_type 标识效果，命中后按概率触发：
+    #   confuse(混乱3回合,受击伤害减半) / silence(封魔3回合)
+    #   bleed(流血:额外造成atk×20%×3回合) / lifesteal(吸血15%)
+    #   pierce(无视10%防御)
+    @classmethod
+    def _apply_skill_effect(cls, skill_data, attacker_atk, damage_dealt, target_player=None,
+                            target_monster=None, player=None):
+        """技能命中后施加特殊效果。返回 (extra_msg, heal_amount)。"""
+        extra_msg = ""
+        heal_amount = 0
+        effect_type = skill_data.get('effect_type')
+        effect_chance = skill_data.get('effect_chance', 0.0)
+        if effect_type and random.random() < effect_chance:
+            if effect_type == 'confuse':
+                rounds = skill_data.get('effect_rounds', 3)
+                if target_player is not None:
+                    target_player.status_confuse_rounds = rounds
+                    extra_msg = f"使{target_player.name}混乱{rounds}回合"
+                elif target_monster is not None:
+                    # 怪物混乱：存入 encounter，混乱期间怪物受击伤害减半
+                    status = cls._get_monster_status(player)
+                    status['confuse'] = rounds
+                    cls._set_monster_status(player, status)
+                    extra_msg = f"使{target_monster.name}混乱{rounds}回合"
+            elif effect_type == 'silence':
+                rounds = skill_data.get('effect_rounds', 3)
+                if target_player is not None:
+                    target_player.status_silence_rounds = rounds
+                    extra_msg = f"封印{target_player.name}法力{rounds}回合"
+                elif target_monster is not None:
+                    status = cls._get_monster_status(player)
+                    status['silence'] = rounds
+                    cls._set_monster_status(player, status)
+                    extra_msg = f"封印{target_monster.name}法力{rounds}回合"
+            elif effect_type == 'bleed':
+                rounds = skill_data.get('effect_rounds', 3)
+                bleed_pct = skill_data.get('effect_value', 0.20)
+                bleed_value = int(attacker_atk * bleed_pct)
+                if bleed_value > 0 and target_monster is not None:
+                    status = cls._get_monster_status(player)
+                    status['bleed'] = {'rounds': rounds, 'value': bleed_value}
+                    cls._set_monster_status(player, status)
+                    extra_msg = f"使{target_monster.name}流血({bleed_value}/回合×{rounds})"
+                elif bleed_value > 0 and target_player is not None:
+                    # PK 流血：直接用玩家状态列存数值
+                    target_player.status_bleed_rounds = rounds
+                    target_player.status_bleed_value = bleed_value
+                    extra_msg = f"使{target_player.name}流血({bleed_value}/回合×{rounds})"
+            elif effect_type == 'lifesteal':
+                # 吸血：即时结算（无需回合递减）
+                lifesteal_pct = skill_data.get('effect_value', 0.15)
+                heal_amount = int(damage_dealt * lifesteal_pct)
+                extra_msg = f"汲取{heal_amount}生命"
+        return extra_msg, heal_amount
+
     @classmethod
     def _get_deployed_lt(cls, player):
         """Get the deployed lieutenant for a player."""
@@ -28,15 +165,26 @@ class BattleService:
             return 0
         lt_atk = lt.get_attack()
         if random.random() >= monster.dodge_rate:
-            damage = max(1, lt_atk - monster.defense)
+            damage = cls._compute_damage(lt_atk, monster.defense, coefficient=1.0)
             return damage
         return 0
 
     @classmethod
     def _monster_attack_with_lt(cls, monster, player, lt):
         """Monster attacks, lieutenant absorbs if front position. Logs in reference format."""
+        # 怪物若被混乱（玩家技能施加，存于 encounter.monster_status），本回合无法行动
+        m_status = cls._get_monster_status(player)
+        if m_status.get('confuse', 0) > 0:
+            monster.last_skill = "混乱"
+            monster.last_action = f"*『{monster.name}』处于混乱状态，无法行动."
+            monster.last_damage_dealt = "0(混乱)"
+            player.last_damage_taken = 0
+            return
+
         min_damage = monster.level * 2 if monster.is_elite else monster.level
-        monster_damage = max(min_damage, monster.attack - PlayerService.get_defense(player))
+        monster_damage = cls._compute_damage(
+            monster.attack, PlayerService.get_defense(player),
+            coefficient=1.0, min_damage=min_damage)
         is_crit = random.random() <= monster.crit_rate
         dodge = random.random() <= player.dodge_rate
         if dodge:
@@ -249,13 +397,46 @@ class BattleService:
 
         encounter_data = player.get_current_encounter_data()
 
+        # 玩家被混乱：无法普攻/技能/撤退，跳过本回合行动（怪物仍会反击）
+        if cls._player_is_confused(player):
+            player_log = f"*『{player.name}』处于混乱状态，无法行动"
+            player.last_action = player_log
+            player.last_damage_dealt = "0(混乱)"
+            # 回合结算：递减玩家状态 + 怪物流血
+            bleed_msgs = cls._tick_monster_status(player, monster)
+            cls._tick_player_status(player)
+            if bleed_msgs:
+                player.item_effect = "".join(bleed_msgs)
+            cls._save_encounter(player, monster)
+            if monster.health <= 0:
+                result = cls._handle_monster_defeat(player, monster)
+                db.session.commit()
+                return monster, None, result
+            cls._monster_attack_with_lt(monster, player, lt)
+            cls._save_encounter(player, monster)
+            if player.health <= 0:
+                player.health = 0
+                player.in_battle = False
+                player.last_battle_result = "你被击败了..."
+                player.current_encounter = None
+                player.need_revive = True
+                db.session.commit()
+                return monster, None, "你被击败了"
+            db.session.commit()
+            return monster, "混乱中，无法行动", None
+
         # Build battle log: player attack
         player_log = f"*『{player.name}』使出[普攻]"
         lt = cls._get_deployed_lt(player)
         lt_damage = 0
+        # 怪物被混乱时，受到的攻击伤害减半
+        m_status = cls._get_monster_status(player)
+        monster_confused = m_status.get('confuse', 0) > 0
         if random.random() >= monster.dodge_rate:
             player_atk = PlayerService.get_attack(player)
-            damage = max(1, player_atk - monster.defense)
+            damage = cls._compute_damage(player_atk, monster.defense, coefficient=1.0)
+            if monster_confused:
+                damage = int(damage * 0.5)
             is_crit = random.random() <= player.crit_rate
             dmg_text = f"{damage}"
             if is_crit:
@@ -301,6 +482,13 @@ class BattleService:
 
         # Monster attacks, lieutenant absorbs if front
         cls._monster_attack_with_lt(monster, player, lt)
+        # 回合结算：递减玩家状态 + 怪物状态/流血
+        bleed_msgs = cls._tick_monster_status(player, monster)
+        cls._tick_player_status(player)
+        if bleed_msgs and not player.item_effect:
+            player.item_effect = "".join(bleed_msgs)
+        elif bleed_msgs:
+            player.item_effect += "".join(bleed_msgs)
         cls._save_encounter(player, monster)
 
         if player.health <= 0:
@@ -372,10 +560,18 @@ class BattleService:
         if not ps:
             return monster, "你还没有学习这个技能", None
 
+        # 封魔状态：无法使用技能（可普攻/撤退）
+        if cls._player_is_silenced(player):
+            return monster, "被封印法力，无法使用技能", None
+
+        # 混乱状态：无法使用技能
+        if cls._player_is_confused(player):
+            return monster, "混乱中，无法使用技能", None
+
         skill_level = ps.skill_level
         base_mana = skill_data["base_mana_cost"]
         mana_per = skill_data.get("mana_cost_per_level", 0)
-        mana_cost = base_mana + mana_per * (skill_level - 1)
+        mana_cost = int(round(base_mana + mana_per * (skill_level - 1)))
 
         if player.mana < mana_cost:
             return monster, "魔法值不足", None
@@ -392,15 +588,28 @@ class BattleService:
         rate_per = skill_data.get("damage_rate_per_level", 0)
         damage_rate = base_rate + rate_per * (skill_level - 1)
 
+        # 破甲刺：无视目标 10% 防御
+        pierce_pct = skill_data.get('pierce_defense_pct', 0)
+        effective_def = monster.defense
+        if pierce_pct > 0:
+            effective_def = int(monster.defense * (1 - pierce_pct))
+        # 怪物被混乱时受击伤害减半
+        m_status = cls._get_monster_status(player)
+        monster_confused = m_status.get('confuse', 0) > 0
+
         hits = skill_data.get("hits", 1)
         total_damage = 0
         dodge_all = True
         is_crit_hit = False
+        hit_any = False
         for _ in range(hits):
             if random.random() >= monster.dodge_rate:
                 dodge_all = False
+                hit_any = True
                 player_atk = PlayerService.get_attack(player)
-                damage = max(1, int(player_atk * damage_rate) - monster.defense)
+                damage = cls._compute_damage(player_atk, effective_def, coefficient=damage_rate)
+                if monster_confused:
+                    damage = int(damage * 0.5)
                 if random.random() <= player.crit_rate:
                     damage = int(damage * 1.5)
                     is_crit_hit = True
@@ -427,6 +636,18 @@ class BattleService:
             if killed:
                 monster.health = 0
 
+        # 技能特殊效果（命中后才触发）
+        effect_msg = ""
+        heal_amount = 0
+        if hit_any and total_damage > 0:
+            player_atk_for_effect = PlayerService.get_attack(player)
+            effect_msg, heal_amount = cls._apply_skill_effect(
+                skill_data, player_atk_for_effect, total_damage,
+                target_monster=monster, player=player)
+            if heal_amount > 0:
+                max_hp = player.effective_max_health
+                player.health = min(max_hp, player.health + heal_amount)
+
         # Lieutenant also attacks
         lt = cls._get_deployed_lt(player)
         lt_damage = 0
@@ -441,6 +662,8 @@ class BattleService:
                 if encounter_data.get('is_world_boss'):
                     WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
         player_log += f",『{monster.name}』受到{dmg_text}伤害."
+        if effect_msg:
+            player_log += f"[{effect_msg}]"
         player.last_action = player_log
         player.last_damage_dealt = dmg_text
 
@@ -453,6 +676,11 @@ class BattleService:
 
         # Monster attacks, lieutenant absorbs if front
         cls._monster_attack_with_lt(monster, player, lt)
+        # 回合结算：递减玩家状态 + 怪物状态/流血
+        bleed_msgs = cls._tick_monster_status(player, monster)
+        cls._tick_player_status(player)
+        if bleed_msgs:
+            player.item_effect = (player.item_effect or "") + "".join(bleed_msgs)
         cls._save_encounter(player, monster)
 
         if player.health <= 0:
@@ -686,11 +914,31 @@ class BattleService:
         if not attacker.in_pk or attacker.pk_opponent != defender.username:
             return None, "PK状态异常"
 
+        # 攻击方被混乱：无法行动
+        if cls._player_is_confused(attacker):
+            attacker.last_action = "混乱中，无法行动"
+            attacker.last_skill = "混乱"
+            attacker.last_damage_dealt = "0(混乱)"
+            defender.last_damage_taken = 0
+            # 回合结算：双方流血扣血 + 状态递减
+            cls._tick_pk_bleed(attacker, defender)
+            cls._tick_player_status(attacker)
+            cls._tick_player_status(defender)
+            if defender.health <= 0:
+                defender.health = 0
+                result = cls._handle_pk_defeat(attacker, defender)
+                return result, None
+            db.session.commit()
+            return None, "混乱中，无法行动"
+
         atk_power = PlayerService.get_attack(attacker)
         def_power = PlayerService.get_defense(defender)
 
         if random.random() >= defender.dodge_rate:
-            damage = max(1, atk_power - def_power)
+            damage = cls._compute_damage(atk_power, def_power, coefficient=1.0)
+            # 防守方被混乱：受击伤害减半
+            if cls._player_is_confused(defender):
+                damage = int(damage * 0.5)
             is_crit = random.random() <= attacker.crit_rate
             if is_crit:
                 damage = int(damage * 1.5)
@@ -707,11 +955,16 @@ class BattleService:
         attacker.last_action = "使用了普通攻击"
         attacker.last_skill = "普通攻击"
 
+        # 回合结算：双方流血扣血 + 状态递减
+        cls._tick_pk_bleed(attacker, defender)
+
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_pk_defeat(attacker, defender)
             return result, None
 
+        cls._tick_player_status(attacker)
+        cls._tick_player_status(defender)
         db.session.commit()
         return None, None
 
@@ -719,6 +972,12 @@ class BattleService:
     def pk_use_skill(cls, attacker, defender, skill_id):
         if not attacker.in_pk or attacker.pk_opponent != defender.username:
             return None, "PK状态异常"
+
+        # 攻击方被混乱/封魔：无法使用技能
+        if cls._player_is_confused(attacker):
+            return None, "混乱中，无法使用技能"
+        if cls._player_is_silenced(attacker):
+            return None, "被封印法力，无法使用技能"
 
         skill_data = DataService.get_skill(skill_id)
         if not skill_data:
@@ -732,7 +991,7 @@ class BattleService:
         if not ps:
             return None, "未学习该技能"
 
-        mana_cost = skill_data["base_mana_cost"] + skill_data.get("mana_cost_per_level", 0) * (ps.skill_level - 1)
+        mana_cost = int(round(skill_data["base_mana_cost"] + skill_data.get("mana_cost_per_level", 0) * (ps.skill_level - 1)))
         if attacker.mana < mana_cost:
             return None, "魔法不足"
 
@@ -742,14 +1001,25 @@ class BattleService:
         attacker.last_skill = skill_data["name"]
 
         damage_rate = skill_data["base_damage_rate"] + skill_data.get("damage_rate_per_level", 0) * (ps.skill_level - 1)
+        # 破甲刺：无视目标 10% 防御
+        pierce_pct = skill_data.get('pierce_defense_pct', 0)
+        # 防守方被混乱：受击伤害减半
+        defender_confused = cls._player_is_confused(defender)
+
         hits = skill_data.get("hits", 1)
         total_damage = 0
+        hit_any = False
 
         for _ in range(hits):
             atk_power = PlayerService.get_attack(attacker)
             def_power = PlayerService.get_defense(defender)
+            if pierce_pct > 0:
+                def_power = int(def_power * (1 - pierce_pct))
             if random.random() >= defender.dodge_rate:
-                damage = max(1, int(atk_power * damage_rate) - def_power)
+                hit_any = True
+                damage = cls._compute_damage(atk_power, def_power, coefficient=damage_rate)
+                if defender_confused:
+                    damage = int(damage * 0.5)
                 if random.random() <= attacker.crit_rate:
                     damage = int(damage * 1.5)
                 total_damage += damage
@@ -764,11 +1034,27 @@ class BattleService:
         defender.health -= total_damage
         defender.last_damage_taken = total_damage
 
+        # 技能特殊效果（命中后才触发）
+        if hit_any and total_damage > 0:
+            atk_for_effect = PlayerService.get_attack(attacker)
+            effect_msg, heal_amount = cls._apply_skill_effect(
+                skill_data, atk_for_effect, total_damage, target_player=defender)
+            if heal_amount > 0:
+                max_hp = attacker.effective_max_health
+                attacker.health = min(max_hp, attacker.health + heal_amount)
+            if effect_msg:
+                attacker.last_action += f"[{effect_msg}]"
+
+        # 回合结算：双方流血扣血 + 状态递减
+        cls._tick_pk_bleed(attacker, defender)
+
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_pk_defeat(attacker, defender)
             return result, None
 
+        cls._tick_player_status(attacker)
+        cls._tick_player_status(defender)
         db.session.commit()
         return None, None
 

@@ -121,14 +121,13 @@ class EquipmentService:
             initial = equip.get_initial_stats()
             new_base = {}
             for stat, initial_value in initial.items():
-                total_bonus = int(initial_value * 0.1 * equip.enhance_level)
+                total_bonus = int(initial_value * 0.01 * equip.enhance_level)
                 new_base[stat] = initial_value + total_bonus
             equip.set_base_stats(new_base)
             equip.update_name()
 
-            if equip.enhance_level % 10 == 0:
-                DataService.broadcast_system(
-                    f"{player.nickname}成功将{equip.name}强化至+{equip.enhance_level}")
+            DataService.broadcast_system(
+                f"{player.nickname}成功将{equip.name}强化至+{equip.enhance_level}")
 
             from services.achievement_service import AchievementService
             AchievementService.check(player, 'enhance', equip.enhance_level)
@@ -142,7 +141,7 @@ class EquipmentService:
             initial = equip.get_initial_stats()
             new_base = {}
             for stat, initial_value in initial.items():
-                total_bonus = int(initial_value * 0.1 * equip.enhance_level)
+                total_bonus = int(initial_value * 0.01 * equip.enhance_level)
                 new_base[stat] = initial_value + total_bonus
             equip.set_base_stats(new_base)
             equip.update_name()

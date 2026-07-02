@@ -16,6 +16,10 @@
     <div id="loading"><span></span></div>
 
     {{ result }}<br/>
+    {% if last_action %}
+    <br/>
+    {{ last_action }}<br/>
+    {% endif %}
     {% if not is_pk and lost_experience > 0 %}
     损失{{ lost_experience }}经验<br/>
     {% endif %}
