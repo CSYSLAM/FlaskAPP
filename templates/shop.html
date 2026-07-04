@@ -36,14 +36,46 @@
     <a href="{{ url_for('shop.shop', shop_id=shop_id, tab=tid) }}">{{ tinfo.name }}</a>
     {% endfor %}<br/>
     ----------------<br/>
+    {% set is_test = shop_data.get('id') == 'test' %}
+    {% if is_test %}
+    {% set cur_search = shop_data.get('search', '') or '' %}
+    {% set cur_page = shop_data.get('page', 1) %}
+    {% set total_pages = shop_data.get('total_pages', 1) %}
+    {% set total_items = shop_data.get('total', 0) %}
+    共{{ total_items }}件商品{% if cur_search %}·搜索“{{ cur_search }}”{% endif %}<br/>
+    <form action="{{ url_for('shop.shop', shop_id=shop_id) }}" method="get" style="display:inline;">
+        <input type="hidden" name="tab" value="{{ shop_data['tab'] }}">
+        <input type="text" name="search" value="{{ cur_search }}" placeholder="搜索物品名/类型/说明" size="14">
+        <input type="submit" value="搜索">
+        {% if cur_search %}
+        <a href="{{ url_for('shop.shop', shop_id=shop_id, tab=shop_data['tab']) }}">清除</a>
+        {% endif %}
+    </form><br/>
+    ----------------<br/>
+    {% endif %}
     {% for item in shop_data['items'] %}
     {% set item_detail = DataService.get_item(item.get('item_id', item['id'])) %}
     <span title="{% if item_detail %}{{ item_detail.get('description', '') }}{% if item_detail.get('usage_effect', {}).get('random_items') %}&#10;内含:{% for ri in item_detail['usage_effect']['random_items'] %}{% set ri_data = DataService.get_item(ri['item_id']) %}{{ ri_data.get('name', ri['item_id']) if ri_data else ri['item_id'] }}x{{ ri['guaranteed_count'] }}{% if not loop.last %}、{% endif %}{% endfor %}{% endif %}{% endif %}">{{ item['name'] }}</span>|{{ item['price'] }}{% if shop_data['currency'] == 'yuanbao' %}元宝{% elif shop_data['currency'] == 'jinzu' %}金珠{% elif shop_data['currency'] == 'points' %}积分{% else %}银两{% endif %}<br/>
-    <form action="{{ url_for('shop.buy_item', shop_id=shop_id, item_id=item['id'], tab=shop_data['tab']) }}" method="post" style="display:inline;">
+    <form action="{{ url_for('shop.buy_item', shop_id=shop_id, item_id=item['id'], tab=shop_data['tab'], search=(shop_data.get('search') if is_test else None), page=shop_data.get('page') if is_test else None) }}" method="post" style="display:inline;">
         <input type="text" name="quantity" value="1" size="3" maxlength="5">
         <input type="submit" value="购买">
     </form><br/>
     {% endfor %}<br/>
+    {% if is_test %}
+    {% set cur_search = shop_data.get('search', '') or '' %}
+    {% set cur_page = shop_data.get('page', 1) %}
+    {% set total_pages = shop_data.get('total_pages', 1) %}
+    ----------------<br/>
+    {% if cur_page > 1 %}<a href="{{ url_for('shop.shop', shop_id=shop_id, tab=shop_data['tab'], page=cur_page - 1, search=cur_search) }}">上一页</a>{% else %}上一页{% endif %}
+    第{{ cur_page }}/{{ total_pages }}页
+    {% if cur_page < total_pages %}<a href="{{ url_for('shop.shop', shop_id=shop_id, tab=shop_data['tab'], page=cur_page + 1, search=cur_search) }}">下一页</a>{% else %}下一页{% endif %}<br/>
+    {% if total_pages > 1 %}
+    跳转:
+    {% for p in range(1, total_pages + 1) %}
+    {% if p == cur_page %}[{{ p }}]{% else %}<a href="{{ url_for('shop.shop', shop_id=shop_id, tab=shop_data['tab'], page=p, search=cur_search) }}">{{ p }}</a>{% endif %}
+    {% endfor %}<br/>
+    {% endif %}
+    {% endif %}
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>

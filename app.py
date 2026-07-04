@@ -248,4 +248,6 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    # 绑 0.0.0.0 让同 WiFi 的手机可访问预览;关掉 reloader 避免双进程干扰控制台管理。
+    # 想要改代码自动热重载时,把 use_reloader 改 True(仅本机调试用)。
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
