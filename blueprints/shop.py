@@ -13,7 +13,9 @@ shop_bp = Blueprint('shop', __name__)
 def shop(shop_id='jinzu'):
     player = current_user
     tab = request.args.get('tab', None)
-    shop_data = ShopService.get_shop_data(shop_id, tab=tab)
+    page = request.args.get('page', 1)
+    search = request.args.get('search', '')
+    shop_data = ShopService.get_shop_data(shop_id, tab=tab, page=page, search=search)
     if not shop_data:
         flash("商店不存在")
         return redirect(url_for("game.scene"))
@@ -43,8 +45,13 @@ def buy_item(shop_id, item_id):
     success, msg = ShopService.buy_item(player, shop_id, item_id, quantity)
     flash(msg)
 
-    # Redirect back to same shop/tab
+    # Redirect back to same shop/tab. The test shop is paginated + searchable,
+    # so preserve those params; other shops only need the tab.
     tab = request.args.get('tab', '')
+    if shop_id == 'test':
+        return redirect(url_for('shop.shop', shop_id=shop_id, tab=tab,
+                                search=request.args.get('search', ''),
+                                page=request.args.get('page', 1)))
     if tab:
         return redirect(url_for('shop.shop', shop_id=shop_id, tab=tab))
     return redirect(url_for('shop.shop', shop_id=shop_id))

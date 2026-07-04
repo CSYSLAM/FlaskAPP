@@ -2330,6 +2330,13 @@ def damage_test():
         cls = s.get('class_required') or '通用'
         skills_by_class.setdefault(cls, {})[sid] = s
 
+    # 精简版（仅 id+name），供前端按职业动态重建技能下拉，避免显示其他职业技能
+    skills_json = {}
+    for cls, sks in skills_by_class.items():
+        if cls == '普攻':
+            continue
+        skills_json[cls] = [{'id': sid, 'name': s.get('name', sid)} for sid, s in sks.items()]
+
     results = None  # None 表示未提交；[] 表示提交了但无结果
 
     # 默认值
@@ -2344,8 +2351,7 @@ def damage_test():
         'defender_max_health': 4000, 'defender_max_mana': 600,
         'defender_crit_rate': 0.10, 'defender_dodge_rate': 0.10,
         'defender_skill_id': 'attack', 'defender_skill_level': 1,
-        'attack_side': 'attacker',  # 谁先打谁
-        'count': 10,
+        'count': 5,
     }
 
     if request.method == "POST":
@@ -2358,7 +2364,7 @@ def damage_test():
                     except (ValueError, TypeError):
                         pass
                 elif k in ('attacker_class', 'defender_class',
-                           'attacker_skill_id', 'defender_skill_id', 'attack_side'):
+                           'attacker_skill_id', 'defender_skill_id'):
                     form[k] = v
                 else:
                     # 数值属性
@@ -2367,19 +2373,20 @@ def damage_test():
                     except (ValueError, TypeError):
                         pass
 
-        count = max(1, min(int(form.get('count', 10)), 50))
+        count = max(1, min(int(form.get('count', 5)), 50))
         results = _simulate_damage(form, count)
 
     return render_template("workbench/damage_test.html",
                            form=form,
                            results=results,
                            skills_by_class=skills_by_class,
+                           skills_json=skills_json,
                            classes=DAMAGE_TEST_CLASSES,
                            stats=DAMAGE_TEST_STATS)
 
 
 def _simulate_damage(form, count):
-    """纯公式模拟伤害，不落库。返回每次结果 + 统计。"""
+    """纯公式模拟伤害，不落库。双方互打，输出每回合双方的攻击信息与统计。"""
     from services.battle_service import BattleService
 
     def make_side(prefix):
@@ -2392,45 +2399,53 @@ def _simulate_damage(form, count):
             'crit_rate': form.get(f'{prefix}_crit_rate', 0),
             'dodge_rate': form.get(f'{prefix}_dodge_rate', 0),
             'skill_id': form.get(f'{prefix}_skill_id', 'attack'),
-            'skill_level': form.get(f'{prefix}_skill_level', 1),
+            'skill_level': max(1, min(int(form.get(f'{prefix}_skill_level', 1)), 10)),
         }
 
-    attacker = make_side('attacker')
-    defender = make_side('defender')
-    # attack_side=attacker 表示 attacker 打 defender
-    if form.get('attack_side') == 'defender':
-        attacker, defender = defender, attacker
+    side_a = make_side('attacker')   # 我方
+    side_b = make_side('defender')   # 对方
 
-    skill_id = attacker['skill_id']
-    skill_level = max(1, min(int(attacker.get('skill_level', 1)), 10))
-    skill_data = DataService.get_skill(skill_id) if skill_id and skill_id != 'attack' else None
+    def resolve_skill(side):
+        """取该侧技能参数；若技能不属于该职业则回退普攻。"""
+        sid = side['skill_id']
+        sdata = DataService.get_skill(sid) if sid and sid != 'attack' else None
+        if sdata:
+            req = sdata.get('class_required')
+            # 技能限定职业但与所选职业不符 -> 回退普攻，避免测试到不合规的组合
+            if req and req != side['class']:
+                sdata = None
+        return sdata
 
-    # 计算伤害系数与破甲
-    coefficient = 1.0
-    pierce_pct = 0.0
-    hits = 1
-    if skill_data:
-        base_rate = skill_data.get('base_damage_rate', 1.0)
-        rate_per = skill_data.get('damage_rate_per_level', 0)
-        coefficient = base_rate + rate_per * (skill_level - 1)
-        pierce_pct = skill_data.get('pierce_defense_pct', 0)
-        hits = skill_data.get('hits', 1)
+    skill_a = resolve_skill(side_a)
+    skill_b = resolve_skill(side_b)
 
-    eff_def = int(defender['defense'] * (1 - pierce_pct)) if pierce_pct > 0 else defender['defense']
+    def skill_params(sdata, level):
+        coefficient = 1.0
+        pierce_pct = 0.0
+        hits = 1
+        mana_cost = 0
+        if sdata:
+            base_rate = sdata.get('base_damage_rate', 1.0)
+            rate_per = sdata.get('damage_rate_per_level', 0)
+            coefficient = base_rate + rate_per * (level - 1)
+            pierce_pct = sdata.get('pierce_defense_pct', 0)
+            hits = sdata.get('hits', 1)
+            mana_cost = int(round(sdata.get('base_mana_cost', 0)
+                                  + sdata.get('mana_cost_per_level', 0) * (level - 1)))
+        return coefficient, pierce_pct, hits, mana_cost
 
-    per_run = []
-    total_dmg = 0
-    crit_count = 0
-    dodge_count = 0
-    hit_count = 0
+    coef_a, pierce_a, hits_a, mana_a = skill_params(skill_a, side_a['skill_level'])
+    coef_b, pierce_b, hits_b, mana_b = skill_params(skill_b, side_b['skill_level'])
 
-    for _ in range(count):
+    def strike(attacker, defender, coefficient, pierce_pct, hits):
+        """attacker 对 defender 打一发技能（含多段），返回单回合结算。"""
+        eff_def = (int(defender['defense'] * (1 - pierce_pct))
+                   if pierce_pct > 0 else defender['defense'])
         run_total = 0
         run_crit = False
         run_dodged = True
         run_hits = []
         for _h in range(hits):
-            # 命中判定
             if _random.random() >= defender['dodge_rate']:
                 run_dodged = False
                 dmg = BattleService._compute_damage(
@@ -2442,34 +2457,67 @@ def _simulate_damage(form, count):
                 run_hits.append(dmg)
             else:
                 run_hits.append(0)
-        per_run.append({
-            'total': run_total,
-            'hits': run_hits,
-            'crit': run_crit,
-            'dodged': run_dodged,
-        })
-        total_dmg += run_total
-        if run_dodged:
-            dodge_count += 1
-        else:
-            hit_count += 1
-        if run_crit:
-            crit_count += 1
+        return {
+            'total': run_total, 'hits': run_hits,
+            'crit': run_crit, 'dodged': run_dodged, 'eff_def': eff_def,
+        }
+
+    def empty_stat():
+        return {'total': 0, 'hit_count': 0, 'dodge_count': 0, 'crit_count': 0}
+
+    stat_a = empty_stat()  # 我方造成伤害的统计
+    stat_b = empty_stat()  # 对方造成伤害的统计
+    per_round = []
+
+    for _ in range(count):
+        # 每回合：我方先打对方，再对方打我方
+        r_a = strike(side_a, side_b, coef_a, pierce_a, hits_a)
+        r_b = strike(side_b, side_a, coef_b, pierce_b, hits_b)
+
+        for r, stat in ((r_a, stat_a), (r_b, stat_b)):
+            stat['total'] += r['total']
+            if r['dodged']:
+                stat['dodge_count'] += 1
+            else:
+                stat['hit_count'] += 1
+            if r['crit']:
+                stat['crit_count'] += 1
+
+        per_round.append({'a': r_a, 'b': r_b})
+
+    def summarize(stat, count):
+        return {
+            'total': stat['total'],
+            'avg': round(stat['total'] / count, 1) if count else 0,
+            'hit_count': stat['hit_count'],
+            'dodge_count': stat['dodge_count'],
+            'crit_count': stat['crit_count'],
+        }
+
+    def side_summary(side, sdata, coefficient, hits, mana_cost, stat):
+        return {
+            'class': side['class'],
+            'attack': side['attack'],
+            'defense': side['defense'],
+            'skill_name': sdata['name'] if sdata else '普攻',
+            'skill_level': side['skill_level'],
+            'coefficient': round(coefficient, 4),
+            'hits': hits,
+            'mana_cost': mana_cost,
+            'stat': stat,
+        }
 
     return {
-        'per_run': per_run,
+        'per_round': per_round,
         'count': count,
-        'avg': round(total_dmg / count, 1) if count else 0,
-        'total': total_dmg,
-        'crit_count': crit_count,
-        'dodge_count': dodge_count,
-        'hit_count': hit_count,
-        'coefficient': round(coefficient, 4),
-        'eff_def': eff_def,
-        'hits': hits,
-        'attacker': attacker,
-        'defender': defender,
-        'skill_name': skill_data['name'] if skill_data else '普攻',
-        'skill_level': skill_level,
-        'mana_cost': int(round(skill_data['base_mana_cost'] + skill_data.get('mana_cost_per_level', 0) * (skill_level - 1))) if skill_data else 0,
+        'attacker': side_summary(side_a, skill_a, coef_a, hits_a, mana_a,
+                                 summarize(stat_a, count)),
+        'defender': side_summary(side_b, skill_b, coef_b, hits_b, mana_b,
+                                 summarize(stat_b, count)),
+        # 我方打对方时的有效防御（对方防御经我方破甲）
+        'a_eff_def': (int(side_b['defense'] * (1 - pierce_a))
+                      if pierce_a > 0 else side_b['defense']),
+        # 对方打我方时的有效防御（我方防御经对方破甲）
+        'b_eff_def': (int(side_a['defense'] * (1 - pierce_b))
+                      if pierce_b > 0 else side_a['defense']),
     }
