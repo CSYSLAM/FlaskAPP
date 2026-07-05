@@ -2521,3 +2521,296 @@ def _simulate_damage(form, count):
         'b_eff_def': (int(side_a['defense'] * (1 - pierce_b))
                       if pierce_b > 0 else side_a['defense']),
     }
+
+
+# ═══════════════════════════════════════════════════════════
+# Battle Test (战斗测试：自定义人物 vs 自定义怪物)
+# ═══════════════════════════════════════════════════════════
+# 与 damage_test 的区别：damage_test 是「玩家职业 vs 玩家职业」纯伤害采样；
+# 本测试是「人物(含技能) vs 怪物」的完整回合制战斗，怪物侧沿用 Monster.attack_player
+# 的等级保底伤害规则（min_damage = level*2 if is_elite else level），逐回合结算
+# 血量、暴击、闪避，直到一方倒下或达到回合上限。全程纯内存模拟，不落库、
+# 不触碰真实玩家与怪物数据。仅工作台 designer 可用。
+
+BATTLE_TEST_CLASSES = ['战士', '刺客', '术士']
+BATTLE_TEST_PLAYER_STATS = [
+    ('attack', '攻击力', 1000),
+    ('defense', '防御力', 500),
+    ('max_health', '生命上限', 5000),
+    ('max_mana', '魔法上限', 500),
+    ('crit_rate', '暴击率', 0.10),
+    ('dodge_rate', '闪避率', 0.10),
+]
+BATTLE_TEST_MONSTER_STATS = [
+    ('attack', '攻击力', 800),
+    ('defense', '防御力', 300),
+    ('max_health', '生命上限', 4000),
+    ('crit_rate', '暴击率', 0.05),
+    ('dodge_rate', '闪避率', 0.05),
+]
+
+
+@workbench_bp.route("/battle_test", methods=["GET", "POST"])
+@login_required
+def battle_test():
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    # 主动技能（按职业分组），供人物侧选择
+    all_skills = DataService.get_skills() or {}
+    active_skills = {sid: s for sid, s in all_skills.items()
+                     if s.get('skill_type') == 'active'}
+    skills_by_class = {'普攻': {}}
+    for sid, s in active_skills.items():
+        cls = s.get('class_required') or '通用'
+        skills_by_class.setdefault(cls, {})[sid] = s
+    skills_json = {}
+    for cls, sks in skills_by_class.items():
+        if cls == '普攻':
+            continue
+        skills_json[cls] = [{'id': sid, 'name': s.get('name', sid)} for sid, s in sks.items()]
+
+    # 默认值：人物 vs 怪物
+    form = {
+        'player_class': '战士',
+        'player_level': 30,
+        'player_attack': 1000, 'player_defense': 500,
+        'player_max_health': 5000, 'player_max_mana': 500,
+        'player_crit_rate': 0.10, 'player_dodge_rate': 0.10,
+        'player_skill_id': 'attack', 'player_skill_level': 1,
+        'monster_name': '测试怪',
+        'monster_level': 30,
+        'monster_is_elite': False,
+        'monster_is_divine_beast': False,
+        'monster_attack': 800, 'monster_defense': 300,
+        'monster_max_health': 4000,
+        'monster_crit_rate': 0.05, 'monster_dodge_rate': 0.05,
+        'max_rounds': 30,
+    }
+
+    if request.method == "POST":
+        for k in list(form.keys()):
+            v = request.form.get(k)
+            if v is None:
+                continue
+            if k in ('player_class', 'player_skill_id', 'monster_name'):
+                form[k] = v
+            elif k in ('monster_is_elite', 'monster_is_divine_beast'):
+                form[k] = (v == 'on' or v == '1' or v == 'true')
+            elif k in ('player_skill_level', 'player_level', 'monster_level', 'max_rounds'):
+                try:
+                    form[k] = int(v)
+                except (ValueError, TypeError):
+                    pass
+            else:
+                try:
+                    form[k] = float(v) if ('crit_rate' in k or 'dodge_rate' in k) else int(v)
+                except (ValueError, TypeError):
+                    pass
+
+        results = _simulate_battle(form)
+
+    else:
+        results = None
+
+    return render_template("workbench/battle_test.html",
+                           form=form,
+                           results=results,
+                           skills_by_class=skills_by_class,
+                           skills_json=skills_json,
+                           classes=BATTLE_TEST_CLASSES,
+                           player_stats=BATTLE_TEST_PLAYER_STATS,
+                           monster_stats=BATTLE_TEST_MONSTER_STATS)
+
+
+def _simulate_battle(form):
+    """自定义人物 vs 自定义怪物的回合制战斗模拟（纯内存，不落库）。
+
+    复用 BattleService._compute_damage 伤害公式，保证数值与真实战斗一致：
+        damage = atk × (1 + atk / max(1, def)) × coefficient
+    - 人物侧：可带技能（系数/破甲/多段/耗魔），玩家先手。
+    - 怪物侧：普攻，等级保底 min_damage = level*2(精英) else level（同 Monster.attack_player）。
+    - 暴击 ×1.5，闪避归零。逐回合扣血，直到一方血量 ≤0 或达到回合上限。
+    """
+    from services.battle_service import BattleService
+
+    # ── 人物侧 ──
+    player = {
+        'name': '自定义人物',
+        'class': form.get('player_class', '战士'),
+        'level': max(1, int(form.get('player_level', 1))),
+        'attack': form.get('player_attack', 0),
+        'defense': form.get('player_defense', 0),
+        'max_health': form.get('player_max_health', 0),
+        'max_mana': form.get('player_max_mana', 0),
+        'crit_rate': form.get('player_crit_rate', 0),
+        'dodge_rate': form.get('player_dodge_rate', 0),
+        'skill_id': form.get('player_skill_id', 'attack'),
+        'skill_level': max(1, min(int(form.get('player_skill_level', 1)), 10)),
+    }
+    player['health'] = player['max_health']
+    player['mana'] = player['max_mana']
+
+    # ── 怪物侧 ──
+    monster = {
+        'name': form.get('monster_name', '测试怪') or '测试怪',
+        'level': max(1, int(form.get('monster_level', 1))),
+        'is_elite': bool(form.get('monster_is_elite', False)),
+        'is_divine_beast': bool(form.get('monster_is_divine_beast', False)),
+        'attack': form.get('monster_attack', 0),
+        'defense': form.get('monster_defense', 0),
+        'max_health': form.get('monster_max_health', 0),
+        'crit_rate': form.get('monster_crit_rate', 0),
+        'dodge_rate': form.get('monster_dodge_rate', 0),
+    }
+    monster['health'] = monster['max_health']
+
+    # ── 解析人物技能（不属于该职业则回退普攻）──
+    sid = player['skill_id']
+    sdata = DataService.get_skill(sid) if sid and sid != 'attack' else None
+    if sdata:
+        req = sdata.get('class_required')
+        if req and req != player['class']:
+            sdata = None
+
+    def skill_params(sdata, level):
+        coefficient = 1.0
+        pierce_pct = 0.0
+        hits = 1
+        mana_cost = 0
+        if sdata:
+            base_rate = sdata.get('base_damage_rate', 1.0)
+            rate_per = sdata.get('damage_rate_per_level', 0)
+            coefficient = base_rate + rate_per * (level - 1)
+            pierce_pct = sdata.get('pierce_defense_pct', 0)
+            hits = sdata.get('hits', 1)
+            mana_cost = int(round(sdata.get('base_mana_cost', 0)
+                                  + sdata.get('mana_cost_per_level', 0) * (level - 1)))
+        return coefficient, pierce_pct, hits, mana_cost
+
+    coef, pierce, hits, mana_cost = skill_params(sdata, player['skill_level'])
+    skill_name = sdata['name'] if sdata else '普攻'
+
+    # ── 单回合：attacker 对 defender 打一发技能（含多段）──
+    def player_strike():
+        eff_def = (int(monster['defense'] * (1 - pierce))
+                   if pierce > 0 else monster['defense'])
+        total = 0
+        crit = False
+        dodged = True
+        hit_list = []
+        for _h in range(hits):
+            if _random.random() >= monster['dodge_rate']:
+                dodged = False
+                dmg = BattleService._compute_damage(
+                    player['attack'], eff_def, coefficient=coef)
+                if _random.random() <= player['crit_rate']:
+                    dmg = int(dmg * 1.5)
+                    crit = True
+                total += dmg
+                hit_list.append(dmg)
+            else:
+                hit_list.append(0)
+        # 耗魔（仅展示，模拟不阻断）
+        player['mana'] = max(0, player['mana'] - mana_cost)
+        return {
+            'total': total, 'hits': hit_list, 'crit': crit,
+            'dodged': dodged, 'eff_def': eff_def,
+        }
+
+    def monster_strike():
+        # 与 Monster.attack_player 一致：闪避判定 → 等级保底伤害 → 暴击 ×1.5
+        if _random.random() >= player['dodge_rate']:
+            min_damage = monster['level'] * 2 if monster['is_elite'] else monster['level']
+            dmg = BattleService._compute_damage(
+                monster['attack'], player['defense'],
+                coefficient=1.0, min_damage=min_damage)
+            crit = False
+            if _random.random() <= monster['crit_rate']:
+                dmg = int(dmg * 1.5)
+                crit = True
+            return {'total': dmg, 'crit': crit, 'dodged': False, 'min_damage': min_damage}
+        return {'total': 0, 'crit': False, 'dodged': True, 'min_damage': 0}
+
+    max_rounds = max(1, min(int(form.get('max_rounds', 30)), 200))
+    per_round = []
+    winner = None  # 'player' | 'monster' | 'draw'
+    p_total_dealt = 0   # 人物累计造成
+    m_total_dealt = 0   # 怪物累计造成
+    p_crit_count = 0
+    m_crit_count = 0
+    p_dodge_count = 0   # 人物闪避怪物攻击的次数
+    m_dodge_count = 0   # 怪物闪避人物攻击的次数
+
+    for rnd in range(1, max_rounds + 1):
+        # 人物先手
+        ps = player_strike()
+        if not ps['dodged']:
+            monster['health'] -= ps['total']
+            p_total_dealt += ps['total']
+        else:
+            m_dodge_count += 1
+        if ps['crit']:
+            p_crit_count += 1
+
+        # 怪物反击（若已被击杀则不反击）
+        ms = None
+        if monster['health'] > 0:
+            ms = monster_strike()
+            if not ms['dodged']:
+                player['health'] -= ms['total']
+                m_total_dealt += ms['total']
+            else:
+                p_dodge_count += 1
+            if ms['crit']:
+                m_crit_count += 1
+
+        per_round.append({
+            'round': rnd,
+            'player_hp_before': player['health'] + (ms['total'] if (ms and not ms['dodged']) else 0),
+            'monster_hp_before': monster['health'] + (ps['total'] if not ps['dodged'] else 0),
+            'player': ps,
+            'monster': ms,
+            'player_hp': max(0, player['health']),
+            'monster_hp': max(0, monster['health']),
+        })
+
+        # 胜负判定
+        if monster['health'] <= 0:
+            winner = 'player'
+            break
+        if player['health'] <= 0:
+            winner = 'monster'
+            break
+    else:
+        winner = 'draw'  # 回合用尽未分胜负
+
+    return {
+        'per_round': per_round,
+        'rounds': len(per_round),
+        'max_rounds': max_rounds,
+        'winner': winner,
+        'player': {
+            'name': player['name'], 'class': player['class'],
+            'level': player['level'], 'attack': player['attack'],
+            'defense': player['defense'], 'max_health': player['max_health'],
+            'max_mana': player['max_mana'], 'crit_rate': player['crit_rate'],
+            'dodge_rate': player['dodge_rate'],
+            'skill_name': skill_name, 'skill_level': player['skill_level'],
+            'coefficient': round(coef, 4), 'hits': hits, 'mana_cost': mana_cost,
+            'final_hp': max(0, player['health']),
+            'total_dealt': p_total_dealt, 'crit_count': p_crit_count,
+            'dodge_count': p_dodge_count,
+        },
+        'monster': {
+            'name': monster['name'], 'level': monster['level'],
+            'is_elite': monster['is_elite'],
+            'is_divine_beast': monster['is_divine_beast'],
+            'attack': monster['attack'], 'defense': monster['defense'],
+            'max_health': monster['max_health'],
+            'crit_rate': monster['crit_rate'], 'dodge_rate': monster['dodge_rate'],
+            'final_hp': max(0, monster['health']),
+            'total_dealt': m_total_dealt, 'crit_count': m_crit_count,
+            'dodge_count': m_dodge_count,
+        },
+    }

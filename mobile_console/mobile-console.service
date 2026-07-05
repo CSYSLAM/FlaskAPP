@@ -1,0 +1,22 @@
+[Unit]
+Description=Mobile Console for FlaskAPP (手机控制台)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/FlaskAPP
+# 公网 IP(手机外网访问用),改成你的服务器公网 IP
+Environment=PUBLIC_IP=117.72.209.69
+# claude 无人值守必需的 API key,填你自己的
+Environment=ANTHROPIC_API_KEY=
+# 可选:自定义访问密码(不设则首次启动随机生成并存到 mobile_console/.passwd)
+# Environment=MOBILE_CONSOLE_PASSWORD=
+ExecStart=/root/FlaskAPP/venv/bin/python /root/FlaskAPP/mobile_console/run.py
+Restart=on-failure
+RestartSec=3
+# 日志走 journalctl: journalctl -u mobile-console -f
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
