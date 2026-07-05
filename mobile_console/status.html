@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlaskAPP 运行状态(只读看板)</title>
+<style>
+  :root{--bg:#0f1115;--panel:#181b22;--line:#2a2f3a;--txt:#e6e8ee;--dim:#8a93a6;
+        --on:#7fd1b9;--off:#5a6377;--busy:#ffb454;--danger:#ff8b8b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+       font:15px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       padding:20px;max-width:720px;margin:0 auto}
+  h1{font-size:18px;margin:0 0 4px}
+  .sub{color:var(--dim);font-size:13px;margin-bottom:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+        padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px}
+  .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto;background:var(--off)}
+  .dot.on{background:var(--on);box-shadow:0 0 8px var(--on)}
+  .dot.busy{background:var(--busy);box-shadow:0 0 8px var(--busy);animation:pulse 1s infinite}
+  .dot.off{background:var(--off)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .info{flex:1;min-width:0}
+  .name{font-weight:600;font-size:15px}
+  .meta{font-size:12px;color:var(--dim);margin-top:2px;font-family:Consolas,Menlo,monospace}
+  .badge{font-size:12px;padding:3px 8px;border-radius:10px;background:var(--line);color:var(--dim)}
+  .badge.busy{background:rgba(255,180,84,.18);color:var(--busy)}
+  .badge.on{background:rgba(127,209,185,.15);color:var(--on)}
+  .badge.off{background:rgba(90,99,119,.2);color:var(--dim)}
+  .footer{font-size:12px;color:var(--dim);margin-top:10px;text-align:center}
+  .err{color:var(--danger);font-size:13px;text-align:center;padding:20px}
+  .warn{background:rgba(255,180,84,.1);border:1px solid var(--busy);color:var(--busy);
+        border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;display:none}
+</style>
+</head>
+<body>
+  <h1>🎮 FlaskAPP 运行状态</h1>
+  <div class="sub">只读看板 · 数据来自 mobile_console 的 /api/peek · 每 3 秒刷新</div>
+
+  <div class="warn" id="warn">⚠️ Claude 正在处理指令 —— 设计者正在用手机操作,请勿在电脑上同时改代码,避免冲突。</div>
+
+  <div class="card" id="card-console">
+    <div class="dot" id="dot-console"></div>
+    <div class="info">
+      <div class="name">手机控制台 <span class="badge off" id="b-console">未知</span></div>
+      <div class="meta" id="m-console">端口 8765</div>
+    </div>
+  </div>
+
+  <div class="card" id="card-claude">
+    <div class="dot" id="dot-claude"></div>
+    <div class="info">
+      <div class="name">Claude worker <span class="badge off" id="b-claude">未知</span></div>
+      <div class="meta" id="m-claude">未启用</div>
+    </div>
+  </div>
+
+  <div class="card" id="card-flask">
+    <div class="dot" id="dot-flask"></div>
+    <div class="info">
+      <div class="name">Flask 游戏 <span class="badge off" id="b-flask">未知</span></div>
+      <div class="meta" id="m-flask">端口 5000</div>
+    </div>
+  </div>
+
+  <div class="footer" id="footer">连接中…</div>
+
+<script>
+// 看板连哪个地址:优先用 URL 里的 ?host=,否则同源(通过 mobile_console 访问本页时),
+// 最后兜底 127.0.0.1:8765(直接 file:// 打开本页时)。
+function peekUrl(){
+  const p = new URLSearchParams(location.search).get('host');
+  if(p) return p.replace(/\/$/,'') + '/api/peek';
+  if(location.protocol.startsWith('http')) return location.origin + '/api/peek';
+  return 'http://127.0.0.1:8765/api/peek';
+}
+function setBadge(id, cls, text){ const b=document.getElementById(id); b.className='badge '+cls; b.textContent=text; }
+function setDot(id, cls){ document.getElementById(id).className='dot '+cls; }
+
+async function refresh(){
+  try{
+    const r = await fetch(peekUrl(), {cache:'no-store'});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d = await r.json();
+
+    // 控制台:能拿到响应就是活的
+    setDot('dot-console','on'); setBadge('b-console','on','运行中');
+    document.getElementById('m-console').textContent = '端口 8765 · 本机';
+
+    // Claude
+    const c = d.claude;
+    if(c.running){
+      if(c.busy){
+        setDot('dot-claude','busy'); setBadge('b-claude','busy','处理中…');
+        document.getElementById('m-claude').textContent = '正在执行指令' + (c.queued?` · 队列 ${c.queued}`:'');
+      } else {
+        setDot('dot-claude','on'); setBadge('b-claude','on','就绪');
+        document.getElementById('m-claude').textContent = '已启用' + (c.queued?` · 队列 ${c.queued}`:'');
+      }
+    } else {
+      setDot('dot-claude','off'); setBadge('b-claude','off','未启用');
+      document.getElementById('m-claude').textContent = '未启用';
+    }
+
+    // Flask
+    const f = d.flask;
+    if(f.running && f.listening){
+      setDot('dot-flask','on'); setBadge('b-flask','on','运行中');
+      document.getElementById('m-flask').textContent = `端口 5000 · pid ${f.pid}`;
+    } else if(f.listening){
+      setDot('dot-flask','busy'); setBadge('b-flask','busy','端口占用');
+      document.getElementById('m-flask').textContent = '端口 5000 在监听(可能是孤儿进程)';
+    } else {
+      setDot('dot-flask','off'); setBadge('b-flask','off','未运行');
+      document.getElementById('m-flask').textContent = '端口 5000 未监听';
+    }
+
+    // 冲突预警:Claude 处理中时提示
+    document.getElementById('warn').style.display = (c.running && c.busy) ? 'block' : 'none';
+
+    document.getElementById('footer').textContent =
+      '更新 ' + new Date().toLocaleTimeString() + ' · IP ' + (d.lan_ip||'?') + ' · 下次刷新 3s';
+  }catch(e){
+    setDot('dot-console','off'); setBadge('b-console','off','离线');
+    document.getElementById('m-console').textContent = '无法连接 mobile_console(8765)';
+    document.getElementById('footer').textContent = '连接失败: ' + e.message + ' · 重试中…';
+  }
+}
+refresh();
+setInterval(refresh, 3000);
+</script>
+</body>
+</html>

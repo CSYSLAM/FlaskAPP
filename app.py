@@ -47,10 +47,19 @@ def create_app():
 
     @app.before_request
     def track_online():
-        from flask_login import current_user
+        from flask import session as _sess
+        from flask_login import current_user, logout_user
+        from services import auth_session_service as _sso
         if current_user.is_authenticated:
             from services.party_service import mark_online
             mark_online(current_user.id)
+            # 单点登录检测：当前会话 token 不再是有效 token，说明该账号在别处登录
+            if not _sso.is_active(current_user.id, _sess.get("_sso_token")):
+                from flask import redirect, url_for, flash
+                logout_user()
+                _sess.clear()
+                flash("该账号在别处登录，您已下线")
+                return redirect(url_for("auth.login_page", kicked=1))
 
     from services.world_boss_service import WorldBossService
     WorldBossService.init_bosses()
@@ -121,6 +130,8 @@ def create_app():
         return redirect(url_for('game.scene'))
 
     with app.app_context():
+        # 确保 ActiveSession 表被注册后再 create_all（单点登录会话表）
+        from models.active_session import ActiveSession  # noqa: F401
         db.create_all()
         # 为已有数据库添加新列（SQLite 不支持 ALTER TABLE ADD COLUMN IF NOT EXISTS）
         try:
@@ -250,4 +261,6 @@ if __name__ == '__main__':
     app = create_app()
     # 绑 0.0.0.0 让同 WiFi 的手机可访问预览;关掉 reloader 避免双进程干扰控制台管理。
     # 想要改代码自动热重载时,把 use_reloader 改 True(仅本机调试用)。
-    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
+    # threaded=True:每个请求独立线程,避免移动浏览器多连接排队导致"网页无法加载"。
+    # debug=False:开发服务器的 debug 模式对外网移动端不可靠且有安全隐患。
+    app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False, threaded=True)

@@ -28,6 +28,8 @@ def login_page():
         return redirect(url_for('auth.select_server'))
 
     register_msg = session.pop('register_msg', None)
+    # 被单点登录踢下线时携带的提示
+    kicked_msg = "该账号在别处登录，您已下线" if request.args.get("kicked") else None
 
     if request.method == "POST":
         username = request.form.get("username")
@@ -38,12 +40,15 @@ def login_page():
         login_user(player)
         session["username"] = username
         session["player_id"] = player.id
+        # 单点登录：绑定新 token，旧会话立即失效（下次请求被踢）
+        from services import auth_session_service as _sso
+        session["_sso_token"] = _sso.bind(player.id)
         # VIP5 broadcast on login
         from services.vip_service import VipService
         if VipService.has_broadcast(player):
             DataService.broadcast_system(f"尊贵的VIP{VipService.get_active_vip_level(player)}玩家【{player.nickname}】上线了！")
         return redirect(url_for("auth.select_server"))
-    return render_template("login.html", register_msg=register_msg)
+    return render_template("login.html", register_msg=register_msg, message=kicked_msg)
 
 
 @auth_bp.route("/register", methods=["GET", "POST"])
@@ -199,7 +204,10 @@ def story_complete():
 @auth_bp.route("/logout")
 @login_required
 def logout():
+    from services import auth_session_service as _sso
+    _sso.clear(current_user.id)
     logout_user()
     session.pop("username", None)
     session.pop("player_id", None)
+    session.pop("_sso_token", None)
     return redirect(url_for("auth.login_page"))
