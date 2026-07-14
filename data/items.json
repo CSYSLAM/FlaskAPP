@@ -153,24 +153,6 @@
     },
     "capacity": 0.1
   },
-  "potion_health": {
-    "name": "生命秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%生命上限,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "max_health",
-          "rate": 0.05,
-          "duration": 120,
-          "effect_name": "生命秘药"
-        }
-      ]
-    },
-    "capacity": 0
-  },
   "megaphone": {
     "name": "大喇叭",
     "type": "other",
@@ -446,105 +428,20 @@
     },
     "capacity": 0
   },
-  "potion_mana_temp": {
-    "name": "魔法秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%魔法上限,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "max_mana",
-          "rate": 0.05,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_crit": {
-    "name": "暴击秘药",
-    "type": "potion",
-    "description": "使用后临时提升3%暴击率,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "crit_rate",
-          "rate": 0.03,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_dodge": {
-    "name": "闪避秘药",
-    "type": "potion",
-    "description": "使用后临时提升3%闪避率,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "dodge_rate",
-          "rate": 0.03,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
   "potion_package": {
     "name": "秘药礼包",
-    "type": "potion",
+    "type": "other",
     "description": "使用后随机获得一种秘药",
     "price": 150,
     "is_usable": true,
     "usage_effect": {
       "random_one_of": [
-        "potion_health",
-        "potion_mana_temp",
-        "potion_attack",
-        "potion_defense",
-        "potion_crit",
-        "potion_dodge"
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_attack": {
-    "name": "攻击秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%攻击力,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "attack",
-          "rate": 0.05,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_defense": {
-    "name": "防御秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%防御力,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "defense",
-          "rate": 0.05,
-          "duration": 120
-        }
+        "potion_health_buff",
+        "potion_mana_buff",
+        "potion_attack_buff",
+        "potion_defense_buff",
+        "potion_crit_buff",
+        "potion_dodge_buff"
       ]
     },
     "capacity": 0
@@ -1310,24 +1207,6 @@
     "price": 50,
     "is_usable": false,
     "capacity": 0.1
-  },
-  "potion_health_temp": {
-    "name": "生命秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%生命上限,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "max_health",
-          "rate": 0.05,
-          "duration": 120,
-          "effect_name": "生命秘药"
-        }
-      ]
-    },
-    "capacity": 0
   },
   "chest_lv10_gear": {
     "name": "10级装备礼盒",
@@ -3611,12 +3490,12 @@
     "is_usable": true,
     "usage_effect": {
       "random_one_of": [
-        "potion_health",
-        "potion_mana_temp",
-        "potion_attack",
-        "potion_defense",
-        "potion_crit",
-        "potion_dodge"
+        "potion_health_buff",
+        "potion_mana_buff",
+        "potion_attack_buff",
+        "potion_defense_buff",
+        "potion_crit_buff",
+        "potion_dodge_buff"
       ]
     },
     "capacity": 0.1
@@ -4468,5 +4347,108 @@
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0.05
+  },
+  "potion_health_buff": {
+    "name": "生命秘药",
+    "type": "other",
+    "description": "使用后临时提升5%生命上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_health",
+          "rate": 0.05,
+          "duration": 120,
+          "effect_name": "生命秘药"
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_mana_buff": {
+    "name": "魔法秘药",
+    "type": "other",
+    "description": "使用后临时提升5%魔法上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_mana",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_attack_buff": {
+    "name": "攻击秘药",
+    "type": "other",
+    "description": "使用后临时提升5%攻击力,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "attack",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_defense_buff": {
+    "name": "防御秘药",
+    "type": "other",
+    "description": "使用后临时提升5%防御力,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "defense",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_crit_buff": {
+    "name": "暴击秘药",
+    "type": "other",
+    "description": "使用后临时提升3%暴击率,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "crit_rate",
+          "rate": 0.03,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_dodge_buff": {
+    "name": "闪避秘药",
+    "type": "other",
+    "description": "使用后临时提升3%闪避率,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "dodge_rate",
+          "rate": 0.03,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
   }
 }
