@@ -33,7 +33,7 @@ class PlayerService:
             level=1,
             experience=0,
             exp_to_next_level=50,
-            gold=100,
+            gold=1500,
             health=base["max_health"],
             max_health=base["max_health"],
             mana=base["max_mana"],
@@ -76,7 +76,7 @@ class PlayerService:
         player.level = 1
         player.experience = 0
         player.exp_to_next_level = 50
-        player.gold = 100
+        player.gold = 1500
         player.health = base["max_health"]
         player.max_health = base["max_health"]
         player.mana = base["max_mana"]

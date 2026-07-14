@@ -91,7 +91,7 @@ def register():
             level=1,
             experience=0,
             exp_to_next_level=50,
-            gold=100,
+            gold=1500,
             health=100,
             max_health=100,
             mana=50,
