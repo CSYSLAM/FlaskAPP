@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 5500,
-    "description": "战士专属，以雷霆之力锻造的战盔，威武霸气"
+    "description": "战士专属，以雷霆之力锻造的战盔，威武霸气",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "leiting_armor_28": {
     "name": "雷霆战甲",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 6500,
-    "description": "战士专属，以雷霆之力铸造的战甲，坚不可摧"
+    "description": "战士专属，以雷霆之力铸造的战甲，坚不可摧",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_mabu": 20
+    }
   },
   "leiting_gloves_26": {
     "name": "雷霆手套",
@@ -62,7 +72,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 4800,
-    "description": "战士专属，以雷霆之力淬炼的护手，雷霆万钧"
+    "description": "战士专属，以雷霆之力淬炼的护手，雷霆万钧",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_huangyangmu": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "leiting_pants_27": {
     "name": "雷霆护腿",
@@ -84,7 +99,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 5800,
-    "description": "战士专属，以雷霆之力铸造的护腿，坚如磐石"
+    "description": "战士专属，以雷霆之力铸造的护腿，坚如磐石",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_mabu": 20,
+      "craft_huangyangmu": 20
+    }
   },
   "leiting_shoes_25": {
     "name": "雷霆战靴",
@@ -106,6 +126,11 @@
       "dodge_rate": 0.0
     },
     "base_price": 4500,
-    "description": "战士专属，以雷霆之力铸造的战靴，踏地如雷"
+    "description": "战士专属，以雷霆之力铸造的战靴，踏地如雷",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_huangtongkuang": 20,
+      "craft_huangyangmu": 20
+    }
   }
 }

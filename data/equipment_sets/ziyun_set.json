@@ -10,8 +10,8 @@
     "blueprint_item": "bp_ziyun_helmet",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_nirong": 20
+      "craft_houpi": 30,
+      "craft_jingjinkuang": 30
     },
     "base_stats": {
       "defense": 375
@@ -38,8 +38,8 @@
     "blueprint_item": "bp_ziyun_armor",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_zitanmu": 20
+      "craft_houpi": 30,
+      "craft_nirong": 30
     },
     "base_stats": {
       "defense": 375
@@ -66,8 +66,8 @@
     "blueprint_item": "bp_ziyun_pants",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_nirong": 20
+      "craft_nirong": 30,
+      "craft_zitanmu": 30
     },
     "base_stats": {
       "defense": 375
@@ -94,8 +94,8 @@
     "blueprint_item": "bp_ziyun_gloves",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_jingjinkuang": 20,
-      "craft_nirong": 20
+      "craft_zitanmu": 30,
+      "craft_jingjinkuang": 30
     },
     "base_stats": {
       "defense": 375
@@ -122,8 +122,8 @@
     "blueprint_item": "bp_ziyun_shoes",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_zitanmu": 20
+      "craft_jingjinkuang": 30,
+      "craft_zitanmu": 30
     },
     "base_stats": {
       "defense": 375

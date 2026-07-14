@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 8000,
-    "description": "术士专属，以灵玉雕琢的玉冠，彰显智者风范"
+    "description": "术士专属，以灵玉雕琢的玉冠，彰显智者风范",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "yuanlv_armor_38": {
     "name": "远虑长袍",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 9500,
-    "description": "术士专属，以灵丝织成的长袍，深谋远虑"
+    "description": "术士专属，以灵丝织成的长袍，深谋远虑",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
+    }
   },
   "yuanlv_gloves_36": {
     "name": "无忧护手",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 7000,
-    "description": "术士专属，以灵丝编织的护手，施法无忧"
+    "description": "术士专属，以灵丝编织的护手，施法无忧",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "yuanlv_pants_37": {
     "name": "远虑长裤",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 8500,
-    "description": "术士专属，以灵丝织成的护腿，运筹帷幄"
+    "description": "术士专属，以灵丝织成的护腿，运筹帷幄",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
+    }
   },
   "yuanlv_shoes_35": {
     "name": "远虑靴",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.009
     },
     "base_price": 6500,
-    "description": "术士专属，以灵丝编织的布靴，步步为营"
+    "description": "术士专属，以灵丝编织的布靴，步步为营",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
+    }
   }
 }

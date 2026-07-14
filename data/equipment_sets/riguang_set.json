@@ -20,7 +20,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 5500,
-    "description": "术士专属，以日光之辉编织的头带，蕴含光元素之力"
+    "description": "术士专属，以日光之辉编织的头带，蕴含光元素之力",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "riguang_armor_28": {
     "name": "月光长袍",
@@ -42,7 +47,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 6500,
-    "description": "术士专属，以月光之华织成的长袍，流转着月华之光"
+    "description": "术士专属，以月光之华织成的长袍，流转着月华之光",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_mabu": 20
+    }
   },
   "riguang_gloves_26": {
     "name": "流光手套",
@@ -64,7 +74,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 4800,
-    "description": "术士专属，以流光之丝编织的手套，增强法术威力"
+    "description": "术士专属，以流光之丝编织的手套，增强法术威力",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_huangyangmu": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "riguang_pants_27": {
     "name": "星光长裤",
@@ -86,7 +101,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 5800,
-    "description": "术士专属，以星光之辉织成的护腿，璀璨夺目"
+    "description": "术士专属，以星光之辉织成的护腿，璀璨夺目",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_mabu": 20,
+      "craft_huangyangmu": 20
+    }
   },
   "riguang_shoes_25": {
     "name": "晨光长靴",
@@ -108,6 +128,11 @@
       "dodge_rate": 0.0077
     },
     "base_price": 4500,
-    "description": "术士专属，以晨光之辉编织的布靴，踏光而行"
+    "description": "术士专属，以晨光之辉编织的布靴，踏光而行",
+    "craft_silver": 4440,
+    "craft_materials": {
+      "craft_huangtongkuang": 20,
+      "craft_huangyangmu": 20
+    }
   }
 }

@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 8000,
-    "description": "刺客专属，以疾风之灵编织的头带，迅捷如风"
+    "description": "刺客专属，以疾风之灵编织的头带，迅捷如风",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "jifeng_armor_38": {
     "name": "疾风轻甲",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 9500,
-    "description": "刺客专属，以疾风之丝织成的轻甲，疾行无影"
+    "description": "刺客专属，以疾风之丝织成的轻甲，疾行无影",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
+    }
   },
   "jifeng_gloves_36": {
     "name": "疾风手套",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 7000,
-    "description": "刺客专属，以疾风之力加持的护手，出手如电"
+    "description": "刺客专属，以疾风之力加持的护手，出手如电",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "jifeng_pants_37": {
     "name": "疾风护腿",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 8500,
-    "description": "刺客专属，以疾风之灵织成的护腿，疾风迅雷"
+    "description": "刺客专属，以疾风之灵织成的护腿，疾风迅雷",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
+    }
   },
   "jifeng_shoes_35": {
     "name": "疾风短靴",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.009
     },
     "base_price": 6500,
-    "description": "刺客专属，以疾风之灵织成的短靴，踏风而行"
+    "description": "刺客专属，以疾风之灵织成的短靴，踏风而行",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
+    }
   }
 }

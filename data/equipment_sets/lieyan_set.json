@@ -10,8 +10,8 @@
     "blueprint_item": "bp_lieyan_helmet",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_nirong": 20
+      "craft_houpi": 30,
+      "craft_jingjinkuang": 30
     },
     "base_stats": {
       "defense": 465
@@ -38,8 +38,8 @@
     "blueprint_item": "bp_lieyan_armor",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_zitanmu": 20
+      "craft_houpi": 30,
+      "craft_nirong": 30
     },
     "base_stats": {
       "defense": 465
@@ -66,8 +66,8 @@
     "blueprint_item": "bp_lieyan_pants",
     "craft_silver": 14440,
     "craft_materials": {
-      "craft_houpi": 20,
-      "craft_nirong": 20
+      "craft_nirong": 30,
+      "craft_zitanmu": 30
     },
     "base_stats": {
       "defense": 465
@@ -103,7 +103,13 @@
       "dodge_rate": 0.0
     },
     "base_price": 15500,
-    "description": "刺客专属，以烈焰之爪锻造的护手，焰爪附手，一击致命"
+    "description": "刺客专属，以烈焰之爪锻造的护手，焰爪附手，一击致命",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_zitanmu": 30,
+      "craft_jingjinkuang": 30
+    },
+    "blueprint_item": "bp_lieyan_gloves"
   },
   "lieyan_shoes_60": {
     "name": "烈焰靴",
@@ -125,6 +131,12 @@
       "dodge_rate": 0.04
     },
     "base_price": 15000,
-    "description": "刺客专属，以烈焰之皮缝制的轻靴，踏焰无痕，虎步生风"
+    "description": "刺客专属，以烈焰之皮缝制的轻靴，踏焰无痕，虎步生风",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_jingjinkuang": 30,
+      "craft_zitanmu": 30
+    },
+    "blueprint_item": "bp_lieyan_shoes"
   }
 }

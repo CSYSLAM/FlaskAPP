@@ -1212,6 +1212,15 @@ def _build_template_from_form(form, existing=None):
     if description:
         tpl["description"] = description
 
+    # 编辑场景下继承配方字段(craft_materials/craft_silver/blueprint_item)：
+    # _build_template_from_form 仅覆盖表单字段，equip_edit 是整体替换 data[template_id]=tpl，
+    # 若不继承会把这些字段抹掉，导致普通套掉回 fallback 表、60级史诗套丢失图纸而无法打造。
+    # 材料配方由 JSON 驱动，不在工作台表单中编辑，故直接从 existing 回写。
+    if existing:
+        for key in ("craft_materials", "craft_silver", "blueprint_item"):
+            if key in existing:
+                tpl[key] = existing[key]
+
     return tpl
 
 
