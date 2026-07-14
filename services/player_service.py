@@ -126,7 +126,7 @@ class PlayerService:
         flat, rate = DataService.get_temp_stat_bonus(player.id, "attack")
         rank_atk = player.rank_attack
         passive = player.get_passive_bonuses()
-        passive_rate = passive.get('attack', 0)
+        passive_flat = passive.get('attack', 0)
         title_bonuses = TitleService.get_title_bonuses(player)
         title_atk = title_bonuses.get('attack', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'attack')
@@ -141,7 +141,7 @@ class PlayerService:
         territory_atk = territory.get('attack', 0)
         from services.party_service import PartyService
         party_rate = PartyService.get_party_bonus_rate(player)
-        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + legion_atk + aura_atk + territory_atk) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate + party_rate))
+        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + legion_atk + aura_atk + territory_atk + passive_flat) * (1 + rate + lt_bonus_rate + vip_rate + party_rate))
 
     @classmethod
     def get_defense(cls, player):
@@ -154,7 +154,7 @@ class PlayerService:
         pill = player.pill_defense
         flat, rate = DataService.get_temp_stat_bonus(player.id, "defense")
         passive = player.get_passive_bonuses()
-        passive_rate = passive.get('defense', 0)
+        passive_flat = passive.get('defense', 0)
         title_bonuses = TitleService.get_title_bonuses(player)
         title_def = title_bonuses.get('defense', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'defense')
@@ -168,7 +168,7 @@ class PlayerService:
         territory_def = territory.get('defense', 0)
         from services.party_service import PartyService
         party_rate = PartyService.get_party_bonus_rate(player)
-        return int((base + equip_def + pill + flat + title_def + legion_def + aura_def + territory_def) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate + party_rate))
+        return int((base + equip_def + pill + flat + title_def + legion_def + aura_def + territory_def + passive_flat) * (1 + rate + lt_bonus_rate + vip_rate + party_rate))
 
     @classmethod
     def get_max_health(cls, player):
@@ -181,7 +181,7 @@ class PlayerService:
         pill = player.pill_max_health
         flat, rate = DataService.get_temp_stat_bonus(player.id, "max_health")
         passive = player.get_passive_bonuses()
-        passive_rate = passive.get('max_health', 0)
+        passive_flat = passive.get('max_health', 0)
         title_bonuses = TitleService.get_title_bonuses(player)
         title_hp = title_bonuses.get('max_health', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'health')
@@ -193,7 +193,7 @@ class PlayerService:
         from services.battlefield_service import BattlefieldService
         territory = BattlefieldService.get_territory_bonuses(player)
         territory_hp = territory.get('max_health', 0)
-        return int((base + equip_hp + pill + flat + title_hp + legion_hp + aura_hp + territory_hp) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        return int((base + equip_hp + pill + flat + title_hp + legion_hp + aura_hp + territory_hp + passive_flat) * (1 + rate + lt_bonus_rate + vip_rate))
 
     @classmethod
     def get_max_mana(cls, player):
@@ -206,7 +206,7 @@ class PlayerService:
         pill = player.pill_max_mana
         flat, rate = DataService.get_temp_stat_bonus(player.id, "max_mana")
         passive = player.get_passive_bonuses()
-        passive_rate = passive.get('max_mana', 0)
+        passive_flat = passive.get('max_mana', 0)
         title_bonuses = TitleService.get_title_bonuses(player)
         title_mp = title_bonuses.get('max_mana', 0)
         lt_bonus_rate = cls._get_lt_passive_bonus(player, 'mana')
@@ -216,7 +216,7 @@ class PlayerService:
         from services.battlefield_service import BattlefieldService
         territory = BattlefieldService.get_territory_bonuses(player)
         territory_mp = territory.get('max_mana', 0)
-        return int((base + equip_mp + pill + flat + title_mp + legion_mp + territory_mp) * (1 + rate + passive_rate + lt_bonus_rate + vip_rate))
+        return int((base + equip_mp + pill + flat + title_mp + legion_mp + territory_mp + passive_flat) * (1 + rate + lt_bonus_rate + vip_rate))
 
     @classmethod
     def _get_equipment_stat_sum(cls, player, stat_name):

@@ -16,7 +16,7 @@
 <a href="{{ url_for('quest.complete_quest', quest_id=quest.id) }}">完成任务</a><br/>
 <a href="{{ url_for('quest.abandon_quest', quest_id=quest.id) }}">放弃任务</a><br/>
 {% elif is_active %}
-<a href="{{ url_for('quest.go_to_quest', quest_id=quest.id) }}">快速前往目的地</a><br/>
+<a href="{{ url_for('quest.go_to_target', quest_id=quest.id) }}">快速前往目的地</a><br/>
 <a href="{{ url_for('quest.abandon_quest', quest_id=quest.id) }}">放弃任务</a><br/>
 {% elif can_accept %}
 <a href="{{ url_for('quest.accept_quest', quest_id=quest.id) }}">接受任务</a><br/>
@@ -24,7 +24,7 @@
 {{ reason }}<br/>
 {% endif %}
 {% else %}
-<a href="{{ url_for('quest.go_to_quest', quest_id=quest.id) }}">快速前往目的地</a><br/>
+<a href="{{ url_for('quest.go_to_target', quest_id=quest.id) }}">快速前往目的地</a><br/>
 {% endif %}
 <a href="{{ url_for('quest.quest_list') }}">返回</a><br/>
 <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>

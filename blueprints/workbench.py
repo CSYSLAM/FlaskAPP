@@ -259,8 +259,9 @@ def view_player():
     target = None
     details = {}
 
-    if request.method == "POST":
-        target_id = request.form.get("target_id", "").strip()
+    # 支持 GET ?target_id=xxx（在线玩家列表等链接直跳）
+    target_id = request.form.get("target_id", "").strip() or request.args.get("target_id", "").strip()
+    if request.method == "POST" or target_id:
         if target_id:
             target = _find_player(target_id)
             if not target:
@@ -282,13 +283,13 @@ def view_player():
         pill_atk = target.pill_attack
         flat_atk, rate_atk = DataService.get_temp_stat_bonus(target.id, "attack")
         rank_atk = target.rank_attack
-        passive_atk_rate = passive.get('attack', 0)
+        passive_atk_flat = passive.get('attack', 0)
         title_atk = title_bonuses.get('attack', 0)
         lt_atk_rate = PlayerService._get_lt_passive_bonus(target, 'attack')
         relation_atk = SocialService.get_online_relation_attack_bonus(target)
         vip_rate = VipService.get_stat_bonus_rate(target)
-        atk_flat = base_atk + equip_atk + pill_atk + flat_atk + rank_atk + title_atk + relation_atk
-        atk_rate = 1 + rate_atk + passive_atk_rate + lt_atk_rate + vip_rate
+        atk_flat = base_atk + equip_atk + pill_atk + flat_atk + rank_atk + title_atk + relation_atk + passive_atk_flat
+        atk_rate = 1 + rate_atk + lt_atk_rate + vip_rate
         atk_result = int(atk_flat * atk_rate)
 
         details['attack'] = {
@@ -301,10 +302,10 @@ def view_player():
                 ('军衔加成', rank_atk),
                 ('称号加成', title_atk),
                 ('红颜/知己/结婚', relation_atk),
+                ('被动技能', passive_atk_flat),
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_atk),
-                ('被动技能', passive_atk_rate),
                 ('副将加成', lt_atk_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -318,11 +319,11 @@ def view_player():
         equip_def = PlayerService._get_equipment_stat_sum(target, "defense")
         pill_def = target.pill_defense
         flat_def, rate_def = DataService.get_temp_stat_bonus(target.id, "defense")
-        passive_def_rate = passive.get('defense', 0)
+        passive_def_flat = passive.get('defense', 0)
         title_def = title_bonuses.get('defense', 0)
         lt_def_rate = PlayerService._get_lt_passive_bonus(target, 'defense')
-        def_flat = base_def + equip_def + pill_def + flat_def + title_def
-        def_rate = 1 + rate_def + passive_def_rate + lt_def_rate + vip_rate
+        def_flat = base_def + equip_def + pill_def + flat_def + title_def + passive_def_flat
+        def_rate = 1 + rate_def + lt_def_rate + vip_rate
         def_result = int(def_flat * def_rate)
 
         details['defense'] = {
@@ -333,10 +334,10 @@ def view_player():
                 ('丹药加成', pill_def),
                 ('临时BUFF(flat)', flat_def),
                 ('称号加成', title_def),
+                ('被动技能', passive_def_flat),
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_def),
-                ('被动技能', passive_def_rate),
                 ('副将加成', lt_def_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -350,11 +351,11 @@ def view_player():
         equip_hp = PlayerService._get_equipment_stat_sum(target, "max_health")
         pill_hp = target.pill_max_health
         flat_hp, rate_hp = DataService.get_temp_stat_bonus(target.id, "max_health")
-        passive_hp_rate = passive.get('max_health', 0)
+        passive_hp_flat = passive.get('max_health', 0)
         title_hp = title_bonuses.get('max_health', 0)
         lt_hp_rate = PlayerService._get_lt_passive_bonus(target, 'health')
-        hp_flat = base_hp + equip_hp + pill_hp + flat_hp + title_hp
-        hp_rate = 1 + rate_hp + passive_hp_rate + lt_hp_rate + vip_rate
+        hp_flat = base_hp + equip_hp + pill_hp + flat_hp + title_hp + passive_hp_flat
+        hp_rate = 1 + rate_hp + lt_hp_rate + vip_rate
         hp_result = int(hp_flat * hp_rate)
 
         details['max_health'] = {
@@ -365,10 +366,10 @@ def view_player():
                 ('丹药加成', pill_hp),
                 ('临时BUFF(flat)', flat_hp),
                 ('称号加成', title_hp),
+                ('被动技能', passive_hp_flat),
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_hp),
-                ('被动技能', passive_hp_rate),
                 ('副将加成', lt_hp_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -382,11 +383,11 @@ def view_player():
         equip_mp = PlayerService._get_equipment_stat_sum(target, "max_mana")
         pill_mp = target.pill_max_mana
         flat_mp, rate_mp = DataService.get_temp_stat_bonus(target.id, "max_mana")
-        passive_mp_rate = passive.get('max_mana', 0)
+        passive_mp_flat = passive.get('max_mana', 0)
         title_mp = title_bonuses.get('max_mana', 0)
         lt_mp_rate = PlayerService._get_lt_passive_bonus(target, 'mana')
-        mp_flat = base_mp + equip_mp + pill_mp + flat_mp + title_mp
-        mp_rate = 1 + rate_mp + passive_mp_rate + lt_mp_rate + vip_rate
+        mp_flat = base_mp + equip_mp + pill_mp + flat_mp + title_mp + passive_mp_flat
+        mp_rate = 1 + rate_mp + lt_mp_rate + vip_rate
         mp_result = int(mp_flat * mp_rate)
 
         details['max_mana'] = {
@@ -397,10 +398,10 @@ def view_player():
                 ('丹药加成', pill_mp),
                 ('临时BUFF(flat)', flat_mp),
                 ('称号加成', title_mp),
+                ('被动技能', passive_mp_flat),
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_mp),
-                ('被动技能', passive_mp_rate),
                 ('副将加成', lt_mp_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -448,6 +449,25 @@ def view_player():
         }
 
     return render_template("workbench/view_player.html", target=target, details=details)
+
+
+# --- Online Players ---
+
+@workbench_bp.route("/online_players")
+@login_required
+def online_players():
+    """列出当前在线玩家，可点击进入查看玩家详情。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    from services.party_service import get_online_player_ids
+    from models.player import PlayerModel
+    ids = get_online_player_ids()
+    players = PlayerModel.query.filter(PlayerModel.id.in_(ids)).all() if ids else []
+    # 按 level 降序
+    players.sort(key=lambda p: p.level, reverse=True)
+    return render_template("workbench/online_players.html",
+                           players=players, total=len(players))
 
 
 # --- Set Designer ---
@@ -2813,4 +2833,697 @@ def _simulate_battle(form):
             'total_dealt': m_total_dealt, 'crit_count': m_crit_count,
             'dodge_count': m_dodge_count,
         },
+    }
+
+
+# ─── Lieutenant Design System (副将设计系统) ───
+
+LT_CLASS_CHOICES = [('warrior', '战士'), ('mage', '术士'), ('assassin', '刺客')]
+LT_POSITION_CHOICES = [('front', '前置'), ('back', '后置')]
+LT_TIER_CHOICES = [(5, '超凡名将'), (4, '顶级名将'), (3, '一级名将'), (2, '二级名将'), (1, '三级名将'), (0, '普通名将')]
+# 副将可编辑字段：(字段名, 中文名, 默认值, 类型)
+LT_EDIT_FIELDS = [
+    ('name', '名字', '副将', 'str'),
+    ('gender', '性别', 'male', 'gender'),
+    ('class_type', '职业', 'warrior', 'class'),
+    ('tier', '档位', 0, 'tier'),
+    ('level', '等级', 1, 'int'),
+    ('quality', '资质(0-20)', 0, 'int'),
+    ('enlightenment', '悟性(0-10)', 0, 'int'),
+    ('reinforce', '强化(0-20)', 0, 'int'),
+    ('loyalty', '忠诚(0-100)', 80, 'int'),
+    ('lifespan', '寿命(0-100)', 100, 'int'),
+    ('skill_slots', '技能位(3-8)', 3, 'int'),
+    ('position', '位置', 'front', 'position'),
+    ('is_deployed', '出战', False, 'bool'),
+    ('is_alive', '存活', True, 'bool'),
+    ('base_max_health', '自定义生命(留空=公式)', None, 'opt_int'),
+    ('base_attack', '自定义攻击(留空=公式)', None, 'opt_int'),
+    ('base_defense', '自定义防御(留空=公式)', None, 'opt_int'),
+    ('base_crit_rate', '自定义暴击(0-1,留空=被动)', None, 'opt_float'),
+    ('base_dodge_rate', '自定义闪避(0-1,留空=被动)', None, 'opt_float'),
+]
+
+
+@workbench_bp.route("/lieutenant_design")
+@login_required
+def lieutenant_design():
+    """副将设计系统首页：列出所有副将(按玩家分组) + 技能定义管理入口。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from models.lieutenant import Lieutenant
+    from services.player_service import PlayerService
+    all_lts = Lieutenant.query.order_by(Lieutenant.owner_id, Lieutenant.id).all()
+    # 分两组:新增副将(工作台设计创建, is_design_only=True) / 玩家副将(正式, is_design_only=False)
+    design_lts = [lt for lt in all_lts if getattr(lt, 'is_design_only', False)]
+    player_lts = [lt for lt in all_lts if not getattr(lt, 'is_design_only', False)]
+    # 玩家副将按 owner 分组并附带 owner 名
+    groups = {}
+    owner_names = {}
+    for lt in player_lts:
+        if lt.owner_id not in owner_names:
+            p = DataService.get_player_by_id(lt.owner_id)
+            owner_names[lt.owner_id] = p.nickname if p else f'玩家{lt.owner_id}'
+        groups.setdefault(lt.owner_id, []).append(lt)
+    # 新增副将也按 owner 分组(通常只有设计者自己)
+    design_groups = {}
+    for lt in design_lts:
+        if lt.owner_id not in owner_names:
+            p = DataService.get_player_by_id(lt.owner_id)
+            owner_names[lt.owner_id] = p.nickname if p else f'玩家{lt.owner_id}'
+        design_groups.setdefault(lt.owner_id, []).append(lt)
+    return render_template("workbench/lieutenant_design.html",
+                           groups=groups, owner_names=owner_names,
+                           design_groups=design_groups)
+
+
+@workbench_bp.route("/lieutenant_add", methods=["GET", "POST"])
+@login_required
+def lieutenant_add():
+    """工作台·副将设计:自定义属性创建一个副将(归属当前设计者)。"""
+    import random
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from models.lieutenant import Lieutenant
+
+    if request.method == "POST":
+        name = request.form.get("name", "").strip()
+        if not name:
+            flash("名字不能为空")
+            return redirect(url_for('workbench.lieutenant_add'))
+
+        gender = request.form.get("gender", "male")
+        if gender not in ('male', 'female'):
+            gender = 'male'
+        class_type = request.form.get("class_type", "warrior")
+        if class_type not in ('warrior', 'mage', 'assassin'):
+            class_type = 'warrior'
+
+        # 悟性:留空则随机0-10
+        enl_raw = request.form.get("enlightenment", "").strip()
+        if enl_raw == '':
+            enlightenment = random.randint(0, 10)
+        else:
+            try:
+                enlightenment = max(0, min(10, int(enl_raw)))
+            except ValueError:
+                enlightenment = random.randint(0, 10)
+
+        def _int_field(field, default, lo, hi):
+            raw = request.form.get(field, "").strip()
+            if raw == '':
+                return default
+            try:
+                return max(lo, min(hi, int(raw)))
+            except ValueError:
+                return default
+
+        loyalty = _int_field("loyalty", 80, 0, 100)
+        quality = _int_field("quality", 0, 0, 20)
+        tier = _int_field("tier", 0, 0, 5)
+        reinforce = _int_field("reinforce", 0, 0, 20)
+        lifespan = _int_field("lifespan", 100, 0, 999)
+        level = _int_field("level", 1, 1, 999)
+
+        # 自定义基础值:留空=None(走公式)
+        def _opt_int(field):
+            raw = request.form.get(field, "").strip()
+            if raw == '':
+                return None
+            try:
+                v = int(raw)
+                return v if v >= 0 else None
+            except ValueError:
+                return None
+
+        def _opt_float(field):
+            raw = request.form.get(field, "").strip()
+            if raw == '':
+                return None
+            try:
+                v = float(raw)
+                return v if 0 <= v <= 1 else None
+            except ValueError:
+                return None
+
+        lt = Lieutenant(
+            owner_id=current_user.id,
+            name=name,
+            gender=gender,
+            class_type=class_type,
+            quality=quality,
+            enlightenment=enlightenment,
+            reinforce=reinforce,
+            loyalty=loyalty,
+            lifespan=lifespan,
+            level=level,
+            experience=0,
+            position='front',
+            is_deployed=False,
+            current_health=0,
+            current_mana=0,
+            skill_slots=3,
+            tier=tier,
+            is_alive=True,
+            is_design_only=True,
+            base_max_health=_opt_int("base_max_health"),
+            base_attack=_opt_int("base_attack"),
+            base_defense=_opt_int("base_defense"),
+            base_crit_rate=_opt_float("base_crit_rate"),
+            base_dodge_rate=_opt_float("base_dodge_rate"),
+        )
+        lt.current_health = lt.get_max_health()
+        lt.current_mana = lt.get_max_mana()
+        db.session.add(lt)
+        db.session.commit()
+        flash(f"已创建副将【{lt.name}】({lt.class_name})")
+        return redirect(url_for('workbench.lieutenant_view', lt_id=lt.id))
+
+    # GET: 显示表单(悟性默认留空=随机)
+    return render_template("workbench/lieutenant_add.html",
+                           class_choices=LT_CLASS_CHOICES,
+                           tier_choices=LT_TIER_CHOICES)
+
+
+@workbench_bp.route("/lieutenant_view/<int:lt_id>")
+@login_required
+def lieutenant_view(lt_id):
+    """查看副将详情：属性公式拆解 + 已学技能。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from models.lieutenant import Lieutenant
+    lt = Lieutenant.query.get(lt_id)
+    if not lt:
+        flash("副将不存在")
+        return redirect(url_for('workbench.lieutenant_design'))
+    return render_template("workbench/lieutenant_view.html", lt=lt)
+
+
+@workbench_bp.route("/lieutenant_edit/<int:lt_id>", methods=["GET", "POST"])
+@login_required
+def lieutenant_edit(lt_id):
+    """修改副将属性(资质/悟性/强化/等级/职业/技能位等)。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from models.lieutenant import Lieutenant
+    lt = Lieutenant.query.get(lt_id)
+    if not lt:
+        flash("副将不存在")
+        return redirect(url_for('workbench.lieutenant_design'))
+
+    if request.method == "POST":
+        for field, _, _, ftype in LT_EDIT_FIELDS:
+            v = request.form.get(field)
+            if v is None:
+                continue
+            try:
+                if ftype == 'int':
+                    setattr(lt, field, int(v))
+                elif ftype == 'bool':
+                    setattr(lt, field, (v in ('on', '1', 'true', 'True')))
+                elif ftype == 'gender':
+                    if v in ('male', 'female'):
+                        lt.gender = v
+                elif ftype == 'class':
+                    if v in ('warrior', 'mage', 'assassin'):
+                        lt.class_type = v
+                elif ftype == 'tier':
+                    lt.tier = int(v)
+                elif ftype == 'position':
+                    if v in ('front', 'back'):
+                        lt.position = v
+                elif ftype == 'opt_int':
+                    # 留空=清除自定义值(走公式)
+                    setattr(lt, field, int(v) if v.strip() else None)
+                elif ftype == 'opt_float':
+                    setattr(lt, field, float(v) if v.strip() else None)
+                else:
+                    setattr(lt, field, v.strip())
+            except (ValueError, TypeError):
+                pass
+        # 改完属性重算当前血蓝上限(不超上限)
+        lt.current_health = min(lt.current_health, lt.get_max_health())
+        lt.current_mana = min(lt.current_mana, lt.get_max_mana())
+        db.session.commit()
+        flash(f"已修改副将【{lt.name}】")
+        return redirect(url_for('workbench.lieutenant_view', lt_id=lt.id))
+
+    # 预取各字段当前值,避免模板里用 getattr(Jinja2 无 getattr 全局)
+    field_values = {}
+    for field, _, _, _ in LT_EDIT_FIELDS:
+        field_values[field] = getattr(lt, field, None)
+    return render_template("workbench/lieutenant_edit.html",
+                           lt=lt, fields=LT_EDIT_FIELDS, field_values=field_values,
+                           class_choices=LT_CLASS_CHOICES,
+                           position_choices=LT_POSITION_CHOICES,
+                           tier_choices=LT_TIER_CHOICES)
+
+
+@workbench_bp.route("/lieutenant_delete/<int:lt_id>", methods=["GET", "POST"])
+@login_required
+def lieutenant_delete(lt_id):
+    """删除副将。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from models.lieutenant import Lieutenant
+    lt = Lieutenant.query.get(lt_id)
+    if not lt:
+        flash("副将不存在")
+        return redirect(url_for('workbench.lieutenant_design'))
+
+    if request.method == "POST":
+        confirm = request.form.get("confirm", "")
+        if confirm == lt.name:
+            name = lt.name
+            db.session.delete(lt)
+            db.session.commit()
+            flash(f"已删除副将【{name}】")
+            return redirect(url_for('workbench.lieutenant_design'))
+        flash("确认名字不匹配，未删除")
+    return render_template("workbench/lieutenant_delete.html", lt=lt)
+
+
+@workbench_bp.route("/lieutenant_skill_edit", methods=["GET", "POST"])
+@login_required
+def lieutenant_skill_edit():
+    """编辑副将技能定义(倍率/魔法消耗/触发率等)，持久化到 data/lieutenant_skills.json。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from services.lieutenant_service import LIEUTENANT_SKILLS, save_lieutenant_skills
+
+    # 可编辑的数值字段(按技能类型)：字段名 → (中文名, 是否百分比展示)
+    editable = {
+        'active': [('trigger_rate', '触发率%', True), ('mana_cost', '魔法消耗', False),
+                   ('damage_rate', '伤害倍率', False), ('hits', '攻击次数', False),
+                   ('atk_buff_rate', '攻击加成率', False), ('def_debuff_rounds', '防减半回合', False)],
+        'triggered': [('trigger_rate', '触发率%', True), ('absorb_rate', '吸收%', True),
+                      ('heal_rate', '回复%', True), ('shield_rate', '护盾率', False)],
+        'passive': [('bonus_value', '加成值', False)],
+    }
+
+    if request.method == "POST":
+        # 读当前定义，按表单更新数值字段
+        skills = {sid: dict(sdef) for sid, sdef in LIEUTENANT_SKILLS.items()}
+        for sid, sdef in skills.items():
+            stype = sdef.get('type')
+            for field, _, _ in editable.get(stype, []):
+                key = f"{sid}_{field}"
+                v = request.form.get(key)
+                if v is None or v == '':
+                    continue
+                old = sdef.get(field)
+                try:
+                    if isinstance(old, list):
+                        # 列表字段：逗号分隔解析
+                        parts = [x.strip() for x in v.split(',') if x.strip() != '']
+                        if stype == 'passive':
+                            sdef[field] = [int(float(x)) for x in parts]
+                        else:
+                            sdef[field] = [float(x) if ('.' in x) else int(x) for x in parts]
+                    else:
+                        sdef[field] = float(v) if ('.' in v) else int(v)
+                except (ValueError, TypeError):
+                    pass
+            # 描述也可改
+            desc = request.form.get(f"{sid}_description")
+            if desc is not None:
+                sdef['description'] = desc.strip()
+        save_lieutenant_skills(skills)
+        # 重新加载到模块全局
+        import services.lieutenant_service as ltsvc
+        ltsvc.LIEUTENANT_SKILLS = ltsvc._load_lieutenant_skills()
+        flash("技能定义已保存并生效")
+        return redirect(url_for('workbench.lieutenant_skill_edit'))
+
+    return render_template("workbench/lieutenant_skill_edit.html",
+                           skills=LIEUTENANT_SKILLS, editable=editable)
+
+
+@workbench_bp.route("/lieutenant_skill_reset", methods=["POST"])
+@login_required
+def lieutenant_skill_reset():
+    """恢复技能定义为代码默认值(删除持久化文件)。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    import services.lieutenant_service as ltsvc
+    ltsvc.reset_lieutenant_skills()
+    ltsvc.LIEUTENANT_SKILLS = ltsvc._load_lieutenant_skills()
+    flash("技能定义已恢复为默认值")
+    return redirect(url_for('workbench.lieutenant_skill_edit'))
+
+
+# ─── Lieutenant Data Test (副将数据测试) ───
+
+@workbench_bp.route("/lieutenant_damage_test", methods=["GET", "POST"])
+@login_required
+def lieutenant_damage_test():
+    """单次伤害拆解：自定义副将配置 → 生成内存副将 → 对自定义怪物打一击，拆解伤害构成。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from services.lieutenant_service import LIEUTENANT_SKILLS
+
+    # 副将可学技能(按职业)，供选择
+    skills_by_class = {'普攻': {'attack': {'name': '普攻'}}}
+    for sid, sdef in LIEUTENANT_SKILLS.items():
+        if sdef.get('type') != 'active':
+            continue
+        cls = sdef.get('class_required') or '通用'
+        cls_cn = {'warrior': '战士', 'mage': '术士', 'assassin': '刺客'}.get(cls, '通用')
+        skills_by_class.setdefault(cls_cn, {})[sid] = sdef
+
+    form = {
+        'lt_class': '战士', 'lt_level': 30, 'lt_quality': 12, 'lt_enlightenment': 5,
+        'lt_reinforce': 10, 'lt_skill_id': 'attack', 'lt_skill_level': 1,
+        'lt_position': 'front',
+        'monster_defense': 300, 'monster_dodge_rate': 0.05,
+        'sim_count': 100,
+    }
+    results = None
+    if request.method == "POST":
+        for k in list(form.keys()):
+            v = request.form.get(k)
+            if v is None:
+                continue
+            if k in ('lt_class', 'lt_skill_id', 'lt_position'):
+                form[k] = v
+            else:
+                try:
+                    form[k] = float(v) if ('rate' in k or k == 'lt_quality') else int(v)
+                except (ValueError, TypeError):
+                    pass
+        results = _simulate_lt_damage(form)
+
+    return render_template("workbench/lieutenant_damage_test.html",
+                           form=form, results=results, skills_by_class=skills_by_class,
+                           classes=BATTLE_TEST_CLASSES)
+
+
+def _build_test_lieutenant(form):
+    """按表单构造一个内存副将对象(用 Lieutenant 实例但不入库)，含技能。"""
+    from models.lieutenant import Lieutenant
+    from services.lieutenant_service import LIEUTENANT_SKILLS, LieutenantService
+    cls_map = {'战士': 'warrior', '术士': 'mage', '刺客': 'assassin'}
+    lt = Lieutenant(
+        owner_id=0, name='测试副将', gender='male',
+        class_type=cls_map.get(form.get('lt_class', '战士'), 'warrior'),
+        quality=int(form.get('lt_quality', 0)),
+        enlightenment=int(form.get('lt_enlightenment', 0)),
+        reinforce=int(form.get('lt_reinforce', 0)),
+        loyalty=100, lifespan=100,
+        level=max(1, int(form.get('lt_level', 1))),
+        position=form.get('lt_position', 'front'),
+        is_deployed=True, skills_raw='[]', skill_slots=8, tier=0, is_alive=True,
+    )
+    lt.current_health = lt.get_max_health()
+    lt.current_mana = lt.get_max_mana()
+    # 挂技能
+    sid = form.get('lt_skill_id', 'attack')
+    skills = []
+    if sid and sid != 'attack':
+        sdef = LIEUTENANT_SKILLS.get(sid)
+        if sdef and (not sdef.get('class_required') or sdef['class_required'] == lt.class_type):
+            entry = {'id': sid, 'name': sdef['name']}
+            LieutenantService._fill_skill_fields(sdef, entry, int(form.get('lt_skill_level', 1)))
+            skills.append(entry)
+    lt.skills_raw = json.dumps(skills, ensure_ascii=False)
+    return lt
+
+
+def _simulate_lt_damage(form):
+    """副将单次伤害拆解：统计多次模拟的平均/暴击/闪避/技能触发。"""
+    from services.battle_service import BattleService
+    lt = _build_test_lieutenant(form)
+    monster_def = int(form.get('monster_defense', 1))
+    monster_dodge = float(form.get('monster_dodge_rate', 0))
+    sim_count = min(int(form.get('sim_count', 100)), 1000)
+
+    lt_atk = lt.get_attack()
+    lt_max_hp = lt.get_max_health()
+    lt_max_mp = lt.get_max_mana()
+    skill_entry = lt.skills[0] if lt.skills else None
+    skill_name = skill_entry['name'] if skill_entry else '普攻'
+
+    total_dealt = 0
+    crit_count = 0
+    dodge_count = 0
+    skill_fired = 0
+    samples = []
+    # 每次模拟重置蓝量(单次测试不耗蓝累积)
+    for i in range(sim_count):
+        lt.current_mana = lt_max_mp
+        # 直接调 _lt_attack_monster(传 player=None，无 buff/护盾状态)
+        dmg, used_skill = BattleService._lt_attack_monster(lt, type('M', (), {
+            'defense': monster_def, 'dodge_rate': monster_dodge})(), player=None)
+        if dmg == 0:
+            dodge_count += 1
+        else:
+            total_dealt += dmg
+            if used_skill:
+                skill_fired += 1
+            samples.append(dmg)
+        # 暴击判定：_compute_damage 不含暴击，副将攻击无暴击字段，这里不计 crit
+    hits = max(1, len(samples))
+    return {
+        'lt_atk': lt_atk, 'lt_max_hp': lt_max_hp, 'lt_max_mp': lt_max_mp,
+        'skill_name': skill_name, 'skill_entry': skill_entry,
+        'monster_def': monster_def, 'monster_dodge': monster_dodge,
+        'sim_count': sim_count, 'skill_fired': skill_fired,
+        'dodge_count': dodge_count,
+        'avg_damage': round(total_dealt / hits, 1) if samples else 0,
+        'max_damage': max(samples) if samples else 0,
+        'min_damage': min(samples) if samples else 0,
+        'sample_list': samples[:20],
+    }
+
+
+@workbench_bp.route("/lieutenant_battle_test", methods=["GET", "POST"])
+@login_required
+def lieutenant_battle_test():
+    """逐回合战斗模拟：副将为主人出战，打自定义怪物，模拟主动/触发技能/挡刀/耗蓝。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+    from services.lieutenant_service import LIEUTENANT_SKILLS
+
+    skills_by_class = {'普攻': {'attack': {'name': '普攻'}}}
+    for sid, sdef in LIEUTENANT_SKILLS.items():
+        if sdef.get('type') != 'active':
+            continue
+        cls = sdef.get('class_required') or '通用'
+        cls_cn = {'warrior': '战士', 'mage': '术士', 'assassin': '刺客'}.get(cls, '通用')
+        skills_by_class.setdefault(cls_cn, {})[sid] = sdef
+
+    # 触发技能(按职业)供选择学习
+    trigger_by_class = {}
+    for sid, sdef in LIEUTENANT_SKILLS.items():
+        if sdef.get('type') != 'triggered':
+            continue
+        cls = sdef.get('class_required') or '通用'
+        cls_cn = {'warrior': '战士', 'mage': '术士', 'assassin': '刺客'}.get(cls, '通用')
+        trigger_by_class.setdefault(cls_cn, {})[sid] = sdef
+
+    form = {
+        'lt_class': '战士', 'lt_level': 30, 'lt_quality': 12, 'lt_enlightenment': 5,
+        'lt_reinforce': 10, 'lt_position': 'front',
+        'lt_skill_id': 'attack', 'lt_skill_level': 1,
+        'lt_trigger_skill': '',
+        'player_max_health': 5000, 'player_max_mana': 500, 'player_defense': 500,
+        'player_dodge_rate': 0.10,
+        'monster_name': '测试怪', 'monster_level': 30, 'monster_is_elite': False,
+        'monster_attack': 800, 'monster_defense': 300, 'monster_max_health': 8000,
+        'monster_crit_rate': 0.05, 'monster_dodge_rate': 0.05,
+        'max_rounds': 30,
+    }
+    results = None
+    if request.method == "POST":
+        for k in list(form.keys()):
+            v = request.form.get(k)
+            if v is None:
+                continue
+            if k in ('lt_class', 'lt_skill_id', 'lt_position', 'lt_trigger_skill', 'monster_name'):
+                form[k] = v
+            elif k == 'monster_is_elite':
+                form[k] = (v in ('on', '1', 'true'))
+            else:
+                try:
+                    form[k] = float(v) if ('rate' in k or k == 'lt_quality') else int(v)
+                except (ValueError, TypeError):
+                    pass
+        results = _simulate_lt_battle(form)
+
+    return render_template("workbench/lieutenant_battle_test.html",
+                           form=form, results=results, skills_by_class=skills_by_class,
+                           trigger_by_class=trigger_by_class, classes=BATTLE_TEST_CLASSES)
+
+
+def _simulate_lt_battle(form):
+    """副将为主人出战的逐回合战斗模拟(纯内存，不落库)。
+    复用 BattleService._compute_damage；副将主动技能/触发技能/挡刀/护盾/耗蓝均模拟。"""
+    from services.battle_service import BattleService
+    from services.lieutenant_service import LIEUTENANT_SKILLS, LieutenantService
+
+    lt = _build_test_lieutenant(form)
+    # 追加触发技能(若选了且职业匹配)
+    trig_sid = form.get('lt_trigger_skill', '')
+    if trig_sid:
+        sdef = LIEUTENANT_SKILLS.get(trig_sid)
+        if sdef and (not sdef.get('class_required') or sdef['class_required'] == lt.class_type):
+            skills = lt.skills
+            entry = {'id': trig_sid, 'name': sdef['name']}
+            LieutenantService._fill_skill_fields(sdef, entry, int(form.get('lt_skill_level', 1)))
+            skills.append(entry)
+            lt.skills_raw = json.dumps(skills, ensure_ascii=False)
+
+    # 主人(内存)
+    player = {
+        'name': '主人', 'health': int(form.get('player_max_health', 1)),
+        'max_health': int(form.get('player_max_health', 1)),
+        'mana': int(form.get('player_max_mana', 1)),
+        'max_mana': int(form.get('player_max_mana', 1)),
+        'defense': int(form.get('player_defense', 0)),
+        'dodge_rate': float(form.get('player_dodge_rate', 0)),
+    }
+    # 怪物(内存)
+    monster = {
+        'name': form.get('monster_name', '测试怪') or '测试怪',
+        'level': max(1, int(form.get('monster_level', 1))),
+        'is_elite': bool(form.get('monster_is_elite', False)),
+        'attack': int(form.get('monster_attack', 0)),
+        'defense': int(form.get('monster_defense', 0)),
+        'health': int(form.get('monster_max_health', 1)),
+        'max_health': int(form.get('monster_max_health', 1)),
+        'crit_rate': float(form.get('monster_crit_rate', 0)),
+        'dodge_rate': float(form.get('monster_dodge_rate', 0)),
+    }
+
+    # lt_status(猛击buff/护盾) 用一个 dict 模拟 encounter
+    class _PRef:
+        def __init__(self, d, lt_status):
+            self.__dict__['_d'] = d
+            self.__dict__['_lt_status'] = lt_status
+        def __getattr__(self, k):
+            d = self.__dict__['_d']
+            if k in d:
+                return d[k]
+            # 副将相关
+            if k == 'mana':
+                return d['mana']
+            raise AttributeError(k)
+    lt_status = {}
+    pref = _PRef(player, lt_status)
+
+    # 用 monkey-patch 方式让 _get_lt_status/_set_lt_status 操作我们的 lt_status
+    orig_get = BattleService._get_lt_status
+    orig_set = BattleService._set_lt_status
+    BattleService._get_lt_status = classmethod(lambda cls, p: lt_status)
+    BattleService._set_lt_status = classmethod(lambda cls, p, s: lt_status.update(s))
+
+    logs = []
+    max_rounds = min(int(form.get('max_rounds', 30)), 100)
+    winner = None
+    for rnd in range(1, max_rounds + 1):
+        # 副将先手攻击怪物
+        m_before = monster['health']
+        lt_dmg, lt_sk = BattleService._lt_attack_monster(lt, type('M', (), monster)(), player=pref)
+        if lt_dmg > 0:
+            monster['health'] -= lt_dmg
+        # 怪物攻击主人(带挡刀/护盾/触发技能)
+        # 构造怪物攻击：直接复用 _compute_damage + 触发逻辑
+        m_dmg = BattleService._compute_damage(
+            monster['attack'], player['defense'], coefficient=1.0,
+            min_damage=monster['level'] * 2 if monster['is_elite'] else monster['level'])
+        if _random.random() <= player['dodge_rate']:
+            m_dmg = 0
+            dodged = True
+        else:
+            dodged = False
+            if _random.random() <= monster['crit_rate']:
+                m_dmg = int(m_dmg * 1.5)
+        # 法相护盾(术士触发)：受击前生成
+        shield_msg = ''
+        for sk in lt.skills:
+            if sk.get('type') == 'triggered' and sk.get('shield_rate'):
+                if _random.random() < sk.get('trigger_rate', 0) / 100.0:
+                    shield = int(player['mana'] * sk.get('shield_rate', 0))
+                    if shield > 0:
+                        lt_status['shield'] = shield
+                        shield_msg = f"{lt.name}{sk['name']}护盾{shield}"
+                    break
+        # 护盾抵消
+        shield = lt_status.get('shield', 0)
+        absorbed = 0
+        if shield > 0 and m_dmg > 0:
+            absorbed = min(shield, m_dmg)
+            m_dmg -= absorbed
+            lt_status['shield'] = shield - absorbed
+            if lt_status['shield'] <= 0:
+                lt_status.pop('shield', None)
+        # 挡刀(前置)
+        block_msg = ''
+        if lt.is_alive and lt.is_deployed and lt.position == 'front' and m_dmg > 0:
+            lt.current_health -= m_dmg
+            block_msg = f"副将挡刀-{m_dmg}"
+            if lt.current_health <= 0:
+                lt.is_alive = False
+                lt.current_health = 0
+                block_msg += f"(副将阵亡)"
+        else:
+            player['health'] -= m_dmg
+        # 吸收/回春(触发技能)
+        trig_msg = ''
+        for sk in lt.skills:
+            if sk.get('type') != 'triggered' or sk.get('shield_rate'):
+                continue
+            if _random.random() < sk.get('trigger_rate', 0) / 100.0:
+                if sk.get('absorb_rate'):
+                    ab = int(m_dmg * sk.get('absorb_rate', 0) / 100.0)
+                    if ab > 0:
+                        player['health'] = min(player['max_health'], player['health'] + ab)
+                        trig_msg += f"{sk['name']}吸{ab} "
+                elif sk.get('heal_rate'):
+                    hl = int(player['max_health'] * sk.get('heal_rate', 0) / 100.0)
+                    if hl > 0:
+                        player['health'] = min(player['max_health'], player['health'] + hl)
+                        trig_msg += f"{sk['name']}回{hl} "
+        # 回合末递减 lt_status
+        if lt_status.get('def_debuff_rounds', 0) > 0:
+            lt_status['def_debuff_rounds'] -= 1
+            if lt_status['def_debuff_rounds'] <= 0:
+                lt_status.pop('def_debuff_rounds', None)
+        lt_status.pop('atk_buff_rounds', None)
+        lt_status.pop('shield', None)
+
+        logs.append({
+            'rnd': rnd,
+            'lt_skill': lt_sk or '普攻', 'lt_dmg': lt_dmg,
+            'lt_mana': lt.current_mana,
+            'm_dmg': m_dmg + absorbed, 'm_dodged': dodged,
+            'shield': shield_msg, 'block': block_msg, 'trig': trig_msg,
+            'lt_hp': max(0, lt.current_health), 'p_hp': max(0, player['health']),
+            'm_hp': max(0, monster['health']),
+        })
+
+        if monster['health'] <= 0:
+            winner = '主人方'
+            break
+        if player['health'] <= 0 and (not lt.is_alive or lt.position != 'front'):
+            winner = '怪物方'
+            break
+        if player['health'] <= 0 and lt.position == 'front' and not lt.is_alive:
+            winner = '怪物方'
+            break
+    else:
+        winner = '平局(达到回合上限)'
+
+    # 恢复
+    BattleService._get_lt_status = orig_get
+    BattleService._set_lt_status = orig_set
+
+    return {
+        'winner': winner, 'rounds': len(logs), 'logs': logs,
+        'lt': {'name': lt.name, 'class': lt.class_name, 'level': lt.level,
+               'max_hp': lt.get_max_health(), 'max_mp': lt.get_max_mana(),
+               'atk': lt.get_attack(), 'def': lt.get_defense(),
+               'final_hp': max(0, lt.current_health), 'final_mana': lt.current_mana},
+        'player': {'final_hp': max(0, player['health'])},
+        'monster': {'name': monster['name'], 'final_hp': max(0, monster['health'])},
     }

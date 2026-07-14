@@ -1586,46 +1586,6 @@
     },
     "capacity": 0
   },
-  "lt_quality_pill": {
-    "name": "副将资质丹",
-    "type": "other",
-    "description": "洗副将资质，随机刷新品质(0-20)",
-    "price": 500,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_enlighten_pill": {
-    "name": "副将悟性丹",
-    "type": "other",
-    "description": "提升副将悟性，成功悟性+1，失败不变",
-    "price": 800,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_reinforce_pill": {
-    "name": "副将强化丹",
-    "type": "other",
-    "description": "强化副将，成功+1，失败不变",
-    "price": 600,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_loyalty_pill": {
-    "name": "副将忠诚丹",
-    "type": "other",
-    "description": "恢复副将忠诚度+20",
-    "price": 300,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_lifespan_pill": {
-    "name": "副将寿命丹",
-    "type": "other",
-    "description": "恢复副将寿命+20",
-    "price": 300,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
   "lt_skill_expand": {
     "name": "副将技能扩展符",
     "type": "material",
@@ -1662,7 +1622,8 @@
     "description": "副将学习连击1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_combo_2": {
     "name": "连击进阶",
@@ -1670,7 +1631,8 @@
     "description": "副将学习连击2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_combo_3": {
     "name": "连击精通",
@@ -1678,7 +1640,8 @@
     "description": "副将学习连击3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_smash_1": {
     "name": "猛击入门",
@@ -1686,7 +1649,8 @@
     "description": "副将学习猛击1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_smash_2": {
     "name": "猛击进阶",
@@ -1694,7 +1658,8 @@
     "description": "副将学习猛击2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_smash_3": {
     "name": "猛击精通",
@@ -1702,7 +1667,8 @@
     "description": "副将学习猛击3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_thunder_1": {
     "name": "天雷入门",
@@ -1710,7 +1676,8 @@
     "description": "副将学习天雷1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_thunder_2": {
     "name": "天雷进阶",
@@ -1718,7 +1685,8 @@
     "description": "副将学习天雷2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_thunder_3": {
     "name": "天雷精通",
@@ -1726,7 +1694,8 @@
     "description": "副将学习天雷3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_absorb_1": {
     "name": "吸收入门",
@@ -1734,7 +1703,8 @@
     "description": "副将学习吸收1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_absorb_2": {
     "name": "吸收进阶",
@@ -1742,7 +1712,8 @@
     "description": "副将学习吸收2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_absorb_3": {
     "name": "吸收精通",
@@ -1750,7 +1721,8 @@
     "description": "副将学习吸收3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_heal_trigger_1": {
     "name": "回春入门",
@@ -1758,7 +1730,8 @@
     "description": "副将学习回春1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_heal_trigger_2": {
     "name": "回春进阶",
@@ -1766,7 +1739,8 @@
     "description": "副将学习回春2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_heal_trigger_3": {
     "name": "回春精通",
@@ -1774,7 +1748,8 @@
     "description": "副将学习回春3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_sharp_1": {
     "name": "锐利入门",
@@ -1782,7 +1757,8 @@
     "description": "副将学习锐利1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_sharp_2": {
     "name": "锐利进阶",
@@ -1790,7 +1766,8 @@
     "description": "副将学习锐利2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_sharp_3": {
     "name": "锐利精通",
@@ -1798,7 +1775,8 @@
     "description": "副将学习锐利3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_tough_1": {
     "name": "坚韧入门",
@@ -1806,7 +1784,8 @@
     "description": "副将学习坚韧1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_tough_2": {
     "name": "坚韧进阶",
@@ -1814,7 +1793,8 @@
     "description": "副将学习坚韧2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_tough_3": {
     "name": "坚韧精通",
@@ -1822,7 +1802,8 @@
     "description": "副将学习坚韧3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_protect_1": {
     "name": "护佑入门",
@@ -1830,7 +1811,8 @@
     "description": "副将学习护佑1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_protect_2": {
     "name": "护佑进阶",
@@ -1838,7 +1820,8 @@
     "description": "副将学习护佑2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_protect_3": {
     "name": "护佑精通",
@@ -1846,7 +1829,8 @@
     "description": "副将学习护佑3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_magic_1": {
     "name": "法能入门",
@@ -1854,7 +1838,8 @@
     "description": "副将学习法能1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_magic_2": {
     "name": "法能进阶",
@@ -1862,7 +1847,8 @@
     "description": "副将学习法能2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_magic_3": {
     "name": "法能精通",
@@ -1870,7 +1856,8 @@
     "description": "副将学习法能3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_brave_1": {
     "name": "勇猛入门",
@@ -1878,7 +1865,8 @@
     "description": "副将学习勇猛1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_brave_2": {
     "name": "勇猛进阶",
@@ -1886,7 +1874,8 @@
     "description": "副将学习勇猛2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_brave_3": {
     "name": "勇猛精通",
@@ -1894,7 +1883,8 @@
     "description": "副将学习勇猛3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_calm_1": {
     "name": "冷静入门",
@@ -1902,7 +1892,8 @@
     "description": "副将学习冷静1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_calm_2": {
     "name": "冷静进阶",
@@ -1910,7 +1901,8 @@
     "description": "副将学习冷静2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_calm_3": {
     "name": "冷静精通",
@@ -1918,7 +1910,8 @@
     "description": "副将学习冷静3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "seed_herb": {
     "name": "草药种子",
@@ -2637,22 +2630,6 @@
     "is_usable": false,
     "capacity": 0
   },
-  "recruitment_token": {
-    "name": "招募令",
-    "type": "material",
-    "description": "用于在副将统领处招募一名随机普通副将。",
-    "price": 5000,
-    "is_usable": false,
-    "capacity": 0
-  },
-  "soul_banner_fragment": {
-    "name": "聚魂幡碎片",
-    "type": "material",
-    "description": "集齐10个可以合成1个聚魂幡。",
-    "price": 500,
-    "is_usable": false,
-    "capacity": 0.1
-  },
   "soul_banner": {
     "name": "聚魂幡",
     "type": "material",
@@ -3104,15 +3081,6 @@
     "name": "饭菜",
     "type": "quest",
     "description": "曹樱为父亲准备的饭菜",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": false,
-    "capacity": 0
-  },
-  "lt_recruit_token": {
-    "name": "副将招募令",
-    "type": "other",
-    "description": "可在副将统领处招募一名副将",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
@@ -4222,7 +4190,8 @@
     "description": "用于副将遗忘技能",
     "price": 0,
     "sell_price": 1000,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_soul_pack_1": {
     "name": "一级名将魂魄包",
@@ -4328,5 +4297,176 @@
     "sell_price": 100,
     "is_usable": false,
     "capacity": 0.1
+  },
+  "lt_skill_magic_shield_1": {
+    "name": "法相入门",
+    "type": "material",
+    "description": "副将学习法相1级所需",
+    "price": 200,
+    "currency": "yuanbao",
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_skill_magic_shield_2": {
+    "name": "法相进阶",
+    "type": "material",
+    "description": "副将学习法相2级所需",
+    "price": 400,
+    "currency": "yuanbao",
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_skill_magic_shield_3": {
+    "name": "法相精通",
+    "type": "material",
+    "description": "副将学习法相3级所需",
+    "price": 800,
+    "currency": "yuanbao",
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_forget_tome": {
+    "name": "遗忘之章",
+    "type": "material",
+    "description": "副将遗忘技能所需，可由50个遗忘之章残页合成。",
+    "price": 0,
+    "sell_price": 5000,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "bp_tiangang_helmet": {
+    "name": "【图纸】天罡重盔",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡重盔",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_armor": {
+    "name": "【图纸】天罡重甲",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡重甲",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_pants": {
+    "name": "【图纸】天罡护腿",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡护腿",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_gloves": {
+    "name": "【图纸】天罡护手",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡护手",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_shoes": {
+    "name": "【图纸】天罡重靴",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡重靴",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_helmet": {
+    "name": "【图纸】紫云羽冠",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云羽冠",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_armor": {
+    "name": "【图纸】紫云羽衣",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云羽衣",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_pants": {
+    "name": "【图纸】紫云羽裤",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云羽裤",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_gloves": {
+    "name": "【图纸】紫云护手",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云护手",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_shoes": {
+    "name": "【图纸】紫云靴",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云靴",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_helmet": {
+    "name": "【图纸】烈焰头冠",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰头冠",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_armor": {
+    "name": "【图纸】烈焰轻甲",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰轻甲",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_pants": {
+    "name": "【图纸】烈焰皮裤",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰皮裤",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_gloves": {
+    "name": "【图纸】烈焰护手",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰护手",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_shoes": {
+    "name": "【图纸】烈焰靴",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰靴",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
   }
 }

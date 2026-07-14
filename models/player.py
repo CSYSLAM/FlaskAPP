@@ -433,38 +433,38 @@ class PlayerModel(db.Model, UserMixin):
     CLASSES = {
         "术士": {
             "base_stats": {
-                "max_health": 80, "max_mana": 100,
-                "attack": 20, "defense": 3,
-                "crit_rate": 0.03, "dodge_rate": 0.03
+                "max_health": 200, "max_mana": 200,
+                "attack": 70, "defense": 150,
+                "crit_rate": 0, "dodge_rate": 0
             },
             "level_up_stats": {
-                "max_health": 15, "max_mana": 20,
-                "attack": 8, "defense": 2,
-                "crit_rate": 0.005, "dodge_rate": 0.005
+                "max_health": 80, "max_mana": 40,
+                "attack": 6, "defense": 24,
+                "crit_rate": 0.0006, "dodge_rate": 0.0006
             }
         },
         "战士": {
             "base_stats": {
-                "max_health": 120, "max_mana": 50,
-                "attack": 15, "defense": 8,
-                "crit_rate": 0.03, "dodge_rate": 0.03
+                "max_health": 300, "max_mana": 100,
+                "attack": 50, "defense": 200,
+                "crit_rate": 0, "dodge_rate": 0
             },
             "level_up_stats": {
-                "max_health": 25, "max_mana": 10,
-                "attack": 5, "defense": 4,
-                "crit_rate": 0.005, "dodge_rate": 0.005
+                "max_health": 120, "max_mana": 20,
+                "attack": 4, "defense": 26,
+                "crit_rate": 0.001, "dodge_rate": 0.001
             }
         },
         "刺客": {
             "base_stats": {
-                "max_health": 90, "max_mana": 60,
-                "attack": 18, "defense": 4,
-                "crit_rate": 0.08, "dodge_rate": 0.08
+                "max_health": 250, "max_mana": 150,
+                "attack": 60, "defense": 180,
+                "crit_rate": 0, "dodge_rate": 0
             },
             "level_up_stats": {
-                "max_health": 18, "max_mana": 12,
-                "attack": 6, "defense": 3,
-                "crit_rate": 0.015, "dodge_rate": 0.015
+                "max_health": 100, "max_mana": 30,
+                "attack": 5, "defense": 25,
+                "crit_rate": 0.002, "dodge_rate": 0.002
             }
         }
     }

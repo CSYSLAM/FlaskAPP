@@ -17,6 +17,14 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#2e7d32;padding:4px 8px;margin:4px 0;border:1px solid #2e7d32;border-radius:3px;background:#e8f5e9">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <a href="{{ url_for('player.equipment_list') }}">装备</a>|<a href="{{ url_for('player.skill_view') }}">技能</a>|<a href="{{ url_for('player.titles') }}">称号</a>|<a href="{{ url_for('player.achievements') }}">成就</a>|<a href="{{ url_for('player.marriage') }}">婚姻</a><br/>
 
     <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" border="0" height="53" width="45"/><br/>

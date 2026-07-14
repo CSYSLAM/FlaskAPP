@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>在线玩家</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .row { padding: 3px 0; border-bottom: 1px dashed #eee; }
+        .tag { color: #888; font-size: 14px; }
+        .class-tag { color: #2e7d32; font-size: 14px; }
+        .lv { color: #c62828; font-weight: bold; }
+        .empty { color: #999; padding: 10px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>在线玩家</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/><br/>
+
+    共 <b>{{ total }}</b> 人在线<br/><br/>
+    {% if players %}
+    {% for p in players %}
+    <div class="row">
+        <a href="{{ url_for('workbench.view_player', target_id=p.player_uid or p.id) }}">{{ p.nickname }}</a>
+        <span class="lv">{{ p.level }}级</span>
+        {% if p.player_class %}<span class="class-tag">{{ p.player_class }}</span>{% endif %}
+        <span class="tag">{{ p.country }}</span>
+        <span class="tag">({{ p.username }})</span>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="empty">当前无在线玩家</div>
+    {% endif %}
+</div>
+</body>
+</html>

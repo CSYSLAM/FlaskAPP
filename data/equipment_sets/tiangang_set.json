@@ -1,0 +1,112 @@
+{
+  "tiangang_helmet_60": {
+    "name": "天罡重盔",
+    "slot": "helmet",
+    "set_name": "天罡套",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 562
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 562,
+      "max_health": 2808,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18000,
+    "description": "战士专属，以天罡之铁锻造的重盔，天罡护首，罡气护体"
+  },
+  "tiangang_armor_60": {
+    "name": "天罡重甲",
+    "slot": "armor",
+    "set_name": "天罡套",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 562
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 562,
+      "max_health": 2808,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 20500,
+    "description": "战士专属，以天罡之铁铸造的重甲，罡甲覆体，刀枪不入"
+  },
+  "tiangang_pants_60": {
+    "name": "天罡护腿",
+    "slot": "pants",
+    "set_name": "天罡套",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 562
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 562,
+      "max_health": 2808,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18500,
+    "description": "战士专属，以天罡之铁铸造的护腿，龙鳞护腿，坚如磐石"
+  },
+  "tiangang_gloves_60": {
+    "name": "天罡护手",
+    "slot": "gloves",
+    "set_name": "天罡套",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 562
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 562,
+      "max_health": 0,
+      "max_mana": 1400,
+      "crit_rate": 0.032,
+      "dodge_rate": 0.0
+    },
+    "base_price": 15500,
+    "description": "战士专属，以天罡之铁锻造的护手，罡力无穷，握物即碎"
+  },
+  "tiangang_shoes_60": {
+    "name": "天罡重靴",
+    "slot": "shoes",
+    "set_name": "天罡套",
+    "level_required": 60,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 562
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 562,
+      "max_health": 0,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.03
+    },
+    "base_price": 15000,
+    "description": "战士专属，以天罡之铁铸造的重靴，踏地罡风，步步生威"
+  }
+}

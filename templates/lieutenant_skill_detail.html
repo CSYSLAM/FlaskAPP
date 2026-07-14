@@ -25,14 +25,29 @@
 {% endif %}
 {% if skill_def.type == 'active' %}
 发动几率:{{ skill_def.trigger_rate[current_level - 1] if current_level > 0 else skill_def.trigger_rate[0] }}%<br/>
-效果:副将发动该技能，对敌伤害输出{{ skill_def.damage_rate[current_level - 1] if current_level > 0 else skill_def.damage_rate[0] }}%伤害效果<br/>
+耗魔:{{ skill_def.mana_cost[current_level - 1] if current_level > 0 else skill_def.mana_cost[0] }}(蓝量不足则降级为普攻)<br/>
+效果:
+{% if skill_id == 'combo' %}
+连续两次攻击，每次独立结算伤害(参考刺客二连击)
+{% elif skill_id == 'smash' %}
+本回合攻击+50%造成{{ skill_def.damage_rate[current_level - 1] if current_level > 0 else skill_def.damage_rate[0] }}倍伤害，自身下{{ skill_def.def_debuff_rounds }}回合防御减半
+{% elif skill_id == 'thunder' %}
+消耗大量魔法造成{{ skill_def.damage_rate[current_level - 1] if current_level > 0 else skill_def.damage_rate[0] }}倍巨额伤害
+{% else %}
+{% if skill_def.damage_rate is defined %}造成{{ skill_def.damage_rate[current_level - 1] if current_level > 0 else skill_def.damage_rate[0] }}倍伤害{% endif %}
+{% endif %}
+<br/>
 {% elif skill_def.type == 'triggered' %}
 发动几率:{{ skill_def.trigger_rate[current_level - 1] if current_level > 0 else skill_def.trigger_rate[0] }}%<br/>
+效果:
 {% if skill_def.absorb_rate is defined %}
-效果:副将与主人遭到攻击有几率吸收{{ skill_def.absorb_rate[current_level - 1] if current_level > 0 else skill_def.absorb_rate[0] }}%的伤害<br/>
+主人受击时有几率吸收{{ skill_def.absorb_rate[current_level - 1] if current_level > 0 else skill_def.absorb_rate[0] }}%的伤害(刺客专属，前后置均触发)
 {% elif skill_def.heal_rate is defined %}
-效果:战斗中有几率回复主人{{ skill_def.heal_rate[current_level - 1] if current_level > 0 else skill_def.heal_rate[0] }}%生命<br/>
+战斗中有几率回复主人{{ skill_def.heal_rate[current_level - 1] if current_level > 0 else skill_def.heal_rate[0] }}%生命(战士专属，前后置均触发)
+{% elif skill_def.shield_rate is defined %}
+主人受击前有几率生成护盾(主人当前魔法×{{ (skill_def.shield_rate[current_level - 1] if current_level > 0 else skill_def.shield_rate[0]) * 100 }}%)抵消伤害，少了主人扣血多了不扣且护盾消失(术士专属，前后置均触发)
 {% endif %}
+<br/>
 {% elif skill_def.type == 'passive' %}
 效果:{% if skill_def.bonus_type == 'attack' %}主人攻击力{% elif skill_def.bonus_type == 'defense' %}主人防御力{% elif skill_def.bonus_type == 'health' %}主人生命值{% elif skill_def.bonus_type == 'mana' %}主人魔法值{% elif skill_def.bonus_type == 'crit' %}主人暴击率{% elif skill_def.bonus_type == 'dodge' %}主人闪避率{% endif %}加成{{ skill_def.bonus_value[current_level - 1] if current_level > 0 else skill_def.bonus_value[0] }}%<br/>
 {% endif %}

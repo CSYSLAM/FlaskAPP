@@ -128,3 +128,18 @@ def go_to_quest(quest_id):
     player.current_location = loc
     db.session.commit()
     return redirect(url_for('game.scene'))
+
+
+@quest_bp.route("/go_target/<quest_id>")
+@login_required
+def go_to_target(quest_id):
+    """Quick travel to quest target location (where monsters/objectives are)."""
+    player = current_user
+    q = QuestService.get_quest(quest_id)
+    if not q:
+        return redirect(url_for('quest.quest_list'))
+    # 目的地优先 target_location；未配置则回退到发起人位置
+    loc = q.get('target_location') or q.get('npc_location', player.current_location)
+    player.current_location = loc
+    db.session.commit()
+    return redirect(url_for('game.scene'))

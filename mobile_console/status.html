@@ -37,7 +37,7 @@
   <h1>🎮 FlaskAPP 运行状态</h1>
   <div class="sub">只读看板 · 数据来自 mobile_console 的 /api/peek · 每 3 秒刷新</div>
 
-  <div class="warn" id="warn">⚠️ Claude 正在处理指令 —— 设计者正在用手机操作,请勿在电脑上同时改代码,避免冲突。</div>
+  <div class="warn" id="warn">⚠️ 有 AI 正在处理指令(Claude / CodeBuddy)—— 设计者正在用手机操作,请勿在电脑上同时改代码,避免冲突。</div>
 
   <div class="card" id="card-console">
     <div class="dot" id="dot-console"></div>
@@ -52,6 +52,14 @@
     <div class="info">
       <div class="name">Claude worker <span class="badge off" id="b-claude">未知</span></div>
       <div class="meta" id="m-claude">未启用</div>
+    </div>
+  </div>
+
+  <div class="card" id="card-codebuddy">
+    <div class="dot" id="dot-codebuddy"></div>
+    <div class="info">
+      <div class="name">CodeBuddy worker <span class="badge off" id="b-codebuddy">未知</span></div>
+      <div class="meta" id="m-codebuddy">未启用</div>
     </div>
   </div>
 
@@ -115,8 +123,24 @@ async function refresh(){
       document.getElementById('m-flask').textContent = '端口 5000 未监听';
     }
 
-    // 冲突预警:Claude 处理中时提示
-    document.getElementById('warn').style.display = (c.running && c.busy) ? 'block' : 'none';
+    // CodeBuddy
+    const cb = d.codebuddy;
+    if(cb.running){
+      if(cb.busy){
+        setDot('dot-codebuddy','busy'); setBadge('b-codebuddy','busy','处理中…');
+        document.getElementById('m-codebuddy').textContent = '正在执行指令' + (cb.queued?` · 队列 ${cb.queued}`:'');
+      } else {
+        setDot('dot-codebuddy','on'); setBadge('b-codebuddy','on','就绪');
+        document.getElementById('m-codebuddy').textContent = '已启用' + (cb.queued?` · 队列 ${cb.queued}`:'');
+      }
+    } else {
+      setDot('dot-codebuddy','off'); setBadge('b-codebuddy','off','未启用');
+      document.getElementById('m-codebuddy').textContent = '未启用';
+    }
+
+    // 冲突预警:任一 AI 处理中时提示
+    document.getElementById('warn').style.display =
+      ((c.running && c.busy) || (cb.running && cb.busy)) ? 'block' : 'none';
 
     document.getElementById('footer').textContent =
       '更新 ' + new Date().toLocaleTimeString() + ' · IP ' + (d.lan_ip||'?') + ' · 下次刷新 3s';

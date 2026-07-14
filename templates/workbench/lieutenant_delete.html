@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>删除副将</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        .warn { color: #c00; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 class="warn">删除副将</h3>
+    <a href="{{ url_for('workbench.lieutenant_view', lt_id=lt.id) }}">返回详情</a><br/><br/>
+
+    确认删除副将【<b class="warn">{{ lt.name }}</b>】({{ lt.class_name }} {{ lt.level }}级)？<br/>
+    此操作不可撤销。<br/><br/>
+
+    <form method="post">
+        <label>请输入副将名字确认:</label>
+        <input type="text" name="confirm" placeholder="{{ lt.name }}"><br/><br/>
+        <button type="submit" class="warn">确认删除</button>
+    </form>
+    <br/>
+    <a href="{{ url_for('workbench.lieutenant_view', lt_id=lt.id) }}">取消</a>
+</div>
+</body>
+</html>

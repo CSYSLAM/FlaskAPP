@@ -205,17 +205,29 @@ class ManagedProcess:
         }
 
 
-class ClaudeRunner:
-    """Claude CLI 在非 TTY 下无法常驻交互(默认交互模式要 TTY;
-    -p 模式又是一次性)。所以采用『任务队列 + 逐条调用』模型:
-    手机每发一条指令 → 入队 → 后台 worker 逐条执行
-        claude -p --continue --dangerously-skip-permissions "<prompt>"
-    --continue 让每条指令接着上一条在同一会话里,保持上下文记忆。
-    首条指令无 --continue(claude 会自动忽略不存在的会话,但显式跳过更干净)。"""
+class AgentRunner:
+    """通用 AI CLI 常驻交互运行器(Claude / CodeBuddy 等)。
 
-    def __init__(self):
-        self.key = "claude"
-        self.name = "Claude Code"
+    CLI 在非 TTY 下无法常驻交互(默认交互模式要 TTY;-p 模式又是一次性)。
+    所以采用『任务队列 + 逐条调用』模型:
+        手机每发一条指令 → 入队 → 后台 worker 逐条执行
+            <binary> -p [--continue] --dangerously-skip-permissions "<prompt>"
+    --continue 让每条指令接着上一条在同一会话里,保持上下文记忆。
+    首条指令无 --continue(CLI 会自动忽略不存在的会话,但显式跳过更干净)。
+
+    各 agent 通过构造参数区分(二进制名、日志前缀、Linux 降权用户、env 文件),
+    行为保持一致。"""
+
+    def __init__(self, key, name, color, binary, log_prefix,
+                 drop_user=None, env_file=None):
+        self.key = key              # 进程 key,也作日志 tag
+        self.name = name            # 展示名
+        self.color = color          # 展示用颜色名(前端 CSS class)
+        self.binary = binary        # CLI 二进制名(claude / codebuddy / ...)
+        self.log_prefix = log_prefix  # 按天日志文件前缀
+        self.drop_user = drop_user  # Linux 下降权到的用户(None=不降权,以当前用户跑)
+        self.env_file = env_file    # Linux 下降权后需 source 的 env 文件(None=不 source)
+        self.skip_flag = "--dangerously-skip-permissions"  # 免确认 flag(各 CLI 一致)
         self.log_q = queue.Queue(maxsize=2000)
         self.task_q = queue.Queue()
         self._worker = None
@@ -229,11 +241,11 @@ class ClaudeRunner:
 
     def _append_log(self, tag, line):
         """把一条交互追加到按天的纯文本日志文件(电脑端历史记录)。
-        路径:mobile_console/logs/claude-YYYY-MM-DD.log
+        路径:mobile_console/logs/<log_prefix>-YYYY-MM-DD.log
         tag: you / claude / system / error,决定行首标签。失败不影响主流程。"""
         try:
             LOG_DIR.mkdir(parents=True, exist_ok=True)
-            fname = LOG_DIR / f"claude-{time.strftime('%Y-%m-%d')}.log"
+            fname = LOG_DIR / f"{self.log_prefix}-{time.strftime('%Y-%m-%d')}.log"
             # 多行内容每行都带时间戳+标签,方便 grep / tail 时行行可定位
             ts = time.strftime("%H:%M:%S")
             label = {"you": "you", "claude": "claude", "system": "sys", "error": "ERR"}.get(tag, tag)
@@ -268,11 +280,11 @@ class ClaudeRunner:
     def start(self):
         with self._lock:
             if self._started:
-                return False, "Claude worker 已在运行"
+                return False, f"{self.name} 已在运行"
             self._started = True
             self._worker = threading.Thread(target=self._work_loop, daemon=True)
             self._worker.start()
-            self._push("▶ Claude worker 已就绪。在下方输入框发指令即可。", "system")
+            self._push(f"▶ {self.name} 已就绪。在下方输入框发指令即可。", "system")
             return True, "已启动"
 
     def stop(self):
@@ -286,12 +298,12 @@ class ClaudeRunner:
                     self.task_q.get_nowait()
                 except queue.Empty:
                     break
-            self._push("■ Claude worker 已停止(未完成的指令已丢弃)。", "system")
+            self._push(f"■ {self.name} 已停止(未完成的指令已丢弃)。", "system")
             return True, "已停止"
 
     def submit(self, prompt):
         if not self._started:
-            return False, "Claude 未启动,请先点启动"
+            return False, f"{self.name} 未启动,请先点启动"
         self.task_q.put(prompt)
         return True, "已加入队列"
 
@@ -354,25 +366,25 @@ class ClaudeRunner:
             self._busy = False
 
     def _run_one(self, prompt):
-        # prompt 传递:统一走 stdin(UTF-8 管道),写完立即 close → claude 收到 EOF 处理。
-        #  - Windows:必须 stdin(.cmd 的 argv 中文会变 '?')
-        #  - Linux:用 runuser 降权到非 root 用户跑 claude —— root 下 claude 2.1+ 拒绝
-        #    --dangerously-skip-permissions("cannot be used with root/sudo privileges")。
-        #    所以 Linux 下不能直接调 claude,而是 runuser -l console -c '... claude ...',
-        #    prompt 通过 stdin 喂进去(runuser 包了 shell,argv 塞中文+引号太脆)。
-        claude_bin = which("claude")
+        # prompt 传递:统一走 stdin(UTF-8 管道),写完立即 close → CLI 收到 EOF 处理。
+        #  - Windows:直接调二进制(.cmd 可能需 shell)
+        #  - Linux:若配置了 drop_user(如 claude 需降权到 console,root 下拒绝
+        #    --dangerously-skip-permissions),则用 runuser -l <user> -c 降权,
+        #    prompt 通过 stdin 喂进去(runuser 包了 shell,argv 塞中文+引号太脆);
+        #    否则(如 codebuddy,以当前用户/root 直接跑,凭据在自己 home 下)直接调。
+        cli_bin = which(self.binary)
         on_windows = os.name == "nt"
 
-        # 组装 claude 参数(不含 prompt,prompt 走 stdin)
-        claude_args = [claude_bin, "-p"]
+        # 组装 CLI 参数(不含 prompt,prompt 走 stdin)
+        cli_args = [cli_bin, "-p"]
         if self._has_session:
-            claude_args.append("--continue")
-        claude_args.append("--dangerously-skip-permissions")
+            cli_args.append("--continue")
+        cli_args.append(self.skip_flag)
 
         if on_windows:
-            # Windows:直接调 claude(.cmd 可能需 shell)
-            cmd = claude_args
-            use_shell = claude_bin.lower().endswith((".cmd", ".bat"))
+            # Windows:直接调二进制(.cmd 可能需 shell)
+            cmd = cli_args
+            use_shell = cli_bin.lower().endswith((".cmd", ".bat"))
             popen_kwargs = dict(
                 cwd=str(PROJECT_ROOT),
                 stdin=subprocess.PIPE,
@@ -382,16 +394,42 @@ class ClaudeRunner:
                 shell=use_shell,
                 creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,
             )
-        else:
-            # Linux:runuser 降权到 console 用户,source 环境变量后调 claude。
+        elif self.drop_user:
+            # Linux:降权到指定用户,source 环境变量后调 CLI。
             # 注意:runuser -l 是 login shell,会先 cd 到家目录(~),覆盖 Popen 的 cwd,
-            # 导致 claude 以为工作目录是 /home/console(看不到项目代码,trust 也不匹配)。
+            # 导致 CLI 以为工作目录是家目录(看不到项目代码,trust 也不匹配)。
             # 所以必须在 shell 命令里显式 cd 到 PROJECT_ROOT。
-            # 用 shlex 把 claude 参数拼成安全的 shell 命令字符串
-            import shlex
-            inner = " ".join(shlex.quote(a) for a in claude_args)
-            shell_cmd = f"cd {shlex.quote(str(PROJECT_ROOT))} && source ~/.claude.env && {inner}"
-            cmd = ["runuser", "-l", "console", "-c", shell_cmd]
+            # 用 shlex 把参数拼成安全的 shell 命令字符串
+            import shlex, pwd
+            inner = " ".join(shlex.quote(a) for a in cli_args)
+            env_part = ""
+            if self.env_file:
+                # 把 env 文件路径解析为降权用户的真实家目录下的绝对路径
+                # (console 的 ~/.claude.env → /home/console/.claude.env)。
+                # 不能:1) 用 Python expanduser()(会以 root 身份解析成 /root);
+                #       2) 把字面 '~' 交给 shell 又用 shlex.quote 包起来(单引号会阻止 ~ 展开,
+                #          变成 source '~/.claude.env' → No such file)。
+                # 直接按降权用户的家目录拼成绝对路径,最稳妥。
+                if self.env_file.startswith("~/"):
+                    home = pwd.getpwnam(self.drop_user).pw_dir
+                    env_path = os.path.join(home, self.env_file[2:])
+                else:
+                    env_path = os.path.expanduser(self.env_file)
+                env_part = f"source {shlex.quote(env_path)} && "
+            shell_cmd = f"cd {shlex.quote(str(PROJECT_ROOT))} && {env_part}{inner}"
+            cmd = ["runuser", "-l", self.drop_user, "-c", shell_cmd]
+            popen_kwargs = dict(
+                cwd=str(PROJECT_ROOT),
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True, encoding="utf-8", errors="replace",
+                start_new_session=True,   # 让 interrupt() 能杀整个进程组
+                shell=False,
+            )
+        else:
+            # Linux:不降权,以当前用户(如 root)直接调 CLI。
+            cmd = cli_args
             popen_kwargs = dict(
                 cwd=str(PROJECT_ROOT),
                 stdin=subprocess.PIPE,
@@ -402,7 +440,7 @@ class ClaudeRunner:
                 shell=False,
             )
 
-        self._push(f"▶ 调用: claude -p{' --continue' if self._has_session else ''} --dangerously-skip-permissions \"<你的指令>\"", "system")
+        self._push(f"▶ 调用: {self.binary} -p{' --continue' if self._has_session else ''} {self.skip_flag} \"<你的指令>\"", "system")
         try:
             proc = subprocess.Popen(cmd, **popen_kwargs)
             self._current_proc = proc   # 记录给 interrupt() 用
@@ -421,7 +459,7 @@ class ClaudeRunner:
                     break
                 if len(line) > MAX_LINE:
                     line = line[:MAX_LINE] + f" …[截断,本行原长{len(line)}字符]\n"
-                self._push(line.rstrip("\n"), "claude")
+                self._push(line.rstrip("\n"), self.key)
             proc.wait()
             if self._interrupted:
                 # 被 interrupt() 杀掉的,不算异常
@@ -445,10 +483,23 @@ class ClaudeRunner:
         }
 
 
-claude_proc = ClaudeRunner()
+claude_proc = AgentRunner(
+    key="claude", name="Claude Code", color="claude",
+    binary="claude", log_prefix="claude",
+    # claude 在 root 下拒绝 --dangerously-skip-permissions,需降权到 console 用户,
+    # 并通过 ~/.claude.env 注入 API key 等环境变量(见 start_claude 说明)。
+    drop_user="console", env_file="~/.claude.env",
+)
+codebuddy_proc = AgentRunner(
+    key="codebuddy", name="CodeBuddy", color="codebuddy",
+    binary="codebuddy", log_prefix="codebuddy",
+    # codebuddy 凭据在运行用户(本机为 root)自己的 ~/.codebuddy 下,且允许 root 下
+    # 使用 --dangerously-skip-permissions,故不降权、不额外 source env。
+    drop_user=None, env_file=None,
+)
 flask_proc = ManagedProcess("flask", "FlaskAPP (app.py)", "flask")
 
-PROCS = {"claude": claude_proc, "flask": flask_proc}
+PROCS = {"claude": claude_proc, "codebuddy": codebuddy_proc, "flask": flask_proc}
 
 
 def start_flask():
@@ -487,6 +538,27 @@ def start_claude():
       且控制台只在局域网(无密码)时使用。
     - 想恢复逐项授权:去掉 _run_one 里的 --dangerously-skip-permissions。"""
     return claude_proc.start()
+
+
+def start_codebuddy():
+    """启用 CodeBuddy worker(任务队列模式)。
+
+    与 Claude 同模型:每条指令以 `codebuddy -p --continue --dangerously-skip-permissions`
+    调用,默认无确认(--dangerously-skip-permissions,即用户无需点 yes),直接执行。
+    codebuddy 凭据在运行用户(本机为 root)的 ~/.codebuddy 下,允许 root 下免确认,
+    故以当前用户直接跑(不降权)。多条指令共享同一会话保持记忆。"""
+    return codebuddy_proc.start()
+
+
+def start_agent(key):
+    """按 key 分发到对应启动函数(供 api_start / api_restart 复用)。"""
+    if key == "flask":
+        return start_flask()
+    if key == "claude":
+        return start_claude()
+    if key == "codebuddy":
+        return start_codebuddy()
+    return False, "未知进程"
 
 
 # ---------------------------------------------------------------------------
@@ -652,17 +724,21 @@ def api_peek():
     """免登录只读状态探针(供电脑端看板/终端查看,防止手机操作时电脑端盲目冲突)。
     只返回各进程开没开 + pid + 端口占用,不含密码/日志内容,不支持任何写操作。"""
     procs = {p.status()["key"]: p.status() for p in PROCS.values()}
+
+    def _agent_view(k):
+        s = procs.get(k, {})
+        return {"running": s.get("running", False),
+                "busy": s.get("busy", False),
+                "queued": s.get("queued", 0)}
+
     return jsonify({
         "console": {                       # 控制台本身:能响应这个请求就说明活
             "running": True,
             "port": CONSOLE_PORT,
             "listening": True,
         },
-        "claude": {
-            "running": procs["claude"]["running"],
-            "busy": procs["claude"].get("busy", False),
-            "queued": procs["claude"].get("queued", 0),
-        },
+        "claude": _agent_view("claude"),
+        "codebuddy": _agent_view("codebuddy"),
         "flask": {
             "running": procs["flask"]["running"],
             "pid": procs["flask"].get("pid"),
@@ -675,27 +751,26 @@ def api_peek():
 
 @app.route("/api/start/<key>", methods=["POST"])
 def api_start(key):
-    if key == "flask":
-        ok, msg = start_flask()
-    elif key == "claude":
-        ok, msg = start_claude()
-    else:
-        return jsonify({"ok": False, "msg": "未知进程"}), 400
+    ok, msg = start_agent(key)
+    if not ok and msg == "未知进程":
+        return jsonify({"ok": False, "msg": msg}), 400
     return jsonify({"ok": ok, "msg": msg})
 
 
 @app.route("/api/startall", methods=["POST"])
 def api_startall():
-    """一键启动:Claude worker + Flask。已运行的跳过,不重启。"""
+    """一键启动:Claude worker + CodeBuddy worker + Flask。已运行的跳过,不重启。"""
     results = {}
-    # 先启 Flask(等它绑端口),再启 Claude worker
+    # 先启 Flask(等它绑端口),再启两个 AI worker
     fok, fmsg = start_flask()
     results["flask"] = {"ok": fok, "msg": fmsg}
     cok, cmsg = start_claude()
     results["claude"] = {"ok": cok, "msg": cmsg}
-    all_ok = fok and cok
+    bok, bmsg = start_codebuddy()
+    results["codebuddy"] = {"ok": bok, "msg": bmsg}
+    all_ok = fok and cok and bok
     return jsonify({"ok": all_ok, "results": results,
-                    "msg": "Flask:" + fmsg + " | Claude:" + cmsg})
+                    "msg": "Flask:" + fmsg + " | Claude:" + cmsg + " | CodeBuddy:" + bmsg})
 
 
 @app.route("/api/stop/<key>", methods=["POST"])
@@ -715,10 +790,7 @@ def api_restart(key):
     if p.is_running():
         p.stop()
         time.sleep(1.2)
-    if key == "flask":
-        ok, msg = start_flask()
-    else:
-        ok, msg = start_claude()
+    ok, msg = start_agent(key)
     return jsonify({"ok": ok, "msg": msg})
 
 
@@ -735,8 +807,8 @@ def api_send(key):
         text = raw.decode("utf-8", "replace").rstrip("\n")
     if not text:
         return jsonify({"ok": False, "msg": "空输入"})
-    if key == "claude":
-        # ClaudeRunner 自己会在日志里回显 "you",这里只入队
+    if key in ("claude", "codebuddy"):
+        # 任务队列型 agent 自己会在日志里回显 "you",这里只入队
         ok, msg = p.submit(text)
     else:
         # 长驻进程(flask):回显后投递 stdin
@@ -745,10 +817,13 @@ def api_send(key):
     return jsonify({"ok": ok, "msg": msg})
 
 
-@app.route("/api/interrupt", methods=["POST"])
-def api_interrupt():
-    """打断 Claude 当前正在处理的指令(相当于在 claude 交互界面按 Esc)。"""
-    ok, msg = claude_proc.interrupt()
+@app.route("/api/interrupt/<key>", methods=["POST"])
+def api_interrupt(key):
+    """打断某 agent 当前正在处理的指令(相当于在交互界面按 Esc)。"""
+    p = PROCS.get(key)
+    if not p or not hasattr(p, "interrupt"):
+        return jsonify({"ok": False, "msg": "未知进程"}), 400
+    ok, msg = p.interrupt()
     return jsonify({"ok": ok, "msg": msg})
 
 
@@ -895,7 +970,7 @@ PAGE_HTML = r"""
   :root{
     --bg:#0f1115; --panel:#181b22; --panel2:#20242e; --line:#2a2f3a;
     --txt:#e6e8ee; --dim:#8a93a6; --claude:#d4a8ff; --flask:#7fd1b9;
-    --you:#ffd479; --sys:#6fb3ff; --err:#ff8b8b; --ok:#7fd1b9;
+    --codebuddy:#6ad7ff; --you:#ffd479; --sys:#6fb3ff; --err:#ff8b8b; --ok:#7fd1b9;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);
@@ -934,7 +1009,7 @@ PAGE_HTML = r"""
         height:42vh;min-height:240px;overflow-y:auto;padding:8px 10px;
         font:12.5px/1.45 "SFMono-Regular",Consolas,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
   .term .ln{display:block}
-  .tag-claude{color:var(--claude)} .tag-flask{color:var(--flask)}
+  .tag-claude{color:var(--claude)} .tag-flask{color:var(--flask)} .tag-codebuddy{color:var(--codebuddy)}
   .tag-you{color:var(--you)} .tag-system{color:var(--sys)}
   .tag-error{color:var(--err)}
   .ts{color:#5a6377;margin-right:6px}
@@ -982,10 +1057,11 @@ PAGE_HTML = r"""
 <header>
   <h1>🎮 FlaskAPP 手机控制台</h1>
   <div class="ip">电脑IP: {{ lan_ip }} · 控制台:{{ console_port }} · 游戏:{{ game_port }}</div>
-  <button id="startall" class="btn-startall" onclick="startAll()">⚡ 一键启动 Claude + Flask</button>
+  <button id="startall" class="btn-startall" onclick="startAll()">⚡ 一键启动 Claude + CodeBuddy + Flask</button>
   <div class="tabs">
     <button id="tab-console" class="active" onclick="showTab('console')">控制台</button>
     <button id="tab-claude" onclick="showTab('claude')">Claude</button>
+    <button id="tab-codebuddy" onclick="showTab('codebuddy')">CodeBuddy</button>
     <button id="tab-flask" onclick="showTab('flask')">Flask</button>
   </div>
 </header>
@@ -1002,6 +1078,16 @@ PAGE_HTML = r"""
         <button class="btn restart" onclick="act('restart','claude')">重启</button>
       </div>
       <div class="hint">Claude 工作目录 = 项目根目录 FlaskAPP</div>
+    </div>
+    <div class="card">
+      <h3>CodeBuddy</h3>
+      <div class="row">
+        <span id="st-codebuddy" class="state off">● 已停止</span>
+        <button class="btn start" onclick="act('start','codebuddy')">启动</button>
+        <button class="btn stop" onclick="act('stop','codebuddy')">停止</button>
+        <button class="btn restart" onclick="act('restart','codebuddy')">重启</button>
+      </div>
+      <div class="hint">CodeBuddy 工作目录 = 项目根目录 FlaskAPP</div>
     </div>
     <div class="card">
       <h3>FlaskAPP 游戏</h3>
@@ -1029,7 +1115,7 @@ PAGE_HTML = r"""
       <div class="row">
         <button class="btn start" onclick="act('start','claude')">启用Claude</button>
         <button class="btn stop" onclick="act('stop','claude')">停止</button>
-        <button class="btn interrupt" id="btn-interrupt" onclick="interruptClaude()">✋ 打断</button>
+        <button class="btn interrupt" id="btn-interrupt" onclick="interruptAgent('claude')">✋ 打断</button>
       </div>
       <div class="hint">启用后,在下方输入框发指令。每条指令以无人值守模式执行(--dangerously-skip-permissions),Claude 会直接读改代码/跑命令,多条指令共享同一会话保持记忆。点"打断"可中止当前指令(等同按 Esc)。</div>
     </div>
@@ -1041,15 +1127,46 @@ PAGE_HTML = r"""
       </div>
       <div class="term" id="log-claude"></div>
       <!-- 已载入的文件上下文(可多个) -->
-      <div class="upload-row" id="upload-row">
-        <label>📎 附文件<input type="file" id="file-input" accept=".txt,.md,.markdown" multiple hidden onchange="onFilesPicked(this)"></label>
-        <span class="hint" id="upload-hint" style="margin:0">可附 .txt/.md 作为上下文</span>
+      <div class="upload-row" id="upload-row-claude">
+        <label>📎 附文件<input type="file" id="file-input" accept=".txt,.md,.markdown" multiple hidden onchange="onFilesPicked(this,'claude')"></label>
+        <span class="hint" id="upload-hint-claude" style="margin:0">可附 .txt/.md 作为上下文</span>
       </div>
       <div class="inputbar">
         <textarea id="msg-claude" placeholder="例:把登录页标题改成‘三国理财’,然后重启 Flask"></textarea>
         <button onclick="send('claude')">发送</button>
       </div>
       <div class="hint">回车=换行,需点发送按钮提交(Ctrl+Enter 也可发送)。附带的文件内容会拼在指令前一起发给 Claude。</div>
+    </div>
+  </section>
+
+  <!-- CodeBuddy 交互 -->
+  <section id="sec-codebuddy" class="hidden">
+    <div class="card">
+      <h3>CodeBuddy <span id="st-codebuddy2" class="state off" style="font-size:12px">● 已停止</span></h3>
+      <div class="row">
+        <button class="btn start" onclick="act('start','codebuddy')">启用CodeBuddy</button>
+        <button class="btn stop" onclick="act('stop','codebuddy')">停止</button>
+        <button class="btn interrupt" id="btn-interrupt-cb" onclick="interruptAgent('codebuddy')">✋ 打断</button>
+      </div>
+      <div class="hint">启用后,在下方输入框发指令。每条指令以无人值守模式执行(--dangerously-skip-permissions,即无需手动点 yes 授权),CodeBuddy 会直接读改代码/跑命令,多条指令共享同一会话保持记忆。点"打断"可中止当前指令(等同按 Esc)。</div>
+    </div>
+    <div class="card">
+      <h3>对话 / 指令</h3>
+      <!-- busy 大字横幅:仅处理中显示 -->
+      <div id="busy-banner-codebuddy" class="busy-banner hidden">
+        <span class="dot">⚙️</span> 正在处理命令,请稍候…
+      </div>
+      <div class="term" id="log-codebuddy"></div>
+      <!-- 已载入的文件上下文(可多个) -->
+      <div class="upload-row" id="upload-row-codebuddy">
+        <label>📎 附文件<input type="file" id="file-input-codebuddy" accept=".txt,.md,.markdown" multiple hidden onchange="onFilesPicked(this,'codebuddy')"></label>
+        <span class="hint" id="upload-hint-codebuddy" style="margin:0">可附 .txt/.md 作为上下文</span>
+      </div>
+      <div class="inputbar">
+        <textarea id="msg-codebuddy" placeholder="例:把登录页标题改成‘三国理财’,然后重启 Flask"></textarea>
+        <button onclick="send('codebuddy')">发送</button>
+      </div>
+      <div class="hint">回车=换行,需点发送按钮提交(Ctrl+Enter 也可发送)。附带的文件内容会拼在指令前一起发给 CodeBuddy。</div>
     </div>
   </section>
 
@@ -1077,7 +1194,7 @@ PAGE_HTML = r"""
 <script>
 const TAG_LABEL = {claude:"claude", flask:"flask", you:"你", system:"系统", error:"错误"};
 let _kickedShown = false;          // 被踢遮罩只弹一次
-let _fileBlocks = [];              // 已载入的文件上下文块(发送时拼在指令前)
+let _fileBlocks = {claude:[], codebuddy:[]};  // 已载入的文件上下文块(按 agent 隔离,发送时拼在指令前)
 
 function showTab(t){
   document.querySelectorAll('[id^="sec-"]').forEach(e=>e.classList.add('hidden'));
@@ -1123,27 +1240,27 @@ async function startAll(){
     setTimeout(refreshStatus, 2000);
   }catch(e){}
   finally{
-    setTimeout(()=>{btn.classList.remove('busy');btn.textContent='⚡ 一键启动 Claude + Flask';},1200);
+    setTimeout(()=>{btn.classList.remove('busy');btn.textContent='⚡ 一键启动 Claude + CodeBuddy + Flask';},1200);
   }
 }
 async function send(key){
   const ta = document.getElementById('msg-'+key);
   let text = ta.value;
   if(!text.trim()) return;
-  // 拼入已载入的文件上下文(放在用户指令前)
-  if(_fileBlocks.length){
-    text = _fileBlocks.join('') + '\n' + text;
+  // 拼入已载入的文件上下文(放在用户指令前,按 agent 隔离)
+  if(_fileBlocks[key] && _fileBlocks[key].length){
+    text = _fileBlocks[key].join('') + '\n' + text;
   }
   try{
     await postJSON('/api/send/'+key, text);
     // 发送成功后清空文件上下文(已随这条指令一起发出)
-    if(_fileBlocks.length){ _fileBlocks=[]; renderUploadChips(); }
+    if(_fileBlocks[key] && _fileBlocks[key].length){ _fileBlocks[key]=[]; renderUploadChips(key); }
   }catch(e){}
   ta.value='';
 }
-async function interruptClaude(){
+async function interruptAgent(key){
   try{
-    const j = await postJSON('/api/interrupt');
+    const j = await postJSON('/api/interrupt/'+key);
     flash(j.msg||'已打断');
   }catch(e){}
   setTimeout(refreshStatus, 300);
@@ -1152,9 +1269,12 @@ async function interruptClaude(){
 document.getElementById('msg-claude').addEventListener('keydown',e=>{
   if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){send('claude');}
 });
+document.getElementById('msg-codebuddy').addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){send('codebuddy');}
+});
 
-// 文件上传:逐个上传,服务端返回上下文块,前端累积
-async function onFilesPicked(input){
+// 文件上传:逐个上传,服务端返回上下文块,前端累积(按 agent 隔离)
+async function onFilesPicked(input, agent){
   const files = Array.from(input.files);
   input.value='';   // 允许再次选同名文件
   for(const f of files){
@@ -1165,53 +1285,54 @@ async function onFilesPicked(input){
       if(r.status===401){ onKicked(); return; }
       const j = await r.json();
       if(j.ok){
-        _fileBlocks.push(j.block);
+        _fileBlocks[agent].push(j.block);
         flash(j.msg);
       } else {
         flash(j.msg||'上传失败');
       }
     }catch(e){ flash('上传错误:'+e); }
   }
-  renderUploadChips();
+  renderUploadChips(agent);
 }
-function renderUploadChips(){
-  const row = document.getElementById('upload-row');
+function renderUploadChips(agent){
+  const row = document.getElementById('upload-row-'+agent);
+  if(!row) return;
   // 清掉旧 chip,保留 label 和 hint
   row.querySelectorAll('.chip').forEach(c=>c.remove());
-  const hint = document.getElementById('upload-hint');
-  if(_fileBlocks.length===0){
-    hint.textContent='可附 .txt/.md 作为上下文';
-    hint.style.display='';
+  const hint = document.getElementById('upload-hint-'+agent);
+  const blocks = _fileBlocks[agent] || [];
+  if(blocks.length===0){
+    if(hint){ hint.textContent='可附 .txt/.md 作为上下文'; hint.style.display=''; }
     return;
   }
-  hint.style.display='none';
+  if(hint) hint.style.display='none';
   // 每个 chip 代表一个已载入的文件块,点 × 移除
-  _fileBlocks.forEach((b,i)=>{
+  blocks.forEach((b,i)=>{
     // 从块里提取文件名(块格式:【上传文件:xxx】)
     const m = b.match(/【上传文件:(.+?)】/);
     const name = m ? m[1] : ('文件'+(i+1));
     const chip = document.createElement('span');
     chip.className='chip';
-    chip.innerHTML = '📎 '+esc(name)+' <span class="x" onclick="removeFile('+i+')">×</span>';
+    chip.innerHTML = '📎 '+esc(name)+' <span class="x" onclick="removeFile(\''+agent+'\','+i+')">×</span>';
     row.appendChild(chip);
   });
 }
-function removeFile(i){
-  _fileBlocks.splice(i,1);
-  renderUploadChips();
+function removeFile(agent, i){
+  _fileBlocks[agent].splice(i,1);
+  renderUploadChips(agent);
 }
 
 // 追加日志:last 标记最后一条(下次追加时移除上一条的 last)
 function appendLog(termId, ts, tag, line){
   const box = document.getElementById(termId);
   if(!box) return;
-  // 移除上一条的高亮(只在 claude 对话区做高亮区分)
-  if(termId==='log-claude'){
+  // 移除上一条的高亮(claude / codebuddy 对话区做高亮区分)
+  if(termId==='log-claude' || termId==='log-codebuddy'){
     const prev = box.querySelector('.ln.last');
     if(prev) prev.classList.remove('last');
   }
   const div = document.createElement('div');
-  div.className='ln' + (termId==='log-claude'?' last':'');
+  div.className='ln' + ((termId==='log-claude'||termId==='log-codebuddy')?' last':'');
   div.innerHTML = '<span class="ts">'+esc(ts)+'</span><span class="tag-'+esc(tag)+'">'+esc(line)+'</span>';
   box.appendChild(div);
   // 限长,防止爆内存
@@ -1246,11 +1367,16 @@ function refreshStatus(){
       set('st-'+p.key, p);
       set('st-'+p.key+'2', p);
     });
-    // busy 横幅:仅 claude 运行且处理中时显示
+    // busy 横幅:各 agent 运行且处理中时,显示对应横幅
     const claude = j.procs.find(p=>p.key==='claude');
     const banner = document.getElementById('busy-banner');
     if(banner){
       banner.classList.toggle('hidden', !(claude && claude.running && claude.busy));
+    }
+    const codebuddy = j.procs.find(p=>p.key==='codebuddy');
+    const bannerCb = document.getElementById('busy-banner-codebuddy');
+    if(bannerCb){
+      bannerCb.classList.toggle('hidden', !(codebuddy && codebuddy.running && codebuddy.busy));
     }
   }).catch(()=>{});
 }
@@ -1266,6 +1392,8 @@ function connectSSE(){
       appendLog('log-all', d.ts, d.tag, d.line);
       if(d.tag==='claude'||d.tag==='you'||d.tag==='system'||d.tag==='error')
         appendLog('log-claude', d.ts, d.tag, d.line);
+      if(d.tag==='codebuddy'||d.tag==='you'||d.tag==='system'||d.tag==='error')
+        appendLog('log-codebuddy', d.ts, d.tag, d.line);
       if(d.tag==='flask'||d.tag==='system'||d.tag==='error')
         appendLog('log-flask', d.ts, d.tag, d.line);
     }catch(e){}

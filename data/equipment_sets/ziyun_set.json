@@ -1,0 +1,142 @@
+{
+  "ziyun_helmet_60": {
+    "name": "紫云羽冠",
+    "slot": "helmet",
+    "set_name": "紫云套",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "blueprint_item": "bp_ziyun_helmet",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_nirong": 20
+    },
+    "base_stats": {
+      "defense": 375
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 375,
+      "max_health": 2140,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18000,
+    "description": "术士专属，以紫云之羽编织的羽冠，紫云护首，灵光熠熠"
+  },
+  "ziyun_armor_60": {
+    "name": "紫云羽衣",
+    "slot": "armor",
+    "set_name": "紫云套",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "blueprint_item": "bp_ziyun_armor",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_zitanmu": 20
+    },
+    "base_stats": {
+      "defense": 375
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 375,
+      "max_health": 2140,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 20500,
+    "description": "术士专属，以紫云之羽织成的羽衣，紫云覆体，法力流转"
+  },
+  "ziyun_pants_60": {
+    "name": "紫云羽裤",
+    "slot": "pants",
+    "set_name": "紫云套",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "blueprint_item": "bp_ziyun_pants",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_nirong": 20
+    },
+    "base_stats": {
+      "defense": 375
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 375,
+      "max_health": 2140,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18500,
+    "description": "术士专属，以紫云之羽织成的护腿，紫云护腿，轻灵飘逸"
+  },
+  "ziyun_gloves_60": {
+    "name": "紫云护手",
+    "slot": "gloves",
+    "set_name": "紫云套",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "blueprint_item": "bp_ziyun_gloves",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_jingjinkuang": 20,
+      "craft_nirong": 20
+    },
+    "base_stats": {
+      "defense": 375
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 375,
+      "max_health": 0,
+      "max_mana": 1400,
+      "crit_rate": 0.03,
+      "dodge_rate": 0.0
+    },
+    "base_price": 15500,
+    "description": "术士专属，以紫云之羽编织的手套，紫云附手，法术通天"
+  },
+  "ziyun_shoes_60": {
+    "name": "紫云靴",
+    "slot": "shoes",
+    "set_name": "紫云套",
+    "level_required": 60,
+    "class_required": "术士",
+    "is_artifact": false,
+    "is_bound": false,
+    "blueprint_item": "bp_ziyun_shoes",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_zitanmu": 20
+    },
+    "base_stats": {
+      "defense": 375
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 375,
+      "max_health": 0,
+      "max_mana": 1400,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.028
+    },
+    "base_price": 15000,
+    "description": "术士专属，以紫云之羽编织的布靴，踏云而行，紫云相随"
+  }
+}

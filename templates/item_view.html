@@ -44,6 +44,15 @@
     包含:{% for content in item.chest_contents %}{{ content.get('name', '') }}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
     {% endif %}
 
+    {% if item_id == 'lt_forget_page' and forget_page_count is defined %}
+    合成遗忘之章：消耗{{ forget_tome_cost }}个残页合成1个遗忘之章(当前{{ forget_page_count }}个)<br/>
+    {% if forget_page_count >= forget_tome_cost %}
+    <a href="{{ url_for('player.synthesize_forget_tome') }}">【合成遗忘之章】</a><br/>
+    {% else %}
+    <span class="bound">残页不足，需要{{ forget_tome_cost }}个才能合成</span><br/>
+    {% endif %}
+    {% endif %}
+
     <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">使用</a>
     <a href="{{ url_for('player.sell_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">出售</a>
     <a href="{{ url_for('player.destroy_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">丢弃</a><br/>

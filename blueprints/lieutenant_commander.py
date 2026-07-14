@@ -25,7 +25,7 @@ def recruit_page():
     player = current_user
     lt_count = Lieutenant.query.filter_by(owner_id=player.id).count()
     max_slots = LieutenantService.get_max_slots(player)
-    token_inv = DataService.get_inventory_item(player.id, 'recruitment_token')
+    token_inv = DataService.get_inventory_item(player.id, 'lt_recruit')
     token_count = token_inv.quantity if token_inv else 0
     return render_template("commander_recruit.html",
                          player=player,
@@ -95,7 +95,7 @@ def do_decompose(soul_item_id):
 @login_required
 def synthesize():
     player = current_user
-    frag_inv = DataService.get_inventory_item(player.id, 'soul_banner_fragment')
+    frag_inv = DataService.get_inventory_item(player.id, 'soul_flag_shard')
     frag_count = frag_inv.quantity if frag_inv else 0
     banner_inv = DataService.get_inventory_item(player.id, 'soul_banner')
     banner_count = banner_inv.quantity if banner_inv else 0

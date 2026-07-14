@@ -151,19 +151,31 @@ def character_status():
     social_attack_bonus, social_defense_bonus = SocialService.get_social_bonus(player)
 
     # Lieutenant passives with detailed stat bonuses
+    # 出战副将的被动技能给主人的属性加成(技能定义在 LIEUTENANT_SKILLS，存在副将 skills_raw 里)
     lt_passives = []
     lt_bonuses = {'max_health': 0, 'max_mana': 0, 'attack': 0, 'defense': 0, 'crit_rate': 0, 'dodge_rate': 0}
     try:
         from models.lieutenant import Lieutenant
-        from services.lieutenant_service import LIEUTENANT_DATA
+        from services.lieutenant_service import LIEUTENANT_SKILLS
         deployed = Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
         if deployed:
-            tier_data = LIEUTENANT_DATA.get(deployed.tier, {}).get(deployed.lt_pinyin_id, {})
-            passives = tier_data.get('passive_skills', [])
-            for ps in passives:
-                lt_passives.append({'name': ps.get('name', ''), 'desc': ps.get('description', '')})
-                for stat in ['max_health', 'max_mana', 'attack', 'defense', 'crit_rate', 'dodge_rate']:
-                    lt_bonuses[stat] += ps.get(stat, 0)
+            # 键名映射: get_passive_bonus 返回 health/mana/crit/dodge，模板用 max_health/max_mana/crit_rate/dodge_rate
+            raw = deployed.get_passive_bonus()
+            key_map = {'health': 'max_health', 'mana': 'max_mana',
+                       'crit': 'crit_rate', 'dodge': 'dodge_rate',
+                       'attack': 'attack', 'defense': 'defense'}
+            for k, v in raw.items():
+                if k in key_map and v:
+                    lt_bonuses[key_map[k]] += v
+            # 列出每个已学被动技能(取 LIEUTENANT_SKILLS 里的描述)
+            for sk in deployed.skills:
+                if sk.get('type') != 'passive':
+                    continue
+                sdef = LIEUTENANT_SKILLS.get(sk.get('id'), {})
+                lt_passives.append({
+                    'name': sk.get('name', ''),
+                    'desc': sdef.get('description', ''),
+                })
     except Exception:
         pass
 
@@ -217,8 +229,35 @@ def toggle_reserve(reserve_type):
 @login_required
 def level_up():
     player = current_user
-    PlayerService.level_up(player)
+    # 升级前快照基础属性，用于展示本次升级获得的加成
+    old = {
+        'attack': player.attack, 'defense': player.defense,
+        'max_health': player.max_health, 'max_mana': player.max_mana,
+        'crit_rate': player.crit_rate, 'dodge_rate': player.dodge_rate,
+    }
+    leveled = PlayerService.level_up(player)
     db.session.commit()
+    if leveled:
+        # 计算本次升级获得的属性增量
+        STAT_NAMES = {
+            'attack': '攻击力', 'defense': '防御力',
+            'max_health': '生命值', 'max_mana': '魔法值',
+            'crit_rate': '暴击率', 'dodge_rate': '闪避率',
+        }
+        parts = []
+        for k, name in STAT_NAMES.items():
+            delta = getattr(player, k) - old[k]
+            if delta == 0:
+                continue
+            if k in ('crit_rate', 'dodge_rate'):
+                # 暴击/闪避存为小数，展示为百分比
+                parts.append(f"{name}+{delta*100:.1f}%")
+            else:
+                parts.append(f"{name}+{int(delta)}")
+        if parts:
+            flash(f"恭喜升到{player.level}级！本次加成：{'，'.join(parts)}")
+        else:
+            flash(f"恭喜升到{player.level}级！")
     return redirect(url_for("player.character"))
 
 
@@ -678,12 +717,43 @@ def view_item(item_id):
         item_data = DataService.get_item(item_id)
         inv = DataService.get_inventory_item(player.id, item_id, is_bound=bound_val)
         if item_data:
-            return render_template('item_view.html',
-                                 item=item_data,
-                                 item_id=item_id,
-                                 is_bound=inv.is_bound if inv else False,
-                                 quantity=inv.quantity if inv else 0,
-                                 from_page=from_page)
+            # 遗忘之章残页详情页：附带残页数量供合成入口显示
+            context = dict(
+                item=item_data,
+                item_id=item_id,
+                is_bound=inv.is_bound if inv else False,
+                quantity=inv.quantity if inv else 0,
+                from_page=from_page,
+            )
+            if item_id == 'lt_forget_page':
+                context['forget_page_count'] = inv.quantity if inv else 0
+                context['forget_tome_cost'] = 50
+            return render_template('item_view.html', **context)
+    return redirect(url_for('player.inventory'))
+
+
+@player_bp.route("/synthesize_forget_tome")
+@login_required
+def synthesize_forget_tome():
+    """遗忘之章合成：50 个遗忘之章残页(lt_forget_page) 合成 1 个遗忘之章(lt_forget_tome)。
+    合成后若残页仍 ≥50 则留详情页(可继续合)，否则回背包。"""
+    player = current_user
+    cost = 50
+    page_inv = DataService.get_inventory_item(player.id, 'lt_forget_page')
+    have = page_inv.quantity if page_inv else 0
+    if have < cost:
+        flash(f"遗忘之章残页不足，需要{cost}个(当前{have}个)")
+        return redirect(url_for('player.view_item', item_id='lt_forget_page'))
+
+    DataService.remove_item_from_inventory(player.id, 'lt_forget_page', cost)
+    DataService.add_item_to_inventory(player.id, 'lt_forget_tome', 1)
+    db.session.commit()
+
+    have -= cost
+    flash(f"合成成功，获得1个遗忘之章" + (f"，剩余{have}个残页" if have > 0 else "，残页已用完"))
+    # 残页仍够再合一次则留在残页详情页继续合，否则回背包
+    if have >= cost:
+        return redirect(url_for('player.view_item', item_id='lt_forget_page'))
     return redirect(url_for('player.inventory'))
 
 
@@ -810,11 +880,11 @@ def learn_skill(npc_id, skill_id):
         flash("已经学习过该技能")
         return redirect(url_for('player.skill_list', npc_id=npc_id, skill_type=skill_type))
 
-    # Learning cost: same formula as upgrade with level=1
+    # Learning cost: 1级消耗 = base（与升级公式 cost = base * mult^(level-1) 在 level=1 时一致）
     exp_base = skill_data.get('upgrade_exp_base', 100)
     gold_base = skill_data.get('upgrade_gold_base', 1000)
-    exp_cost = int(exp_base * 1 * (1 + 1 * 0.1))
-    gold_cost = int(gold_base * 1 * (1 + 1 * 0.1))
+    exp_cost = exp_base
+    gold_cost = gold_base
 
     if player.experience < exp_cost:
         flash(f"经验不足，学习需要{exp_cost}点经验")
@@ -859,8 +929,10 @@ def upgrade_skill(npc_id, skill_id):
     next_level = ps.skill_level + 1
     exp_base = skill_data.get('upgrade_exp_base', 100)
     gold_base = skill_data.get('upgrade_gold_base', 1000)
-    exp_cost = int(exp_base * next_level * (1 + next_level * 0.1))
-    gold_cost = int(gold_base * next_level * (1 + next_level * 0.1))
+    mult = skill_data.get('upgrade_cost_multiplier', 2.2)
+    # 几何递增: 1级=base, 2级=base*mult, 3级=base*mult^2 ... next_level 级 = base*mult^(next_level-1)
+    exp_cost = int(exp_base * (mult ** (next_level - 1)))
+    gold_cost = int(gold_base * (mult ** (next_level - 1)))
 
     if player.experience < exp_cost:
         flash(f"经验不足，需要{exp_cost}点经验")

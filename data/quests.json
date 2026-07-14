@@ -96,6 +96,7 @@
     "level_required": 1,
     "prerequisite": "main_02",
     "description": "前往「大院」击杀『窃贼』收集1本[青囊书]",
+    "target_location": "beiping_east.大院",
     "objective": {
       "type": "collect_item",
       "item_id": "quest_qingnangshu",
@@ -503,6 +504,7 @@
     "level_required": 4,
     "prerequisite": "main_11",
     "description": "前往「东城楼」收拾10名『铜人』",
+    "target_location": "beiping_center.东城楼",
     "objective": {
       "type": "kill_monster",
       "monster_name": "铜人",
@@ -583,7 +585,7 @@
       "gold": 100
     },
     "grant_item": {
-      "item_id": "lt_recruit_token",
+      "item_id": "lt_recruit",
       "item_name": "副将招募令",
       "count": 1
     },
@@ -650,6 +652,7 @@
     "level_required": 5,
     "prerequisite": "main_15",
     "description": "前往「箭楼」收拾10条『野狗』",
+    "target_location": "beiping_east.箭楼",
     "objective": {
       "type": "kill_monster",
       "monster_name": "野狗",
@@ -848,6 +851,7 @@
     "level_required": 7,
     "prerequisite": "main_21",
     "description": "前往「箭楼」收拾10条『野狗』",
+    "target_location": "beiping_east.箭楼",
     "objective": {
       "type": "kill_monster",
       "monster_name": "野狗",
@@ -1170,6 +1174,7 @@
     "level_required": 11,
     "prerequisite": "main_32",
     "description": "前往「广场」收拾5名『小偷』",
+    "target_location": "beiping_center.钱庄",
     "objective": {
       "type": "kill_monster",
       "monster_name": "小偷",
@@ -1214,6 +1219,7 @@
     "level_required": 12,
     "prerequisite": "main_34",
     "description": "前往「燕山」教训5名『冀州步兵』",
+    "target_location": "beiping_north.燕山",
     "objective": {
       "type": "kill_monster",
       "monster_name": "冀州步兵",

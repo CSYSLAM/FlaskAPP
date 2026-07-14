@@ -22,12 +22,14 @@
 
 **根因**：claude CLI 2.1+ 出于安全，禁止 root 用 `--dangerously-skip-permissions`。但服务器/systemd 常以 root 跑控制台。
 
-**解法**：`ClaudeRunner._run_one` Linux 分支用 `runuser -l console -c '...'` 切到 `console` 用户跑 claude：
+**解法**：`AgentRunner._run_one` Linux 分支（claude，`drop_user="console"`）用 `runuser -l console -c '...'` 切到 `console` 用户跑 claude：
 ```python
-shell_cmd = f"cd {PROJECT_ROOT} && source ~/.claude.env && {inner}"
+shell_cmd = f"cd {PROJECT_ROOT} && source /home/console/.claude.env && {inner}"
 cmd = ["runuser", "-l", "console", "-c", shell_cmd]
 ```
 前提：服务器上要有一个 `console` 用户，且 `/home/console/.claude.env` 里写好 ANTHROPIC 凭据。
+
+> codebuddy 不需要降权：`AgentRunner` 对 codebuddy 设 `drop_user=None`，直接以当前用户（root）跑，凭据在 `~/.codebuddy` 下，互不干扰。详见 [坑13](#坑-13env_file-路径解析错导致-source-失败)。
 
 ## 坑 3：ANTHROPIC 凭据不是 `ANTHROPIC_API_KEY`
 
@@ -140,6 +142,23 @@ app.config.update(SESSION_COOKIE_NAME="mobile_console_session", ...)
 if len(line) > MAX_LINE:
     line = line[:MAX_LINE] + f" …[截断,本行原长{len(line)}字符]\n"
 ```
+
+## 坑 13：`env_file` 路径解析错，导致 `source` 失败
+
+**现象**：手机发指令调 claude，日志里出现 `/root/.claude.env: Permission denied`，或 `~/.claude.env: No such file or directory`，claude 起不来（且往往是在「同时开着 codebuddy」时才被发现，因为 codebuddy 以 root 跑、claude 降权到 console，两者环境不同）。
+
+**根因**：`env_file` 配的是 `~/.claude.env`（相对 console 家目录）。两种错误写法：
+1. 在 Python（以 root 运行）里 `Path(env_file).expanduser()` → `~` 被解析成 `/root`，runuser 以 console 身份去读 `/root/.claude.env` → 没权限 → **Permission denied**。
+2. 把字面 `~` 交给 shell 又用 `shlex.quote()` 包成 `'~/.claude.env'` → 单引号阻止 `~` 展开 → 当成字面文件名 → **No such file or directory**。
+
+**解法**：按降权用户的真实家目录拼成**绝对路径**，既不用 Python `expanduser()`，也不依赖 shell 的 `~` 展开：
+```python
+if self.env_file.startswith("~/"):
+    home = pwd.getpwnam(self.drop_user).pw_dir   # console → /home/console
+    env_path = os.path.join(home, self.env_file[2:])
+env_part = f"source {shlex.quote(env_path)} && "   # → source /home/console/.claude.env
+```
+（codebuddy 的 `env_file=None`，根本不走这条，所以不受影响。）
 
 ## 已知风险（非 bug，需知悉）
 

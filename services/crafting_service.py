@@ -148,6 +148,21 @@ class CraftingService:
             "level_range": "55-59级", "group": "55-59级",
             "templates": ["baihu_helmet_59", "baihu_armor_58", "baihu_pants_57", "baihu_gloves_56", "baihu_shoes_55"],
         },
+        {
+            "set_id": "tiangang", "name": "天罡套", "class_name": "战士",
+            "level_range": "60级", "group": "60级",
+            "templates": ["tiangang_helmet_60", "tiangang_armor_60", "tiangang_pants_60", "tiangang_gloves_60", "tiangang_shoes_60"],
+        },
+        {
+            "set_id": "ziyun", "name": "紫云套", "class_name": "术士",
+            "level_range": "60级", "group": "60级",
+            "templates": ["ziyun_helmet_60", "ziyun_armor_60", "ziyun_pants_60", "ziyun_gloves_60", "ziyun_shoes_60"],
+        },
+        {
+            "set_id": "lieyan", "name": "烈焰套", "class_name": "刺客",
+            "level_range": "60级", "group": "60级",
+            "templates": ["lieyan_helmet_60", "lieyan_armor_60", "lieyan_pants_60", "lieyan_gloves_60", "lieyan_shoes_60"],
+        },
     ]
 
     # Weapon templates by class
@@ -236,6 +251,19 @@ class CraftingService:
     def get_material_cost(cls, template):
         level = template.get("level_required", 0)
         slot = template.get("slot", "")
+
+        # 优先使用模板自带配方（含图纸的60级史诗套等）：craft_silver + craft_materials + blueprint_item
+        craft_materials = template.get("craft_materials")
+        if craft_materials or template.get("blueprint_item"):
+            items = dict(craft_materials) if craft_materials else {}
+            # 图纸作为一种"材料"统一参与校验/扣除/绑定判定/tooltip展示
+            blueprint = template.get("blueprint_item")
+            if blueprint:
+                items[blueprint] = items.get(blueprint, 0) + 1
+            return {
+                "silver": template.get("craft_silver", 0),
+                "items": items,
+            }
 
         if slot == "weapon":
             cost = cls.WEAPON_MATERIALS.get(level)
@@ -330,7 +358,12 @@ class CraftingService:
         }
 
         if cost:
+            blueprint_id = template.get("blueprint_item")
             for item_id, qty in cost["items"].items():
+                # 图纸单独抽出，由模板在银两前渲染（贴合"图纸→银两→材料"展示顺序）
+                if item_id == blueprint_id:
+                    info["blueprint"] = {"item_id": item_id, "name": "", "quantity": qty}
+                    continue
                 item_data = DataService.get_item(item_id)
                 if item_data:
                     info["materials"].append({
@@ -338,6 +371,11 @@ class CraftingService:
                         "name": item_data.get("name", item_id),
                         "quantity": qty,
                     })
+            # 补全图纸名称
+            if info.get("blueprint"):
+                bp_data = DataService.get_item(blueprint_id)
+                if bp_data:
+                    info["blueprint"]["name"] = bp_data.get("name", blueprint_id)
 
         return info
 

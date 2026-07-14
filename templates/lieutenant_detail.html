@@ -27,7 +27,7 @@
 
 {{ lieutenant.name }}({{ lieutenant.quality_name }}{{ lieutenant.class_name }})<br/>
 <br/>
-等级:{{ lieutenant.level }} 经验:{{ lieutenant.experience }}/{{ LieutenantService._exp_to_next(lieutenant.level) }}<br/>
+等级:{{ lieutenant.level }} 经验:{{ lieutenant.experience }}/{{ LieutenantService._exp_to_next(lieutenant.level) }}{% if lieutenant.level < 60 %} <a href="{{ url_for('lieutenant.level_up', lt_id=lieutenant.id) }}">升级</a>(消耗1颗副将高级经验丹){% endif %}<br/>
 性别:{{ lieutenant.gender_name }} 职业:{{ lieutenant.class_name }}<br/>
 品质:{{ lieutenant.quality }}({{ lieutenant.quality_name }}){% if lieutenant.quality < 20 %} <a href="{{ url_for('lieutenant.wash_quality', lt_id=lieutenant.id) }}">洗资质</a>{% endif %}<br/>
 悟性:{{ lieutenant.enlightenment }} <a href="{{ url_for('lieutenant.enlighten', lt_id=lieutenant.id) }}">提升悟性</a><br/>
