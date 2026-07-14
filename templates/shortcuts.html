@@ -43,7 +43,7 @@
                 <option value="">不设置</option>
                 {% for inv in DataService.get_inventory(player.id) %}
                     {% set item_data = DataService.get_item(inv.item_id) %}
-                    {% if item_data and item_data.get('item_type') == 'potion' %}
+                    {% if item_data and item_data.get('type') == 'potion' %}
                         <option value="{{ inv.item_id }}" {% if inv.item_id == player.shortcuts['potion' ~ i] %}selected{% endif %}>
                             {{ item_data.name }}({{ inv.quantity }})
                         </option>
