@@ -45,21 +45,161 @@ def create_app():
 
     DataService.init_app(app)
 
+    # ── 多窗口 sid 贯穿机制（Flask 官方 url_defaults/url_value_preprocessor）──
+    # 让所有 url_for（模板 468 处 redirect + 167 个模板）自动带上当前 sid，
+    # 无需改动任何蓝图或模板。同一浏览器普通标签页靠 URL ?sid= 区分窗口。
+    SID_SKIP_ENDPOINTS = {'static'}
+
+    @app.url_value_preprocessor
+    def _pull_sid(endpoint, values):
+        """从 URL 路由变量取出 sid(ck) 挂到 g。tic 是 query 参数，不在此取。"""
+        from flask import g
+        if values and 'sid' in values:
+            g.sid = values.pop('sid')
+
+    @app.url_defaults
+    def _inject_sid(endpoint, values):
+        """给所有 url_for 自动注入 sid(ck)/tic/aid（静态资源跳过）。
+
+        - sid: 窗口会话凭证
+        - tic: 当前页面签发的请求票据，用于检测复制URL多窗口并发
+        - aid: 当前动作/页面标识，用于限流后「点返回」回原页
+        即使 values 为空（如 url_for('game.scene') 无参）也要注入。
+        """
+        if values is None:
+            values = {}
+        if 'sid' in values:
+            return
+        if endpoint in SID_SKIP_ENDPOINTS or (endpoint or '').startswith('static'):
+            return
+        from flask import g, request
+        sid = getattr(g, 'sid', None) or (request.args.get('sid') if request else None)
+        if sid:
+            values['sid'] = sid
+            # tic: 本请求签发的票据，渲染时所有链接共享
+            tic = getattr(g, 'resp_tic', None)
+            if tic is None:
+                from services import rate_limit_service as _rl
+                tic = _rl.issue_tic(sid)
+                g.resp_tic = tic
+            values['tic'] = tic
+            # aid: 动作标识（endpoint 简名）
+            if 'aid' not in values:
+                values['aid'] = (endpoint or '').split('.')[-1]
+
+    @app.before_request
+    def ensure_sid():
+        """无 sid 的 GET 请求尝试从 Referer 恢复 sid，否则分配新 sid。
+
+        带 sid 的请求（绝大多数，由 url_defaults 保证链接带 sid）直接放行。
+        无 sid 的 GET 请求来源：
+        - GET 表单提交（搜索/过滤）：浏览器丢弃 action URL 的 query 参数，
+          只发表单字段，sid 丢失。此时 Referer 是原页面（带 sid 且有登录态），
+          从 Referer 恢复 sid 即可复用原窗口登录态。
+        - 开新标签页/书签：无 Referer，分配新 sid（新窗口）。
+        """
+        from flask import request, redirect, g
+        from services import window_session_service as _ws
+        if request.endpoint == 'static':
+            return
+        sid = _ws.get_sid()
+        if sid:
+            g.sid = sid
+            return
+        # 无 sid：GET 请求先尝试从 Referer 恢复（GET 表单提交丢 sid 的场景）
+        if request.method == 'GET':
+            ref = request.referrer or ''
+            if ref:
+                from urllib.parse import urlparse, parse_qs
+                ref_sid = parse_qs(urlparse(ref).query).get('sid', [None])[0]
+                if ref_sid:
+                    g.sid = ref_sid
+                    return
+            # 无 Referer 或 Referer 无 sid：分配新 sid（开新标签页/书签）
+            new = _ws.new_sid()
+            args = dict(request.args)
+            args['sid'] = new
+            query = '&'.join(f'{k}={v}' for k, v in args.items())
+            return redirect(request.path + ('?' + query if query else ''), code=302)
+        g.sid = None
+
+    @app.before_request
+    def setup_window_auth():
+        """多窗口认证：按当前 sid 注入 current_user，并检测同账号互踢。
+
+        同一浏览器普通标签页共享 cookie，Flask-Login 默认单用户模型无法区分。
+        这里在请求开始时按 URL ``?sid=`` 从服务端多窗口 session 取出该窗口登录的
+        user_id，手动设置 ``g._login_user``（Flask-Login 0.6.3 的 current_user 注入点），
+        绕过单 cookie 限制。同时检测该窗口的 sso token 是否仍有效——同账号在另一
+        sid 登录会使本 sid 失效，此处仅清掉当前 sid 窗口并踢回登录页。
+        """
+        from flask import session as _sess, g, redirect, url_for, flash, request
+        from services import window_session_service as _ws
+        # 静态资源不处理
+        if request.endpoint == 'static':
+            return
+        uid = _ws.get_current_user_id()
+        if uid is not None:
+            user = PlayerModel.query.get(int(uid))
+            if user is not None:
+                g._login_user = user
+                # 单点登录检测：当前窗口 token 失效 → 该账号在别处登录
+                if not _ws.is_window_active():
+                    sid = _ws.get_sid()
+                    if sid:
+                        _ws.clear_window(sid)
+                    # 注意：只清当前 sid 窗口，不能 _sess.clear()——
+                    # 同浏览器其他窗口的 _wins 也在这份共享 session 里
+                    _sess.pop("username", None)
+                    _sess.pop("player_id", None)
+                    flash("该账号在别处登录，您已下线")
+                    return redirect(url_for("auth.login_page", kicked=1))
+                return
+        # 当前窗口未登录：显式设匿名用户，阻止 Flask-Login 用共享 cookie 里的
+        # session["_user_id"]（其他窗口写的）误判为已登录
+        from flask_login import AnonymousUserMixin
+        g._login_user = AnonymousUserMixin()
+
     @app.before_request
     def track_online():
-        from flask import session as _sess
-        from flask_login import current_user, logout_user
-        from services import auth_session_service as _sso
+        from flask import g
+        from flask_login import current_user
+        from services.party_service import mark_online
+        # current_user 已由 setup_window_auth 注入到 g._login_user
         if current_user.is_authenticated:
-            from services.party_service import mark_online
             mark_online(current_user.id)
-            # 单点登录检测：当前会话 token 不再是有效 token，说明该账号在别处登录
-            if not _sso.is_active(current_user.id, _sess.get("_sso_token")):
-                from flask import redirect, url_for, flash
-                logout_user()
-                _sess.clear()
-                flash("该账号在别处登录，您已下线")
-                return redirect(url_for("auth.login_page", kicked=1))
+
+    @app.before_request
+    def rate_limit():
+        """请求频率限制（仿天命三国「手机太猛了」）。
+
+        同一 sid 短时间内并发请求（复制 URL 到新窗口同时操作）→ 限流提示页。
+        已认证的非静态请求才检查；限流提示页本身的请求不再限流。
+        """
+        from flask import g, request, render_template, url_for
+        from flask_login import current_user
+        from services import window_session_service as _ws
+        from services import rate_limit_service as _rl
+        if request.endpoint == 'static' or request.endpoint == 'auth.login_page':
+            return
+        if not getattr(g, '_login_user', None) or not current_user.is_authenticated:
+            return
+        sid = _ws.get_sid()
+        if not sid:
+            return
+        # 带 rl=1 的请求是限流提示页「返回」链接，豁免一次（避免死循环）
+        if request.args.get('rl') == '1':
+            _rl.touch(sid)
+            return
+        # tic 从 query string 取（url_value_preprocessor 只能拿路由变量，拿不到 query）
+        tic = request.args.get('tic')
+        if _rl.check_and_mark(sid, tic):
+            # 限流提示页：返回优先用 Referer（回触发限流的来源页），否则回场景。
+            # 给返回链接加 rl=1 豁免，避免旧 tic 再次触发限流死循环。
+            back = request.referrer or url_for('game.scene', sid=sid)
+            sep = '&' if '?' in back else '?'
+            back = back + sep + 'rl=1'
+            return render_template('rate_limit.html', back_url=back), 429
 
     from services.world_boss_service import WorldBossService
     WorldBossService.init_bosses()
@@ -133,6 +273,18 @@ def create_app():
         # 确保 ActiveSession 表被注册后再 create_all（单点登录会话表）
         from models.active_session import ActiveSession  # noqa: F401
         db.create_all()
+        # 多窗口 SSO：为旧版 active_session 表补齐 active_sid / tokens 列
+        # （旧表只有 player_id/token/updated_at，create_all 不会改已存在的表）
+        try:
+            db.session.execute(db.text("ALTER TABLE active_session ADD COLUMN active_sid VARCHAR(16)"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE active_session ADD COLUMN tokens TEXT"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
         # 为已有数据库添加新列（SQLite 不支持 ALTER TABLE ADD COLUMN IF NOT EXISTS）
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN player_uid VARCHAR(10)"))
@@ -161,6 +313,26 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE lieutenant ADD COLUMN tier INTEGER DEFAULT 3"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        # 副将自定义基础属性(工作台副将设计模块):可空,未设则走 get_xxx 公式
+        for _col_def in (
+            "ALTER TABLE lieutenant ADD COLUMN base_max_health INTEGER",
+            "ALTER TABLE lieutenant ADD COLUMN base_max_mana INTEGER",
+            "ALTER TABLE lieutenant ADD COLUMN base_attack INTEGER",
+            "ALTER TABLE lieutenant ADD COLUMN base_defense INTEGER",
+            "ALTER TABLE lieutenant ADD COLUMN base_crit_rate FLOAT",
+            "ALTER TABLE lieutenant ADD COLUMN base_dodge_rate FLOAT",
+        ):
+            try:
+                db.session.execute(db.text(_col_def))
+                db.session.commit()
+            except Exception:
+                db.session.rollback()
+        # 副将设计专用标记:工作台创建的副将只在设计区可见,不进玩家正式列表
+        try:
+            db.session.execute(db.text("ALTER TABLE lieutenant ADD COLUMN is_design_only BOOLEAN DEFAULT 0"))
             db.session.commit()
         except Exception:
             db.session.rollback()

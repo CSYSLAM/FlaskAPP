@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>副将设计系统</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        .lt-item { padding: 4px 0; border-bottom: 1px dashed #eee; }
+        .meta { color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>副将设计系统</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/><br/>
+
+    <a href="{{ url_for('workbench.lieutenant_skill_edit') }}">技能定义管理</a> — 修改技能倍率/魔法消耗/触发率<br/>
+    <a href="{{ url_for('workbench.lieutenant_damage_test') }}">副将伤害测试</a> — 单次伤害拆解<br/>
+    <a href="{{ url_for('workbench.lieutenant_battle_test') }}">副将战斗测试</a> — 逐回合模拟<br/>
+    <br/>
+
+    <a href="{{ url_for('workbench.lieutenant_add') }}">+ 创建副将</a> — 自定义属性新建副将<br/><br/>
+
+    <b>新增副将({% set ns2 = namespace(total=0) %}{% for lts in design_groups.values() %}{% set ns2.total = ns2.total + lts|length %}{% endfor %}{{ ns2.total }}个)</b> <span class="meta">工作台设计创建,不进玩家正式列表</span><br/>
+    {% if design_groups %}
+    {% for owner_id, lts in design_groups.items() %}
+    <b>{{ owner_names.get(owner_id, '玩家'~owner_id) }}</b> <span class="meta">({{ lts|length }}个)</span><br/>
+    {% for lt in lts %}
+    <div class="lt-item">
+        <a href="{{ url_for('workbench.lieutenant_view', lt_id=lt.id) }}">{{ lt.name }}</a>
+        <span class="meta">{{ lt.class_name }} {{ lt.tier }}档 {{ lt.quality_name }} 资质{{ lt.quality }} 悟性{{ lt.enlightenment }} 强化{{ lt.reinforce }} {{ lt.level }}级</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+    {% else %}
+    暂无新增副将<br/>
+    {% endif %}
+    <br/>
+
+    <b>玩家副将({% set ns = namespace(total=0) %}{% for lts in groups.values() %}{% set ns.total = ns.total + lts|length %}{% endfor %}{{ ns.total }}个)</b><br/>
+    {% if groups %}
+    {% for owner_id, lts in groups.items() %}
+    <b>{{ owner_names.get(owner_id, '玩家'~owner_id) }}</b> <span class="meta">({{ lts|length }}个)</span><br/>
+    {% for lt in lts %}
+    <div class="lt-item">
+        <a href="{{ url_for('workbench.lieutenant_view', lt_id=lt.id) }}">{{ lt.name }}</a>
+        <span class="meta">{{ lt.class_name }} {{ lt.tier }}档 {{ lt.quality_name }} 资质{{ lt.quality }} 悟性{{ lt.enlightenment }} 强化{{ lt.reinforce }} {{ lt.level }}级</span>
+        {% if lt.is_deployed %}<span class="meta">[出战]</span>{% endif %}
+        {% if not lt.is_alive %}<span class="meta" style="color:#c00">[阵亡]</span>{% endif %}
+    </div>
+    {% endfor %}
+    {% endfor %}
+    {% else %}
+    暂无副将<br/>
+    {% endif %}
+</div>
+</body>
+</html>

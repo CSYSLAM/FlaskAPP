@@ -18,7 +18,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 8000,
-    "description": "战士专属，以精钢锻造的重盔，坚不可摧"
+    "description": "战士专属，以精钢锻造的重盔，坚不可摧",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "jinggang_armor_38": {
     "name": "精钢战甲",
@@ -40,7 +45,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 9500,
-    "description": "战士专属，以精钢铸造的战甲，铜墙铁壁"
+    "description": "战士专属，以精钢铸造的战甲，铜墙铁壁",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
+    }
   },
   "jinggang_gloves_36": {
     "name": "银丝手套",
@@ -62,7 +72,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 7000,
-    "description": "战士专属，以银丝编织的护手，力大无穷"
+    "description": "战士专属，以银丝编织的护手，力大无穷",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "jinggang_pants_37": {
     "name": "银丝裤",
@@ -84,7 +99,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 8500,
-    "description": "战士专属，以银丝编织的护腿，坚韧耐用"
+    "description": "战士专属，以银丝编织的护腿，坚韧耐用",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
+    }
   },
   "jinggang_shoes_35": {
     "name": "精钢靴",
@@ -104,6 +124,11 @@
       "dodge_rate": 0.009
     },
     "base_price": 6500,
-    "description": "战士专属，以精钢铸造的战靴，稳固如山"
+    "description": "战士专属，以精钢铸造的战靴，稳固如山",
+    "craft_silver": 6440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
+    }
   }
 }

@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 11000,
-    "description": "刺客专属，以雀翎之羽编织的头盔，轻灵飘逸"
+    "description": "刺客专属，以雀翎之羽编织的头盔，轻灵飘逸",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "queling_armor_48": {
     "name": "雀翎轻甲",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 13000,
-    "description": "刺客专属，以雀翎之羽织成的轻甲，翔空无影"
+    "description": "刺客专属，以雀翎之羽织成的轻甲，翔空无影",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
+    }
   },
   "queling_gloves_46": {
     "name": "鹰爪护手",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 9500,
-    "description": "刺客专属，以鹰爪之形锻造的护手，锋利无比"
+    "description": "刺客专属，以鹰爪之形锻造的护手，锋利无比",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "queling_pants_47": {
     "name": "雀翎皮裤",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 11500,
-    "description": "刺客专属，以雀翎之羽织成的护腿，轻灵耐用"
+    "description": "刺客专属，以雀翎之羽织成的护腿，轻灵耐用",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
+    }
   },
   "queling_shoes_45": {
     "name": "鹰嘴靴",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.023
     },
     "base_price": 9000,
-    "description": "刺客专属，以鹰嘴之形设计的战靴，疾行如鹰"
+    "description": "刺客专属，以鹰嘴之形设计的战靴，疾行如鹰",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
+    }
   }
 }

@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3500,
-    "description": "术士专属，以水之灵纹编织的神秘头巾，蕴含水元素之力"
+    "description": "术士专属，以水之灵纹编织的神秘头巾，蕴含水元素之力",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "shuiwen_armor_18": {
     "name": "水纹法袍",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 4200,
-    "description": "术士专属，以水之灵丝织成的法袍，流转着水纹光华"
+    "description": "术士专属，以水之灵丝织成的法袍，流转着水纹光华",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_mabu": 20
+    }
   },
   "shuiwen_gloves_16": {
     "name": "水纹手套",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3000,
-    "description": "术士专属，以水之灵丝编织的手套，增强法术掌控力"
+    "description": "术士专属，以水之灵丝编织的手套，增强法术掌控力",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangyangmu": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "shuiwen_pants_17": {
     "name": "水纹裤子",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3800,
-    "description": "术士专属，以水之灵丝织成的护腿，轻盈灵动"
+    "description": "术士专属，以水之灵丝织成的护腿，轻盈灵动",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_mabu": 20,
+      "craft_huangyangmu": 20
+    }
   },
   "shuiwen_shoes_15": {
     "name": "水纹鞋",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.0065
     },
     "base_price": 2800,
-    "description": "术士专属，以水之灵丝编织的布鞋，踏水无痕"
+    "description": "术士专属，以水之灵丝编织的布鞋，踏水无痕",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangtongkuang": 20,
+      "craft_huangyangmu": 20
+    }
   }
 }

@@ -49,6 +49,25 @@ class BattleService:
             player.status_silence_rounds -= 1
 
     @classmethod
+    def _tick_lt_status(cls, player):
+        """回合结束递减副将战斗状态：猛击防减半回合数 -1；护盾本回合清空。"""
+        lt_status = cls._get_lt_status(player)
+        changed = False
+        if lt_status.get('def_debuff_rounds', 0) > 0:
+            lt_status['def_debuff_rounds'] -= 1
+            if lt_status['def_debuff_rounds'] <= 0:
+                lt_status.pop('def_debuff_rounds', None)
+            changed = True
+        if 'atk_buff_rounds' in lt_status:
+            lt_status.pop('atk_buff_rounds', None)
+            changed = True
+        if 'shield' in lt_status:
+            lt_status.pop('shield', None)
+            changed = True
+        if changed:
+            cls._set_lt_status(player, lt_status)
+
+    @classmethod
     def _tick_pk_bleed(cls, p1, p2):
         """PK 回合结算：双方若有流血，扣血并递减回合。返回扣血信息写入 last_action 由调用方处理。"""
         for p in (p1, p2):
@@ -71,6 +90,19 @@ class BattleService:
     def _set_monster_status(cls, player, status):
         data = player.get_current_encounter_data() or {}
         data['monster_status'] = status or {}
+        player.set_current_encounter_data(data)
+
+    # ---- 副将战斗状态 helpers（存于 encounter JSON 的 lt_status）----
+    # 存：atk_buff_rounds(猛击本回合攻+50%,1回合)、def_debuff_rounds(猛击自身防减半,2回合)、shield(法相护盾,本回合)
+    @classmethod
+    def _get_lt_status(cls, player):
+        data = player.get_current_encounter_data() or {}
+        return data.get('lt_status', {}) or {}
+
+    @classmethod
+    def _set_lt_status(cls, player, status):
+        data = player.get_current_encounter_data() or {}
+        data['lt_status'] = status or {}
         player.set_current_encounter_data(data)
 
     @classmethod
@@ -159,15 +191,82 @@ class BattleService:
         return lt
 
     @classmethod
-    def _lt_attack_monster(cls, lt, monster):
-        """Lieutenant attacks monster. Returns damage dealt."""
+    def _lt_attack_monster(cls, lt, monster, player=None):
+        """Lieutenant attacks monster. Returns (damage, skill_name|None).
+        主动技能按 trigger_rate 概率释放，消耗 lt.current_mana；蓝量不足则降级为普攻。
+        伤害一律走 _compute_damage 统一公式。player 用于读写 lt_status(猛击buff/护盾)。"""
         if not lt.is_alive or not lt.is_deployed:
-            return 0
+            return 0, None
+        if lt.current_mana <= 0:
+            lt.current_mana = 0
         lt_atk = lt.get_attack()
-        if random.random() >= monster.dodge_rate:
+        lt_status = cls._get_lt_status(player) if player else {}
+
+        # 猛击：本回合攻+50%(atk_buff_rounds>0 表示本回合猛击生效)
+        if lt_status.get('atk_buff_rounds', 0) > 0:
+            lt_atk = int(lt_atk * 1.5)
+
+        # 选一个可放的主动技能(按 trigger_rate 随机)
+        active_skill = None
+        for sk in lt.skills:
+            if sk.get('type') != 'active':
+                continue
+            trigger_rate = sk.get('trigger_rate', 0) / 100.0
+            if random.random() < trigger_rate:
+                # 蓝量检查：不够则跳过此技能(继续找下一个或降级普攻)
+                if lt.current_mana >= sk.get('mana_cost', 0):
+                    active_skill = sk
+                    break
+
+        # 闪避判定(普攻/技能都吃怪物闪避)
+        if random.random() < monster.dodge_rate:
+            return 0, None
+
+        if not active_skill:
+            # 普攻
             damage = cls._compute_damage(lt_atk, monster.defense, coefficient=1.0)
-            return damage
-        return 0
+            return damage, None
+
+        # 释放主动技能：扣蓝
+        lt.current_mana = max(0, lt.current_mana - active_skill.get('mana_cost', 0))
+        skill_name = active_skill.get('name')
+        sid = active_skill.get('id')
+
+        if sid == 'combo':
+            # 连击：打两次，每次独立计算(系数用 damage_rate，默认1.0即与普攻同)
+            coef = active_skill.get('damage_rate', 1.0)
+            d1 = cls._compute_damage(lt_atk, monster.defense, coefficient=coef)
+            d2 = cls._compute_damage(lt_atk, monster.defense, coefficient=coef)
+            return d1 + d2, skill_name
+        elif sid == 'smash':
+            # 猛击：本回合攻已+50%(上面已乘)，造成 damage_rate 倍伤害，并设自身防减半2回合
+            coef = active_skill.get('damage_rate', 1.2)
+            damage = cls._compute_damage(lt_atk, monster.defense, coefficient=coef)
+            if player:
+                lt_status['atk_buff_rounds'] = 0  # 本回合用完即消
+                lt_status['def_debuff_rounds'] = active_skill.get('def_debuff_rounds', 2)
+                cls._set_lt_status(player, lt_status)
+            return damage, skill_name
+        elif sid == 'thunder':
+            # 天雷：消耗大量蓝(已扣)，巨额伤害
+            coef = active_skill.get('damage_rate', 2.0)
+            damage = cls._compute_damage(lt_atk, monster.defense, coefficient=coef)
+            return damage, skill_name
+        else:
+            # 兜底：其他主动技能按 damage_rate 一次
+            coef = active_skill.get('damage_rate', 1.0)
+            damage = cls._compute_damage(lt_atk, monster.defense, coefficient=coef)
+            return damage, skill_name
+
+    @classmethod
+    def _lt_effective_defense(cls, lt, player):
+        """副将当前防御(猛击 debuff 期间减半)。"""
+        defense = lt.get_defense()
+        if player:
+            lt_status = cls._get_lt_status(player)
+            if lt_status.get('def_debuff_rounds', 0) > 0:
+                defense = defense // 2
+        return defense
 
     @classmethod
     def _monster_attack_with_lt(cls, monster, player, lt):
@@ -192,15 +291,49 @@ class BattleService:
         elif is_crit:
             monster_damage = int(monster_damage * 1.5)
 
+        # 法相(术士触发技能)：主人受击前有几率生成护盾抵消伤害(护盾=主人当前魔法×rate)
+        # 护盾存于 lt_status.shield，本回合有效；少了主人扣血，多了主人不扣且护盾消失。
+        lt_status = cls._get_lt_status(player)
+        if monster_damage > 0 and lt and lt.is_alive and lt.is_deployed:
+            for sk in lt.skills:
+                if sk.get('type') != 'triggered' or not sk.get('shield_rate'):
+                    continue
+                if random.random() < sk.get('trigger_rate', 0) / 100.0:
+                    shield = int(player.mana * sk.get('shield_rate', 0))
+                    if shield > 0:
+                        lt_status['shield'] = shield
+                        player.item_effect = (player.item_effect or "") + f"|{lt.name}{sk['name']}生成护盾{shield}"
+                    break
+            cls._set_lt_status(player, lt_status)
+
+        # 护盾抵消伤害
+        shield = lt_status.get('shield', 0)
+        if shield > 0 and monster_damage > 0:
+            absorbed = min(shield, monster_damage)
+            monster_damage -= absorbed
+            lt_status['shield'] = shield - absorbed
+            if lt_status['shield'] <= 0:
+                lt_status.pop('shield', None)
+            cls._set_lt_status(player, lt_status)
+            if monster_damage <= 0:
+                player.item_effect = (player.item_effect or "") + f"|护盾抵消全部伤害"
+            else:
+                player.item_effect = (player.item_effect or "") + f"|护盾抵消{absorbed}"
+
         monster.last_skill = "普攻"
         if dodge:
             dmg_text = "0(闪避)"
-        elif is_crit:
+        elif is_crit and monster_damage > 0:
             dmg_text = f"{monster_damage}(暴击)"
+        elif monster_damage == 0 and shield > 0:
+            dmg_text = f"0(护盾)"
         else:
             dmg_text = str(monster_damage)
 
         if lt and lt.is_alive and lt.is_deployed and lt.position == 'front':
+            # 副将挡刀：剩余伤害打副将(猛击 debuff 期间副将防御减半)
+            lt_def = cls._lt_effective_defense(lt, player)
+            # 注：挡刀直接承受怪物原始伤害(monster_damage 已被护盾抵减过)
             lt.current_health -= monster_damage
             monster.last_action = f"*『{monster.name}』使出[普攻],『{lt.name}』受到{dmg_text}伤害."
             monster.last_damage_dealt = dmg_text
@@ -214,38 +347,44 @@ class BattleService:
                     player.last_damage_taken = remaining
                     player.item_effect = f"副将{lt.name}阵亡！溢出{remaining}伤害"
             else:
-                player.item_effect = ""
+                if not player.item_effect:
+                    player.item_effect = ""
         else:
             player.health -= monster_damage
             player.last_damage_taken = monster_damage if not dodge else 0
             monster.last_action = f"*『{monster.name}』使出[普攻],『{player.name}』受到{dmg_text}伤害."
             monster.last_damage_dealt = dmg_text
 
-        # Check for lieutenant triggered skills (absorb/heal)
+        # Check for lieutenant triggered skills (absorb/heal) — 前后置都触发
         if lt and lt.is_alive and lt.is_deployed:
             cls._process_lt_trigger_skills(lt, player, monster, monster_damage)
 
     @classmethod
     def _process_lt_trigger_skills(cls, lt, player, monster, damage_taken):
-        """Process lieutenant triggered skills during combat."""
+        """Process lieutenant triggered skills during combat.
+        法相(护盾)已在 _monster_attack_with_lt 抵伤害阶段处理，这里只处理吸收(刺客)/回春(战士)。
+        前后置副将都可触发。"""
         for sk in lt.skills:
             if sk.get('type') != 'triggered':
                 continue
+            if sk.get('shield_rate'):
+                continue  # 法相已在上游处理
             trigger_rate = sk.get('trigger_rate', 0) / 100.0
             if random.random() < trigger_rate:
                 if sk.get('absorb_rate'):
                     absorb_pct = sk.get('absorb_rate', 0) / 100.0
                     absorbed = int(damage_taken * absorb_pct)
                     if absorbed > 0:
-                        player.health += absorbed
-                        player.item_effect += f"|{lt.name}{sk['name']}吸收{absorbed}"
+                        max_hp = PlayerService.get_max_health(player)
+                        player.health = min(max_hp, player.health + absorbed)
+                        player.item_effect = (player.item_effect or "") + f"|{lt.name}{sk['name']}吸收{absorbed}"
                 elif sk.get('heal_rate'):
                     heal_pct = sk.get('heal_rate', 0) / 100.0
                     max_hp = PlayerService.get_max_health(player)
                     heal_amount = int(max_hp * heal_pct)
                     if heal_amount > 0:
                         player.health = min(max_hp, player.health + heal_amount)
-                        player.item_effect += f"|{lt.name}{sk['name']}回复{heal_amount}"
+                        player.item_effect = (player.item_effect or "") + f"|{lt.name}{sk['name']}回复{heal_amount}"
 
     @classmethod
     def start_pve(cls, player, monster_id=None):
@@ -303,6 +442,12 @@ class BattleService:
         player.last_damage_dealt = ""
         player.last_action = ""
         player.item_effect = ""
+
+        # 出战副将进场补满生命/魔法(每场战斗满状态开始)
+        lt = cls._get_deployed_lt(player)
+        if lt:
+            lt.current_health = lt.get_max_health()
+            lt.current_mana = lt.get_max_mana()
 
         cls._save_encounter(player, monster)
         db.session.commit()
@@ -448,11 +593,11 @@ class BattleService:
                 WorldBossService.damage_boss(monster.monster_id, player.id, damage)
             # Lieutenant also attacks
             if lt and lt.is_alive:
-                lt_damage = cls._lt_attack_monster(lt, monster)
+                lt_damage, lt_skill = cls._lt_attack_monster(lt, monster, player)
                 if lt_damage > 0:
                     monster.health -= lt_damage
                     monster.last_damage_taken += lt_damage
-                    player_log += f",『{lt.name}』使出[普攻]"
+                    player_log += f",『{lt.name}』使出[{lt_skill or '普攻'}]"
                     dmg_text += f"＋{lt_damage}"
                     if encounter_data.get('is_world_boss'):
                         WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
@@ -462,11 +607,11 @@ class BattleService:
             damage = 0
             monster.last_damage_taken = 0
             if lt and lt.is_alive:
-                lt_damage = cls._lt_attack_monster(lt, monster)
+                lt_damage, lt_skill = cls._lt_attack_monster(lt, monster, player)
                 if lt_damage > 0:
                     monster.health -= lt_damage
                     monster.last_damage_taken += lt_damage
-                    player_log += f",『{lt.name}』使出[普攻]"
+                    player_log += f",『{lt.name}』使出[{lt_skill or '普攻'}]"
                     if encounter_data.get('is_world_boss'):
                         WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
             player_log += f",『{monster.name}』受到0(闪避)伤害."
@@ -485,6 +630,7 @@ class BattleService:
         # 回合结算：递减玩家状态 + 怪物状态/流血
         bleed_msgs = cls._tick_monster_status(player, monster)
         cls._tick_player_status(player)
+        cls._tick_lt_status(player)
         if bleed_msgs and not player.item_effect:
             player.item_effect = "".join(bleed_msgs)
         elif bleed_msgs:
@@ -653,11 +799,11 @@ class BattleService:
         lt_damage = 0
         player_log = f"*『{player.name}』使出[{skill_name}]"
         if lt and lt.is_alive:
-            lt_damage = cls._lt_attack_monster(lt, monster)
+            lt_damage, lt_skill = cls._lt_attack_monster(lt, monster, player)
             if lt_damage > 0:
                 monster.health -= lt_damage
                 monster.last_damage_taken += lt_damage
-                player_log += f",『{lt.name}』使出[普攻]"
+                player_log += f",『{lt.name}』使出[{lt_skill or '普攻'}]"
                 dmg_text += f"＋{lt_damage}"
                 if encounter_data.get('is_world_boss'):
                     WorldBossService.damage_boss(monster.monster_id, player.id, lt_damage)
@@ -679,6 +825,7 @@ class BattleService:
         # 回合结算：递减玩家状态 + 怪物状态/流血
         bleed_msgs = cls._tick_monster_status(player, monster)
         cls._tick_player_status(player)
+        cls._tick_lt_status(player)
         if bleed_msgs:
             player.item_effect = (player.item_effect or "") + "".join(bleed_msgs)
         cls._save_encounter(player, monster)

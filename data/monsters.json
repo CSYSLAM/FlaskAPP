@@ -41,12 +41,12 @@
     "immortal": false,
     "description": "人妖",
     "base_stats": {
-      "health": 500,
-      "mana": 125,
-      "attack": 35,
-      "defense": 17,
+      "health": 1000,
+      "mana": 1100,
+      "attack": 48,
+      "defense": 1720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -336,12 +336,12 @@
     "immortal": false,
     "description": "铜人",
     "base_stats": {
-      "health": 140,
-      "mana": 35,
-      "attack": 8,
-      "defense": 4,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 100,
+      "mana": 100,
+      "attack": 12,
+      "defense": 280,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -427,12 +427,12 @@
     "immortal": false,
     "description": "小偷",
     "base_stats": {
-      "health": 300,
-      "mana": 75,
-      "attack": 20,
-      "defense": 10,
+      "health": 500,
+      "mana": 600,
+      "attack": 28,
+      "defense": 920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -518,12 +518,12 @@
     "immortal": false,
     "description": "【灵兽】青鸾",
     "base_stats": {
-      "health": 4200,
-      "mana": 1100,
-      "attack": 240,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 20000000,
+      "mana": 300000,
+      "attack": 2000,
+      "defense": 38000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -583,12 +583,12 @@
     "immortal": false,
     "description": "【活】灵火道人",
     "base_stats": {
-      "health": 4200,
-      "mana": 1100,
-      "attack": 240,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -646,12 +646,12 @@
     "immortal": false,
     "description": "蜀军前锋",
     "base_stats": {
-      "health": 2600,
-      "mana": 650,
-      "attack": 170,
-      "defense": 120,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -704,12 +704,12 @@
     "immortal": false,
     "description": "【精】法正",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -767,12 +767,12 @@
     "immortal": false,
     "description": "【精】廖化",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -830,12 +830,12 @@
     "immortal": false,
     "description": "吴军前锋",
     "base_stats": {
-      "health": 2600,
-      "mana": 650,
-      "attack": 170,
-      "defense": 120,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -888,12 +888,12 @@
     "immortal": false,
     "description": "【精】徐盛",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -951,12 +951,12 @@
     "immortal": false,
     "description": "【精】丁奉",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1014,12 +1014,12 @@
     "immortal": false,
     "description": "【活】灵土道人",
     "base_stats": {
-      "health": 4200,
-      "mana": 1100,
-      "attack": 240,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1077,12 +1077,12 @@
     "immortal": false,
     "description": "【精】辛毗",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1140,12 +1140,12 @@
     "immortal": false,
     "description": "【精】步骘",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1203,12 +1203,12 @@
     "immortal": false,
     "description": "【精】刘封",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1266,12 +1266,12 @@
     "immortal": false,
     "description": "【精】糜芳",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1329,12 +1329,12 @@
     "immortal": false,
     "description": "吴军前锋",
     "base_stats": {
-      "health": 2700,
-      "mana": 680,
-      "attack": 175,
-      "defense": 122,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1387,12 +1387,12 @@
     "immortal": false,
     "description": "【精】孙静",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1450,12 +1450,12 @@
     "immortal": false,
     "description": "【精】潘章",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1683,12 +1683,12 @@
     "immortal": false,
     "description": "翼州步兵",
     "base_stats": {
-      "health": 580,
-      "mana": 145,
-      "attack": 41,
-      "defense": 20,
+      "health": 1600,
+      "mana": 1500,
+      "attack": 56,
+      "defense": 2040,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1735,12 +1735,12 @@
     "immortal": false,
     "description": "乌恒骑兵",
     "base_stats": {
-      "health": 740,
-      "mana": 185,
-      "attack": 53,
-      "defense": 26,
+      "health": 2800,
+      "mana": 2300,
+      "attack": 72,
+      "defense": 2680,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1787,12 +1787,12 @@
     "immortal": false,
     "description": "精英逢纪",
     "base_stats": {
-      "health": 580,
-      "mana": 145,
-      "attack": 41,
-      "defense": 20,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 7673,
+      "mana": 2558,
+      "attack": 192,
+      "defense": 2558,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1848,12 +1848,12 @@
     "immortal": false,
     "description": "精英公孙碧",
     "base_stats": {
-      "health": 740,
-      "mana": 185,
-      "attack": 53,
-      "defense": 26,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 9421,
+      "mana": 3140,
+      "attack": 235,
+      "defense": 3140,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -1909,12 +1909,12 @@
     "immortal": false,
     "description": "翼州斧兵",
     "base_stats": {
-      "health": 660,
-      "mana": 165,
-      "attack": 47,
-      "defense": 23,
+      "health": 2200,
+      "mana": 1900,
+      "attack": 64,
+      "defense": 2360,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1961,12 +1961,12 @@
     "immortal": false,
     "description": "野狗",
     "base_stats": {
-      "health": 220,
-      "mana": 55,
-      "attack": 14,
-      "defense": 7,
+      "health": 300,
+      "mana": 400,
+      "attack": 20,
+      "defense": 600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2178,12 +2178,12 @@
     "immortal": false,
     "description": "马贼探子",
     "base_stats": {
-      "health": 460,
-      "mana": 115,
-      "attack": 32,
-      "defense": 16,
+      "health": 900,
+      "mana": 1000,
+      "attack": 44,
+      "defense": 1560,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2235,12 +2235,12 @@
     "immortal": false,
     "description": "精英高干",
     "base_stats": {
-      "health": 820,
-      "mana": 205,
-      "attack": 59,
-      "defense": 29,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 10438,
+      "mana": 3479,
+      "attack": 261,
+      "defense": 3479,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -2296,12 +2296,12 @@
     "immortal": false,
     "description": "精英郭图",
     "base_stats": {
-      "health": 660,
-      "mana": 165,
-      "attack": 47,
-      "defense": 23,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 8502,
+      "mana": 2834,
+      "attack": 212,
+      "defense": 2834,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -2357,12 +2357,12 @@
     "immortal": false,
     "description": "土匪探子",
     "base_stats": {
-      "health": 380,
-      "mana": 95,
-      "attack": 26,
-      "defense": 13,
+      "health": 700,
+      "mana": 800,
+      "attack": 36,
+      "defense": 1240,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2414,12 +2414,12 @@
     "immortal": false,
     "description": "白龟",
     "base_stats": {
-      "health": 820,
-      "mana": 205,
-      "attack": 59,
-      "defense": 29,
+      "health": 3400,
+      "mana": 2700,
+      "attack": 80,
+      "defense": 3000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2466,12 +2466,12 @@
     "immortal": false,
     "description": "短鼻鳄",
     "base_stats": {
-      "health": 980,
-      "mana": 245,
-      "attack": 71,
-      "defense": 35,
+      "health": 4600,
+      "mana": 3500,
+      "attack": 96,
+      "defense": 3640,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2527,12 +2527,12 @@
     "immortal": false,
     "description": "潜水巨龟",
     "base_stats": {
-      "health": 860,
-      "mana": 215,
-      "attack": 62,
-      "defense": 31,
+      "health": 3700,
+      "mana": 2900,
+      "attack": 84,
+      "defense": 3160,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2579,12 +2579,12 @@
     "immortal": false,
     "description": "暴躁猴",
     "base_stats": {
-      "health": 1300,
-      "mana": 325,
-      "attack": 95,
-      "defense": 47,
+      "health": 7000,
+      "mana": 5100,
+      "attack": 128,
+      "defense": 4920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2640,12 +2640,12 @@
     "immortal": false,
     "description": "精英魏讽",
     "base_stats": {
-      "health": 980,
-      "mana": 245,
-      "attack": 71,
-      "defense": 35,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 12816,
+      "mana": 4272,
+      "attack": 320,
+      "defense": 4272,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -2701,12 +2701,12 @@
     "immortal": false,
     "description": "山越骑兵",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 41,
+      "health": 5800,
+      "mana": 4300,
+      "attack": 112,
+      "defense": 4280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2762,12 +2762,12 @@
     "immortal": false,
     "description": "白狼",
     "base_stats": {
-      "health": 1220,
-      "mana": 305,
-      "attack": 89,
-      "defense": 44,
+      "health": 6400,
+      "mana": 4700,
+      "attack": 120,
+      "defense": 4600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2823,12 +2823,12 @@
     "immortal": false,
     "description": "精英胡炮儿",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 41,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 15734,
+      "mana": 5245,
+      "attack": 393,
+      "defense": 5245,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -2888,12 +2888,12 @@
     "immortal": false,
     "description": "南蛮兵",
     "base_stats": {
-      "health": 1060,
-      "mana": 265,
-      "attack": 77,
-      "defense": 38,
+      "health": 5200,
+      "mana": 3900,
+      "attack": 104,
+      "defense": 3960,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2949,12 +2949,12 @@
     "immortal": false,
     "description": "精英张泉",
     "base_stats": {
-      "health": 1220,
-      "mana": 305,
-      "attack": 89,
-      "defense": 44,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 17434,
+      "mana": 5811,
+      "attack": 436,
+      "defense": 5811,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -3014,12 +3014,12 @@
     "immortal": false,
     "description": "酒肉和尚",
     "base_stats": {
-      "health": 1420,
-      "mana": 355,
-      "attack": 104,
-      "defense": 52,
+      "health": 7900,
+      "mana": 5700,
+      "attack": 140,
+      "defense": 5400,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -3075,12 +3075,12 @@
     "immortal": false,
     "description": "墨鸦",
     "base_stats": {
-      "health": 1500,
-      "mana": 375,
-      "attack": 110,
-      "defense": 55,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -3136,12 +3136,12 @@
     "immortal": false,
     "description": "精英张先",
     "base_stats": {
-      "health": 1060,
-      "mana": 265,
-      "attack": 77,
-      "defense": 38,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 14200,
+      "mana": 4733,
+      "attack": 355,
+      "defense": 4733,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -3197,12 +3197,12 @@
     "immortal": false,
     "description": "黄巾残军",
     "base_stats": {
-      "health": 700,
-      "mana": 175,
-      "attack": 50,
-      "defense": 25,
+      "health": 2500,
+      "mana": 2100,
+      "attack": 68,
+      "defense": 2520,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -3929,12 +3929,12 @@
     "immortal": false,
     "description": "许昌卫兵",
     "base_stats": {
-      "health": 1360,
-      "mana": 340,
-      "attack": 102,
-      "defense": 68,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 8200,
+      "mana": 5900,
+      "attack": 144,
+      "defense": 5560,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -3987,12 +3987,12 @@
     "immortal": false,
     "description": "魏军护兵",
     "base_stats": {
-      "health": 1400,
-      "mana": 350,
-      "attack": 105,
-      "defense": 70,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4045,12 +4045,12 @@
     "immortal": false,
     "description": "太子守卫",
     "base_stats": {
-      "health": 1280,
-      "mana": 320,
-      "attack": 96,
-      "defense": 64,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 7600,
+      "mana": 5500,
+      "attack": 136,
+      "defense": 5240,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4099,17 +4099,16 @@
     "name": "青蛇",
     "level": 40,
     "is_elite": true,
-    "is_divine_beast": true,
     "killable": true,
     "immortal": false,
     "description": "【兽王】青蛇",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 160,
-      "defense": 100,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "health": 8000000,
+      "mana": 200000,
+      "attack": 1500,
+      "defense": 35000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -4156,6 +4155,7 @@
       },
       "experience": 600
     },
+    "is_divine_beast": true,
     "is_copy": false,
     "copy_only": false,
     "max_health": 100
@@ -4372,12 +4372,12 @@
     "immortal": false,
     "description": "蜀军守卫",
     "base_stats": {
-      "health": 2700,
-      "mana": 680,
-      "attack": 175,
-      "defense": 122,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4430,12 +4430,12 @@
     "immortal": false,
     "description": "蜀军亲卫",
     "base_stats": {
-      "health": 2700,
-      "mana": 675,
-      "attack": 180,
-      "defense": 135,
+      "health": 11500,
+      "mana": 8100,
+      "attack": 188,
+      "defense": 7320,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4488,12 +4488,12 @@
     "immortal": false,
     "description": "【精】王平",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -4551,12 +4551,12 @@
     "immortal": false,
     "description": "【精】马岱",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -4614,12 +4614,12 @@
     "immortal": false,
     "description": "吴军守卫",
     "base_stats": {
-      "health": 2700,
-      "mana": 680,
-      "attack": 175,
-      "defense": 122,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4672,12 +4672,12 @@
     "immortal": false,
     "description": "吴军亲卫",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -4735,12 +4735,12 @@
     "immortal": false,
     "description": "【精】陆逊",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -4798,12 +4798,12 @@
     "immortal": false,
     "description": "【精】孙桓",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -4861,12 +4861,12 @@
     "immortal": false,
     "description": "倭寇细作",
     "base_stats": {
-      "health": 1900,
-      "mana": 520,
-      "attack": 130,
-      "defense": 95,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.02
+      "health": 8800,
+      "mana": 6300,
+      "attack": 152,
+      "defense": 5880,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4919,12 +4919,12 @@
     "immortal": false,
     "description": "黄巾守卫",
     "base_stats": {
-      "health": 3000,
-      "mana": 760,
-      "attack": 205,
-      "defense": 150,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.03
+      "health": 12100,
+      "mana": 8500,
+      "attack": 196,
+      "defense": 7640,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -4977,12 +4977,12 @@
     "immortal": false,
     "description": "黄巾力士",
     "base_stats": {
-      "health": 3400,
-      "mana": 820,
-      "attack": 225,
-      "defense": 165,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.03
+      "health": 12700,
+      "mana": 8900,
+      "attack": 204,
+      "defense": 7960,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5035,12 +5035,12 @@
     "immortal": false,
     "description": "【精】张角",
     "base_stats": {
-      "health": 4200,
-      "mana": 980,
-      "attack": 260,
-      "defense": 190,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5098,12 +5098,12 @@
     "immortal": false,
     "description": "【精】张宝",
     "base_stats": {
-      "health": 4200,
-      "mana": 980,
-      "attack": 260,
-      "defense": 190,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5161,12 +5161,12 @@
     "immortal": false,
     "description": "【精】张梁",
     "base_stats": {
-      "health": 4200,
-      "mana": 980,
-      "attack": 260,
-      "defense": 190,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5224,12 +5224,12 @@
     "immortal": false,
     "description": "【兽王】应龙",
     "base_stats": {
-      "health": 4600,
-      "mana": 1100,
-      "attack": 285,
-      "defense": 205,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 8000000,
+      "mana": 200000,
+      "attack": 1500,
+      "defense": 35000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -5289,12 +5289,12 @@
     "immortal": false,
     "description": "【灵兽】毕方",
     "base_stats": {
-      "health": 4800,
-      "mana": 1150,
-      "attack": 300,
-      "defense": 220,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 20000000,
+      "mana": 300000,
+      "attack": 2000,
+      "defense": 38000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -5354,12 +5354,12 @@
     "immortal": false,
     "description": "【精】黄巾上将",
     "base_stats": {
-      "health": 5000,
-      "mana": 1180,
-      "attack": 310,
-      "defense": 230,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.04
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5417,12 +5417,12 @@
     "immortal": false,
     "description": "小八嘎",
     "base_stats": {
-      "health": 640,
-      "mana": 160,
-      "attack": 48,
-      "defense": 32,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.01
+      "health": 2800,
+      "mana": 2300,
+      "attack": 72,
+      "defense": 2680,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5466,12 +5466,12 @@
     "immortal": false,
     "description": "许昌卫兵",
     "base_stats": {
-      "health": 1360,
-      "mana": 340,
-      "attack": 102,
-      "defense": 68,
+      "health": 8200,
+      "mana": 5900,
+      "attack": 144,
+      "defense": 5560,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5524,12 +5524,12 @@
     "immortal": false,
     "description": "泥蛇",
     "base_stats": {
-      "health": 1440,
-      "mana": 360,
-      "attack": 108,
-      "defense": 72,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 8800,
+      "mana": 6300,
+      "attack": 152,
+      "defense": 5880,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5582,12 +5582,12 @@
     "immortal": false,
     "description": "小八嘎",
     "base_stats": {
-      "health": 640,
-      "mana": 160,
-      "attack": 48,
-      "defense": 32,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.01
+      "health": 2800,
+      "mana": 2300,
+      "attack": 72,
+      "defense": 2680,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5631,12 +5631,12 @@
     "immortal": false,
     "description": "【精】孔由",
     "base_stats": {
-      "health": 1860,
-      "mana": 465,
-      "attack": 124,
-      "defense": 93,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 20334,
+      "mana": 6778,
+      "attack": 508,
+      "defense": 6778,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5694,12 +5694,12 @@
     "immortal": false,
     "description": "邪恶道士",
     "base_stats": {
-      "health": 1720,
-      "mana": 430,
-      "attack": 129,
-      "defense": 86,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5752,12 +5752,12 @@
     "immortal": false,
     "description": "【精】霸陵王",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 160,
-      "defense": 100,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5817,12 +5817,12 @@
     "immortal": false,
     "description": "机关兽",
     "base_stats": {
-      "health": 1200,
-      "mana": 300,
-      "attack": 90,
-      "defense": 60,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 7000,
+      "mana": 5100,
+      "attack": 128,
+      "defense": 4920,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5875,12 +5875,12 @@
     "immortal": false,
     "description": "【精】杨修",
     "base_stats": {
-      "health": 1980,
-      "mana": 495,
-      "attack": 132,
-      "defense": 99,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 22531,
+      "mana": 7510,
+      "attack": 563,
+      "defense": 7510,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -5938,12 +5938,12 @@
     "immortal": false,
     "description": "斗篷白衣人",
     "base_stats": {
-      "health": 1520,
-      "mana": 380,
-      "attack": 114,
-      "defense": 76,
+      "health": 9400,
+      "mana": 6700,
+      "attack": 160,
+      "defense": 6200,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -5996,12 +5996,12 @@
     "immortal": false,
     "description": "斗篷黑衣人",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 120,
-      "defense": 80,
+      "health": 10000,
+      "mana": 7100,
+      "attack": 168,
+      "defense": 6520,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -6054,12 +6054,12 @@
     "immortal": false,
     "description": "【精】鲍信",
     "base_stats": {
-      "health": 2100,
-      "mana": 525,
-      "attack": 140,
-      "defense": 105,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 24965,
+      "mana": 8322,
+      "attack": 624,
+      "defense": 8322,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -6117,12 +6117,12 @@
     "immortal": false,
     "description": "【精】张超",
     "base_stats": {
-      "health": 2200,
-      "mana": 550,
-      "attack": 148,
-      "defense": 110,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 27662,
+      "mana": 9221,
+      "attack": 691,
+      "defense": 9221,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -6180,12 +6180,12 @@
     "immortal": false,
     "description": "酒鬼",
     "base_stats": {
-      "health": 2700,
-      "mana": 675,
-      "attack": 180,
-      "defense": 135,
+      "health": 11500,
+      "mana": 8100,
+      "attack": 188,
+      "defense": 7320,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -6238,12 +6238,12 @@
     "immortal": false,
     "description": "【精】风陵王",
     "base_stats": {
-      "health": 2340,
-      "mana": 585,
-      "attack": 156,
-      "defense": 117,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 30651,
+      "mana": 10217,
+      "attack": 766,
+      "defense": 10217,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -6607,12 +6607,12 @@
     "immortal": false,
     "description": "守城兵",
     "base_stats": {
-      "health": 2200,
-      "mana": 550,
-      "attack": 145,
-      "defense": 110,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -6937,12 +6937,12 @@
     "immortal": false,
     "description": "守城兵",
     "base_stats": {
-      "health": 2200,
-      "mana": 550,
-      "attack": 145,
-      "defense": 110,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -7029,12 +7029,12 @@
     "immortal": false,
     "description": "【灵兽】蛟龙",
     "base_stats": {
-      "health": 4200,
-      "mana": 1100,
-      "attack": 240,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 20000000,
+      "mana": 300000,
+      "attack": 2000,
+      "defense": 38000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -7094,12 +7094,12 @@
     "immortal": false,
     "description": "【灵兽】辟邪",
     "base_stats": {
-      "health": 4200,
-      "mana": 1100,
-      "attack": 240,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 20000000,
+      "mana": 300000,
+      "attack": 2000,
+      "defense": 38000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -7329,12 +7329,12 @@
     "immortal": false,
     "description": "守城兵",
     "base_stats": {
-      "health": 2200,
-      "mana": 550,
-      "attack": 145,
-      "defense": 110,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -7387,12 +7387,12 @@
     "immortal": false,
     "description": "魏军前锋",
     "base_stats": {
-      "health": 2600,
-      "mana": 650,
-      "attack": 170,
-      "defense": 120,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -7445,12 +7445,12 @@
     "immortal": false,
     "description": "【精】侯成",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -7508,12 +7508,12 @@
     "immortal": false,
     "description": "【精】李典",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -7571,12 +7571,12 @@
     "immortal": false,
     "description": "【活】灵水道人",
     "base_stats": {
-      "health": 4200,
-      "mana": 1100,
-      "attack": 240,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -7634,12 +7634,12 @@
     "immortal": false,
     "description": "魏军守卫",
     "base_stats": {
-      "health": 2650,
-      "mana": 650,
-      "attack": 175,
-      "defense": 125,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -7692,12 +7692,12 @@
     "immortal": false,
     "description": "魏军亲卫",
     "base_stats": {
-      "health": 3000,
-      "mana": 750,
-      "attack": 195,
-      "defense": 145,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 11500,
+      "mana": 8100,
+      "attack": 188,
+      "defense": 7320,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -7750,12 +7750,12 @@
     "immortal": false,
     "description": "【精】李典",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -7813,12 +7813,12 @@
     "immortal": false,
     "description": "【精】庞德",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 41696,
+      "mana": 13899,
+      "attack": 1042,
+      "defense": 13899,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -7876,12 +7876,12 @@
     "immortal": false,
     "description": "董卓护卫",
     "base_stats": {
-      "health": 3600,
-      "mana": 900,
-      "attack": 240,
-      "defense": 180,
+      "health": 15700,
+      "mana": 10900,
+      "attack": 248,
+      "defense": 9720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -7934,12 +7934,12 @@
     "immortal": false,
     "description": "【精】祈天道人",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -7997,12 +7997,12 @@
     "immortal": false,
     "description": "【圣兽】朱雀",
     "base_stats": {
-      "health": 5000,
-      "mana": 1250,
-      "attack": 300,
-      "defense": 225,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -8062,12 +8062,12 @@
     "immortal": false,
     "description": "【圣兽】青龙",
     "base_stats": {
-      "health": 5000,
-      "mana": 1250,
-      "attack": 300,
-      "defense": 225,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -8127,12 +8127,12 @@
     "immortal": false,
     "description": "【精】洛阳副官",
     "base_stats": {
-      "health": 4500,
-      "mana": 1125,
-      "attack": 270,
-      "defense": 200,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 1000000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -8190,12 +8190,12 @@
     "immortal": false,
     "description": "【圣兽】白虎",
     "base_stats": {
-      "health": 5000,
-      "mana": 1250,
-      "attack": 300,
-      "defense": 225,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -8255,12 +8255,12 @@
     "immortal": false,
     "description": "【精】神秘将军",
     "base_stats": {
-      "health": 4500,
-      "mana": 1125,
-      "attack": 270,
-      "defense": 200,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 1000000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -8624,12 +8624,12 @@
     "immortal": false,
     "description": "洛阳劫匪",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 210,
-      "defense": 155,
+      "health": 13300,
+      "mana": 9300,
+      "attack": 212,
+      "defense": 8280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -8682,12 +8682,12 @@
     "immortal": false,
     "description": "【精】张济",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -8745,12 +8745,12 @@
     "immortal": false,
     "description": "【精】孙礼",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -8808,12 +8808,12 @@
     "immortal": false,
     "description": "【精】曹纯",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -8871,12 +8871,12 @@
     "immortal": false,
     "description": "【精】连弩队长",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -8934,12 +8934,12 @@
     "immortal": false,
     "description": "董军长弓手",
     "base_stats": {
-      "health": 3400,
-      "mana": 850,
-      "attack": 225,
-      "defense": 165,
+      "health": 14500,
+      "mana": 10100,
+      "attack": 228,
+      "defense": 8920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -8992,12 +8992,12 @@
     "immortal": false,
     "description": "【精】徐荣",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9055,12 +9055,12 @@
     "immortal": false,
     "description": "董军弓兵",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 215,
-      "defense": 160,
+      "health": 13900,
+      "mana": 9700,
+      "attack": 220,
+      "defense": 8600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -9113,12 +9113,12 @@
     "immortal": false,
     "description": "【精】虎豹队长",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9176,12 +9176,12 @@
     "immortal": false,
     "description": "【精】华安",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9239,12 +9239,12 @@
     "immortal": false,
     "description": "【精】越女兵长",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9302,12 +9302,12 @@
     "immortal": false,
     "description": "【精】于吉",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 195,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 69640,
+      "mana": 23213,
+      "attack": 1741,
+      "defense": 23213,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9673,12 +9673,12 @@
     "immortal": false,
     "description": "【精】杨弘",
     "base_stats": {
-      "health": 2200,
-      "mana": 550,
-      "attack": 148,
-      "defense": 110,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 27662,
+      "mana": 9221,
+      "attack": 691,
+      "defense": 9221,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9736,12 +9736,12 @@
     "immortal": false,
     "description": "太子护卫",
     "base_stats": {
-      "health": 1360,
-      "mana": 340,
-      "attack": 102,
-      "defense": 68,
+      "health": 8200,
+      "mana": 5900,
+      "attack": 144,
+      "defense": 5560,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -9794,12 +9794,12 @@
     "immortal": false,
     "description": "吴军护兵",
     "base_stats": {
-      "health": 1400,
-      "mana": 350,
-      "attack": 105,
-      "defense": 70,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -9852,12 +9852,12 @@
     "immortal": false,
     "description": "【精】雷薄",
     "base_stats": {
-      "health": 1980,
-      "mana": 495,
-      "attack": 132,
-      "defense": 99,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 22531,
+      "mana": 7510,
+      "attack": 563,
+      "defense": 7510,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -9915,12 +9915,12 @@
     "immortal": false,
     "description": "建邺卫兵",
     "base_stats": {
-      "health": 1440,
-      "mana": 360,
-      "attack": 108,
-      "defense": 72,
+      "health": 8800,
+      "mana": 6300,
+      "attack": 152,
+      "defense": 5880,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -9973,12 +9973,12 @@
     "immortal": false,
     "description": "鹰卫",
     "base_stats": {
-      "health": 2700,
-      "mana": 680,
-      "attack": 175,
-      "defense": 122,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -10031,12 +10031,12 @@
     "immortal": false,
     "description": "梁上君子",
     "base_stats": {
-      "health": 2700,
-      "mana": 675,
-      "attack": 180,
-      "defense": 135,
+      "health": 11500,
+      "mana": 8100,
+      "attack": 188,
+      "defense": 7320,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -10085,17 +10085,16 @@
     "name": "翼虎",
     "level": 40,
     "is_elite": true,
-    "is_divine_beast": true,
     "killable": true,
     "immortal": false,
     "description": "【兽王】翼虎",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 160,
-      "defense": 120,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 8000000,
+      "mana": 200000,
+      "attack": 1500,
+      "defense": 35000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -10142,6 +10141,7 @@
       },
       "experience": 900
     },
+    "is_divine_beast": true,
     "is_copy": false,
     "copy_only": false,
     "max_health": 100
@@ -10154,12 +10154,12 @@
     "immortal": false,
     "description": "【精】阎象",
     "base_stats": {
-      "health": 2100,
-      "mana": 525,
-      "attack": 140,
-      "defense": 105,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 24965,
+      "mana": 8322,
+      "attack": 624,
+      "defense": 8322,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -10217,12 +10217,12 @@
     "immortal": false,
     "description": "赌徒",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 120,
-      "defense": 80,
+      "health": 10000,
+      "mana": 7100,
+      "attack": 168,
+      "defense": 6520,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -10275,12 +10275,12 @@
     "immortal": false,
     "description": "凤鸟",
     "base_stats": {
-      "health": 1520,
-      "mana": 380,
-      "attack": 114,
-      "defense": 76,
+      "health": 9400,
+      "mana": 6700,
+      "attack": 160,
+      "defense": 6200,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -10333,12 +10333,12 @@
     "immortal": false,
     "description": "【精】陈兰",
     "base_stats": {
-      "health": 1860,
-      "mana": 465,
-      "attack": 124,
-      "defense": 93,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 20334,
+      "mana": 6778,
+      "attack": 508,
+      "defense": 6778,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -10396,12 +10396,12 @@
     "immortal": false,
     "description": "机关兽",
     "base_stats": {
-      "health": 1200,
-      "mana": 300,
-      "attack": 90,
-      "defense": 60,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 7000,
+      "mana": 5100,
+      "attack": 128,
+      "defense": 4920,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -10454,12 +10454,12 @@
     "immortal": false,
     "description": "兵痞",
     "base_stats": {
-      "health": 1280,
-      "mana": 320,
-      "attack": 96,
-      "defense": 64,
+      "health": 7600,
+      "mana": 5500,
+      "attack": 136,
+      "defense": 5240,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -10512,12 +10512,12 @@
     "immortal": false,
     "description": "【精】山越左骑使",
     "base_stats": {
-      "health": 2340,
-      "mana": 585,
-      "attack": 156,
-      "defense": 117,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 30651,
+      "mana": 10217,
+      "attack": 766,
+      "defense": 10217,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -10575,12 +10575,12 @@
     "immortal": false,
     "description": "【精】山越右骑使",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 160,
-      "defense": 120,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -11012,12 +11012,12 @@
     "immortal": false,
     "description": "【精】刘通",
     "base_stats": {
-      "health": 1060,
-      "mana": 265,
-      "attack": 74,
-      "defense": 53,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 14200,
+      "mana": 4733,
+      "attack": 355,
+      "defense": 4733,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -11070,12 +11070,12 @@
     "immortal": false,
     "description": "马贼弓手",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 41,
+      "health": 6400,
+      "mana": 4700,
+      "attack": 120,
+      "defense": 4600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11128,12 +11128,12 @@
     "immortal": false,
     "description": "马贼刀手",
     "base_stats": {
-      "health": 1400,
-      "mana": 350,
-      "attack": 105,
-      "defense": 70,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11186,12 +11186,12 @@
     "immortal": false,
     "description": "【精】黄能",
     "base_stats": {
-      "health": 980,
-      "mana": 245,
-      "attack": 70,
-      "defense": 49,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 12816,
+      "mana": 4272,
+      "attack": 320,
+      "defense": 4272,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -11244,12 +11244,12 @@
     "immortal": false,
     "description": "银狐",
     "base_stats": {
-      "health": 860,
-      "mana": 215,
-      "attack": 62,
-      "defense": 31,
+      "health": 3700,
+      "mana": 2900,
+      "attack": 84,
+      "defense": 3160,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11293,12 +11293,12 @@
     "immortal": false,
     "description": "太平流寇",
     "base_stats": {
-      "health": 780,
-      "mana": 195,
-      "attack": 56,
-      "defense": 28,
+      "health": 3100,
+      "mana": 2500,
+      "attack": 76,
+      "defense": 2840,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11342,12 +11342,12 @@
     "immortal": false,
     "description": "幽影精锐",
     "base_stats": {
-      "health": 980,
-      "mana": 245,
-      "attack": 70,
-      "defense": 35,
+      "health": 4600,
+      "mana": 3500,
+      "attack": 96,
+      "defense": 3640,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11400,12 +11400,12 @@
     "immortal": false,
     "description": "【精】杨散",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 62,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 15734,
+      "mana": 5245,
+      "attack": 393,
+      "defense": 5245,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -11463,12 +11463,12 @@
     "immortal": false,
     "description": "虎豹营亲卫",
     "base_stats": {
-      "health": 1060,
-      "mana": 265,
-      "attack": 77,
-      "defense": 38,
+      "health": 5200,
+      "mana": 3900,
+      "attack": 104,
+      "defense": 3960,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11521,12 +11521,12 @@
     "immortal": false,
     "description": "【精】范漫",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 62,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 17434,
+      "mana": 5811,
+      "attack": 436,
+      "defense": 5811,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -11584,12 +11584,12 @@
     "immortal": false,
     "description": "黄巾暴徒",
     "base_stats": {
-      "health": 1200,
-      "mana": 300,
-      "attack": 90,
-      "defense": 60,
+      "health": 7000,
+      "mana": 5100,
+      "attack": 128,
+      "defense": 4920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11642,12 +11642,12 @@
     "immortal": false,
     "description": "金钱豹",
     "base_stats": {
-      "health": 1040,
-      "mana": 260,
-      "attack": 78,
-      "defense": 39,
+      "health": 5800,
+      "mana": 4300,
+      "attack": 112,
+      "defense": 4280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11700,12 +11700,12 @@
     "immortal": false,
     "description": "毒蜥蜴",
     "base_stats": {
-      "health": 1320,
-      "mana": 330,
-      "attack": 99,
-      "defense": 66,
+      "health": 7900,
+      "mana": 5700,
+      "attack": 140,
+      "defense": 5400,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -11758,12 +11758,12 @@
     "immortal": false,
     "description": "苍狼",
     "base_stats": {
-      "health": 700,
-      "mana": 175,
-      "attack": 50,
-      "defense": 25,
+      "health": 2500,
+      "mana": 2100,
+      "attack": 68,
+      "defense": 2520,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12215,12 +12215,12 @@
     "immortal": false,
     "description": "小偷",
     "base_stats": {
-      "health": 300,
-      "mana": 75,
-      "attack": 20,
-      "defense": 10,
+      "health": 500,
+      "mana": 600,
+      "attack": 28,
+      "defense": 920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12269,12 +12269,12 @@
     "immortal": false,
     "description": "铜人",
     "base_stats": {
-      "health": 140,
-      "mana": 35,
-      "attack": 8,
-      "defense": 4,
+      "health": 100,
+      "mana": 100,
+      "attack": 12,
+      "defense": 280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12323,12 +12323,12 @@
     "immortal": false,
     "description": "【精】严旺",
     "base_stats": {
-      "health": 660,
-      "mana": 165,
-      "attack": 47,
-      "defense": 35,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 8502,
+      "mana": 2834,
+      "attack": 212,
+      "defense": 2834,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -12381,12 +12381,12 @@
     "immortal": false,
     "description": "野狗",
     "base_stats": {
-      "health": 220,
-      "mana": 55,
-      "attack": 14,
-      "defense": 7,
+      "health": 300,
+      "mana": 400,
+      "attack": 20,
+      "defense": 600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12435,12 +12435,12 @@
     "immortal": false,
     "description": "窃贼",
     "base_stats": {
-      "health": 140,
-      "mana": 35,
-      "attack": 8,
-      "defense": 4,
+      "health": 100,
+      "mana": 100,
+      "attack": 12,
+      "defense": 280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12489,12 +12489,12 @@
     "immortal": false,
     "description": "黑野猪",
     "base_stats": {
-      "health": 660,
-      "mana": 165,
-      "attack": 47,
-      "defense": 23,
+      "health": 2200,
+      "mana": 1900,
+      "attack": 64,
+      "defense": 2360,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12538,12 +12538,12 @@
     "immortal": false,
     "description": "淘金者",
     "base_stats": {
-      "health": 380,
-      "mana": 95,
-      "attack": 26,
-      "defense": 13,
+      "health": 700,
+      "mana": 800,
+      "attack": 36,
+      "defense": 1240,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12592,12 +12592,12 @@
     "immortal": false,
     "description": "花妖",
     "base_stats": {
-      "health": 820,
-      "mana": 205,
-      "attack": 59,
-      "defense": 29,
+      "health": 3400,
+      "mana": 2700,
+      "attack": 80,
+      "defense": 3000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12641,12 +12641,12 @@
     "immortal": false,
     "description": "【精】周昕",
     "base_stats": {
-      "health": 580,
-      "mana": 145,
-      "attack": 41,
-      "defense": 30,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 7673,
+      "mana": 2558,
+      "attack": 192,
+      "defense": 2558,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -12699,12 +12699,12 @@
     "immortal": false,
     "description": "【精】王朗",
     "base_stats": {
-      "health": 740,
-      "mana": 185,
-      "attack": 53,
-      "defense": 39,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 9421,
+      "mana": 3140,
+      "attack": 235,
+      "defense": 3140,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -12757,12 +12757,12 @@
     "immortal": false,
     "description": "土匪",
     "base_stats": {
-      "health": 460,
-      "mana": 115,
-      "attack": 32,
-      "defense": 16,
+      "health": 900,
+      "mana": 1000,
+      "attack": 44,
+      "defense": 1560,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12811,12 +12811,12 @@
     "immortal": false,
     "description": "青花蛇",
     "base_stats": {
-      "health": 740,
-      "mana": 185,
-      "attack": 53,
-      "defense": 26,
+      "health": 2800,
+      "mana": 2300,
+      "attack": 72,
+      "defense": 2680,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12860,12 +12860,12 @@
     "immortal": false,
     "description": "岩怪",
     "base_stats": {
-      "health": 580,
-      "mana": 145,
-      "attack": 41,
-      "defense": 20,
+      "health": 1600,
+      "mana": 1500,
+      "attack": 56,
+      "defense": 2040,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -12909,12 +12909,12 @@
     "immortal": false,
     "description": "【精】苗人龙",
     "base_stats": {
-      "health": 820,
-      "mana": 205,
-      "attack": 59,
-      "defense": 43,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 10438,
+      "mana": 3479,
+      "attack": 261,
+      "defense": 3479,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -13681,12 +13681,12 @@
     "immortal": false,
     "description": "汉军刀手",
     "base_stats": {
-      "health": 1440,
-      "mana": 360,
-      "attack": 108,
-      "defense": 72,
+      "health": 8800,
+      "mana": 6300,
+      "attack": 152,
+      "defense": 5880,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -13739,12 +13739,12 @@
     "immortal": false,
     "description": "汉军遗贼",
     "base_stats": {
-      "health": 1520,
-      "mana": 380,
-      "attack": 114,
-      "defense": 76,
+      "health": 9400,
+      "mana": 6700,
+      "attack": 160,
+      "defense": 6200,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -13797,12 +13797,12 @@
     "immortal": false,
     "description": "小八嘎",
     "base_stats": {
-      "health": 640,
-      "mana": 160,
-      "attack": 48,
-      "defense": 32,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.01
+      "health": 2800,
+      "mana": 2300,
+      "attack": 72,
+      "defense": 2680,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -13846,12 +13846,12 @@
     "immortal": false,
     "description": "【精】姜叙",
     "base_stats": {
-      "health": 1980,
-      "mana": 495,
-      "attack": 132,
-      "defense": 99,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 22531,
+      "mana": 7510,
+      "attack": 563,
+      "defense": 7510,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -13909,12 +13909,12 @@
     "immortal": false,
     "description": "汉军守卫",
     "base_stats": {
-      "health": 1360,
-      "mana": 340,
-      "attack": 102,
-      "defense": 68,
+      "health": 8200,
+      "mana": 5900,
+      "attack": 144,
+      "defense": 5560,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -13967,12 +13967,12 @@
     "immortal": false,
     "description": "蜀军护兵",
     "base_stats": {
-      "health": 1400,
-      "mana": 350,
-      "attack": 105,
-      "defense": 70,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -14025,12 +14025,12 @@
     "immortal": false,
     "description": "黑犀",
     "base_stats": {
-      "health": 2600,
-      "mana": 650,
-      "attack": 170,
-      "defense": 120,
+      "health": 10900,
+      "mana": 7700,
+      "attack": 180,
+      "defense": 7000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -14083,12 +14083,12 @@
     "immortal": false,
     "description": "【精】赵昂",
     "base_stats": {
-      "health": 2100,
-      "mana": 525,
-      "attack": 140,
-      "defense": 105,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 24965,
+      "mana": 8322,
+      "attack": 624,
+      "defense": 8322,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -14146,12 +14146,12 @@
     "immortal": false,
     "description": "凤鸟",
     "base_stats": {
-      "health": 1280,
-      "mana": 320,
-      "attack": 96,
-      "defense": 64,
+      "health": 7600,
+      "mana": 5500,
+      "attack": 136,
+      "defense": 5240,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -14200,17 +14200,16 @@
     "name": "囚牛",
     "level": 40,
     "is_elite": true,
-    "is_divine_beast": true,
     "killable": true,
     "immortal": false,
     "description": "【兽王】囚牛",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 160,
-      "defense": 120,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 8000000,
+      "mana": 200000,
+      "attack": 1500,
+      "defense": 35000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -14257,6 +14256,7 @@
       },
       "experience": 900
     },
+    "is_divine_beast": true,
     "is_copy": false,
     "copy_only": false,
     "max_health": 100
@@ -14269,12 +14269,12 @@
     "immortal": false,
     "description": "【精】韦康",
     "base_stats": {
-      "health": 1860,
-      "mana": 465,
-      "attack": 124,
-      "defense": 93,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 20334,
+      "mana": 6778,
+      "attack": 508,
+      "defense": 6778,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -14332,12 +14332,12 @@
     "immortal": false,
     "description": "【精】刘进",
     "base_stats": {
-      "health": 2220,
-      "mana": 555,
-      "attack": 148,
-      "defense": 111,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 27662,
+      "mana": 9221,
+      "attack": 691,
+      "defense": 9221,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -14395,12 +14395,12 @@
     "immortal": false,
     "description": "黑熊",
     "base_stats": {
-      "health": 1200,
-      "mana": 300,
-      "attack": 90,
-      "defense": 60,
+      "health": 7000,
+      "mana": 5100,
+      "attack": 128,
+      "defense": 4920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -14453,12 +14453,12 @@
     "immortal": false,
     "description": "【精】关平",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 160,
-      "defense": 120,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -14516,12 +14516,12 @@
     "immortal": false,
     "description": "黄巾信徒",
     "base_stats": {
-      "health": 2700,
-      "mana": 675,
-      "attack": 180,
-      "defense": 135,
+      "health": 11500,
+      "mana": 8100,
+      "attack": 188,
+      "defense": 7320,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -14574,12 +14574,12 @@
     "immortal": false,
     "description": "【精】刘安",
     "base_stats": {
-      "health": 2340,
-      "mana": 585,
-      "attack": 156,
-      "defense": 117,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 30651,
+      "mana": 10217,
+      "attack": 766,
+      "defense": 10217,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -14637,12 +14637,12 @@
     "immortal": false,
     "description": "黑老大",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 120,
-      "defense": 80,
+      "health": 10000,
+      "mana": 7100,
+      "attack": 168,
+      "defense": 6520,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15103,12 +15103,12 @@
     "immortal": false,
     "description": "岩蛇",
     "base_stats": {
-      "health": 1400,
-      "mana": 350,
-      "attack": 105,
-      "defense": 70,
+      "health": 8500,
+      "mana": 6100,
+      "attack": 148,
+      "defense": 5720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15161,12 +15161,12 @@
     "immortal": false,
     "description": "幽州枪兵",
     "base_stats": {
-      "health": 1320,
-      "mana": 330,
-      "attack": 99,
-      "defense": 66,
+      "health": 7900,
+      "mana": 5700,
+      "attack": 140,
+      "defense": 5400,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15219,12 +15219,12 @@
     "immortal": false,
     "description": "【精】徐商",
     "base_stats": {
-      "health": 980,
-      "mana": 245,
-      "attack": 70,
-      "defense": 49,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 12816,
+      "mana": 4272,
+      "attack": 320,
+      "defense": 4272,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -15277,12 +15277,12 @@
     "immortal": false,
     "description": "幽州刀兵",
     "base_stats": {
-      "health": 1200,
-      "mana": 300,
-      "attack": 90,
-      "defense": 60,
+      "health": 7000,
+      "mana": 5100,
+      "attack": 128,
+      "defense": 4920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15335,12 +15335,12 @@
     "immortal": false,
     "description": "【精】吕建",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 62,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 15734,
+      "mana": 5245,
+      "attack": 393,
+      "defense": 5245,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -15398,12 +15398,12 @@
     "immortal": false,
     "description": "炼丹童子",
     "base_stats": {
-      "health": 780,
-      "mana": 195,
-      "attack": 56,
-      "defense": 28,
+      "health": 3100,
+      "mana": 2500,
+      "attack": 76,
+      "defense": 2840,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15447,12 +15447,12 @@
     "immortal": false,
     "description": "邪恶祭司",
     "base_stats": {
-      "health": 700,
-      "mana": 175,
-      "attack": 50,
-      "defense": 25,
+      "health": 2500,
+      "mana": 2100,
+      "attack": 68,
+      "defense": 2520,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15496,12 +15496,12 @@
     "immortal": false,
     "description": "叛军剑手",
     "base_stats": {
-      "health": 860,
-      "mana": 215,
-      "attack": 62,
-      "defense": 31,
+      "health": 3700,
+      "mana": 2900,
+      "attack": 84,
+      "defense": 3160,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15545,12 +15545,12 @@
     "immortal": false,
     "description": "【精】朱褒",
     "base_stats": {
-      "health": 1060,
-      "mana": 265,
-      "attack": 74,
-      "defense": 53,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 14200,
+      "mana": 4733,
+      "attack": 355,
+      "defense": 4733,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -15603,12 +15603,12 @@
     "immortal": false,
     "description": "叛军精英",
     "base_stats": {
-      "health": 980,
-      "mana": 245,
-      "attack": 70,
-      "defense": 35,
+      "health": 4600,
+      "mana": 3500,
+      "attack": 96,
+      "defense": 3640,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15661,12 +15661,12 @@
     "immortal": false,
     "description": "【精】雍凯",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 62,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 17434,
+      "mana": 5811,
+      "attack": 436,
+      "defense": 5811,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -15724,12 +15724,12 @@
     "immortal": false,
     "description": "魏国细作",
     "base_stats": {
-      "health": 1060,
-      "mana": 265,
-      "attack": 77,
-      "defense": 38,
+      "health": 5200,
+      "mana": 3900,
+      "attack": 104,
+      "defense": 3960,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15782,12 +15782,12 @@
     "immortal": false,
     "description": "吴国细作",
     "base_stats": {
-      "health": 1040,
-      "mana": 260,
-      "attack": 78,
-      "defense": 39,
+      "health": 5800,
+      "mana": 4300,
+      "attack": 112,
+      "defense": 4280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -15840,12 +15840,12 @@
     "immortal": false,
     "description": "老酒鬼",
     "base_stats": {
-      "health": 1140,
-      "mana": 285,
-      "attack": 83,
-      "defense": 41,
+      "health": 6400,
+      "mana": 4700,
+      "attack": 120,
+      "defense": 4600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16306,12 +16306,12 @@
     "immortal": false,
     "description": "【精】刘循",
     "base_stats": {
-      "health": 820,
-      "mana": 205,
-      "attack": 59,
-      "defense": 43,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 10438,
+      "mana": 3479,
+      "attack": 261,
+      "defense": 3479,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -16364,12 +16364,12 @@
     "immortal": false,
     "description": "【精】王累",
     "base_stats": {
-      "health": 580,
-      "mana": 145,
-      "attack": 41,
-      "defense": 30,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 7673,
+      "mana": 2558,
+      "attack": 192,
+      "defense": 2558,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -16422,12 +16422,12 @@
     "immortal": false,
     "description": "小偷",
     "base_stats": {
-      "health": 300,
-      "mana": 75,
-      "attack": 20,
-      "defense": 10,
+      "health": 500,
+      "mana": 600,
+      "attack": 28,
+      "defense": 920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16476,12 +16476,12 @@
     "immortal": false,
     "description": "铜人",
     "base_stats": {
-      "health": 140,
-      "mana": 35,
-      "attack": 8,
-      "defense": 4,
+      "health": 100,
+      "mana": 100,
+      "attack": 12,
+      "defense": 280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16530,12 +16530,12 @@
     "immortal": false,
     "description": "野狗",
     "base_stats": {
-      "health": 220,
-      "mana": 55,
-      "attack": 14,
-      "defense": 7,
+      "health": 300,
+      "mana": 400,
+      "attack": 20,
+      "defense": 600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16584,12 +16584,12 @@
     "immortal": false,
     "description": "窃贼",
     "base_stats": {
-      "health": 140,
-      "mana": 35,
-      "attack": 8,
-      "defense": 4,
+      "health": 100,
+      "mana": 100,
+      "attack": 12,
+      "defense": 280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16638,12 +16638,12 @@
     "immortal": false,
     "description": "娘子军",
     "base_stats": {
-      "health": 660,
-      "mana": 165,
-      "attack": 47,
-      "defense": 23,
+      "health": 2200,
+      "mana": 1900,
+      "attack": 64,
+      "defense": 2360,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16687,12 +16687,12 @@
     "immortal": false,
     "description": "流民",
     "base_stats": {
-      "health": 460,
-      "mana": 115,
-      "attack": 32,
-      "defense": 16,
+      "health": 900,
+      "mana": 1000,
+      "attack": 44,
+      "defense": 1560,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16741,12 +16741,12 @@
     "immortal": false,
     "description": "凤蝶",
     "base_stats": {
-      "health": 740,
-      "mana": 185,
-      "attack": 53,
-      "defense": 26,
+      "health": 2800,
+      "mana": 2300,
+      "attack": 72,
+      "defense": 2680,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16790,12 +16790,12 @@
     "immortal": false,
     "description": "【精】杨怀",
     "base_stats": {
-      "health": 740,
-      "mana": 185,
-      "attack": 53,
-      "defense": 39,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 9421,
+      "mana": 3140,
+      "attack": 235,
+      "defense": 3140,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -16848,12 +16848,12 @@
     "immortal": false,
     "description": "越女",
     "base_stats": {
-      "health": 380,
-      "mana": 95,
-      "attack": 26,
-      "defense": 13,
+      "health": 700,
+      "mana": 800,
+      "attack": 36,
+      "defense": 1240,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16902,12 +16902,12 @@
     "immortal": false,
     "description": "水贼",
     "base_stats": {
-      "health": 820,
-      "mana": 205,
-      "attack": 59,
-      "defense": 29,
+      "health": 3400,
+      "mana": 2700,
+      "attack": 80,
+      "defense": 3000,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -16951,12 +16951,12 @@
     "immortal": false,
     "description": "苗族先锋",
     "base_stats": {
-      "health": 580,
-      "mana": 145,
-      "attack": 41,
-      "defense": 20,
+      "health": 1600,
+      "mana": 1500,
+      "attack": 56,
+      "defense": 2040,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -17000,12 +17000,12 @@
     "immortal": false,
     "description": "【精】高沛",
     "base_stats": {
-      "health": 660,
-      "mana": 165,
-      "attack": 47,
-      "defense": 35,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 8502,
+      "mana": 2834,
+      "attack": 212,
+      "defense": 2834,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -17942,12 +17942,12 @@
     "immortal": false,
     "description": "【圣兽】玄武",
     "base_stats": {
-      "health": 5000,
-      "mana": 1250,
-      "attack": 300,
-      "defense": 225,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -18065,12 +18065,12 @@
     "killable": true,
     "description": "鬼鬼祟祟的窃贼",
     "base_stats": {
-      "health": 140,
-      "mana": 35,
-      "attack": 8,
-      "defense": 4,
+      "health": 100,
+      "mana": 100,
+      "attack": 12,
+      "defense": 280,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18148,15 +18148,12 @@
     "copy_only": false,
     "description": "冀州的步兵，奉命驻守燕山",
     "base_stats": {
-      "current_health": 250,
-      "health": 250,
-      "max_health": 250,
-      "mana": 0,
-      "max_mana": 0,
-      "attack": 35,
-      "defense": 15,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
+      "health": 1000,
+      "mana": 1100,
+      "attack": 48,
+      "defense": 1720,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [],
     "drops": {
@@ -18197,12 +18194,12 @@
     "immortal": false,
     "description": "小白兔",
     "base_stats": {
-      "health": 3180,
-      "mana": 795,
-      "attack": 212,
-      "defense": 159,
+      "health": 13900,
+      "mana": 9700,
+      "attack": 220,
+      "defense": 8600,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18255,12 +18252,12 @@
     "immortal": false,
     "description": "灰毛熊",
     "base_stats": {
-      "health": 3240,
-      "mana": 810,
-      "attack": 216,
-      "defense": 162,
+      "health": 14200,
+      "mana": 9900,
+      "attack": 224,
+      "defense": 8760,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18313,12 +18310,12 @@
     "immortal": false,
     "description": "雪鹞",
     "base_stats": {
-      "health": 3300,
-      "mana": 825,
-      "attack": 220,
-      "defense": 165,
+      "health": 14500,
+      "mana": 10100,
+      "attack": 228,
+      "defense": 8920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18371,12 +18368,12 @@
     "immortal": false,
     "description": "五毒蟾蜍",
     "base_stats": {
-      "health": 3360,
-      "mana": 840,
-      "attack": 224,
-      "defense": 168,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.03
+      "health": 14800,
+      "mana": 10300,
+      "attack": 232,
+      "defense": 9080,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18429,12 +18426,12 @@
     "immortal": false,
     "description": "灰岩巨蟒",
     "base_stats": {
-      "health": 3420,
-      "mana": 855,
-      "attack": 228,
-      "defense": 171,
+      "health": 15100,
+      "mana": 10500,
+      "attack": 236,
+      "defense": 9240,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18487,12 +18484,12 @@
     "immortal": false,
     "description": "小山精",
     "base_stats": {
-      "health": 3480,
-      "mana": 870,
-      "attack": 232,
-      "defense": 174,
+      "health": 15400,
+      "mana": 10700,
+      "attack": 240,
+      "defense": 9400,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18545,12 +18542,12 @@
     "immortal": false,
     "description": "迷幻草",
     "base_stats": {
-      "health": 3540,
-      "mana": 885,
-      "attack": 236,
-      "defense": 177,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 15700,
+      "mana": 10900,
+      "attack": 244,
+      "defense": 9560,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18603,12 +18600,12 @@
     "immortal": false,
     "description": "枯萎之藤",
     "base_stats": {
-      "health": 3600,
-      "mana": 900,
-      "attack": 240,
-      "defense": 180,
+      "health": 15700,
+      "mana": 10900,
+      "attack": 248,
+      "defense": 9720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -18661,12 +18658,12 @@
     "immortal": false,
     "description": "【稀有】妖女树",
     "base_stats": {
-      "health": 4600,
-      "mana": 1150,
-      "attack": 275,
-      "defense": 210,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -18727,12 +18724,12 @@
     "immortal": false,
     "description": "【稀有】赢鱼",
     "base_stats": {
-      "health": 4600,
-      "mana": 1150,
-      "attack": 275,
-      "defense": 210,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -18793,12 +18790,12 @@
     "immortal": false,
     "description": "【稀有】白梦蝶",
     "base_stats": {
-      "health": 4600,
-      "mana": 1150,
-      "attack": 275,
-      "defense": 210,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -18859,12 +18856,12 @@
     "immortal": false,
     "description": "【稀有】昆仑仙道",
     "base_stats": {
-      "health": 4700,
-      "mana": 1175,
-      "attack": 280,
-      "defense": 215,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -18925,12 +18922,12 @@
     "immortal": false,
     "description": "【稀有】金倪兽",
     "base_stats": {
-      "health": 4600,
-      "mana": 1150,
-      "attack": 275,
-      "defense": 210,
-      "crit_rate": 0.09,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -18991,12 +18988,12 @@
     "immortal": false,
     "description": "【稀有】幻影狼",
     "base_stats": {
-      "health": 4500,
-      "mana": 1125,
-      "attack": 285,
-      "defense": 200,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.07
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19057,12 +19054,12 @@
     "immortal": false,
     "description": "【稀有】海霆蛇",
     "base_stats": {
-      "health": 4600,
-      "mana": 1150,
-      "attack": 280,
-      "defense": 210,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19123,12 +19120,12 @@
     "immortal": false,
     "description": "【稀有】大白兔",
     "base_stats": {
-      "health": 4500,
-      "mana": 1125,
-      "attack": 270,
-      "defense": 205,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19189,12 +19186,12 @@
     "immortal": false,
     "description": "九色神鹿",
     "base_stats": {
-      "health": 5200,
-      "mana": 1300,
-      "attack": 310,
-      "defense": 230,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -19257,12 +19254,12 @@
     "immortal": false,
     "description": "【圣兽】火凤凰",
     "base_stats": {
-      "health": 5200,
-      "mana": 1300,
-      "attack": 310,
-      "defense": 230,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -19325,12 +19322,12 @@
     "immortal": false,
     "description": "【圣兽】精卫",
     "base_stats": {
-      "health": 5200,
-      "mana": 1300,
-      "attack": 310,
-      "defense": 230,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -19495,12 +19492,12 @@
     "immortal": false,
     "description": "松针鼠",
     "base_stats": {
-      "health": 2800,
-      "mana": 700,
-      "attack": 180,
-      "defense": 140,
+      "health": 14800,
+      "mana": 10300,
+      "attack": 232,
+      "defense": 9080,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -19534,12 +19531,12 @@
     "immortal": false,
     "description": "森林巨龟",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 190,
-      "defense": 200,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
+      "health": 15100,
+      "mana": 10500,
+      "attack": 236,
+      "defense": 9240,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -19573,12 +19570,12 @@
     "immortal": false,
     "description": "【稀有】遮光巨树",
     "base_stats": {
-      "health": 4600,
-      "mana": 1150,
-      "attack": 275,
-      "defense": 210,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19626,12 +19623,12 @@
     "immortal": false,
     "description": "【稀有】九尾狐",
     "base_stats": {
-      "health": 4500,
-      "mana": 1200,
-      "attack": 280,
-      "defense": 180,
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19677,11 +19674,11 @@
     "immortal": false,
     "description": "坡脚狼",
     "base_stats": {
-      "health": 3400,
-      "mana": 850,
-      "attack": 220,
-      "defense": 160,
-      "crit_rate": 0.06,
+      "health": 15700,
+      "mana": 10900,
+      "attack": 244,
+      "defense": 9560,
+      "crit_rate": 0.05,
       "dodge_rate": 0.05
     },
     "skills": [
@@ -19716,12 +19713,12 @@
     "immortal": false,
     "description": "【稀有】盘岩龙",
     "base_stats": {
-      "health": 4800,
-      "mana": 1100,
-      "attack": 290,
-      "defense": 220,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.04
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19806,12 +19803,12 @@
     "immortal": false,
     "description": "野人",
     "base_stats": {
-      "health": 3500,
-      "mana": 850,
-      "attack": 230,
-      "defense": 180,
+      "health": 15700,
+      "mana": 10900,
+      "attack": 248,
+      "defense": 9720,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -19845,12 +19842,12 @@
     "immortal": false,
     "description": "【稀有】野人头目",
     "base_stats": {
-      "health": 4700,
-      "mana": 1150,
-      "attack": 285,
-      "defense": 200,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19935,12 +19932,12 @@
     "immortal": false,
     "description": "【稀有】红狐",
     "base_stats": {
-      "health": 4500,
-      "mana": 1100,
-      "attack": 270,
-      "defense": 190,
-      "crit_rate": 0.09,
-      "dodge_rate": 0.07
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -19986,11 +19983,11 @@
     "immortal": false,
     "description": "红狐",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 210,
-      "defense": 150,
-      "crit_rate": 0.06,
+      "health": 15400,
+      "mana": 10700,
+      "attack": 240,
+      "defense": 9400,
+      "crit_rate": 0.05,
       "dodge_rate": 0.05
     },
     "skills": [
@@ -20025,12 +20022,12 @@
     "immortal": false,
     "description": "【稀有】潮水龟",
     "base_stats": {
-      "health": 4900,
-      "mana": 1000,
-      "attack": 260,
-      "defense": 230,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20076,12 +20073,12 @@
     "immortal": false,
     "description": "大脚怪",
     "base_stats": {
-      "health": 2700,
-      "mana": 680,
-      "attack": 175,
-      "defense": 130,
+      "health": 14500,
+      "mana": 10100,
+      "attack": 228,
+      "defense": 8920,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -20115,12 +20112,12 @@
     "immortal": false,
     "description": "穷奇(62级精)",
     "base_stats": {
-      "health": 5200,
-      "mana": 1300,
-      "attack": 320,
-      "defense": 240,
-      "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -20165,12 +20162,12 @@
     "immortal": false,
     "description": "炎帝之影(62级精)",
     "base_stats": {
-      "health": 5500,
-      "mana": 1400,
-      "attack": 340,
-      "defense": 250,
-      "crit_rate": 0.12,
-      "dodge_rate": 0.08
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -20213,12 +20210,12 @@
     "immortal": false,
     "description": "刑天之影(62级精)",
     "base_stats": {
-      "health": 5800,
-      "mana": 1500,
-      "attack": 360,
-      "defense": 260,
-      "crit_rate": 0.14,
-      "dodge_rate": 0.1
+      "health": 40000000,
+      "mana": 500000,
+      "attack": 2500,
+      "defense": 40000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -20265,12 +20262,12 @@
     "immortal": false,
     "description": "【稀有】雪狼王",
     "base_stats": {
-      "health": 4600,
-      "mana": 1200,
-      "attack": 290,
-      "defense": 200,
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20316,12 +20313,12 @@
     "immortal": false,
     "description": "【稀有】龙蛇",
     "base_stats": {
-      "health": 4800,
-      "mana": 1150,
-      "attack": 285,
-      "defense": 210,
-      "crit_rate": 0.09,
-      "dodge_rate": 0.06
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20367,11 +20364,11 @@
     "immortal": false,
     "description": "金环蛇王(51级)",
     "base_stats": {
-      "health": 2200,
-      "mana": 600,
-      "attack": 180,
-      "defense": 120,
-      "crit_rate": 0.06,
+      "health": 13300,
+      "mana": 9300,
+      "attack": 212,
+      "defense": 8280,
+      "crit_rate": 0.05,
       "dodge_rate": 0.05
     },
     "skills": [
@@ -20415,12 +20412,12 @@
     "immortal": false,
     "description": "【稀有】无极忍者(50级精)",
     "base_stats": {
-      "health": 3800,
-      "mana": 1000,
-      "attack": 250,
-      "defense": 170,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20466,11 +20463,11 @@
     "immortal": false,
     "description": "发疯的海盗(52级)",
     "base_stats": {
-      "health": 2400,
-      "mana": 650,
-      "attack": 190,
-      "defense": 130,
-      "crit_rate": 0.06,
+      "health": 13600,
+      "mana": 9500,
+      "attack": 216,
+      "defense": 8440,
+      "crit_rate": 0.05,
       "dodge_rate": 0.05
     },
     "skills": [
@@ -20514,11 +20511,11 @@
     "immortal": false,
     "description": "滨山护卫(53级)",
     "base_stats": {
-      "health": 2600,
-      "mana": 700,
-      "attack": 200,
-      "defense": 140,
-      "crit_rate": 0.06,
+      "health": 13900,
+      "mana": 9700,
+      "attack": 220,
+      "defense": 8600,
+      "crit_rate": 0.05,
       "dodge_rate": 0.05
     },
     "skills": [
@@ -20562,12 +20559,12 @@
     "immortal": false,
     "description": "【稀有】邪马狼将(50级精)",
     "base_stats": {
-      "health": 3900,
-      "mana": 1050,
-      "attack": 255,
-      "defense": 175,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20613,12 +20610,12 @@
     "immortal": false,
     "description": "倭国探子(55级)",
     "base_stats": {
-      "health": 2800,
-      "mana": 750,
-      "attack": 210,
-      "defense": 150,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.06
+      "health": 14500,
+      "mana": 10100,
+      "attack": 228,
+      "defense": 8920,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -20661,12 +20658,12 @@
     "immortal": false,
     "description": "【稀有】天象火魔(50级精)",
     "base_stats": {
-      "health": 4000,
-      "mana": 1100,
-      "attack": 260,
-      "defense": 180,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20712,12 +20709,12 @@
     "immortal": false,
     "description": "【稀有】八岐邪神(50级精)",
     "base_stats": {
-      "health": 4200,
-      "mana": 1150,
-      "attack": 265,
-      "defense": 185,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20763,12 +20760,12 @@
     "immortal": false,
     "description": "亡命囚徒(56级)",
     "base_stats": {
-      "health": 3000,
-      "mana": 800,
-      "attack": 220,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.06
+      "health": 14800,
+      "mana": 10300,
+      "attack": 232,
+      "defense": 9080,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -20811,12 +20808,12 @@
     "immortal": false,
     "description": "【稀有】鬼蛛夜魔海(50级精)",
     "base_stats": {
-      "health": 4300,
-      "mana": 1200,
-      "attack": 270,
-      "defense": 190,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20862,12 +20859,12 @@
     "immortal": false,
     "description": "无间杀手(57级)",
     "base_stats": {
-      "health": 3200,
-      "mana": 850,
-      "attack": 230,
-      "defense": 170,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.06
+      "health": 15100,
+      "mana": 10500,
+      "attack": 236,
+      "defense": 9240,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -20910,12 +20907,12 @@
     "immortal": false,
     "description": "【稀有】九变妖媸(50级精)",
     "base_stats": {
-      "health": 4400,
-      "mana": 1250,
-      "attack": 275,
-      "defense": 195,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -20961,12 +20958,12 @@
     "immortal": false,
     "description": "扶桑武士(60级)",
     "base_stats": {
-      "health": 3600,
-      "mana": 950,
-      "attack": 260,
-      "defense": 190,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.07
+      "health": 15700,
+      "mana": 10900,
+      "attack": 248,
+      "defense": 9720,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -21009,12 +21006,12 @@
     "immortal": false,
     "description": "【稀有】缺颅蛮妖(50级精)",
     "base_stats": {
-      "health": 4500,
-      "mana": 1300,
-      "attack": 280,
-      "defense": 200,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21060,12 +21057,12 @@
     "immortal": false,
     "description": "月读(52级精)",
     "base_stats": {
-      "health": 4800,
-      "mana": 1400,
-      "attack": 300,
-      "defense": 220,
-      "crit_rate": 0.12,
-      "dodge_rate": 0.09
+      "health": 20000000,
+      "mana": 300000,
+      "attack": 2000,
+      "defense": 38000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -21108,12 +21105,12 @@
     "immortal": false,
     "description": "天照(52级精)",
     "base_stats": {
-      "health": 5000,
-      "mana": 1500,
-      "attack": 320,
-      "defense": 240,
-      "crit_rate": 0.12,
-      "dodge_rate": 0.09
+      "health": 20000000,
+      "mana": 300000,
+      "attack": 2000,
+      "defense": 38000,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -21156,12 +21153,12 @@
     "immortal": false,
     "description": "滨山流匪(58级)",
     "base_stats": {
-      "health": 3400,
-      "mana": 900,
-      "attack": 245,
-      "defense": 180,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.07
+      "health": 15400,
+      "mana": 10700,
+      "attack": 240,
+      "defense": 9400,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -21204,12 +21201,12 @@
     "immortal": false,
     "description": "落魄浪人(59级)",
     "base_stats": {
-      "health": 3500,
-      "mana": 920,
-      "attack": 255,
-      "defense": 185,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.07
+      "health": 15700,
+      "mana": 10900,
+      "attack": 244,
+      "defense": 9560,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -21252,12 +21249,12 @@
     "immortal": false,
     "description": "【稀有】倭国武剑士(50级精)",
     "base_stats": {
-      "health": 4600,
-      "mana": 1350,
-      "attack": 285,
-      "defense": 205,
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
       "crit_rate": 0.1,
-      "dodge_rate": 0.08
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21303,12 +21300,12 @@
     "immortal": false,
     "description": "【精】一层守卫(10级)",
     "base_stats": {
-      "health": 800,
-      "mana": 200,
-      "attack": 50,
-      "defense": 25,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 6925,
+      "mana": 2308,
+      "attack": 173,
+      "defense": 2308,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21360,12 +21357,12 @@
     "immortal": false,
     "description": "【精】一层守卫(10级)",
     "base_stats": {
-      "health": 800,
-      "mana": 200,
-      "attack": 50,
-      "defense": 25,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 6925,
+      "mana": 2308,
+      "attack": 173,
+      "defense": 2308,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21417,12 +21414,12 @@
     "immortal": false,
     "description": "【精】一层守卫(10级)",
     "base_stats": {
-      "health": 800,
-      "mana": 200,
-      "attack": 50,
-      "defense": 25,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 6925,
+      "mana": 2308,
+      "attack": 173,
+      "defense": 2308,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21474,12 +21471,12 @@
     "immortal": false,
     "description": "【精】一层守卫(10级)",
     "base_stats": {
-      "health": 800,
-      "mana": 200,
-      "attack": 50,
-      "defense": 25,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 6925,
+      "mana": 2308,
+      "attack": 173,
+      "defense": 2308,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21531,12 +21528,12 @@
     "immortal": false,
     "description": "【精】一层守卫(10级)",
     "base_stats": {
-      "health": 800,
-      "mana": 200,
-      "attack": 50,
-      "defense": 25,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 6925,
+      "mana": 2308,
+      "attack": 173,
+      "defense": 2308,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21588,12 +21585,12 @@
     "immortal": false,
     "description": "【精】二层守卫(20级)",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 100,
-      "defense": 50,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 11566,
+      "mana": 3855,
+      "attack": 289,
+      "defense": 3855,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21650,12 +21647,12 @@
     "immortal": false,
     "description": "【精】二层守卫(20级)",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 100,
-      "defense": 50,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 11566,
+      "mana": 3855,
+      "attack": 289,
+      "defense": 3855,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21712,12 +21709,12 @@
     "immortal": false,
     "description": "【精】二层守卫(20级)",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 100,
-      "defense": 50,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 11566,
+      "mana": 3855,
+      "attack": 289,
+      "defense": 3855,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21774,12 +21771,12 @@
     "immortal": false,
     "description": "【精】二层守卫(20级)",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 100,
-      "defense": 50,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 11566,
+      "mana": 3855,
+      "attack": 289,
+      "defense": 3855,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21836,12 +21833,12 @@
     "immortal": false,
     "description": "【精】二层守卫(20级)",
     "base_stats": {
-      "health": 1600,
-      "mana": 400,
-      "attack": 100,
-      "defense": 50,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 11566,
+      "mana": 3855,
+      "attack": 289,
+      "defense": 3855,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21898,12 +21895,12 @@
     "immortal": false,
     "description": "【精】三层守卫(30级)",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 150,
-      "defense": 75,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 19317,
+      "mana": 6439,
+      "attack": 483,
+      "defense": 6439,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -21956,12 +21953,12 @@
     "immortal": false,
     "description": "【精】三层守卫(30级)",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 150,
-      "defense": 75,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 19317,
+      "mana": 6439,
+      "attack": 483,
+      "defense": 6439,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22014,12 +22011,12 @@
     "immortal": false,
     "description": "【精】三层守卫(30级)",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 150,
-      "defense": 75,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 19317,
+      "mana": 6439,
+      "attack": 483,
+      "defense": 6439,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22072,12 +22069,12 @@
     "immortal": false,
     "description": "【精】三层守卫(30级)",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 150,
-      "defense": 75,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 19317,
+      "mana": 6439,
+      "attack": 483,
+      "defense": 6439,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22130,12 +22127,12 @@
     "immortal": false,
     "description": "【精】三层守卫(30级)",
     "base_stats": {
-      "health": 2400,
-      "mana": 600,
-      "attack": 150,
-      "defense": 75,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.04
+      "health": 19317,
+      "mana": 6439,
+      "attack": 483,
+      "defense": 6439,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22188,12 +22185,12 @@
     "immortal": false,
     "description": "【精】四层守卫(40级)",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 200,
-      "defense": 100,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22252,12 +22249,12 @@
     "immortal": false,
     "description": "【精】四层守卫(40级)",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 200,
-      "defense": 100,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22316,12 +22313,12 @@
     "immortal": false,
     "description": "【精】四层守卫(40级)",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 200,
-      "defense": 100,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22380,12 +22377,12 @@
     "immortal": false,
     "description": "【精】四层守卫(40级)",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 200,
-      "defense": 100,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22444,12 +22441,12 @@
     "immortal": false,
     "description": "【精】四层守卫(40级)",
     "base_stats": {
-      "health": 3200,
-      "mana": 800,
-      "attack": 200,
-      "defense": 100,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 32264,
+      "mana": 10755,
+      "attack": 806,
+      "defense": 10755,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22508,12 +22505,12 @@
     "immortal": false,
     "description": "【精】五层守卫(50级)",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 250,
-      "defense": 150,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22568,12 +22565,12 @@
     "immortal": false,
     "description": "【精】五层守卫(50级)",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 250,
-      "defense": 150,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22628,12 +22625,12 @@
     "immortal": false,
     "description": "【精】五层守卫(50级)",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 250,
-      "defense": 150,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22688,12 +22685,12 @@
     "immortal": false,
     "description": "【精】五层守卫(50级)",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 250,
-      "defense": 150,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22748,12 +22745,12 @@
     "immortal": false,
     "description": "【精】五层守卫(50级)",
     "base_stats": {
-      "health": 4000,
-      "mana": 1000,
-      "attack": 250,
-      "defense": 150,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.05
+      "health": 53886,
+      "mana": 17962,
+      "attack": 1347,
+      "defense": 17962,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"
@@ -22808,12 +22805,12 @@
     "immortal": false,
     "description": "【精】顶层守卫(60级)",
     "base_stats": {
-      "health": 5000,
-      "mana": 1250,
-      "attack": 300,
-      "defense": 200,
+      "health": 90000,
+      "mana": 30000,
+      "attack": 2250,
+      "defense": 30000,
       "crit_rate": 0.1,
-      "dodge_rate": 0.06
+      "dodge_rate": 0.1
     },
     "skills": [
       "normal_attack"

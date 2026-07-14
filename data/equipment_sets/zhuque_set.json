@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 16000,
-    "description": "术士专属，以朱雀之羽编织的羽盔，朱雀护首，灵光熠熠"
+    "description": "术士专属，以朱雀之羽编织的羽盔，朱雀护首，灵光熠熠",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_jingjinkuang": 20
+    }
   },
   "zhuque_armor_58": {
     "name": "朱雀羽衣",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 18500,
-    "description": "术士专属，以朱雀之羽织成的羽衣，朱雀覆体，法力流转"
+    "description": "术士专属，以朱雀之羽织成的羽衣，朱雀覆体，法力流转",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_nirong": 20
+    }
   },
   "zhuque_pants_57": {
     "name": "朱雀羽裤",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 16500,
-    "description": "术士专属，以朱雀之羽织成的护腿，朱雀护腿，轻灵飘逸"
+    "description": "术士专属，以朱雀之羽织成的护腿，朱雀护腿，轻灵飘逸",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_nirong": 20,
+      "craft_zitanmu": 20
+    }
   },
   "zhuque_gloves_56": {
     "name": "朱雀手套",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 14000,
-    "description": "术士专属，以朱雀之羽编织的手套，朱雀附手，法术通天"
+    "description": "术士专属，以朱雀之羽编织的手套，朱雀附手，法术通天",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_zitanmu": 20,
+      "craft_jingjinkuang": 20
+    }
   },
   "zhuque_shoes_55": {
     "name": "朱雀靴",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.028
     },
     "base_price": 13500,
-    "description": "术士专属，以朱雀之羽编织的布靴，踏火而行，朱雀相随"
+    "description": "术士专属，以朱雀之羽编织的布靴，踏火而行，朱雀相随",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_jingjinkuang": 20,
+      "craft_zitanmu": 20
+    }
   }
 }

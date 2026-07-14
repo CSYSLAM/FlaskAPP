@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>创建副将</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        label { display: inline-block; min-width: 120px; }
+        .section { margin: 12px 0 4px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .hint { color: #888; font-size: 13px; }
+        input[type=number] { width: 120px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>创建副将</h3>
+    <a href="{{ url_for('workbench.lieutenant_design') }}">返回列表</a><br/><br/>
+
+    <form method="post">
+        <div class="section">基础</div>
+        <label>名字</label>
+        <input type="text" name="name" style="width:180px" placeholder="如：张三"><br/>
+        <label>级别</label>
+        <select name="tier">
+            {% for val, cn in tier_choices %}
+            <option value="{{ val }}" {% if val == 0 %}selected{% endif %}>{{ cn }}</option>
+            {% endfor %}
+        </select><br/>
+        <label>职业</label>
+        <select name="class_type">
+            {% for val, cn in class_choices %}
+            <option value="{{ val }}">{{ cn }}</option>
+            {% endfor %}
+        </select><br/>
+        <label>性别</label>
+        <select name="gender">
+            <option value="male">男</option>
+            <option value="female">女</option>
+        </select><br/>
+        <label>品质(0-20)</label>
+        <input type="number" name="quality" value="0" min="0" max="20">
+        <span class="hint">0-9普通 10-16优良 17-19杰出 20完美</span><br/>
+        <label>悟性(0-10)</label>
+        <input type="number" name="enlightenment" min="0" max="10" placeholder="留空=随机0-10">
+        <span class="hint">留空则随机0-10</span><br/>
+        <label>忠诚(0-100)</label>
+        <input type="number" name="loyalty" value="80" min="0" max="100"><br/>
+        <label>强化(0-20)</label>
+        <input type="number" name="reinforce" value="0" min="0" max="20"><br/>
+        <label>寿命(0-999)</label>
+        <input type="number" name="lifespan" value="100" min="0" max="999"><br/>
+        <label>等级</label>
+        <input type="number" name="level" value="1" min="1" max="999"><br/>
+
+        <div class="section">自定义初始属性</div>
+        <span class="hint">留空则按公式(等级+资质+悟性+强化)自动计算；填了则以填写值为准(仍受强化倍率影响)。</span><br/>
+        <label>生命上限</label>
+        <input type="number" name="base_max_health" min="0" placeholder="留空=公式">
+        <span class="hint">公式: (200+等级×50)×资质×悟性×(1+强化×3%)</span><br/>
+        <label>攻击</label>
+        <input type="number" name="base_attack" min="0" placeholder="留空=公式"><br/>
+        <label>防御</label>
+        <input type="number" name="base_defense" min="0" placeholder="留空=公式"><br/>
+        <label>暴击率</label>
+        <input type="number" name="base_crit_rate" min="0" max="1" step="0.0001" placeholder="如0.1523=15.23%">
+        <span class="hint">0~1，0.1523=15.23%(支持4位小数)</span><br/>
+        <label>闪避率</label>
+        <input type="number" name="base_dodge_rate" min="0" max="1" step="0.0001" placeholder="如0.1025=10.25%">
+        <span class="hint">0~1，0.1025=10.25%(支持4位小数)</span><br/>
+
+        <br/>
+        <button type="submit">创建</button>
+    </form>
+    <br/>
+    <a href="{{ url_for('workbench.lieutenant_design') }}">取消</a>
+</div>
+</body>
+</html>

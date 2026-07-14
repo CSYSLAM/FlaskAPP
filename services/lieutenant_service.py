@@ -1,9 +1,15 @@
 """Lieutenant (副将) companion service."""
 import random
 import json
+import os
 from services import db
 from services.data_service import DataService
 from models.lieutenant import Lieutenant, QUALITY_NAMES, QUALITY_MULTIPLIER, CLASS_NAMES, GENDER_NAMES, TIER_NAMES, TIER_FRAGMENTS
+
+
+# 副将技能定义持久化文件：工作台修改技能倍率/魔法消耗时写入此文件，启动时加载覆盖默认值
+LIEUTENANT_SKILLS_FILE = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), 'data', 'lieutenant_skills.json')
 
 
 # Normal lieutenant name pools (not part of the 1-3 tier system, no soul/achievement)
@@ -71,30 +77,41 @@ for tier, data in LIEUTENANT_DATA.items():
         SOUL_TO_LT[f'soul_{pinyin_id}'] = (tier, pinyin_id)
 
 
-LIEUTENANT_SKILLS = {
-    # Active skills
+# 副将技能默认定义(代码内兜底)；工作台可覆盖并持久化到 lieutenant_skills.json
+_DEFAULT_LIEUTENANT_SKILLS = {
+    # ---- 主动技能 active：战斗中按 trigger_rate 概率释放，消耗 mana_cost 蓝量；
+    #   蓝量不足则降级为普通攻击。伤害一律走 BattleService._compute_damage 统一公式。----
     'combo': {'name': '连击', 'type': 'active', 'class_required': 'assassin',
               'max_level': 3, 'trigger_rate': [12, 18, 24],
-              'damage_rate': [120, 150, 180],
-              'description': '连续击杀，对敌造成大量伤害'},
+              'mana_cost': [40, 70, 100],
+              'hits': 2,                  # 打两次，每次独立计算伤害(系数1.0)
+              'description': '连续两次攻击，每次独立结算伤害(参考刺客二连击)'},
     'smash': {'name': '猛击', 'type': 'active', 'class_required': 'warrior',
               'max_level': 3, 'trigger_rate': [12, 18, 24],
-              'damage_rate': [120, 150, 180],
-              'description': '猛烈一击，对敌造成大量伤害'},
+              'mana_cost': [30, 50, 80],
+              'atk_buff_rate': 0.5,       # 本回合攻击 +50%
+              'def_debuff_rounds': 2,     # 副将自身下2回合防御减半
+              'damage_rate': [1.2, 1.5, 1.8],
+              'description': '本回合攻击+50%造成大量伤害，自身下2回合防御减半'},
     'thunder': {'name': '天雷', 'type': 'active', 'class_required': 'mage',
-              'max_level': 3, 'trigger_rate': [12, 18, 24],
-              'damage_rate': [120, 150, 180],
-              'description': '召唤天雷，对敌造成大量伤害'},
-    # Triggered skills
-    'absorb': {'name': '吸收', 'type': 'triggered', 'class_required': None,
+                'max_level': 3, 'trigger_rate': [12, 18, 24],
+                'mana_cost': [120, 200, 300],   # 大量魔法
+                'damage_rate': [2.0, 2.8, 3.6], # 巨额伤害(高系数)
+                'description': '消耗大量魔法造成巨额伤害'},
+    # ---- 触发技能 triggered：主人受击时按 trigger_rate 触发，前后置都可触发；按职业限定。----
+    'absorb': {'name': '吸收', 'type': 'triggered', 'class_required': 'assassin',
                'max_level': 3, 'trigger_rate': [12, 18, 24],
-               'absorb_rate': [10, 15, 20],
-               'description': '副将与主人遭到攻击有几率吸收伤害'},
-    'heal_trigger': {'name': '回春', 'type': 'triggered', 'class_required': None,
+               'absorb_rate': [10, 15, 20],     # 主人受击时吸收伤害的百分比
+               'description': '刺客专属：主人受击时有几率吸收10/15/20%伤害'},
+    'heal_trigger': {'name': '回春', 'type': 'triggered', 'class_required': 'warrior',
                      'max_level': 3, 'trigger_rate': [10, 15, 20],
-                     'heal_rate': [5, 8, 12],
-                     'description': '战斗中有几率回复主人生命'},
-    # Passive skills
+                     'heal_rate': [5, 8, 12],   # 回复主人生命上限的百分比
+                     'description': '战士专属：战斗中有几率回复主人生命'},
+    'magic_shield': {'name': '法相', 'type': 'triggered', 'class_required': 'mage',
+                     'max_level': 3, 'trigger_rate': [10, 15, 20],
+                     'shield_rate': [0.4, 0.6, 0.8],  # 护盾 = 主人当前魔法 × shield_rate
+                     'description': '术士专属：本回合主人获得护盾(主人当前魔法×40/60/80%)抵消伤害，溢出消失'},
+    # ---- 被动技能 passive：出战即给主人加成(不变) ----
     'sharp': {'name': '锐利', 'type': 'passive', 'class_required': None,
               'max_level': 3, 'bonus_type': 'attack',
               'bonus_value': [5, 8, 11],
@@ -121,6 +138,44 @@ LIEUTENANT_SKILLS = {
               'description': '副将出战给与主人闪避加成'},
 }
 
+
+def _load_lieutenant_skills():
+    """加载副将技能定义：优先读 data/lieutenant_skills.json(工作台持久化)，
+    读取失败或字段缺失时用 _DEFAULT_LIEUTENANT_SKILLS 兜底，保证新增字段总有值。"""
+    skills = {sid: dict(sdef) for sid, sdef in _DEFAULT_LIEUTENANT_SKILLS.items()}
+    try:
+        if os.path.exists(LIEUTENANT_SKILLS_FILE):
+            with open(LIEUTENANT_SKILLS_FILE, encoding='utf-8') as f:
+                saved = json.load(f)
+            for sid, sdef in saved.items():
+                if sid in skills:
+                    merged = dict(skills[sid])
+                    merged.update(sdef)
+                    skills[sid] = merged
+    except (json.JSONDecodeError, OSError):
+        pass
+    return skills
+
+
+def save_lieutenant_skills(skills_data):
+    """工作台调用：把完整技能定义写入 JSON 文件持久化。"""
+    with open(LIEUTENANT_SKILLS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(skills_data, f, ensure_ascii=False, indent=2)
+        f.write('\n')
+
+
+def reset_lieutenant_skills():
+    """工作台调用：删除持久化文件，恢复代码默认值。返回默认定义。"""
+    try:
+        if os.path.exists(LIEUTENANT_SKILLS_FILE):
+            os.remove(LIEUTENANT_SKILLS_FILE)
+    except OSError:
+        pass
+    return {sid: dict(sdef) for sid, sdef in _DEFAULT_LIEUTENANT_SKILLS.items()}
+
+
+LIEUTENANT_SKILLS = _load_lieutenant_skills()
+
 SKILL_BOOK_IDS = {}
 for sid, sdef in LIEUTENANT_SKILLS.items():
     level_names = ['入门', '进阶', '精通']
@@ -144,19 +199,48 @@ SYNTHESIZE_FRAGMENTS = 10
 
 class LieutenantService:
 
+    @staticmethod
+    def _fill_skill_fields(sdef, entry, level):
+        """按技能类型把 sdef 里对应等级的数值字段写进 entry(技能实例)。
+        learn/upgrade 共用，保证战斗读取的字段一致。"""
+        entry['type'] = sdef['type']
+        entry['level'] = level
+        if sdef['type'] == 'passive':
+            entry['bonus_type'] = sdef['bonus_type']
+            entry['bonus_value'] = sdef['bonus_value'][level - 1]
+        elif sdef['type'] == 'active':
+            entry['trigger_rate'] = sdef['trigger_rate'][level - 1]
+            entry['mana_cost'] = sdef['mana_cost'][level - 1]
+            if 'damage_rate' in sdef:
+                entry['damage_rate'] = sdef['damage_rate'][level - 1]
+            if 'hits' in sdef:
+                entry['hits'] = sdef['hits']
+            if 'atk_buff_rate' in sdef:
+                entry['atk_buff_rate'] = sdef['atk_buff_rate']
+            if 'def_debuff_rounds' in sdef:
+                entry['def_debuff_rounds'] = sdef['def_debuff_rounds']
+        elif sdef['type'] == 'triggered':
+            if 'absorb_rate' in sdef:
+                entry['absorb_rate'] = sdef['absorb_rate'][level - 1]
+            elif 'heal_rate' in sdef:
+                entry['heal_rate'] = sdef['heal_rate'][level - 1]
+            elif 'shield_rate' in sdef:
+                entry['shield_rate'] = sdef['shield_rate'][level - 1]
+        return entry
+
     @classmethod
     def get_lieutenants(cls, player):
-        return Lieutenant.query.filter_by(owner_id=player.id).all()
+        return Lieutenant.query.filter_by(owner_id=player.id, is_design_only=False).all()
 
     @classmethod
     def get_deployed(cls, player):
-        return Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
+        return Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True, is_design_only=False).first()
 
     @classmethod
     def recruit(cls, player, method='token'):
         """Recruit a random NORMAL lieutenant (not a named 1-3 tier lieutenant).
         Normal lieutenants have no soul, no achievement, no tier.
-        method: 'token' (use 1 recruitment_token) or 'gold' (pay 5000 gold)
+        method: 'token' (use 1 lt_recruit) or 'gold' (pay 5000 gold)
         """
         max_slots = cls.get_max_slots(player)
         count = Lieutenant.query.filter_by(owner_id=player.id).count()
@@ -164,10 +248,10 @@ class LieutenantService:
             return None, "副将位已满"
 
         if method == 'token':
-            inv = DataService.get_inventory_item(player.id, 'recruitment_token')
+            inv = DataService.get_inventory_item(player.id, 'lt_recruit')
             if not inv or inv.quantity < 1:
                 return None, "没有招募令"
-            DataService.remove_item_from_inventory(player.id, 'recruitment_token', 1)
+            DataService.remove_item_from_inventory(player.id, 'lt_recruit', 1)
         else:
             if player.gold < RECRUIT_GOLD_COST:
                 return None, f"银两不足（需要{RECRUIT_GOLD_COST}银两）"
@@ -269,7 +353,7 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(player.id, soul_item_id, 1)
         player.gold -= DECOMPOSE_GOLD_COST
-        DataService.add_item_to_inventory(player.id, 'soul_banner_fragment', fragments)
+        DataService.add_item_to_inventory(player.id, 'soul_flag_shard', fragments)
         db.session.commit()
 
         tier_name = TIER_NAMES.get(tier, '')
@@ -278,11 +362,11 @@ class LieutenantService:
     @classmethod
     def synthesize_banner(cls, player):
         """Synthesize 10 fragments into 1 soul banner."""
-        inv = DataService.get_inventory_item(player.id, 'soul_banner_fragment')
+        inv = DataService.get_inventory_item(player.id, 'soul_flag_shard')
         if not inv or inv.quantity < SYNTHESIZE_FRAGMENTS:
             return False, f"聚魂幡碎片不足（需要{SYNTHESIZE_FRAGMENTS}个）"
 
-        DataService.remove_item_from_inventory(player.id, 'soul_banner_fragment', SYNTHESIZE_FRAGMENTS)
+        DataService.remove_item_from_inventory(player.id, 'soul_flag_shard', SYNTHESIZE_FRAGMENTS)
         DataService.add_item_to_inventory(player.id, 'soul_banner', 1)
         db.session.commit()
         return True, f"使用{SYNTHESIZE_FRAGMENTS}个聚魂幡碎片合成了1个聚魂幡"
@@ -401,10 +485,10 @@ class LieutenantService:
 
     @classmethod
     def wash_quality(cls, lieutenant):
-        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_quality_pill')
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_aptitude')
         if not inv or inv.quantity <= 0:
             return False, "没有副将资质丹"
-        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_quality_pill', 1)
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_aptitude', 1)
 
         old_quality = lieutenant.quality
         new_quality = random.randint(0, 20)
@@ -420,14 +504,14 @@ class LieutenantService:
 
     @classmethod
     def enlighten(cls, lieutenant):
-        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_enlighten_pill')
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_wuxing')
         if not inv or inv.quantity <= 0:
             return False, "没有副将悟性丹"
 
         if lieutenant.enlightenment >= 10:
             return False, "悟性已达上限"
 
-        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_enlighten_pill', 1)
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_wuxing', 1)
 
         success_rate = max(0.3, 1.0 - lieutenant.enlightenment * 0.07)
         if random.random() < success_rate:
@@ -444,14 +528,14 @@ class LieutenantService:
 
     @classmethod
     def reinforce(cls, lieutenant):
-        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_reinforce_pill')
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_enhance')
         if not inv or inv.quantity <= 0:
             return False, "没有副将强化丹"
 
         if lieutenant.reinforce >= 20:
             return False, "强化已达上限"
 
-        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_reinforce_pill', 1)
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_enhance', 1)
 
         success_rate = max(0.3, 0.95 - lieutenant.reinforce * 0.03)
         if random.random() < success_rate:
@@ -468,28 +552,27 @@ class LieutenantService:
 
     @classmethod
     def restore_loyalty(cls, lieutenant):
-        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_loyalty_pill')
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_loyalty')
         if not inv or inv.quantity <= 0:
             return False, "没有副将忠诚丹"
 
-        if lieutenant.loyalty >= 100:
-            return False, "忠诚度已满"
+        if lieutenant.loyalty >= 100:            return False, "忠诚度已满"
 
-        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_loyalty_pill', 1)
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_loyalty', 1)
         lieutenant.loyalty = min(100, lieutenant.loyalty + 20)
         db.session.commit()
         return True, f"忠诚度恢复至{lieutenant.loyalty}"
 
     @classmethod
     def restore_lifespan(cls, lieutenant):
-        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_lifespan_pill')
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_life')
         if not inv or inv.quantity <= 0:
             return False, "没有副将寿命丹"
 
         if lieutenant.lifespan >= 100:
             return False, "寿命已满"
 
-        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_lifespan_pill', 1)
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_life', 1)
         lieutenant.lifespan = min(100, lieutenant.lifespan + 20)
         db.session.commit()
         return True, f"寿命恢复至{lieutenant.lifespan}"
@@ -575,21 +658,8 @@ class LieutenantService:
         skill_entry = {
             'id': skill_id,
             'name': sdef['name'],
-            'type': sdef['type'],
-            'level': level,
         }
-        if sdef['type'] == 'passive':
-            skill_entry['bonus_type'] = sdef['bonus_type']
-            skill_entry['bonus_value'] = sdef['bonus_value'][level - 1]
-        elif sdef['type'] == 'active':
-            skill_entry['trigger_rate'] = sdef['trigger_rate'][level - 1]
-            skill_entry['damage_rate'] = sdef['damage_rate'][level - 1]
-        elif sdef['type'] == 'triggered':
-            if 'absorb_rate' in sdef:
-                skill_entry['absorb_rate'] = sdef['absorb_rate'][level - 1]
-            elif 'heal_rate' in sdef:
-                skill_entry['heal_rate'] = sdef['heal_rate'][level - 1]
-            skill_entry['trigger_rate'] = sdef['trigger_rate'][level - 1]
+        cls._fill_skill_fields(sdef, skill_entry, level)
 
         skills.append(skill_entry)
         lieutenant.skills = skills
@@ -630,17 +700,7 @@ class LieutenantService:
         DataService.remove_item_from_inventory(lieutenant.owner_id, book_key, required_count)
 
         skills[skill_idx]['level'] = next_level
-        if sdef['type'] == 'passive':
-            skills[skill_idx]['bonus_value'] = sdef['bonus_value'][next_level - 1]
-        elif sdef['type'] == 'active':
-            skills[skill_idx]['trigger_rate'] = sdef['trigger_rate'][next_level - 1]
-            skills[skill_idx]['damage_rate'] = sdef['damage_rate'][next_level - 1]
-        elif sdef['type'] == 'triggered':
-            if 'absorb_rate' in sdef:
-                skills[skill_idx]['absorb_rate'] = sdef['absorb_rate'][next_level - 1]
-            elif 'heal_rate' in sdef:
-                skills[skill_idx]['heal_rate'] = sdef['heal_rate'][next_level - 1]
-            skills[skill_idx]['trigger_rate'] = sdef['trigger_rate'][next_level - 1]
+        cls._fill_skill_fields(sdef, skills[skill_idx], next_level)
 
         lieutenant.skills = skills
         db.session.commit()
@@ -653,6 +713,13 @@ class LieutenantService:
         new_skills = [sk for sk in skills if sk.get('id') != skill_id]
         if len(new_skills) == len(skills):
             return False, "未学习该技能"
+
+        # 遗忘需要消耗 1 个遗忘之章(lt_forget_tome，由 50 个遗忘之章残页合成)
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_forget_tome')
+        if not inv or inv.quantity < 1:
+            return False, "没有遗忘之章(需50个遗忘之章残页合成)"
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_forget_tome', 1)
+
         lieutenant.skills = new_skills
         db.session.commit()
         return True, "已遗忘该技能"
@@ -692,16 +759,32 @@ class LieutenantService:
     @classmethod
     def gain_experience(cls, lieutenant, exp):
         lieutenant.experience += exp
-        while lieutenant.experience >= cls._exp_to_next(lieutenant.level):
+        while lieutenant.level < 60 and lieutenant.experience >= cls._exp_to_next(lieutenant.level):
             lieutenant.experience -= cls._exp_to_next(lieutenant.level)
             lieutenant.level += 1
             lieutenant.current_health = lieutenant.get_max_health()
             lieutenant.current_mana = lieutenant.get_max_mana()
+        if lieutenant.level >= 60:
+            lieutenant.experience = 0  # 满级后不再累计经验
         db.session.commit()
 
     @classmethod
     def _exp_to_next(cls, level):
         return 50 + level * 30
+
+    @classmethod
+    def level_up_with_pill(cls, lieutenant):
+        """消耗1个副将高级经验丹(lt_exp_high)，补满当前级到下级所需经验，升1级。"""
+        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_exp_high')
+        if not inv or inv.quantity <= 0:
+            return False, "没有副将高级经验丹"
+        if lieutenant.level >= 60:
+            return False, "副将已达最高等级"
+        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_exp_high', 1)
+        # 补满到下级所需经验，走 gain_experience 触发升级(并回满血蓝)
+        need = cls._exp_to_next(lieutenant.level) - lieutenant.experience
+        cls.gain_experience(lieutenant, need)
+        return True, f"消耗1颗副将高级经验丹，升级到{lieutenant.level}级"
 
     @classmethod
     def get_available_skills(cls, lieutenant):

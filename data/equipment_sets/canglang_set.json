@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3500,
-    "description": "刺客专属，以苍狼之皮缝制的头巾，隐匿气息"
+    "description": "刺客专属，以苍狼之皮缝制的头巾，隐匿气息",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "canglang_armor_18": {
     "name": "苍狼皮甲",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 4200,
-    "description": "刺客专属，以苍狼之皮缝制的轻甲，灵活致命"
+    "description": "刺客专属，以苍狼之皮缝制的轻甲，灵活致命",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_mabu": 20
+    }
   },
   "canglang_gloves_16": {
     "name": "苍狼手套",
@@ -62,7 +72,12 @@
       "crit_rate": 0.0074
     },
     "base_price": 3000,
-    "description": "刺客专属，以苍狼之爪为饰的手套，锋利如刃"
+    "description": "刺客专属，以苍狼之爪为饰的手套，锋利如刃",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangyangmu": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "canglang_pants_17": {
     "name": "苍狼裤子",
@@ -84,7 +99,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3800,
-    "description": "刺客专属，以苍狼之皮缝制的护腿，迅捷如风"
+    "description": "刺客专属，以苍狼之皮缝制的护腿，迅捷如风",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_mabu": 20,
+      "craft_huangyangmu": 20
+    }
   },
   "canglang_shoes_15": {
     "name": "苍狼鞋",
@@ -106,6 +126,11 @@
       "dodge_rate": 0.0065
     },
     "base_price": 2800,
-    "description": "刺客专属，以苍狼之皮缝制的软靴，踏雪无声"
+    "description": "刺客专属，以苍狼之皮缝制的软靴，踏雪无声",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangtongkuang": 20,
+      "craft_huangyangmu": 20
+    }
   }
 }

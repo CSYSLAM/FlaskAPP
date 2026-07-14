@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ lt.name }}</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        .meta { color: #888; font-size: 14px; }
+        .skill { padding: 2px 0 2px 12px; border-left: 3px solid #136ec2; margin: 4px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>{{ lt.name }}</h3>
+    <a href="{{ url_for('workbench.lieutenant_design') }}">返回列表</a><br/><br/>
+
+    <b>基础</b><br/>
+    职业:{{ lt.class_name }} | 性别:{{ lt.gender_name }} | 档位:{{ lt.tier }} | 等级:{{ lt.level }}<br/>
+    位置:{{ '前置' if lt.position=='front' else '后置' }} |
+    {% if lt.is_deployed %}出战{% else %}休息{% endif %} |
+    {% if lt.is_alive %}存活{% else %}阵亡{% endif %}<br/>
+    <br/>
+
+    <b>资质维度</b><br/>
+    资质:{{ lt.quality }}({{ lt.quality_name }}，倍率{{ lt.quality_mult }})<br/>
+    悟性:{{ lt.enlightenment }}(倍率{{ '%.2f'|format(lt.enlightenment_mult) }})<br/>
+    强化:{{ lt.reinforce }}(倍率{{ '%.3f'|format(1 + lt.reinforce*0.03) }})<br/>
+    忠诚:{{ lt.loyalty }} | 寿命:{{ lt.lifespan }}<br/>
+    <br/>
+
+    <b>属性({% if lt.base_max_health or lt.base_attack or lt.base_defense or lt.base_crit_rate is not none or lt.base_dodge_rate is not none %}自定义{% else %}公式拆解{% endif %})</b><br/>
+    <span class="meta">公式: 基础属性 × 副将等级 × 品质类型倍率 × 强化加成；自定义值优先</span><br/>
+    生命上限:{{ lt.get_max_health() }}{% if lt.base_max_health is not none %} <span class="meta">[自定义{{ lt.base_max_health }}]</span>{% endif %} / 当前:{{ lt.current_health }}<br/>
+    魔法上限:{{ lt.get_max_mana() }} / 当前:{{ lt.current_mana }}<br/>
+    攻击:{{ lt.get_attack() }}{% if lt.base_attack is not none %} <span class="meta">[自定义{{ lt.base_attack }}]</span>{% endif %}<br/>
+    防御:{{ lt.get_defense() }}{% if lt.base_defense is not none %} <span class="meta">[自定义{{ lt.base_defense }}]</span>{% endif %}<br/>
+    暴击:{{ '%.2f%%'|format(lt.get_crit_rate()*100) }}{% if lt.base_crit_rate is not none %} <span class="meta">[自定义{{ '%.2f%%'|format(lt.base_crit_rate*100) }}]</span>{% endif %}<br/>
+    闪避:{{ '%.2f%%'|format(lt.get_dodge_rate()*100) }}{% if lt.base_dodge_rate is not none %} <span class="meta">[自定义{{ '%.2f%%'|format(lt.base_dodge_rate*100) }}]</span>{% endif %}<br/>
+    <br/>
+
+    <b>技能({{ lt.skills|length }}/{{ lt.skill_slots }})</b><br/>
+    {% if lt.skills %}
+    {% for sk in lt.skills %}
+    <div class="skill">
+        {{ sk.name }}({{ sk.level }}级) - {{ '主动' if sk.type=='active' else '触发' if sk.type=='triggered' else '被动' }}
+        {% if sk.type=='active' %} 触发{{ sk.trigger_rate }}% 耗魔{{ sk.mana_cost }}{% endif %}
+        {% if sk.type=='triggered' %} 触发{{ sk.trigger_rate }}%{% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    无技能<br/>
+    {% endif %}
+    <br/>
+
+    <a href="{{ url_for('workbench.lieutenant_edit', lt_id=lt.id) }}">修改属性</a><br/>
+    <a href="{{ url_for('workbench.lieutenant_delete', lt_id=lt.id) }}">删除副将</a><br/>
+</div>
+</body>
+</html>

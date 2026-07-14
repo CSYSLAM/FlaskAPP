@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 11000,
-    "description": "术士专属，以锦绣灵丝编织的头盔，华贵典雅"
+    "description": "术士专属，以锦绣灵丝编织的头盔，华贵典雅",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "jinxiu_armor_48": {
     "name": "锦绣长袍",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 13000,
-    "description": "术士专属，以锦绣灵丝织成的长袍，锦绣华章"
+    "description": "术士专属，以锦绣灵丝织成的长袍，锦绣华章",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
+    }
   },
   "jinxiu_gloves_46": {
     "name": "锦绣手套",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 9500,
-    "description": "术士专属，以锦绣灵丝编织的手套，法力涌动"
+    "description": "术士专属，以锦绣灵丝编织的手套，法力涌动",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
+    }
   },
   "jinxiu_pants_47": {
     "name": "锦绣长裤",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 11500,
-    "description": "术士专属，以锦绣灵丝织成的护腿，雍容华贵"
+    "description": "术士专属，以锦绣灵丝织成的护腿，雍容华贵",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
+    }
   },
   "jinxiu_shoes_45": {
     "name": "锦绣靴",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.0
     },
     "base_price": 9000,
-    "description": "术士专属，以锦绣灵丝编织的布靴，步步生莲"
+    "description": "术士专属，以锦绣灵丝编织的布靴，步步生莲",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
+    }
   }
 }

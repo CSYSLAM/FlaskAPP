@@ -19,7 +19,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3500,
-    "description": "战士专属，以豹皮缝制的坚固头盔，威风凛凛"
+    "description": "战士专属，以豹皮缝制的坚固头盔，威风凛凛",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "baopi_armor_18": {
     "name": "豹皮战甲",
@@ -41,7 +46,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 4200,
-    "description": "战士专属，以豹皮与铁甲打造的战甲，坚不可摧"
+    "description": "战士专属，以豹皮与铁甲打造的战甲，坚不可摧",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_mabu": 20
+    }
   },
   "baopi_gloves_16": {
     "name": "豹皮手套",
@@ -63,7 +73,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3000,
-    "description": "战士专属，以豹皮缝制的护手，力大无穷"
+    "description": "战士专属，以豹皮缝制的护手，力大无穷",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangyangmu": 20,
+      "craft_huangtongkuang": 20
+    }
   },
   "baopi_pants_17": {
     "name": "豹皮裤子",
@@ -85,7 +100,12 @@
       "dodge_rate": 0.0
     },
     "base_price": 3800,
-    "description": "战士专属，以豹皮缝制的护腿，坚韧耐用"
+    "description": "战士专属，以豹皮缝制的护腿，坚韧耐用",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_mabu": 20,
+      "craft_huangyangmu": 20
+    }
   },
   "baopi_shoes_15": {
     "name": "豹皮鞋",
@@ -107,6 +127,11 @@
       "dodge_rate": 0.0065
     },
     "base_price": 2800,
-    "description": "战士专属，以豹皮缝制的战靴，稳固如山"
+    "description": "战士专属，以豹皮缝制的战靴，稳固如山",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangtongkuang": 20,
+      "craft_huangyangmu": 20
+    }
   }
 }

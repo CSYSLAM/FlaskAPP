@@ -18,11 +18,14 @@ LOGFILE="/root/mobile_console.log"
 
 echo "==> [1/3] 停止旧 mobile_console 及其子进程(gunicorn / claude worker)"
 # 1. 杀 mobile_console 主进程
-pkill -f "mobile_console/run.py" 2>/dev/null && echo "    已停 run.py" || echo "    run.py 未在运行"
+# 用 [m] 括号技巧:正则 [m]obile_console 能匹配 "mobile_console",但字面 "[m]obile_console"
+# 不会出现在被匹配进程的 cmdline 中 —— 避免 pkill 误杀调用本脚本的 shell 自身
+# (某些自动化终端会把整条命令写进自身 cmdline,导致 pkill 把自己也干掉)。
+pkill -f "[m]obile_console/run.py" 2>/dev/null && echo "    已停 run.py" || echo "    run.py 未在运行"
 sleep 1
 # 2. 杀它遗留的孤儿 gunicorn(占 5000)和 claude 子进程
-pkill -f "gunicorn.*app:create_app" 2>/dev/null && echo "    已清孤儿 gunicorn" || true
-pkill -f "runuser.*claude" 2>/dev/null && echo "    已清 claude 子进程" || true
+pkill -f "gu[n]icorn.*app:create_app" 2>/dev/null && echo "    已清孤儿 gunicorn" || true
+pkill -f "runu[s]er.*claude" 2>/dev/null && echo "    已清 claude 子进程" || true
 sleep 1.5
 
 # 3. 确认 5000 / 8765 都释放了

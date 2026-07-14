@@ -79,12 +79,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_1",
     "base_stats": {
-      "health": 180,
-      "mana": 40,
-      "attack": 15,
-      "defense": 5,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 720,
+      "mana": 840,
+      "attack": 96,
+      "defense": 1296,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -128,12 +128,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_2",
     "base_stats": {
-      "health": 300,
-      "mana": 60,
-      "attack": 18,
-      "defense": 8,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 720,
+      "mana": 840,
+      "attack": 96,
+      "defense": 1296,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -177,12 +177,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_3",
     "base_stats": {
-      "health": 1800,
-      "mana": 120,
-      "attack": 34,
-      "defense": 18,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 3240,
+      "mana": 1680,
+      "attack": 384,
+      "defense": 3888,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -232,12 +232,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_4",
     "base_stats": {
-      "health": 2000,
-      "mana": 120,
-      "attack": 36,
-      "defense": 20,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 3240,
+      "mana": 1680,
+      "attack": 384,
+      "defense": 3888,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -287,12 +287,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_5",
     "base_stats": {
-      "health": 3000,
-      "mana": 70,
-      "attack": 24,
-      "defense": 12,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.02
+      "health": 5400,
+      "mana": 2640,
+      "attack": 576,
+      "defense": 6192,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -342,12 +342,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_5",
     "base_stats": {
-      "health": 3000,
-      "mana": 80,
-      "attack": 26,
-      "defense": 14,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.02
+      "health": 5400,
+      "mana": 2640,
+      "attack": 576,
+      "defense": 6192,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -398,12 +398,12 @@
     "copy_stage": "step_5",
     "copy_final_boss": true,
     "base_stats": {
-      "health": 3000,
-      "mana": 100,
-      "attack": 34,
-      "defense": 18,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "health": 5400,
+      "mana": 2640,
+      "attack": 576,
+      "defense": 6192,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -453,12 +453,12 @@
     "copy_dungeon_id": "huangjin_trial",
     "copy_stage": "step_5",
     "base_stats": {
-      "health": 300,
-      "mana": 50,
-      "attack": 16,
-      "defense": 6,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
+      "health": 720,
+      "mana": 840,
+      "attack": 96,
+      "defense": 1296,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -672,12 +672,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_1",
     "base_stats": {
-      "health": 800,
-      "mana": 100,
-      "attack": 45,
-      "defense": 22,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
+      "health": 3360,
+      "mana": 2760,
+      "attack": 216,
+      "defense": 3216,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -720,12 +720,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_2",
     "base_stats": {
-      "health": 900,
-      "mana": 120,
-      "attack": 48,
-      "defense": 24,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
+      "health": 3360,
+      "mana": 2760,
+      "attack": 216,
+      "defense": 3216,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -768,12 +768,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_3",
     "base_stats": {
-      "health": 850,
-      "mana": 100,
-      "attack": 50,
-      "defense": 20,
+      "health": 3360,
+      "mana": 2760,
+      "attack": 216,
+      "defense": 3216,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -816,12 +816,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_6",
     "base_stats": {
-      "health": 950,
-      "mana": 110,
-      "attack": 52,
-      "defense": 26,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
+      "health": 3360,
+      "mana": 2760,
+      "attack": 216,
+      "defense": 3216,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -870,12 +870,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_7",
     "base_stats": {
-      "health": 4800,
-      "mana": 300,
-      "attack": 90,
-      "defense": 50,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 15120,
+      "mana": 5520,
+      "attack": 864,
+      "defense": 9648,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -924,12 +924,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_8",
     "base_stats": {
-      "health": 1000,
-      "mana": 120,
-      "attack": 55,
-      "defense": 28,
-      "crit_rate": 0.04,
-      "dodge_rate": 0.03
+      "health": 3360,
+      "mana": 2760,
+      "attack": 216,
+      "defense": 3216,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -978,12 +978,12 @@
     "copy_dungeon_id": "jiding_liaodong",
     "copy_stage": "step_9",
     "base_stats": {
-      "health": 5000,
-      "mana": 350,
-      "attack": 95,
-      "defense": 55,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 15120,
+      "mana": 5520,
+      "attack": 864,
+      "defense": 9648,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1034,12 +1034,12 @@
     "copy_stage": "step_10",
     "copy_final_boss": true,
     "base_stats": {
-      "health": 6000,
-      "mana": 400,
-      "attack": 110,
-      "defense": 60,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 21600,
+      "mana": 7440,
+      "attack": 1056,
+      "defense": 11952,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1224,12 +1224,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_1",
     "base_stats": {
-      "health": 18000,
-      "mana": 800,
-      "attack": 280,
-      "defense": 150,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1279,12 +1279,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_2",
     "base_stats": {
-      "health": 19000,
-      "mana": 850,
-      "attack": 290,
-      "defense": 155,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1334,12 +1334,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_3",
     "base_stats": {
-      "health": 4500,
-      "mana": 400,
-      "attack": 200,
-      "defense": 100,
+      "health": 14160,
+      "mana": 9960,
+      "attack": 576,
+      "defense": 8976,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1384,12 +1384,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_4",
     "base_stats": {
-      "health": 4800,
-      "mana": 420,
-      "attack": 210,
-      "defense": 105,
+      "health": 14160,
+      "mana": 9960,
+      "attack": 576,
+      "defense": 8976,
       "crit_rate": 0.05,
-      "dodge_rate": 0.03
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1434,12 +1434,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_5",
     "base_stats": {
-      "health": 22000,
-      "mana": 900,
-      "attack": 310,
-      "defense": 160,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1489,12 +1489,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_6",
     "base_stats": {
-      "health": 21000,
-      "mana": 880,
-      "attack": 300,
-      "defense": 158,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.04
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1544,12 +1544,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_7",
     "base_stats": {
-      "health": 5000,
-      "mana": 450,
-      "attack": 220,
-      "defense": 110,
+      "health": 14160,
+      "mana": 9960,
+      "attack": 576,
+      "defense": 8976,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1594,12 +1594,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_8",
     "base_stats": {
-      "health": 5000,
-      "mana": 450,
-      "attack": 220,
-      "defense": 110,
+      "health": 14160,
+      "mana": 9960,
+      "attack": 576,
+      "defense": 8976,
       "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1644,12 +1644,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_9",
     "base_stats": {
-      "health": 24000,
-      "mana": 950,
-      "attack": 320,
-      "defense": 170,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1699,12 +1699,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_10",
     "base_stats": {
-      "health": 25000,
-      "mana": 980,
-      "attack": 330,
-      "defense": 175,
-      "crit_rate": 0.07,
-      "dodge_rate": 0.05
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1754,12 +1754,12 @@
     "copy_dungeon_id": "qiqinmenghuo",
     "copy_stage": "step_11",
     "base_stats": {
-      "health": 55200,
-      "mana": 1000,
-      "attack": 350,
-      "defense": 200,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06
+      "health": 63720,
+      "mana": 19920,
+      "attack": 2304,
+      "defense": 26928,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1810,12 +1810,12 @@
     "copy_stage": "step_12",
     "copy_final_boss": true,
     "base_stats": {
-      "health": 60000,
-      "mana": 1200,
-      "attack": 400,
-      "defense": 220,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06
+      "health": 70200,
+      "mana": 21840,
+      "attack": 2496,
+      "defense": 29232,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -1933,12 +1933,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_1",
     "base_stats": {
-      "health": 1300,
-      "mana": 60,
-      "attack": 55,
-      "defense": 28,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.02
+      "health": 6960,
+      "mana": 5160,
+      "attack": 336,
+      "defense": 5136,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -1989,12 +1989,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_2",
     "base_stats": {
-      "health": 1300,
-      "mana": 60,
-      "attack": 55,
-      "defense": 28,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.02
+      "health": 6960,
+      "mana": 5160,
+      "attack": 336,
+      "defense": 5136,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2046,12 +2046,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_3",
     "base_stats": {
-      "health": 1300,
-      "mana": 60,
-      "attack": 55,
-      "defense": 28,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.02
+      "health": 6960,
+      "mana": 5160,
+      "attack": 336,
+      "defense": 5136,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"
@@ -2103,12 +2103,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_4",
     "base_stats": {
-      "health": 15600,
-      "mana": 300,
-      "attack": 120,
-      "defense": 65,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "health": 31320,
+      "mana": 10320,
+      "attack": 1344,
+      "defense": 15408,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -2158,12 +2158,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_5",
     "base_stats": {
-      "health": 15600,
-      "mana": 300,
-      "attack": 120,
-      "defense": 65,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "health": 31320,
+      "mana": 10320,
+      "attack": 1344,
+      "defense": 15408,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -2213,12 +2213,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_6",
     "base_stats": {
-      "health": 15600,
-      "mana": 300,
-      "attack": 120,
-      "defense": 65,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.04
+      "health": 31320,
+      "mana": 10320,
+      "attack": 1344,
+      "defense": 15408,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -2269,12 +2269,12 @@
     "copy_stage": "step_7",
     "copy_final_boss": true,
     "base_stats": {
-      "health": 18000,
-      "mana": 400,
-      "attack": 140,
-      "defense": 75,
-      "crit_rate": 0.06,
-      "dodge_rate": 0.05
+      "health": 37800,
+      "mana": 12240,
+      "attack": 1536,
+      "defense": 17712,
+      "crit_rate": 0.15,
+      "dodge_rate": 0.15
     },
     "skills": [
       "normal_attack"
@@ -2324,12 +2324,12 @@
     "copy_dungeon_id": "weizhen_xiaoyaojin",
     "copy_stage": "step_8",
     "base_stats": {
-      "health": 1300,
-      "mana": 60,
-      "attack": 55,
-      "defense": 28,
-      "crit_rate": 0.02,
-      "dodge_rate": 0.02
+      "health": 6960,
+      "mana": 5160,
+      "attack": 336,
+      "defense": 5136,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
     },
     "skills": [
       "normal_attack"

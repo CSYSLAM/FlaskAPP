@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>副将战斗测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        label { display: inline-block; min-width: 120px; }
+        .result { border: 1px solid #ddd; padding: 8px; margin: 8px 0; background: #f9f9f9; }
+        .log-row { padding: 2px 0; border-bottom: 1px dashed #eee; font-size: 14px; }
+        .meta { color: #888; }
+        .win { font-size: 18px; font-weight: bold; color: #080; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>副将战斗测试(逐回合模拟)</h3>
+    <a href="{{ url_for('workbench.lieutenant_design') }}">返回副将设计</a><br/><br/>
+
+    <form method="post">
+        <b>副将配置(为主人出战)</b><br/>
+        <label>职业</label>
+        <select name="lt_class">
+            {% for c in classes %}<option value="{{ c }}" {% if form.lt_class==c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+        </select><br/>
+        <label>等级</label><input type="number" name="lt_level" value="{{ form.lt_level }}"><br/>
+        <label>资质(0-20)</label><input type="number" name="lt_quality" value="{{ form.lt_quality }}"><br/>
+        <label>悟性(0-10)</label><input type="number" name="lt_enlightenment" value="{{ form.lt_enlightenment }}"><br/>
+        <label>强化(0-20)</label><input type="number" name="lt_reinforce" value="{{ form.lt_reinforce }}"><br/>
+        <label>位置</label>
+        <select name="lt_position">
+            <option value="front" {% if form.lt_position=='front' %}selected{% endif %}>前置(挡刀)</option>
+            <option value="back" {% if form.lt_position=='back' %}selected{% endif %}>后置</option>
+        </select><br/>
+        <label>主动技能</label>
+        <select name="lt_skill_id">
+            <option value="attack" {% if form.lt_skill_id=='attack' %}selected{% endif %}>无(普攻)</option>
+            {% for cn, sks in skills_by_class.items() if cn != '普攻' %}
+            <optgroup label="{{ cn }}">
+            {% for sid, s in sks.items() %}
+            <option value="{{ sid }}" {% if form.lt_skill_id==sid %}selected{% endif %}>{{ s.name }}</option>
+            {% endfor %}
+            </optgroup>
+            {% endfor %}
+        </select>
+        等级<input type="number" name="lt_skill_level" value="{{ form.lt_skill_level }}" min="1" max="3" style="width:60px"><br/>
+        <label>触发技能</label>
+        <select name="lt_trigger_skill">
+            <option value="" {% if not form.lt_trigger_skill %}selected{% endif %}>无</option>
+            {% for cn, sks in trigger_by_class.items() %}
+            <optgroup label="{{ cn }}">
+            {% for sid, s in sks.items() %}
+            <option value="{{ sid }}" {% if form.lt_trigger_skill==sid %}selected{% endif %}>{{ s.name }}</option>
+            {% endfor %}
+            </optgroup>
+            {% endfor %}
+        </select><br/>
+        <br/>
+        <b>主人</b><br/>
+        <label>生命上限</label><input type="number" name="player_max_health" value="{{ form.player_max_health }}"><br/>
+        <label>魔法上限</label><input type="number" name="player_max_mana" value="{{ form.player_max_mana }}"><br/>
+        <label>防御</label><input type="number" name="player_defense" value="{{ form.player_defense }}"><br/>
+        <label>闪避率</label><input type="number" name="player_dodge_rate" value="{{ form.player_dodge_rate }}" step="0.01"><br/>
+        <br/>
+        <b>怪物</b><br/>
+        <label>名字</label><input type="text" name="monster_name" value="{{ form.monster_name }}"><br/>
+        <label>等级</label><input type="number" name="monster_level" value="{{ form.monster_level }}"><br/>
+        <label>精英</label><input type="checkbox" name="monster_is_elite" {% if form.monster_is_elite %}checked{% endif %}><br/>
+        <label>攻击</label><input type="number" name="monster_attack" value="{{ form.monster_attack }}"><br/>
+        <label>防御</label><input type="number" name="monster_defense" value="{{ form.monster_defense }}"><br/>
+        <label>生命上限</label><input type="number" name="monster_max_health" value="{{ form.monster_max_health }}"><br/>
+        <label>暴击率</label><input type="number" name="monster_crit_rate" value="{{ form.monster_crit_rate }}" step="0.01"><br/>
+        <label>闪避率</label><input type="number" name="monster_dodge_rate" value="{{ form.monster_dodge_rate }}" step="0.01"><br/>
+        <label>最大回合</label><input type="number" name="max_rounds" value="{{ form.max_rounds }}" min="1" max="100"><br/>
+        <br/>
+        <button type="submit">开始模拟</button>
+    </form>
+
+    {% if results %}
+    <div class="result">
+        <span class="win">胜负:{{ results.winner }}</span> ({{ results.rounds }}回合)<br/>
+        <b>副将</b>:{{ results.lt.name }} {{ results.lt.class }} {{ results.lt.level }}级 攻{{ results.lt.atk }} 防{{ results.lt.def }} 血{{ results.lt.max_hp }} 蓝{{ results.lt.max_mp }} → 剩余血{{ results.lt.final_hp }} 蓝{{ results.lt.final_mana }}<br/>
+        <b>主人</b>:剩余血{{ results.player.final_hp }}<br/>
+        <b>怪物</b>:{{ results.monster.name }} → 剩余血{{ results.monster.final_hp }}<br/>
+        <br/>
+        <b>战报</b><br/>
+        {% for log in results.logs %}
+        <div class="log-row">
+            R{{ log.rnd }} | 副将[{{ log.lt_skill }}]{{ log.lt_dmg }}(蓝{{ log.lt_mana }}) |
+            怪物{{ log.m_dmg }}{% if log.m_dodged %}(闪避){% endif %}
+            {% if log.shield %} | {{ log.shield }}{% endif %}
+            {% if log.block %} | {{ log.block }}{% endif %}
+            {% if log.trig %} | {{ log.trig }}{% endif %}
+            <span class="meta">| 副将血{{ log.lt_hp }} 主人血{{ log.p_hp }} 怪血{{ log.m_hp }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

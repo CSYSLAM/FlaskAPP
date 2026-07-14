@@ -40,9 +40,11 @@ def login_page():
         login_user(player)
         session["username"] = username
         session["player_id"] = player.id
-        # 单点登录：绑定新 token，旧会话立即失效（下次请求被踢）
-        from services import auth_session_service as _sso
-        session["_sso_token"] = _sso.bind(player.id)
+        # 多窗口单点登录：按当前 sid 绑定窗口，并把该账号活动 sid 切到此窗口
+        # → 旧窗口的 sid 立即失效，下次请求被踢
+        from services import window_session_service as _ws
+        sid = _ws.get_sid() or _ws.new_sid()
+        _ws.bind_window(sid, player.id)
         # VIP5 broadcast on login
         from services.vip_service import VipService
         if VipService.has_broadcast(player):
@@ -89,7 +91,7 @@ def register():
             level=1,
             experience=0,
             exp_to_next_level=50,
-            gold=100,
+            gold=1500,
             health=100,
             max_health=100,
             mana=50,
@@ -204,10 +206,15 @@ def story_complete():
 @auth_bp.route("/logout")
 @login_required
 def logout():
+    from services import window_session_service as _ws
     from services import auth_session_service as _sso
-    _sso.clear(current_user.id)
+    sid = _ws.get_sid()
+    pid = current_user.id
+    # 仅登出当前窗口，不影响其他窗口（多开场景）
+    if sid:
+        _ws.clear_window(sid)
+        _sso.clear(pid, sid=sid)
     logout_user()
     session.pop("username", None)
     session.pop("player_id", None)
-    session.pop("_sso_token", None)
     return redirect(url_for("auth.login_page"))
