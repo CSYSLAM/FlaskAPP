@@ -1820,6 +1820,619 @@
       ]
     },
     "next_hint": "此为当前主线终点。待等级更高时，南下许昌的征程将开启。",
+    "next_quest": "main_50"
+  },
+  "main_50": {
+    "id": "main_50",
+    "name": "主·南下许昌",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 30,
+    "prerequisite": "main_49",
+    "description": "与『张扬』辞行，南下许昌投奔曹公",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_张扬荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "雁门既守，你之名已传至中原。许昌曹公求贤若渴，正是你施展之时。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "出晋阳南界，过长城，便是许昌北界。许昌驿站的许昌车夫乃曹公心腹，你寻他引荐。"
+        },
+        {
+          "speaker": "",
+          "text": "（你辞别张扬，踏上了南下许昌的征途——那将是一个枭雄并起、风云际会的天下。）"
+        }
+      ]
+    },
+    "next_hint": "前往「晋阳南界」向南进入「许昌北界」，再至许昌中区驿站寻『许昌车夫』",
+    "next_quest": "main_51"
+  },
+  "main_51": {
+    "id": "main_51",
+    "name": "主·初入许昌",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_许昌车夫",
+    "npc_name": "许昌车夫",
+    "npc_location": "xuchang_center.驿站",
+    "npc_location_name": "驿站(许昌中区)",
+    "level_required": 30,
+    "prerequisite": "main_50",
+    "description": "前往「驿站」与『许昌车夫』搭话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_许昌车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许昌车夫",
+          "text": "这位壮士，从晋阳远道而来？一路辛苦。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持晋阳张扬太守之荐，欲面见曹公。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许昌车夫",
+          "text": "张扬太守的人？那可是贵客！曹公正在皇宫理政。"
+        },
+        {
+          "speaker": "许昌车夫",
+          "text": "我引你入宫——不过曹公识人，他自会考校于你。且随我来。"
+        }
+      ]
+    },
+    "next_quest": "main_52"
+  },
+  "main_52": {
+    "id": "main_52",
+    "name": "主·面见曹公",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_许昌车夫",
+    "npc_name": "许昌车夫",
+    "npc_location": "xuchang_center.驿站",
+    "npc_location_name": "驿站(许昌中区)",
+    "level_required": 30,
+    "prerequisite": "main_51",
+    "description": "前往「皇宫」面见『曹操』",
+    "target_location": "xuchang_center.皇宫",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_曹操荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许昌车夫",
+          "text": "皇宫就在东面，曹公威仪，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "张扬荐书我已阅。能守雁门者，必是可用之材。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "然天下未定，许昌四境仍有余孽——袁术旧部孔由盘踞楚留巷，欺压百姓。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你既投我幕府，便先取孔由之首，让我看看你的本事！"
+        }
+      ]
+    },
+    "next_quest": "main_53"
+  },
+  "main_53": {
+    "id": "main_53",
+    "name": "主·楚巷孔由",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 31,
+    "prerequisite": "main_52",
+    "description": "前往「楚留巷」击败6名『孔由』",
+    "target_location": "xuchang_north.楚留巷",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "孔由",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 500,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "孔由授首！楚留巷百姓得脱其苦。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "袁术旧党何止孔由。白虎街的太子守卫亦有人受其蛊惑，阳奉阴违。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "去白虎街，把那群太子守卫收拾干净，勿使东宫生乱。"
+        }
+      ]
+    },
+    "next_quest": "main_54"
+  },
+  "main_54": {
+    "id": "main_54",
+    "name": "主·白虎守卫",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 32,
+    "prerequisite": "main_53",
+    "description": "前往「白虎街」收拾8名『太子守卫』",
+    "target_location": "xuchang_center.白虎街",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "太子守卫",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 560,
+      "honor": 1
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "东宫既安，太子守卫之乱已平。此功赏你荣誉1点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "护城河一带的许昌卫兵近来懈怠，有人竟与北境流寇私通。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你去护城河整肃一番，杀鸡儆猴，看看谁还敢心怀二志。"
+        }
+      ]
+    },
+    "next_quest": "main_55"
+  },
+  "main_55": {
+    "id": "main_55",
+    "name": "主·整肃护城河",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 34,
+    "prerequisite": "main_54",
+    "description": "前往「护城河」收拾8名『许昌卫兵』",
+    "target_location": "xuchang_north.护城河",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "许昌卫兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 11500,
+      "gold": 640
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "护城河既清，通敌之徒已诛，许昌北境再无私通之忧。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你连番厮杀，伤药可曾备齐？许大夫药铺就在城中，金疮药不可少。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "去药铺寻许大夫，买几支金疮药傍身——刀头舔血，总要有备无患。"
+        }
+      ]
+    },
+    "next_quest": "main_56"
+  },
+  "main_56": {
+    "id": "main_56",
+    "name": "主·许大夫求药",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 33,
+    "prerequisite": "main_55",
+    "description": "前往「药铺」向『许大夫』购买1个[金疮药]",
+    "target_location": "xuchang_center.药铺",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_xuchang_center_许大夫"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 200
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹操",
+          "text": "药铺在中区东首，许大夫乃杏林圣手，金疮药是他的拿手。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手。曹公麾下办事，果然利落。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "战场凶险，这药关键时刻能救命。曹公那边怕是又有差事了。"
+        }
+      ]
+    },
+    "next_quest": "main_57"
+  },
+  "main_57": {
+    "id": "main_57",
+    "name": "主·战场魏军",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 35,
+    "prerequisite": "main_56",
+    "description": "前往「战场」收拾8名『魏军护兵』",
+    "target_location": "xuchang_center.战场",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "魏军护兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 12000,
+      "gold": 700,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "战场魏军护兵既平，校军场再无隐患。赏你荣誉2点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "然东门有鲍信，亦袁术余孽，聚众自固，屡抗王师。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "鲍信此獠，必除之！你东出东门，取他首级来见。"
+        }
+      ]
+    },
+    "next_quest": "main_58"
+  },
+  "main_58": {
+    "id": "main_58",
+    "name": "主·东门鲍信",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 35,
+    "prerequisite": "main_57",
+    "description": "前往「东门」击败6名『鲍信』",
+    "target_location": "xuchang_east.东门",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "鲍信",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 13500,
+      "gold": 800,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "鲍信授首！袁术余党又去其一。赏你荣誉3点，记你大功。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "射鹿台还有张超，与鲍信同气连枝，必为后患。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "乘胜追击，去射鹿台把张超也一并除了！"
+        }
+      ]
+    },
+    "next_quest": "main_59"
+  },
+  "main_59": {
+    "id": "main_59",
+    "name": "主·射鹿张超",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 37,
+    "prerequisite": "main_58",
+    "description": "前往「射鹿台」击败6名『张超』",
+    "target_location": "xuchang_east.射鹿台",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "张超",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 15000,
+      "gold": 900,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "张超既除，东境袁术余孽尽灭！赏你荣誉3点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "连番征讨，军械辎重堆积如山。金掌柜的钱庄仓库正需人手盘点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你去钱庄寻金掌柜，替我理一理这批军资——仓中有序，方能耗长久。"
+        }
+      ]
+    },
+    "next_quest": "main_60"
+  },
+  "main_60": {
+    "id": "main_60",
+    "name": "主·仓库盘点",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 36,
+    "prerequisite": "main_59",
+    "description": "前往「钱庄」与『金掌柜』盘点军资",
+    "target_location": "xuchang_center.钱庄",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_金掌柜仓库",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 7000,
+      "gold": 400
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹操",
+          "text": "金掌柜的钱庄在中区西首，他管着许昌的仓库，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "金掌柜",
+          "text": "壮士来了！这批军资我可等了好些时日，多亏你帮忙盘点。"
+        },
+        {
+          "speaker": "金掌柜",
+          "text": "仓库已理清，辎重出入有数。往后你有什物要存，尽管来寻我。"
+        }
+      ]
+    },
+    "next_quest": "main_61"
+  },
+  "main_61": {
+    "id": "main_61",
+    "name": "主·阳关白衣人",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 38,
+    "prerequisite": "main_60",
+    "description": "前往「阳关道」收拾8名『斗篷白衣人』",
+    "target_location": "xuchang_south.阳关道",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "斗篷白衣人",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 16000,
+      "gold": 1000,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "阳关道白衣人既灭，南境江湖势力为之一清。赏你荣誉2点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "风陵渡有风陵王，此贼盘踞渡口，断我漕运，罪不可恕。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "风陵王凶悍，乃南境大患。你此去务必小心，取其首级！"
+        }
+      ]
+    },
+    "next_quest": "main_62"
+  },
+  "main_62": {
+    "id": "main_62",
+    "name": "主·风陵王",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 39,
+    "prerequisite": "main_61",
+    "description": "前往「风陵渡」击败6名『风陵王』",
+    "target_location": "xuchang_east.风陵渡",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "风陵王",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 18000,
+      "gold": 1200,
+      "honor": 4
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "风陵王授首！漕运复通，许昌四境大定。赏你荣誉4点，记你首功。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你连平数境，功勋卓著。然小公主有要事相告，她急得紧。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你且先去皇宫见她，我随后在铜雀台设宴为你庆功。"
+        }
+      ]
+    },
+    "next_quest": "main_63"
+  },
+  "main_63": {
+    "id": "main_63",
+    "name": "主·小公主之忧",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 38,
+    "prerequisite": "main_62",
+    "description": "前往「皇宫」听『小公主』所述",
+    "target_location": "xuchang_center.皇宫",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_小公主",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 8000,
+      "gold": 600
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹操",
+          "text": "小公主在皇宫内，她性子急，你快去快回。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "小公主",
+          "text": "壮士！我听闻南方下邳城近来异动频频，似有中立之豪强欲起事。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "下邳乃南北要冲，若失，许昌南门洞开。父王正欲设宴，定有差遣于你。"
+        }
+      ]
+    },
+    "next_quest": "main_64"
+  },
+  "main_64": {
+    "id": "main_64",
+    "name": "主·铜雀台宴",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_小公主",
+    "npc_name": "小公主",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 39,
+    "prerequisite": "main_63",
+    "description": "前往「皇宫」赴曹公『铜雀台』之宴",
+    "target_location": "xuchang_center.皇宫",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_曹操荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 1000,
+      "honor": 5
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "铜雀台高，对酒当歌。你平许昌四境，功在社稷，赏你荣誉5点！"
+        },
+        {
+          "speaker": "曹操",
+          "text": "然如小公主所言，下邳中立城暗流涌动，南北要冲不可失。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "待你功力再进一步，便南下下邳一探究竟——那，将是你新的征程。"
+        }
+      ]
+    },
+    "next_hint": "此为当前主线终点。待等级更高时，南下下邳中立城的征程将开启。",
     "next_quest": null
   }
 }
