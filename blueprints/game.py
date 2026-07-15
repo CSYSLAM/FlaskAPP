@@ -60,6 +60,8 @@ def scene():
 
         # If player left a copy dungeon map, reset their dungeon state
         data = player.activity_data
+        # 清除可能残留的“上次击杀为精英/世界boss”标记（正常流程已在结算界面消费）
+        data.pop('last_kill_special', None)
         if location and not location.get('is_copy_map'):
             copy_states = data.get('copy_dungeons', {})
             if copy_states:

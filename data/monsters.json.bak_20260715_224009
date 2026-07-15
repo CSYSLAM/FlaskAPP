@@ -76,8 +76,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 25,
@@ -462,8 +462,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 12,
@@ -685,8 +685,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -872,8 +872,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -1374,8 +1374,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -1722,8 +1722,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 30,
@@ -1774,8 +1774,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 40,
@@ -1952,8 +1952,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 35,
@@ -2226,8 +2226,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 22,
@@ -2409,8 +2409,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 17,
@@ -2461,8 +2461,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 45,
@@ -2522,7 +2522,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 55,
@@ -2573,8 +2573,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 47,
@@ -2634,7 +2634,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 75,
@@ -2759,7 +2759,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 65,
@@ -2819,7 +2819,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 70,
@@ -2944,7 +2944,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 60,
@@ -3069,7 +3069,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 82,
@@ -3129,7 +3129,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 87,
@@ -3245,8 +3245,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 37,
@@ -3986,7 +3986,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -4046,7 +4046,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -4106,7 +4106,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -4435,8 +4435,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -4496,8 +4496,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -4683,8 +4683,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -4933,7 +4933,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 22,
@@ -4993,8 +4993,8 @@
         }
       },
       "items": {
-        "potion_heal_950": 0.01,
-        "potion_heal_1150": 0.01
+        "potion_heal_950": 0.05,
+        "potion_heal_1150": 0.05
       },
       "money": {
         "min": 30,
@@ -5054,8 +5054,8 @@
         }
       },
       "items": {
-        "potion_heal_950": 0.01,
-        "potion_heal_1150": 0.01
+        "potion_heal_950": 0.05,
+        "potion_heal_1150": 0.05
       },
       "money": {
         "min": 32,
@@ -5488,8 +5488,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 8,
@@ -5549,7 +5549,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -5609,7 +5609,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 20,
@@ -5660,8 +5660,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 8,
@@ -5784,8 +5784,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 26,
@@ -5910,7 +5910,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -6033,7 +6033,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 26,
@@ -6093,7 +6093,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 28,
@@ -6279,8 +6279,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 32,
@@ -6709,7 +6709,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -7041,7 +7041,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -7435,7 +7435,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -7495,8 +7495,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -7745,8 +7745,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -7806,8 +7806,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -7993,8 +7993,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -8744,8 +8744,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.05,
+        "potion_heal_2000": 0.05
       },
       "money": {
         "min": 35,
@@ -9057,8 +9057,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 38,
@@ -9181,8 +9181,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 36,
@@ -9865,7 +9865,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -9925,7 +9925,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -10048,7 +10048,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 20,
@@ -10108,8 +10108,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -10169,8 +10169,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -10358,7 +10358,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 28,
@@ -10418,7 +10418,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 26,
@@ -10541,7 +10541,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -10601,7 +10601,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -11224,7 +11224,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -11284,7 +11284,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -11398,8 +11398,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -11450,8 +11450,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -11511,7 +11511,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 13,
@@ -11634,7 +11634,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 14,
@@ -11757,7 +11757,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -11817,7 +11817,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 15,
@@ -11877,7 +11877,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -11928,8 +11928,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -12393,8 +12393,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -12665,8 +12665,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -12722,8 +12722,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -12774,8 +12774,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -12952,8 +12952,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 6,
@@ -13004,8 +13004,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -13056,8 +13056,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 7,
@@ -13894,7 +13894,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 20,
@@ -13954,7 +13954,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 22,
@@ -14005,8 +14005,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 8,
@@ -14129,7 +14129,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -14189,7 +14189,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -14249,8 +14249,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -14373,7 +14373,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -14624,7 +14624,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -14747,8 +14747,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -14871,7 +14871,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 28,
@@ -15339,7 +15339,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -15399,7 +15399,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -15522,7 +15522,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -15636,8 +15636,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -15688,8 +15688,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -15740,8 +15740,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -15864,7 +15864,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 13,
@@ -15987,7 +15987,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 14,
@@ -16047,7 +16047,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 15,
@@ -16107,7 +16107,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -16692,8 +16692,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -16906,8 +16906,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -16963,8 +16963,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 6,
@@ -17015,8 +17015,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -17135,8 +17135,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -17187,8 +17187,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -17239,8 +17239,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 7,
@@ -18424,8 +18424,8 @@
       },
       "experience": 40,
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       }
     }
   },
@@ -18498,8 +18498,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 35,
@@ -18559,8 +18559,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.065,
+        "potion_heal_2000": 0.065
       },
       "money": {
         "min": 36,
@@ -18620,8 +18620,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 37,
@@ -18681,8 +18681,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 38,
@@ -18742,8 +18742,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 39,
@@ -18803,8 +18803,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 40,
@@ -18864,8 +18864,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 41,
@@ -18925,8 +18925,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -19800,8 +19800,8 @@
       "items": {
         "craft_huangyangmu": 0.3,
         "craft_heitiekuang": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 30,
@@ -19841,8 +19841,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_chenxiangmu": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 35,
@@ -19990,8 +19990,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_mianbu": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 40,
@@ -20123,8 +20123,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_heitiekuang": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -20309,8 +20309,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_mianbu": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 38,
@@ -20403,8 +20403,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_huangyangmu": 0.2,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 28,
@@ -20709,8 +20709,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.05,
+        "potion_heal_2000": 0.05
       },
       "money": {
         "min": 25,
@@ -20812,8 +20812,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.055,
+        "potion_heal_2000": 0.055
       },
       "money": {
         "min": 28,
@@ -20862,8 +20862,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 30,
@@ -20965,8 +20965,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 32,
@@ -21121,8 +21121,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 35,
@@ -21224,8 +21224,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 38,
@@ -21327,8 +21327,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 45,
@@ -21530,8 +21530,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 42,
@@ -21580,8 +21580,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 44,
@@ -23324,39 +23324,5 @@
       "ice_tower_pass",
       "ice_tower_pass"
     ]
-  },
-  "npc_wujun_center_孙坚荣誉": {
-    "name": "孙坚【荣誉】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "孙坚【荣誉】",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
   }
 }

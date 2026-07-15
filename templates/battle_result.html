@@ -27,7 +27,9 @@
     {% if is_pk %}
     <a href="{{ url_for('game.scene') }}">返回场景</a><br/>
     {% else %}
+    {% if not hide_continue %}
     <a href="{{ url_for('battle.continue_battle') }}">继续挑战</a><br/>
+    {% endif %}
     <a href="{{ url_for('game.scene') }}">返回场景</a><br/>
     {% endif %}
 

@@ -4434,5 +4434,59 @@
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0
+  },
+  "quest_wu_bingshu": {
+    "name": "孙吴兵书",
+    "type": "quest",
+    "description": "孙尚香被窃贼偷走的兵书，记载了江东战法。需夺回交予孙尚香。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_xin": {
+    "name": "家信",
+    "type": "quest",
+    "description": "孙尚香写给兄长孙策的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_gengdian": {
+    "name": "羹点",
+    "type": "quest",
+    "description": "孙尚香为兄长孙策准备的羹点",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_jinnang": {
+    "name": "诸葛锦囊",
+    "type": "quest",
+    "description": "刘雅被窃贼偷走的锦囊，内藏军机妙计。需夺回交予刘雅。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_xin": {
+    "name": "家信",
+    "type": "quest",
+    "description": "刘雅写给刘封的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_chashi": {
+    "name": "茶食",
+    "type": "quest",
+    "description": "刘雅为刘封准备的茶食",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
   }
 }

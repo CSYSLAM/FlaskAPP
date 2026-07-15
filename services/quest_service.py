@@ -1,10 +1,28 @@
 import json
+import re
 from services import db
 from services.data_service import DataService
 
 
 class QuestService:
     _quests = None
+
+    # 国家 -> 主线任务id前缀。主线任务按国家隔离,玩家只走本国任务链。
+    # 魏=main_wei_xx, 吴=main_wu_xx, 蜀=main_shu_xx
+    _COUNTRY_PREFIX = {'魏': 'main_wei_', '吴': 'main_wu_', '蜀': 'main_shu_'}
+
+    @classmethod
+    def _country_prefix(cls, player):
+        """玩家所属国家的主线任务id前缀。无国家/未知国家默认魏。"""
+        c = getattr(player, 'country', None) or '魏'
+        return cls._COUNTRY_PREFIX.get(c, 'main_wei_')
+
+    @classmethod
+    def _is_own_country_quest(cls, player, qid):
+        """该任务是否属于玩家本国(按id前缀判断)。非main_开头(如支线)不限制。"""
+        if not qid or not qid.startswith('main_'):
+            return True
+        return qid.startswith(cls._country_prefix(player))
 
     @classmethod
     def _load(cls):
@@ -54,13 +72,18 @@ class QuestService:
         completed = cls.get_completed_quests(player)
         active = cls.get_active_quests(player)
         all_quests = cls._load()
-        # Find active main quest
+        prefix = cls._country_prefix(player)
+        # Find active main quest (仅本国主线)
         for qid in active:
+            if not qid.startswith(prefix):
+                continue
             q = all_quests.get(qid)
             if q and q.get('type') == 'main':
                 return q
-        # Find next uncompleted main quest
+        # Find next uncompleted main quest (仅本国主线)
         for qid, q in all_quests.items():
+            if not qid.startswith(prefix):
+                continue
             if q.get('type') == 'main' and qid not in completed:
                 prereq = q.get('prerequisite')
                 if not prereq or prereq in completed:
@@ -72,6 +95,9 @@ class QuestService:
         q = cls.get_quest(quest_id)
         if not q:
             return False, "任务不存在"
+        # 国家隔离: 主线任务只能接本国的
+        if not cls._is_own_country_quest(player, quest_id):
+            return False, "这不是你本国的任务"
         if player.level < q.get('level_required', 1):
             return False, f"需要等级{q['level_required']}"
         completed = cls.get_completed_quests(player)

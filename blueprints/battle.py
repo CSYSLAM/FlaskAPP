@@ -162,12 +162,17 @@ def battle_result():
 
     is_pk = player.in_pk
     last_action = player.last_action or ""
+    # 读取并清除“上次击杀是否为精英/世界boss”标记（精英/世界boss击杀后隐藏“继续挑战”）
+    _ad = player.activity_data
+    hide_continue = _ad.pop('last_kill_special', False)
+    player.activity_data = _ad
     db.session.commit()
     return render_template("battle_result.html",
                        result=result,
                        lost_experience=lost_exp,
                        is_pk=is_pk,
-                       last_action=last_action)
+                       last_action=last_action,
+                       hide_continue=hide_continue)
 
 
 @battle_bp.route("/continue_battle")

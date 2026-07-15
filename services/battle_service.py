@@ -405,7 +405,21 @@ class BattleService:
         # Finance bandit: a bandit present at this location may be targeted (理财·劫匪, 世界BOSS)
         from services.finance_service import FinanceService
         if monster_id is None:
-            monster_id = random.choice(killable_ids) if killable_ids else None
+            # 继续遇怪/随机遇怪：只能是本场景【常驻】的【普通】怪物。
+            # 排除：精英/世界boss(需主动点链接挑战)、副本怪、以及非本场景常驻的刷新怪(如理财·劫匪)。
+            def _is_resident_normal(mid):
+                md = all_monsters.get(mid, {})
+                if not md.get("killable", True):
+                    return False
+                if md.get("is_elite") or md.get("is_divine_beast"):
+                    return False
+                if md.get("is_copy") or md.get("copy_only"):
+                    return False
+                if str(mid).startswith("bandit_") or md.get("is_bandit"):
+                    return False
+                return True
+            random_pool = [mid for mid in killable_ids if _is_resident_normal(mid)]
+            monster_id = random.choice(random_pool) if random_pool else None
         else:
             # 指定怪物：劫匪需在该场景且在场，其它怪需属于该场景
             bandit_info = FinanceService.get_bandit_at_location(player.current_location)
@@ -1099,6 +1113,11 @@ class BattleService:
         if quest_drops_final:
             player.last_battle_result += f"。任务掉落: {'、'.join(set(quest_drops_final))}"
         player.current_encounter = None
+        # 记录本次击杀是否为精英/世界boss，供结算界面决定是否隐藏“继续挑战”
+        _is_special_kill = (monster.is_elite or monster.is_divine_beast) and not getattr(monster, 'is_copy', False)
+        _ad = player.activity_data
+        _ad['last_kill_special'] = _is_special_kill
+        player.activity_data = _ad
         monster.reset_health()
 
         # Finance bandit kill: record to city ranking + points reward (理财·劫匪, 世界BOSS)
