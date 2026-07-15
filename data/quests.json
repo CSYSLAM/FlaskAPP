@@ -1209,9 +1209,18 @@
     },
     "dialogs": {
       "complete": [
-        {"speaker": "公孙瓒", "text": "荣誉，是你在沙场上立下的战功证明。"},
-        {"speaker": "公孙瓒", "text": "积累荣誉可提升军衔——从十夫长、百夫长直至将军，军衔越高，攻击加成越多。"},
-        {"speaker": "公孙瓒", "text": "荣誉榜亦按荣誉点数排名，是实力的象征。此番教诲，赏你荣誉2点。"}
+        {
+          "speaker": "公孙瓒",
+          "text": "荣誉，是你在沙场上立下的战功证明。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "积累荣誉可提升军衔——从十夫长、百夫长直至将军，军衔越高，攻击加成越多。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "荣誉榜亦按荣誉点数排名，是实力的象征。此番教诲，赏你荣誉2点。"
+        }
       ]
     },
     "next_quest": "main_35"
@@ -1238,5 +1247,579 @@
       "gold": 200
     },
     "next_quest": "main_36"
+  },
+  "main_36": {
+    "id": "main_36",
+    "name": "主·平叛余烬",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 16,
+    "prerequisite": "main_35",
+    "description": "前往「太守府」与『公孙瓒』复命",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_公孙瓒荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "燕山既平，残部却向西遁去——白马草原一带的乌恒骑兵蠢蠢欲动。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "我疑冀州有人暗中通敌，你这便去白马草原，将那伙乌恒骑兵收拾干净。"
+        },
+        {
+          "speaker": "",
+          "text": "（公孙瓒神色凝重，似有更深隐情。）"
+        }
+      ]
+    },
+    "next_quest": "main_37"
+  },
+  "main_37": {
+    "id": "main_37",
+    "name": "主·踏平白马",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 16,
+    "prerequisite": "main_36",
+    "description": "前往「白马草原」收拾8名『乌恒骑兵』",
+    "target_location": "beiping_north.白马草原",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "乌恒骑兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 3800,
+      "gold": 220
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "好身手！白马草原的乌恒骑兵既除，北平北境暂安。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "然探子回报，北平西面的古道上，马贼探子频频出没，怕是有人在背后撑腰。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "你去古道走一遭，把那些马贼探子扫了，看看他们替谁卖命。"
+        }
+      ]
+    },
+    "next_quest": "main_38"
+  },
+  "main_38": {
+    "id": "main_38",
+    "name": "主·马贼探子",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 17,
+    "prerequisite": "main_37",
+    "description": "前往「古道」收拾10名『马贼探子』",
+    "target_location": "beiping_west.古道",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "马贼探子",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 4200,
+      "gold": 240
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "马贼探子已除，可临死前他们口中只念一个名字——高干。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "高干，袁氏旧臣，盘踞云鹤崖，暗通异族，图谋不轨。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "云鹤崖险，此去务必小心。取他项上人头时，记得搜出通敌的密信！"
+        }
+      ]
+    },
+    "next_quest": "main_39"
+  },
+  "main_39": {
+    "id": "main_39",
+    "name": "主·逆臣高干",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 17,
+    "prerequisite": "main_38",
+    "description": "前往「云鹤崖」击败『高干』，夺取【逆臣密信】后回太守府交付",
+    "target_location": "beiping_west.云鹤崖",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_mixin",
+      "item_name": "逆臣密信",
+      "count": 1,
+      "monster_name": "高干"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 400,
+      "honor": 3
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "高干此贼，必除之而后快。把那通敌密信给我带回来！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "密信在此……高干竟与塞外异族歃血为盟，欲图北平！"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "铁证如山，逆臣伏诛。此功当记，赏你荣誉3点。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "既知异族欲窥晋阳，我修书一封，你持密信出使晋阳太守张扬——他乃忠勇之人，定会接应。"
+        }
+      ]
+    },
+    "next_quest": "main_40"
+  },
+  "main_40": {
+    "id": "main_40",
+    "name": "主·西出北平",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 18,
+    "prerequisite": "main_39",
+    "description": "与『公孙瓒』辞行，出北平西界前往晋阳",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_公孙瓒荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "出北平西界，过长城，便是晋阳地界。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "晋阳驿站的晋阳车夫认得张扬太守的人，你寻他引荐便是。"
+        },
+        {
+          "speaker": "",
+          "text": "（你辞别公孙瓒，踏上了西出北平、奔赴晋阳的路途。）"
+        }
+      ]
+    },
+    "next_hint": "前往「北平西界」向西进入「晋阳东界」，再至晋阳中区驿站寻『晋阳车夫』",
+    "next_quest": "main_41"
+  },
+  "main_41": {
+    "id": "main_41",
+    "name": "主·初入晋阳",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_晋阳车夫",
+    "npc_name": "晋阳车夫",
+    "npc_location": "jinyang_center.驿站",
+    "npc_location_name": "驿站(晋阳中区)",
+    "level_required": 18,
+    "prerequisite": "main_40",
+    "description": "前往「驿站」与『晋阳车夫』搭话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_晋阳车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3200,
+      "gold": 200
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "晋阳车夫",
+          "text": "哟，这位客官从北平来？车马劳顿，歇歇脚吧。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持北平太守公孙瓒的书信，欲见晋阳张扬太守。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "晋阳车夫",
+          "text": "公孙瓒太守的人？那可是贵客！张扬太守就在太守府。"
+        },
+        {
+          "speaker": "晋阳车夫",
+          "text": "我这便给你指路——出驿站往北，过北街便是太守府。"
+        }
+      ]
+    },
+    "next_quest": "main_42"
+  },
+  "main_42": {
+    "id": "main_42",
+    "name": "主·投奔张扬",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_晋阳车夫",
+    "npc_name": "晋阳车夫",
+    "npc_location": "jinyang_center.驿站",
+    "npc_location_name": "驿站(晋阳中区)",
+    "level_required": 19,
+    "prerequisite": "main_41",
+    "description": "前往「太守府」拜见『张扬』",
+    "target_location": "jinyang_center.太守府",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_张扬荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3500,
+      "gold": 220
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "晋阳车夫",
+          "text": "太守府就在北面，张扬太守素有知人之明，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "公孙瓒的书信与高干密信，我皆已阅。异族窥我晋阳，诚可忧也。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你既千里赴义，便留在我麾下效力。晋阳四境皆有祸患，正需你这般好手。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "且先去西面长平，那里的黄巾残军为患已久，替我平了它。"
+        }
+      ]
+    },
+    "next_quest": "main_43"
+  },
+  "main_43": {
+    "id": "main_43",
+    "name": "主·黄巾余孽",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 20,
+    "prerequisite": "main_42",
+    "description": "前往「长平」收拾10名『黄巾残军』",
+    "target_location": "jinyang_west.长平",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "黄巾残军",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 300,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "长平黄巾既平，西境稍安。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "东面黑水河近来有巨龟作祟，渔人不敢近，许大夫正为药材发愁。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你去药铺寻许大夫，他自会告诉你详情。"
+        }
+      ]
+    },
+    "next_quest": "main_44"
+  },
+  "main_44": {
+    "id": "main_44",
+    "name": "主·巨龟为患",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_许大夫",
+    "npc_name": "许大夫",
+    "npc_location": "jinyang_center.药铺",
+    "npc_location_name": "药铺(晋阳中区)",
+    "level_required": 21,
+    "prerequisite": "main_43",
+    "description": "前往「黑水河」收拾8只『潜水巨龟』",
+    "target_location": "jinyang_east.黑水河",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "潜水巨龟",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 5200,
+      "gold": 320
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许大夫",
+          "text": "黑水河的潜水巨龟霸着渡口，我采药都去不得。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "壮士若能除之，百姓感激不尽。龟甲我正缺来入药。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "巨龟既除，黑水河通矣！这一片药材有着落了。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "行走江湖，伤药不可少。我店里金疮药常备，你且买几支傍身。"
+        }
+      ]
+    },
+    "next_quest": "main_45"
+  },
+  "main_45": {
+    "id": "main_45",
+    "name": "主·药铺采买",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_许大夫",
+    "npc_name": "许大夫",
+    "npc_location": "jinyang_center.药铺",
+    "npc_location_name": "药铺(晋阳中区)",
+    "level_required": 22,
+    "prerequisite": "main_44",
+    "description": "在『许大夫』药铺购买1个[金疮药]",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_jinyang_center_许大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手，往后厮杀便多一分底气。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "张扬太守那边怕是又着紧了，你且回太守府听令。"
+        }
+      ]
+    },
+    "next_quest": "main_46"
+  },
+  "main_46": {
+    "id": "main_46",
+    "name": "主·平南蛮",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 23,
+    "prerequisite": "main_45",
+    "description": "前往「南地」收拾10名『南蛮兵』",
+    "target_location": "jinyang_south.南地",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "南蛮兵",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "南蛮兵退，晋阳南境暂宁。此功赏你荣誉3点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "然北境雁门关烽火频传，斥候来报，大雪岭有山越骑兵集结。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "雁门乃晋阳门户，断不可失。你北上大雪岭，先清山越骑兵。"
+        }
+      ]
+    },
+    "next_quest": "main_47"
+  },
+  "main_47": {
+    "id": "main_47",
+    "name": "主·雁门斥候",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 25,
+    "prerequisite": "main_46",
+    "description": "前往「大雪岭」收拾8名『山越骑兵』",
+    "target_location": "jinyang_north.大雪岭",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "山越骑兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 7500,
+      "gold": 460,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "山越骑兵既破，大雪岭道通矣。赏你荣誉3点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "然雁门关上有白狼为祸，此兽凶悍，乃北境大患。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你既至此，便一鼓作气，取那白狼之首！"
+        }
+      ]
+    },
+    "next_quest": "main_48"
+  },
+  "main_48": {
+    "id": "main_48",
+    "name": "主·白狼之首",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 27,
+    "prerequisite": "main_47",
+    "description": "前往「雁门关」取6只『白狼』之首",
+    "target_location": "jinyang_north.雁门关",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "白狼",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 560,
+      "honor": 4
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "白狼授首！雁门关自此可守矣。赏你荣誉4点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "晋阳四境既安，皆赖你之力。然中原将有大变……"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你且来雁门关一趟，我有要事相托。"
+        }
+      ]
+    },
+    "next_quest": "main_49"
+  },
+  "main_49": {
+    "id": "main_49",
+    "name": "主·雁门关防",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 29,
+    "prerequisite": "main_48",
+    "description": "前往「太守府」与『张扬』议事",
+    "target_location": "jinyang_north.雁门关",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_张扬荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 500,
+      "honor": 5
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "雁门关已固，晋阳无虞。赏你荣誉5点，记你首功。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "然细作来报，中原许昌之地暗流涌动，诸侯将有大动。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "待你功力再进一步，便南下许昌一探究竟——那，将是你新的征程。"
+        }
+      ]
+    },
+    "next_hint": "此为当前主线终点。待等级更高时，南下许昌的征程将开启。",
+    "next_quest": null
   }
 }

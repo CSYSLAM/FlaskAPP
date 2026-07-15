@@ -4425,5 +4425,14 @@
       ]
     },
     "capacity": 0
+  },
+  "quest_mixin": {
+    "name": "逆臣密信",
+    "type": "quest",
+    "description": "从逆臣高干身上搜出的通敌密信，似与塞外异族歃血为盟。需交予北平太守公孙瓒。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
   }
 }
