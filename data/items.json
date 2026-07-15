@@ -1367,23 +1367,6 @@
     "is_usable": false,
     "capacity": 0.1
   },
-  "jz_big_exp": {
-    "name": "大经验丹",
-    "type": "other",
-    "description": "使用后增加10万经验",
-    "price": 1200,
-    "currency": "jinzu",
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "experience": 100000
-      },
-      "effect_descriptions": {
-        "experience": "获得{value}经验"
-      }
-    },
-    "capacity": 0
-  },
   "jz_honor_scroll": {
     "name": "荣誉卷轴",
     "type": "material",
@@ -2452,14 +2435,6 @@
     "type": "material",
     "description": "可在山庄种植化神水。",
     "price": 4960,
-    "is_usable": false,
-    "capacity": 0
-  },
-  "seed_jingyandan": {
-    "name": "经验丹种子",
-    "type": "material",
-    "description": "可在山庄种植经验丹。",
-    "price": 10000,
     "is_usable": false,
     "capacity": 0
   },

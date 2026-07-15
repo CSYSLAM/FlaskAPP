@@ -136,6 +136,8 @@ class QuestService:
         if rewards.get('gold'):
             player.gold += rewards['gold']
             player.gold_earned = (player.gold_earned or 0) + rewards['gold']
+        if rewards.get('honor'):
+            player.honor = (player.honor or 0) + rewards['honor']
         # Move from active to completed
         del active[quest_id]
         cls.set_active_quests(player, active)
@@ -273,18 +275,28 @@ class QuestService:
                     npc_map[nid] = []
                 npc_map[nid].append(qid)
             cls._npc_quest_map = npc_map
+        completed = cls.get_completed_quests(player)
         candidate_ids = npc_map.get(npc_id, [])
         for qid in candidate_ids:
             q = all_quests.get(qid)
             if not q or qid in seen:
                 continue
+            if qid in active:
+                available.append(q)
+                seen.add(qid)
+                continue
             ok, _ = cls.can_accept_quest(player, qid)
             if ok:
                 available.append(q)
                 seen.add(qid)
-            if qid in active:
-                available.append(q)
-                seen.add(qid)
+                continue
+            # 前置已满足、尚未完成，但因等级不足暂不可接取的任务也要展示，
+            # 让玩家知道任务存在；quest_detail 会显示“需要等级X”并阻止接取。
+            if qid not in completed:
+                prereq = q.get('prerequisite')
+                if (not prereq) or (prereq in completed):
+                    available.append(q)
+                    seen.add(qid)
         return available
 
     @classmethod

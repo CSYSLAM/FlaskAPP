@@ -129,7 +129,7 @@ ITEM_SERIES = [
     {"slug": "tiancandan", "name": "天蚕丹", "reward_family": "attack", "tracking_keys": ["potion_heal_2000"]},
     {"slug": "huashenshui", "name": "化神水", "reward_family": "mana_plus", "tracking_keys": ["potion_mana_2000"]},
     {"slug": "jingyandan", "name": "经验丹", "reward_family": "exp"},
-    {"slug": "dajingyandan", "name": "大经验丹", "reward_family": "exp", "tracking_keys": ["exp_large", "jz_big_exp"]},
+    {"slug": "dajingyandan", "name": "大经验丹", "reward_family": "exp", "tracking_keys": ["exp_large"]},
     {"slug": "xiaoxueshi", "name": "小血石", "reward_family": "health", "tracking_keys": ["blood_stone_small"]},
     {"slug": "zhongxueshi", "name": "中血石", "reward_family": "health_plus", "tracking_keys": ["blood_stone_medium"]},
     {"slug": "daxueshi", "name": "大血石", "reward_family": "health_plus", "tracking_keys": ["blood_stone_large"]},

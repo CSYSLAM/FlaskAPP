@@ -40,10 +40,16 @@ def available_quests():
 
     available = []
     for qid, q in all_quests.items():
-        if qid not in completed and qid not in active:
-            ok, _ = QuestService.can_accept_quest(player, qid)
-            if ok:
-                available.append(q)
+        if qid in completed or qid in active:
+            continue
+        ok, _ = QuestService.can_accept_quest(player, qid)
+        if ok:
+            available.append(q)
+            continue
+        # 展示前置已满足但暂因等级不足不可接取的任务
+        prereq = q.get('prerequisite')
+        if (not prereq) or (prereq in completed):
+            available.append(q)
 
     return render_template("quest_available.html", player=player,
                          available=available)
@@ -67,12 +73,14 @@ def quest_detail(quest_id):
         q_copy['target'] = progress.get('target', 1)
         q_copy['is_ready'] = is_ready
     can_accept, reason = QuestService.can_accept_quest(player, quest_id)
+    completed = QuestService.get_completed_quests(player)
+    is_completed = quest_id in completed
 
     from_npc = request.args.get('from_npc') == '1'
     return render_template("quest_detail.html", player=player, quest=q_copy,
                          is_active=is_active, is_ready=is_ready,
                          can_accept=can_accept, reason=reason,
-                         from_npc=from_npc)
+                         is_completed=is_completed, from_npc=from_npc)
 
 
 @quest_bp.route("/accept/<quest_id>")

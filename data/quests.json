@@ -647,8 +647,8 @@
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
     "npc_name": "智者",
-    "npc_location": "beiping_center.箭楼",
-    "npc_location_name": "箭楼(北平中区)",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
     "level_required": 5,
     "prerequisite": "main_15",
     "description": "前往「箭楼」收拾10条『野狗』",
@@ -846,8 +846,8 @@
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
     "npc_name": "智者",
-    "npc_location": "beiping_center.箭楼",
-    "npc_location_name": "箭楼(北平东区)",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平东区)",
     "level_required": 7,
     "prerequisite": "main_21",
     "description": "前往「箭楼」收拾10条『野狗』",
@@ -1111,14 +1111,14 @@
     "type": "main",
     "npc_id": "npc_beiping_center_华大夫",
     "npc_name": "华大夫",
-    "npc_location": "beiping_center.药铺",
+    "npc_location": "beiping_center.药铺_北",
     "npc_location_name": "药铺(北平中区)",
     "level_required": 10,
     "prerequisite": "main_30",
     "description": "前往「药铺」在『华大夫』处购买1个[金疮药]",
     "objective": {
       "type": "buy_item",
-      "item_id": "potion_heal",
+      "item_id": "potion_heal_100",
       "item_name": "金疮药",
       "count": 1,
       "npc_id": "npc_beiping_center_华大夫"
@@ -1169,11 +1169,11 @@
     "type": "main",
     "npc_id": "npc_beiping_center_公孙瓒荣誉",
     "npc_name": "公孙瓒",
-    "npc_location": "beiping_center.钱庄",
-    "npc_location_name": "钱庄(北平中区)",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
     "level_required": 11,
     "prerequisite": "main_32",
-    "description": "前往「广场」收拾5名『小偷』",
+    "description": "前往「钱庄」收拾10名『小偷』",
     "target_location": "beiping_center.钱庄",
     "objective": {
       "type": "kill_monster",
@@ -1204,7 +1204,15 @@
     },
     "rewards": {
       "experience": 3000,
-      "gold": 200
+      "gold": 200,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {"speaker": "公孙瓒", "text": "荣誉，是你在沙场上立下的战功证明。"},
+        {"speaker": "公孙瓒", "text": "积累荣誉可提升军衔——从十夫长、百夫长直至将军，军衔越高，攻击加成越多。"},
+        {"speaker": "公孙瓒", "text": "荣誉榜亦按荣誉点数排名，是实力的象征。此番教诲，赏你荣誉2点。"}
+      ]
     },
     "next_quest": "main_35"
   },
@@ -1214,9 +1222,9 @@
     "type": "main",
     "npc_id": "npc_beiping_center_公孙瓒荣誉",
     "npc_name": "公孙瓒",
-    "npc_location": "beiping_north.燕山",
-    "npc_location_name": "燕山(北平北区)",
-    "level_required": 12,
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 16,
     "prerequisite": "main_34",
     "description": "前往「燕山」教训5名『冀州步兵』",
     "target_location": "beiping_north.燕山",

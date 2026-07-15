@@ -71,6 +71,9 @@ class PlayerModel(db.Model, UserMixin):
     last_skill = db.Column(db.String(64), default='')
     last_mana_cost = db.Column(db.Integer, default=0)
     item_effect = db.Column(db.String(256), default='')
+    # 本回合生命/魔法净变化(带符号): 怪物打扣血为正, 回血为负; 用于战斗界面括号显示
+    last_hp_delta = db.Column(db.Integer, default=0)
+    last_mp_delta = db.Column(db.Integer, default=0)
 
     # HP/MP reserve pool (血石/魔石)
     blood_reserve = db.Column(db.Integer, default=0)

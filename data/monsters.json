@@ -76,8 +76,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 25,
@@ -462,8 +462,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 12,
@@ -559,10 +559,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 38,
@@ -622,10 +622,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 38,
@@ -684,7 +684,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -743,10 +746,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -806,10 +809,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -868,7 +871,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -927,10 +933,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -990,10 +996,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1053,10 +1059,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 38,
@@ -1116,10 +1122,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1179,10 +1185,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1242,10 +1248,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1305,10 +1311,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1367,7 +1373,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -1426,10 +1435,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1489,10 +1498,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -1713,8 +1722,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 30,
@@ -1765,8 +1774,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 40,
@@ -1888,7 +1897,11 @@
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
       },
       "money": {
         "min": 40,
@@ -1939,8 +1952,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 35,
@@ -2213,8 +2226,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 22,
@@ -2275,7 +2288,11 @@
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
       },
       "money": {
         "min": 45,
@@ -2392,8 +2409,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 17,
@@ -2444,8 +2461,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 45,
@@ -2505,8 +2522,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 55,
@@ -2557,8 +2573,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 47,
@@ -2618,8 +2634,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 75,
@@ -2680,7 +2695,11 @@
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
       },
       "money": {
         "min": 55,
@@ -2740,8 +2759,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 65,
@@ -2801,8 +2819,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 70,
@@ -2927,8 +2944,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 60,
@@ -2990,10 +3006,10 @@
       "items": {
         "potion_heal": 0.2,
         "potion_mana": 0.1,
-        "craft_suipi": 0.15,
-        "craft_mabu": 0.15,
-        "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
       },
       "money": {
         "min": 70,
@@ -3053,8 +3069,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 82,
@@ -3114,8 +3129,7 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 87,
@@ -3176,7 +3190,11 @@
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
       },
       "money": {
         "min": 60,
@@ -3227,8 +3245,8 @@
         }
       },
       "items": {
-        "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 37,
@@ -3967,7 +3985,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 18,
         "max": 46
@@ -4025,7 +4045,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -4083,7 +4105,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 18,
         "max": 44
@@ -4144,10 +4168,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 30,
@@ -4410,7 +4434,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -4468,7 +4495,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 30,
         "max": 68
@@ -4527,10 +4557,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -4590,10 +4620,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -4652,7 +4682,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -4711,10 +4744,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -4774,10 +4807,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -4837,10 +4870,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -4899,7 +4932,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 22,
         "max": 50
@@ -4957,7 +4992,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_950": 0.05,
+        "potion_heal_1150": 0.05
+      },
       "money": {
         "min": 30,
         "max": 68
@@ -5015,7 +5053,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_950": 0.05,
+        "potion_heal_1150": 0.05
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -5074,10 +5115,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 40,
@@ -5137,10 +5178,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 40,
@@ -5200,10 +5241,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 40,
@@ -5265,10 +5306,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 36,
@@ -5330,10 +5371,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 42,
@@ -5393,10 +5434,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 45,
@@ -5446,7 +5487,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 8,
         "max": 20
@@ -5504,7 +5548,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 19,
         "max": 45
@@ -5562,7 +5608,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -5611,7 +5659,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 8,
         "max": 20
@@ -5670,10 +5721,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.19,
-        "craft_mabu": 0.19,
-        "craft_huangyangmu": 0.19,
-        "craft_huangtongkuang": 0.19
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 24,
@@ -5732,7 +5783,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 26,
         "max": 62
@@ -5793,10 +5847,10 @@
         "artifact_drop_rate": 0.05
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 30,
@@ -5855,7 +5909,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -5914,10 +5970,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.22,
-        "craft_mabu": 0.22,
-        "craft_huangyangmu": 0.22,
-        "craft_huangtongkuang": 0.22
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 23,
@@ -5976,7 +6032,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 26,
         "max": 62
@@ -6034,7 +6092,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -6093,10 +6153,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.25,
-        "craft_mabu": 0.25,
-        "craft_huangyangmu": 0.25,
-        "craft_huangtongkuang": 0.25
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 24,
@@ -6156,10 +6216,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.28,
-        "craft_mabu": 0.28,
-        "craft_huangyangmu": 0.28,
-        "craft_huangtongkuang": 0.28
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 26,
@@ -6218,7 +6278,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 32,
         "max": 72
@@ -6277,10 +6340,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.31,
-        "craft_mabu": 0.31,
-        "craft_huangyangmu": 0.31,
-        "craft_huangtongkuang": 0.31
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 28,
@@ -6645,7 +6708,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -6975,7 +7040,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -7070,10 +7137,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 38,
@@ -7135,10 +7202,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 38,
@@ -7367,7 +7434,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -7425,7 +7494,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -7484,10 +7556,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -7547,10 +7619,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -7610,10 +7682,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.21,
-        "craft_mianbu": 0.21,
-        "craft_chenxiangmu": 0.21,
-        "craft_heitiekuang": 0.21
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 38,
@@ -7672,7 +7744,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -7730,7 +7805,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 30,
         "max": 68
@@ -7789,10 +7867,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -7852,10 +7930,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.15,
-        "craft_mianbu": 0.15,
-        "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_yingpi": 0.12,
+        "craft_mianbu": 0.12,
+        "craft_chenxiangmu": 0.12,
+        "craft_heitiekuang": 0.12
       },
       "money": {
         "min": 32,
@@ -7914,7 +7992,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -7973,10 +8054,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -8038,10 +8119,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.33,
-        "craft_mianbu": 0.33,
-        "craft_chenxiangmu": 0.33,
-        "craft_heitiekuang": 0.33
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 50,
@@ -8103,10 +8184,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.33,
-        "craft_mianbu": 0.33,
-        "craft_chenxiangmu": 0.33,
-        "craft_heitiekuang": 0.33
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 50,
@@ -8166,10 +8247,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.33,
-        "craft_mianbu": 0.33,
-        "craft_chenxiangmu": 0.33,
-        "craft_heitiekuang": 0.33
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -8231,10 +8312,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.33,
-        "craft_mianbu": 0.33,
-        "craft_chenxiangmu": 0.33,
-        "craft_heitiekuang": 0.33
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 50,
@@ -8294,10 +8375,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.33,
-        "craft_mianbu": 0.33,
-        "craft_chenxiangmu": 0.33,
-        "craft_heitiekuang": 0.33
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -8662,7 +8743,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.05,
+        "potion_heal_2000": 0.05
+      },
       "money": {
         "min": 35,
         "max": 80
@@ -8721,10 +8805,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -8784,10 +8868,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -8847,10 +8931,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -8910,10 +8994,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -8972,7 +9056,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
+      },
       "money": {
         "min": 38,
         "max": 85
@@ -9031,10 +9118,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -9093,7 +9180,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
+      },
       "money": {
         "min": 36,
         "max": 82
@@ -9152,10 +9242,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -9215,10 +9305,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -9278,10 +9368,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -9341,10 +9431,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.27,
-        "craft_mianbu": 0.27,
-        "craft_chenxiangmu": 0.27,
-        "craft_heitiekuang": 0.27
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 42,
@@ -9712,10 +9802,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.28,
-        "craft_mabu": 0.28,
-        "craft_huangyangmu": 0.28,
-        "craft_huangtongkuang": 0.28
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 26,
@@ -9774,7 +9864,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 19,
         "max": 45
@@ -9832,7 +9924,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -9891,10 +9985,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.22,
-        "craft_mabu": 0.22,
-        "craft_huangyangmu": 0.22,
-        "craft_huangtongkuang": 0.22
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 23,
@@ -9953,7 +10047,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -10011,7 +10107,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -10069,7 +10168,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 30,
         "max": 68
@@ -10130,10 +10232,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 40,
@@ -10193,10 +10295,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.25,
-        "craft_mabu": 0.25,
-        "craft_huangyangmu": 0.25,
-        "craft_huangtongkuang": 0.25
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 24,
@@ -10255,7 +10357,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -10313,7 +10417,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 26,
         "max": 62
@@ -10372,10 +10478,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.19,
-        "craft_mabu": 0.19,
-        "craft_huangyangmu": 0.19,
-        "craft_huangtongkuang": 0.19
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 22,
@@ -10434,7 +10540,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -10492,7 +10600,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 18,
         "max": 42
@@ -10551,10 +10661,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.31,
-        "craft_mabu": 0.31,
-        "craft_huangyangmu": 0.31,
-        "craft_huangtongkuang": 0.31
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 28,
@@ -10614,10 +10724,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 28,
@@ -11050,7 +11160,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 14,
         "max": 34
@@ -11108,7 +11223,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -11166,7 +11283,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -11224,7 +11343,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 13,
         "max": 32
@@ -11273,7 +11397,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 11,
         "max": 28
@@ -11322,7 +11449,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 10,
         "max": 25
@@ -11380,7 +11510,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_300": 0.05
+      },
       "money": {
         "min": 13,
         "max": 32
@@ -11501,7 +11633,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_300": 0.05
+      },
       "money": {
         "min": 14,
         "max": 34
@@ -11560,10 +11694,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.15,
-        "craft_mabu": 0.15,
-        "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
       },
       "money": {
         "min": 16,
@@ -11622,7 +11756,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -11680,7 +11816,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 15,
         "max": 37
@@ -11738,7 +11876,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 19,
         "max": 45
@@ -11787,7 +11927,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 9,
         "max": 22
@@ -12249,7 +12392,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      },
       "money": {
         "min": 5,
         "max": 15
@@ -12518,7 +12664,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 9,
         "max": 22
@@ -12572,7 +12721,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      },
       "money": {
         "min": 5,
         "max": 12
@@ -12621,7 +12773,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 11,
         "max": 28
@@ -12737,7 +12892,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 10,
         "max": 24
@@ -12791,7 +12951,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      },
       "money": {
         "min": 6,
         "max": 14
@@ -12840,7 +13003,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 10,
         "max": 24
@@ -12889,7 +13055,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 7,
         "max": 18
@@ -12947,7 +13116,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 11,
         "max": 28
@@ -13719,7 +13893,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -13777,7 +13953,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 22,
         "max": 52
@@ -13826,7 +14004,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 8,
         "max": 20
@@ -13885,10 +14066,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.22,
-        "craft_mabu": 0.22,
-        "craft_huangyangmu": 0.22,
-        "craft_huangtongkuang": 0.22
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 23,
@@ -13947,7 +14128,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 19,
         "max": 45
@@ -14005,7 +14188,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -14063,7 +14248,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 62
@@ -14122,10 +14310,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.25,
-        "craft_mabu": 0.25,
-        "craft_huangyangmu": 0.25,
-        "craft_huangtongkuang": 0.25
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 24,
@@ -14184,7 +14372,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 18,
         "max": 42
@@ -14245,10 +14435,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 40,
@@ -14308,10 +14498,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.19,
-        "craft_mabu": 0.19,
-        "craft_huangyangmu": 0.19,
-        "craft_huangtongkuang": 0.19
+        "craft_suipi": 0.15,
+        "craft_mabu": 0.15,
+        "craft_huangyangmu": 0.15,
+        "craft_huangtongkuang": 0.15
       },
       "money": {
         "min": 22,
@@ -14371,10 +14561,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.28,
-        "craft_mabu": 0.28,
-        "craft_huangyangmu": 0.28,
-        "craft_huangtongkuang": 0.28
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 26,
@@ -14433,7 +14623,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -14492,10 +14684,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.33,
-        "craft_mabu": 0.33,
-        "craft_huangyangmu": 0.33,
-        "craft_huangtongkuang": 0.33
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 28,
@@ -14554,7 +14746,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
+      },
       "money": {
         "min": 30,
         "max": 68
@@ -14613,10 +14808,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.31,
-        "craft_mabu": 0.31,
-        "craft_huangyangmu": 0.31,
-        "craft_huangtongkuang": 0.31
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
       },
       "money": {
         "min": 28,
@@ -14675,7 +14870,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_800": 0.05
+      },
       "money": {
         "min": 28,
         "max": 66
@@ -15141,7 +15338,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 20,
         "max": 48
@@ -15199,7 +15398,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_625": 0.05
+      },
       "money": {
         "min": 19,
         "max": 45
@@ -15257,7 +15458,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 13,
         "max": 32
@@ -15315,7 +15521,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -15427,7 +15635,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 10,
         "max": 25
@@ -15476,7 +15687,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 9,
         "max": 22
@@ -15525,7 +15739,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 11,
         "max": 28
@@ -15583,7 +15800,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 14,
         "max": 34
@@ -15641,7 +15863,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_300": 0.05
+      },
       "money": {
         "min": 13,
         "max": 32
@@ -15700,10 +15924,10 @@
         }
       },
       "items": {
-        "craft_suipi": 0.15,
-        "craft_mabu": 0.15,
-        "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
       },
       "money": {
         "min": 16,
@@ -15762,7 +15986,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_300": 0.05
+      },
       "money": {
         "min": 14,
         "max": 34
@@ -15820,7 +16046,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 15,
         "max": 37
@@ -15878,7 +16106,9 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_500": 0.05
+      },
       "money": {
         "min": 16,
         "max": 40
@@ -16344,7 +16574,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 11,
         "max": 28
@@ -16456,7 +16691,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      },
       "money": {
         "min": 5,
         "max": 15
@@ -16667,7 +16905,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 9,
         "max": 22
@@ -16721,7 +16962,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      },
       "money": {
         "min": 6,
         "max": 14
@@ -16770,7 +17014,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 10,
         "max": 24
@@ -16828,7 +17075,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 10,
         "max": 24
@@ -16882,7 +17134,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      },
       "money": {
         "min": 5,
         "max": 12
@@ -16931,7 +17186,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 11,
         "max": 28
@@ -16980,7 +17238,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
+      },
       "money": {
         "min": 7,
         "max": 18
@@ -17983,10 +18244,10 @@
         "artifact_drop_rate": 1.0
       },
       "items": {
-        "craft_yingpi": 0.33,
-        "craft_mianbu": 0.33,
-        "craft_chenxiangmu": 0.33,
-        "craft_heitiekuang": 0.33
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 50,
@@ -18161,7 +18422,11 @@
         "min": 15,
         "max": 40
       },
-      "experience": 40
+      "experience": 40,
+      "items": {
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
+      }
     }
   },
   "npc_beiping_center_任务使者": {
@@ -18232,7 +18497,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
+      },
       "money": {
         "min": 35,
         "max": 80
@@ -18290,7 +18558,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.065,
+        "potion_heal_2000": 0.065
+      },
       "money": {
         "min": 36,
         "max": 82
@@ -18348,7 +18619,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
+      },
       "money": {
         "min": 37,
         "max": 85
@@ -18406,7 +18680,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
+      },
       "money": {
         "min": 38,
         "max": 88
@@ -18464,7 +18741,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
+      },
       "money": {
         "min": 39,
         "max": 90
@@ -18522,7 +18802,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
+      },
       "money": {
         "min": 40,
         "max": 92
@@ -18580,7 +18863,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
+      },
       "money": {
         "min": 41,
         "max": 95
@@ -18638,7 +18924,10 @@
           "legendary": 1
         }
       },
-      "items": {},
+      "items": {
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -18697,10 +18986,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -18763,10 +19052,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -18829,10 +19118,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -18895,10 +19184,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -18961,10 +19250,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19027,10 +19316,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19093,10 +19382,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19159,10 +19448,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_mianbu": 0.25,
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19510,7 +19799,9 @@
       },
       "items": {
         "craft_huangyangmu": 0.3,
-        "craft_heitiekuang": 0.2
+        "craft_heitiekuang": 0.2,
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 30,
@@ -19549,7 +19840,9 @@
       },
       "items": {
         "craft_yingpi": 0.3,
-        "craft_chenxiangmu": 0.2
+        "craft_chenxiangmu": 0.2,
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 35,
@@ -19598,8 +19891,10 @@
         }
       },
       "items": {
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19649,8 +19944,10 @@
         }
       },
       "items": {
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19692,7 +19989,9 @@
       },
       "items": {
         "craft_yingpi": 0.3,
-        "craft_mianbu": 0.2
+        "craft_mianbu": 0.2,
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 40,
@@ -19739,8 +20038,10 @@
         }
       },
       "items": {
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19821,7 +20122,9 @@
       },
       "items": {
         "craft_yingpi": 0.3,
-        "craft_heitiekuang": 0.2
+        "craft_heitiekuang": 0.2,
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -19868,8 +20171,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -19958,8 +20263,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_chenxiangmu": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -20001,7 +20308,9 @@
       },
       "items": {
         "craft_yingpi": 0.3,
-        "craft_mianbu": 0.2
+        "craft_mianbu": 0.2,
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 38,
@@ -20048,8 +20357,10 @@
         }
       },
       "items": {
-        "craft_yingpi": 0.25,
-        "craft_chenxiangmu": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -20091,7 +20402,9 @@
       },
       "items": {
         "craft_yingpi": 0.3,
-        "craft_huangyangmu": 0.2
+        "craft_huangyangmu": 0.2,
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 28,
@@ -20288,8 +20601,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -20339,8 +20654,10 @@
         }
       },
       "items": {
-        "craft_chenxiangmu": 0.25,
-        "craft_heitiekuang": 0.25
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
       },
       "money": {
         "min": 45,
@@ -20391,7 +20708,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.05,
+        "potion_heal_2000": 0.05
       },
       "money": {
         "min": 25,
@@ -20438,8 +20757,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 40,
@@ -20490,7 +20811,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.055,
+        "potion_heal_2000": 0.055
       },
       "money": {
         "min": 28,
@@ -20538,7 +20861,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 30,
@@ -20585,8 +20910,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 42,
@@ -20637,7 +20964,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 32,
@@ -20684,8 +21013,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 45,
@@ -20735,8 +21066,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 48,
@@ -20787,7 +21120,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 35,
@@ -20834,8 +21169,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 50,
@@ -20886,7 +21223,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 38,
@@ -20933,8 +21272,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 52,
@@ -20985,7 +21326,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 45,
@@ -21032,8 +21375,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 55,
@@ -21083,8 +21428,10 @@
         }
       },
       "items": {
-        "craft_zitanmu": 0.3,
-        "craft_jingjinkuang": 0.3
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 60,
@@ -21131,8 +21478,10 @@
         }
       },
       "items": {
-        "craft_zitanmu": 0.3,
-        "craft_jingjinkuang": 0.3
+        "craft_houpi": 0.1,
+        "craft_nirong": 0.1,
+        "craft_zitanmu": 0.1,
+        "craft_jingjinkuang": 0.1
       },
       "money": {
         "min": 65,
@@ -21180,7 +21529,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 42,
@@ -21228,7 +21579,9 @@
       },
       "items": {
         "craft_houpi": 0.15,
-        "craft_baopi": 0.1
+        "craft_baopi": 0.1,
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 44,
@@ -21275,8 +21628,10 @@
         }
       },
       "items": {
-        "craft_houpi": 0.25,
-        "craft_zitanmu": 0.25
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
       },
       "money": {
         "min": 58,
@@ -21623,7 +21978,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -21685,7 +22045,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -21747,7 +22112,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -21809,7 +22179,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -21871,7 +22246,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.1,
+        "craft_mabu": 0.1,
+        "craft_huangyangmu": 0.1,
+        "craft_huangtongkuang": 0.1
+      },
       "money": {
         "min": 30,
         "max": 70
@@ -21928,7 +22308,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -21986,7 +22371,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -22044,7 +22434,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -22102,7 +22497,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -22160,7 +22560,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_suipi": 0.12,
+        "craft_mabu": 0.12,
+        "craft_huangyangmu": 0.12,
+        "craft_huangtongkuang": 0.12
+      },
       "money": {
         "min": 40,
         "max": 90
@@ -22223,7 +22628,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
+      },
       "money": {
         "min": 50,
         "max": 100
@@ -22287,7 +22697,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
+      },
       "money": {
         "min": 50,
         "max": 100
@@ -22351,7 +22766,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
+      },
       "money": {
         "min": 50,
         "max": 100
@@ -22415,7 +22835,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
+      },
       "money": {
         "min": 50,
         "max": 100
@@ -22479,7 +22904,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.1,
+        "craft_mianbu": 0.1,
+        "craft_chenxiangmu": 0.1,
+        "craft_heitiekuang": 0.1
+      },
       "money": {
         "min": 50,
         "max": 100
@@ -22538,7 +22968,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 55,
         "max": 110
@@ -22598,7 +23033,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 55,
         "max": 110
@@ -22658,7 +23098,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 55,
         "max": 110
@@ -22718,7 +23163,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 55,
         "max": 110
@@ -22778,7 +23228,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_yingpi": 0.15,
+        "craft_mianbu": 0.15,
+        "craft_chenxiangmu": 0.15,
+        "craft_heitiekuang": 0.15
+      },
       "money": {
         "min": 55,
         "max": 110
@@ -22843,7 +23298,12 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
+      },
       "money": {
         "min": 60,
         "max": 120

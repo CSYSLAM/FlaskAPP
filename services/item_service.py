@@ -117,6 +117,14 @@ class ItemService:
                 except (ValueError, TypeError):
                     pass
 
+        # 回血/回蓝不允许超过上限，超出部分丢弃(否则溢出上限等于白用)
+        _max_hp = player.effective_max_health
+        if _max_hp and player.health > _max_hp:
+            player.health = _max_hp
+        _max_mp = player.effective_max_mana
+        if _max_mp and player.mana > _max_mp:
+            player.mana = _max_mp
+
         # Process temp effects
         from models.player import TempEffect
         import time

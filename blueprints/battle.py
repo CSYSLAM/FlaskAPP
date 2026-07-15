@@ -80,8 +80,9 @@ def fight():
     elif action.startswith("use:"):
         item_id = action.split(":")[1]
         if item_id:
-            ItemService.use_item(player, item_id)
-        result_monster, error, result = monster, None, None
+            result_monster, error, result = BattleService.use_potion(player, item_id)
+        else:
+            result_monster, error, result = monster, None, None
     else:
         result_monster, error, result = BattleService.use_skill(player, action)
 
@@ -196,6 +197,27 @@ def use_skill(skill_id):
         result_monster, error, result = BattleService.player_attack(player)
     else:
         result_monster, error, result = BattleService.use_skill(player, action)
+
+    if result == "你被击败了":
+        return redirect(url_for("battle.revive"))
+
+    if result:
+        return redirect(url_for("battle.battle_result"))
+
+    if error:
+        flash(error)
+    return redirect(url_for("battle.battle"))
+
+
+@battle_bp.route("/use_potion/<item_id>")
+@login_required
+def use_potion(item_id):
+    """GET 版战斗中使用药品（供药键链接调用，算作一个完整回合：用药+怪物反击）。"""
+    player = current_user
+    if not player.in_battle:
+        return redirect(url_for("game.scene"))
+
+    result_monster, error, result = BattleService.use_potion(player, item_id)
 
     if result == "你被击败了":
         return redirect(url_for("battle.revive"))
