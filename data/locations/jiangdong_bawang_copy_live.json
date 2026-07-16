@@ -1,0 +1,36 @@
+{
+  "name": "jiangdong_bawang",
+  "is_copy_map": true,
+  "copy_dungeon_id": "jiangdong_bawang",
+  "scenes": {
+    "jiangdong_bawang_copy_live.曲阿": {
+      "name": "曲阿",
+      "exits": {
+        "south": "jiangdong_bawang_copy_live.吴郡山"
+      },
+      "monsters": [
+        "mon_jiangdong_bawang_不服豪族"
+      ]
+    },
+    "jiangdong_bawang_copy_live.会稽": {
+      "name": "会稽",
+      "exits": {
+        "south": "jiangdong_bawang_copy_live.会稽",
+        "north": "jiangdong_bawang_copy_live.吴郡山"
+      },
+      "monsters": [
+        "mon_jiangdong_bawang_elite_王朗"
+      ]
+    },
+    "jiangdong_bawang_copy_live.吴郡山": {
+      "name": "吴郡山",
+      "exits": {
+        "south": "jiangdong_bawang_copy_live.吴郡山",
+        "north": "jiangdong_bawang_copy_live.曲阿"
+      },
+      "monsters": [
+        "mon_jiangdong_bawang_elite_严白虎"
+      ]
+    }
+  }
+}

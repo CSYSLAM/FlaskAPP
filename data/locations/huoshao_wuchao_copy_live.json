@@ -1,0 +1,66 @@
+{
+  "name": "huoshao_wuchao",
+  "is_copy_map": true,
+  "copy_dungeon_id": "huoshao_wuchao",
+  "scenes": {
+    "huoshao_wuchao_copy_live.乌巢大营": {
+      "name": "乌巢大营",
+      "exits": {
+        "south": "huoshao_wuchao_copy_live.大营后帐",
+        "north": "huoshao_wuchao_copy_live.乌巢渡口"
+      },
+      "monsters": [
+        "mon_huoshao_wuchao_袁军精兵"
+      ]
+    },
+    "huoshao_wuchao_copy_live.乌巢粮仓": {
+      "name": "乌巢粮仓",
+      "exits": {
+        "south": "huoshao_wuchao_copy_live.乌巢粮仓",
+        "north": "huoshao_wuchao_copy_live.乌巢中心"
+      },
+      "monsters": [
+        "mon_huoshao_wuchao_硫磺堆"
+      ]
+    },
+    "huoshao_wuchao_copy_live.乌巢中心": {
+      "name": "乌巢中心",
+      "exits": {
+        "south": "huoshao_wuchao_copy_live.乌巢粮仓",
+        "north": "huoshao_wuchao_copy_live.大营后帐"
+      },
+      "monsters": [
+        "mon_huoshao_wuchao_守仓悍将"
+      ]
+    },
+    "huoshao_wuchao_copy_live.大营后帐": {
+      "name": "大营后帐",
+      "exits": {
+        "south": "huoshao_wuchao_copy_live.乌巢中心",
+        "north": "huoshao_wuchao_copy_live.乌巢大营"
+      },
+      "monsters": [
+        "mon_huoshao_wuchao_elite_淳于琼"
+      ]
+    },
+    "huoshao_wuchao_copy_live.乌巢渡口": {
+      "name": "乌巢渡口",
+      "exits": {
+        "south": "huoshao_wuchao_copy_live.乌巢大营",
+        "north": "huoshao_wuchao_copy_live.官渡渡口"
+      },
+      "monsters": [
+        "mon_huoshao_wuchao_elite_韩猛"
+      ]
+    },
+    "huoshao_wuchao_copy_live.官渡渡口": {
+      "name": "官渡渡口",
+      "exits": {
+        "south": "huoshao_wuchao_copy_live.乌巢渡口"
+      },
+      "monsters": [
+        "mon_huoshao_wuchao_elite_张郃"
+      ]
+    }
+  }
+}

@@ -25256,5 +25256,437 @@
     "is_copy": false,
     "copy_only": false,
     "max_health": 100
+  },
+  "npc_jianning_center_黄月英副本": {
+    "name": "黄月英【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「火烧博望(16级副本)」传送",
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_yongan_center_关羽副本": {
+    "name": "关羽【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「千里单骑(26级副本)」传送",
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_chengdu_center_刘备副本": {
+    "name": "刘备【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「桃园结义(36级副本)」传送",
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_jiangling_center_赵云副本": {
+    "name": "赵云【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「大战长坂(46级副本)」传送",
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_luoyang_center_诸葛亮副本": {
+    "name": "诸葛亮【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「七擒孟获(56级副本)」传送",
+    "copy_dungeon_id": "qiqinmenghuo_hi",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_xuchang_center_曹丕副本": {
+    "name": "曹丕【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「曹丕选妃(36级副本)」传送",
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_xiapi_north_张辽副本": {
+    "name": "张辽【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「火烧乌巢(46级副本)」传送",
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_wu_center_郭嘉副本": {
+    "name": "郭嘉【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「白衣渡江(16级副本)」传送",
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_chaisang_center_李典副本": {
+    "name": "李典【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「火烧连营(26级副本)」传送",
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_jianye_center_曹丕副本": {
+    "name": "曹丕【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「江东霸王(36级副本)」传送",
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_chaisang_center_陆逊副本": {
+    "name": "陆逊【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「石亭之战(46级副本)」传送",
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_luoyang_center_周瑜副本": {
+    "name": "周瑜【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「赤壁鏖兵(56级副本)」传送",
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   }
 }

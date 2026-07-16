@@ -388,11 +388,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_诸葛亮",
         "objective": "前往「锦带山」击杀『金环三结』",
         "progress_label": "已击败【精】金环三结(46级)",
-        "target_monsters": ["monster_qiqin_copy_金环三结"],
+        "target_monsters": [
+          "monster_qiqin_copy_金环三结"
+        ],
         "required_count": 1,
         "story": "孟获派手下大将金环三结在锦带山与我军对峙，你速去将其击杀！",
         "complete_story": "干得漂亮！首战告捷。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_2",
@@ -402,11 +408,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_诸葛亮",
         "objective": "前往「锦带山」击杀『忙牙长』",
         "progress_label": "已击败【精】忙牙长(46级)",
-        "target_monsters": ["monster_qiqin_copy_忙牙长"],
+        "target_monsters": [
+          "monster_qiqin_copy_忙牙长"
+        ],
         "required_count": 1,
         "story": "孟获又派另一员大将忙牙长在锦带山叫阵，你去将他击杀！",
         "complete_story": "孟获手下大将接连被斩。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_3",
@@ -416,12 +428,20 @@
         "quest_giver_npc_id": "npc_qiqin_copy_诸葛亮",
         "objective": "前往「泸水」收集5个『轻木筏』(击败土人)",
         "progress_label": "已收集轻木筏",
-        "target_monsters": ["monster_qiqin_copy_土人"],
+        "target_monsters": [
+          "monster_qiqin_copy_土人"
+        ],
         "required_count": 5,
-        "required_items": { "qing_mufa": 5 },
+        "required_items": {
+          "qing_mufa": 5
+        },
         "story": "欲渡泸水，先备木筏。你去「泸水」击败土人，收集5个『轻木筏』回来！",
         "complete_story": "木筏已备，准备渡河。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_4",
@@ -431,11 +451,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_吕四娘",
         "objective": "前往「小路」击杀5名『南蛮运粮兵』",
         "progress_label": "已击败南蛮运粮兵(46级)",
-        "target_monsters": ["monster_qiqin_copy_南蛮运粮兵"],
+        "target_monsters": [
+          "monster_qiqin_copy_南蛮运粮兵"
+        ],
         "required_count": 5,
         "story": "前方发现敌军粮道，你去「小路」截击5名『南蛮运粮兵』，扰乱敌军后勤！",
         "complete_story": "敌军粮道被断，军心大乱。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_5",
@@ -445,11 +471,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_吕四娘",
         "objective": "前往「夹山峪」击杀『祝融』",
         "progress_label": "已击败【精】祝融(46级)",
-        "target_monsters": ["monster_qiqin_copy_祝融"],
+        "target_monsters": [
+          "monster_qiqin_copy_祝融"
+        ],
         "required_count": 1,
         "story": "孟获夫人祝融亲自率兵出战，目前在「夹山峪」，你速去将她拿下！",
         "complete_story": "祝融被擒，孟获痛失臂助。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_6",
@@ -459,12 +491,18 @@
         "quest_giver_npc_id": "npc_qiqin_copy_吕四娘",
         "objective": "前往「河西岸」击杀『孟优』",
         "progress_label": "已击败【精】孟优(46级)",
-        "target_monsters": ["monster_qiqin_copy_孟优"],
+        "target_monsters": [
+          "monster_qiqin_copy_孟优"
+        ],
         "required_count": 1,
         "story": "孟获之弟孟优领军在西洱河对岸接应，你去「河西岸」将他也击杀！",
         "complete_story": "孟优已除，继续往南推进。",
         "complete_hint": "前往「河西岸」与『赵云』对话",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_7",
@@ -474,12 +512,20 @@
         "quest_giver_npc_id": "npc_qiqin_copy_赵云",
         "objective": "前往「凤凰山」收集5根『方竹』(击败神凤)",
         "progress_label": "已收集方竹",
-        "target_monsters": ["monster_qiqin_copy_神凤"],
+        "target_monsters": [
+          "monster_qiqin_copy_神凤"
+        ],
         "required_count": 5,
-        "required_items": { "fangzhu": 5 },
+        "required_items": {
+          "fangzhu": 5
+        },
         "story": "赵云需要方竹制作兵器，你去「凤凰山」击败神凤，收集5根『方竹』回来！",
         "complete_story": "方竹质地坚硬，可制神兵。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_8",
@@ -489,13 +535,21 @@
         "quest_giver_npc_id": "npc_qiqin_copy_赵云",
         "objective": "前往「西洱山」收集5株『荟香草』(击败药鬼)",
         "progress_label": "已收集荟香草",
-        "target_monsters": ["monster_qiqin_copy_药鬼"],
+        "target_monsters": [
+          "monster_qiqin_copy_药鬼"
+        ],
         "required_count": 5,
-        "required_items": { "huixiangcao": 5 },
+        "required_items": {
+          "huixiangcao": 5
+        },
         "story": "赵云需要荟香草祛毒疗伤，你去「西洱山」击败药鬼，收集5株『荟香草』回来！",
         "complete_story": "有了荟香草，将士们士气大增。",
         "complete_hint": "向西前往「灭泉」，再向东到「秃龙洞」与『马谡』对话",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_9",
@@ -505,11 +559,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_马谡",
         "objective": "前往「秃龙洞」击杀『朵思大王』",
         "progress_label": "已击败【精】朵思大王(46级)",
-        "target_monsters": ["monster_qiqin_copy_朵思大王"],
+        "target_monsters": [
+          "monster_qiqin_copy_朵思大王"
+        ],
         "required_count": 1,
         "story": "前方秃龙洞有孟获部将朵思大王把守，你速去将其击杀，打通南进之路！",
         "complete_story": "今日将秃龙洞攻下，我们离孟获不远了。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_10",
@@ -519,11 +579,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_马谡",
         "objective": "前往「八纳洞」击杀『木鹿大王』",
         "progress_label": "已击败【精】木鹿大王(46级)",
-        "target_monsters": ["monster_qiqin_copy_木鹿大王"],
+        "target_monsters": [
+          "monster_qiqin_copy_木鹿大王"
+        ],
         "required_count": 1,
         "story": "孟获又请来木鹿大王相助，木鹿大王善驱百兽，你前往「八纳洞」将他击杀！",
         "complete_story": "木鹿大王已死，孟获还有何招。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_11",
@@ -533,11 +599,17 @@
         "quest_giver_npc_id": "npc_qiqin_copy_马谡",
         "objective": "前往「盘蛇谷」击杀『兀突骨』",
         "progress_label": "已击败【精】兀突骨(46级)",
-        "target_monsters": ["monster_qiqin_copy_兀突骨"],
+        "target_monsters": [
+          "monster_qiqin_copy_兀突骨"
+        ],
         "required_count": 1,
         "story": "孟获还是不服，又请来了帮手，你去「盘蛇谷」将『兀突骨』击杀！",
         "complete_story": "不知孟获还有什么招。",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       },
       {
         "id": "step_12",
@@ -547,12 +619,18 @@
         "quest_giver_npc_id": "npc_qiqin_copy_马谡",
         "objective": "前往「铜坑洞」捉拿『孟获』",
         "progress_label": "已击败【精】孟获(50级)",
-        "target_monsters": ["monster_qiqin_copy_孟获"],
+        "target_monsters": [
+          "monster_qiqin_copy_孟获"
+        ],
         "required_count": 1,
         "story": "孟获被包围在「铜坑洞」，你去将他捉拿回来！",
         "complete_story": "孟获终于归服，南中地区就此平定！",
         "complete_hint": "副本结束，返回场景领取通关奖励",
-        "reward": { "experience": 12500, "gold": 750, "items": [] }
+        "reward": {
+          "experience": 12500,
+          "gold": 750,
+          "items": []
+        }
       }
     ]
   },
@@ -832,11 +910,17 @@
         "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
         "objective": "前往「南郊」击杀5名『东吴探子』",
         "progress_label": "已击败东吴探子(26级)",
-        "target_monsters": ["mon_xiaoyaojin_dongwu_tanzi"],
+        "target_monsters": [
+          "mon_xiaoyaojin_dongwu_tanzi"
+        ],
         "required_count": 5,
         "story": "吴军来袭，先清掉南郊的东吴探子，断其耳目。",
         "complete_story": "探子已除，吴军动向尽在掌握。",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_2",
@@ -847,12 +931,20 @@
         "objective": "前往「北郊」抢夺1封吴国密函",
         "hint": "吴国密函可在「北郊」击杀『东吴细作』获得。",
         "progress_label": "已获得吴国密函",
-        "target_monsters": ["mon_xiaoyaojin_dongwu_xizuo"],
+        "target_monsters": [
+          "mon_xiaoyaojin_dongwu_xizuo"
+        ],
         "required_count": 1,
-        "required_items": { "wujun_mihan": 1 },
+        "required_items": {
+          "wujun_mihan": 1
+        },
         "story": "张辽察觉敌情有异，命你前往北郊抢夺吴国密函，查探敌军虚实。",
         "complete_story": "密函到手，原来吴军打算兵分两路偷袭合肥。",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_3",
@@ -863,12 +955,20 @@
         "objective": "前往「大师桥」拦截5份江东火药",
         "hint": "江东火药可在「大师桥」击杀『东吴枪兵』获得。",
         "progress_label": "已收集江东火药",
-        "target_monsters": ["mon_xiaoyaojin_dongwu_qiangbing"],
+        "target_monsters": [
+          "mon_xiaoyaojin_dongwu_qiangbing"
+        ],
         "required_count": 5,
-        "required_items": { "jiangdong_huoyao": 5 },
+        "required_items": {
+          "jiangdong_huoyao": 5
+        },
         "story": "张辽将计就计，命你前往大师桥拦截江东火药，让吴军自食其果。",
         "complete_story": "火药已缴获，吴军火攻之计已破。",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_4",
@@ -878,11 +978,17 @@
         "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
         "objective": "前往东面「小师桥」击杀『太史慈』",
         "progress_label": "已击败【精】太史慈(26级)",
-        "target_monsters": ["mon_xiaoyaojin_taishici"],
+        "target_monsters": [
+          "mon_xiaoyaojin_taishici"
+        ],
         "required_count": 1,
         "story": "吴军大将太史慈在小师桥叫阵，你速去将其击杀！",
         "complete_story": "太史慈已死，吴军士气大挫。",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_5",
@@ -892,11 +998,17 @@
         "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
         "objective": "前往东面「小师桥」击杀『近卫』",
         "progress_label": "已击败【精】近卫(26级)",
-        "target_monsters": ["mon_xiaoyaojin_jinwei"],
+        "target_monsters": [
+          "mon_xiaoyaojin_jinwei"
+        ],
         "required_count": 1,
         "story": "张辽设计诱孙权深入，你前往小师桥击杀孙权近卫，引孙权出战。",
         "complete_story": "近卫已除，孙权身边再无护卫。",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_6",
@@ -906,11 +1018,17 @@
         "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
         "objective": "前往南面「乌山」击杀『凌统』",
         "progress_label": "已击败【精】凌统(26级)",
-        "target_monsters": ["mon_xiaoyaojin_lingtong"],
+        "target_monsters": [
+          "mon_xiaoyaojin_lingtong"
+        ],
         "required_count": 1,
         "story": "吴将凌统率军在南面乌山策应，你速去将其击杀，断孙权后援。",
         "complete_story": "凌统已死，孙权孤立无援。",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_7",
@@ -920,11 +1038,17 @@
         "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
         "objective": "前往东面「大师桥」击杀『孙权』",
         "progress_label": "已击败【精】孙权(30级)",
-        "target_monsters": ["mon_xiaoyaojin_sunquan"],
+        "target_monsters": [
+          "mon_xiaoyaojin_sunquan"
+        ],
         "required_count": 1,
         "story": "孙权亲临大师桥督战，擒贼先擒王，你速去将孙权击杀！",
         "complete_story": "孙权小儿不过如此，哈哈！",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
       },
       {
         "id": "step_8",
@@ -934,12 +1058,2123 @@
         "quest_giver_npc_id": "npc_xiaoyaojin_copy_张辽",
         "objective": "前往「乌龙山」击杀5头『野牛』",
         "progress_label": "已击败野牛(26级)",
-        "target_monsters": ["mon_xiaoyaojin_yeniu"],
+        "target_monsters": [
+          "mon_xiaoyaojin_yeniu"
+        ],
         "required_count": 5,
         "story": "你前往合肥城南边的「乌龙山」击杀5头『野牛』，犒劳三军！",
         "complete_story": "这次守住合肥，将军当为首功。",
         "complete_hint": "副本结束，返回场景领取通关奖励",
-        "reward": { "experience": 7500, "gold": 500, "items": [] }
+        "reward": {
+          "experience": 7500,
+          "gold": 500,
+          "items": []
+        }
+      }
+    ]
+  },
+  "huoshao_bowang": {
+    "name": "火烧博望(16级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "huoshao_bowang_copy_live.博望坡",
+    "entry_npc_id": "npc_jianning_center_黄月英副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "jianning_center.广场",
+    "story_intro": [
+      "曹军南征，夏侯惇率十万大军直扑新野。",
+      "黄月英献火攻之计：博望坡地势狭窄，树木丛杂，正合用火。",
+      "你随黄月英布阵博望坡，火攻曹军！"
+    ],
+    "story_outro": [
+      "博望坡火光冲天，夏侯惇全军覆没！",
+      "黄月英首献火攻之计，一战成名。"
+    ],
+    "reward": {
+      "experience": 12000,
+      "gold": 1800,
+      "items": [
+        {
+          "item_id": "chest_copy_low",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "先锋探路",
+        "scene_id": "huoshao_bowang_copy_live.博望坡",
+        "objective": "前往「博望坡」击杀5名『夏侯惇先锋』",
+        "progress_label": "已击败夏侯惇先锋(16级)",
+        "target_monsters": [
+          "mon_huoshao_bowang_夏侯惇先锋"
+        ],
+        "required_count": 5,
+        "story": "夏侯惇先锋部队已至博望坡，先清掉前哨断其耳目。",
+        "complete_story": "前哨已清，可设伏了。",
+        "reward": {
+          "experience": 6720,
+          "gold": 672,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "火攻准备",
+        "scene_id": "huoshao_bowang_copy_live.伏兵谷",
+        "objective": "前往「伏兵谷」收缴5份硫磺",
+        "progress_label": "已收集硫磺(16级)",
+        "target_monsters": [
+          "mon_huoshao_bowang_硫磺兵"
+        ],
+        "required_count": 5,
+        "story": "黄月英命你前往伏兵谷收缴硫磺，备好火攻之物。",
+        "complete_story": "火攻之物齐备！",
+        "reward": {
+          "experience": 6720,
+          "gold": 100,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "诱敌深入",
+        "scene_id": "huoshao_bowang_copy_live.山道",
+        "objective": "前往「山道」击杀5名『夏侯惇副将』引敌主力",
+        "progress_label": "已击杀副将(18级)",
+        "target_monsters": [
+          "mon_huoshao_bowang_夏侯惇副将"
+        ],
+        "required_count": 5,
+        "story": "前往山道击杀副将，诱使夏侯惇主力深入博望坡。",
+        "complete_story": "夏侯惇主力已被诱入火攻圈！",
+        "reward": {
+          "experience": 7980,
+          "gold": 150,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "击杀夏侯惇",
+        "scene_id": "huoshao_bowang_copy_live.博望坡",
+        "objective": "前往「博望坡」击杀『【精】夏侯惇』",
+        "progress_label": "已击败【精】夏侯惇(20级)",
+        "target_monsters": [
+          "mon_huoshao_bowang_elite_夏侯惇"
+        ],
+        "required_count": 1,
+        "story": "火攻已发！夏侯惇在火海中挣扎，你速去将其击杀！",
+        "complete_story": "夏侯惇败走！曹军先锋全军覆没。",
+        "reward": {
+          "experience": 9240,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "追击败军",
+        "scene_id": "huoshao_bowang_copy_live.白河",
+        "objective": "前往「白河」击杀5名『曹军逃兵』",
+        "progress_label": "已击败曹军逃兵(18级)",
+        "target_monsters": [
+          "mon_huoshao_bowang_曹军逃兵"
+        ],
+        "required_count": 5,
+        "story": "赵云在白河设伏，你速去助其追击溃兵！",
+        "complete_story": "博望一战大获全胜！",
+        "reward": {
+          "experience": 7980,
+          "gold": 150,
+          "items": []
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.白河",
+        "quest_giver_npc_id": "npc_huoshao_bowang_赵云",
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "qianli_danqi": {
+    "name": "千里单骑(26级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "qianli_danqi_copy_live.东岭关",
+    "entry_npc_id": "npc_yongan_center_关羽副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "yongan_center.广场",
+    "story_intro": [
+      "关羽挂印封金，千里走单骑，护送二嫂寻兄。",
+      "过五关斩六将，一路东行所向披靡。",
+      "你随关将军出永安，护嫂寻兄闯关夺隘！"
+    ],
+    "story_outro": [
+      "过五关斩六将，关将军终于与刘备团聚！",
+      "千里单骑，忠义千秋。"
+    ],
+    "reward": {
+      "experience": 21000,
+      "gold": 2200,
+      "items": [
+        {
+          "item_id": "chest_copy_mid",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "东岭关",
+        "scene_id": "qianli_danqi_copy_live.东岭关",
+        "objective": "前往「东岭关」击杀5名『守关士兵』",
+        "progress_label": "已击败守军(26级)",
+        "target_monsters": [
+          "mon_qianli_danqi_东岭关守军"
+        ],
+        "required_count": 5,
+        "story": "第一关东岭关，守将孔秀拦路。先清掉守军。",
+        "complete_story": "东岭关已破！",
+        "reward": {
+          "experience": 10920,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_2",
+        "name": "击杀孔秀",
+        "scene_id": "qianli_danqi_copy_live.东岭关",
+        "objective": "击杀『【精】孔秀』",
+        "progress_label": "已击败【精】孔秀(28级)",
+        "target_monsters": [
+          "mon_qianli_danqi_elite_孔秀"
+        ],
+        "required_count": 1,
+        "story": "守将孔秀亲自出阵，你速去将其斩杀！",
+        "complete_story": "孔秀授首，第一关告破。",
+        "reward": {
+          "experience": 11760,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "洛阳关",
+        "scene_id": "qianli_danqi_copy_live.洛阳关",
+        "objective": "前往「洛阳关」击杀5名『洛阳守军』",
+        "progress_label": "已击败守军(28级)",
+        "target_monsters": [
+          "mon_qianli_danqi_洛阳守军"
+        ],
+        "required_count": 5,
+        "story": "第二关洛阳，太守韩福镇守。先清其兵。",
+        "complete_story": "洛阳守军溃散！",
+        "reward": {
+          "experience": 11760,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "击杀韩福",
+        "scene_id": "qianli_danqi_copy_live.洛阳关",
+        "objective": "击杀『【精】韩福』",
+        "progress_label": "已击败【精】韩福(29级)",
+        "target_monsters": [
+          "mon_qianli_danqi_elite_韩福"
+        ],
+        "required_count": 1,
+        "story": "韩福率部将孟坦齐出，你速去将其斩杀！",
+        "complete_story": "韩福已死，第二关告破。",
+        "reward": {
+          "experience": 12180,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "汜水关",
+        "scene_id": "qianli_danqi_copy_live.汜水关",
+        "objective": "前往「汜水关」击杀5名『守关士兵』",
+        "progress_label": "已击败守军(29级)",
+        "target_monsters": [
+          "mon_qianli_danqi_汜水关守军"
+        ],
+        "required_count": 5,
+        "story": "第三关汜水关，守将卞喜设计埋伏。先破其兵。",
+        "complete_story": "汜水关已破！",
+        "reward": {
+          "experience": 12180,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀卞喜",
+        "scene_id": "qianli_danqi_copy_live.汜水关",
+        "objective": "击杀『【精】卞喜』",
+        "progress_label": "已击败【精】卞喜(30级)",
+        "target_monsters": [
+          "mon_qianli_danqi_elite_卞喜"
+        ],
+        "required_count": 1,
+        "story": "卞喜设下鸿门宴图谋不轨，你速去将其斩杀！",
+        "complete_story": "卞喜已死，第三关告破。",
+        "reward": {
+          "experience": 12600,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "荥阳关",
+        "scene_id": "qianli_danqi_copy_live.荥阳关",
+        "objective": "前往「荥阳关」击杀5名『守关士兵』",
+        "progress_label": "已击败守军(31级)",
+        "target_monsters": [
+          "mon_qianli_danqi_荥阳守军"
+        ],
+        "required_count": 5,
+        "story": "第四关荥阳，太守王植。先清其兵。",
+        "complete_story": "荥阳守军溃散！",
+        "reward": {
+          "experience": 13020,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "击杀王植",
+        "scene_id": "qianli_danqi_copy_live.荥阳关",
+        "objective": "击杀『【精】王植』",
+        "progress_label": "已击败【精】王植(32级)",
+        "target_monsters": [
+          "mon_qianli_danqi_elite_王植"
+        ],
+        "required_count": 1,
+        "story": "王植欲纵火烧馆舍，你速去将其斩杀！",
+        "complete_story": "王植已死，第四关告破。",
+        "reward": {
+          "experience": 13440,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_9",
+        "name": "黄河渡口",
+        "scene_id": "qianli_danqi_copy_live.黄河渡口",
+        "objective": "前往「黄河渡口」击杀5名『守军』",
+        "progress_label": "已击败守军(33级)",
+        "target_monsters": [
+          "mon_qianli_danqi_渡口守军"
+        ],
+        "required_count": 5,
+        "story": "最后一关黄河渡口，守将秦琪。先清其兵。",
+        "complete_story": "渡口已通！",
+        "reward": {
+          "experience": 13860,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_10",
+        "name": "击杀秦琪",
+        "scene_id": "qianli_danqi_copy_live.黄河渡口",
+        "objective": "击杀『【精】秦琪』",
+        "progress_label": "已击败【精】秦琪(35级)",
+        "target_monsters": [
+          "mon_qianli_danqi_elite_秦琪"
+        ],
+        "required_count": 1,
+        "story": "秦琪不肯放行，你速去将其斩杀！过五关斩六将，至此功成。",
+        "complete_story": "六将皆斩！千里寻兄，忠义无双。",
+        "reward": {
+          "experience": 14700,
+          "gold": 1092,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "taoyuan_jieyi": {
+    "name": "桃园结义(36级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "taoyuan_jieyi_copy_live.桃园",
+    "entry_npc_id": "npc_chengdu_center_刘备副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "chengdu_center.广场",
+    "story_intro": [
+      "刘关张桃园结义，誓同生死共扶汉室。",
+      "今有黄巾余孽于巨鹿作乱，你随三英前往剿灭，重温桃园誓言。"
+    ],
+    "story_outro": [
+      "桃园誓言犹在耳，黄巾余孽尽扫清。"
+    ],
+    "reward": {
+      "experience": 38000,
+      "gold": 3900,
+      "items": [
+        {
+          "item_id": "chest_copy_mid",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "再现黄巾",
+        "scene_id": "taoyuan_jieyi_copy_live.桃园",
+        "objective": "前往「桃园」击杀5名『黄巾残党』",
+        "progress_label": "已击杀黄巾残党(36级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_黄巾残党"
+        ],
+        "required_count": 5,
+        "story": "桃园旧誓之地竟有黄巾残党出没，刘备命你先将其清除。",
+        "complete_story": "残党已除，桃园复归清净。",
+        "reward": {
+          "experience": 15120,
+          "gold": 1512,
+          "items": []
+        },
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园",
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备"
+      },
+      {
+        "id": "step_2",
+        "name": "五斗米道",
+        "scene_id": "taoyuan_jieyi_copy_live.桃园",
+        "objective": "击杀5名『五斗米道士』",
+        "progress_label": "已击杀道士(36级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_五斗米道士"
+        ],
+        "required_count": 5,
+        "story": "黄巾背后有五斗米道操纵，你速去斩杀其道士。",
+        "complete_story": "五斗米道被破！",
+        "reward": {
+          "experience": 15120,
+          "gold": 150,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "剿灭符兵",
+        "scene_id": "taoyuan_jieyi_copy_live.巨鹿",
+        "objective": "前往「巨鹿」击杀5名『符兵』",
+        "progress_label": "已击杀符兵(37级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_符兵"
+        ],
+        "required_count": 5,
+        "story": "张飞在巨鹿与敌交战，敌兵以符咒驱策尸骸。你速去助阵！",
+        "complete_story": "符兵阵破！",
+        "reward": {
+          "experience": 15540,
+          "gold": 1512,
+          "items": []
+        },
+        "quest_giver_location": "taoyuan_jieyi_copy_live.巨鹿",
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_张飞"
+      },
+      {
+        "id": "step_4",
+        "name": "张角遗魂",
+        "scene_id": "taoyuan_jieyi_copy_live.巨鹿",
+        "objective": "击杀『【精】张角遗魂』",
+        "progress_label": "已击败【精】张角遗魂(38级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_elite_张角遗魂"
+        ],
+        "required_count": 1,
+        "story": "五斗米道以邪术召唤张角遗魂！你快去将其镇灭。",
+        "complete_story": "张角遗魂灰飞烟灭！",
+        "reward": {
+          "experience": 15960,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "追击张宝",
+        "scene_id": "taoyuan_jieyi_copy_live.广宗",
+        "objective": "前往「广宗」击杀5名『张宝残部』",
+        "progress_label": "已击杀残部(38级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_张宝残部"
+        ],
+        "required_count": 5,
+        "story": "张宝残部退守广宗，前往追击。",
+        "complete_story": "残部溃散！",
+        "reward": {
+          "experience": 15960,
+          "gold": 1512,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀张宝",
+        "scene_id": "taoyuan_jieyi_copy_live.广宗",
+        "objective": "击杀『【精】张宝』",
+        "progress_label": "已击败【精】张宝(39级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_elite_张宝"
+        ],
+        "required_count": 1,
+        "story": "张宝负隅顽抗，你快去斩杀！",
+        "complete_story": "张宝已亡！",
+        "reward": {
+          "experience": 16380,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "道观密室",
+        "scene_id": "taoyuan_jieyi_copy_live.于毒洞",
+        "objective": "前往「于毒洞」击杀『【精】于毒』",
+        "progress_label": "已击杀【精】于毒(40级)",
+        "target_monsters": [
+          "mon_taoyuan_jieyi_elite_"
+        ],
+        "required_count": 1,
+        "story": "五斗米道魁首于毒藏身洞中，你速去将其除掉。",
+        "complete_story": "于毒已除，五斗米道彻底覆灭。",
+        "reward": {
+          "experience": 16800,
+          "gold": 500,
+          "items": []
+        },
+        "complete_hint": "返回桃园向刘备复命，领取通关奖励。"
+      }
+    ]
+  },
+  "dazhan_changban": {
+    "name": "大战长坂(46级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "dazhan_changban_copy_live.长坂坡",
+    "entry_npc_id": "npc_jiangling_center_赵云副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "jiangling_center.广场",
+    "story_intro": [
+      "曹操大军南下，刘备携民渡江，行至长坂坡。",
+      "赵云单骑救阿斗，七进七出长坂坡，斩杀曹将五十余员。",
+      "你随子龙将军突围，血战长坂护幼主！"
+    ],
+    "story_outro": [
+      "长坂坡七进七出，赵子龙一战成名！",
+      "阿斗得救，刘备涕泣曰：为汝这孺子，几损我一员大将！"
+    ],
+    "reward": {
+      "experience": 65000,
+      "gold": 6600,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "初入重围",
+        "scene_id": "dazhan_changban_copy_live.长坂坡",
+        "objective": "前往「长坂坡」击杀5名『曹军先锋』",
+        "progress_label": "已击杀曹军先锋(46级)",
+        "target_monsters": [
+          "mon_dazhan_changban_曹军先锋"
+        ],
+        "required_count": 5,
+        "story": "曹军先锋已至长坂坡，赵云命你先挡其锋！",
+        "complete_story": "先锋已溃，速去寻找少主！",
+        "reward": {
+          "experience": 19320,
+          "gold": 1932,
+          "items": []
+        },
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡",
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云"
+      },
+      {
+        "id": "step_2",
+        "name": "搜寻阿斗",
+        "scene_id": "dazhan_changban_copy_live.井边",
+        "objective": "前往「井边」击杀5名『曹军护卫』搜寻少主",
+        "progress_label": "已搜寻完毕(46级)",
+        "target_monsters": [
+          "mon_dazhan_changban_曹军护卫"
+        ],
+        "required_count": 5,
+        "story": "糜夫人在井边遇险，你速去击退护卫，救出阿斗！",
+        "complete_story": "阿斗已救！糜夫人投井殉节。",
+        "reward": {
+          "experience": 19320,
+          "gold": 200,
+          "items": []
+        },
+        "quest_giver_location": "dazhan_changban_copy_live.井边",
+        "quest_giver_npc_id": "npc_dazhan_changban_糜夫人"
+      },
+      {
+        "id": "step_3",
+        "name": "斩杀晏明",
+        "scene_id": "dazhan_changban_copy_live.巷战",
+        "objective": "击杀『【精】晏明』",
+        "progress_label": "已击杀【精】晏明(47级)",
+        "target_monsters": [
+          "mon_dazhan_changban_elite_晏明"
+        ],
+        "required_count": 1,
+        "story": "曹将晏明持三尖刀挡路，你速去将其斩杀！",
+        "complete_story": "晏明授首！",
+        "reward": {
+          "experience": 19740,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "大战夏侯恩",
+        "scene_id": "dazhan_changban_copy_live.南坡",
+        "objective": "击杀『【精】夏侯恩』",
+        "progress_label": "已击杀【精】夏侯恩(48级)",
+        "target_monsters": [
+          "mon_dazhan_changban_elite_夏侯恩"
+        ],
+        "required_count": 1,
+        "story": "夏侯恩背着曹操的青釭剑出现，你速去夺剑斩将！",
+        "complete_story": "夏侯恩已死，青釭剑到手！",
+        "reward": {
+          "experience": 20160,
+          "gold": 500,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "突围南阵",
+        "scene_id": "dazhan_changban_copy_live.王南阵",
+        "objective": "前往「王南阵」击杀5名『曹军弓弩手』",
+        "progress_label": "已击杀弓弩手(48级)",
+        "target_monsters": [
+          "mon_dazhan_changban_曹军弓弩手"
+        ],
+        "required_count": 5,
+        "story": "曹军在南阵布置弓弩手拦路，你速去破阵。",
+        "complete_story": "南阵已破！",
+        "reward": {
+          "experience": 20160,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀钟缙",
+        "scene_id": "dazhan_changban_copy_live.当阳桥",
+        "objective": "前往「当阳桥」击杀『【精】钟缙』",
+        "progress_label": "已击杀【精】钟缙(49级)",
+        "target_monsters": [
+          "mon_dazhan_changban_elite_钟缙"
+        ],
+        "required_count": 1,
+        "story": "张飞在当阳桥喝退曹兵，但有将领钟缙冲来，你速去助阵！",
+        "complete_story": "钟缙已死！",
+        "reward": {
+          "experience": 20580,
+          "gold": 400,
+          "items": []
+        },
+        "quest_giver_location": "dazhan_changban_copy_live.当阳桥",
+        "quest_giver_npc_id": "npc_dazhan_changban_张飞"
+      },
+      {
+        "id": "step_7",
+        "name": "击杀钟绅",
+        "scene_id": "dazhan_changban_copy_live.当阳桥",
+        "objective": "击杀『【精】钟绅』",
+        "progress_label": "已击杀【精】钟绅(50级)",
+        "target_monsters": [
+          "mon_dazhan_changban_elite_钟绅"
+        ],
+        "required_count": 1,
+        "story": "钟缙之弟钟绅为兄报仇冲上桥来，你速去将其斩杀！",
+        "complete_story": "钟绅已死！",
+        "reward": {
+          "experience": 21000,
+          "gold": 400,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "横扫残兵",
+        "scene_id": "dazhan_changban_copy_live.长坂坡",
+        "objective": "击杀5名『曹军溃兵』扫清归路",
+        "progress_label": "已扫清溃兵(50级)",
+        "target_monsters": [
+          "mon_dazhan_changban_曹军溃兵"
+        ],
+        "required_count": 5,
+        "story": "曹军溃兵四散，你扫清归路护阿斗回营。",
+        "complete_story": "长坂坡血战结束，阿斗安然归来！",
+        "reward": {
+          "experience": 21000,
+          "gold": 300,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "qiqinmenghuo_hi": {
+    "name": "七擒孟获(56级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "qiqinmenghuo_hi_copy_live.五溪洞",
+    "entry_npc_id": "npc_luoyang_center_诸葛亮副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "luoyang_center.广场",
+    "story_intro": [
+      "南蛮孟获起兵造反，诸葛孔明率军南征。",
+      "孔明曰：攻心为上，攻城为下；心战为上，兵战为下。",
+      "你随孔明出师，七擒七纵平定南中！（三国通用）"
+    ],
+    "story_outro": [
+      "历经千辛万苦终于七擒孟获，平定南中！",
+      "孟获归服：丞相天威，南人不复反矣。"
+    ],
+    "reward": {
+      "experience": 105000,
+      "gold": 10500,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "一擒孟获",
+        "scene_id": "qiqinmenghuo_hi_copy_live.五溪洞",
+        "objective": "击杀『【精】金环三结』",
+        "progress_label": "已击杀金环三结(56级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_结"
+        ],
+        "required_count": 1,
+        "story": "孟获派大将金环三结于五溪洞迎战，你速去将其拿下！",
+        "complete_story": "一擒孟获，纵之使归。",
+        "reward": {
+          "experience": 23520,
+          "gold": 800,
+          "items": []
+        },
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞",
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮"
+      },
+      {
+        "id": "step_2",
+        "name": "二擒孟获",
+        "scene_id": "qiqinmenghuo_hi_copy_live.锦带山",
+        "objective": "击杀『【精】忙牙长』",
+        "progress_label": "已击杀忙牙长(56级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_"
+        ],
+        "required_count": 1,
+        "story": "孟获又遣忙牙长出战，你速去击杀！",
+        "complete_story": "二擒孟获，又纵之。",
+        "reward": {
+          "experience": 23520,
+          "gold": 800,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "渡泸水",
+        "scene_id": "qiqinmenghuo_hi_copy_live.泸水",
+        "objective": "前往「泸水」击杀5名『南蛮运粮兵』断其粮道",
+        "progress_label": "已断粮道(57级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_南蛮运粮兵"
+        ],
+        "required_count": 5,
+        "story": "马谡献计断粮断水，你前往泸水截断南蛮粮道。",
+        "complete_story": "粮道已断！",
+        "reward": {
+          "experience": 23940,
+          "gold": 2352,
+          "items": []
+        },
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.泸水",
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_马谡"
+      },
+      {
+        "id": "step_4",
+        "name": "擒祝融",
+        "scene_id": "qiqinmenghuo_hi_copy_live.夹山峪",
+        "objective": "击杀『【精】祝融』",
+        "progress_label": "已擒祝融(57级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_祝融"
+        ],
+        "required_count": 1,
+        "story": "孟获夫人祝融亲自率兵出战！你快去将她拿下。",
+        "complete_story": "祝融被擒！",
+        "reward": {
+          "experience": 23940,
+          "gold": 900,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "击杀孟优",
+        "scene_id": "qiqinmenghuo_hi_copy_live.河西岸",
+        "objective": "击杀『【精】孟优』",
+        "progress_label": "已击杀孟优(58级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_孟优"
+        ],
+        "required_count": 1,
+        "story": "孟获之弟孟优率兵接应，你速去将其击杀！",
+        "complete_story": "孟优已除！",
+        "reward": {
+          "experience": 24360,
+          "gold": 900,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "破木鹿",
+        "scene_id": "qiqinmenghuo_hi_copy_live.八纳洞",
+        "objective": "击杀『【精】木鹿大王』",
+        "progress_label": "已击杀木鹿大王(58级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_木鹿大王"
+        ],
+        "required_count": 1,
+        "story": "木鹿大王善驱百兽，你速去将其击杀！",
+        "complete_story": "木鹿大王已死！",
+        "reward": {
+          "experience": 24360,
+          "gold": 900,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "破兀突骨",
+        "scene_id": "qiqinmenghuo_hi_copy_live.盘蛇谷",
+        "objective": "击杀『【精】兀突骨』",
+        "progress_label": "已击杀兀突骨(59级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_兀突骨"
+        ],
+        "required_count": 1,
+        "story": "兀突骨率藤甲兵而来，你速去将其击杀！",
+        "complete_story": "兀突骨已死！",
+        "reward": {
+          "experience": 24780,
+          "gold": 1000,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "七擒孟获",
+        "scene_id": "qiqinmenghuo_hi_copy_live.铜坑洞",
+        "objective": "击杀『【精】孟获』",
+        "progress_label": "已擒孟获(60级)",
+        "target_monsters": [
+          "mon_qiqinmenghuo_hi_elite_孟获"
+        ],
+        "required_count": 1,
+        "story": "孟获被包围在铜坑洞，你去将其捉拿！",
+        "complete_story": "孟获归服，南中就此平定。",
+        "reward": {
+          "experience": 25200,
+          "gold": 1200,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "caopi_xuanfei": {
+    "name": "曹丕选妃(36级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "caopi_xuanfei_copy_live.铜雀台",
+    "entry_npc_id": "npc_xuchang_center_曹丕副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "xuchang_center.广场",
+    "story_intro": [
+      "曹丕奉曹操之命在许昌选妃，充实后宫。",
+      "甄氏才貌双全却遭人陷害，铜雀台暗藏杀机。",
+      "你奉曹丕密令查明真相，护甄氏周全。"
+    ],
+    "story_outro": [
+      "甄氏沉冤得雪，曹丕册其为后。",
+      "铜雀台上诗会风流，魏宫初定。"
+    ],
+    "reward": {
+      "experience": 40000,
+      "gold": 4000,
+      "items": [
+        {
+          "item_id": "chest_copy_mid",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "铜雀台斗诗",
+        "scene_id": "caopi_xuanfei_copy_live.铜雀台",
+        "objective": "前往「铜雀台」击败3名『魏臣子』助曹丕斗诗",
+        "progress_label": "已斗诗胜出(36级)",
+        "target_monsters": [
+          "mon_caopi_xuanfei_魏臣子"
+        ],
+        "required_count": 3,
+        "story": "铜雀台上群臣斗诗，你随曹丕以才学服众。击败阻挠之臣。",
+        "complete_story": "斗诗胜出！曹丕声威大振。",
+        "reward": {
+          "experience": 15120,
+          "gold": 1512,
+          "items": []
+        },
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台",
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕"
+      },
+      {
+        "id": "step_2",
+        "name": "甄氏诉冤",
+        "scene_id": "caopi_xuanfei_copy_live.深宫",
+        "objective": "前往「深宫」击杀5名『宫中暗卫』护甄氏",
+        "progress_label": "已护甄氏(37级)",
+        "target_monsters": [
+          "mon_caopi_xuanfei_宫中暗卫"
+        ],
+        "required_count": 5,
+        "story": "甄氏在深宫哭诉遭人栽赃陷害，宫中暗卫意图灭口，你速去护住甄氏！",
+        "complete_story": "暗卫已除。甄氏道出真相。",
+        "reward": {
+          "experience": 15540,
+          "gold": 200,
+          "items": []
+        },
+        "quest_giver_location": "caopi_xuanfei_copy_live.深宫",
+        "quest_giver_npc_id": "npc_caopi_xuanfei_甄氏"
+      },
+      {
+        "id": "step_3",
+        "name": "追查幕后",
+        "scene_id": "caopi_xuanfei_copy_live.内府",
+        "objective": "前往「内府」击杀5名『内府护卫』查证",
+        "progress_label": "已查证(37级)",
+        "target_monsters": [
+          "mon_caopi_xuanfei_内府护卫"
+        ],
+        "required_count": 5,
+        "story": "幕后黑手藏身内府。你前往内府查证，先清护卫。",
+        "complete_story": "证据到手！凶手指向贾氏。",
+        "reward": {
+          "experience": 15540,
+          "gold": 1512,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "擒拿陷害者",
+        "scene_id": "caopi_xuanfei_copy_live.西宫",
+        "objective": "击杀『【精】贾氏』",
+        "progress_label": "已擒贾氏(38级)",
+        "target_monsters": [
+          "mon_caopi_xuanfei_elite_贾氏"
+        ],
+        "required_count": 1,
+        "story": "幕后黑手贾氏躲在西宫，你速去将其拿下！",
+        "complete_story": "贾氏伏法，甄氏冤情得雪。",
+        "reward": {
+          "experience": 15960,
+          "gold": 400,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "护选大典",
+        "scene_id": "caopi_xuanfei_copy_live.正殿",
+        "objective": "前往「正殿」击杀5名『刺客』",
+        "progress_label": "已除刺客(39级)",
+        "target_monsters": [
+          "mon_caopi_xuanfei_刺客"
+        ],
+        "required_count": 5,
+        "story": "选妃大典之上有刺客行刺曹丕！你速去护驾。",
+        "complete_story": "刺客尽除，大典安然。",
+        "reward": {
+          "experience": 16380,
+          "gold": 1512,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "曹丕赐婚",
+        "scene_id": "caopi_xuanfei_copy_live.铜雀台",
+        "objective": "击杀『【精】刺客头领』",
+        "progress_label": "已击杀刺客头领(40级)",
+        "target_monsters": [
+          "mon_caopi_xuanfei_elite_刺客头领"
+        ],
+        "required_count": 1,
+        "story": "刺客头领现身铜雀台欲刺杀甄氏，你快去斩杀！",
+        "complete_story": "刺杀阴谋彻底粉碎，曹丕立甄氏为后。",
+        "reward": {
+          "experience": 16800,
+          "gold": 600,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "huoshao_wuchao": {
+    "name": "火烧乌巢(46级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "huoshao_wuchao_copy_live.乌巢大营",
+    "entry_npc_id": "npc_xiapi_north_张辽副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "xiapi_north.北门",
+    "story_intro": [
+      "袁曹官渡对峙，袁绍军粮屯于乌巢，守将淳于琼好酒疏防。",
+      "张辽献计：夜袭乌巢，火烧粮仓，袁军自溃！",
+      "你随张辽星夜奔袭乌巢，烧尽袁绍百万军粮。"
+    ],
+    "story_outro": [
+      "乌巢粮仓化为灰烬！袁军闻粮尽而溃。",
+      "官渡之战由此扭转。"
+    ],
+    "reward": {
+      "experience": 68000,
+      "gold": 6800,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "伪装袁军",
+        "scene_id": "huoshao_wuchao_copy_live.乌巢大营",
+        "objective": "前往「乌巢大营」击杀5名『守营哨兵』伪装袁军",
+        "progress_label": "已清除哨兵(46级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_守营哨兵"
+        ],
+        "required_count": 5,
+        "story": "张辽命你换上袁军衣甲，先清除外围哨兵。",
+        "complete_story": "哨兵已清，可潜入大营。",
+        "reward": {
+          "experience": 19320,
+          "gold": 1932,
+          "items": []
+        },
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营",
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽"
+      },
+      {
+        "id": "step_2",
+        "name": "潜入粮营",
+        "scene_id": "huoshao_wuchao_copy_live.乌巢粮仓",
+        "objective": "前往「乌巢粮仓」击杀5名『运粮兵』",
+        "progress_label": "已清除运粮兵(47级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_袁军运粮兵"
+        ],
+        "required_count": 5,
+        "story": "潜入粮仓，运粮兵发现异常，你速去灭口！",
+        "complete_story": "粮仓入口已控。",
+        "reward": {
+          "experience": 19740,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "火攻引燃",
+        "scene_id": "huoshao_wuchao_copy_live.乌巢粮仓",
+        "objective": "前往「乌巢粮仓」收缴5份『硫磺』布置引火",
+        "progress_label": "已布置引火(47级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_硫磺堆"
+        ],
+        "required_count": 5,
+        "story": "收缴硫磺布置引火点，火攻将发。",
+        "complete_story": "引火点布置完毕！",
+        "reward": {
+          "experience": 19740,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "火烧粮仓",
+        "scene_id": "huoshao_wuchao_copy_live.乌巢中心",
+        "objective": "前往「乌巢中心」杀尽5名『守仓悍将』",
+        "progress_label": "已击杀守将(48级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_守仓悍将"
+        ],
+        "required_count": 5,
+        "story": "点火！火光冲天，守仓悍将冲来扑救，你速去挡住！",
+        "complete_story": "粮仓尽燃！",
+        "reward": {
+          "experience": 20160,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "擒淳于琼",
+        "scene_id": "huoshao_wuchao_copy_live.大营后帐",
+        "objective": "击杀『【精】淳于琼』",
+        "progress_label": "已擒淳于琼(49级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_elite_淳于琼"
+        ],
+        "required_count": 1,
+        "story": "守将淳于琼酒醉未醒，你速去将其擒拿！",
+        "complete_story": "淳于琼被擒，袁军粮尽。",
+        "reward": {
+          "experience": 20580,
+          "gold": 500,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "袁军反扑",
+        "scene_id": "huoshao_wuchao_copy_live.乌巢大营",
+        "objective": "击杀5名『袁军精兵』",
+        "progress_label": "已击退袁军(50级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_袁军精兵"
+        ],
+        "required_count": 5,
+        "story": "袁绍派兵救援乌巢，你速去挡住反扑！",
+        "complete_story": "袁军溃退！",
+        "reward": {
+          "experience": 21000,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "击杀韩猛",
+        "scene_id": "huoshao_wuchao_copy_live.乌巢渡口",
+        "objective": "击杀『【精】韩猛』",
+        "progress_label": "已击杀韩猛(51级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_elite_韩猛"
+        ],
+        "required_count": 1,
+        "story": "袁军将领韩猛从渡口方向杀来，你快去迎战！",
+        "complete_story": "韩猛已死！",
+        "reward": {
+          "experience": 21420,
+          "gold": 600,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "大破张郃",
+        "scene_id": "huoshao_wuchao_copy_live.官渡渡口",
+        "objective": "击杀『【精】张郃』",
+        "progress_label": "已击杀张郃(52级)",
+        "target_monsters": [
+          "mon_huoshao_wuchao_elite_张郃"
+        ],
+        "required_count": 1,
+        "story": "张郃率军从官渡渡口杀来，你速去迎击！",
+        "complete_story": "张郃败走，袁军大势已去！",
+        "reward": {
+          "experience": 21840,
+          "gold": 800,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "zhidou_machao": {
+    "name": "智斗马超(56级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "zhidou_machao_copy_live.长安城",
+    "entry_npc_id": "npc_luoyang_south_司马懿副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "luoyang_south.南门",
+    "story_intro": [
+      "马超兴兵雪恨攻长安，渭水之滨天下震动。",
+      "司马懿献离间计：抹书间韩遂，破凉州联盟。",
+      "你随司马懿运筹帷幄，智取马超！（三国通用）"
+    ],
+    "story_outro": [
+      "马超败走西凉，韩遂降曹。",
+      "渭水之战以智取胜，天下格局再易。"
+    ],
+    "reward": {
+      "experience": 100000,
+      "gold": 10000,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "长安告急",
+        "scene_id": "zhidou_machao_copy_live.长安城",
+        "objective": "前往「长安城」击杀5名『马超前军』",
+        "progress_label": "已击退前军(56级)",
+        "target_monsters": [
+          "mon_zhidou_machao_马超前军"
+        ],
+        "required_count": 5,
+        "story": "马超前军已至长安城下，司马懿命你先退其锋！",
+        "complete_story": "前军溃退，长安暂安。",
+        "reward": {
+          "experience": 23520,
+          "gold": 2352,
+          "items": []
+        },
+        "quest_giver_location": "zhidou_machao_copy_live.长安城",
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿"
+      },
+      {
+        "id": "step_2",
+        "name": "声东击西",
+        "scene_id": "zhidou_machao_copy_live.潼关",
+        "objective": "前往「潼关」击杀5名『西凉骑兵』",
+        "progress_label": "已击杀骑兵(56级)",
+        "target_monsters": [
+          "mon_zhidou_machao_西凉骑兵"
+        ],
+        "required_count": 5,
+        "story": "司马懿设声东击西之计，你往潼关佯攻吸引马超注意。",
+        "complete_story": "潼关虚张声势成功，马超主力被调动。",
+        "reward": {
+          "experience": 23520,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "离间计",
+        "scene_id": "zhidou_machao_copy_live.韩遂大营",
+        "objective": "前往「韩遂大营」击杀5名『韩遂亲卫』",
+        "progress_label": "已清除亲卫(57级)",
+        "target_monsters": [
+          "mon_zhidou_machao_韩遂亲卫"
+        ],
+        "required_count": 5,
+        "story": "司马懿抹书离间韩遂与马超，你潜入韩遂大营清除耳目。",
+        "complete_story": "亲卫已除，可将密信送入。",
+        "reward": {
+          "experience": 23940,
+          "gold": 2352,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "布局离间",
+        "scene_id": "zhidou_machao_copy_live.韩遂大营",
+        "objective": "击败『【精】韩遂』迫其退兵",
+        "progress_label": "已迫退韩遂(58级)",
+        "target_monsters": [
+          "mon_zhidou_machao_elite_韩遂"
+        ],
+        "required_count": 1,
+        "story": "韩遂中计疑马超，但尚未退兵。你率军施压逼其就范。",
+        "complete_story": "韩遂退兵，马超联盟瓦解！",
+        "reward": {
+          "experience": 24360,
+          "gold": 600,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "渭水追击",
+        "scene_id": "zhidou_machao_copy_live.渭水南岸",
+        "objective": "前往「渭水南岸」击杀5名『马超亲兵』",
+        "progress_label": "已灭亲兵(58级)",
+        "target_monsters": [
+          "mon_zhidou_machao_马超亲兵"
+        ],
+        "required_count": 5,
+        "story": "马超败退渭水南岸，你速去追击其亲兵队伍。",
+        "complete_story": "亲兵尽灭，马超孤立无援。",
+        "reward": {
+          "experience": 24360,
+          "gold": 2352,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "虎豹夹击",
+        "scene_id": "zhidou_machao_copy_live.渭水北岸",
+        "objective": "前往「渭水北岸」击杀5名『凉州八部』",
+        "progress_label": "已击溃八部(59级)",
+        "target_monsters": [
+          "mon_zhidou_machao_凉州八部"
+        ],
+        "required_count": 5,
+        "story": "司马懿调遣虎豹骑夹击马超残部于渭水北岸。",
+        "complete_story": "凉州八部溃不成军。",
+        "reward": {
+          "experience": 24780,
+          "gold": 2352,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "决战马超",
+        "scene_id": "zhidou_machao_copy_live.潼关",
+        "objective": "击杀『【精】马超』",
+        "progress_label": "已击败马超(60级)",
+        "target_monsters": [
+          "mon_zhidou_machao_elite_马超"
+        ],
+        "required_count": 1,
+        "story": "马超率余部困兽犹斗于潼关，你速去与其决战！",
+        "complete_story": "马超败走西凉，智斗终获全胜。",
+        "reward": {
+          "experience": 25200,
+          "gold": 1200,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "baiyi_dujiang": {
+    "name": "白衣渡江(16级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "baiyi_dujiang_copy_live.陆口港",
+    "entry_npc_id": "npc_wu_center_郭嘉副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "wu_center.广场",
+    "story_intro": [
+      "吕蒙诈病，关羽轻信，尽抽荆州守军北攻樊城。",
+      "商船白衣伪装东吴精兵，暗渡长江奇袭荆州。"
+    ],
+    "story_outro": [
+      "荆州已定！白衣渡江，千古奇袭。"
+    ],
+    "reward": {
+      "experience": 11000,
+      "gold": 1700,
+      "items": [
+        {
+          "item_id": "chest_copy_low",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "陆口装病",
+        "scene_id": "baiyi_dujiang_copy_live.陆口港",
+        "objective": "前往陆口港击杀5名荆州探子掩人耳目",
+        "progress_label": "已清探子(16级)",
+        "target_monsters": [
+          "mon_baiyi_dujiang_荆州探子"
+        ],
+        "required_count": 5,
+        "story": "郭嘉命你假扮商贾清除荆州探子掩护大军集结。",
+        "complete_story": "探子已除可秘密登船。",
+        "reward": {
+          "experience": 6720,
+          "gold": 672,
+          "items": []
+        },
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港",
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉"
+      },
+      {
+        "id": "step_2",
+        "name": "商船暗渡",
+        "scene_id": "baiyi_dujiang_copy_live.长江",
+        "objective": "前往长江击沉5艘巡江哨船",
+        "progress_label": "已击沉哨船(16级)",
+        "target_monsters": [
+          "mon_baiyi_dujiang_巡江哨船"
+        ],
+        "required_count": 5,
+        "story": "商船队渡江途中遭遇关羽巡江哨船你速去击沉！",
+        "complete_story": "哨船尽沉渡江成功。",
+        "reward": {
+          "experience": 6720,
+          "gold": 100,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "袭烽火台",
+        "scene_id": "baiyi_dujiang_copy_live.烽火台",
+        "objective": "前往烽火台击杀5名烽火守军",
+        "progress_label": "已夺烽火台(18级)",
+        "target_monsters": [
+          "mon_baiyi_dujiang_烽火守军"
+        ],
+        "required_count": 5,
+        "story": "先夺烽火台不让关羽的守军点燃狼烟示警。",
+        "complete_story": "烽火台已控荆州守军不知我军已至。",
+        "reward": {
+          "experience": 7560,
+          "gold": 672,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "袭荆州东门",
+        "scene_id": "baiyi_dujiang_copy_live.荆州东门",
+        "objective": "前往荆州东门击杀5名守军",
+        "progress_label": "已破东门(18级)",
+        "target_monsters": [
+          "mon_baiyi_dujiang_荆州守军"
+        ],
+        "required_count": 5,
+        "story": "趁守军无备突袭荆州东门！",
+        "complete_story": "东门已破！",
+        "reward": {
+          "experience": 7560,
+          "gold": 672,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "擒廖化",
+        "scene_id": "baiyi_dujiang_copy_live.太守府",
+        "objective": "击杀【精】廖化",
+        "progress_label": "已擒廖化(20级)",
+        "target_monsters": [
+          "mon_baiyi_dujiang_elite_廖化"
+        ],
+        "required_count": 1,
+        "story": "关羽留廖化守城你速去将廖化擒下！",
+        "complete_story": "廖化被擒荆州已定。",
+        "reward": {
+          "experience": 8400,
+          "gold": 300,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "huoshao_lianying": {
+    "name": "火烧连营(26级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "huoshao_lianying_copy_live.夷陵大营",
+    "entry_npc_id": "npc_chaisang_center_李典副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "chaisang_center.广场",
+    "story_intro": [
+      "刘备率大军伐吴连营七百里。",
+      "陆逊坚守不出待盛夏火攻之机。"
+    ],
+    "story_outro": [
+      "七百里连营化为火海！刘备大败退守白帝城。"
+    ],
+    "reward": {
+      "experience": 20000,
+      "gold": 2100,
+      "items": [
+        {
+          "item_id": "chest_copy_mid",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "坚守夷陵",
+        "scene_id": "huoshao_lianying_copy_live.夷陵大营",
+        "objective": "前往夷陵大营击杀5名蜀军先锋",
+        "progress_label": "已击退先锋(26级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_蜀军先锋"
+        ],
+        "required_count": 5,
+        "story": "蜀军先锋已至夷陵李典命你严防死守。",
+        "complete_story": "先锋溃退阵脚已稳。",
+        "reward": {
+          "experience": 10920,
+          "gold": 1092,
+          "items": []
+        },
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营",
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典"
+      },
+      {
+        "id": "step_2",
+        "name": "探查敌营",
+        "scene_id": "huoshao_lianying_copy_live.蜀军后营",
+        "objective": "前往蜀军后营击杀5名蜀军哨探",
+        "progress_label": "已探明敌情(27级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_蜀军哨探"
+        ],
+        "required_count": 5,
+        "story": "前方情况不明你潜入蜀军后营刺探。",
+        "complete_story": "敌营虚实已探明。",
+        "reward": {
+          "experience": 11340,
+          "gold": 150,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "火攻待命",
+        "scene_id": "huoshao_lianying_copy_live.夷陵山道",
+        "objective": "前往夷陵山道收集5份火硝",
+        "progress_label": "已备火攻(28级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_硫磺兵"
+        ],
+        "required_count": 5,
+        "story": "陆逊命你收集火硝备好火攻之物。",
+        "complete_story": "火攻之料齐备！",
+        "reward": {
+          "experience": 11760,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "夜袭火起",
+        "scene_id": "huoshao_lianying_copy_live.蜀军连营",
+        "objective": "前往蜀军连营击杀5名守夜兵放火",
+        "progress_label": "已放火(29级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_蜀军守夜兵"
+        ],
+        "required_count": 5,
+        "story": "月黑风高你潜入蜀军连营放火！",
+        "complete_story": "火起！七百里连营尽燃！",
+        "reward": {
+          "experience": 12180,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "破中军帐",
+        "scene_id": "huoshao_lianying_copy_live.蜀军中军",
+        "objective": "前往蜀军中军击杀5名中军兵",
+        "progress_label": "已破中军(30级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_蜀军中军兵"
+        ],
+        "required_count": 5,
+        "story": "火海中蜀军中军大乱你速去冲阵！",
+        "complete_story": "中军已破！",
+        "reward": {
+          "experience": 12600,
+          "gold": 1092,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀冯习",
+        "scene_id": "huoshao_lianying_copy_live.蜀军后阵",
+        "objective": "击杀【精】冯习",
+        "progress_label": "已击杀冯习(31级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_elite_冯习"
+        ],
+        "required_count": 1,
+        "story": "蜀将冯习殿后你速去将其击杀！",
+        "complete_story": "冯习已死！",
+        "reward": {
+          "experience": 13020,
+          "gold": 400,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "击杀张南",
+        "scene_id": "huoshao_lianying_copy_live.马鞍山",
+        "objective": "击杀【精】张南",
+        "progress_label": "已击杀张南(32级)",
+        "target_monsters": [
+          "mon_huoshao_lianying_elite_张南"
+        ],
+        "required_count": 1,
+        "story": "蜀将张南率残部退守马鞍山你速去追杀！",
+        "complete_story": "张南已死！",
+        "reward": {
+          "experience": 13440,
+          "gold": 500,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "jiangdong_bawang": {
+    "name": "江东霸王(36级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "jiangdong_bawang_copy_live.曲阿",
+    "entry_npc_id": "npc_jianye_center_曹丕副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "jianye_center.广场",
+    "story_intro": [
+      "孙策少年英雄平江东六郡人称小霸王。",
+      "你随孙策横扫江东，开疆拓土奠定吴国基业。"
+    ],
+    "story_outro": [
+      "六郡已平！孙策一统江东霸业初成。"
+    ],
+    "reward": {
+      "experience": 39000,
+      "gold": 4000,
+      "items": [
+        {
+          "item_id": "chest_copy_mid",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "攻曲阿",
+        "scene_id": "jiangdong_bawang_copy_live.曲阿",
+        "objective": "前往曲阿击杀5名刘繇兵",
+        "progress_label": "已破刘繇兵(36级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_刘繇兵"
+        ],
+        "required_count": 5,
+        "story": "刘繇据守曲阿你随孙策先破其兵。",
+        "complete_story": "曲阿已破！",
+        "reward": {
+          "experience": 15120,
+          "gold": 1512,
+          "items": []
+        },
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿",
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕"
+      },
+      {
+        "id": "step_2",
+        "name": "战笮融",
+        "scene_id": "jiangdong_bawang_copy_live.曲阿",
+        "objective": "前往曲阿击杀5名笮融兵",
+        "progress_label": "已破笮融兵(36级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_笮融兵"
+        ],
+        "required_count": 5,
+        "story": "笮融以佛教惑众聚兵于曲阿。你速去清剿。",
+        "complete_story": "笮融败逃！",
+        "reward": {
+          "experience": 15120,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "下会稽",
+        "scene_id": "jiangdong_bawang_copy_live.会稽",
+        "objective": "前往会稽击杀5名守军",
+        "progress_label": "已破会稽(37级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_会稽守军"
+        ],
+        "required_count": 5,
+        "story": "王朗固守会稽城你随军攻打。",
+        "complete_story": "会稽城破！",
+        "reward": {
+          "experience": 15540,
+          "gold": 1512,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "擒王朗",
+        "scene_id": "jiangdong_bawang_copy_live.会稽",
+        "objective": "击杀【精】王朗",
+        "progress_label": "已擒王朗(38级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_elite_王朗"
+        ],
+        "required_count": 1,
+        "story": "王朗负隅顽抗你前去将其擒下！",
+        "complete_story": "王朗被擒会稽平定。",
+        "reward": {
+          "experience": 15960,
+          "gold": 400,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "严白虎之乱",
+        "scene_id": "jiangdong_bawang_copy_live.吴郡山",
+        "objective": "前往吴郡山击杀5名山贼",
+        "progress_label": "已平山贼(39级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_山贼"
+        ],
+        "required_count": 5,
+        "story": "严白虎据山为寇你率军剿灭。",
+        "complete_story": "山贼溃散！",
+        "reward": {
+          "experience": 16380,
+          "gold": 1512,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "击杀严白虎",
+        "scene_id": "jiangdong_bawang_copy_live.吴郡山",
+        "objective": "击杀【精】严白虎",
+        "progress_label": "已击杀严白虎(40级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_elite_严白虎"
+        ],
+        "required_count": 1,
+        "story": "严白虎亲自出战你前去斩之！",
+        "complete_story": "严白虎已死江东初定。",
+        "reward": {
+          "experience": 16800,
+          "gold": 600,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "孙策赐印",
+        "scene_id": "jiangdong_bawang_copy_live.曲阿",
+        "objective": "前往曲阿平定5名不服豪族",
+        "progress_label": "已平定豪族(41级)",
+        "target_monsters": [
+          "mon_jiangdong_bawang_不服豪族"
+        ],
+        "required_count": 5,
+        "story": "江东豪族不服孙策统治你前往弹压。",
+        "complete_story": "豪族归服六郡一统！",
+        "reward": {
+          "experience": 17220,
+          "gold": 500,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "shiting_zhizhan": {
+    "name": "石亭之战(46级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "shiting_zhizhan_copy_live.石亭大营",
+    "entry_npc_id": "npc_chaisang_center_陆逊副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "chaisang_center.广场",
+    "story_intro": [
+      "曹休率十万大军南下攻吴。",
+      "陆逊设伏石亭伪递降书诱曹休入彀。",
+      "你随陆逊出柴桑巧设伏兵大破曹休！"
+    ],
+    "story_outro": [
+      "曹休中伏全军覆没！石亭大捷吴国声威大振。",
+      "陆逊伯言用兵如神曹休愧死。"
+    ],
+    "reward": {
+      "experience": 66000,
+      "gold": 6700,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "伪递降书",
+        "scene_id": "shiting_zhizhan_copy_live.石亭大营",
+        "objective": "前往石亭大营击杀5名曹军信使",
+        "progress_label": "已截获信使(46级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_曹军信使"
+        ],
+        "required_count": 5,
+        "story": "陆逊命你假拟降书需先截杀曹军信使防泄密。",
+        "complete_story": "信使已除降书可发。",
+        "reward": {
+          "experience": 19320,
+          "gold": 1932,
+          "items": []
+        },
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营",
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊"
+      },
+      {
+        "id": "step_2",
+        "name": "布置伏兵",
+        "scene_id": "shiting_zhizhan_copy_live.夹石",
+        "objective": "前往夹石击杀5名曹军斥候",
+        "progress_label": "已清斥候(47级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_曹军斥候"
+        ],
+        "required_count": 5,
+        "story": "陆逊在夹石设伏你先清除曹军斥候。",
+        "complete_story": "斥候已除伏兵可藏。",
+        "reward": {
+          "experience": 19740,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "诱曹休入彀",
+        "scene_id": "shiting_zhizhan_copy_live.石亭山道",
+        "objective": "前往石亭山道击杀5名曹军前哨",
+        "progress_label": "已清前哨(47级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_曹军前哨"
+        ],
+        "required_count": 5,
+        "story": "曹休率主力将至先破其前哨引诱深入。",
+        "complete_story": "曹休主力已入伏击圈！",
+        "reward": {
+          "experience": 19740,
+          "gold": 200,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "石亭围歼",
+        "scene_id": "shiting_zhizhan_copy_live.石亭",
+        "objective": "前往石亭击杀5名曹军主力",
+        "progress_label": "已破曹军主力(48级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_曹军主力"
+        ],
+        "required_count": 5,
+        "story": "伏兵四起曹军大乱你随军冲杀！",
+        "complete_story": "曹军溃败！",
+        "reward": {
+          "experience": 20160,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_5",
+        "name": "击杀贾逵",
+        "scene_id": "shiting_zhizhan_copy_live.石亭",
+        "objective": "击杀【精】贾逵",
+        "progress_label": "已击杀贾逵(49级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_elite_贾逵"
+        ],
+        "required_count": 1,
+        "story": "曹休部将贾逵率兵救援你前去斩杀！",
+        "complete_story": "贾逵已死曹休孤立。",
+        "reward": {
+          "experience": 20580,
+          "gold": 500,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "追击曹休",
+        "scene_id": "shiting_zhizhan_copy_live.夹石",
+        "objective": "前往夹石追杀5名曹休亲兵",
+        "progress_label": "已灭亲兵(50级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_曹休亲兵"
+        ],
+        "required_count": 5,
+        "story": "曹休率亲兵败退夹石你前去追杀！",
+        "complete_story": "亲兵覆灭！",
+        "reward": {
+          "experience": 21000,
+          "gold": 1932,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "决战曹休",
+        "scene_id": "shiting_zhizhan_copy_live.石亭大营",
+        "objective": "击杀【精】曹休",
+        "progress_label": "已击败曹休(52级)",
+        "target_monsters": [
+          "mon_shiting_zhizhan_elite_曹休"
+        ],
+        "required_count": 1,
+        "story": "曹休困兽犹斗你前去决战！",
+        "complete_story": "曹休败亡石亭大捷！",
+        "reward": {
+          "experience": 21840,
+          "gold": 800,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
+      }
+    ]
+  },
+  "chibi_aobing": {
+    "name": "赤壁鏖兵(56级副本)",
+    "is_copy_dungeon": true,
+    "entry_location": "chibi_aobing_copy_live.江东水寨",
+    "entry_npc_id": "npc_luoyang_center_周瑜副本",
+    "entry_item_id": "shenyou_guo",
+    "entry_item_count": 1,
+    "return_location": "luoyang_center.广场",
+    "story_intro": [
+      "曹操百万大军压境赤壁天下震动。",
+      "周瑜运筹帷幄草船借箭苦肉计连环计借东风。",
+      "你随周瑜赤壁鏖兵火攻曹军！（三国通用）"
+    ],
+    "story_outro": [
+      "赤壁大火烧尽曹操百万大军！",
+      "江东风流千古一役三足鼎立之势已成。"
+    ],
+    "reward": {
+      "experience": 102000,
+      "gold": 10200,
+      "items": [
+        {
+          "item_id": "chest_copy_high_bound",
+          "count": 1
+        }
+      ]
+    },
+    "steps": [
+      {
+        "id": "step_1",
+        "name": "草船借箭",
+        "scene_id": "chibi_aobing_copy_live.江东水寨",
+        "objective": "前往江东水寨击杀5名曹军水兵箭矢不足先取敌箭",
+        "progress_label": "已借得箭矢(56级)",
+        "target_monsters": [
+          "mon_chibi_aobing_曹军水兵"
+        ],
+        "required_count": 5,
+        "story": "箭矢告急！周瑜命你兵出江上佯攻诱敌射箭。",
+        "complete_story": "草船借箭满载而归！",
+        "reward": {
+          "experience": 23520,
+          "gold": 2352,
+          "items": []
+        },
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨",
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜"
+      },
+      {
+        "id": "step_2",
+        "name": "苦肉计",
+        "scene_id": "chibi_aobing_copy_live.江东水寨",
+        "objective": "前往江东水寨击杀5名黄盖亲兵配合苦肉计",
+        "progress_label": "已配合苦肉计(56级)",
+        "target_monsters": [
+          "mon_chibi_aobing_黄盖亲兵"
+        ],
+        "required_count": 5,
+        "story": "黄盖诈降需以苦肉计取信曹操你先清除知情者。",
+        "complete_story": "苦肉计成黄盖取得曹操信任。",
+        "reward": {
+          "experience": 23520,
+          "gold": 300,
+          "items": []
+        }
+      },
+      {
+        "id": "step_3",
+        "name": "连环计",
+        "scene_id": "chibi_aobing_copy_live.曹军水寨",
+        "objective": "前往曹军水寨击杀5名守船兵",
+        "progress_label": "已破守船军(57级)",
+        "target_monsters": [
+          "mon_chibi_aobing_曹军守船兵"
+        ],
+        "required_count": 5,
+        "story": "庞统献连环计你潜入曹军水寨清除守船兵。",
+        "complete_story": "守船兵已除连环计可施。",
+        "reward": {
+          "experience": 23940,
+          "gold": 2352,
+          "items": []
+        }
+      },
+      {
+        "id": "step_4",
+        "name": "借东风",
+        "scene_id": "chibi_aobing_copy_live.七星坛",
+        "objective": "前往七星坛收集5份东风祭品",
+        "progress_label": "已祭得东风(58级)",
+        "target_monsters": [
+          "mon_chibi_aobing_东风祭品"
+        ],
+        "required_count": 5,
+        "story": "诸葛亮在七星坛祭风你助其收集祭品。",
+        "complete_story": "东南风起！火攻时机已至。",
+        "reward": {
+          "experience": 24360,
+          "gold": 400,
+          "items": []
+        },
+        "quest_giver_location": "chibi_aobing_copy_live.七星坛",
+        "quest_giver_npc_id": "npc_chibi_aobing_诸葛亮"
+      },
+      {
+        "id": "step_5",
+        "name": "火船冲阵",
+        "scene_id": "chibi_aobing_copy_live.赤壁江面",
+        "objective": "前往赤壁江面击杀5名曹军战船兵",
+        "progress_label": "已冲入曹阵(58级)",
+        "target_monsters": [
+          "mon_chibi_aobing_曹军战船兵"
+        ],
+        "required_count": 5,
+        "story": "黄盖率火船冲入曹军水寨你随船冲杀！",
+        "complete_story": "火船撞入曹营！",
+        "reward": {
+          "experience": 24360,
+          "gold": 2352,
+          "items": []
+        }
+      },
+      {
+        "id": "step_6",
+        "name": "火烧赤壁",
+        "scene_id": "chibi_aobing_copy_live.乌林北岸",
+        "objective": "前往乌林北岸击杀5名曹军溃兵",
+        "progress_label": "已截杀溃兵(59级)",
+        "target_monsters": [
+          "mon_chibi_aobing_曹军溃兵"
+        ],
+        "required_count": 5,
+        "story": "赤壁火光大起曹军溃败你前往北岸截杀！",
+        "complete_story": "曹军溃不成军！",
+        "reward": {
+          "experience": 24780,
+          "gold": 2352,
+          "items": []
+        }
+      },
+      {
+        "id": "step_7",
+        "name": "击杀夏侯杰",
+        "scene_id": "chibi_aobing_copy_live.华容道",
+        "objective": "击杀【精】夏侯杰",
+        "progress_label": "已击杀夏侯杰(60级)",
+        "target_monsters": [
+          "mon_chibi_aobing_elite_夏侯杰"
+        ],
+        "required_count": 1,
+        "story": "夏侯杰护卫曹操撤退你前往华容道截杀！",
+        "complete_story": "夏侯杰已死！",
+        "reward": {
+          "experience": 25200,
+          "gold": 800,
+          "items": []
+        }
+      },
+      {
+        "id": "step_8",
+        "name": "赤壁完胜",
+        "scene_id": "chibi_aobing_copy_live.江东水寨",
+        "objective": "击杀【精】曹仁扫清最后障碍",
+        "progress_label": "已击杀曹仁(60级)",
+        "target_monsters": [
+          "mon_chibi_aobing_elite_曹仁"
+        ],
+        "required_count": 1,
+        "story": "曹仁殿后你前去斩杀彻底宣告赤壁胜利。",
+        "complete_story": "赤壁大捷！曹操败走华容三足鼎立之势成矣。",
+        "reward": {
+          "experience": 25200,
+          "gold": 1200,
+          "items": []
+        },
+        "complete_hint": "返回副本入口领取通关奖励"
       }
     ]
   }

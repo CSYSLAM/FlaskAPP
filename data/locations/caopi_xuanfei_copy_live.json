@@ -1,0 +1,59 @@
+{
+  "name": "caopi_xuanfei",
+  "is_copy_map": true,
+  "copy_dungeon_id": "caopi_xuanfei",
+  "scenes": {
+    "caopi_xuanfei_copy_live.铜雀台": {
+      "name": "铜雀台",
+      "exits": {
+        "south": "caopi_xuanfei_copy_live.正殿"
+      },
+      "monsters": [
+        "mon_caopi_xuanfei_elite_刺客头领"
+      ]
+    },
+    "caopi_xuanfei_copy_live.深宫": {
+      "name": "深宫",
+      "exits": {
+        "south": "caopi_xuanfei_copy_live.铜雀台",
+        "north": "caopi_xuanfei_copy_live.内府"
+      },
+      "monsters": [
+        "mon_caopi_xuanfei_宫中暗卫"
+      ],
+      "npcs": [
+        "npc_caopi_xuanfei_甄氏"
+      ]
+    },
+    "caopi_xuanfei_copy_live.内府": {
+      "name": "内府",
+      "exits": {
+        "south": "caopi_xuanfei_copy_live.深宫",
+        "north": "caopi_xuanfei_copy_live.西宫"
+      },
+      "monsters": [
+        "mon_caopi_xuanfei_内府护卫"
+      ]
+    },
+    "caopi_xuanfei_copy_live.西宫": {
+      "name": "西宫",
+      "exits": {
+        "south": "caopi_xuanfei_copy_live.内府",
+        "north": "caopi_xuanfei_copy_live.正殿"
+      },
+      "monsters": [
+        "mon_caopi_xuanfei_elite_贾氏"
+      ]
+    },
+    "caopi_xuanfei_copy_live.正殿": {
+      "name": "正殿",
+      "exits": {
+        "south": "caopi_xuanfei_copy_live.西宫",
+        "north": "caopi_xuanfei_copy_live.铜雀台"
+      },
+      "monsters": [
+        "mon_caopi_xuanfei_刺客"
+      ]
+    }
+  }
+}

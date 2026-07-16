@@ -1,0 +1,58 @@
+{
+  "name": "zhidou_machao",
+  "is_copy_map": true,
+  "copy_dungeon_id": "zhidou_machao",
+  "scenes": {
+    "zhidou_machao_copy_live.长安城": {
+      "name": "长安城",
+      "exits": {
+        "north": "zhidou_machao_copy_live.潼关"
+      },
+      "monsters": [
+        "mon_zhidou_machao_马超前军"
+      ],
+      "npcs": [
+        "npc_zhidou_machao_司马懿"
+      ]
+    },
+    "zhidou_machao_copy_live.潼关": {
+      "name": "潼关",
+      "exits": {
+        "south": "zhidou_machao_copy_live.渭水北岸"
+      },
+      "monsters": [
+        "mon_zhidou_machao_elite_马超"
+      ]
+    },
+    "zhidou_machao_copy_live.韩遂大营": {
+      "name": "韩遂大营",
+      "exits": {
+        "south": "zhidou_machao_copy_live.韩遂大营",
+        "north": "zhidou_machao_copy_live.渭水南岸"
+      },
+      "monsters": [
+        "mon_zhidou_machao_elite_韩遂"
+      ]
+    },
+    "zhidou_machao_copy_live.渭水南岸": {
+      "name": "渭水南岸",
+      "exits": {
+        "south": "zhidou_machao_copy_live.韩遂大营",
+        "north": "zhidou_machao_copy_live.渭水北岸"
+      },
+      "monsters": [
+        "mon_zhidou_machao_马超亲兵"
+      ]
+    },
+    "zhidou_machao_copy_live.渭水北岸": {
+      "name": "渭水北岸",
+      "exits": {
+        "south": "zhidou_machao_copy_live.渭水南岸",
+        "north": "zhidou_machao_copy_live.潼关"
+      },
+      "monsters": [
+        "mon_zhidou_machao_凉州八部"
+      ]
+    }
+  }
+}

@@ -9,6 +9,9 @@
       },
       "monsters": [
         "monster_q_庞德"
+      ],
+      "npcs": [
+        "npc_xiapi_north_张辽副本"
       ]
     },
     "北郊": {

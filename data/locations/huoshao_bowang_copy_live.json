@@ -1,0 +1,49 @@
+{
+  "name": "huoshao_bowang",
+  "is_copy_map": true,
+  "copy_dungeon_id": "huoshao_bowang",
+  "scenes": {
+    "huoshao_bowang_copy_live.博望坡": {
+      "name": "博望坡",
+      "exits": {
+        "south": "huoshao_bowang_copy_live.山道",
+        "north": "huoshao_bowang_copy_live.白河"
+      },
+      "monsters": [
+        "mon_huoshao_bowang_elite_夏侯惇"
+      ]
+    },
+    "huoshao_bowang_copy_live.伏兵谷": {
+      "name": "伏兵谷",
+      "exits": {
+        "south": "huoshao_bowang_copy_live.博望坡",
+        "north": "huoshao_bowang_copy_live.山道"
+      },
+      "monsters": [
+        "mon_huoshao_bowang_硫磺兵"
+      ]
+    },
+    "huoshao_bowang_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "south": "huoshao_bowang_copy_live.伏兵谷",
+        "north": "huoshao_bowang_copy_live.博望坡"
+      },
+      "monsters": [
+        "mon_huoshao_bowang_夏侯惇副将"
+      ]
+    },
+    "huoshao_bowang_copy_live.白河": {
+      "name": "白河",
+      "exits": {
+        "south": "huoshao_bowang_copy_live.博望坡"
+      },
+      "monsters": [
+        "mon_huoshao_bowang_曹军逃兵"
+      ],
+      "npcs": [
+        "npc_huoshao_bowang_赵云"
+      ]
+    }
+  }
+}

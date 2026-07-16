@@ -1,0 +1,91 @@
+{
+  "name": "qiqinmenghuo_hi",
+  "is_copy_map": true,
+  "copy_dungeon_id": "qiqinmenghuo_hi",
+  "scenes": {
+    "qiqinmenghuo_hi_copy_live.五溪洞": {
+      "name": "五溪洞",
+      "exits": {
+        "north": "qiqinmenghuo_hi_copy_live.锦带山"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_结"
+      ],
+      "npcs": [
+        "npc_qiqinmenghuo_hi_诸葛亮"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.锦带山": {
+      "name": "锦带山",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.五溪洞",
+        "north": "qiqinmenghuo_hi_copy_live.泸水"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.泸水": {
+      "name": "泸水",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.锦带山",
+        "north": "qiqinmenghuo_hi_copy_live.夹山峪"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_南蛮运粮兵"
+      ],
+      "npcs": [
+        "npc_qiqinmenghuo_hi_马谡"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.夹山峪": {
+      "name": "夹山峪",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.泸水",
+        "north": "qiqinmenghuo_hi_copy_live.河西岸"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_祝融"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.河西岸": {
+      "name": "河西岸",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.夹山峪",
+        "north": "qiqinmenghuo_hi_copy_live.八纳洞"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_孟优"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.八纳洞": {
+      "name": "八纳洞",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.河西岸",
+        "north": "qiqinmenghuo_hi_copy_live.盘蛇谷"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_木鹿大王"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.盘蛇谷": {
+      "name": "盘蛇谷",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.八纳洞",
+        "north": "qiqinmenghuo_hi_copy_live.铜坑洞"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_兀突骨"
+      ]
+    },
+    "qiqinmenghuo_hi_copy_live.铜坑洞": {
+      "name": "铜坑洞",
+      "exits": {
+        "south": "qiqinmenghuo_hi_copy_live.盘蛇谷"
+      },
+      "monsters": [
+        "mon_qiqinmenghuo_hi_elite_孟获"
+      ]
+    }
+  }
+}

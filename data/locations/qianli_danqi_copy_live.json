@@ -1,0 +1,56 @@
+{
+  "name": "qianli_danqi",
+  "is_copy_map": true,
+  "copy_dungeon_id": "qianli_danqi",
+  "scenes": {
+    "qianli_danqi_copy_live.东岭关": {
+      "name": "东岭关",
+      "exits": {
+        "south": "qianli_danqi_copy_live.东岭关",
+        "north": "qianli_danqi_copy_live.洛阳关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_elite_孔秀"
+      ]
+    },
+    "qianli_danqi_copy_live.洛阳关": {
+      "name": "洛阳关",
+      "exits": {
+        "south": "qianli_danqi_copy_live.洛阳关",
+        "north": "qianli_danqi_copy_live.汜水关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_elite_韩福"
+      ]
+    },
+    "qianli_danqi_copy_live.汜水关": {
+      "name": "汜水关",
+      "exits": {
+        "south": "qianli_danqi_copy_live.汜水关",
+        "north": "qianli_danqi_copy_live.荥阳关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_elite_卞喜"
+      ]
+    },
+    "qianli_danqi_copy_live.荥阳关": {
+      "name": "荥阳关",
+      "exits": {
+        "south": "qianli_danqi_copy_live.荥阳关",
+        "north": "qianli_danqi_copy_live.黄河渡口"
+      },
+      "monsters": [
+        "mon_qianli_danqi_elite_王植"
+      ]
+    },
+    "qianli_danqi_copy_live.黄河渡口": {
+      "name": "黄河渡口",
+      "exits": {
+        "south": "qianli_danqi_copy_live.黄河渡口"
+      },
+      "monsters": [
+        "mon_qianli_danqi_elite_秦琪"
+      ]
+    }
+  }
+}

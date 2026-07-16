@@ -1,0 +1,69 @@
+{
+  "name": "dazhan_changban",
+  "is_copy_map": true,
+  "copy_dungeon_id": "dazhan_changban",
+  "scenes": {
+    "dazhan_changban_copy_live.长坂坡": {
+      "name": "长坂坡",
+      "exits": {
+        "south": "dazhan_changban_copy_live.当阳桥"
+      },
+      "monsters": [
+        "mon_dazhan_changban_曹军溃兵"
+      ]
+    },
+    "dazhan_changban_copy_live.井边": {
+      "name": "井边",
+      "exits": {
+        "south": "dazhan_changban_copy_live.长坂坡",
+        "north": "dazhan_changban_copy_live.巷战"
+      },
+      "monsters": [
+        "mon_dazhan_changban_曹军护卫"
+      ],
+      "npcs": [
+        "npc_dazhan_changban_糜夫人"
+      ]
+    },
+    "dazhan_changban_copy_live.巷战": {
+      "name": "巷战",
+      "exits": {
+        "south": "dazhan_changban_copy_live.井边",
+        "north": "dazhan_changban_copy_live.南坡"
+      },
+      "monsters": [
+        "mon_dazhan_changban_elite_晏明"
+      ]
+    },
+    "dazhan_changban_copy_live.南坡": {
+      "name": "南坡",
+      "exits": {
+        "south": "dazhan_changban_copy_live.巷战",
+        "north": "dazhan_changban_copy_live.王南阵"
+      },
+      "monsters": [
+        "mon_dazhan_changban_elite_夏侯恩"
+      ]
+    },
+    "dazhan_changban_copy_live.王南阵": {
+      "name": "王南阵",
+      "exits": {
+        "south": "dazhan_changban_copy_live.南坡",
+        "north": "dazhan_changban_copy_live.当阳桥"
+      },
+      "monsters": [
+        "mon_dazhan_changban_曹军弓弩手"
+      ]
+    },
+    "dazhan_changban_copy_live.当阳桥": {
+      "name": "当阳桥",
+      "exits": {
+        "south": "dazhan_changban_copy_live.当阳桥",
+        "north": "dazhan_changban_copy_live.长坂坡"
+      },
+      "monsters": [
+        "mon_dazhan_changban_elite_钟绅"
+      ]
+    }
+  }
+}

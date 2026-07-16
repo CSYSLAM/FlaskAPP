@@ -10,7 +10,8 @@
         "south": "chengdu_center.驿站"
       },
       "npcs": [
-        "npc_chengdu_center_任务使者"
+        "npc_chengdu_center_任务使者",
+        "npc_chengdu_center_刘备副本"
       ]
     },
     "校军场": {

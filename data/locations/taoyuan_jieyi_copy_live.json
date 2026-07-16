@@ -1,0 +1,46 @@
+{
+  "name": "taoyuan_jieyi",
+  "is_copy_map": true,
+  "copy_dungeon_id": "taoyuan_jieyi",
+  "scenes": {
+    "taoyuan_jieyi_copy_live.桃园": {
+      "name": "桃园",
+      "exits": {
+        "south": "taoyuan_jieyi_copy_live.桃园",
+        "north": "taoyuan_jieyi_copy_live.巨鹿"
+      },
+      "monsters": [
+        "mon_taoyuan_jieyi_五斗米道士"
+      ]
+    },
+    "taoyuan_jieyi_copy_live.巨鹿": {
+      "name": "巨鹿",
+      "exits": {
+        "south": "taoyuan_jieyi_copy_live.巨鹿",
+        "north": "taoyuan_jieyi_copy_live.广宗"
+      },
+      "monsters": [
+        "mon_taoyuan_jieyi_elite_张角遗魂"
+      ]
+    },
+    "taoyuan_jieyi_copy_live.广宗": {
+      "name": "广宗",
+      "exits": {
+        "south": "taoyuan_jieyi_copy_live.广宗",
+        "north": "taoyuan_jieyi_copy_live.于毒洞"
+      },
+      "monsters": [
+        "mon_taoyuan_jieyi_elite_张宝"
+      ]
+    },
+    "taoyuan_jieyi_copy_live.于毒洞": {
+      "name": "于毒洞",
+      "exits": {
+        "south": "taoyuan_jieyi_copy_live.广宗"
+      },
+      "monsters": [
+        "mon_taoyuan_jieyi_elite_"
+      ]
+    }
+  }
+}

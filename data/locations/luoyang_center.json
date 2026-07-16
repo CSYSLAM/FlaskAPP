@@ -10,7 +10,9 @@
         "south": "luoyang_center.安南前街"
       },
       "npcs": [
-        "npc_luoyang_center_荀爽"
+        "npc_luoyang_center_荀爽",
+        "npc_luoyang_center_诸葛亮副本",
+        "npc_luoyang_center_周瑜副本"
       ],
       "monsters": [
         "monster_q_连弩队长"

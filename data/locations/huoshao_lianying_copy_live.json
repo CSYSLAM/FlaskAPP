@@ -1,0 +1,78 @@
+{
+  "name": "huoshao_lianying",
+  "is_copy_map": true,
+  "copy_dungeon_id": "huoshao_lianying",
+  "scenes": {
+    "huoshao_lianying_copy_live.夷陵大营": {
+      "name": "夷陵大营",
+      "exits": {
+        "north": "huoshao_lianying_copy_live.蜀军后营"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_蜀军先锋"
+      ],
+      "npcs": [
+        "npc_huoshao_lianying_李典"
+      ]
+    },
+    "huoshao_lianying_copy_live.蜀军后营": {
+      "name": "蜀军后营",
+      "exits": {
+        "south": "huoshao_lianying_copy_live.夷陵大营",
+        "north": "huoshao_lianying_copy_live.夷陵山道"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_蜀军哨探"
+      ]
+    },
+    "huoshao_lianying_copy_live.夷陵山道": {
+      "name": "夷陵山道",
+      "exits": {
+        "south": "huoshao_lianying_copy_live.蜀军后营",
+        "north": "huoshao_lianying_copy_live.蜀军连营"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_硫磺兵"
+      ]
+    },
+    "huoshao_lianying_copy_live.蜀军连营": {
+      "name": "蜀军连营",
+      "exits": {
+        "south": "huoshao_lianying_copy_live.夷陵山道",
+        "north": "huoshao_lianying_copy_live.蜀军中军"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_蜀军守夜兵"
+      ]
+    },
+    "huoshao_lianying_copy_live.蜀军中军": {
+      "name": "蜀军中军",
+      "exits": {
+        "south": "huoshao_lianying_copy_live.蜀军连营",
+        "north": "huoshao_lianying_copy_live.蜀军后阵"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_蜀军中军兵"
+      ]
+    },
+    "huoshao_lianying_copy_live.蜀军后阵": {
+      "name": "蜀军后阵",
+      "exits": {
+        "south": "huoshao_lianying_copy_live.蜀军中军",
+        "north": "huoshao_lianying_copy_live.马鞍山"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_elite_冯习"
+      ]
+    },
+    "huoshao_lianying_copy_live.马鞍山": {
+      "name": "马鞍山",
+      "exits": {
+        "south": "huoshao_lianying_copy_live.蜀军后阵"
+      },
+      "monsters": [
+        "mon_huoshao_lianying_elite_张南"
+      ]
+    }
+  }
+}

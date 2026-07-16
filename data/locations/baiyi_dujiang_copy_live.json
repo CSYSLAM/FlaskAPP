@@ -1,0 +1,58 @@
+{
+  "name": "baiyi_dujiang",
+  "is_copy_map": true,
+  "copy_dungeon_id": "baiyi_dujiang",
+  "scenes": {
+    "baiyi_dujiang_copy_live.陆口港": {
+      "name": "陆口港",
+      "exits": {
+        "north": "baiyi_dujiang_copy_live.长江"
+      },
+      "monsters": [
+        "mon_baiyi_dujiang_荆州探子"
+      ],
+      "npcs": [
+        "npc_baiyi_dujiang_郭嘉"
+      ]
+    },
+    "baiyi_dujiang_copy_live.长江": {
+      "name": "长江",
+      "exits": {
+        "south": "baiyi_dujiang_copy_live.陆口港",
+        "north": "baiyi_dujiang_copy_live.烽火台"
+      },
+      "monsters": [
+        "mon_baiyi_dujiang_巡江哨船"
+      ]
+    },
+    "baiyi_dujiang_copy_live.烽火台": {
+      "name": "烽火台",
+      "exits": {
+        "south": "baiyi_dujiang_copy_live.长江",
+        "north": "baiyi_dujiang_copy_live.荆州东门"
+      },
+      "monsters": [
+        "mon_baiyi_dujiang_烽火守军"
+      ]
+    },
+    "baiyi_dujiang_copy_live.荆州东门": {
+      "name": "荆州东门",
+      "exits": {
+        "south": "baiyi_dujiang_copy_live.烽火台",
+        "north": "baiyi_dujiang_copy_live.太守府"
+      },
+      "monsters": [
+        "mon_baiyi_dujiang_荆州守军"
+      ]
+    },
+    "baiyi_dujiang_copy_live.太守府": {
+      "name": "太守府",
+      "exits": {
+        "south": "baiyi_dujiang_copy_live.荆州东门"
+      },
+      "monsters": [
+        "mon_baiyi_dujiang_elite_廖化"
+      ]
+    }
+  }
+}

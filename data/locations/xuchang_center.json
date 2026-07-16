@@ -10,7 +10,8 @@
         "south": "xuchang_center.驿站"
       },
       "npcs": [
-        "npc_xuchang_center_任务使者"
+        "npc_xuchang_center_任务使者",
+        "npc_xuchang_center_曹丕副本"
       ]
     },
     "皇宫": {

@@ -1,0 +1,69 @@
+{
+  "name": "chibi_aobing",
+  "is_copy_map": true,
+  "copy_dungeon_id": "chibi_aobing",
+  "scenes": {
+    "chibi_aobing_copy_live.江东水寨": {
+      "name": "江东水寨",
+      "exits": {
+        "south": "chibi_aobing_copy_live.华容道"
+      },
+      "monsters": [
+        "mon_chibi_aobing_elite_曹仁"
+      ]
+    },
+    "chibi_aobing_copy_live.曹军水寨": {
+      "name": "曹军水寨",
+      "exits": {
+        "south": "chibi_aobing_copy_live.江东水寨",
+        "north": "chibi_aobing_copy_live.七星坛"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军守船兵"
+      ]
+    },
+    "chibi_aobing_copy_live.七星坛": {
+      "name": "七星坛",
+      "exits": {
+        "south": "chibi_aobing_copy_live.曹军水寨",
+        "north": "chibi_aobing_copy_live.赤壁江面"
+      },
+      "monsters": [
+        "mon_chibi_aobing_东风祭品"
+      ],
+      "npcs": [
+        "npc_chibi_aobing_诸葛亮"
+      ]
+    },
+    "chibi_aobing_copy_live.赤壁江面": {
+      "name": "赤壁江面",
+      "exits": {
+        "south": "chibi_aobing_copy_live.七星坛",
+        "north": "chibi_aobing_copy_live.乌林北岸"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军战船兵"
+      ]
+    },
+    "chibi_aobing_copy_live.乌林北岸": {
+      "name": "乌林北岸",
+      "exits": {
+        "south": "chibi_aobing_copy_live.赤壁江面",
+        "north": "chibi_aobing_copy_live.华容道"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军溃兵"
+      ]
+    },
+    "chibi_aobing_copy_live.华容道": {
+      "name": "华容道",
+      "exits": {
+        "south": "chibi_aobing_copy_live.乌林北岸",
+        "north": "chibi_aobing_copy_live.江东水寨"
+      },
+      "monsters": [
+        "mon_chibi_aobing_elite_夏侯杰"
+      ]
+    }
+  }
+}

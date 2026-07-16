@@ -1,0 +1,46 @@
+{
+  "name": "shiting_zhizhan",
+  "is_copy_map": true,
+  "copy_dungeon_id": "shiting_zhizhan",
+  "scenes": {
+    "shiting_zhizhan_copy_live.石亭大营": {
+      "name": "石亭大营",
+      "exits": {
+        "south": "shiting_zhizhan_copy_live.夹石"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_elite_曹休"
+      ]
+    },
+    "shiting_zhizhan_copy_live.夹石": {
+      "name": "夹石",
+      "exits": {
+        "south": "shiting_zhizhan_copy_live.石亭",
+        "north": "shiting_zhizhan_copy_live.石亭大营"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹休亲兵"
+      ]
+    },
+    "shiting_zhizhan_copy_live.石亭山道": {
+      "name": "石亭山道",
+      "exits": {
+        "south": "shiting_zhizhan_copy_live.夹石",
+        "north": "shiting_zhizhan_copy_live.石亭"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹军前哨"
+      ]
+    },
+    "shiting_zhizhan_copy_live.石亭": {
+      "name": "石亭",
+      "exits": {
+        "south": "shiting_zhizhan_copy_live.石亭",
+        "north": "shiting_zhizhan_copy_live.夹石"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_elite_贾逵"
+      ]
+    }
+  }
+}
