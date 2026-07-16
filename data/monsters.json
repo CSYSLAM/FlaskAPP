@@ -25257,42 +25257,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_jianning_center_黄月英副本": {
-    "name": "黄月英【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "负责副本「火烧博望(16级副本)」传送",
-    "copy_dungeon_id": "huoshao_bowang",
-    "copy_role": "entry_npc",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "npc_yongan_center_关羽副本": {
     "name": "关羽【副本】",
     "level": 50,
@@ -25509,42 +25473,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_wu_center_郭嘉副本": {
-    "name": "郭嘉【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "负责副本「白衣渡江(16级副本)」传送",
-    "copy_dungeon_id": "baiyi_dujiang",
-    "copy_role": "entry_npc",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "npc_chaisang_center_李典副本": {
     "name": "李典【副本】",
     "level": 50,
@@ -25689,7 +25617,43 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_jianning_center_左慈副本": {
+  "npc_jianing_center_黄月英副本": {
+    "name": "黄月英【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「火烧博望(16级副本)」传送",
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_jianing_center_左慈副本": {
     "name": "左慈【副本】",
     "level": 50,
     "is_elite": false,
@@ -25723,7 +25687,43 @@
       "experience": 0
     }
   },
-  "npc_wu_center_左慈副本": {
+  "npc_wujun_center_郭嘉副本": {
+    "name": "郭嘉【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「白衣渡江(16级副本)」传送",
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "npc_wujun_center_左慈副本": {
     "name": "左慈【副本】",
     "level": 50,
     "is_elite": false,

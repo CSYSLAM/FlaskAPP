@@ -7,8 +7,8 @@ class CopyDungeonService:
     # 入口NPC → 离开时返回的世界位置（例如黄巾起义不同国家入口对应不同出口）
     _ENTRY_RETURN_MAP = {
         'npc_beiping_east_左慈副本': 'beiping_east.箭楼',
-        'npc_jianning_center_左慈副本': 'jianning_center.广场',
-        'npc_wu_center_左慈副本': 'wu_center.广场',
+        'npc_jianing_center_左慈副本': 'jianing_center.广场',
+        'npc_wujun_center_左慈副本': 'wujun_center.广场',
     }
 
     @classmethod

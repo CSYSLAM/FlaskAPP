@@ -1,8 +1,8 @@
 {
   "new_cities": [
-    "jianning_center",
+    "jianing_center",
     "yongan_center",
-    "wu_center"
+    "wujun_center"
   ],
   "dungeons": [
     {
@@ -10,9 +10,9 @@
       "name": "火烧博望(16级副本)",
       "level": 16,
       "entry_npc_name": "黄月英",
-      "entry_city_stem": "jianning_center",
+      "entry_city_stem": "jianing_center",
       "entry_city_scene": "广场",
-      "return_location": "jianning_center.广场",
+      "return_location": "jianing_center.广场",
       "total_exp": 12000,
       "total_gold": 1800,
       "story_intro": [
@@ -1660,9 +1660,9 @@
       "name": "白衣渡江(16级副本)",
       "level": 16,
       "entry_npc_name": "郭嘉",
-      "entry_city_stem": "wu_center",
+      "entry_city_stem": "wujun_center",
       "entry_city_scene": "广场",
-      "return_location": "wu_center.广场",
+      "return_location": "wujun_center.广场",
       "total_exp": 11000,
       "total_gold": 1700,
       "story_intro": [
