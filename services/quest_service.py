@@ -313,6 +313,9 @@ class QuestService:
             q = all_quests.get(qid)
             if not q or qid in seen:
                 continue
+            # 国家隔离：他国主线任务不展示(避免在NPC处看到跨国任务)
+            if not cls._is_own_country_quest(player, qid):
+                continue
             if qid in active:
                 available.append(q)
                 seen.add(qid)
