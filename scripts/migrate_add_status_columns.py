@@ -35,7 +35,7 @@ def column_exists(con, table, column):
 
 
 def main():
-    db_name = sys.argv[1] if len(sys.argv) > 1 else "game1.db"
+    db_name = sys.argv[1] if len(sys.argv) > 1 else "game_data.db"
     db_path = os.path.join(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
         "instance", db_name,

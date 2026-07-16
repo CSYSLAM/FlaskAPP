@@ -48,7 +48,7 @@ xcopy /e /i /y "data" "dist\FlaskAPP\data"
 
 :: 创建instance目录并复制数据库
 if not exist "dist\FlaskAPP\instance" mkdir "dist\FlaskAPP\instance"
-if exist "instance\game1.db" copy /y "instance\game1.db" "dist\FlaskAPP\instance\"
+if exist "instance\game_data.db" copy /y "instance\game_data.db" "dist\FlaskAPP\instance\"
 
 echo.
 echo ========================================
