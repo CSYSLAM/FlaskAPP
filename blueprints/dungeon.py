@@ -48,7 +48,13 @@ def action(npc_id):
             stage_name = stage.get('name', '任务') if stage else '任务'
             story_lines = []
             if stage and stage.get('story'):
-                story_lines.append(f"灵帝: {stage.get('story')}")
+                # 用实际的 quest_giver NPC 名称代替硬编码的「灵帝」
+                npc_id = stage.get('quest_giver_npc_id')
+                npc_name = 'NPC'
+                if npc_id:
+                    npc_data = DataService.get_monster(npc_id) or {}
+                    npc_name = npc_data.get('name', 'NPC')
+                story_lines.append(f"{npc_name}: {stage.get('story')}")
             if stage and stage.get('objective'):
                 story_lines.append(f"目标: {stage.get('objective')}")
             return render_template(

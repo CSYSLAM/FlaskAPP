@@ -4,6 +4,12 @@ from services.data_service import DataService
 
 class CopyDungeonService:
     STATE_KEY = 'copy_dungeons'
+    # 入口NPC → 离开时返回的世界位置（例如黄巾起义不同国家入口对应不同出口）
+    _ENTRY_RETURN_MAP = {
+        'npc_beiping_east_左慈副本': 'beiping_east.箭楼',
+        'npc_jianning_center_左慈副本': 'jianning_center.广场',
+        'npc_wu_center_左慈副本': 'wu_center.广场',
+    }
 
     @classmethod
     def _grant_reward(cls, player, reward):
@@ -381,6 +387,29 @@ class CopyDungeonService:
         return True, f"已前往【{stage.get('scene_id', scene_id).split('.')[-1]}】"
 
     @classmethod
+    def _save_entry_npc(cls, player, dungeon_id, current_location):
+        """在进入副本前记录玩家是从哪个入口NPC进入的，用于退出时回到正确位置。"""
+        loc_data = DataService.get_location(current_location)
+        if not loc_data:
+            return
+        for npc_id in loc_data.get('npcs', []):
+            if cls.get_dungeon_id_by_npc(npc_id) == dungeon_id:
+                state = cls.get_state(player, dungeon_id)
+                state['_entry_npc'] = npc_id
+                cls.save_state(player, dungeon_id, state)
+                return
+
+    @classmethod
+    def _resolve_return_location(cls, player, dungeon_id):
+        """根据玩家进入时使用的入口NPC，解析正确的返回位置。"""
+        state = cls.get_state(player, dungeon_id)
+        entry_npc = state.get('_entry_npc', '')
+        if entry_npc and entry_npc in cls._ENTRY_RETURN_MAP:
+            return cls._ENTRY_RETURN_MAP[entry_npc]
+        definition = cls.get_definition(dungeon_id)
+        return definition.get('return_location') if definition else None
+
+    @classmethod
     def enter_dungeon(cls, player, dungeon_id):
         definition = cls.get_definition(dungeon_id)
         if not definition:
@@ -405,6 +434,9 @@ class CopyDungeonService:
         if state.get('completed') or state.get('reward_claimed'):
             cls.clear_state(player, dungeon_id)
 
+        # 记录入口NPC，用于退出时返回正确城市（三国不同起始城）
+        cls._save_entry_npc(player, dungeon_id, player.current_location)
+
         player.current_location = entry_location
         db.session.commit()
         return True, f"已进入【{definition.get('name', dungeon_id)}】"
@@ -421,7 +453,7 @@ class CopyDungeonService:
             data[cls.STATE_KEY] = root
             player.activity_data = data
 
-        return_location = definition.get('return_location')
+        return_location = cls._resolve_return_location(player, dungeon_id)
         if return_location:
             player.current_location = return_location
 
@@ -573,8 +605,8 @@ class CopyDungeonService:
 
         state['reward_claimed'] = True
         cls.save_state(player, dungeon_id, state)
-        player.current_location = definition.get('return_location', player.current_location)
-        return_location = definition.get('return_location')
+        return_location = cls._resolve_return_location(player, dungeon_id)
+        player.current_location = return_location or player.current_location
         return_location_data = DataService.get_location(return_location) if return_location else None
         return True, '通关奖励领取成功', {
             'dungeon': definition,

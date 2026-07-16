@@ -7,7 +7,8 @@
         "门": "jianning_center.西门"
       },
       "npcs": [
-        "npc_jianning_center_黄月英副本"
+        "npc_jianning_center_黄月英副本",
+        "npc_jianning_center_左慈副本"
       ]
     },
     "客栈": {

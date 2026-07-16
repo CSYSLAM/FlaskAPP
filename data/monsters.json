@@ -25688,5 +25688,73 @@
     "is_copy": false,
     "copy_only": false,
     "max_health": 100
+  },
+  "npc_jianning_center_左慈副本": {
+    "name": "左慈【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「黄巾起义(6级副本)」传送",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_wu_center_左慈副本": {
+    "name": "左慈【副本】",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "负责副本「黄巾起义(6级副本)」传送",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_role": "entry_npc",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
   }
 }
