@@ -6,41 +6,192 @@
     "taoyuan_jieyi_copy_live.桃园": {
       "name": "桃园",
       "exits": {
-        "south": "taoyuan_jieyi_copy_live.桃园",
-        "north": "taoyuan_jieyi_copy_live.巨鹿"
+        "east": "taoyuan_jieyi_copy_live.巨鹿"
       },
       "monsters": [
-        "mon_taoyuan_jieyi_五斗米道士"
+        "mon_taoyuan_jieyi_黄巾残党",
+        "mon_taoyuan_jieyi_五斗米道士",
+        "mon_taoyuan_jieyi_符阵道士",
+        "mon_taoyuan_jieyi_黄巾死士",
+        "mon_taoyuan_jieyi_野猪肉",
+        "mon_taoyuan_jieyi_结义见证人"
+      ],
+      "npcs": [
+        "npc_taoyuan_jieyi_刘备"
       ]
     },
     "taoyuan_jieyi_copy_live.巨鹿": {
       "name": "巨鹿",
       "exits": {
-        "south": "taoyuan_jieyi_copy_live.巨鹿",
-        "north": "taoyuan_jieyi_copy_live.广宗"
+        "east": "taoyuan_jieyi_copy_live.广宗",
+        "west": "taoyuan_jieyi_copy_live.桃园"
       },
       "monsters": [
-        "mon_taoyuan_jieyi_elite_张角遗魂"
+        "mon_taoyuan_jieyi_符兵",
+        "mon_taoyuan_jieyi_elite_张角遗魂",
+        "mon_taoyuan_jieyi_张梁余党"
+      ],
+      "npcs": [
+        "npc_taoyuan_jieyi_张飞"
       ]
     },
     "taoyuan_jieyi_copy_live.广宗": {
       "name": "广宗",
       "exits": {
-        "south": "taoyuan_jieyi_copy_live.广宗",
-        "north": "taoyuan_jieyi_copy_live.于毒洞"
+        "east": "taoyuan_jieyi_copy_live.于毒洞",
+        "west": "taoyuan_jieyi_copy_live.巨鹿"
       },
       "monsters": [
-        "mon_taoyuan_jieyi_elite_张宝"
+        "mon_taoyuan_jieyi_张宝残部",
+        "mon_taoyuan_jieyi_elite_张宝",
+        "mon_taoyuan_jieyi_五斗米余孽"
       ]
     },
     "taoyuan_jieyi_copy_live.于毒洞": {
       "name": "于毒洞",
       "exits": {
-        "south": "taoyuan_jieyi_copy_live.广宗"
+        "east": "taoyuan_jieyi_copy_live.山道",
+        "west": "taoyuan_jieyi_copy_live.广宗",
+        "north": "taoyuan_jieyi_copy_live.林间小径"
       },
       "monsters": [
         "mon_taoyuan_jieyi_elite_"
       ]
+    },
+    "taoyuan_jieyi_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.林间小径",
+        "west": "taoyuan_jieyi_copy_live.于毒洞",
+        "south": "taoyuan_jieyi_copy_live.巨鹿"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.河岸边",
+        "west": "taoyuan_jieyi_copy_live.山道"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.荒野",
+        "west": "taoyuan_jieyi_copy_live.林间小径",
+        "north": "taoyuan_jieyi_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.破庙",
+        "west": "taoyuan_jieyi_copy_live.河岸边"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.古井旁",
+        "west": "taoyuan_jieyi_copy_live.荒野",
+        "south": "taoyuan_jieyi_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.断桥",
+        "west": "taoyuan_jieyi_copy_live.破庙",
+        "north": "taoyuan_jieyi_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.山洞入口",
+        "west": "taoyuan_jieyi_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.密林深处",
+        "west": "taoyuan_jieyi_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.溪谷",
+        "west": "taoyuan_jieyi_copy_live.山洞入口",
+        "north": "taoyuan_jieyi_copy_live.高坡",
+        "south": "taoyuan_jieyi_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.高坡",
+        "west": "taoyuan_jieyi_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.废弃营地",
+        "west": "taoyuan_jieyi_copy_live.溪谷"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.石碑前",
+        "west": "taoyuan_jieyi_copy_live.高坡",
+        "north": "taoyuan_jieyi_copy_live.岔路口"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.石碑前": {
+      "name": "石碑前",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.岔路口",
+        "west": "taoyuan_jieyi_copy_live.废弃营地",
+        "south": "taoyuan_jieyi_copy_live.溪谷"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.岔路口": {
+      "name": "岔路口",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.芦苇荡",
+        "west": "taoyuan_jieyi_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.芦苇荡": {
+      "name": "芦苇荡",
+      "exits": {
+        "east": "taoyuan_jieyi_copy_live.山脚小村",
+        "west": "taoyuan_jieyi_copy_live.岔路口"
+      },
+      "monsters": []
+    },
+    "taoyuan_jieyi_copy_live.山脚小村": {
+      "name": "山脚小村",
+      "exits": {
+        "west": "taoyuan_jieyi_copy_live.芦苇荡"
+      },
+      "monsters": []
     }
   }
 }

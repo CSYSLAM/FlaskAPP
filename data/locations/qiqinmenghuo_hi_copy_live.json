@@ -6,10 +6,11 @@
     "qiqinmenghuo_hi_copy_live.五溪洞": {
       "name": "五溪洞",
       "exits": {
-        "north": "qiqinmenghuo_hi_copy_live.锦带山"
+        "east": "qiqinmenghuo_hi_copy_live.锦带山"
       },
       "monsters": [
-        "mon_qiqinmenghuo_hi_elite_结"
+        "mon_qiqinmenghuo_hi_elite_结",
+        "mon_qiqinmenghuo_hi_elite_"
       ],
       "npcs": [
         "npc_qiqinmenghuo_hi_诸葛亮"
@@ -18,8 +19,8 @@
     "qiqinmenghuo_hi_copy_live.锦带山": {
       "name": "锦带山",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.五溪洞",
-        "north": "qiqinmenghuo_hi_copy_live.泸水"
+        "east": "qiqinmenghuo_hi_copy_live.泸水",
+        "west": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       "monsters": [
         "mon_qiqinmenghuo_hi_elite_"
@@ -28,11 +29,13 @@
     "qiqinmenghuo_hi_copy_live.泸水": {
       "name": "泸水",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.锦带山",
-        "north": "qiqinmenghuo_hi_copy_live.夹山峪"
+        "east": "qiqinmenghuo_hi_copy_live.夹山峪",
+        "west": "qiqinmenghuo_hi_copy_live.锦带山"
       },
       "monsters": [
-        "mon_qiqinmenghuo_hi_南蛮运粮兵"
+        "mon_qiqinmenghuo_hi_南蛮运粮兵",
+        "mon_qiqinmenghuo_hi_elite_",
+        "mon_qiqinmenghuo_hi_南蛮猎手"
       ],
       "npcs": [
         "npc_qiqinmenghuo_hi_马谡"
@@ -41,28 +44,32 @@
     "qiqinmenghuo_hi_copy_live.夹山峪": {
       "name": "夹山峪",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.泸水",
-        "north": "qiqinmenghuo_hi_copy_live.河西岸"
+        "east": "qiqinmenghuo_hi_copy_live.河西岸",
+        "west": "qiqinmenghuo_hi_copy_live.泸水",
+        "north": "qiqinmenghuo_hi_copy_live.八纳洞"
       },
       "monsters": [
-        "mon_qiqinmenghuo_hi_elite_祝融"
+        "mon_qiqinmenghuo_hi_elite_祝融",
+        "mon_qiqinmenghuo_hi_elite_"
       ]
     },
     "qiqinmenghuo_hi_copy_live.河西岸": {
       "name": "河西岸",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.夹山峪",
-        "north": "qiqinmenghuo_hi_copy_live.八纳洞"
+        "east": "qiqinmenghuo_hi_copy_live.八纳洞",
+        "west": "qiqinmenghuo_hi_copy_live.夹山峪",
+        "south": "qiqinmenghuo_hi_copy_live.锦带山"
       },
       "monsters": [
-        "mon_qiqinmenghuo_hi_elite_孟优"
+        "mon_qiqinmenghuo_hi_elite_孟优",
+        "mon_qiqinmenghuo_hi_elite_主"
       ]
     },
     "qiqinmenghuo_hi_copy_live.八纳洞": {
       "name": "八纳洞",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.河西岸",
-        "north": "qiqinmenghuo_hi_copy_live.盘蛇谷"
+        "east": "qiqinmenghuo_hi_copy_live.盘蛇谷",
+        "west": "qiqinmenghuo_hi_copy_live.河西岸"
       },
       "monsters": [
         "mon_qiqinmenghuo_hi_elite_木鹿大王"
@@ -71,8 +78,9 @@
     "qiqinmenghuo_hi_copy_live.盘蛇谷": {
       "name": "盘蛇谷",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.八纳洞",
-        "north": "qiqinmenghuo_hi_copy_live.铜坑洞"
+        "east": "qiqinmenghuo_hi_copy_live.铜坑洞",
+        "west": "qiqinmenghuo_hi_copy_live.八纳洞",
+        "north": "qiqinmenghuo_hi_copy_live.山道"
       },
       "monsters": [
         "mon_qiqinmenghuo_hi_elite_兀突骨"
@@ -81,11 +89,115 @@
     "qiqinmenghuo_hi_copy_live.铜坑洞": {
       "name": "铜坑洞",
       "exits": {
-        "south": "qiqinmenghuo_hi_copy_live.盘蛇谷"
+        "east": "qiqinmenghuo_hi_copy_live.山道",
+        "west": "qiqinmenghuo_hi_copy_live.盘蛇谷"
       },
       "monsters": [
-        "mon_qiqinmenghuo_hi_elite_孟获"
+        "mon_qiqinmenghuo_hi_elite_孟获",
+        "mon_qiqinmenghuo_hi_流窜匪寇",
+        "mon_qiqinmenghuo_hi_蛮族祭司"
       ]
+    },
+    "qiqinmenghuo_hi_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.林间小径",
+        "west": "qiqinmenghuo_hi_copy_live.铜坑洞",
+        "south": "qiqinmenghuo_hi_copy_live.八纳洞"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.河岸边",
+        "west": "qiqinmenghuo_hi_copy_live.山道",
+        "north": "qiqinmenghuo_hi_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.荒野",
+        "west": "qiqinmenghuo_hi_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.破庙",
+        "west": "qiqinmenghuo_hi_copy_live.河岸边"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.古井旁",
+        "west": "qiqinmenghuo_hi_copy_live.荒野",
+        "north": "qiqinmenghuo_hi_copy_live.断桥",
+        "south": "qiqinmenghuo_hi_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.断桥",
+        "west": "qiqinmenghuo_hi_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.山洞入口",
+        "west": "qiqinmenghuo_hi_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.密林深处",
+        "west": "qiqinmenghuo_hi_copy_live.断桥",
+        "north": "qiqinmenghuo_hi_copy_live.溪谷"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.溪谷",
+        "west": "qiqinmenghuo_hi_copy_live.山洞入口",
+        "south": "qiqinmenghuo_hi_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.高坡",
+        "west": "qiqinmenghuo_hi_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "qiqinmenghuo_hi_copy_live.废弃营地",
+        "west": "qiqinmenghuo_hi_copy_live.溪谷"
+      },
+      "monsters": []
+    },
+    "qiqinmenghuo_hi_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "west": "qiqinmenghuo_hi_copy_live.高坡"
+      },
+      "monsters": []
     }
   }
 }

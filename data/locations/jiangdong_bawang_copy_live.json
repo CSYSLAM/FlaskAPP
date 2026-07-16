@@ -6,31 +6,189 @@
     "jiangdong_bawang_copy_live.曲阿": {
       "name": "曲阿",
       "exits": {
-        "south": "jiangdong_bawang_copy_live.吴郡山"
+        "east": "jiangdong_bawang_copy_live.会稽"
       },
       "monsters": [
-        "mon_jiangdong_bawang_不服豪族"
+        "mon_jiangdong_bawang_刘繇兵",
+        "mon_jiangdong_bawang_笮融兵",
+        "mon_jiangdong_bawang_不服豪族",
+        "mon_jiangdong_bawang_豪族刺客",
+        "mon_jiangdong_bawang_山越族兵",
+        "mon_jiangdong_bawang_庐江匪寇",
+        "mon_jiangdong_bawang_海盗"
+      ],
+      "npcs": [
+        "npc_jiangdong_bawang_曹丕"
       ]
     },
     "jiangdong_bawang_copy_live.会稽": {
       "name": "会稽",
       "exits": {
-        "south": "jiangdong_bawang_copy_live.会稽",
-        "north": "jiangdong_bawang_copy_live.吴郡山"
+        "east": "jiangdong_bawang_copy_live.吴郡山",
+        "west": "jiangdong_bawang_copy_live.曲阿"
       },
       "monsters": [
-        "mon_jiangdong_bawang_elite_王朗"
+        "mon_jiangdong_bawang_会稽守军",
+        "mon_jiangdong_bawang_elite_王朗",
+        "mon_jiangdong_bawang_刘繇残部",
+        "mon_jiangdong_bawang_乌程守军"
       ]
     },
     "jiangdong_bawang_copy_live.吴郡山": {
       "name": "吴郡山",
       "exits": {
-        "south": "jiangdong_bawang_copy_live.吴郡山",
-        "north": "jiangdong_bawang_copy_live.曲阿"
+        "east": "jiangdong_bawang_copy_live.山道",
+        "west": "jiangdong_bawang_copy_live.会稽"
       },
       "monsters": [
-        "mon_jiangdong_bawang_elite_严白虎"
+        "mon_jiangdong_bawang_山贼",
+        "mon_jiangdong_bawang_elite_严白虎",
+        "mon_jiangdong_bawang_虎豹山贼"
       ]
+    },
+    "jiangdong_bawang_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.林间小径",
+        "west": "jiangdong_bawang_copy_live.吴郡山",
+        "north": "jiangdong_bawang_copy_live.河岸边"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.河岸边",
+        "west": "jiangdong_bawang_copy_live.山道",
+        "south": "jiangdong_bawang_copy_live.会稽"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.荒野",
+        "west": "jiangdong_bawang_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.破庙",
+        "west": "jiangdong_bawang_copy_live.河岸边",
+        "north": "jiangdong_bawang_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.古井旁",
+        "west": "jiangdong_bawang_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.断桥",
+        "west": "jiangdong_bawang_copy_live.破庙",
+        "south": "jiangdong_bawang_copy_live.河岸边"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.山洞入口",
+        "west": "jiangdong_bawang_copy_live.古井旁",
+        "north": "jiangdong_bawang_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.密林深处",
+        "west": "jiangdong_bawang_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.溪谷",
+        "west": "jiangdong_bawang_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.高坡",
+        "west": "jiangdong_bawang_copy_live.密林深处",
+        "north": "jiangdong_bawang_copy_live.废弃营地",
+        "south": "jiangdong_bawang_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.废弃营地",
+        "west": "jiangdong_bawang_copy_live.溪谷"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.石碑前",
+        "west": "jiangdong_bawang_copy_live.高坡"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.石碑前": {
+      "name": "石碑前",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.岔路口",
+        "west": "jiangdong_bawang_copy_live.废弃营地",
+        "north": "jiangdong_bawang_copy_live.芦苇荡"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.岔路口": {
+      "name": "岔路口",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.芦苇荡",
+        "west": "jiangdong_bawang_copy_live.石碑前",
+        "south": "jiangdong_bawang_copy_live.高坡"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.芦苇荡": {
+      "name": "芦苇荡",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.山脚小村",
+        "west": "jiangdong_bawang_copy_live.岔路口"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.山脚小村": {
+      "name": "山脚小村",
+      "exits": {
+        "east": "jiangdong_bawang_copy_live.渡口",
+        "west": "jiangdong_bawang_copy_live.芦苇荡"
+      },
+      "monsters": []
+    },
+    "jiangdong_bawang_copy_live.渡口": {
+      "name": "渡口",
+      "exits": {
+        "west": "jiangdong_bawang_copy_live.山脚小村"
+      },
+      "monsters": []
     }
   }
 }
