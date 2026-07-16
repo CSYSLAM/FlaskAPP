@@ -7384,5 +7384,4141 @@
       },
       "experience": 0
     }
+  },
+  "mon_huoshao_bowang_伏兵": {
+    "name": "伏兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】伏兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_2",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_曹军殿后兵": {
+    "name": "曹军殿后兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军殿后兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_曹军运粮队": {
+    "name": "曹军运粮队",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军运粮队",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_曹军溃兵": {
+    "name": "曹军溃兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军溃兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_曹军援兵": {
+    "name": "曹军援兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军援兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_野狼": {
+    "name": "野狼",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】野狼",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_曹军俘虏营": {
+    "name": "曹军俘虏营",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军俘虏营",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_bowang_曹军残部": {
+    "name": "曹军残部",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军残部",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_bowang",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_qianli_danqi_伏兵": {
+    "name": "伏兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】伏兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_qianli_danqi_韩福部将": {
+    "name": "韩福部将",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】韩福部将",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_stage": "step_6",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_qianli_danqi_荥阳伏兵": {
+    "name": "荥阳伏兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】荥阳伏兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_qianli_danqi_渡口弓兵": {
+    "name": "渡口弓兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】渡口弓兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_qianli_danqi_渡口伏兵": {
+    "name": "渡口伏兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】渡口伏兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_stage": "step_15",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_qianli_danqi_曹操追兵": {
+    "name": "曹操追兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹操追兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_stage": "step_16",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_taoyuan_jieyi_符阵道士": {
+    "name": "符阵道士",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】符阵道士",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_taoyuan_jieyi_张梁余党": {
+    "name": "张梁余党",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】张梁余党",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_taoyuan_jieyi_黄巾死士": {
+    "name": "黄巾死士",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】黄巾死士",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_taoyuan_jieyi_野猪肉": {
+    "name": "野猪肉",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】野猪肉",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_taoyuan_jieyi_结义见证人": {
+    "name": "结义见证人",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】结义见证人",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_taoyuan_jieyi_五斗米余孽": {
+    "name": "五斗米余孽",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】五斗米余孽",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "taoyuan_jieyi",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_dazhan_changban_曹军水兵": {
+    "name": "曹军水兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军水兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_dazhan_changban_曹军乱兵": {
+    "name": "曹军乱兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军乱兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_dazhan_changban_elite_夏侯尚": {
+    "name": "【精】夏侯尚",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】【精】夏侯尚",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 29623,
+      "mana": 23184,
+      "attack": 1803,
+      "defense": 25760,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.08
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_dazhan_changban_elite_夏侯霸": {
+    "name": "【精】夏侯霸",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】【精】夏侯霸",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 29623,
+      "mana": 23184,
+      "attack": 1803,
+      "defense": 25760,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.08
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_dazhan_changban_残兵统领": {
+    "name": "残兵统领",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】残兵统领",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_dazhan_changban_曹军殿后": {
+    "name": "曹军殿后",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军殿后",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_dazhan_changban_elite_文聘": {
+    "name": "【精】文聘",
+    "level": 46,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】【精】文聘",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_stage": "step_15",
+    "base_stats": {
+      "health": 29623,
+      "mana": 23184,
+      "attack": 1803,
+      "defense": 25760,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.08
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_qiqinmenghuo_hi_南蛮猎手": {
+    "name": "南蛮猎手",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】南蛮猎手",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo_hi",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_qiqinmenghuo_hi_elite_主": {
+    "name": "带来洞主",
+    "level": 56,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】带来洞主",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo_hi",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 36064,
+      "mana": 28224,
+      "attack": 2195,
+      "defense": 31359,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.08
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_qiqinmenghuo_hi_流窜匪寇": {
+    "name": "流窜匪寇",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】流窜匪寇",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo_hi",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_qiqinmenghuo_hi_蛮族祭司": {
+    "name": "蛮族祭司",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】蛮族祭司",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qiqinmenghuo_hi",
+    "copy_stage": "step_15",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_caopi_xuanfei_宫中卫兵": {
+    "name": "宫中卫兵",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】宫中卫兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_caopi_xuanfei_西宫护卫": {
+    "name": "西宫护卫",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】西宫护卫",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_caopi_xuanfei_宫门护卫": {
+    "name": "宫门护卫",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】宫门护卫",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_caopi_xuanfei_刺客暗哨": {
+    "name": "刺客暗哨",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】刺客暗哨",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_caopi_xuanfei_贾氏亲兵": {
+    "name": "贾氏亲兵",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】贾氏亲兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_caopi_xuanfei_不服老臣": {
+    "name": "不服老臣",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】不服老臣",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_caopi_xuanfei_刺客余党": {
+    "name": "刺客余党",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】刺客余党",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "caopi_xuanfei",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_huoshao_wuchao_袁军守粮兵": {
+    "name": "袁军守粮兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】袁军守粮兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_huoshao_wuchao_袁军运兵船": {
+    "name": "袁军运兵船",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】袁军运兵船",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_huoshao_wuchao_粮垛守卫": {
+    "name": "粮垛守卫",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】粮垛守卫",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_huoshao_wuchao_袁谭残兵": {
+    "name": "袁谭残兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】袁谭残兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_huoshao_wuchao_袁军溃将": {
+    "name": "袁军溃将",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】袁军溃将",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_huoshao_wuchao_报捷路上的伏兵": {
+    "name": "报捷路上的伏兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】报捷路上的伏兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_huoshao_wuchao_袁军救火队": {
+    "name": "袁军救火队",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】袁军救火队",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_wuchao",
+    "copy_stage": "step_15",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_zhidou_machao_凉州哨探": {
+    "name": "凉州哨探",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】凉州哨探",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_zhidou_machao_马超传令兵": {
+    "name": "马超传令兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】马超传令兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_zhidou_machao_梁兴亲兵": {
+    "name": "梁兴亲兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】梁兴亲兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_zhidou_machao_西凉溃兵": {
+    "name": "西凉溃兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】西凉溃兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_zhidou_machao_凉州残兵": {
+    "name": "凉州残兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】凉州残兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_zhidou_machao_文人学士": {
+    "name": "文人学士",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】文人学士",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_zhidou_machao_西凉降兵": {
+    "name": "西凉降兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】西凉降兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_baiyi_dujiang_荆州巡逻队": {
+    "name": "荆州巡逻队",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】荆州巡逻队",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_水下暗哨": {
+    "name": "水下暗哨",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】水下暗哨",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_府库守卫": {
+    "name": "府库守卫",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】府库守卫",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_反抗守将": {
+    "name": "反抗守将",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】反抗守将",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_余孽伏兵": {
+    "name": "余孽伏兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】余孽伏兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_劫掠乱兵": {
+    "name": "劫掠乱兵",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】劫掠乱兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_关羽旧部": {
+    "name": "关羽旧部",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】关羽旧部",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_baiyi_dujiang_反对告示者": {
+    "name": "反对告示者",
+    "level": 16,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】反对告示者",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "baiyi_dujiang",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 3680,
+      "mana": 2880,
+      "attack": 224,
+      "defense": 3200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_5",
+          "mabu_armor_5",
+          "mabu_gloves_5",
+          "mabu_pants_5",
+          "mabu_shoes_5"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 16,
+        "max": 48
+      },
+      "experience": 400
+    }
+  },
+  "mon_huoshao_lianying_蜀军信使": {
+    "name": "蜀军信使",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】蜀军信使",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_huoshao_lianying_连营守军": {
+    "name": "连营守军",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】连营守军",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_huoshao_lianying_辎重守卫": {
+    "name": "辎重守卫",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】辎重守卫",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_huoshao_lianying_蜀军退路守军": {
+    "name": "蜀军退路守军",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】蜀军退路守军",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_huoshao_lianying_蜀军残兵": {
+    "name": "蜀军残兵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】蜀军残兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_huoshao_lianying_怨恨亡灵": {
+    "name": "怨恨亡灵",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】怨恨亡灵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_huoshao_lianying_拒绝招降者": {
+    "name": "拒绝招降者",
+    "level": 26,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】拒绝招降者",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huoshao_lianying",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 5980,
+      "mana": 4680,
+      "attack": 364,
+      "defense": 5200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_10",
+          "mabu_armor_10",
+          "mabu_gloves_10",
+          "mabu_pants_10",
+          "mabu_shoes_10"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 26,
+        "max": 78
+      },
+      "experience": 650
+    }
+  },
+  "mon_jiangdong_bawang_刘繇残部": {
+    "name": "刘繇残部",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】刘繇残部",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_5",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_jiangdong_bawang_乌程守军": {
+    "name": "乌程守军",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】乌程守军",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_7",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_jiangdong_bawang_虎豹山贼": {
+    "name": "虎豹山贼",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】虎豹山贼",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_jiangdong_bawang_豪族刺客": {
+    "name": "豪族刺客",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】豪族刺客",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_jiangdong_bawang_山越族兵": {
+    "name": "山越族兵",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】山越族兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_jiangdong_bawang_庐江匪寇": {
+    "name": "庐江匪寇",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】庐江匪寇",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_jiangdong_bawang_海盗": {
+    "name": "海盗",
+    "level": 36,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】海盗",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "jiangdong_bawang",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 8280,
+      "mana": 6480,
+      "attack": 504,
+      "defense": 7200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_15",
+          "mabu_armor_15",
+          "mabu_gloves_15",
+          "mabu_pants_15",
+          "mabu_shoes_15"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 36,
+        "max": 108
+      },
+      "experience": 900
+    }
+  },
+  "mon_shiting_zhizhan_曹营暗哨": {
+    "name": "曹营暗哨",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹营暗哨",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_3",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_shiting_zhizhan_曹军偏军": {
+    "name": "曹军偏军",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军偏军",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_6",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_shiting_zhizhan_曹军水夫": {
+    "name": "曹军水夫",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军水夫",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_9",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_shiting_zhizhan_曹军夜哨": {
+    "name": "曹军夜哨",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军夜哨",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_11",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_shiting_zhizhan_曹休残将": {
+    "name": "曹休残将",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹休残将",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_shiting_zhizhan_曹军辎重队": {
+    "name": "曹军辎重队",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军辎重队",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_13",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_shiting_zhizhan_曹军逃兵": {
+    "name": "曹军逃兵",
+    "level": 46,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军逃兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "shiting_zhizhan",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 10580,
+      "mana": 8280,
+      "attack": 644,
+      "defense": 9200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_20",
+          "mabu_armor_20",
+          "mabu_gloves_20",
+          "mabu_pants_20",
+          "mabu_shoes_20"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 46,
+        "max": 138
+      },
+      "experience": 1150
+    }
+  },
+  "mon_chibi_aobing_曹军水寨哨兵": {
+    "name": "曹军水寨哨兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军水寨哨兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_4",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_chibi_aobing_曹军斥候船": {
+    "name": "曹军斥候船",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军斥候船",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_6",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_chibi_aobing_曹军工程队": {
+    "name": "曹军工程队",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军工程队",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_8",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_chibi_aobing_曹军典狱": {
+    "name": "曹军典狱",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军典狱",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_10",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_chibi_aobing_elite_于禁": {
+    "name": "【精】于禁",
+    "level": 56,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】【精】于禁",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_12",
+    "base_stats": {
+      "health": 36064,
+      "mana": 28224,
+      "attack": 2195,
+      "defense": 31359,
+      "crit_rate": 0.08,
+      "dodge_rate": 0.08
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_chibi_aobing_曹军战船残兵": {
+    "name": "曹军战船残兵",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】曹军战船残兵",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_14",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
+  },
+  "mon_chibi_aobing_魏军拦截船": {
+    "name": "魏军拦截船",
+    "level": 56,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【副本怪物】魏军拦截船",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "chibi_aobing",
+    "copy_stage": "step_15",
+    "base_stats": {
+      "health": 12880,
+      "mana": 10080,
+      "attack": 784,
+      "defense": 11200,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.1,
+        "templates": [
+          "mabu_helmet_25",
+          "mabu_armor_25",
+          "mabu_gloves_25",
+          "mabu_pants_25",
+          "mabu_shoes_25"
+        ],
+        "rarity_weights": {
+          "common": 60,
+          "uncommon": 40
+        }
+      },
+      "items": {
+        "potion_heal": 0.1
+      },
+      "money": {
+        "min": 56,
+        "max": 168
+      },
+      "experience": 1400
+    }
   }
 }

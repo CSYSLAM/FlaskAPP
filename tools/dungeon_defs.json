@@ -47,6 +47,18 @@
           "reward_exp": 6720
         },
         {
+          "name": "收缴引火油",
+          "scene": "伏兵谷",
+          "target_name": "伏兵",
+          "target_count": 5,
+          "objective": "前往伏兵谷收缴5桶引火油",
+          "progress_label": "已收缴引火油(17级)",
+          "story": "黄月英拿出几张图纸：「光有硫磺还不够。伏兵谷中藏有桐油——曹军用来修攻城器械的。把它收了，引火威力能增十倍。」",
+          "complete_story": "引火油到手。黄月英嗅了嗅：「好油。火攻之势已成。」",
+          "is_elite": false,
+          "reward_exp": 7140
+        },
+        {
           "name": "火攻准备",
           "scene": "伏兵谷",
           "target_name": "硫磺兵",
@@ -71,6 +83,18 @@
           "reward_gold": 150
         },
         {
+          "name": "断绝后路",
+          "scene": "博望坡",
+          "target_name": "曹军殿后兵",
+          "target_count": 5,
+          "objective": "前往博望坡后山截杀5名曹军殿后兵",
+          "progress_label": "已截断后路(19级)",
+          "story": "黄月英指着地图上山谷小路：「夏侯惇若败，必从此道退往新野。你领一队人马先堵住退路——断了他的退路，火攻才能全歼。」",
+          "complete_story": "后路被封死。黄月英从城头望见山谷中烟尘滚滚：「夏侯惇出不去了。点火之后——一个不留。」",
+          "is_elite": false,
+          "reward_exp": 7980
+        },
+        {
           "name": "击杀夏侯惇",
           "scene": "博望坡",
           "target_name": "【精】夏侯惇",
@@ -82,6 +106,30 @@
           "complete_story": "夏侯惇败走！曹军先锋全军覆没于火海之中。黄月英收剑入鞘，轻声道：「这火攻之术，原是我为天下太平而制，今日却用于杀戮……但愿有朝一日，这些机关术只用来造福黎民。」",
           "reward_exp": 9240,
           "reward_gold": 200
+        },
+        {
+          "name": "埋伏火弩",
+          "scene": "山道",
+          "target_name": "曹军运粮队",
+          "target_count": 5,
+          "objective": "前往山道截击5支曹军运粮队",
+          "progress_label": "已截粮队(20级)",
+          "story": "黄月英轻拍机关弩：「我连夜赶制了十架火弩，箭头浸了磷粉。你去山道高处架好——等夏侯惇入伏，万箭齐发。」",
+          "complete_story": "火弩布置完毕。黄月英调试着机关：「待会儿我扣动扳机——你就知道什么叫漫天火雨。」",
+          "is_elite": false,
+          "reward_exp": 7980
+        },
+        {
+          "name": "火雨漫天",
+          "scene": "博望坡",
+          "target_name": "曹军溃兵",
+          "target_count": 5,
+          "objective": "前往博望坡火场清剿5名残兵",
+          "progress_label": "已清剿残兵(20级)",
+          "story": "黄月英扳动机关，十架火弩齐发！博望坡上空漫天火雨倾泻而下。她大喊道：「将军！趁火势未尽，杀下去——」",
+          "complete_story": "残兵被火焰吞没。黄月英望着火海：「博望坡的战报，夏侯惇这辈子都忘不了。」",
+          "is_elite": false,
+          "reward_exp": 8400
         },
         {
           "name": "追击败军",
@@ -97,6 +145,54 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 7980,
           "reward_gold": 150
+        },
+        {
+          "name": "曹军援兵",
+          "scene": "白河",
+          "target_name": "曹军援兵",
+          "target_count": 5,
+          "objective": "前往白河击退5名曹军援兵",
+          "progress_label": "已击退援兵(21级)",
+          "story": "探子急报：曹仁从宛城发兵来援！黄月英皱眉：「来得好快。不过白河渡口我们早有安排——将军，去接应赵云。」",
+          "complete_story": "援兵被击退。赵云驱马而来：「夏侯惇大败，曹仁不敢再进。博望之胜已成定局。」",
+          "is_elite": false,
+          "reward_exp": 8400
+        },
+        {
+          "name": "博望秋收",
+          "scene": "白河",
+          "target_name": "野狼",
+          "target_count": 5,
+          "objective": "前往白河猎5只野狼保百姓秋收",
+          "progress_label": "已猎野狼(24级)",
+          "story": "战事初定，百姓回村秋收，但山中野狼趁乱下山伤人。黄月英眉头微蹙：「先帮百姓稳住生计。将军——走一趟。」",
+          "complete_story": "野狼被驱除。村民们捧着新收的稻谷道谢。黄月英接过一捧稻谷：「比打了胜仗还踏实。」",
+          "is_elite": false,
+          "reward_exp": 9240
+        },
+        {
+          "name": "收拢战俘",
+          "scene": "博望坡",
+          "target_name": "曹军俘虏营",
+          "target_count": 5,
+          "objective": "前往博望坡收容5处曹军俘虏营",
+          "progress_label": "已收容俘虏(23级)",
+          "story": "黄月英站在俘虏营前：「降者不杀。这些曹军士兵也是被征来的农家子弟——将军，派人收容他们，愿归乡的给路费。」",
+          "complete_story": "俘虏被妥善安置。黄月英望着散去的人群：「战争的胜负不止在战场上——人心，才是根本。」",
+          "is_elite": false,
+          "reward_exp": 9240
+        },
+        {
+          "name": "追击残敌",
+          "scene": "白河",
+          "target_name": "曹军残部",
+          "target_count": 5,
+          "objective": "前往白河追击5名曹军残部",
+          "progress_label": "已追残敌(22级)",
+          "story": "夏侯惇虽然败退，但白河沿岸还有残部不肯投降。赵云拔剑：「将军，随我再追一程——博望之胜，要彻底。」",
+          "complete_story": "残部被全歼。赵云将剑归鞘：「夏侯惇的十万大军——现在站在这里的，不到三千。」",
+          "is_elite": false,
+          "reward_exp": 9240
         }
       ]
     },
@@ -145,6 +241,18 @@
           "reward_exp": 11760
         },
         {
+          "name": "伏兵四起",
+          "scene": "东岭关",
+          "target_name": "伏兵",
+          "target_count": 5,
+          "objective": "前往东岭关清除5处伏兵",
+          "progress_label": "已清除伏兵(26级)",
+          "story": "关羽策马入关，突然两侧伏兵四起！他冷笑：「孔秀还敢设伏？将军，去拔了这些暗桩。」",
+          "complete_story": "伏兵尽除。关羽捋髯：「雕虫小技。孔秀还有什么手段——统统使出来吧。」",
+          "is_elite": false,
+          "reward_exp": 10920
+        },
+        {
           "name": "洛阳关",
           "scene": "洛阳关",
           "target_name": "洛阳守军",
@@ -165,6 +273,18 @@
           "progress_label": "已击败【精】韩福(29级)",
           "story": "关羽横刀立马：「韩福率部将孟坦齐出，以二敌一——你以为这样就能挡住关某吗？」",
           "complete_story": "韩福与孟坦双双毙命刀下。关羽踏过尸首：「第二关，也不过如此。」",
+          "reward_exp": 12180
+        },
+        {
+          "name": "洛阳城守将",
+          "scene": "洛阳关",
+          "target_name": "韩福部将",
+          "target_count": 5,
+          "objective": "前往洛阳关击杀5名韩福部将",
+          "progress_label": "已斩部将(29级)",
+          "story": "韩福的部将们在关前摆开阵势。关羽不屑：「不过是一群乌合之众。将军，料理了他们——某去会韩福。」",
+          "complete_story": "部将尽斩。关羽横刀上前：「韩福——没有了部将，你还能撑几个回合？」",
+          "is_elite": false,
           "reward_exp": 12180
         },
         {
@@ -191,6 +311,18 @@
           "reward_exp": 12600
         },
         {
+          "name": "荥阳伏兵",
+          "scene": "荥阳关",
+          "target_name": "荥阳伏兵",
+          "target_count": 5,
+          "objective": "前往荥阳关清除5处伏兵",
+          "progress_label": "已清除伏兵(31级)",
+          "story": "王植在荥阳关设下多处伏兵。关羽提刀巡视：「这些伏兵藏得倒是隐蔽——不过，逃不过关某的眼睛。」",
+          "complete_story": "伏兵被一一拔除。关羽点头：「现在——去会王植。」",
+          "is_elite": false,
+          "reward_exp": 13020
+        },
+        {
           "name": "荥阳关",
           "scene": "荥阳关",
           "target_name": "荥阳守军",
@@ -212,6 +344,18 @@
           "story": "王植惊慌失措：「纵火！给我烧掉馆驿——」话未说完，关羽的刀已经到了眼前。",
           "complete_story": "王植死于青龙刀下。关羽拭去刀上血迹：「烧馆驿？哼，某的刀比他快。」",
           "reward_exp": 13440
+        },
+        {
+          "name": "秦琪叫阵",
+          "scene": "黄河渡口",
+          "target_name": "渡口弓兵",
+          "target_count": 5,
+          "objective": "前往黄河渡口击杀5名渡口弓兵",
+          "progress_label": "已灭弓兵(33级)",
+          "story": "秦琪在渡口排开了弓箭手，矢如雨下。关羽以青龙刀格挡：「哼，就这点箭法？将军，把弓兵清了——某来会他。」",
+          "complete_story": "弓兵被荡平。关羽大步走向渡口桥头：「秦琪——该你了。」",
+          "is_elite": false,
+          "reward_exp": 13860
         },
         {
           "name": "黄河渡口",
@@ -236,6 +380,30 @@
           "complete_story": "秦琪倒于马下。关羽收刀，仰天长啸：「五关六将——挡不住我关云长！大哥！某来了！」",
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 14700
+        },
+        {
+          "name": "渡河团聚",
+          "scene": "黄河渡口",
+          "target_name": "渡口伏兵",
+          "target_count": 5,
+          "objective": "渡河前清除5处渡口伏兵",
+          "progress_label": "已清伏兵(35级)",
+          "story": "渡船即将起锚，对岸突然出现伏兵——是曹操最后的阻拦。关羽抚髯大笑：「就这一阵了！将军，随我冲——过了河，就是大哥！」",
+          "complete_story": "伏兵被击溃，渡船安全抵达对岸。关羽跳下船，远远望见刘备的旗帜：「大哥——云长来了！」",
+          "is_elite": false,
+          "reward_exp": 14280
+        },
+        {
+          "name": "击退追兵",
+          "scene": "黄河渡口",
+          "target_name": "曹操追兵",
+          "target_count": 5,
+          "objective": "前往黄河渡口击退5名曹操追兵",
+          "progress_label": "已退追兵(34级)",
+          "story": "曹操派来的追兵赶到了黄河渡口。关羽回头冷笑：「曹公来了吗？没来的话——这些杂兵还不够关某热身。」",
+          "complete_story": "追兵被击退。关羽扶着二嫂上了渡船：「曹操——这份人情，关某日后自会还你。」",
+          "is_elite": false,
+          "reward_exp": 14280
         }
       ]
     },
@@ -308,6 +476,18 @@
           "reward_exp": 15540
         },
         {
+          "name": "妖符破阵",
+          "scene": "桃园",
+          "target_name": "符阵道士",
+          "target_count": 3,
+          "objective": "前往桃园破除3座妖符阵",
+          "progress_label": "已破妖符阵(37级)",
+          "story": "刘备指着桃园中央三座符阵：「五斗米道在此处布了妖符阵，用以召阴兵。破了阵法——阴兵不攻自破。」",
+          "complete_story": "三座符阵尽破。刘备松了一口气：「妖阵已破。这些邪道害人的手段倒是不少。」",
+          "is_elite": false,
+          "reward_exp": 15540
+        },
+        {
           "name": "张角遗魂",
           "scene": "巨鹿",
           "target_name": "【精】张角遗魂",
@@ -329,6 +509,18 @@
           "progress_label": "已击杀残部(38级)",
           "story": "刘备指着远处：「张宝的残部退守广宗，负隅顽抗。将军且去追击，我和翼德随后接应。」",
           "complete_story": "张宝残部溃不成军。探子来报：「张宝本人就在广宗城内，已无退路。」",
+          "reward_exp": 15960
+        },
+        {
+          "name": "追踪张梁",
+          "scene": "巨鹿",
+          "target_name": "张梁余党",
+          "target_count": 5,
+          "objective": "追踪张梁余党击杀5名",
+          "progress_label": "已追杀余党(38级)",
+          "story": "张飞骑着乌骓冲入巨鹿城：「张梁那厮跑了！将军，咱们分头追——你走左路俺走右路，逮住了往死里打！」",
+          "complete_story": "张梁余党被击溃。张飞悻悻地回来：「跑得倒快！不过大哥说广宗那边还有硬仗。」",
+          "is_elite": false,
           "reward_exp": 15960
         },
         {
@@ -357,6 +549,54 @@
           "complete_hint": "返回桃园向刘备复命，领取通关奖励。",
           "reward_exp": 16800,
           "reward_gold": 500
+        },
+        {
+          "name": "桃园再誓",
+          "scene": "桃园",
+          "target_name": "黄巾死士",
+          "target_count": 5,
+          "objective": "前往桃园击败5名潜藏黄巾死士",
+          "progress_label": "已除死士(41级)",
+          "story": "酒至半酣，忽然桃园外杀声又起！刘备霍然拔剑：「黄巾死士竟敢偷袭结义之地——不可饶恕！」",
+          "complete_story": "死士尽灭。刘备抚剑长叹：「看来天下未定——我们兄弟要做的事，还多着呢。」",
+          "is_elite": false,
+          "reward_exp": 17220
+        },
+        {
+          "name": "犒劳三军",
+          "scene": "桃园",
+          "target_name": "野猪肉",
+          "target_count": 5,
+          "objective": "前往桃园猎5头野猪犒劳三军",
+          "progress_label": "已猎野猪(40级)",
+          "story": "战后刘备叫住你：「将士们连日血战，将军不妨去猎些野味——下午咱们在桃园生火烤肉，喝酒论英雄。」",
+          "complete_story": "野猪猎回。刘备亲自生火烧肉，张飞大碗倒酒：「来来来——今天不谈打仗，喝酒！喝他个三天三夜！」",
+          "is_elite": false,
+          "reward_exp": 17220
+        },
+        {
+          "name": "桃园结业",
+          "scene": "桃园",
+          "target_name": "结义见证人",
+          "target_count": 3,
+          "objective": "前往桃园寻3位结义见证人",
+          "progress_label": "已邀见证人(43级)",
+          "story": "战事结束，刘备想在桃园重办一次结义宴，邀当年见证者来重温誓言。张飞拍着大腿：「好啊！上次喝的不够尽兴！」",
+          "complete_story": "见证人被请到。在桃园落日余晖中，刘备、关羽（由老兵代）、张飞与你一同举杯：「兄弟同心，其利断金。」",
+          "is_elite": false,
+          "reward_exp": 18480
+        },
+        {
+          "name": "扫除阴魂",
+          "scene": "广宗",
+          "target_name": "五斗米余孽",
+          "target_count": 5,
+          "objective": "前往广宗扫除5名五斗米余孽",
+          "progress_label": "已除余孽(42级)",
+          "story": "张宝虽死，五斗米道余孽散入民间，继续以符水骗人。刘备叹道：「除恶务尽。将军——再辛苦一趟。」",
+          "complete_story": "余孽被肃清。刘备望着村中百姓：「邪教如野草——不除根，春风吹又生。」",
+          "is_elite": false,
+          "reward_exp": 18480
         }
       ]
     },
@@ -449,6 +689,18 @@
           "reward_gold": 500
         },
         {
+          "name": "截江夺船",
+          "scene": "长坂坡",
+          "target_name": "曹军水兵",
+          "target_count": 5,
+          "objective": "前往江边击杀5名曹军水兵夺船",
+          "progress_label": "已夺船(47级)",
+          "story": "赵云望见江边有曹军战船：「截下这几条船！若有曹军从水路包抄——百姓就危险了。」",
+          "complete_story": "战船被夺下。赵云命人将船烧毁：「没了船——曹军想渡江，只能游过来。」",
+          "is_elite": false,
+          "reward_exp": 19740
+        },
+        {
           "name": "突围南阵",
           "scene": "王南阵",
           "target_name": "曹军弓弩手",
@@ -475,6 +727,18 @@
           "reward_gold": 400
         },
         {
+          "name": "救百姓",
+          "scene": "巷战",
+          "target_name": "曹军乱兵",
+          "target_count": 5,
+          "objective": "前往民居区击杀5名劫掠的曹军乱兵",
+          "progress_label": "已护百姓(49级)",
+          "story": "前方传来百姓哭喊——曹军乱兵正在劫掠民居！赵云虎目圆睁：「畜生！连手无寸铁的百姓也不放过。将军，随我去救人！」",
+          "complete_story": "乱兵被斩杀。赵云扶起一位老妪：「老妈妈快往南走。子龙在此，贼兵伤不了你。」",
+          "is_elite": false,
+          "reward_exp": 20580
+        },
+        {
           "name": "击杀钟绅",
           "scene": "当阳桥",
           "target_name": "【精】钟绅",
@@ -488,6 +752,19 @@
           "reward_gold": 400
         },
         {
+          "name": "击杀夏侯尚",
+          "scene": "当阳桥",
+          "target_name": "【精】夏侯尚",
+          "target_count": 1,
+          "objective": "击杀【精】夏侯尚",
+          "progress_label": "已击杀夏侯尚(50级)",
+          "story": "夏侯尚率一支精兵冲上当阳桥，扬言要活捉赵云。张飞啐了一口：「想抓子龙？先过俺老张这一关！将军，把这厮砍了！」",
+          "complete_story": "夏侯尚毙命。张飞一脚将尸首踢下桥：「不自量力的东西——俺兄弟子龙你也敢碰。」",
+          "is_elite": true,
+          "reward_gold": 400,
+          "reward_exp": 20580
+        },
+        {
           "name": "横扫残兵",
           "scene": "长坂坡",
           "target_name": "曹军溃兵",
@@ -499,6 +776,55 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 21000,
           "reward_gold": 300
+        },
+        {
+          "name": "击杀夏侯霸",
+          "scene": "长坂坡",
+          "target_name": "【精】夏侯霸",
+          "target_count": 1,
+          "objective": "击杀【精】夏侯霸",
+          "progress_label": "已击杀夏侯霸(52级)",
+          "story": "又一名曹军大将追来——夏侯霸。赵云怀中阿斗仍在熟睡，他柔声对阿斗说：「少主稍等——子龙再杀一个就来。」",
+          "complete_story": "夏侯霸落马。赵云轻吁一口气：「七进七出——长坂一战，定要叫曹军记住赵子龙这个名字！」",
+          "is_elite": true,
+          "reward_gold": 500,
+          "reward_exp": 21000
+        },
+        {
+          "name": "扫清归路",
+          "scene": "长坂坡",
+          "target_name": "残兵统领",
+          "target_count": 5,
+          "objective": "前往长坂坡击杀5名残兵统领",
+          "progress_label": "已扫清归路(52级)",
+          "story": "归路还有最后一股残兵盘踞。赵云将阿斗轻轻拢在怀中：「少主再忍片刻。子龙送完这一程——就到家了。」",
+          "complete_story": "归路彻底扫清。赵云策马奔向刘备大营：「主公——阿斗安然归来矣！」",
+          "is_elite": false,
+          "reward_exp": 21420
+        },
+        {
+          "name": "刘备收兵",
+          "scene": "当阳桥",
+          "target_name": "曹军殿后",
+          "target_count": 5,
+          "objective": "前往当阳桥清剿5名曹军殿后兵",
+          "progress_label": "已清殿后(55级)",
+          "story": "刘备在当阳桥南收拢残兵。他望着满身血污的赵云，眼眶湿润：「子龙——你回来了。阿斗他——」",
+          "complete_story": "殿后兵被击退。赵云将阿斗交给刘备：「主公——阿斗安好。」刘备接过襁褓中的孩子，泪如雨下。",
+          "is_elite": false,
+          "reward_exp": 22680
+        },
+        {
+          "name": "击杀文聘",
+          "scene": "长坂坡",
+          "target_name": "【精】文聘",
+          "target_count": 1,
+          "objective": "击杀【精】文聘",
+          "progress_label": "已击杀文聘(54级)",
+          "story": "文聘率虎豹骑紧追不舍。赵云对怀中的阿斗轻语：「少主再等片刻——又一个不怕死的追来了。」",
+          "complete_story": "文聘落马。赵云策马继续向南：「还有哪个不怕死的——尽管来追！赵子龙在此！」",
+          "is_elite": true,
+          "reward_exp": 22680
         }
       ]
     },
@@ -561,6 +887,19 @@
           "reward_gold": 800
         },
         {
+          "name": "三擒孟获",
+          "scene": "五溪洞",
+          "target_name": "董荼那",
+          "target_count": 1,
+          "objective": "击杀【精】董荼那",
+          "progress_label": "已擒董荼那(56级)",
+          "story": "孔明轻摇羽扇：「金环三结、忙牙长之后——该轮到董荼那了。此人是孟获妹夫，擒了他——孟获自会亲自出阵。」",
+          "complete_story": "董荼那被擒。孔明微笑：「放了他。顺便告诉他——你家大王若再不亲自来，本相就要上门拜访了。」",
+          "is_elite": true,
+          "reward_gold": 700,
+          "reward_exp": 23520
+        },
+        {
           "name": "渡泸水",
           "scene": "泸水",
           "target_name": "南蛮运粮兵",
@@ -587,6 +926,19 @@
           "reward_gold": 900
         },
         {
+          "name": "四擒孟获",
+          "scene": "泸水",
+          "target_name": "阿会喃",
+          "target_count": 1,
+          "objective": "击杀【精】阿会喃",
+          "progress_label": "已擒阿会喃(57级)",
+          "story": "孔明指着泸水对岸：「阿会喃在那边扎营。此人善水战，不可在江上与他交锋。等夜深——夜袭。」",
+          "complete_story": "阿会喃被擒。孔明亲自斟了一杯酒：「阿会喃将军——这杯酒是本相的敬意。回去告诉孟获：第七次之后，我保证不再抓他。」",
+          "is_elite": true,
+          "reward_gold": 700,
+          "reward_exp": 23940
+        },
+        {
           "name": "击杀孟优",
           "scene": "河西岸",
           "target_name": "【精】孟优",
@@ -598,6 +950,18 @@
           "complete_story": "孟优被擒。孔明看了一眼：「一家人都来了，也好。回去告诉你兄长——何必苦苦挣扎？」",
           "reward_exp": 24360,
           "reward_gold": 900
+        },
+        {
+          "name": "探瘴气林",
+          "scene": "泸水",
+          "target_name": "南蛮猎手",
+          "target_count": 5,
+          "objective": "前往瘴气林击杀5名南蛮猎手",
+          "progress_label": "已探瘴气林(58级)",
+          "story": "孔明捻着胡须：「前方有片瘴气林，猎手们藏身其中。不除掉他们——大军过不去。」",
+          "complete_story": "猎手被清除。孔明命人分发避瘴丹：「好在有所准备。传令——全军过林。」",
+          "is_elite": false,
+          "reward_exp": 23940
         },
         {
           "name": "破木鹿",
@@ -626,6 +990,19 @@
           "reward_gold": 1000
         },
         {
+          "name": "五擒孟获",
+          "scene": "夹山峪",
+          "target_name": "杨锋",
+          "target_count": 1,
+          "objective": "击杀【精】杨锋",
+          "progress_label": "已擒杨锋(58级)",
+          "story": "孔明望着夹山峪：「杨锋虽是孟获部将，但为人耿直。将军——擒而不辱。」",
+          "complete_story": "杨锋拱手谢过。孔明笑道：「杨将军请回。告诉大王——天下大势，不在蛮力，在心。」",
+          "is_elite": true,
+          "reward_gold": 700,
+          "reward_exp": 24360
+        },
+        {
           "name": "七擒孟获",
           "scene": "铜坑洞",
           "target_name": "【精】孟获",
@@ -638,6 +1015,43 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 25200,
           "reward_gold": 1200
+        },
+        {
+          "name": "六擒孟获",
+          "scene": "河西岸",
+          "target_name": "带来洞主",
+          "target_count": 1,
+          "objective": "击杀【精】带来洞主",
+          "progress_label": "已擒带来洞主(59级)",
+          "story": "带来洞主率藤甲藤盔的精兵列阵河西岸。孔明眉头微蹙：「藤甲虽坚，水能浸之。将军——引他们到河边。」",
+          "complete_story": "带来洞主被擒。孔明命人给他换上干衣：「藤甲遇水则重——兵者，诡道也。回去吧。」",
+          "is_elite": true,
+          "reward_gold": 700,
+          "reward_exp": 24360
+        },
+        {
+          "name": "南中安民",
+          "scene": "铜坑洞",
+          "target_name": "流窜匪寇",
+          "target_count": 5,
+          "objective": "前往南中扫除流窜匪寇稳定民心",
+          "progress_label": "已定民心(60级)",
+          "story": "孟获归降，但战后的南中还有流寇趁乱抢劫。孔明合上奏折：「将军——最后一道军令：还南中百姓一个太平。」",
+          "complete_story": "匪寇被扫除。南中百姓夹道送出十里路。孔明望着远处的炊烟：「战后的安宁——才是真正的胜利。」",
+          "is_elite": false,
+          "reward_exp": 25200
+        },
+        {
+          "name": "祭天宣化",
+          "scene": "铜坑洞",
+          "target_name": "蛮族祭司",
+          "target_count": 5,
+          "objective": "前往铜坑洞击败5名蛮族祭司",
+          "progress_label": "已破血祭(60级)",
+          "story": "孟获请来蛮族祭司设血祭坛诅咒大军。孔明神色一凛：「邪术虽不足惧，却足以惑众。将军——破了祭坛，以正视听。」",
+          "complete_story": "祭坛被毁，祭司遁逃。孔明在废墟中立起汉旗：「此非以力服人，乃以德服人。」",
+          "is_elite": false,
+          "reward_exp": 25200
         }
       ]
     },
@@ -710,6 +1124,18 @@
           "reward_exp": 15540
         },
         {
+          "name": "查证信物",
+          "scene": "深宫",
+          "target_name": "宫中卫兵",
+          "target_count": 5,
+          "objective": "前往深宫击杀5名宫中卫兵取信物",
+          "progress_label": "已取信物(37级)",
+          "story": "甄氏交给你一件信物：「贾氏曾遣人送来此物——这是我旧时佩戴的玉佩，被栽赃为与外臣私通的凭据。将军，去宫中查证它的来源。」",
+          "complete_story": "信物来源被查明：是贾氏派人从甄氏旧居窃来。曹丕看着玉佩：「好个贾氏——偷了人家的玉佩来栽赃。其心可诛。」",
+          "is_elite": false,
+          "reward_exp": 15540
+        },
+        {
           "name": "擒拿陷害者",
           "scene": "西宫",
           "target_name": "【精】贾氏",
@@ -734,6 +1160,18 @@
           "reward_exp": 16380
         },
         {
+          "name": "夜探西宫",
+          "scene": "西宫",
+          "target_name": "西宫护卫",
+          "target_count": 5,
+          "objective": "前往西宫击杀5名西宫护卫",
+          "progress_label": "已探西宫(38级)",
+          "story": "曹丕压低声音：「西宫是贾氏的巢穴。今夜你暗中去探查——记住，不要打草惊蛇。我要的是铁证。」",
+          "complete_story": "西宫探查完毕。曹丕看着你带回的密信：「果然——贾氏勾结了宫外的刺客。她野心比我想的还大。」",
+          "is_elite": false,
+          "reward_exp": 15960
+        },
+        {
           "name": "曹丕赐婚",
           "scene": "铜雀台",
           "target_name": "【精】刺客头领",
@@ -746,6 +1184,66 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 16800,
           "reward_gold": 600
+        },
+        {
+          "name": "封锁宫门",
+          "scene": "正殿",
+          "target_name": "宫门护卫",
+          "target_count": 5,
+          "objective": "前往正殿击杀5名宫门护卫封锁宫门",
+          "progress_label": "已封宫门(39级)",
+          "story": "曹丕霍然起身：「立刻封锁所有宫门！不能让贾氏的人跑掉一个。将军——你去守住正殿大门。」",
+          "complete_story": "宫门被封死。曹丕提剑而立：「贾氏——你的戏，该收场了。」",
+          "is_elite": false,
+          "reward_exp": 15960
+        },
+        {
+          "name": "铜雀台夜宴",
+          "scene": "铜雀台",
+          "target_name": "刺客暗哨",
+          "target_count": 5,
+          "objective": "前往铜雀台清除5名刺客暗哨",
+          "progress_label": "已清暗哨(41级)",
+          "story": "选妃大典前夜，曹丕在铜雀台设宴。他面色凝重：「探子发现台上有刺客暗哨——明晚大典他们是冲着甄氏来的。将军，今夜就把这些钉子拔了。」",
+          "complete_story": "暗哨被一一清除。曹丕望向铜雀台：「明晚——我要让所有人都知道，魏国世子妃是谁。」",
+          "is_elite": false,
+          "reward_exp": 16800
+        },
+        {
+          "name": "解救宫女",
+          "scene": "深宫",
+          "target_name": "贾氏亲兵",
+          "target_count": 5,
+          "objective": "前往深宫解救被囚宫女",
+          "progress_label": "已解救宫女(40级)",
+          "story": "甄氏焦急地找到你：「贾氏囚了六名宫女——她们是唯一目击她偷盗玉佩的人！将军，求你救她们出来。」",
+          "complete_story": "宫女被救出。她们跪倒哭泣：「将军大恩——」甄氏扶起她们：「别怕，公道自在人心。」",
+          "is_elite": false,
+          "reward_exp": 16800
+        },
+        {
+          "name": "许昌封赏",
+          "scene": "正殿",
+          "target_name": "不服老臣",
+          "target_count": 3,
+          "objective": "前往正殿说服3名不服老臣",
+          "progress_label": "已说服老臣(43级)",
+          "story": "曹丕在正殿封赏有功之人。几位老臣对选妃结果颇有微词。曹丕低声道：「这些老臣——帮我摆平。我不想动刀，但我要他们闭嘴。」",
+          "complete_story": "老臣在恩威并施下终于沉默。曹丕坐于殿上，微微一笑：「治国驭下——有时候说话比动刀更费劲。」",
+          "is_elite": false,
+          "reward_exp": 18480
+        },
+        {
+          "name": "铜雀台选妃",
+          "scene": "铜雀台",
+          "target_name": "刺客余党",
+          "target_count": 5,
+          "objective": "前往铜雀台清除5名刺客余党",
+          "progress_label": "已除余党(42级)",
+          "story": "大典当日，铜雀台鼓乐齐鸣。曹丕身着冕服端坐台上：「还有刺客余党试图浑水摸鱼。将军——再查一遍，确保万无一失。」",
+          "complete_story": "余党被拔除。曹丕在百官面前牵起甄氏的手：「今日起——你便是魏国世子妃。」",
+          "is_elite": false,
+          "reward_exp": 18480
         }
       ]
     },
@@ -812,6 +1310,18 @@
           "reward_gold": 200
         },
         {
+          "name": "探粮仓虚实",
+          "scene": "乌巢粮仓",
+          "target_name": "袁军守粮兵",
+          "target_count": 5,
+          "objective": "前往乌巢粮仓探查击杀5名守粮兵",
+          "progress_label": "已探虚实(47级)",
+          "story": "张辽派你先探路：「粮仓究竟有多少守军，我心里没底。你悄悄摸进去——有情况立刻回报。」",
+          "complete_story": "粮仓虚实探明。张辽展开草图：「三座大仓，守军不过五千。淳于琼果然松懈。」",
+          "is_elite": false,
+          "reward_exp": 19740
+        },
+        {
           "name": "火烧粮仓",
           "scene": "乌巢中心",
           "target_name": "守仓悍将",
@@ -836,6 +1346,18 @@
           "reward_gold": 500
         },
         {
+          "name": "断淳于后援",
+          "scene": "乌巢渡口",
+          "target_name": "袁军运兵船",
+          "target_count": 3,
+          "objective": "前往乌巢渡口击沉3艘袁军运兵船",
+          "progress_label": "已击沉运兵船(48级)",
+          "story": "张辽指着渡口：「淳于琼若撑不住——袁绍必从官渡渡口派兵来援。你先把渡口的船废了，让他们游过来。」",
+          "complete_story": "运兵船被凿穿沉入河中。张辽冷笑：「援兵？先问问这河水让不让。」",
+          "is_elite": false,
+          "reward_exp": 20580
+        },
+        {
           "name": "袁军反扑",
           "scene": "乌巢大营",
           "target_name": "袁军精兵",
@@ -845,6 +1367,18 @@
           "story": "探子急报：「袁绍派兵救援乌巢——」张辽面不改色：「来得好。将军，随我迎击。袁军火急火燎赶来，阵脚不稳，正是破敌良机。」",
           "complete_story": "袁军援兵被击退。张辽望着溃兵：「袁绍的反应倒是快——可惜，来迟了。」",
           "reward_exp": 21000
+        },
+        {
+          "name": "引燃粮垛",
+          "scene": "乌巢中心",
+          "target_name": "粮垛守卫",
+          "target_count": 5,
+          "objective": "前往乌巢中心击杀5名粮垛守卫",
+          "progress_label": "已清守卫(49级)",
+          "story": "大火已起，但几个粮垛还没点着。张辽指着中心大垛：「最大的粮囤在那里。守卫拼死扑火——你去清理掉他们。这点火，今天必须烧透。」",
+          "complete_story": "粮垛守卫被击溃。张辽亲自举火把扔向粮垛：「烧！烧得干干净净——袁绍百万军粮，今天全报销。」",
+          "is_elite": false,
+          "reward_exp": 20580
         },
         {
           "name": "击杀韩猛",
@@ -872,6 +1406,54 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 21840,
           "reward_gold": 800
+        },
+        {
+          "name": "截杀袁谭",
+          "scene": "官渡渡口",
+          "target_name": "袁谭残兵",
+          "target_count": 5,
+          "objective": "前往官渡渡口截杀5名袁谭残兵",
+          "progress_label": "已截杀残兵(52级)",
+          "story": "袁绍之子袁谭率残兵企图从官渡渡口突围。张辽策马急追：「不能放虎归山！将军——堵住渡口。」",
+          "complete_story": "袁谭残兵被截杀。张辽收刀：「袁谭虽逃，但失了兵——对袁绍而言，这比死还难受。」",
+          "is_elite": false,
+          "reward_exp": 21840
+        },
+        {
+          "name": "清点战利",
+          "scene": "乌巢大营",
+          "target_name": "袁军溃将",
+          "target_count": 5,
+          "objective": "前往乌巢大营清剿5名袁军溃将",
+          "progress_label": "已清溃将(53级)",
+          "story": "火渐熄灭。张辽望着满地狼藉：「此战缴获辎重无数。但还有溃将四散——去清一清。乌巢不能再让他们立足。」",
+          "complete_story": "溃将尽数被剿。张辽望着乌巢大营的废墟：「通知主公——乌巢已平，官渡之战，胜负已分。」",
+          "is_elite": false,
+          "reward_exp": 21840
+        },
+        {
+          "name": "回师报捷",
+          "scene": "官渡渡口",
+          "target_name": "报捷路上的伏兵",
+          "target_count": 5,
+          "objective": "前往官渡渡口清除5名伏兵回报捷",
+          "progress_label": "已回报捷(55级)",
+          "story": "乌巢已定。张辽写好捷报：「你亲自回官渡，将这封捷报交给主公曹操。路上小心——袁军残部还在。」",
+          "complete_story": "捷报送到。曹操拆信大笑：「乌巢已焚！袁绍——你还有何依仗？」",
+          "is_elite": false,
+          "reward_exp": 22680
+        },
+        {
+          "name": "天降甘霖",
+          "scene": "乌巢大营",
+          "target_name": "袁军救火队",
+          "target_count": 5,
+          "objective": "前往乌巢大营击退5支袁军救火队",
+          "progress_label": "已退救火队(54级)",
+          "story": "乌云压顶——竟有零星雨点落下！张辽心中一紧：「不能让火被雨浇灭！将军——挡住救火队，让这火烧到雨停！」",
+          "complete_story": "救火队被击退。好在雨只下了片刻便停。张辽长舒一口气：「天也站在我们这边。」",
+          "is_elite": false,
+          "reward_exp": 22680
         }
       ]
     },
@@ -951,6 +1533,18 @@
           "reward_gold": 600
         },
         {
+          "name": "夜探凉州营",
+          "scene": "韩遂大营",
+          "target_name": "凉州哨探",
+          "target_count": 5,
+          "objective": "前往韩遂大营击杀5名凉州哨探",
+          "progress_label": "已清哨探(57级)",
+          "story": "司马懿将一张地形图推到你面前：「今夜月黑。你带几个人潜入韩遂大营——清除哨探，然后把这封涂改过的信留在韩遂帐中。」他眼中闪过一丝狡黠：「记住，信不需要完整——越残缺，马超疑心越重。」",
+          "complete_story": "哨探被清除，涂改信送至韩遂帐中。司马懿在营帐中颔首：「很好。韩遂醒来看到这封信——一定会心惊肉跳。」",
+          "is_elite": false,
+          "reward_exp": 23940
+        },
+        {
           "name": "渭水追击",
           "scene": "渭水南岸",
           "target_name": "马超亲兵",
@@ -973,6 +1567,18 @@
           "reward_exp": 24780
         },
         {
+          "name": "散布谣言",
+          "scene": "渭水南岸",
+          "target_name": "马超传令兵",
+          "target_count": 5,
+          "objective": "前往渭水南岸击杀5名马超传令兵",
+          "progress_label": "已截传令兵(58级)",
+          "story": "司马懿抚须微笑：「马超与韩遂之间已经疑心生暗鬼。现在——将军，去截杀马超的传令兵，换上我们的人。假传军令——让凉州各部以为韩遂要投降。」",
+          "complete_story": "传令兵被截下。凉州大营中谣言四起——各部纷纷质疑韩遂。司马懿听着远处的喧哗：「好戏开场了。」",
+          "is_elite": false,
+          "reward_exp": 24360
+        },
+        {
           "name": "决战马超",
           "scene": "潼关",
           "target_name": "【精】马超",
@@ -985,6 +1591,67 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 25200,
           "reward_gold": 1200
+        },
+        {
+          "name": "招降梁兴",
+          "scene": "渭水南岸",
+          "target_name": "梁兴亲兵",
+          "target_count": 5,
+          "objective": "前往渭水南岸击杀5名梁兴亲兵招降梁兴",
+          "progress_label": "已招降梁兴(58级)",
+          "story": "司马懿写下一封信：「梁兴是凉州八部之一，此人对韩遂早有不满。你将此信送去——告诉他，归降魏国，不失封侯之位。」",
+          "complete_story": "梁兴归降。司马懿收起信函，眼中精光一闪：「凉州八部——先拆一个。剩下的，就如多米诺骨牌一般。」",
+          "is_elite": false,
+          "reward_gold": 400,
+          "reward_exp": 24360
+        },
+        {
+          "name": "安抚百姓",
+          "scene": "长安城",
+          "target_name": "西凉溃兵",
+          "target_count": 5,
+          "objective": "前往长安城清除5名劫掠的西凉溃兵",
+          "progress_label": "已护百姓(60级)",
+          "story": "长安百姓遭西凉溃兵劫掠，哭声遍地。司马懿皱眉：「战乱中最苦的是百姓。将军，去把那些溃兵处理掉——让他们知道，魏国治下，不容欺民。」",
+          "complete_story": "溃兵被清除，百姓跪谢。司马懿望着安定下来的长安街道：「百姓安，则天下安。马超只知兴兵，不知治民——此其败因。」",
+          "is_elite": false,
+          "reward_exp": 24780
+        },
+        {
+          "name": "追击溃部",
+          "scene": "潼关",
+          "target_name": "凉州残兵",
+          "target_count": 5,
+          "objective": "前往潼关追击5名凉州残兵",
+          "progress_label": "已清残兵(60级)",
+          "story": "司马懿望着潼关方向：「马超已经败退。但凉州残兵还在四处逃窜——将军，清扫战场。不能让他们卷土重来。」",
+          "complete_story": "残兵被清理干净。司马懿立在城头，望着远方：「今日之后——凉州归魏。马超虽勇，智不足凭。」",
+          "is_elite": false,
+          "reward_exp": 24780
+        },
+        {
+          "name": "定渭水碑",
+          "scene": "潼关",
+          "target_name": "文人学士",
+          "target_count": 3,
+          "objective": "前往潼关寻3名校书郎立渭水碑",
+          "progress_label": "已立渭水碑(60级)",
+          "story": "司马懿提笔写道：「渭水之战，离间智胜——此战当入史册。将军，去找几位校书郎，将这碑文刻在潼关城下。」",
+          "complete_story": "渭水碑立起，碑文洋洋洒洒。司马懿站在碑前：「兵者国之大事。但以智胜的兵法——更值得后人研读。」",
+          "is_elite": false,
+          "reward_exp": 25200
+        },
+        {
+          "name": "论功行赏",
+          "scene": "长安城",
+          "target_name": "西凉降兵",
+          "target_count": 5,
+          "objective": "前往长安城收编5队西凉降兵",
+          "progress_label": "已收编降兵(60级)",
+          "story": "司马懿在长安城收编西凉降兵，他望着归降的将士：「这些西凉兵个个悍勇——若收入魏军，如虎添翼。将军，去把他们都收编好。」",
+          "complete_story": "西凉降兵整编完毕。司马懿点头：「收了兵更要收了心。魏国治下，不分凉州中原——一视同仁。」",
+          "is_elite": false,
+          "reward_exp": 25200
         }
       ]
     },
@@ -1040,6 +1707,18 @@
           "reward_gold": 100
         },
         {
+          "name": "伪装商船",
+          "scene": "陆口港",
+          "target_name": "荆州巡逻队",
+          "target_count": 5,
+          "objective": "前往陆口港伪装成商船队清除5支巡逻队",
+          "progress_label": "已伪装完毕(17级)",
+          "story": "郭嘉指着港口的商船：「这些船都改过——夹层里藏了精兵。先在港口把巡逻队清掉——不能被他们发现船舱的秘密。」",
+          "complete_story": "巡逻队被清除。郭嘉登上商船：「传令——人进夹舱，甲板留商贾。出发。」",
+          "is_elite": false,
+          "reward_exp": 7140
+        },
+        {
           "name": "袭烽火台",
           "scene": "烽火台",
           "target_name": "烽火守军",
@@ -1051,6 +1730,18 @@
           "reward_exp": 7560
         },
         {
+          "name": "打捞沉船",
+          "scene": "长江",
+          "target_name": "水下暗哨",
+          "target_count": 5,
+          "objective": "前往江中清除5处水下暗哨",
+          "progress_label": "已清暗哨(18级)",
+          "story": "郭嘉望着江水：「关羽在江中布了水下暗哨——用绳索连着江底的铜铃，一有动静就能报警。将军，派人下水拔掉。」",
+          "complete_story": "水下暗哨被拔除。郭嘉点头：「江道已清。现在——烽火台。」",
+          "is_elite": false,
+          "reward_exp": 7140
+        },
+        {
           "name": "袭荆州东门",
           "scene": "荆州东门",
           "target_name": "荆州守军",
@@ -1059,6 +1750,18 @@
           "progress_label": "已破东门(18级)",
           "story": "郭嘉看着荆州东门：「守卫尚不知烽火台已失。趁其不备，一举破门——动作要快！」",
           "complete_story": "东门被攻破。郭嘉抽出剑：「进！荆州——是我们的了。」",
+          "reward_exp": 7560
+        },
+        {
+          "name": "抢占府库",
+          "scene": "荆州东门",
+          "target_name": "府库守卫",
+          "target_count": 5,
+          "objective": "前往府库击杀5名府库守卫夺取军械",
+          "progress_label": "已夺府库(19级)",
+          "story": "郭嘉看着荆州城内地图：「东门内是军械府库——先夺下，关羽的守军没了兵器，就只剩肉搏了。」",
+          "complete_story": "府库被夺下。郭嘉抽出架上的刀：「这些兵器——现在归我们了。关羽做梦也想不到。」",
+          "is_elite": false,
           "reward_exp": 7560
         },
         {
@@ -1074,6 +1777,66 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 8400,
           "reward_gold": 300
+        },
+        {
+          "name": "招降守将",
+          "scene": "太守府",
+          "target_name": "反抗守将",
+          "target_count": 3,
+          "objective": "前往太守府招降3名反抗守将",
+          "progress_label": "已招降守将(20级)",
+          "story": "郭嘉看着太守府内犹豫不决的荆州守将：「廖化已擒，余下的若是识时务——归降可免死。若不识时务——」他望向府门外：「我不缺刀。」",
+          "complete_story": "守将归降。郭嘉将降将名单折好：「这些人以后有用。荆州——不只是打下来的，还要让人心服。」",
+          "is_elite": false,
+          "reward_exp": 7560
+        },
+        {
+          "name": "布防荆州",
+          "scene": "荆州东门",
+          "target_name": "余孽伏兵",
+          "target_count": 5,
+          "objective": "前往荆州城清剿5处关羽余孽伏兵",
+          "progress_label": "已清余孽(22级)",
+          "story": "郭嘉在沙盘上排兵布阵：「荆州虽下，城中还有关羽留下的伏兵和眼线。将军，逐街逐巷查——确保没有隐患。」",
+          "complete_story": "伏兵和眼线被连根拔起。郭嘉写下战报：「荆州已定。白衣渡江之策——大功告成。」",
+          "is_elite": false,
+          "reward_exp": 8400
+        },
+        {
+          "name": "安抚百姓",
+          "scene": "太守府",
+          "target_name": "劫掠乱兵",
+          "target_count": 5,
+          "objective": "前往太守府清除5名劫掠乱兵",
+          "progress_label": "已除乱兵(21级)",
+          "story": "郭嘉站在太守府前：「城破之后必有乱兵。将军——去清理那些趁火打劫的。夺城归夺城，百姓无辜。」",
+          "complete_story": "乱兵被清除。郭嘉对百姓拱手：「江东治下，百姓安居。今日荆州归吴——各位的生活，不会比以前差。」",
+          "is_elite": false,
+          "reward_exp": 8400
+        },
+        {
+          "name": "迎接吕蒙",
+          "scene": "太守府",
+          "target_name": "关羽旧部",
+          "target_count": 5,
+          "objective": "前往太守府击败5名关羽旧部",
+          "progress_label": "已迎吕蒙(24级)",
+          "story": "吕蒙亲自渡江来视察荆州。关羽旧部趁机在太守府作乱。郭嘉拔剑：「主公亲临——你们就这点欢迎？将军——清理门户。」",
+          "complete_story": "旧部被荡平。吕蒙看着满地的尸体，沉默许久后说道：「白衣渡江虽胜——但关羽在北，不可轻敌。」",
+          "is_elite": false,
+          "reward_exp": 9660
+        },
+        {
+          "name": "布告安民",
+          "scene": "荆州东门",
+          "target_name": "反对告示者",
+          "target_count": 3,
+          "objective": "前往荆州城击败3名撕毁告示的反对者",
+          "progress_label": "已安民心(23级)",
+          "story": "郭嘉命人张贴安民告示，但有人撕毁告示煽动民变。「仁政不杀人——但煽动者不在此列。将军，让他们消失。」",
+          "complete_story": "告示被重新贴上，民心渐定。郭嘉看着安定下来的荆州街道：「荆州百姓——今天起是吴国子民了。」",
+          "is_elite": false,
+          "reward_exp": 9660
         }
       ]
     },
@@ -1141,6 +1904,18 @@
           "reward_gold": 200
         },
         {
+          "name": "截获密报",
+          "scene": "蜀军后营",
+          "target_name": "蜀军信使",
+          "target_count": 5,
+          "objective": "前往蜀军后营截获5封蜀军密报",
+          "progress_label": "已截密报(27级)",
+          "story": "李典拿着一封截获的密报：「蜀军各路粮道的调动——全在这里。有了这个，我们的火攻能烧得更准。」",
+          "complete_story": "密报到手。李典看着情报会心一笑：「刘备的粮草路线、补给节点——全暴露了。」",
+          "is_elite": false,
+          "reward_exp": 11340
+        },
+        {
           "name": "夜袭火起",
           "scene": "蜀军连营",
           "target_name": "蜀军守夜兵",
@@ -1163,6 +1938,18 @@
           "reward_exp": 12600
         },
         {
+          "name": "暗设火引",
+          "scene": "蜀军连营",
+          "target_name": "连营守军",
+          "target_count": 5,
+          "objective": "前往蜀军连营击杀5名连营守军",
+          "progress_label": "已清守军(30级)",
+          "story": "李典将几罐火油藏在草丛中：「在蜀军四围预先埋好引火之物。点火之后——火势能从四面同时烧起，他们救都没法救。」",
+          "complete_story": "火引布置完毕。李典望着绵延的蜀军营寨：「就等一个干燥起风的夜晚。」",
+          "is_elite": false,
+          "reward_exp": 12600
+        },
+        {
           "name": "击杀冯习",
           "scene": "蜀军后阵",
           "target_name": "【精】冯习",
@@ -1174,6 +1961,18 @@
           "complete_story": "冯习毙命。李典望着他的尸首：「忠臣——可惜跟错了人。」",
           "reward_exp": 13020,
           "reward_gold": 400
+        },
+        {
+          "name": "火烧辎重",
+          "scene": "蜀军后阵",
+          "target_name": "辎重守卫",
+          "target_count": 5,
+          "objective": "前往蜀军后阵焚烧5处辎重",
+          "progress_label": "已焚辎重(31级)",
+          "story": "李典指着蜀军后阵：「那些辎重车堆满了粮草兵甲——先烧了它们。刘备的兵可以不怕死，但不能没饭吃。」",
+          "complete_story": "辎重被付之一炬。李典望着火光：「刘备连营七百里——这把火烧完，他能带回白帝城的恐怕只剩残兵了。」",
+          "is_elite": false,
+          "reward_exp": 12600
         },
         {
           "name": "击杀张南",
@@ -1188,6 +1987,54 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 13440,
           "reward_gold": 500
+        },
+        {
+          "name": "截断退路",
+          "scene": "马鞍山",
+          "target_name": "蜀军退路守军",
+          "target_count": 5,
+          "objective": "前往马鞍山截击5名蜀军退路守军",
+          "progress_label": "已截退路(33级)",
+          "story": "李典望着马鞍山方向：「刘备若逃——必走马鞍山小道。将军，你带人去堵住退路。今晚火起之后，我要刘备插翅难飞。」",
+          "complete_story": "退路被截断。李典在火光中冷笑：「刘备——你的七百里连营，就是你的七百里坟场。」",
+          "is_elite": false,
+          "reward_exp": 13860
+        },
+        {
+          "name": "夷陵收兵",
+          "scene": "夷陵大营",
+          "target_name": "蜀军残兵",
+          "target_count": 5,
+          "objective": "前往夷陵大营清剿5名蜀军残兵",
+          "progress_label": "已清残兵(34级)",
+          "story": "烧了三天三夜的大火渐熄。李典命人打扫战场：「还有些蜀军残兵藏在山林里——去清干净。夷陵之战，到此为止。」",
+          "complete_story": "战场清扫完毕。李典写下最后的战报：「夷陵大捷——蜀军主力尽灭。」",
+          "is_elite": false,
+          "reward_exp": 13860
+        },
+        {
+          "name": "祭江送魂",
+          "scene": "夷陵大营",
+          "target_name": "怨恨亡灵",
+          "target_count": 5,
+          "objective": "前往夷陵江边祭送5处亡灵",
+          "progress_label": "已祭亡灵(36级)",
+          "story": "夷陵战后，江边浮尸无数。李典长叹一声：「纵是敌人——也都是人生父母养的。将军，去江边祭一祭。身在乱世，至少要留点敬畏。」",
+          "complete_story": "江边祭毕。李典将最后一碗酒洒入江中：「愿来世——天下太平。」",
+          "is_elite": false,
+          "reward_exp": 14700
+        },
+        {
+          "name": "招降残部",
+          "scene": "夷陵大营",
+          "target_name": "拒绝招降者",
+          "target_count": 5,
+          "objective": "前往夷陵大营招降5名蜀军残部",
+          "progress_label": "已招降残部(35级)",
+          "story": "大批蜀军残兵自愿投降。李典命你带人收编：「降者编入东吴老兵营——让他们打杂养活自己，不用当战俘虐待。」",
+          "complete_story": "降兵收编完毕。李典看着降兵名册：「这一仗打完——蜀国短期内无力再东征。吴蜀休兵，才能共同抗曹。」",
+          "is_elite": false,
+          "reward_exp": 14700
         }
       ]
     },
@@ -1267,6 +2114,18 @@
           "reward_gold": 400
         },
         {
+          "name": "追剿刘繇残部",
+          "scene": "会稽",
+          "target_name": "刘繇残部",
+          "target_count": 5,
+          "objective": "前往会稽追剿5名刘繇残部",
+          "progress_label": "已剿残部(38级)",
+          "story": "曹丕指着溃散的刘繇军：「刘繇虽然败退，但残部还在会稽四郊活动。将军——除恶务尽。」",
+          "complete_story": "刘繇残部被肃清。曹丕望着会稽城：「曲阿之后是会稽。孙伯符的江东——已在囊中。」",
+          "is_elite": false,
+          "reward_exp": 15960
+        },
+        {
           "name": "严白虎之乱",
           "scene": "吴郡山",
           "target_name": "山贼",
@@ -1276,6 +2135,18 @@
           "story": "曹丕指着远处山峦：「吴郡山中还有一股山贼——为首者严白虎。此贼趁乱而起，想趁火打劫。将军，灭了他们。」",
           "complete_story": "山贼溃散。曹丕扫视战场：「趁乱打劫的下场——就是被人扫掉。」",
           "reward_exp": 16380
+        },
+        {
+          "name": "攻陷乌程",
+          "scene": "会稽",
+          "target_name": "乌程守军",
+          "target_count": 5,
+          "objective": "前往乌程击杀5名守军",
+          "progress_label": "已破乌程(39级)",
+          "story": "严白虎派兵据守乌程。曹丕展开地图：「乌程是会稽的门户——破了它，会稽城就如熟透的果子。」",
+          "complete_story": "乌程被攻破。严白虎收到消息时脸都绿了。",
+          "is_elite": false,
+          "reward_exp": 15960
         },
         {
           "name": "击杀严白虎",
@@ -1291,6 +2162,18 @@
           "reward_gold": 600
         },
         {
+          "name": "围剿虎豹山",
+          "scene": "吴郡山",
+          "target_name": "虎豹山贼",
+          "target_count": 5,
+          "objective": "前往虎豹山清剿5名山贼",
+          "progress_label": "已平虎豹山(40级)",
+          "story": "严白虎的巢穴在虎豹山。曹丕亲自领兵围山：「严白虎——这些年你祸害吴郡百姓，今日血债血偿。」",
+          "complete_story": "虎豹山贼被剿灭。严白虎的巢穴付之一炬。曹丕收剑：「山贼之乱，自此平息。」",
+          "is_elite": false,
+          "reward_exp": 16800
+        },
+        {
           "name": "孙策赐印",
           "scene": "曲阿",
           "target_name": "不服豪族",
@@ -1302,6 +2185,54 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 17220,
           "reward_gold": 500
+        },
+        {
+          "name": "孙策封将",
+          "scene": "曲阿",
+          "target_name": "豪族刺客",
+          "target_count": 5,
+          "objective": "前往曲阿击杀5名豪族刺客",
+          "progress_label": "已除刺客(41级)",
+          "story": "孙策为奖赏将士，在曲阿设宴封将。正当众将欢饮之际，数名豪族安排的刺客突然杀出——曹丕拍案而起：「将军——护！」",
+          "complete_story": "刺客尽除。孙策面不改色继续饮酒：「想杀我的人多的是——可惜，没有一个活着回去。」",
+          "is_elite": false,
+          "reward_exp": 16800
+        },
+        {
+          "name": "献图归心",
+          "scene": "曲阿",
+          "target_name": "山越族兵",
+          "target_count": 5,
+          "objective": "前往曲阿深山说服5处山越族归附",
+          "progress_label": "已收服山越(43级)",
+          "story": "山越部族盘踞深山，不服孙策统治。曹丕想了想：「强攻不如怀柔。你去给他们带去盐、铁、布——让他们知道归附的好处。」",
+          "complete_story": "山越族献图归附。曹丕看着地图：「江东六郡——加上山越之地。孙氏基业，从此稳固。」",
+          "is_elite": false,
+          "reward_exp": 17640
+        },
+        {
+          "name": "平庐江北",
+          "scene": "曲阿",
+          "target_name": "庐江匪寇",
+          "target_count": 5,
+          "objective": "前往庐江北岸清剿5名江匪",
+          "progress_label": "已清江匪(42级)",
+          "story": "六郡虽平，长江水道仍被江匪骚扰。曹丕望着江面：「商路不通，江东就还是乱世。将军——去吧。让长江恢复太平。」",
+          "complete_story": "江匪被剿灭。商路重开，江面上又有了往来的商船。曹丕叹道：「商人回来，江东才算真正安定。」",
+          "is_elite": false,
+          "reward_exp": 17640
+        },
+        {
+          "name": "扬帆出海",
+          "scene": "曲阿",
+          "target_name": "海盗",
+          "target_count": 5,
+          "objective": "前往曲阿海口清除5艘海盗船",
+          "progress_label": "已清海盗(44级)",
+          "story": "江东既定，海上商路却被海盗骚扰。曹丕皱眉：「陆地上的敌人都死了——海上的怎么还不消停。将军，给我清。」",
+          "complete_story": "海盗船被击沉。曹丕望着恢复了通畅的海面：「陆地六郡——海域也不能少。江东的天地，不该只在岸上。」",
+          "is_elite": false,
+          "reward_exp": 18480
         }
       ]
     },
@@ -1355,6 +2286,18 @@
           "reward_exp": 19740
         },
         {
+          "name": "遣散曹营信使",
+          "scene": "夹石",
+          "target_name": "曹营暗哨",
+          "target_count": 5,
+          "objective": "前往夹石清除5名曹营暗哨",
+          "progress_label": "已清暗哨(47级)",
+          "story": "陆逊在夹石布下伏兵之后皱眉：「曹休狡诈，必派暗哨探查地形。将军——先清了这些眼睛，伏兵的秘密才能保住。」",
+          "complete_story": "暗哨被清除。陆逊在林中展开舆图：「现在——万事俱备。」",
+          "is_elite": false,
+          "reward_exp": 19740
+        },
+        {
           "name": "诱曹休入彀",
           "scene": "石亭山道",
           "target_name": "曹军前哨",
@@ -1375,6 +2318,18 @@
           "progress_label": "已破曹军主力(48级)",
           "story": "陆逊霍然起身：「就是现在！擂鼓——伏兵四起！将军，跟我杀出去——今日，要曹休有来无回。」",
           "complete_story": "曹军大乱。陆逊在乱军中指挥若定：「围住石亭——一个魏军不许放走。」",
+          "reward_exp": 20160
+        },
+        {
+          "name": "诱曹深入",
+          "scene": "石亭山道",
+          "target_name": "曹军偏军",
+          "target_count": 5,
+          "objective": "前往石亭山道击杀5名曹军偏军",
+          "progress_label": "已诱敌(48级)",
+          "story": "陆逊派出一支偏师在石亭山道佯退。他对你低声说：「将军，此去不是真打——边打边退，把曹休引向夹山深处。」",
+          "complete_story": "曹休中计，率主力追入夹山。陆逊立在夹山上，望着曹军的烟尘：「曹休——你太急了。」",
+          "is_elite": false,
           "reward_exp": 20160
         },
         {
@@ -1402,6 +2357,18 @@
           "reward_exp": 21000
         },
         {
+          "name": "截断水源",
+          "scene": "石亭",
+          "target_name": "曹军水夫",
+          "target_count": 5,
+          "objective": "前往石亭水源地击杀5名曹军水夫",
+          "progress_label": "已截水源(50级)",
+          "story": "曹休大军被围在石亭，唯一的水源在白石涧。陆逊手指地图：「断了水源——他们再多人也撑不住三天。」",
+          "complete_story": "水源被截断，曹军士兵用头盔接雨水解渴。陆逊冷眼看着：「渴了？这才刚开始。」",
+          "is_elite": false,
+          "reward_exp": 21000
+        },
+        {
           "name": "决战曹休",
           "scene": "石亭大营",
           "target_name": "【精】曹休",
@@ -1414,6 +2381,54 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 21840,
           "reward_gold": 800
+        },
+        {
+          "name": "夜袭曹营",
+          "scene": "石亭",
+          "target_name": "曹军夜哨",
+          "target_count": 5,
+          "objective": "前往石亭夜袭5名曹军夜哨",
+          "progress_label": "已破夜哨(51级)",
+          "story": "陆逊决定今夜出击：「曹休以为我们会固守包围圈。他错了。今晚——我们去拜访他。」",
+          "complete_story": "夜袭成功，曹军大营一片混乱。陆逊在夜色中收剑：「十万大军——今晚之后，只剩一半。」",
+          "is_elite": false,
+          "reward_exp": 21000
+        },
+        {
+          "name": "石亭庆功",
+          "scene": "石亭大营",
+          "target_name": "曹休残将",
+          "target_count": 5,
+          "objective": "前往石亭大营清剿5名曹休残将",
+          "progress_label": "已清残将(54级)",
+          "story": "曹休已败，石亭战事渐息。但还有零星残将据守在石亭大营外。陆逊命你最后一次出战——将石亭之战的最后一丝抵抗彻底粉碎。",
+          "complete_story": "残将被剿除。石亭战场上再无一杆魏旗飘扬。陆逊在夕阳下提笔写下战报，淡淡道：「石亭大捷。」",
+          "is_elite": false,
+          "reward_exp": 21840
+        },
+        {
+          "name": "缴获辎重",
+          "scene": "夹山",
+          "target_name": "曹军辎重队",
+          "target_count": 5,
+          "objective": "前往夹山缴获5车曹军辎重",
+          "progress_label": "已缴辎重(53级)",
+          "story": "曹军溃退时留下了大批辎重。陆逊策马查看：「粮草、军械、马匹——全收。留给我们的兄弟们。」",
+          "complete_story": "辎重如山。陆逊望着堆积如山的物资：「曹休送的这份大礼——我们却之不恭。」",
+          "is_elite": false,
+          "reward_exp": 21840
+        },
+        {
+          "name": "踏平余寇",
+          "scene": "石亭大营",
+          "target_name": "曹军逃兵",
+          "target_count": 5,
+          "objective": "前往石亭追击5名曹军逃兵",
+          "progress_label": "已平逃兵(55级)",
+          "story": "残存的曹军逃兵躲进了石亭北面的荒山中。陆逊拿着火把走进荒山：「斩草要除根。将军——不能留后患。」",
+          "complete_story": "逃兵被全歼。陆逊将火把丢进最后一个藏兵洞：「石亭——不能再有第二个曹休。」",
+          "is_elite": false,
+          "reward_exp": 22680
         }
       ]
     },
@@ -1484,6 +2499,18 @@
           "reward_exp": 23940
         },
         {
+          "name": "打探风向",
+          "scene": "曹军水寨",
+          "target_name": "曹军水寨哨兵",
+          "target_count": 5,
+          "objective": "前往曹军水寨击杀5名哨兵",
+          "progress_label": "已探风向(57级)",
+          "story": "周瑜望着天空：「我需要知道曹军水寨内部的风向——南风能否贯穿他们整条船链。将军，派人去打探。」",
+          "complete_story": "风向情报到手：曹军水寨正对东南风口。周瑜眼中精光一闪：「天时地利皆在我手。火攻可也。」",
+          "is_elite": false,
+          "reward_exp": 23940
+        },
+        {
           "name": "借东风",
           "scene": "七星坛",
           "target_name": "东风祭品",
@@ -1498,6 +2525,18 @@
           "reward_gold": 400
         },
         {
+          "name": "试射火箭",
+          "scene": "江东水寨",
+          "target_name": "曹军斥候船",
+          "target_count": 3,
+          "objective": "前往江面试射火箭击沉3艘曹军斥候船",
+          "progress_label": "已试火箭(57级)",
+          "story": "周瑜命人取来浸了油的火箭：「黄盖的火船是主力——但其余战船也要配火箭。将军，先在斥候船上试试。」",
+          "complete_story": "火箭试射成功——曹军斥候船被火箭击中，甲板上的干草瞬间燃起大火。周瑜满意地点头：「可以了。」",
+          "is_elite": false,
+          "reward_exp": 23940
+        },
+        {
           "name": "火船冲阵",
           "scene": "赤壁江面",
           "target_name": "曹军战船兵",
@@ -1509,6 +2548,18 @@
           "reward_exp": 24360
         },
         {
+          "name": "河床设障",
+          "scene": "乌林北岸",
+          "target_name": "曹军工程队",
+          "target_count": 5,
+          "objective": "前往乌林北岸击杀5名曹军工程兵",
+          "progress_label": "已毁工程(59级)",
+          "story": "周瑜指着乌林北岸的河滩：「曹操在那里修了三条浮桥——万一火攻不成，他准备从浮桥撤退。将军，去把浮桥拆了。」",
+          "complete_story": "浮桥被焚毁。周瑜望着江面：「退路已断。曹操——你是游回去呢，还是一把火烧干净？」",
+          "is_elite": false,
+          "reward_exp": 24780
+        },
+        {
           "name": "火烧赤壁",
           "scene": "乌林北岸",
           "target_name": "曹军溃兵",
@@ -1517,6 +2568,18 @@
           "progress_label": "已截杀溃兵(59级)",
           "story": "周瑜指着北岸：「曹军溃兵正逃向乌林。将军，截杀——不能让曹操从容撤退。」",
           "complete_story": "溃兵被截杀。周瑜策马望向北方：「曹操——百万大军之梦，该醒了。」",
+          "reward_exp": 24780
+        },
+        {
+          "name": "夜潜敌牢",
+          "scene": "乌林北岸",
+          "target_name": "曹军典狱",
+          "target_count": 5,
+          "objective": "前往乌林北岸劫狱击杀5名典狱",
+          "progress_label": "已劫狱(59级)",
+          "story": "几名东吴细作被曹军俘虏关在乌林北岸的地牢中。周瑜眉头紧锁：「他们知道太多，一旦受刑可能泄密。将军——必须救他们出来。」",
+          "complete_story": "细作被救出，牢房被付之一炬。周瑜看着他们：「辛苦了。赤壁之战后——我亲自为你们请功。」",
+          "is_elite": false,
           "reward_exp": 24780
         },
         {
@@ -1533,6 +2596,19 @@
           "reward_gold": 800
         },
         {
+          "name": "追击于禁",
+          "scene": "华容道",
+          "target_name": "【精】于禁",
+          "target_count": 1,
+          "objective": "击杀追击曹军的【精】于禁",
+          "progress_label": "已击退于禁(60级)",
+          "story": "曹操败走华容道，于禁率精兵断后。周瑜策马追来：「于禁是曹操五子良将之一。将军——此人不可轻敌。」",
+          "complete_story": "于禁被击退。周瑜望着他远去的背影：「五子良将——也不过如此。」",
+          "is_elite": true,
+          "reward_gold": 800,
+          "reward_exp": 25200
+        },
+        {
           "name": "赤壁完胜",
           "scene": "江东水寨",
           "target_name": "【精】曹仁",
@@ -1545,6 +2621,30 @@
           "complete_hint": "返回副本入口领取通关奖励",
           "reward_exp": 25200,
           "reward_gold": 1200
+        },
+        {
+          "name": "清扫江面",
+          "scene": "赤壁江面",
+          "target_name": "曹军战船残兵",
+          "target_count": 5,
+          "objective": "前往赤壁江面清扫5艘曹军残余战船",
+          "progress_label": "已清江面(60级)",
+          "story": "赤壁江面上还有几艘没被火烧完的曹军战船在挣扎。周瑜下令：「一个都不要剩。赤壁之战——必须彻底。」",
+          "complete_story": "江面上再无一杆曹军旗帜。赤壁归于平静。周瑜望着天水相接处：「此战之后——天下三分。」",
+          "is_elite": false,
+          "reward_exp": 25200
+        },
+        {
+          "name": "护送黄盖",
+          "scene": "赤壁江面",
+          "target_name": "魏军拦截船",
+          "target_count": 3,
+          "objective": "护送黄盖火船击沉3艘魏军拦截船",
+          "progress_label": "已护黄盖(60级)",
+          "story": "黄盖的火船需要冲破最后一道拦截才能撞入曹营。周瑜在岸边大喊：「将军！替黄老将军开路——这一撞，将改变天下！」",
+          "complete_story": "拦截船被击沉。黄盖的火船带着熊熊大火撞入曹军水寨——赤壁的夜空被火光照得如同白昼。",
+          "is_elite": false,
+          "reward_exp": 25200
         }
       ]
     }
