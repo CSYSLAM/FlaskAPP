@@ -87,6 +87,19 @@ class QuestService:
         return qid.startswith(cls._country_prefix(player)) or qid.startswith(cls._ALL_COUNTRY_PREFIX)
 
     @classmethod
+    def _country_chain_complete(cls, player):
+        """玩家是否已完成本国 1-39 主线(共享主线 40+ 入口的前置条件)。各国主线不同。"""
+        prefix = cls._country_prefix(player)
+        quests = cls._load()
+        country_main = [qid for qid, q in quests.items()
+                        if qid.startswith(prefix) and q.get('type') == 'main'
+                        and q.get('level_required', 0) < 40]
+        if not country_main:
+            return True
+        completed = set(cls.get_completed_quests(player))
+        return all(qid in completed for qid in country_main)
+
+    @classmethod
     def get_current_main_quest(cls, player):
         """Get the player's current main quest or the next available one."""
         completed = cls.get_completed_quests(player)
@@ -119,6 +132,11 @@ class QuestService:
             return False, "这不是你本国的任务"
         if player.level < q.get('level_required', 1):
             return False, f"需要等级{q['level_required']}"
+        # 共享主线入口(无前置)需先完成本国 1-39 主线
+        if q.get('type') == 'main' and quest_id.startswith(cls._ALL_COUNTRY_PREFIX) \
+                and not q.get('prerequisite') \
+                and not cls._country_chain_complete(player):
+            return False, "需先完成本国主线任务(1-39级)"
         completed = cls.get_completed_quests(player)
         if quest_id in completed:
             return False, "任务已完成"
@@ -345,6 +363,11 @@ class QuestService:
             if qid not in completed:
                 prereq = q.get('prerequisite')
                 if (not prereq) or (prereq in completed):
+                    # 共享主线入口还需本国主线完成才展示
+                    if q.get('type') == 'main' and qid.startswith(cls._ALL_COUNTRY_PREFIX) \
+                            and not prereq and not cls._country_chain_complete(player):
+                        seen.add(qid)
+                        continue
                     available.append(q)
                     seen.add(qid)
         return available
