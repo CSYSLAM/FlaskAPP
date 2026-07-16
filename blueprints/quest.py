@@ -13,7 +13,7 @@ def quest_list():
     player = current_user
     active = QuestService.get_active_quests(player)
     completed = QuestService.get_completed_quests(player)
-    all_quests = QuestService.get_all_quests()
+    all_quests = QuestService.get_country_quests(player)
 
     active_list = []
     for qid, progress in active.items():
@@ -34,7 +34,7 @@ def quest_list():
 @login_required
 def available_quests():
     player = current_user
-    all_quests = QuestService.get_all_quests()
+    all_quests = QuestService.get_country_quests(player)
     completed = QuestService.get_completed_quests(player)
     active = QuestService.get_active_quests(player)
 
@@ -46,7 +46,7 @@ def available_quests():
         if ok:
             available.append(q)
             continue
-        # 展示前置已满足但暂因等级不足不可接取的任务
+        # 展示前置已满足但暂因等级不足不可接取的任务(仅本国)
         prereq = q.get('prerequisite')
         if (not prereq) or (prereq in completed):
             available.append(q)

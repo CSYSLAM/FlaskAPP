@@ -25,6 +25,12 @@ class QuestService:
         return qid.startswith(cls._country_prefix(player))
 
     @classmethod
+    def get_country_quests(cls, player):
+        """返回玩家本国的所有主线任务(按country前缀过滤),供任务列表/可接任务页展示。"""
+        prefix = cls._country_prefix(player)
+        return {qid: q for qid, q in cls._load().items() if qid.startswith(prefix)}
+
+    @classmethod
     def _load(cls):
         if cls._quests is None:
             import os

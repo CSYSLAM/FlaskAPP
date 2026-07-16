@@ -235,7 +235,11 @@ def level_up():
         'max_health': player.max_health, 'max_mana': player.max_mana,
         'crit_rate': player.crit_rate, 'dodge_rate': player.dodge_rate,
     }
-    leveled = PlayerService.level_up(player)
+    # 手动升级：经验达标才可升，升级后 HP/MP 恢复满
+    if not PlayerService.can_level_up(player):
+        flash("经验不足，无法升级")
+        return redirect(url_for("player.character"))
+    leveled = PlayerService.level_up_now(player)
     db.session.commit()
     if leveled:
         # 计算本次升级获得的属性增量
@@ -255,9 +259,9 @@ def level_up():
             else:
                 parts.append(f"{name}+{int(delta)}")
         if parts:
-            flash(f"恭喜升到{player.level}级！本次加成：{'，'.join(parts)}")
+            flash(f"恭喜升到{player.level}级！本次加成：<span style='color:#136ec2'>{'，'.join(parts)}</span>", 'levelup')
         else:
-            flash(f"恭喜升到{player.level}级！")
+            flash(f"恭喜升到{player.level}级！", 'levelup')
     return redirect(url_for("player.character"))
 
 

@@ -295,14 +295,28 @@ class PlayerService:
 
     @classmethod
     def gain_experience(cls, player, amount):
+        # 手动升级：经验够时不再自动升级，由玩家在界面手动点击升级
+        # （升级时 HP/MP 恢复满，见 level_up / level_up_now）
         player.experience += amount
-        old_level = player.level
-        while player.experience >= player.exp_to_next_level:
-            if not cls.level_up(player):
-                break
-        if player.level > old_level:
-            from services.achievement_service import AchievementService
-            AchievementService.check(player, 'level', player.level)
+
+    @classmethod
+    def can_level_up(cls, player):
+        """是否可手动升级(经验达升级线)。"""
+        return player.experience >= player.exp_to_next_level
+
+    @classmethod
+    def level_up_now(cls, player):
+        """玩家手动升级：消耗经验升一级，HP/MP 恢复满。返回是否成功。"""
+        if not cls.can_level_up(player):
+            return False
+        if not cls.level_up(player):
+            return False
+        # 升级后状态恢复满
+        player.health = cls.get_max_health(player)
+        player.mana = cls.get_max_mana(player)
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'level', player.level)
+        return True
 
     @classmethod
     def rest(cls, player):
