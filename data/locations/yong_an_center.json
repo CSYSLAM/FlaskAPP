@@ -10,7 +10,8 @@
         "south": "yong_an_center.南前街"
       },
       "npcs": [
-        "npc_yong_an_center_任务使者"
+        "npc_yong_an_center_任务使者",
+        "npc_yong_an_center_关羽副本"
       ]
     },
     "北前街": {

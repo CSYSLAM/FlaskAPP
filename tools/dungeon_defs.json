@@ -1,7 +1,7 @@
 {
   "new_cities": [
     "jianing_center",
-    "yongan_center",
+    "yong_an_center",
     "wujun_center"
   ],
   "dungeons": [
@@ -201,9 +201,9 @@
       "name": "千里单骑(26级副本)",
       "level": 26,
       "entry_npc_name": "关羽",
-      "entry_city_stem": "yongan_center",
+      "entry_city_stem": "yong_an_center",
       "entry_city_scene": "广场",
-      "return_location": "yongan_center.广场",
+      "return_location": "yong_an_center.广场",
       "total_exp": 21000,
       "total_gold": 2200,
       "story_intro": [

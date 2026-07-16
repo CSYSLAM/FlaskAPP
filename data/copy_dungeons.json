@@ -1349,10 +1349,10 @@
     "name": "千里单骑(26级副本)",
     "is_copy_dungeon": true,
     "entry_location": "qianli_danqi_copy_live.东岭关",
-    "entry_npc_id": "npc_yongan_center_关羽副本",
+    "entry_npc_id": "npc_yong_an_center_关羽副本",
     "entry_item_id": "shenyou_guo",
     "entry_item_count": 1,
-    "return_location": "yongan_center.广场",
+    "return_location": "yong_an_center.广场",
     "story_intro": [
       "关羽挂印封金，千里走单骑。青龙偃月刀寒光凛冽，美髯公神色坚毅。",
       "关将军将二嫂的马车护在身后，沉声道：「某与大哥桃园结义，誓同生死。今大哥在河北，某纵粉身碎骨，也要护送二嫂平安归去。」",

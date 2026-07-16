@@ -410,13 +410,33 @@ class CopyDungeonService:
 
     @classmethod
     def _resolve_return_location(cls, player, dungeon_id):
-        """根据玩家进入时使用的入口NPC，解析正确的返回位置。"""
+        """根据玩家进入时使用的入口NPC，解析正确的返回位置。
+        优先级：_ENTRY_RETURN_MAP > 入口NPC所在场景 > definition.return_location"""
         state = cls.get_state(player, dungeon_id)
         entry_npc = state.get('_entry_npc', '')
+        # 1) 显式映射（如左慈副本三国不同入口）
         if entry_npc and entry_npc in cls._ENTRY_RETURN_MAP:
             return cls._ENTRY_RETURN_MAP[entry_npc]
+        # 2) 反查入口NPC所在的世界场景（任意副本通用）
+        if entry_npc:
+            scene_id = cls._find_npc_scene(entry_npc)
+            if scene_id:
+                return scene_id
+        # 3) 兜底：副本定义的 return_location
         definition = cls.get_definition(dungeon_id)
         return definition.get('return_location') if definition else None
+
+    @classmethod
+    def _find_npc_scene(cls, npc_id):
+        """扫描所有非副本场景，找出放置了该 NPC 的场景 id。"""
+        locations = DataService.get_locations()
+        for loc_id, loc in locations.items():
+            if loc.get('is_copy_map'):
+                continue
+            npcs = loc.get('npcs', []) or []
+            if npc_id in npcs:
+                return loc_id
+        return None
 
     @classmethod
     def _get_daily_state(cls, player):
@@ -509,13 +529,16 @@ class CopyDungeonService:
         if not definition:
             return False, '副本不存在'
 
+        # 先解析返回位置（此时 state 还在，_entry_npc 可读）
+        return_location = cls._resolve_return_location(player, dungeon_id)
+
+        # 再清空 state（副本进度，但消耗的神游果/免费次数不返还）
         data, root = cls._ensure_state_root(player)
         if dungeon_id in root:
             root.pop(dungeon_id, None)
             data[cls.STATE_KEY] = root
             player.activity_data = data
 
-        return_location = cls._resolve_return_location(player, dungeon_id)
         if return_location:
             player.current_location = return_location
 

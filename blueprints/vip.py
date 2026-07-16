@@ -154,9 +154,11 @@ def teleport_page():
         return redirect(url_for('vip.index'))
 
     locations = DataService.get_locations()
-    # Group by area
+    # Group by area, excluding copy dungeon maps
     areas = {}
     for loc_id, loc in locations.items():
+        if loc.get('is_copy_map'):
+            continue
         area = loc.get('area_name', '未知')
         if area not in areas:
             areas[area] = []
