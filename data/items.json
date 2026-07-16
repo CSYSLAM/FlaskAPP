@@ -4515,5 +4515,41 @@
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0
+  },
+  "quest_jinmi_xin": {
+    "name": "烬焰密信",
+    "type": "quest",
+    "description": "截获的烬焰盟密信，墨迹未干，暗藏接头暗号。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_yuxi_tapan": {
+    "name": "玉玺拓片",
+    "type": "quest",
+    "description": "江陵水寨密室中所得的传国玉玺拓片，纹路诡谲。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_luoyang_bu": {
+    "name": "洛阳布防图",
+    "type": "quest",
+    "description": "汉中军帐中夺得的洛阳布防图，标注烛龙总坛虚实。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_chuanguo_yuxi": {
+    "name": "传国玉玺",
+    "type": "quest",
+    "description": "失传已久的传国玉玺，和氏之璧琢成，乃天下气运所系。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
   }
 }

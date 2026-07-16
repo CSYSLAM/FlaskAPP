@@ -6,7 +6,10 @@
       "exits": {
         "north": "hanzhong_center.南城楼",
         "south": "hanzhong_south.古镇"
-      }
+      },
+      "monsters": [
+        "monster_q_廖化"
+      ]
     },
     "古镇": {
       "name": "古镇",

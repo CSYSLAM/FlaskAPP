@@ -7,7 +7,10 @@
         "north": "luoyang_center.南城楼",
         "south": "luoyang_south.汜水关"
       },
-      "monster_type": "monster_luoyang_south_董军长弓手"
+      "monster_type": "monster_luoyang_south_董军长弓手",
+      "monsters": [
+        "monster_q_虎豹队长"
+      ]
     },
     "汜水关": {
       "name": "汜水关",

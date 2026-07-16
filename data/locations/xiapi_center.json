@@ -13,7 +13,8 @@
         "npc_xiapi_center_任务使者",
         "npc_xiapi_center_下邳将官",
         "npc_xiapi_center_战场军团使者",
-        "npc_xiapi_center_比武大使"
+        "npc_xiapi_center_比武大使",
+        "npc_xiapi_center_水镜先生"
       ]
     },
     "太守府": {
@@ -22,7 +23,8 @@
         "east": "xiapi_center.北前街"
       },
       "npcs": [
-        "npc_xiapi_center_吕布荣誉"
+        "npc_xiapi_center_吕布荣誉",
+        "npc_xiapi_center_陈宫"
       ]
     },
     "北前街": {
@@ -65,7 +67,8 @@
         "west": "xiapi_center.北前街"
       },
       "npcs": [
-        "npc_xiapi_center_金掌柜仓库"
+        "npc_xiapi_center_金掌柜仓库",
+        "npc_xiapi_center_糜竺"
       ]
     },
     "客栈": {
@@ -74,7 +77,8 @@
         "south": "xiapi_center.东后街"
       },
       "npcs": [
-        "npc_xiapi_center_王老板"
+        "npc_xiapi_center_王老板",
+        "npc_xiapi_center_蔡文姬"
       ]
     },
     "西前街": {
@@ -120,7 +124,10 @@
       "name": "酒馆",
       "exits": {
         "north": "xiapi_center.西中街"
-      }
+      },
+      "npcs": [
+        "npc_xiapi_center_影"
+      ]
     },
     "东前街": {
       "name": "东前街",

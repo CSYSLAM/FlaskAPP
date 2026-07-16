@@ -11,7 +11,9 @@
       },
       "npcs": [
         "npc_hanzhong_center_任务使者",
-        "npc_hanzhong_center_摸金校尉活动"
+        "npc_hanzhong_center_摸金校尉活动",
+        "npc_xiapi_center_水镜先生",
+        "npc_hanzhong_center_田豫"
       ]
     },
     "太守府": {
@@ -95,7 +97,8 @@
         "north": "hanzhong_center.西中街"
       },
       "npcs": [
-        "npc_hanzhong_center_店小二"
+        "npc_hanzhong_center_店小二",
+        "npc_hanzhong_center_胡昭"
       ]
     },
     "西后街": {

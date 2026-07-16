@@ -10,6 +10,8 @@ class QuestService:
     # 国家 -> 主线任务id前缀。主线任务按国家隔离,玩家只走本国任务链。
     # 魏=main_wei_xx, 吴=main_wu_xx, 蜀=main_shu_xx
     _COUNTRY_PREFIX = {'魏': 'main_wei_', '吴': 'main_wu_', '蜀': 'main_shu_'}
+    # 共享主线前缀: 三国通用,不分国家 (如 40-60 级中立四城共享主线 main_all_xx)
+    _ALL_COUNTRY_PREFIX = 'main_all_'
 
     @classmethod
     def _country_prefix(cls, player):
@@ -19,16 +21,23 @@ class QuestService:
 
     @classmethod
     def _is_own_country_quest(cls, player, qid):
-        """该任务是否属于玩家本国(按id前缀判断)。非main_开头(如支线)不限制。"""
-        if not qid or not qid.startswith('main_'):
+        """该任务是否属于玩家本国(按id前缀判断)。非main_开头(如支线)不限制。
+        共享主线(main_all_)对三国均可见。"""
+        if not qid:
+            return False
+        if qid.startswith(cls._ALL_COUNTRY_PREFIX):
+            return True
+        if not qid.startswith('main_'):
             return True
         return qid.startswith(cls._country_prefix(player))
 
     @classmethod
     def get_country_quests(cls, player):
-        """返回玩家本国的所有主线任务(按country前缀过滤),供任务列表/可接任务页展示。"""
+        """返回玩家本国的所有主线任务(按country前缀过滤),供任务列表/可接任务页展示。
+        共享主线(main_all_)三国通用,一并返回。"""
         prefix = cls._country_prefix(player)
-        return {qid: q for qid, q in cls._load().items() if qid.startswith(prefix)}
+        return {qid: q for qid, q in cls._load().items()
+                if qid.startswith(prefix) or qid.startswith(cls._ALL_COUNTRY_PREFIX)}
 
     @classmethod
     def _load(cls):
@@ -73,22 +82,26 @@ class QuestService:
         player.completed_quests = json.dumps(data, ensure_ascii=False)
 
     @classmethod
+    def _is_main_for_player(cls, player, qid):
+        """该主线任务是否属于玩家当前应推进的链(本国主线或共享主线)。"""
+        return qid.startswith(cls._country_prefix(player)) or qid.startswith(cls._ALL_COUNTRY_PREFIX)
+
+    @classmethod
     def get_current_main_quest(cls, player):
         """Get the player's current main quest or the next available one."""
         completed = cls.get_completed_quests(player)
         active = cls.get_active_quests(player)
         all_quests = cls._load()
-        prefix = cls._country_prefix(player)
-        # Find active main quest (仅本国主线)
+        # Find active main quest (本国主线 或 共享主线)
         for qid in active:
-            if not qid.startswith(prefix):
+            if not cls._is_main_for_player(player, qid):
                 continue
             q = all_quests.get(qid)
             if q and q.get('type') == 'main':
                 return q
-        # Find next uncompleted main quest (仅本国主线)
+        # Find next uncompleted main quest (本国主线 或 共享主线)
         for qid, q in all_quests.items():
-            if not qid.startswith(prefix):
+            if not cls._is_main_for_player(player, qid):
                 continue
             if q.get('type') == 'main' and qid not in completed:
                 prereq = q.get('prerequisite')
