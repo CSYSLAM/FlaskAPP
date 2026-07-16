@@ -1368,7 +1368,7 @@
     "capacity": 0.1
   },
   "jz_honor_scroll": {
-    "name": "荣誉卷轴",
+    "name": "高级荣誉卷轴",
     "type": "material",
     "description": "使用后可获得10点荣誉值",
     "price": 500,
@@ -2931,6 +2931,15 @@
     "is_usable": false,
     "capacity": 0
   },
+  "quest_jiashu_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "曹彰写给曹樱的回信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
   "quest_fancai": {
     "name": "饭菜",
     "type": "quest",
@@ -4453,6 +4462,15 @@
     "is_usable": false,
     "capacity": 0
   },
+  "quest_wu_xin_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "孙策写给孙尚香的回信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
   "quest_wu_gengdian": {
     "name": "羹点",
     "type": "quest",
@@ -4475,6 +4493,15 @@
     "name": "家信",
     "type": "quest",
     "description": "刘雅写给刘封的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_xin_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "刘封写给刘雅的回信",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,

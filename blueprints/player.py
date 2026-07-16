@@ -686,9 +686,31 @@ def bulk_use_item(item_id):
         return redirect(url_for('player.inventory', category=cat, page=page, per_page=per_page))
 
     quantity = min(quantity, inv.quantity)
+    if quantity < 1:
+        return redirect(url_for('player.view_item', item_id=item_id,
+                                is_bound='1' if bound_val else '0',
+                                category=cat, page=page, per_page=per_page))
     success_count = ItemService.bulk_use(player, item_id, quantity, is_bound=bound_val)
     flash(f"成功使用{success_count}个")
+
+    # 没用完 → 留在详情页；用完了 → 回背包当前页
+    remaining = DataService.get_inventory_item(player.id, item_id, is_bound=bound_val)
+    if remaining and remaining.quantity > 0:
+        return redirect(url_for('player.view_item', item_id=item_id,
+                                is_bound='1' if bound_val else '0',
+                                category=cat, page=page, per_page=per_page))
     return redirect(url_for('player.inventory', category=cat, page=page, per_page=per_page))
+
+
+def _is_quick_use_item(item_data):
+    """血石/魔石/荣誉卷轴 详情页启用「一键使用 / 批量使用」。"""
+    if not item_data or not item_data.get('is_usable', True):
+        return False
+    name = item_data.get('name', '')
+    # 宝箱/特惠包类不参与（如 大血石特惠包）
+    if item_data.get('type') == 'chest' or '包' in name:
+        return False
+    return ('血石' in name) or ('魔石' in name) or (name == '荣誉卷轴')
 
 
 @player_bp.route("/view_item/<item_id>")
@@ -697,6 +719,9 @@ def view_item(item_id):
     player = current_user
     is_bound = request.args.get('is_bound')
     from_page = request.args.get('from', 'inventory')  # 来源页面：inventory 或 equipment
+    cat = request.args.get('category', '全部')
+    pg = request.args.get('page', '1')
+    perpg = request.args.get('per_page', '10')
     bound_val = None
     if is_bound == '1':
         bound_val = True
@@ -728,6 +753,10 @@ def view_item(item_id):
                 is_bound=inv.is_bound if inv else False,
                 quantity=inv.quantity if inv else 0,
                 from_page=from_page,
+                category=cat,
+                page=pg,
+                per_page=perpg,
+                quick_use=_is_quick_use_item(item_data),
             )
             if item_id == 'lt_forget_page':
                 context['forget_page_count'] = inv.quantity if inv else 0

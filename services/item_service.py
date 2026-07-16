@@ -7,7 +7,8 @@ from models.player import PlayerModel
 class ItemService:
 
     @classmethod
-    def use_item(cls, player, item_id, is_bound=None):
+    def use_item(cls, player, item_id, is_bound=None,
+                 run_achievement=True, commit=True):
         inv = DataService.get_inventory_item(player.id, item_id, is_bound=is_bound)
         if not inv or inv.quantity <= 0:
             return False, "物品不存在或数量不足"
@@ -345,8 +346,9 @@ class ItemService:
         if track_name:
             usage[f"name:{track_name}"] = usage.get(f"name:{track_name}", 0) + 1
         player.item_usage = usage
-        from services.achievement_service import AchievementService
-        AchievementService.check(player, 'item_use')
+        if run_achievement:
+            from services.achievement_service import AchievementService
+            AchievementService.check(player, 'item_use')
 
         # Process grant_lieutenant effect (soul items) — actually grant the lieutenant
         if grant_lieutenant:
@@ -395,7 +397,8 @@ class ItemService:
 
         # (item already consumed above)
 
-        db.session.commit()
+        if commit:
+            db.session.commit()
 
         effect_text = "、".join(effect_text_parts) if effect_text_parts else "使用了物品"
         player.item_effect = effect_text
@@ -407,11 +410,18 @@ class ItemService:
         if not inv or inv.quantity < quantity:
             return 0
 
+        # 在单个事务里逐次使用，最后统一提交 + 只做一次成就检查，
+        # 避免“每用一个就 commit 一次 + 全量扫一遍成就”带来的卡顿。
         success_count = 0
         for _ in range(quantity):
-            success, _ = cls.use_item(player, item_id, is_bound=is_bound)
+            success, _ = cls.use_item(player, item_id, is_bound=is_bound,
+                                     run_achievement=False, commit=False)
             if success:
                 success_count += 1
+        db.session.commit()
+        if success_count > 0:
+            from services.achievement_service import AchievementService
+            AchievementService.check(player, 'item_use')
         return success_count
 
     @classmethod

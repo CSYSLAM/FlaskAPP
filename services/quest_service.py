@@ -154,9 +154,11 @@ class QuestService:
         progress = active[quest_id]
         if progress.get('progress', 0) < progress.get('target', 1):
             return False, "任务目标未完成"
-        # For deliver_item: consume item from inventory
+        # For deliver_item / collect_item: consume the item from inventory.
+        # deliver_item 交出的材料、collect_item 收集的证明,交任务后都应从背包扣除,
+        # 否则会出现“交了任务材料背包还有”的残留。
         obj = q.get('objective', {})
-        if obj.get('type') == 'deliver_item':
+        if obj.get('type') in ('deliver_item', 'collect_item'):
             item_id = obj.get('item_id', '')
             DataService.remove_item_from_inventory(player.id, item_id, obj.get('count', 1))
 
