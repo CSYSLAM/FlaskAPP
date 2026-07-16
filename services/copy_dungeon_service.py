@@ -11,6 +11,45 @@ class CopyDungeonService:
         'npc_wujun_center_左慈副本': 'wujun_center.广场',
     }
 
+    # 城市→国家 映射（用于过滤本国副本入口）
+    _CITY_TO_COUNTRY = {
+        'beiping': '魏', 'jinyang': '魏', 'xuchang': '魏',
+        'jianing': '蜀', 'yong_an': '蜀', 'chengdu': '蜀', 'jiangling': '蜀',
+        'wujun': '吴', 'jianye': '吴', 'chaisang': '吴',
+        'luoyang': '魏',  # 洛阳为中立城,下方特殊处理让三国都可见
+    }
+    _NEUTRAL_CITIES = {'luoyang'}  # 中立城市: 三国通用副本入口
+
+    @classmethod
+    def get_country_dungeon_entries(cls, player):
+        """返回玩家本国的副本入口列表 [(dungeon_id, dungeon_name, entry_scene_id, scene_name), ...]"""
+        country = getattr(player, 'country', None) or '魏'
+        entries = []
+        for did, dv in cls.get_definitions().items():
+            eid = dv.get('entry_npc_id', '')
+            if not eid:
+                continue
+            scene_id = cls._find_npc_scene(eid)
+            if not scene_id:
+                continue
+            # 提取场景所在城市的 stem（如 yong_an_center.广场 → yong_an_center）
+            stem = scene_id.rsplit('.', 1)[0] if '.' in scene_id else scene_id
+            # 匹配城市→国家（支持 yong_an 等含下划线的城市名）
+            matched_country = None
+            is_neutral = False
+            for city_key, city_country in cls._CITY_TO_COUNTRY.items():
+                if stem.startswith(city_key):
+                    matched_country = city_country
+                    break
+            for nc in cls._NEUTRAL_CITIES:
+                if stem.startswith(nc):
+                    is_neutral = True
+                    break
+            if matched_country == country or is_neutral:
+                scene_name = scene_id.rsplit('.', 1)[-1] if '.' in scene_id else scene_id
+                entries.append((did, dv.get('name', did), scene_id, scene_name))
+        return entries
+
     @classmethod
     def _grant_reward(cls, player, reward):
         if not reward:

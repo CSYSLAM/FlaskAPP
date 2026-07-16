@@ -153,6 +153,12 @@ def teleport_page():
         flash("VIP未生效，无法使用特权传送")
         return redirect(url_for('vip.index'))
 
+    # 副本内禁用传送
+    loc = DataService.get_location(player.current_location)
+    if loc and loc.get('is_copy_map'):
+        flash("副本内无法使用传送，请先离开副本")
+        return redirect(url_for('game.scene'))
+
     locations = DataService.get_locations()
     # Group by area, excluding copy dungeon maps
     areas = {}

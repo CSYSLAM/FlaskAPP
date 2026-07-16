@@ -5260,7 +5260,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "杨散",
-      "count": 10
+      "count": 1
     },
     "rewards": {
       "experience": 6500,

@@ -65,6 +65,23 @@ class MapService:
         return {'success': True, 'msg': f'已传送至【{target}】广场'}
 
     @classmethod
+    def teleport_to_scene(cls, player, scene_id, scene_name=''):
+        """传送至指定场景ID（用于副本入口等）。VIP免费，非VIP消耗孔明灯。"""
+        locations = DataService.get_locations()
+        if scene_id not in locations:
+            return {'success': False, 'msg': '目标场景不存在'}
+
+        if not player.is_vip:
+            inv = DataService.get_inventory_item(player.id, 'kongming_lantern')
+            if not inv or inv.quantity < 1:
+                return {'success': False, 'msg': '非VIP传送需要消耗1个孔明灯'}
+            DataService.remove_item_from_inventory(player.id, 'kongming_lantern', 1)
+
+        player.current_location = scene_id
+        db.session.commit()
+        return {'success': True, 'msg': f'已传送至【{scene_name or scene_id}】'}
+
+    @classmethod
     def town(cls, player):
         """
         回城 - 快速前往所在区域驿站，消耗回城符1个

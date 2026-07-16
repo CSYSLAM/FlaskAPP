@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from services import db
 from services.data_service import DataService
 from services.map_service import MapService
+from services.copy_dungeon_service import CopyDungeonService
 
 map_bp = Blueprint('map', __name__, url_prefix='/map')
 
@@ -31,7 +32,7 @@ def teleport():
 
     location = DataService.get_location(player.current_location)
     if location and location.get('is_copy_map'):
-        flash("副本内无法使用传送，请先放弃副本再离开")
+        flash("副本内无法使用传送，请先离开副本")
         return redirect(url_for('game.scene'))
 
     if request.method == "POST":
@@ -45,7 +46,27 @@ def teleport():
                 flash(msg)
                 return redirect(url_for('game.scene'))
 
-    return render_template("map_teleport.html", player=player, msg=msg, copy_dungeons=DataService.get_copy_dungeons())
+    # 获取本国副本入口列表
+    country_entries = CopyDungeonService.get_country_dungeon_entries(player)
+    return render_template("map_teleport.html", player=player, msg=msg,
+                         copy_dungeons=DataService.get_copy_dungeons(),
+                         country_entries=country_entries)
+
+
+@map_bp.route("/goto_scene/<path:scene_id>")
+@login_required
+def goto_scene(scene_id):
+    """传送到指定场景（用于副本入口传送）"""
+    player = current_user
+    location = DataService.get_location(player.current_location)
+    if location and location.get('is_copy_map'):
+        flash("副本内无法使用传送，请先离开副本")
+        return redirect(url_for('game.scene'))
+    result = MapService.teleport_to_scene(player, scene_id)
+    flash(result['msg'])
+    if result['success']:
+        return redirect(url_for('game.scene'))
+    return redirect(url_for('map.teleport'))
 
 
 @map_bp.route("/teleport_go/<target>")
