@@ -1,5 +1,5 @@
-# # 1. 丢弃 app.py 和 game1.db 的本地修改，恢复成远程版本
-# git checkout -- app.py instance/game1.db
+# # 1. 丢弃 app.py 和 game_data.db 的本地修改，恢复成远程版本
+# git checkout -- app.py instance/game_data.db
 
 # # 2. 删除本地多余的 flask_app.py（因为远程也有这个文件，会冲突）
 # rm flask_app.py
@@ -296,6 +296,16 @@ def create_app():
             db.session.commit()
         except Exception:
             db.session.rollback()
+        # 战斗界面生命/魔法净变化括号显示(带符号)
+        for _col_def in (
+            "ALTER TABLE players ADD COLUMN last_hp_delta INTEGER DEFAULT 0",
+            "ALTER TABLE players ADD COLUMN last_mp_delta INTEGER DEFAULT 0",
+        ):
+            try:
+                db.session.execute(db.text(_col_def))
+                db.session.commit()
+            except Exception:
+                db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN warehouse_gold INTEGER DEFAULT 0"))
             db.session.commit()
@@ -425,6 +435,33 @@ def create_app():
             p.player_uid = uid
         if players_without_uid:
             db.session.commit()
+
+    # 服务端的 500 错误兜底:把完整 traceback 落盘,便于生产环境排查
+    # (gunicorn 的 --error-logfile - 在手机控制台部署下会被丢弃,导致 500 无迹可寻)。
+    import traceback as _tb
+    import threading as _threading
+    import time as _time
+    _err_lock = _threading.Lock()
+
+    @app.errorhandler(500)
+    def _log_server_error(e):
+        try:
+            from pathlib import Path as _Path
+            _log_dir = app.instance_path
+            _Path(_log_dir).mkdir(parents=True, exist_ok=True)
+            _trace = "".join(_tb.format_exception(type(e), e, e.__traceback__))
+            _stamp = _time.strftime("%Y-%m-%d %H:%M:%S")
+            _line = f"\n===== 500 @ {_stamp} =====\n{_trace}\n"
+            with _err_lock:
+                with open(_Path(_log_dir) / "flask_error.log", "a", encoding="utf-8") as _f:
+                    _f.write(_line)
+        except Exception:
+            pass
+        # 返回简洁的生产错误页(不泄露细节)
+        from flask import make_response
+        return make_response(
+            "<h1>Internal Server Error</h1><p>The server encountered an internal "
+            "error and was unable to complete your request.</p>", 500)
 
     return app
 

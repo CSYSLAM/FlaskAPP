@@ -76,8 +76,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 25,
@@ -96,7 +96,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "清修道人，慈眉善目，好言吉凶祸福。",
+    "description": "长宁道长",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -130,7 +130,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "曹操首席谋士，鬼才，料事如神，英年早逝。",
+    "description": "郭嘉【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -164,7 +164,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "北平诸侯，白马义从之主，雄踞幽州一方。",
+    "description": "公孙瓒【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -198,7 +198,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "曹魏谋臣，刚戾能断，识人于微末。",
+    "description": "程昱",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -232,7 +232,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "华大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -266,7 +266,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -300,7 +300,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -391,7 +391,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "云游的智者，胸藏锦囊，指点迷津。",
+    "description": "智者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -462,8 +462,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 12,
@@ -482,7 +482,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "汉中车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -685,8 +685,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -872,8 +872,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -1374,8 +1374,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -1520,7 +1520,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -1554,7 +1554,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "北平车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -1588,7 +1588,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -1622,7 +1622,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "北平铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -1656,7 +1656,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "镇守南门的主将，盘查往来人等。",
+    "description": "城南守将",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -1722,8 +1722,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 30,
@@ -1774,8 +1774,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 40,
@@ -1952,8 +1952,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 35,
@@ -2029,7 +2029,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东汉方士，号乌角先生，戏弄权贵的仙人。",
+    "description": "左慈【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -2087,7 +2087,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -2121,7 +2121,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "李铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -2155,7 +2155,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -2226,8 +2226,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 22,
@@ -2409,8 +2409,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 17,
@@ -2461,8 +2461,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 45,
@@ -2522,7 +2522,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 55,
@@ -2573,8 +2573,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 47,
@@ -2634,7 +2634,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 75,
@@ -2759,7 +2759,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 65,
@@ -2819,7 +2819,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 70,
@@ -2944,7 +2944,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 60,
@@ -3069,7 +3069,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 82,
@@ -3129,7 +3129,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 87,
@@ -3245,8 +3245,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 37,
@@ -3265,7 +3265,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3299,7 +3299,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "河内割据之帅，曾于乱中护驾汉献帝。",
+    "description": "张扬【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3333,7 +3333,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3367,7 +3367,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3401,7 +3401,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "店里的伙计，端茶倒水，眼明手快。",
+    "description": "店小二",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3435,7 +3435,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "晋阳车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3469,7 +3469,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3503,7 +3503,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3537,7 +3537,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "晋阳铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3571,7 +3571,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3605,7 +3605,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "曹魏儒将，好学谦和，合肥守城名将。",
+    "description": "李典【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3639,7 +3639,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3673,7 +3673,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3707,7 +3707,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3741,7 +3741,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "魏武帝，挟天子以令诸侯，一代枭雄。",
+    "description": "曹操【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3775,7 +3775,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "金枝玉叶的小公主，逗她开心有赏。",
+    "description": "小公主",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3809,7 +3809,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军情传令之使，关乎军团征伐之事。",
+    "description": "军团使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3843,7 +3843,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "曹操长子，温厚孝悌，宛城之难殉身。",
+    "description": "曹昂【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3877,7 +3877,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3911,7 +3911,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "许昌车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -3986,7 +3986,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -4046,7 +4046,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -4106,7 +4106,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -4190,7 +4190,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "城中奉命巡防的将官，军务在身。",
+    "description": "下邳将官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -4224,7 +4224,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军情传令之使，关乎军团征伐之事。",
+    "description": "战场军团使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -4258,7 +4258,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "操办比武盛事的大使，最爱看人切磋。",
+    "description": "比武大使",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -4292,7 +4292,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "下邳车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -4326,7 +4326,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "下邳铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -4360,7 +4360,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -4435,8 +4435,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -4496,8 +4496,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -4683,8 +4683,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -4933,7 +4933,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 22,
@@ -4993,8 +4993,8 @@
         }
       },
       "items": {
-        "potion_heal_950": 0.01,
-        "potion_heal_1150": 0.01
+        "potion_heal_950": 0.05,
+        "potion_heal_1150": 0.05
       },
       "money": {
         "min": 30,
@@ -5054,8 +5054,8 @@
         }
       },
       "items": {
-        "potion_heal_950": 0.01,
-        "potion_heal_1150": 0.01
+        "potion_heal_950": 0.05,
+        "potion_heal_1150": 0.05
       },
       "money": {
         "min": 32,
@@ -5488,8 +5488,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 8,
@@ -5549,7 +5549,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -5609,7 +5609,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 20,
@@ -5660,8 +5660,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 8,
@@ -5784,8 +5784,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 26,
@@ -5910,7 +5910,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -6033,7 +6033,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 26,
@@ -6093,7 +6093,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 28,
@@ -6279,8 +6279,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 32,
@@ -6362,7 +6362,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6396,7 +6396,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "倒斗摸金的行家，活动期间方才现身。",
+    "description": "摸金校尉【活动】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6430,7 +6430,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "河内割据之帅，曾于乱中护驾汉献帝。",
+    "description": "张扬【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6464,7 +6464,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "店里的伙计，端茶倒水，眼明手快。",
+    "description": "店小二",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6498,7 +6498,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "汉中铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6532,7 +6532,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6566,7 +6566,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6600,7 +6600,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6634,7 +6634,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6709,7 +6709,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -6728,7 +6728,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6762,7 +6762,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "荆州牧，汉室宗亲，坐镇富庶的荆襄之地。",
+    "description": "刘表【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6796,7 +6796,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6830,7 +6830,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6864,7 +6864,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6898,7 +6898,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "店里的伙计，端茶倒水，眼明手快。",
+    "description": "店小二",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6932,7 +6932,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "江陵铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -6966,7 +6966,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7041,7 +7041,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -7060,7 +7060,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "江陵车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7224,7 +7224,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7258,7 +7258,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "飞将，勇冠天下却反复无常，人中赤兔。",
+    "description": "吕布【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7292,7 +7292,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7326,7 +7326,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7360,7 +7360,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -7435,7 +7435,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -7495,8 +7495,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -7745,8 +7745,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -7806,8 +7806,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -7993,8 +7993,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -8397,7 +8397,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8431,7 +8431,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "铺面掌柜，迎来送往，精于算计。",
+    "description": "许掌柜",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8465,7 +8465,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8499,7 +8499,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "乱政权臣，废立天子，焚洛阳而祸乱朝纲。",
+    "description": "董卓【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8533,7 +8533,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军情传令之使，关乎军团征伐之事。",
+    "description": "军团使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8567,7 +8567,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传递江湖风云的使节，消息最为灵通。",
+    "description": "风云使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8601,7 +8601,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "承办英雄聚会的使节，广纳天下豪杰。",
+    "description": "英雄使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8635,7 +8635,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "镇守倭岛的大将军，威震海外。",
+    "description": "镇倭大将军【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8669,7 +8669,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "随军或隐世的医师，精于疗伤解毒。",
+    "description": "医师",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8744,8 +8744,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.05,
+        "potion_heal_2000": 0.05
       },
       "money": {
         "min": 35,
@@ -9057,8 +9057,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 38,
@@ -9181,8 +9181,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 36,
@@ -9453,7 +9453,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "店里的伙计，端茶倒水，眼明手快。",
+    "description": "店小二",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9487,7 +9487,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "洛阳铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9521,7 +9521,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9555,7 +9555,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9589,7 +9589,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "洛阳车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9623,7 +9623,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "曹魏权臣，隐忍善谋，有冢虎之姿。",
+    "description": "司马懿【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9693,7 +9693,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "冰塔之中的使者，执掌寒冰试炼。",
+    "description": "寒冰使者【活动】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9727,7 +9727,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "随军或隐世的医师，精于疗伤解毒。",
+    "description": "医师",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -9865,7 +9865,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -9925,7 +9925,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -10048,7 +10048,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 20,
@@ -10108,8 +10108,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -10169,8 +10169,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -10358,7 +10358,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 28,
@@ -10418,7 +10418,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 26,
@@ -10541,7 +10541,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -10601,7 +10601,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -10746,7 +10746,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10780,7 +10780,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东吴儒将，夷陵火攻连营，社稷之臣。",
+    "description": "陆逊【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10814,7 +10814,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东吴大帝，承父兄基业，鼎足江东。",
+    "description": "孙权【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10848,7 +10848,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "金枝玉叶的小公主，逗她开心有赏。",
+    "description": "小公主",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10882,7 +10882,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军情传令之使，关乎军团征伐之事。",
+    "description": "军团使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10916,7 +10916,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "建邺铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10950,7 +10950,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -10984,7 +10984,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "建邺车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -11018,7 +11018,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -11052,7 +11052,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -11086,7 +11086,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -11224,7 +11224,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -11284,7 +11284,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -11398,8 +11398,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -11450,8 +11450,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -11511,7 +11511,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 13,
@@ -11634,7 +11634,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 14,
@@ -11757,7 +11757,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -11817,7 +11817,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 15,
@@ -11877,7 +11877,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -11928,8 +11928,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -11948,7 +11948,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -11982,7 +11982,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东吴老臣，掌财政典领，深得孙权倚重。",
+    "description": "吕范【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12016,7 +12016,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "店里的伙计，端茶倒水，眼明手快。",
+    "description": "店小二",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12050,7 +12050,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12084,7 +12084,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12118,7 +12118,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12152,7 +12152,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "柴桑车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12186,7 +12186,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12220,7 +12220,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12254,7 +12254,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "柴桑铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12288,7 +12288,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "铺面掌柜，迎来送往，精于算计。",
+    "description": "许掌柜",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12322,7 +12322,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东吴锦帆猛将，百骑劫营，威震逍遥津。",
+    "description": "甘宁【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12393,8 +12393,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -12665,8 +12665,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -12722,8 +12722,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -12774,8 +12774,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -12952,8 +12952,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 6,
@@ -13004,8 +13004,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -13056,8 +13056,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 7,
@@ -13139,7 +13139,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "清修道人，慈眉善目，好言吉凶祸福。",
+    "description": "长宁道长",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13173,7 +13173,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13207,7 +13207,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "节庆活动的执事，发放限时福利。",
+    "description": "活动礼官【活动】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13241,7 +13241,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13275,7 +13275,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13309,7 +13309,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13343,7 +13343,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东吴文臣领袖，辅政老臣，刚直持重。",
+    "description": "张昭【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13377,7 +13377,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "华大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13411,7 +13411,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "吴郡车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13445,7 +13445,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13479,7 +13479,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "吴郡铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13513,7 +13513,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "镇守南门的主将，盘查往来人等。",
+    "description": "城南守将",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13547,7 +13547,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "云游的智者，胸藏锦囊，指点迷津。",
+    "description": "智者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13581,7 +13581,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "华大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13615,7 +13615,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东汉方士，号乌角先生，戏弄权贵的仙人。",
+    "description": "左慈【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13649,7 +13649,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13683,7 +13683,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "小霸王，江东基业奠基者，勇烈绝伦。",
+    "description": "孙策",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13717,7 +13717,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "李铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13751,7 +13751,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13785,7 +13785,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "枭姬，孙策之妹，英气不让须眉。",
+    "description": "孙尚香",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13819,7 +13819,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "才情横溢的女子，尤擅丹青水墨。",
+    "description": "墨画",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -13894,7 +13894,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 20,
@@ -13954,7 +13954,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 22,
@@ -14005,8 +14005,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 8,
@@ -14129,7 +14129,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -14189,7 +14189,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -14249,8 +14249,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 28,
@@ -14373,7 +14373,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 18,
@@ -14624,7 +14624,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -14747,8 +14747,8 @@
         }
       },
       "items": {
-        "potion_heal_400": 0.01,
-        "potion_mana_800": 0.01
+        "potion_heal_400": 0.05,
+        "potion_mana_800": 0.05
       },
       "money": {
         "min": 30,
@@ -14871,7 +14871,7 @@
         }
       },
       "items": {
-        "potion_heal_800": 0.01
+        "potion_heal_800": 0.05
       },
       "money": {
         "min": 28,
@@ -14890,7 +14890,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -14924,7 +14924,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "蜀汉老将，老当益壮，定军山阵斩夏侯渊。",
+    "description": "黄忠【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -14958,7 +14958,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "蜀汉昭烈帝，汉室宗亲，以仁德聚天下英雄。",
+    "description": "刘备【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -14992,7 +14992,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "金枝玉叶的小公主，逗她开心有赏。",
+    "description": "小公主",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15026,7 +15026,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军情传令之使，关乎军团征伐之事。",
+    "description": "军团使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15060,7 +15060,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15094,7 +15094,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "成都铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15128,7 +15128,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "成都车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15162,7 +15162,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15196,7 +15196,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15230,7 +15230,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15264,7 +15264,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -15339,7 +15339,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 20,
@@ -15399,7 +15399,7 @@
         }
       },
       "items": {
-        "potion_heal_625": 0.01
+        "potion_heal_625": 0.05
       },
       "money": {
         "min": 19,
@@ -15522,7 +15522,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -15636,8 +15636,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -15688,8 +15688,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -15740,8 +15740,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -15864,7 +15864,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 13,
@@ -15987,7 +15987,7 @@
         }
       },
       "items": {
-        "potion_heal_300": 0.01
+        "potion_heal_300": 0.05
       },
       "money": {
         "min": 14,
@@ -16047,7 +16047,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 15,
@@ -16107,7 +16107,7 @@
         }
       },
       "items": {
-        "potion_heal_500": 0.01
+        "potion_heal_500": 0.05
       },
       "money": {
         "min": 16,
@@ -16126,7 +16126,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16160,7 +16160,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "蜀汉托孤重臣，曾掌后方粮秣军政。",
+    "description": "李严【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16194,7 +16194,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "蜀汉前将军武圣，忠义千秋，过五关斩六将。",
+    "description": "关羽【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16228,7 +16228,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "店里的伙计，端茶倒水，眼明手快。",
+    "description": "店小二",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16262,7 +16262,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16296,7 +16296,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "许大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16330,7 +16330,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "永安铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16364,7 +16364,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "永安车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16398,7 +16398,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16432,7 +16432,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16466,7 +16466,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "铺面掌柜，迎来送往，精于算计。",
+    "description": "许掌柜",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16500,7 +16500,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -16692,8 +16692,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -16906,8 +16906,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 9,
@@ -16963,8 +16963,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 6,
@@ -17015,8 +17015,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 10,
@@ -17135,8 +17135,8 @@
         }
       },
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       },
       "money": {
         "min": 5,
@@ -17187,8 +17187,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 11,
@@ -17239,8 +17239,8 @@
         }
       },
       "items": {
-        "potion_heal_200": 0.01,
-        "potion_mana_200": 0.01
+        "potion_heal_200": 0.05,
+        "potion_mana_200": 0.05
       },
       "money": {
         "min": 7,
@@ -17317,7 +17317,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "清修道人，慈眉善目，好言吉凶祸福。",
+    "description": "长宁道长",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17351,7 +17351,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17385,7 +17385,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "节庆活动的执事，发放限时福利。",
+    "description": "活动礼官【活动】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17419,7 +17419,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "蜀汉南中守将，忠勇世家，镇守边疆。",
+    "description": "霍弋【荣誉】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17453,7 +17453,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "此地的常驻人物，似乎有话想对你说。",
+    "description": "马良",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17487,7 +17487,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "华大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17521,7 +17521,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "钱庄管事，替你收存钱粮与物件。",
+    "description": "金掌柜【仓库】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17555,7 +17555,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "传艺教头，可在此修习各路绝学。",
+    "description": "技能教官",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17589,7 +17589,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "初入门下的学徒，跑腿打杂样样来。",
+    "description": "学徒",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17623,7 +17623,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "建宁车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17657,7 +17657,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "建宁铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17691,7 +17691,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17725,7 +17725,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "镇守南门的主将，盘查往来人等。",
+    "description": "城南守将",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17759,7 +17759,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "坐堂郎中，悬壶济世，疗伤续命。",
+    "description": "华大夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17793,7 +17793,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "云游的智者，胸藏锦囊，指点迷津。",
+    "description": "智者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17827,7 +17827,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "东汉方士，号乌角先生，戏弄权贵的仙人。",
+    "description": "左慈【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17861,7 +17861,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军中副将，统御麾下将士，可点拨副将。",
+    "description": "副将统领",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17895,7 +17895,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "诸葛亮之妻，巧思绝世，通晓机巧之术。",
+    "description": "黄月英【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17929,7 +17929,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "刘备养子，骁勇善战，却失守上庸。",
+    "description": "刘封",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17963,7 +17963,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "description": "李铁匠",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17997,7 +17997,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "客栈掌柜，笑脸迎客，管吃管住。",
+    "description": "王老板",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18031,7 +18031,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "温婉知礼的女子，与刘封颇有牵绊。",
+    "description": "刘雅",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18065,7 +18065,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "机灵的丫鬟，里里外外管着琐碎事务。",
+    "description": "金锁",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18099,7 +18099,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专为初来乍到者引路的福利大使。",
+    "description": "新手大使【福利】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18133,7 +18133,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "曹彰之女，灵动娇憨，寄养于军营之中。",
+    "description": "曹樱",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18167,7 +18167,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "军营中的少女，心思细腻，软语温言。",
+    "description": "香凝",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18424,8 +18424,8 @@
       },
       "experience": 40,
       "items": {
-        "potion_heal_100": 0.01,
-        "potion_mana_100": 0.01
+        "potion_heal_100": 0.05,
+        "potion_mana_100": 0.05
       }
     }
   },
@@ -18435,7 +18435,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "为四方游侠分发差事的使者。",
+    "description": "任务使者",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -18498,8 +18498,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 35,
@@ -18559,8 +18559,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.065,
+        "potion_heal_2000": 0.065
       },
       "money": {
         "min": 36,
@@ -18620,8 +18620,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 37,
@@ -18681,8 +18681,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 38,
@@ -18742,8 +18742,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 39,
@@ -18803,8 +18803,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 40,
@@ -18864,8 +18864,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 41,
@@ -18925,8 +18925,8 @@
         }
       },
       "items": {
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -19677,7 +19677,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "专司城中往来接送，熟记每一条街巷。",
+    "description": "昆仑车夫",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -19711,7 +19711,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "昆仑仙境的引路使者，超然物外。",
+    "description": "昆仑使者【副本】",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -19745,7 +19745,7 @@
     "is_elite": false,
     "killable": false,
     "immortal": true,
-    "description": "随军或隐世的医师，精于疗伤解毒。",
+    "description": "医师",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -19800,8 +19800,8 @@
       "items": {
         "craft_huangyangmu": 0.3,
         "craft_heitiekuang": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 30,
@@ -19841,8 +19841,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_chenxiangmu": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 35,
@@ -19990,8 +19990,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_mianbu": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 40,
@@ -20123,8 +20123,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_heitiekuang": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 40,
@@ -20309,8 +20309,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_mianbu": 0.2,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 38,
@@ -20403,8 +20403,8 @@
       "items": {
         "craft_yingpi": 0.3,
         "craft_huangyangmu": 0.2,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 28,
@@ -20709,8 +20709,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.05,
+        "potion_heal_2000": 0.05
       },
       "money": {
         "min": 25,
@@ -20812,8 +20812,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.055,
+        "potion_heal_2000": 0.055
       },
       "money": {
         "min": 28,
@@ -20862,8 +20862,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.06,
+        "potion_heal_2000": 0.06
       },
       "money": {
         "min": 30,
@@ -20965,8 +20965,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.011,
-        "potion_heal_2000": 0.011
+        "potion_mana_1150": 0.07,
+        "potion_heal_2000": 0.07
       },
       "money": {
         "min": 32,
@@ -21121,8 +21121,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.075,
+        "potion_heal_2000": 0.075
       },
       "money": {
         "min": 35,
@@ -21224,8 +21224,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.08,
+        "potion_heal_2000": 0.08
       },
       "money": {
         "min": 38,
@@ -21327,8 +21327,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.095,
+        "potion_heal_2000": 0.095
       },
       "money": {
         "min": 45,
@@ -21530,8 +21530,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.085,
+        "potion_heal_2000": 0.085
       },
       "money": {
         "min": 42,
@@ -21580,8 +21580,8 @@
       "items": {
         "craft_houpi": 0.15,
         "craft_baopi": 0.1,
-        "potion_mana_1150": 0.012,
-        "potion_heal_2000": 0.012
+        "potion_mana_1150": 0.09,
+        "potion_heal_2000": 0.09
       },
       "money": {
         "min": 44,
@@ -23324,639 +23324,5 @@
       "ice_tower_pass",
       "ice_tower_pass"
     ]
-  },
-  "npc_wujun_center_孙坚荣誉": {
-    "name": "孙坚【荣誉】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "江东猛虎，讨董先锋，孙吴基业的开创者。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_guandu_copy_曹操": {
-    "name": "曹操【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "魏武帝，挟天子以令诸侯，一代枭雄。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "guandu_battle",
-    "copy_role": "quest_giver"
-  },
-  "npc_guandu_copy_张辽": {
-    "name": "张辽【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "曹魏名将，威震逍遥津，止小儿夜啼。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "guandu_battle",
-    "copy_role": "quest_giver"
-  },
-  "npc_qiqin_copy_诸葛亮": {
-    "name": "诸葛亮【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "蜀汉丞相，卧龙，鞠躬尽瘁，智近乎妖。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "qiqinmenghuo",
-    "copy_role": "entry_npc"
-  },
-  "npc_qiqin_copy_吕四娘": {
-    "name": "吕四娘【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "侠义女侠，剑法凌厉，行踪飘忽。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "qiqinmenghuo",
-    "copy_role": "quest_giver"
-  },
-  "npc_qiqin_copy_赵云": {
-    "name": "赵云【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "常山赵子龙，长坂坡七进七出，一身是胆。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "qiqinmenghuo",
-    "copy_role": "quest_giver"
-  },
-  "npc_qiqin_copy_马谡": {
-    "name": "马谡【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "蜀汉参军，才器过人，却痛失街亭。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "qiqinmenghuo",
-    "copy_role": "quest_giver"
-  },
-  "npc_jiding_copy_曹操": {
-    "name": "曹操【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "魏武帝，挟天子以令诸侯，一代枭雄。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "jiding_liaodong",
-    "copy_role": "quest_giver"
-  },
-  "npc_jiding_copy_华佗": {
-    "name": "华佗【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "神医，麻沸散与五禽戏之祖，妙手回春。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "jiding_liaodong",
-    "copy_role": "quest_giver"
-  },
-  "npc_jiding_copy_郭嘉": {
-    "name": "郭嘉【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "曹操首席谋士，鬼才，料事如神，英年早逝。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "jiding_liaodong",
-    "copy_role": "quest_giver"
-  },
-  "npc_jiding_copy_田畴": {
-    "name": "田畴【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "幽州名士，曾献策曹操平定乌桓。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "jiding_liaodong",
-    "copy_role": "quest_giver"
-  },
-  "npc_xiaoyaojin_copy_张辽": {
-    "name": "张辽【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "曹魏名将，威震逍遥津，止小儿夜啼。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100,
-    "copy_dungeon_id": "weizhen_xiaoyaojin",
-    "copy_role": "quest_giver"
-  },
-  "npc_huangjin_copy_灵帝": {
-    "name": "灵帝",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "汉灵帝，昏聩亡国之君，卖官鬻爵。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_shennong_神农使者副本": {
-    "name": "神农使者",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "司掌百草的神农化身，惠泽苍生。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_shennong_医师": {
-    "name": "医师",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "随军或隐世的医师，精于疗伤解毒。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_wokou_镇倭大将军": {
-    "name": "镇倭大将军",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "镇守倭岛的大将军，威震海外。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_wokou_倭岛车夫": {
-    "name": "倭岛车夫",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "倭岛上的车夫，口音别致，脚程不慢。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_wokou_医师": {
-    "name": "医师",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "随军或隐世的医师，精于疗伤解毒。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
   }
 }

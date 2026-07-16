@@ -113,6 +113,10 @@ def buy(npc_id, item_id):
     player.gold -= total_price
     DataService.add_item_to_inventory(player.id, item_id, quantity, is_bound=False)
 
+    # 购买类任务进度（如主·购买金疮药）：买完即推进任务目标
+    from services.quest_service import QuestService
+    QuestService.update_buy_item_progress(player, item_id)
+
     from services import db
     db.session.commit()
 

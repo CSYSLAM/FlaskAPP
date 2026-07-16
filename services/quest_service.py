@@ -1,10 +1,34 @@
 import json
+import re
 from services import db
 from services.data_service import DataService
 
 
 class QuestService:
     _quests = None
+
+    # 国家 -> 主线任务id前缀。主线任务按国家隔离,玩家只走本国任务链。
+    # 魏=main_wei_xx, 吴=main_wu_xx, 蜀=main_shu_xx
+    _COUNTRY_PREFIX = {'魏': 'main_wei_', '吴': 'main_wu_', '蜀': 'main_shu_'}
+
+    @classmethod
+    def _country_prefix(cls, player):
+        """玩家所属国家的主线任务id前缀。无国家/未知国家默认魏。"""
+        c = getattr(player, 'country', None) or '魏'
+        return cls._COUNTRY_PREFIX.get(c, 'main_wei_')
+
+    @classmethod
+    def _is_own_country_quest(cls, player, qid):
+        """该任务是否属于玩家本国(按id前缀判断)。非main_开头(如支线)不限制。"""
+        if not qid or not qid.startswith('main_'):
+            return True
+        return qid.startswith(cls._country_prefix(player))
+
+    @classmethod
+    def get_country_quests(cls, player):
+        """返回玩家本国的所有主线任务(按country前缀过滤),供任务列表/可接任务页展示。"""
+        prefix = cls._country_prefix(player)
+        return {qid: q for qid, q in cls._load().items() if qid.startswith(prefix)}
 
     @classmethod
     def _load(cls):
@@ -54,13 +78,18 @@ class QuestService:
         completed = cls.get_completed_quests(player)
         active = cls.get_active_quests(player)
         all_quests = cls._load()
-        # Find active main quest
+        prefix = cls._country_prefix(player)
+        # Find active main quest (仅本国主线)
         for qid in active:
+            if not qid.startswith(prefix):
+                continue
             q = all_quests.get(qid)
             if q and q.get('type') == 'main':
                 return q
-        # Find next uncompleted main quest
+        # Find next uncompleted main quest (仅本国主线)
         for qid, q in all_quests.items():
+            if not qid.startswith(prefix):
+                continue
             if q.get('type') == 'main' and qid not in completed:
                 prereq = q.get('prerequisite')
                 if not prereq or prereq in completed:
@@ -72,6 +101,9 @@ class QuestService:
         q = cls.get_quest(quest_id)
         if not q:
             return False, "任务不存在"
+        # 国家隔离: 主线任务只能接本国的
+        if not cls._is_own_country_quest(player, quest_id):
+            return False, "这不是你本国的任务"
         if player.level < q.get('level_required', 1):
             return False, f"需要等级{q['level_required']}"
         completed = cls.get_completed_quests(player)
@@ -122,9 +154,11 @@ class QuestService:
         progress = active[quest_id]
         if progress.get('progress', 0) < progress.get('target', 1):
             return False, "任务目标未完成"
-        # For deliver_item: consume item from inventory
+        # For deliver_item / collect_item: consume the item from inventory.
+        # deliver_item 交出的材料、collect_item 收集的证明,交任务后都应从背包扣除,
+        # 否则会出现“交了任务材料背包还有”的残留。
         obj = q.get('objective', {})
-        if obj.get('type') == 'deliver_item':
+        if obj.get('type') in ('deliver_item', 'collect_item'):
             item_id = obj.get('item_id', '')
             DataService.remove_item_from_inventory(player.id, item_id, obj.get('count', 1))
 
@@ -136,6 +170,8 @@ class QuestService:
         if rewards.get('gold'):
             player.gold += rewards['gold']
             player.gold_earned = (player.gold_earned or 0) + rewards['gold']
+        if rewards.get('honor'):
+            player.honor = (player.honor or 0) + rewards['honor']
         # Move from active to completed
         del active[quest_id]
         cls.set_active_quests(player, active)
@@ -273,18 +309,31 @@ class QuestService:
                     npc_map[nid] = []
                 npc_map[nid].append(qid)
             cls._npc_quest_map = npc_map
+        completed = cls.get_completed_quests(player)
         candidate_ids = npc_map.get(npc_id, [])
         for qid in candidate_ids:
             q = all_quests.get(qid)
             if not q or qid in seen:
                 continue
+            # 国家隔离：他国主线任务不展示(避免在NPC处看到跨国任务)
+            if not cls._is_own_country_quest(player, qid):
+                continue
+            if qid in active:
+                available.append(q)
+                seen.add(qid)
+                continue
             ok, _ = cls.can_accept_quest(player, qid)
             if ok:
                 available.append(q)
                 seen.add(qid)
-            if qid in active:
-                available.append(q)
-                seen.add(qid)
+                continue
+            # 前置已满足、尚未完成，但因等级不足暂不可接取的任务也要展示，
+            # 让玩家知道任务存在；quest_detail 会显示“需要等级X”并阻止接取。
+            if qid not in completed:
+                prereq = q.get('prerequisite')
+                if (not prereq) or (prereq in completed):
+                    available.append(q)
+                    seen.add(qid)
         return available
 
     @classmethod

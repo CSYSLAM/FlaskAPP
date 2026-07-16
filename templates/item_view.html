@@ -18,6 +18,11 @@
 
     <a href="{{ url_for('player.inventory') }}">背包</a><br/>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}{% for msg in messages %}{{ msg }}<br/>{% endfor %}{% endif %}
+    {% endwith %}
+
+
     {{ item.name }}{% if is_bound %}<span class="bound">(绑定)</span>{% endif %}x{{ quantity }}<br/>
 
     {% if item.get('description') %}
@@ -53,7 +58,18 @@
     {% endif %}
     {% endif %}
 
-    <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">使用</a>
+    {% if quick_use %}
+    <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0', category=category, page=page, per_page=per_page) }}">一键使用</a>
+    <form method="post" action="{{ url_for('player.bulk_use_item', item_id=item_id) }}" style="margin:6px 0;">
+        <input type="hidden" name="is_bound" value="{{ '1' if is_bound else '0' }}">
+        <input type="hidden" name="category" value="{{ category }}">
+        <input type="hidden" name="page" value="{{ page }}">
+        <input type="hidden" name="per_page" value="{{ per_page }}">
+        数量<input type="number" name="quantity" min="1" max="{{ quantity }}" value="1" style="width:60px;">&nbsp;<input type="submit" value="批量使用">
+    </form>
+    {% else %}
+    <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0', category=category, page=page, per_page=per_page) }}">使用</a>
+    {% endif %}
     <a href="{{ url_for('player.sell_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">出售</a>
     <a href="{{ url_for('player.destroy_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">丢弃</a><br/>
 

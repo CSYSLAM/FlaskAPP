@@ -17,7 +17,7 @@
     <div id="loading"><span></span></div>
 
     {{ monster.name }}<br/>
-    {{ monster.description }}<br/>
+    {% if monster.description and monster.description != monster.name %}{{ monster.description }}<br/>{% endif %}
 
     {% if npc_quests %}
     {% for q in npc_quests %}

@@ -60,6 +60,8 @@ def scene():
 
         # If player left a copy dungeon map, reset their dungeon state
         data = player.activity_data
+        # 清除可能残留的“上次击杀为精英/世界boss”标记（正常流程已在结算界面消费）
+        data.pop('last_kill_special', None)
         if location and not location.get('is_copy_map'):
             copy_states = data.get('copy_dungeons', {})
             if copy_states:
@@ -354,10 +356,12 @@ def view_npc(monster_id):
         from services.quest_service import QuestService
         QuestService.update_talk_progress(player, monster_id)
         npc_quests = QuestService.get_available_quests_for_npc(player, monster_id)
-        if npc_quests:
-            return render_template("view_npc.html", player=player, monster=monster,
-                                 npc_quests=npc_quests, QuestService=QuestService)
-        return redirect(url_for('medicine.shop', npc_id=monster_id))
+        # 与铁匠/副将/技能一致：任务进行中也能看到药铺功能入口
+        return render_template("doctor.html",
+                             player=player,
+                             monster=monster,
+                             npc_id=monster_id,
+                             npc_quests=npc_quests)
 
     if '金掌柜' in monster_id or '仓库' in monster_id:
         from services.quest_service import QuestService

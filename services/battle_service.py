@@ -405,7 +405,21 @@ class BattleService:
         # Finance bandit: a bandit present at this location may be targeted (理财·劫匪, 世界BOSS)
         from services.finance_service import FinanceService
         if monster_id is None:
-            monster_id = random.choice(killable_ids) if killable_ids else None
+            # 继续遇怪/随机遇怪：只能是本场景【常驻】的【普通】怪物。
+            # 排除：精英/世界boss(需主动点链接挑战)、副本怪、以及非本场景常驻的刷新怪(如理财·劫匪)。
+            def _is_resident_normal(mid):
+                md = all_monsters.get(mid, {})
+                if not md.get("killable", True):
+                    return False
+                if md.get("is_elite") or md.get("is_divine_beast"):
+                    return False
+                if md.get("is_copy") or md.get("copy_only"):
+                    return False
+                if str(mid).startswith("bandit_") or md.get("is_bandit"):
+                    return False
+                return True
+            random_pool = [mid for mid in killable_ids if _is_resident_normal(mid)]
+            monster_id = random.choice(random_pool) if random_pool else None
         else:
             # 指定怪物：劫匪需在该场景且在场，其它怪需属于该场景
             bandit_info = FinanceService.get_bandit_at_location(player.current_location)
@@ -539,6 +553,8 @@ class BattleService:
         player.last_mana_cost = 0
         player.last_action = ""
         player.item_effect = ""
+        player.last_hp_delta = 0
+        player.last_mp_delta = 0
 
         encounter_data = player.get_current_encounter_data()
 
@@ -650,6 +666,8 @@ class BattleService:
             db.session.commit()
             return monster, None, "你被击败了"
 
+        # 普攻回合净生命变化 = 怪物伤害(扣血为正); 储备回血由 _apply_reserve_restore 抵减
+        player.last_hp_delta = player.last_damage_taken or 0
         cls._apply_reserve_restore(player, monster)
         db.session.commit()
         return monster, None, None
@@ -667,6 +685,8 @@ class BattleService:
                 player.health += restore
                 player.blood_reserve -= restore
                 result_parts.append(f"*『{player.name}』生命储备回复{restore}")
+                # 回血抵减本回合净扣血(回血取负)
+                player.last_hp_delta = (player.last_hp_delta or 0) - restore
         # MP reserve
         if player.mana_reserve_enabled and player.mana_reserve > 0:
             max_mp = player.effective_max_mana
@@ -676,6 +696,7 @@ class BattleService:
                 player.mana += restore
                 player.mana_reserve -= restore
                 result_parts.append(f"*『{player.name}』魔法储备回复{restore}")
+                player.last_mp_delta = (player.last_mp_delta or 0) - restore
         if result_parts:
             player.item_effect = "、".join(result_parts)
 
@@ -727,6 +748,8 @@ class BattleService:
         skill_name = skill_data["name"]
         player.last_skill = skill_name
         player.item_effect = ""
+        player.last_hp_delta = 0
+        player.last_mp_delta = mana_cost  # 技能耗蓝(扣蓝为正)
 
         encounter_data = player.get_current_encounter_data()
 
@@ -828,6 +851,119 @@ class BattleService:
         cls._tick_lt_status(player)
         if bleed_msgs:
             player.item_effect = (player.item_effect or "") + "".join(bleed_msgs)
+        cls._save_encounter(player, monster)
+
+        if player.health <= 0:
+            player.health = 0
+            player.in_battle = False
+            player.last_battle_result = "你被击败了..."
+            player.current_encounter = None
+            player.need_revive = True
+            if lt and lt.is_alive:
+                from services.lieutenant_service import LieutenantService
+                LieutenantService.handle_death(lt, owner_died=True)
+            db.session.commit()
+            return monster, None, "你被击败了"
+
+        # 技能回合净生命变化 = 怪物伤害(扣血为正); 储备回血由 _apply_reserve_restore 抵减
+        player.last_hp_delta = player.last_damage_taken or 0
+        cls._apply_reserve_restore(player, monster)
+        db.session.commit()
+        return monster, None, None
+
+    @classmethod
+    def use_potion(cls, player, item_id):
+        """战斗中使用药品——算作一个完整回合(玩家用药+怪物反击+状态结算)。
+
+        与 player_attack/use_skill 对齐的回合结构，区别在于玩家动作改为使用药品
+        (不造成伤害)，随后怪物正常反击。
+        """
+        if not player.in_battle:
+            return None, "你不在战斗中", None
+
+        monster = cls.get_current_monster(player)
+        if not monster:
+            player.in_battle = False
+            db.session.commit()
+            return None, "没有怪物", None
+
+        # 混乱/封魔状态下仍可用药(药品非技能，混乱只封锁行动；保留用药以自救)
+
+        from services.item_service import ItemService
+        item_data = DataService.get_item(item_id)
+        if not item_data:
+            return monster, "物品数据异常", None
+        if not item_data.get("is_usable", True):
+            return monster, "该物品不可使用", None
+
+        # 生命/魔法已满时用药纯属浪费，提前拦截(不消耗药品、不推进回合)
+        _ue = item_data.get("usage_effect", {}) or {}
+        _sc = list(_ue.get("stat_changes", {}).keys()) + list(_ue.get("stat_changes_rng", {}).keys())
+        _restores = [s for s in _sc if s in ("health", "mana")]
+        _has_other = any(s not in ("health", "mana") for s in _sc)
+        if _restores and not _has_other:
+            _full = True
+            _mh = player.effective_max_health
+            if "health" in _restores and _mh and player.health < _mh:
+                _full = False
+            _mm = player.effective_max_mana
+            if "mana" in _restores and _mm and player.mana < _mm:
+                _full = False
+            if _full:
+                return monster, "生命/魔法已满，无需使用药品", None
+
+        hp_before = player.health
+        mp_before = player.mana
+
+        player.last_skill = "用药"
+        player.last_mana_cost = 0
+        player.last_action = ""
+        player.item_effect = ""
+        player.last_hp_delta = 0
+        player.last_mp_delta = 0
+
+        lt = cls._get_deployed_lt(player)
+
+        # 玩家动作：使用药品(实际回血/回蓝/增益)
+        success, msg = ItemService.use_item(player, item_id)
+        potion_name = item_data.get("name", item_id)
+
+        # 记录用药造成的回血/回蓝(扣血为正约定下，回血取负)
+        heal = player.health - hp_before
+        mana_restore = player.mana - mp_before
+
+        if not success:
+            player.last_action = f"*『{player.name}』使用[{potion_name}]失败:{msg}"
+            db.session.commit()
+            return monster, msg, None
+
+        player_log = f"*『{player.name}』使用[{potion_name}]"
+        if heal > 0:
+            player_log += f",回复{heal}生命"
+        if mana_restore > 0:
+            player_log += f",回复{mana_restore}魔法"
+        player.last_action = player_log
+
+        cls._save_encounter(player, monster)
+
+        if monster.health <= 0:
+            result = cls._handle_monster_defeat(player, monster)
+            db.session.commit()
+            return monster, None, result
+
+        # 怪物反击(副将挡刀/护盾/触发技同普攻回合)
+        cls._monster_attack_with_lt(monster, player, lt)
+        # 回合结算：递减玩家状态 + 怪物状态/流血
+        bleed_msgs = cls._tick_monster_status(player, monster)
+        cls._tick_player_status(player)
+        cls._tick_lt_status(player)
+        if bleed_msgs:
+            player.item_effect = (player.item_effect or "") + "".join(bleed_msgs)
+
+        # 本回合净生命变化 = 怪物伤害 - 用药回血(扣血为正, 回血取负); 储备回血由 _apply_reserve_restore 抵减
+        player.last_hp_delta = (player.last_damage_taken or 0) - heal
+        # 净魔法变化 = 用药回蓝(回蓝取负); 储备回蓝由 _apply_reserve_restore 抵减
+        player.last_mp_delta = -mana_restore
         cls._save_encounter(player, monster)
 
         if player.health <= 0:
@@ -977,6 +1113,11 @@ class BattleService:
         if quest_drops_final:
             player.last_battle_result += f"。任务掉落: {'、'.join(set(quest_drops_final))}"
         player.current_encounter = None
+        # 记录本次击杀是否为精英/世界boss，供结算界面决定是否隐藏“继续挑战”
+        _is_special_kill = (monster.is_elite or monster.is_divine_beast) and not getattr(monster, 'is_copy', False)
+        _ad = player.activity_data
+        _ad['last_kill_special'] = _is_special_kill
+        player.activity_data = _ad
         monster.reset_health()
 
         # Finance bandit kill: record to city ranking + points reward (理财·劫匪, 世界BOSS)

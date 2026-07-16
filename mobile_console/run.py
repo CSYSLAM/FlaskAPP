@@ -511,11 +511,18 @@ def start_flask():
     """
     env = os.environ.copy()
     env["FLASK_ENV"] = "development"
+    # 单 worker 多线程 + --preload：
+    # 世界BOSS/地面物品/劫匪等状态存进程内存(WorldBossService._bosses 等类级 dict)，
+    # 多 worker 下各进程内存独立、击杀状态会分裂(玩家杀BOSS后请求落到别的worker还能再打)。
+    # 单 worker 保证内存唯一，gthread 线程池扛并发；--preload 让 init_bosses() 在启动期完成。
+    # 2核机器上单worker×16线程 IO密集文本页 QPS~300+/s，远超 200-400人在线峰值(~100QPS)。
+    # --timeout 60 兜底单请求卡死(会被杀重启)。
     cmd = [
         PYTHON, "-m", "gunicorn",
-        "-w", "4",
+        "-w", "1",
         "-k", "gthread",
-        "--threads", "4",
+        "--threads", "16",
+        "--preload",
         "-b", "0.0.0.0:5000",
         "--access-logfile", "-",
         "--error-logfile", "-",

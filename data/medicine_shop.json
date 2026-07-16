@@ -33,7 +33,6 @@
     {"item_id": "seed_guanyinshui", "name": "观音水种子", "price": 2980},
     {"item_id": "seed_tiancandan", "name": "天蚕丹种子", "price": 4960},
     {"item_id": "seed_huashenshui", "name": "化神水种子", "price": 4960},
-    {"item_id": "seed_jingyandan", "name": "经验丹种子", "price": 10000},
     {"item_id": "seed_shenxuedan", "name": "神血丹种子", "price": 5960},
     {"item_id": "seed_qinglinglu", "name": "清灵露种子", "price": 5960}
   ]

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>战斗结算</title>
+    <title>药铺</title>
     <style>
     body { font-size: 16px; }
     a:link { color: #136ec2; text-decoration: none; }
@@ -15,23 +15,15 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
-    {{ result }}<br/>
-    {% if last_action %}
+    {{ monster.name }}<br/>
+    {% if npc_quests %}
+    {% for q in npc_quests %}
+    <a href="{{ url_for('quest.quest_detail', quest_id=q.id, from_npc=1) }}">{{ q.name }}</a><br/>
+    {% endfor %}
+    {% endif %}
+    <a href="{{ url_for('medicine.shop', npc_id=npc_id) }}">购买药品</a><br/>
     <br/>
-    {{ last_action }}<br/>
-    {% endif %}
-    {% if not is_pk and lost_experience > 0 %}
-    损失{{ lost_experience }}经验<br/>
-    {% endif %}
-    <br/>
-    {% if is_pk %}
-    <a href="{{ url_for('game.scene') }}">返回场景</a><br/>
-    {% else %}
-    {% if not hide_continue %}
-    <a href="{{ url_for('battle.continue_battle') }}">继续挑战</a><br/>
-    {% endif %}
-    <a href="{{ url_for('game.scene') }}">返回场景</a><br/>
-    {% endif %}
+    <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 
     <script>
     var aLinks=document.getElementsByTagName("a");

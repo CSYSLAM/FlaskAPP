@@ -1367,25 +1367,8 @@
     "is_usable": false,
     "capacity": 0.1
   },
-  "jz_big_exp": {
-    "name": "大经验丹",
-    "type": "other",
-    "description": "使用后增加10万经验",
-    "price": 1200,
-    "currency": "jinzu",
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "experience": 100000
-      },
-      "effect_descriptions": {
-        "experience": "获得{value}经验"
-      }
-    },
-    "capacity": 0
-  },
   "jz_honor_scroll": {
-    "name": "荣誉卷轴",
+    "name": "高级荣誉卷轴",
     "type": "material",
     "description": "使用后可获得10点荣誉值",
     "price": 500,
@@ -2455,14 +2438,6 @@
     "is_usable": false,
     "capacity": 0
   },
-  "seed_jingyandan": {
-    "name": "经验丹种子",
-    "type": "material",
-    "description": "可在山庄种植经验丹。",
-    "price": 10000,
-    "is_usable": false,
-    "capacity": 0
-  },
   "seed_shenxuedan": {
     "name": "神血丹种子",
     "type": "material",
@@ -2951,6 +2926,15 @@
     "name": "家书",
     "type": "quest",
     "description": "曹樱写给曹彰的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_jiashu_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "曹彰写给曹樱的回信",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
@@ -4449,6 +4433,87 @@
         }
       ]
     },
+    "capacity": 0
+  },
+  "quest_mixin": {
+    "name": "逆臣密信",
+    "type": "quest",
+    "description": "从逆臣高干身上搜出的通敌密信，似与塞外异族歃血为盟。需交予北平太守公孙瓒。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_bingshu": {
+    "name": "孙吴兵书",
+    "type": "quest",
+    "description": "孙尚香被窃贼偷走的兵书，记载了江东战法。需夺回交予孙尚香。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_xin": {
+    "name": "家信",
+    "type": "quest",
+    "description": "孙尚香写给兄长孙策的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_xin_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "孙策写给孙尚香的回信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_gengdian": {
+    "name": "羹点",
+    "type": "quest",
+    "description": "孙尚香为兄长孙策准备的羹点",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_jinnang": {
+    "name": "诸葛锦囊",
+    "type": "quest",
+    "description": "刘雅被窃贼偷走的锦囊，内藏军机妙计。需夺回交予刘雅。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_xin": {
+    "name": "家信",
+    "type": "quest",
+    "description": "刘雅写给刘封的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_xin_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "刘封写给刘雅的回信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_chashi": {
+    "name": "茶食",
+    "type": "quest",
+    "description": "刘雅为刘封准备的茶食",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
     "capacity": 0
   }
 }

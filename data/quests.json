@@ -1,6 +1,6 @@
 {
-  "main_01": {
-    "id": "main_01",
+  "main_wei_01": {
+    "id": "main_wei_01",
     "name": "主·初入三国",
     "type": "main",
     "npc_id": "npc_beiping_east_香凝",
@@ -41,10 +41,10 @@
       ]
     },
     "next_hint": "前往「厢房」与『曹樱』对话",
-    "next_quest": "main_02"
+    "next_quest": "main_wei_02"
   },
-  "main_02": {
-    "id": "main_02",
+  "main_wei_02": {
+    "id": "main_wei_02",
     "name": "主·少女初逢",
     "type": "main",
     "npc_id": "npc_beiping_east_曹樱",
@@ -52,7 +52,7 @@
     "npc_location": "beiping_east.厢房",
     "npc_location_name": "厢房(北平东区)",
     "level_required": 1,
-    "prerequisite": "main_01",
+    "prerequisite": "main_wei_01",
     "description": "前往「厢房」与『曹樱』对话",
     "objective": {
       "type": "talk_npc",
@@ -81,12 +81,26 @@
           "speaker": "曹樱",
           "text": "(小小声)将军和梦中长的一样呢..."
         }
+      ],
+      "accept": [
+        {
+          "speaker": "曹樱",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与曹樱合计。"
+        },
+        {
+          "speaker": "曹樱",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_03"
+    "next_quest": "main_wei_03"
   },
-  "main_03": {
-    "id": "main_03",
+  "main_wei_03": {
+    "id": "main_wei_03",
     "name": "主·小菜一碟",
     "type": "main",
     "npc_id": "npc_beiping_east_曹樱",
@@ -94,7 +108,7 @@
     "npc_location": "beiping_east.厢房",
     "npc_location_name": "厢房(北平东区)",
     "level_required": 1,
-    "prerequisite": "main_02",
+    "prerequisite": "main_wei_02",
     "description": "前往「大院」击杀『窃贼』收集1本[青囊书]",
     "target_location": "beiping_east.大院",
     "objective": {
@@ -147,15 +161,15 @@
       ]
     },
     "next_hint": "前往「军营」与『曹彰』对话",
-    "next_quest": "main_04",
+    "next_quest": "main_wei_04",
     "grant_item": {
       "item_id": "quest_jiashu",
       "item_name": "家书",
       "count": 1
     }
   },
-  "main_04": {
-    "id": "main_04",
+  "main_wei_04": {
+    "id": "main_wei_04",
     "name": "主·初遇曹彰",
     "type": "main",
     "npc_id": "npc_beiping_east_曹彰",
@@ -163,7 +177,7 @@
     "npc_location": "beiping_east.军营",
     "npc_location_name": "军营(北平东区)",
     "level_required": 1,
-    "prerequisite": "main_03",
+    "prerequisite": "main_wei_03",
     "description": "前往「军营」与『曹彰』对话",
     "objective": {
       "type": "deliver_item",
@@ -203,15 +217,15 @@
       ]
     },
     "next_hint": "前往「厢房」与『曹樱』对话",
-    "next_quest": "main_05",
+    "next_quest": "main_wei_05",
     "grant_item": {
-      "item_id": "quest_jiashu",
-      "item_name": "家书",
+      "item_id": "quest_jiashu_hui",
+      "item_name": "回信",
       "count": 1
     }
   },
-  "main_05": {
-    "id": "main_05",
+  "main_wei_05": {
+    "id": "main_wei_05",
     "name": "主·飞书传人",
     "type": "main",
     "npc_id": "npc_beiping_east_曹樱",
@@ -219,12 +233,12 @@
     "npc_location": "beiping_east.厢房",
     "npc_location_name": "厢房(北平东区)",
     "level_required": 1,
-    "prerequisite": "main_04",
+    "prerequisite": "main_wei_04",
     "description": "前往「厢房」与『曹樱』对话",
     "objective": {
       "type": "deliver_item",
-      "item_id": "quest_jiashu",
-      "item_name": "家书",
+      "item_id": "quest_jiashu_hui",
+      "item_name": "回信",
       "count": 1,
       "target_npc": "npc_beiping_east_曹樱"
     },
@@ -263,15 +277,15 @@
       ]
     },
     "next_hint": "前往「军营」与『曹彰』对话",
-    "next_quest": "main_06",
+    "next_quest": "main_wei_06",
     "grant_item": {
       "item_id": "quest_fancai",
       "item_name": "饭菜",
       "count": 1
     }
   },
-  "main_06": {
-    "id": "main_06",
+  "main_wei_06": {
+    "id": "main_wei_06",
     "name": "主·又见曹彰",
     "type": "main",
     "npc_id": "npc_beiping_east_曹彰",
@@ -279,7 +293,7 @@
     "npc_location": "beiping_east.军营",
     "npc_location_name": "军营(北平东区)",
     "level_required": 1,
-    "prerequisite": "main_05",
+    "prerequisite": "main_wei_05",
     "description": "前往「军营」与『曹彰』对话",
     "objective": {
       "type": "deliver_item",
@@ -302,12 +316,30 @@
           "speaker": "你",
           "text": "...你以为我想啊，这是曹樱给你的饭菜。"
         }
+      ],
+      "complete": [
+        {
+          "speaker": "曹彰",
+          "text": "（接过饭菜，眼眶微红）曹樱这丫头，还是这般惦记我。"
+        },
+        {
+          "speaker": "你",
+          "text": "将军在战场上保重，她才安心。"
+        },
+        {
+          "speaker": "曹彰",
+          "text": "替我谢过她。前路凶险，将军也当心。"
+        },
+        {
+          "speaker": "你",
+          "text": "那是自然。"
+        }
       ]
     },
-    "next_quest": "main_07"
+    "next_quest": "main_wei_07"
   },
-  "main_07": {
-    "id": "main_07",
+  "main_wei_07": {
+    "id": "main_wei_07",
     "name": "主·初见智者",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -315,7 +347,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 3,
-    "prerequisite": "main_06",
+    "prerequisite": "main_wei_06",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -348,12 +380,26 @@
           "speaker": "智者",
           "text": "「技能馆」(北平中部)就在「东城门」(北平中部)西面。"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_08"
+    "next_quest": "main_wei_08"
   },
-  "main_08": {
-    "id": "main_08",
+  "main_wei_08": {
+    "id": "main_wei_08",
     "name": "主·询问学徒",
     "type": "main",
     "npc_id": "npc_beiping_center_学徒",
@@ -361,7 +407,7 @@
     "npc_location": "beiping_center.技能馆",
     "npc_location_name": "技能馆(北平中区)",
     "level_required": 3,
-    "prerequisite": "main_07",
+    "prerequisite": "main_wei_07",
     "description": "前往「技能馆」与『学徒』对话",
     "objective": {
       "type": "talk_npc",
@@ -372,10 +418,44 @@
       "experience": 200,
       "gold": 100
     },
-    "next_quest": "main_09"
+    "next_quest": "main_wei_09",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "学徒",
+          "text": "将军可是来学本事的？"
+        },
+        {
+          "speaker": "你",
+          "text": "正是。方才智者老先生说，技能馆里藏着三国武学的门道。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "将军好眼力！不过学艺得循序渐进，先去寻我师父『技能教官』，他自会传你入门。"
+        },
+        {
+          "speaker": "你",
+          "text": "（原来是带路人）好，我这就去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "学徒",
+          "text": "将军想清楚了？技能一道，贵在钻研，可不是花架子。"
+        },
+        {
+          "speaker": "你",
+          "text": "想清楚了。先跟教官学一招半式再说。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "那便去吧，莫要辱没了这身本事。"
+        }
+      ]
+    }
   },
-  "main_09": {
-    "id": "main_09",
+  "main_wei_09": {
+    "id": "main_wei_09",
     "name": "主·学习技能",
     "type": "main",
     "npc_id": "npc_beiping_center_技能教官",
@@ -383,7 +463,7 @@
     "npc_location": "beiping_center.技能馆",
     "npc_location_name": "技能馆(北平中区)",
     "level_required": 3,
-    "prerequisite": "main_08",
+    "prerequisite": "main_wei_08",
     "description": "前往「技能馆」找『技能教官』学习一个技能",
     "objective": {
       "type": "learn_skill",
@@ -427,10 +507,10 @@
         }
       ]
     },
-    "next_quest": "main_10"
+    "next_quest": "main_wei_10"
   },
-  "main_10": {
-    "id": "main_10",
+  "main_wei_10": {
+    "id": "main_wei_10",
     "name": "主·挑战学徒",
     "type": "main",
     "npc_id": "npc_beiping_center_学徒",
@@ -438,7 +518,7 @@
     "npc_location": "beiping_center.技能馆",
     "npc_location_name": "技能馆(北平中区)",
     "level_required": 3,
-    "prerequisite": "main_09",
+    "prerequisite": "main_wei_09",
     "description": "前往「技能馆」与『学徒』对话",
     "objective": {
       "type": "talk_npc",
@@ -449,10 +529,44 @@
       "experience": 200,
       "gold": 100
     },
-    "next_quest": "main_11"
+    "next_quest": "main_wei_11",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "你",
+          "text": "学徒小哥，方才学了两手，正手痒呢。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "哟，将军这是要拿我试招？"
+        },
+        {
+          "speaker": "你",
+          "text": "切磋切磋，放心，收着劲儿。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "那将军可别把教官教的全浪费了！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "学徒",
+          "text": "将军这招使得不错，看来是真学进去了。"
+        },
+        {
+          "speaker": "你",
+          "text": "嘿嘿，还行吧。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "去小巷回禀智者老先生，让他瞧瞧您的长进。"
+        }
+      ]
+    }
   },
-  "main_11": {
-    "id": "main_11",
+  "main_wei_11": {
+    "id": "main_wei_11",
     "name": "主·回复智者",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -460,7 +574,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 4,
-    "prerequisite": "main_10",
+    "prerequisite": "main_wei_10",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -489,12 +603,26 @@
           "speaker": "你",
           "text": "那我证明给你看看？"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_12"
+    "next_quest": "main_wei_12"
   },
-  "main_12": {
-    "id": "main_12",
+  "main_wei_12": {
+    "id": "main_wei_12",
     "name": "主·证明实力",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -502,7 +630,7 @@
     "npc_location": "beiping_center.东城楼",
     "npc_location_name": "东城楼(北平中区)",
     "level_required": 4,
-    "prerequisite": "main_11",
+    "prerequisite": "main_wei_11",
     "description": "前往「东城楼」收拾10名『铜人』",
     "target_location": "beiping_center.东城楼",
     "objective": {
@@ -514,10 +642,44 @@
       "experience": 300,
       "gold": 100
     },
-    "next_quest": "main_13"
+    "next_quest": "main_wei_13",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "口说无凭，将军若真有本事，便去东城楼走一遭。"
+        },
+        {
+          "speaker": "你",
+          "text": "东城楼？那里有何物？"
+        },
+        {
+          "speaker": "智者",
+          "text": "十尊铜人镇守城门，将军若能将其尽数击退，老朽便信你。"
+        },
+        {
+          "speaker": "你",
+          "text": "十尊？也好，正好活动活动筋骨。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "你",
+          "text": "十尊铜人，尽数躺下了。"
+        },
+        {
+          "speaker": "智者",
+          "text": "好！将军果然身手不凡，老朽先前小觑了。"
+        },
+        {
+          "speaker": "你",
+          "text": "（铜人还挺沉）这下信了吧？"
+        }
+      ]
+    }
   },
-  "main_13": {
-    "id": "main_13",
+  "main_wei_13": {
+    "id": "main_wei_13",
     "name": "主·关于副将",
     "type": "main",
     "npc_id": "npc_beiping_east_曹彰",
@@ -525,7 +687,7 @@
     "npc_location": "beiping_east.军营",
     "npc_location_name": "军营(北平东区)",
     "level_required": 5,
-    "prerequisite": "main_12",
+    "prerequisite": "main_wei_12",
     "description": "前往「军营」与『曹彰』对话",
     "objective": {
       "type": "talk_npc",
@@ -562,10 +724,10 @@
         }
       ]
     },
-    "next_quest": "main_14"
+    "next_quest": "main_wei_14"
   },
-  "main_14": {
-    "id": "main_14",
+  "main_wei_14": {
+    "id": "main_wei_14",
     "name": "主·获得副将",
     "type": "main",
     "npc_id": "npc_beiping_east_副将统领",
@@ -573,7 +735,7 @@
     "npc_location": "beiping_east.军营",
     "npc_location_name": "军营(北平东区)",
     "level_required": 5,
-    "prerequisite": "main_13",
+    "prerequisite": "main_wei_13",
     "description": "前往「军营」与『副将统领』对话",
     "objective": {
       "type": "talk_npc",
@@ -607,12 +769,26 @@
           "speaker": "你",
           "text": "那我就告辞了(去给智者秀一秀我的副将)。"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "副将统领",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与副将统领合计。"
+        },
+        {
+          "speaker": "副将统领",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_15"
+    "next_quest": "main_wei_15"
   },
-  "main_15": {
-    "id": "main_15",
+  "main_wei_15": {
+    "id": "main_wei_15",
     "name": "主·炫耀副将",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -620,7 +796,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 5,
-    "prerequisite": "main_14",
+    "prerequisite": "main_wei_14",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -637,20 +813,34 @@
           "speaker": "智者",
           "text": "嗯...孺子可教，你可越来越聪明了。"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_16"
+    "next_quest": "main_wei_16"
   },
-  "main_16": {
-    "id": "main_16",
+  "main_wei_16": {
+    "id": "main_wei_16",
     "name": "主·再次证明",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
     "npc_name": "智者",
-    "npc_location": "beiping_center.箭楼",
-    "npc_location_name": "箭楼(北平中区)",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平中区)",
     "level_required": 5,
-    "prerequisite": "main_15",
+    "prerequisite": "main_wei_15",
     "description": "前往「箭楼」收拾10条『野狗』",
     "target_location": "beiping_east.箭楼",
     "objective": {
@@ -662,10 +852,40 @@
       "experience": 500,
       "gold": 100
     },
-    "next_quest": "main_17"
+    "next_quest": "main_wei_17",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军且慢走！方才那点本事，老朽还未尽信。"
+        },
+        {
+          "speaker": "你",
+          "text": "又来？这次又是什么？"
+        },
+        {
+          "speaker": "智者",
+          "text": "箭楼一带野狗横行，扰得百姓不安。将军去清一清，如何？"
+        },
+        {
+          "speaker": "你",
+          "text": "野狗也配让我出手……也罢，顺手的事。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "你",
+          "text": "箭楼的野狗，一条不剩了。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军果真言出必行。老朽这便信了你的能为。"
+        }
+      ]
+    }
   },
-  "main_17": {
-    "id": "main_17",
+  "main_wei_17": {
+    "id": "main_wei_17",
     "name": "主·易物换钱",
     "type": "main",
     "npc_id": "npc_beiping_east_李铁匠",
@@ -673,7 +893,7 @@
     "npc_location": "beiping_east.铁匠铺",
     "npc_location_name": "铁匠铺(北平东区)",
     "level_required": 6,
-    "prerequisite": "main_16",
+    "prerequisite": "main_wei_16",
     "description": "前往「铁匠铺」与『李铁匠』对话",
     "objective": {
       "type": "talk_npc",
@@ -702,12 +922,26 @@
           "speaker": "你",
           "text": "这样呀，我回去找智者了。"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_18"
+    "next_quest": "main_wei_18"
   },
-  "main_18": {
-    "id": "main_18",
+  "main_wei_18": {
+    "id": "main_wei_18",
     "name": "主·回复智者",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -715,7 +949,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 6,
-    "prerequisite": "main_17",
+    "prerequisite": "main_wei_17",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -726,10 +960,40 @@
       "experience": 500,
       "gold": 100
     },
-    "next_quest": "main_19"
+    "next_quest": "main_wei_19",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "你",
+          "text": "老先生，铁匠铺那边问明白了，卖东西的法子我懂了。"
+        },
+        {
+          "speaker": "智者",
+          "text": "哦？说说看。"
+        },
+        {
+          "speaker": "你",
+          "text": "铁匠铺操作栏里便能寄卖，价随我定。"
+        },
+        {
+          "speaker": "智者",
+          "text": "善。将军学得倒快。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "既已通晓买卖之道，往后便不会为银两发愁了。"
+        },
+        {
+          "speaker": "你",
+          "text": "那是，我可不是只会打架。"
+        }
+      ]
+    }
   },
-  "main_19": {
-    "id": "main_19",
+  "main_wei_19": {
+    "id": "main_wei_19",
     "name": "主·打造兵器",
     "type": "main",
     "npc_id": "npc_beiping_east_李铁匠",
@@ -737,7 +1001,7 @@
     "npc_location": "beiping_east.铁匠铺",
     "npc_location_name": "铁匠铺(北平东区)",
     "level_required": 6,
-    "prerequisite": "main_18",
+    "prerequisite": "main_wei_18",
     "description": "前往「铁匠铺」与『李铁匠』对话",
     "objective": {
       "type": "talk_npc",
@@ -771,12 +1035,26 @@
           "speaker": "你",
           "text": "知道了！知道了！我一定会来的，我现在就回去告诉智者！"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_20"
+    "next_quest": "main_wei_20"
   },
-  "main_20": {
-    "id": "main_20",
+  "main_wei_20": {
+    "id": "main_wei_20",
     "name": "主·回复智者",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -784,7 +1062,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 6,
-    "prerequisite": "main_19",
+    "prerequisite": "main_wei_19",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -795,10 +1073,40 @@
       "experience": 500,
       "gold": 100
     },
-    "next_quest": "main_21"
+    "next_quest": "main_wei_21",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "你",
+          "text": "老先生，副将到手了！"
+        },
+        {
+          "speaker": "智者",
+          "text": "副将？哦，是军营那套把式。"
+        },
+        {
+          "speaker": "你",
+          "text": "副将统领给了我招募令，我已寻得良将相随。"
+        },
+        {
+          "speaker": "智者",
+          "text": "如此，将军便不再是孤身一人了。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "有副将并肩，征途便从容些了。"
+        },
+        {
+          "speaker": "你",
+          "text": "那必须的，独行太寂寞。"
+        }
+      ]
+    }
   },
-  "main_21": {
-    "id": "main_21",
+  "main_wei_21": {
+    "id": "main_wei_21",
     "name": "主·强化装备",
     "type": "main",
     "npc_id": "npc_beiping_east_李铁匠",
@@ -806,7 +1114,7 @@
     "npc_location": "beiping_east.铁匠铺",
     "npc_location_name": "铁匠铺(北平东区)",
     "level_required": 7,
-    "prerequisite": "main_20",
+    "prerequisite": "main_wei_20",
     "description": "前往「铁匠铺」与『李铁匠』对话",
     "objective": {
       "type": "talk_npc",
@@ -831,25 +1139,39 @@
           "speaker": "李铁匠",
           "text": "哦？强化装备需要强化宝玉和银两，你准备好了吗？"
         }
+      ],
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "宝玉与银两齐备，这兵器便有了灵性，将军且试试手感。"
+        },
+        {
+          "speaker": "你",
+          "text": "（掂了掂，果然沉稳几分）多谢铁匠大哥。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "兵器利了，前头的硬仗才扛得住。去吧！"
+        }
       ]
     },
-    "next_quest": "main_22",
+    "next_quest": "main_wei_22",
     "grant_item": {
       "item_id": "enhance_gem",
       "item_name": "强化宝玉",
       "count": 2
     }
   },
-  "main_22": {
-    "id": "main_22",
+  "main_wei_22": {
+    "id": "main_wei_22",
     "name": "主·小试牛刀",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
     "npc_name": "智者",
-    "npc_location": "beiping_center.箭楼",
-    "npc_location_name": "箭楼(北平东区)",
+    "npc_location": "beiping_center.小巷",
+    "npc_location_name": "小巷(北平东区)",
     "level_required": 7,
-    "prerequisite": "main_21",
+    "prerequisite": "main_wei_21",
     "description": "前往「箭楼」收拾10条『野狗』",
     "target_location": "beiping_east.箭楼",
     "objective": {
@@ -861,10 +1183,40 @@
       "experience": 700,
       "gold": 100
     },
-    "next_quest": "main_23"
+    "next_quest": "main_wei_23",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "你",
+          "text": "老先生，铁匠给了我强化宝玉，兵器已锋利许多。"
+        },
+        {
+          "speaker": "智者",
+          "text": "既已利器在握，何不去箭楼一试？"
+        },
+        {
+          "speaker": "你",
+          "text": "试就试！正好那野狗又来犯。"
+        },
+        {
+          "speaker": "智者",
+          "text": "去吧，让那群畜生见识见识将军的新兵器。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "你",
+          "text": "箭楼野狗，十去其十。新兵器果然趁手！"
+        },
+        {
+          "speaker": "智者",
+          "text": "宝剑配英雄，将军与这兵器，倒是相得益彰。"
+        }
+      ]
+    }
   },
-  "main_23": {
-    "id": "main_23",
+  "main_wei_23": {
+    "id": "main_wei_23",
     "name": "主·住店休息",
     "type": "main",
     "npc_id": "npc_beiping_center_王老板",
@@ -872,7 +1224,7 @@
     "npc_location": "beiping_center.客栈_南",
     "npc_location_name": "客栈(北平中区)",
     "level_required": 7,
-    "prerequisite": "main_22",
+    "prerequisite": "main_wei_22",
     "description": "前往「客栈」与『王老板』对话",
     "objective": {
       "type": "talk_npc",
@@ -901,12 +1253,26 @@
           "speaker": "你",
           "text": "我的伤真的好了，我要回去找智者！"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "王老板",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与王老板合计。"
+        },
+        {
+          "speaker": "王老板",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_24"
+    "next_quest": "main_wei_24"
   },
-  "main_24": {
-    "id": "main_24",
+  "main_wei_24": {
+    "id": "main_wei_24",
     "name": "主·再见智者",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -914,7 +1280,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 7,
-    "prerequisite": "main_23",
+    "prerequisite": "main_wei_23",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -925,10 +1291,40 @@
       "experience": 1000,
       "gold": 100
     },
-    "next_quest": "main_25"
+    "next_quest": "main_wei_25",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "你",
+          "text": "老先生，在客栈歇了一宿，浑身舒坦。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军气色好多了。"
+        },
+        {
+          "speaker": "你",
+          "text": "王老板的店，名不虚传。"
+        },
+        {
+          "speaker": "智者",
+          "text": "养足精神，前路尚远。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "将军既已养精蓄锐，老朽便放心了。"
+        },
+        {
+          "speaker": "你",
+          "text": "下一段路，我接着走便是。"
+        }
+      ]
+    }
   },
-  "main_25": {
-    "id": "main_25",
+  "main_wei_25": {
+    "id": "main_wei_25",
     "name": "主·了解称号",
     "type": "main",
     "npc_id": "npc_beiping_east_曹樱",
@@ -936,7 +1332,7 @@
     "npc_location": "beiping_east.厢房",
     "npc_location_name": "厢房(北平东区)",
     "level_required": 8,
-    "prerequisite": "main_24",
+    "prerequisite": "main_wei_24",
     "description": "前往「厢房」与『曹樱』对话",
     "objective": {
       "type": "talk_npc",
@@ -952,10 +1348,40 @@
       "item_name": "称号卷轴-迷茫的",
       "count": 2
     },
-    "next_quest": "main_26"
+    "next_quest": "main_wei_26",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹樱",
+          "text": "将军近日声名渐起，可晓得『称号』的讲究？"
+        },
+        {
+          "speaker": "你",
+          "text": "称号？那不是虚名么。"
+        },
+        {
+          "speaker": "曹樱",
+          "text": "虚名也能壮胆呢。我这儿有些称号卷轴，将军不妨收着。"
+        },
+        {
+          "speaker": "你",
+          "text": "（曹樱递来卷轴）那我就不客气了。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹樱",
+          "text": "称号可不是摆着好看的，戴上了旁人便知将军的手段。"
+        },
+        {
+          "speaker": "你",
+          "text": "原来如此，那我挑个威风的戴上。"
+        }
+      ]
+    }
   },
-  "main_26": {
-    "id": "main_26",
+  "main_wei_26": {
+    "id": "main_wei_26",
     "name": "主·回复智者",
     "type": "main",
     "npc_id": "npc_beiping_center_智者",
@@ -963,7 +1389,7 @@
     "npc_location": "beiping_center.小巷",
     "npc_location_name": "小巷(北平中区)",
     "level_required": 8,
-    "prerequisite": "main_25",
+    "prerequisite": "main_wei_25",
     "description": "前往「小巷」与『智者』对话",
     "objective": {
       "type": "talk_npc",
@@ -974,15 +1400,45 @@
       "experience": 1000,
       "gold": 100
     },
-    "next_quest": "main_27",
+    "next_quest": "main_wei_27",
     "grant_item": {
       "item_id": "shenyou_guo",
       "item_name": "神游果",
       "count": 2
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "你",
+          "text": "老先生，曹樱姑娘教我用了称号，威风得很。"
+        },
+        {
+          "speaker": "智者",
+          "text": "哦？将军倒会打扮自己。"
+        },
+        {
+          "speaker": "你",
+          "text": "实力配上名头，才像那么回事。"
+        },
+        {
+          "speaker": "智者",
+          "text": "哈哈，将军这话，老朽爱听。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "既已佩上称号，将军在三国的名号，便算立起来了。"
+        },
+        {
+          "speaker": "你",
+          "text": "立起来立起来，接下来呢？"
+        }
+      ]
     }
   },
-  "main_27": {
-    "id": "main_27",
+  "main_wei_27": {
+    "id": "main_wei_27",
     "name": "主·了解神游果",
     "type": "main",
     "npc_id": "npc_beiping_east_左慈",
@@ -990,7 +1446,7 @@
     "npc_location": "beiping_east.箭楼",
     "npc_location_name": "箭楼(北平东区)",
     "level_required": 8,
-    "prerequisite": "main_26",
+    "prerequisite": "main_wei_26",
     "description": "前往「箭楼」与『左慈』对话",
     "objective": {
       "type": "talk_npc",
@@ -1001,10 +1457,40 @@
       "experience": 1000,
       "gold": 100
     },
-    "next_quest": "main_28"
+    "next_quest": "main_wei_28",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "左慈",
+          "text": "将军，可知『神游果』为何物？"
+        },
+        {
+          "speaker": "你",
+          "text": "神游果？听着像仙家玩意。"
+        },
+        {
+          "speaker": "左慈",
+          "text": "此物能固本培元，于修行大有裨益。老朽赠你两枚，好生用之。"
+        },
+        {
+          "speaker": "你",
+          "text": "（左慈仙风道骨）多谢仙长！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "左慈",
+          "text": "神游果非寻常丹药，关键时刻能救性命。"
+        },
+        {
+          "speaker": "你",
+          "text": "记下了，仙长保重。"
+        }
+      ]
+    }
   },
-  "main_28": {
-    "id": "main_28",
+  "main_wei_28": {
+    "id": "main_wei_28",
     "name": "主·了解地图",
     "type": "main",
     "npc_id": "npc_beiping_east_左慈",
@@ -1012,7 +1498,7 @@
     "npc_location": "beiping_east.箭楼",
     "npc_location_name": "箭楼(北平东区)",
     "level_required": 8,
-    "prerequisite": "main_27",
+    "prerequisite": "main_wei_27",
     "description": "前往「箭楼」与『左慈』对话",
     "objective": {
       "type": "talk_npc",
@@ -1033,12 +1519,26 @@
           "speaker": "你",
           "text": "原来是这样，我终于搞懂了！"
         }
+      ],
+      "accept": [
+        {
+          "speaker": "左慈",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与左慈合计。"
+        },
+        {
+          "speaker": "左慈",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_29"
+    "next_quest": "main_wei_29"
   },
-  "main_29": {
-    "id": "main_29",
+  "main_wei_29": {
+    "id": "main_wei_29",
     "name": "主·接下来的路",
     "type": "main",
     "npc_id": "npc_beiping_east_左慈",
@@ -1046,7 +1546,7 @@
     "npc_location": "beiping_east.箭楼",
     "npc_location_name": "箭楼(北平东区)",
     "level_required": 9,
-    "prerequisite": "main_28",
+    "prerequisite": "main_wei_28",
     "description": "前往「箭楼」与『左慈』对话",
     "objective": {
       "type": "talk_npc",
@@ -1079,12 +1579,26 @@
           "speaker": "左慈",
           "text": "他在「观星台」(北平中区)，将军你..."
         }
+      ],
+      "accept": [
+        {
+          "speaker": "左慈",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与左慈合计。"
+        },
+        {
+          "speaker": "左慈",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_30"
+    "next_quest": "main_wei_30"
   },
-  "main_30": {
-    "id": "main_30",
+  "main_wei_30": {
+    "id": "main_wei_30",
     "name": "主·拜访程昱",
     "type": "main",
     "npc_id": "npc_beiping_center_程昱",
@@ -1092,7 +1606,7 @@
     "npc_location": "beiping_center.观星台",
     "npc_location_name": "观星台(北平中区)",
     "level_required": 9,
-    "prerequisite": "main_29",
+    "prerequisite": "main_wei_29",
     "description": "前往「观星台」与『程昱』对话",
     "objective": {
       "type": "talk_npc",
@@ -1103,22 +1617,52 @@
       "experience": 3000,
       "gold": 100
     },
-    "next_quest": "main_31"
+    "next_quest": "main_wei_31",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "程昱",
+          "text": "来者可是左慈先生所言的『天降之将』？"
+        },
+        {
+          "speaker": "你",
+          "text": "正是。左慈老先生荐我来见程先生。"
+        },
+        {
+          "speaker": "程昱",
+          "text": "久仰。将军既从天外来，想必胸有丘壑。"
+        },
+        {
+          "speaker": "你",
+          "text": "（这人眼神犀利）程先生过奖。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "程昱",
+          "text": "将军果非凡人，交谈之下，老朽已另眼相看。"
+        },
+        {
+          "speaker": "你",
+          "text": "程先生谬赞，后会有期。"
+        }
+      ]
+    }
   },
-  "main_31": {
-    "id": "main_31",
+  "main_wei_31": {
+    "id": "main_wei_31",
     "name": "主·购买金疮药",
     "type": "main",
     "npc_id": "npc_beiping_center_华大夫",
     "npc_name": "华大夫",
-    "npc_location": "beiping_center.药铺",
+    "npc_location": "beiping_center.药铺_北",
     "npc_location_name": "药铺(北平中区)",
     "level_required": 10,
-    "prerequisite": "main_30",
+    "prerequisite": "main_wei_30",
     "description": "前往「药铺」在『华大夫』处购买1个[金疮药]",
     "objective": {
       "type": "buy_item",
-      "item_id": "potion_heal",
+      "item_id": "potion_heal_100",
       "item_name": "金疮药",
       "count": 1,
       "npc_id": "npc_beiping_center_华大夫"
@@ -1127,10 +1671,40 @@
       "experience": 3000,
       "gold": 200
     },
-    "next_quest": "main_32"
+    "next_quest": "main_wei_32",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "华大夫",
+          "text": "将军面色虽佳，行军打仗，金疮药却不可少。"
+        },
+        {
+          "speaker": "你",
+          "text": "大夫说的是，正想备些。"
+        },
+        {
+          "speaker": "华大夫",
+          "text": "我这药铺里的金疮药，止血生肌，一绝。"
+        },
+        {
+          "speaker": "你",
+          "text": "那便来一个，以备不时之需。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "华大夫",
+          "text": "将军收好，这金疮药随身带着，关键时刻能续命。"
+        },
+        {
+          "speaker": "你",
+          "text": "有劳大夫，银两奉上。"
+        }
+      ]
+    }
   },
-  "main_32": {
-    "id": "main_32",
+  "main_wei_32": {
+    "id": "main_wei_32",
     "name": "主·拜见太守",
     "type": "main",
     "npc_id": "npc_beiping_center_公孙瓒荣誉",
@@ -1138,7 +1712,7 @@
     "npc_location": "beiping_center.太守府",
     "npc_location_name": "太守府(北平中区)",
     "level_required": 10,
-    "prerequisite": "main_31",
+    "prerequisite": "main_wei_31",
     "description": "前往「太守府」与『公孙瓒』对话",
     "objective": {
       "type": "talk_npc",
@@ -1159,21 +1733,35 @@
           "speaker": "你",
           "text": "我怎么感觉不妙呢..."
         }
+      ],
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与公孙瓒合计。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
       ]
     },
-    "next_quest": "main_33"
+    "next_quest": "main_wei_33"
   },
-  "main_33": {
-    "id": "main_33",
+  "main_wei_33": {
+    "id": "main_wei_33",
     "name": "主·教训小偷",
     "type": "main",
     "npc_id": "npc_beiping_center_公孙瓒荣誉",
     "npc_name": "公孙瓒",
-    "npc_location": "beiping_center.钱庄",
-    "npc_location_name": "钱庄(北平中区)",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
     "level_required": 11,
-    "prerequisite": "main_32",
-    "description": "前往「广场」收拾5名『小偷』",
+    "prerequisite": "main_wei_32",
+    "description": "前往「钱庄」收拾10名『小偷』",
     "target_location": "beiping_center.钱庄",
     "objective": {
       "type": "kill_monster",
@@ -1184,10 +1772,40 @@
       "experience": 3000,
       "gold": 200
     },
-    "next_quest": "main_34"
+    "next_quest": "main_wei_34",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "将军，钱庄一带出了伙小偷，搅得民不聊生。"
+        },
+        {
+          "speaker": "你",
+          "text": "小偷？这种鼠辈也敢横行？"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "烦请将军去清理一番，本太守在此候佳音。"
+        },
+        {
+          "speaker": "你",
+          "text": "区区毛贼，手到擒来。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "你",
+          "text": "钱庄十名小偷，尽数教训了。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "好！北平的百姓，总算能睡个安稳觉了。"
+        }
+      ]
+    }
   },
-  "main_34": {
-    "id": "main_34",
+  "main_wei_34": {
+    "id": "main_wei_34",
     "name": "主·了解荣誉",
     "type": "main",
     "npc_id": "npc_beiping_center_公孙瓒荣誉",
@@ -1195,7 +1813,7 @@
     "npc_location": "beiping_center.太守府",
     "npc_location_name": "太守府(北平中区)",
     "level_required": 11,
-    "prerequisite": "main_33",
+    "prerequisite": "main_wei_33",
     "description": "前往「太守府」与『公孙瓒』对话",
     "objective": {
       "type": "talk_npc",
@@ -1204,20 +1822,51 @@
     },
     "rewards": {
       "experience": 3000,
-      "gold": 200
+      "gold": 200,
+      "honor": 2
     },
-    "next_quest": "main_35"
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "荣誉，是你在沙场上立下的战功证明。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "积累荣誉可提升军衔——从十夫长、百夫长直至将军，军衔越高，攻击加成越多。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "荣誉榜亦按荣誉点数排名，是实力的象征。此番教诲，赏你荣誉2点。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与公孙瓒合计。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_35"
   },
-  "main_35": {
-    "id": "main_35",
+  "main_wei_35": {
+    "id": "main_wei_35",
     "name": "主·教训冀州步兵",
     "type": "main",
     "npc_id": "npc_beiping_center_公孙瓒荣誉",
     "npc_name": "公孙瓒",
-    "npc_location": "beiping_north.燕山",
-    "npc_location_name": "燕山(北平北区)",
-    "level_required": 12,
-    "prerequisite": "main_34",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 16,
+    "prerequisite": "main_wei_34",
     "description": "前往「燕山」教训5名『冀州步兵』",
     "target_location": "beiping_north.燕山",
     "objective": {
@@ -1229,6 +1878,7035 @@
       "experience": 3000,
       "gold": 200
     },
-    "next_quest": "main_36"
+    "next_quest": "main_wei_36",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "燕山之上，冀州步兵嚣张得很，似有人撑腰。"
+        },
+        {
+          "speaker": "你",
+          "text": "冀州？袁氏旧部？"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "正是。将军去走一遭，给我长长见识。"
+        },
+        {
+          "speaker": "你",
+          "text": "五名步兵罢了，弹指间事。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "你",
+          "text": "燕山五名冀州步兵，已尽数撂倒。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "干得漂亮！将军这身手，果不负本太守所望。"
+        }
+      ]
+    }
+  },
+  "main_wei_36": {
+    "id": "main_wei_36",
+    "name": "主·平叛余烬",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 16,
+    "prerequisite": "main_wei_35",
+    "description": "前往「太守府」与『公孙瓒』复命",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_公孙瓒荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "燕山既平，残部却向西遁去——白马草原一带的乌恒骑兵蠢蠢欲动。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "我疑冀州有人暗中通敌，你这便去白马草原，将那伙乌恒骑兵收拾干净。"
+        },
+        {
+          "speaker": "",
+          "text": "（公孙瓒神色凝重，似有更深隐情。）"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与公孙瓒合计。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_37"
+  },
+  "main_wei_37": {
+    "id": "main_wei_37",
+    "name": "主·踏平白马",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 16,
+    "prerequisite": "main_wei_36",
+    "description": "前往「白马草原」收拾8名『乌恒骑兵』",
+    "target_location": "beiping_north.白马草原",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "乌恒骑兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 3800,
+      "gold": 220
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "好身手！白马草原的乌恒骑兵既除，北平北境暂安。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "然探子回报，北平西面的古道上，马贼探子频频出没，怕是有人在背后撑腰。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "你去古道走一遭，把那些马贼探子扫了，看看他们替谁卖命。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_38"
+  },
+  "main_wei_38": {
+    "id": "main_wei_38",
+    "name": "主·马贼探子",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 17,
+    "prerequisite": "main_wei_37",
+    "description": "前往「古道」收拾10名『马贼探子』",
+    "target_location": "beiping_west.古道",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "马贼探子",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 4200,
+      "gold": 240
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "马贼探子已除，可临死前他们口中只念一个名字——高干。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "高干，袁氏旧臣，盘踞云鹤崖，暗通异族，图谋不轨。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "云鹤崖险，此去务必小心。取他项上人头时，记得搜出通敌的密信！"
+        }
+      ]
+    },
+    "next_quest": "main_wei_39"
+  },
+  "main_wei_39": {
+    "id": "main_wei_39",
+    "name": "主·逆臣高干",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 17,
+    "prerequisite": "main_wei_38",
+    "description": "前往「云鹤崖」击败『高干』，夺取【逆臣密信】后回太守府交付",
+    "target_location": "beiping_west.云鹤崖",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_mixin",
+      "item_name": "逆臣密信",
+      "count": 1,
+      "monster_name": "高干"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 400,
+      "honor": 3
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "高干此贼，必除之而后快。把那通敌密信给我带回来！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "密信在此……高干竟与塞外异族歃血为盟，欲图北平！"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "铁证如山，逆臣伏诛。此功当记，赏你荣誉3点。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "既知异族欲窥晋阳，我修书一封，你持密信出使晋阳太守张扬——他乃忠勇之人，定会接应。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_40"
+  },
+  "main_wei_40": {
+    "id": "main_wei_40",
+    "name": "主·西出北平",
+    "type": "main",
+    "npc_id": "npc_beiping_center_公孙瓒荣誉",
+    "npc_name": "公孙瓒",
+    "npc_location": "beiping_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 18,
+    "prerequisite": "main_wei_39",
+    "description": "与『公孙瓒』辞行，出北平西界前往晋阳",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_beiping_center_公孙瓒荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "公孙瓒",
+          "text": "出北平西界，过长城，便是晋阳地界。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "晋阳驿站的晋阳车夫认得张扬太守的人，你寻他引荐便是。"
+        },
+        {
+          "speaker": "",
+          "text": "（你辞别公孙瓒，踏上了西出北平、奔赴晋阳的路途。）"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "公孙瓒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与公孙瓒合计。"
+        },
+        {
+          "speaker": "公孙瓒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "前往「北平西界」向西进入「晋阳东界」，再至晋阳中区驿站寻『晋阳车夫』",
+    "next_quest": "main_wei_41"
+  },
+  "main_wei_41": {
+    "id": "main_wei_41",
+    "name": "主·初入晋阳",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_晋阳车夫",
+    "npc_name": "晋阳车夫",
+    "npc_location": "jinyang_center.驿站",
+    "npc_location_name": "驿站(晋阳中区)",
+    "level_required": 18,
+    "prerequisite": "main_wei_40",
+    "description": "前往「驿站」与『晋阳车夫』搭话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_晋阳车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3200,
+      "gold": 200
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "晋阳车夫",
+          "text": "哟，这位客官从北平来？车马劳顿，歇歇脚吧。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持北平太守公孙瓒的书信，欲见晋阳张扬太守。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "晋阳车夫",
+          "text": "公孙瓒太守的人？那可是贵客！张扬太守就在太守府。"
+        },
+        {
+          "speaker": "晋阳车夫",
+          "text": "我这便给你指路——出驿站往北，过北街便是太守府。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_42"
+  },
+  "main_wei_42": {
+    "id": "main_wei_42",
+    "name": "主·投奔张扬",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_晋阳车夫",
+    "npc_name": "晋阳车夫",
+    "npc_location": "jinyang_center.驿站",
+    "npc_location_name": "驿站(晋阳中区)",
+    "level_required": 19,
+    "prerequisite": "main_wei_41",
+    "description": "前往「太守府」拜见『张扬』",
+    "target_location": "jinyang_center.太守府",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_张扬荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3500,
+      "gold": 220
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "晋阳车夫",
+          "text": "太守府就在北面，张扬太守素有知人之明，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "公孙瓒的书信与高干密信，我皆已阅。异族窥我晋阳，诚可忧也。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你既千里赴义，便留在我麾下效力。晋阳四境皆有祸患，正需你这般好手。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "且先去西面长平，那里的黄巾残军为患已久，替我平了它。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_43"
+  },
+  "main_wei_43": {
+    "id": "main_wei_43",
+    "name": "主·黄巾余孽",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(北平中区)",
+    "level_required": 20,
+    "prerequisite": "main_wei_42",
+    "description": "前往「长平」收拾10名『黄巾残军』",
+    "target_location": "jinyang_west.长平",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "黄巾残军",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 300,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "长平黄巾既平，西境稍安。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "东面黑水河近来有巨龟作祟，渔人不敢近，许大夫正为药材发愁。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你去药铺寻许大夫，他自会告诉你详情。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_44"
+  },
+  "main_wei_44": {
+    "id": "main_wei_44",
+    "name": "主·巨龟为患",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_许大夫",
+    "npc_name": "许大夫",
+    "npc_location": "jinyang_center.药铺",
+    "npc_location_name": "药铺(晋阳中区)",
+    "level_required": 21,
+    "prerequisite": "main_wei_43",
+    "description": "前往「黑水河」收拾8只『潜水巨龟』",
+    "target_location": "jinyang_east.黑水河",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "潜水巨龟",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 5200,
+      "gold": 320
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许大夫",
+          "text": "黑水河的潜水巨龟霸着渡口，我采药都去不得。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "壮士若能除之，百姓感激不尽。龟甲我正缺来入药。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "巨龟既除，黑水河通矣！这一片药材有着落了。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "行走江湖，伤药不可少。我店里金疮药常备，你且买几支傍身。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_45"
+  },
+  "main_wei_45": {
+    "id": "main_wei_45",
+    "name": "主·药铺采买",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_许大夫",
+    "npc_name": "许大夫",
+    "npc_location": "jinyang_center.药铺",
+    "npc_location_name": "药铺(晋阳中区)",
+    "level_required": 22,
+    "prerequisite": "main_wei_44",
+    "description": "在『许大夫』药铺购买1个[金疮药]",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_jinyang_center_许大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手，往后厮杀便多一分底气。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "张扬太守那边怕是又着紧了，你且回太守府听令。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "许大夫",
+          "text": "将军要的金疮药，小店正好有货。"
+        },
+        {
+          "speaker": "你",
+          "text": "正缺这个，给我来1个。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "将军爽快，银货两讫。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_46"
+  },
+  "main_wei_46": {
+    "id": "main_wei_46",
+    "name": "主·平南蛮",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 23,
+    "prerequisite": "main_wei_45",
+    "description": "前往「南地」收拾10名『南蛮兵』",
+    "target_location": "jinyang_south.南地",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "南蛮兵",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "南蛮兵退，晋阳南境暂宁。此功赏你荣誉3点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "然北境雁门关烽火频传，斥候来报，大雪岭有山越骑兵集结。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "雁门乃晋阳门户，断不可失。你北上大雪岭，先清山越骑兵。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_47"
+  },
+  "main_wei_47": {
+    "id": "main_wei_47",
+    "name": "主·雁门斥候",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 25,
+    "prerequisite": "main_wei_46",
+    "description": "前往「大雪岭」收拾8名『山越骑兵』",
+    "target_location": "jinyang_north.大雪岭",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "山越骑兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 7500,
+      "gold": 460,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "山越骑兵既破，大雪岭道通矣。赏你荣誉3点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "然雁门关上有白狼为祸，此兽凶悍，乃北境大患。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你既至此，便一鼓作气，取那白狼之首！"
+        }
+      ]
+    },
+    "next_quest": "main_wei_48"
+  },
+  "main_wei_48": {
+    "id": "main_wei_48",
+    "name": "主·白狼之首",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 27,
+    "prerequisite": "main_wei_47",
+    "description": "前往「雁门关」取6只『白狼』之首",
+    "target_location": "jinyang_north.雁门关",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "白狼",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 560,
+      "honor": 4
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "白狼授首！雁门关自此可守矣。赏你荣誉4点。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "晋阳四境既安，皆赖你之力。然中原将有大变……"
+        },
+        {
+          "speaker": "张扬",
+          "text": "你且来雁门关一趟，我有要事相托。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_49"
+  },
+  "main_wei_49": {
+    "id": "main_wei_49",
+    "name": "主·雁门关防",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 29,
+    "prerequisite": "main_wei_48",
+    "description": "前往「太守府」与『张扬』议事",
+    "target_location": "jinyang_north.雁门关",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_张扬荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 500,
+      "honor": 5
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "雁门关已固，晋阳无虞。赏你荣誉5点，记你首功。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "然细作来报，中原许昌之地暗流涌动，诸侯将有大动。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "待你功力再进一步，便南下许昌一探究竟——那，将是你新的征程。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "张扬",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与张扬合计。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "此为当前主线终点。待等级更高时，南下许昌的征程将开启。",
+    "next_quest": "main_wei_50"
+  },
+  "main_wei_50": {
+    "id": "main_wei_50",
+    "name": "主·南下许昌",
+    "type": "main",
+    "npc_id": "npc_jinyang_center_张扬荣誉",
+    "npc_name": "张扬",
+    "npc_location": "jinyang_center.太守府",
+    "npc_location_name": "太守府(晋阳中区)",
+    "level_required": 30,
+    "prerequisite": "main_wei_49",
+    "description": "与『张扬』辞行，南下许昌投奔曹公",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jinyang_center_张扬荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张扬",
+          "text": "雁门既守，你之名已传至中原。许昌曹公求贤若渴，正是你施展之时。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "出晋阳南界，过长城，便是许昌北界。许昌驿站的许昌车夫乃曹公心腹，你寻他引荐。"
+        },
+        {
+          "speaker": "",
+          "text": "（你辞别张扬，踏上了南下许昌的征途——那将是一个枭雄并起、风云际会的天下。）"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "张扬",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与张扬合计。"
+        },
+        {
+          "speaker": "张扬",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "前往「晋阳南界」向南进入「许昌北界」，再至许昌中区驿站寻『许昌车夫』",
+    "next_quest": "main_wei_51"
+  },
+  "main_wei_51": {
+    "id": "main_wei_51",
+    "name": "主·初入许昌",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_许昌车夫",
+    "npc_name": "许昌车夫",
+    "npc_location": "xuchang_center.驿站",
+    "npc_location_name": "驿站(许昌中区)",
+    "level_required": 30,
+    "prerequisite": "main_wei_50",
+    "description": "前往「驿站」与『许昌车夫』搭话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_许昌车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许昌车夫",
+          "text": "这位壮士，从晋阳远道而来？一路辛苦。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持晋阳张扬太守之荐，欲面见曹公。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许昌车夫",
+          "text": "张扬太守的人？那可是贵客！曹公正在皇宫理政。"
+        },
+        {
+          "speaker": "许昌车夫",
+          "text": "我引你入宫——不过曹公识人，他自会考校于你。且随我来。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_52"
+  },
+  "main_wei_52": {
+    "id": "main_wei_52",
+    "name": "主·面见曹公",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_许昌车夫",
+    "npc_name": "许昌车夫",
+    "npc_location": "xuchang_center.驿站",
+    "npc_location_name": "驿站(许昌中区)",
+    "level_required": 30,
+    "prerequisite": "main_wei_51",
+    "description": "前往「皇宫」面见『曹操』",
+    "target_location": "xuchang_center.皇宫",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_曹操荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许昌车夫",
+          "text": "皇宫就在东面，曹公威仪，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "张扬荐书我已阅。能守雁门者，必是可用之材。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "然天下未定，许昌四境仍有余孽——袁术旧部孔由盘踞楚留巷，欺压百姓。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你既投我幕府，便先取孔由之首，让我看看你的本事！"
+        }
+      ]
+    },
+    "next_quest": "main_wei_53"
+  },
+  "main_wei_53": {
+    "id": "main_wei_53",
+    "name": "主·楚巷孔由",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 31,
+    "prerequisite": "main_wei_52",
+    "description": "前往「楚留巷」击败1名『孔由』",
+    "target_location": "xuchang_north.楚留巷",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "孔由",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 500,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "孔由授首！楚留巷百姓得脱其苦。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "袁术旧党何止孔由。白虎街的太子守卫亦有人受其蛊惑，阳奉阴违。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "去白虎街，把那群太子守卫收拾干净，勿使东宫生乱。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_54"
+  },
+  "main_wei_54": {
+    "id": "main_wei_54",
+    "name": "主·白虎守卫",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 32,
+    "prerequisite": "main_wei_53",
+    "description": "前往「白虎街」收拾8名『太子守卫』",
+    "target_location": "xuchang_center.白虎街",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "太子守卫",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 560,
+      "honor": 1
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "东宫既安，太子守卫之乱已平。此功赏你荣誉1点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "护城河一带的许昌卫兵近来懈怠，有人竟与北境流寇私通。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你去护城河整肃一番，杀鸡儆猴，看看谁还敢心怀二志。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_55"
+  },
+  "main_wei_55": {
+    "id": "main_wei_55",
+    "name": "主·整肃护城河",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 34,
+    "prerequisite": "main_wei_54",
+    "description": "前往「护城河」收拾8名『许昌卫兵』",
+    "target_location": "xuchang_north.护城河",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "许昌卫兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 11500,
+      "gold": 640
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "护城河既清，通敌之徒已诛，许昌北境再无私通之忧。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你连番厮杀，伤药可曾备齐？许大夫药铺就在城中，金疮药不可少。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "去药铺寻许大夫，买几支金疮药傍身——刀头舔血，总要有备无患。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_56"
+  },
+  "main_wei_56": {
+    "id": "main_wei_56",
+    "name": "主·许大夫求药",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 33,
+    "prerequisite": "main_wei_55",
+    "description": "前往「药铺」向『许大夫』购买1个[金疮药]",
+    "target_location": "xuchang_center.药铺",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_xuchang_center_许大夫"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 200
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹操",
+          "text": "药铺在中区东首，许大夫乃杏林圣手，金疮药是他的拿手。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手。曹公麾下办事，果然利落。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "战场凶险，这药关键时刻能救命。曹公那边怕是又有差事了。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_57"
+  },
+  "main_wei_57": {
+    "id": "main_wei_57",
+    "name": "主·战场魏军",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 35,
+    "prerequisite": "main_wei_56",
+    "description": "前往「战场」收拾8名『魏军护兵』",
+    "target_location": "xuchang_center.战场",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "魏军护兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 12000,
+      "gold": 700,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "战场魏军护兵既平，校军场再无隐患。赏你荣誉2点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "然东门有鲍信，亦袁术余孽，聚众自固，屡抗王师。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "鲍信此獠，必除之！你东出东门，取他首级来见。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_58"
+  },
+  "main_wei_58": {
+    "id": "main_wei_58",
+    "name": "主·东门鲍信",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 35,
+    "prerequisite": "main_wei_57",
+    "description": "前往「东门」击败1名『鲍信』",
+    "target_location": "xuchang_east.东门",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "鲍信",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 13500,
+      "gold": 800,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "鲍信授首！袁术余党又去其一。赏你荣誉3点，记你大功。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "射鹿台还有张超，与鲍信同气连枝，必为后患。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "乘胜追击，去射鹿台把张超也一并除了！"
+        }
+      ]
+    },
+    "next_quest": "main_wei_59"
+  },
+  "main_wei_59": {
+    "id": "main_wei_59",
+    "name": "主·射鹿张超",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 37,
+    "prerequisite": "main_wei_58",
+    "description": "前往「射鹿台」击败1名『张超』",
+    "target_location": "xuchang_east.射鹿台",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "张超",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 15000,
+      "gold": 900,
+      "honor": 3
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "张超既除，东境袁术余孽尽灭！赏你荣誉3点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "连番征讨，军械辎重堆积如山。金掌柜的钱庄仓库正需人手盘点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你去钱庄寻金掌柜，替我理一理这批军资——仓中有序，方能耗长久。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_60"
+  },
+  "main_wei_60": {
+    "id": "main_wei_60",
+    "name": "主·仓库盘点",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 36,
+    "prerequisite": "main_wei_59",
+    "description": "前往「钱庄」与『金掌柜』盘点军资",
+    "target_location": "xuchang_center.钱庄",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_金掌柜仓库",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 7000,
+      "gold": 400
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹操",
+          "text": "金掌柜的钱庄在中区西首，他管着许昌的仓库，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "金掌柜",
+          "text": "壮士来了！这批军资我可等了好些时日，多亏你帮忙盘点。"
+        },
+        {
+          "speaker": "金掌柜",
+          "text": "仓库已理清，辎重出入有数。往后你有什物要存，尽管来寻我。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_61"
+  },
+  "main_wei_61": {
+    "id": "main_wei_61",
+    "name": "主·阳关白衣人",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 38,
+    "prerequisite": "main_wei_60",
+    "description": "前往「阳关道」收拾8名『斗篷白衣人』",
+    "target_location": "xuchang_south.阳关道",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "斗篷白衣人",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 16000,
+      "gold": 1000,
+      "honor": 2
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "阳关道白衣人既灭，南境江湖势力为之一清。赏你荣誉2点。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "风陵渡有风陵王，此贼盘踞渡口，断我漕运，罪不可恕。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "风陵王凶悍，乃南境大患。你此去务必小心，取其首级！"
+        }
+      ]
+    },
+    "next_quest": "main_wei_62"
+  },
+  "main_wei_62": {
+    "id": "main_wei_62",
+    "name": "主·风陵王",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 39,
+    "prerequisite": "main_wei_61",
+    "description": "前往「风陵渡」击败1名『风陵王』",
+    "target_location": "xuchang_east.风陵渡",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "风陵王",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 18000,
+      "gold": 1200,
+      "honor": 4
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "风陵王授首！漕运复通，许昌四境大定。赏你荣誉4点，记你首功。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你连平数境，功勋卓著。然小公主有要事相告，她急得紧。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "你且先去皇宫见她，我随后在铜雀台设宴为你庆功。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_63"
+  },
+  "main_wei_63": {
+    "id": "main_wei_63",
+    "name": "主·小公主之忧",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_曹操荣誉",
+    "npc_name": "曹操",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 38,
+    "prerequisite": "main_wei_62",
+    "description": "前往「皇宫」听『小公主』所述",
+    "target_location": "xuchang_center.皇宫",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_小公主",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 8000,
+      "gold": 600
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "曹操",
+          "text": "小公主在皇宫内，她性子急，你快去快回。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "小公主",
+          "text": "壮士！我听闻南方下邳城近来异动频频，似有中立之豪强欲起事。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "下邳乃南北要冲，若失，许昌南门洞开。父王正欲设宴，定有差遣于你。"
+        }
+      ]
+    },
+    "next_quest": "main_wei_64"
+  },
+  "main_wei_64": {
+    "id": "main_wei_64",
+    "name": "主·铜雀台宴",
+    "type": "main",
+    "npc_id": "npc_xuchang_center_小公主",
+    "npc_name": "小公主",
+    "npc_location": "xuchang_center.皇宫",
+    "npc_location_name": "皇宫(许昌中区)",
+    "level_required": 39,
+    "prerequisite": "main_wei_63",
+    "description": "前往「皇宫」赴曹公『铜雀台』之宴",
+    "target_location": "xuchang_center.皇宫",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_xuchang_center_曹操荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 1000,
+      "honor": 5
+    },
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "曹操",
+          "text": "铜雀台高，对酒当歌。你平许昌四境，功在社稷，赏你荣誉5点！"
+        },
+        {
+          "speaker": "曹操",
+          "text": "然如小公主所言，下邳中立城暗流涌动，南北要冲不可失。"
+        },
+        {
+          "speaker": "曹操",
+          "text": "待你功力再进一步，便南下下邳一探究竟——那，将是你新的征程。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "小公主",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与小公主合计。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "此为当前主线终点。待等级更高时，南下下邳中立城的征程将开启。",
+    "next_quest": null
+  },
+  "main_wu_01": {
+    "id": "main_wu_01",
+    "name": "主·初入江东",
+    "type": "main",
+    "npc_id": "npc_wujun_east_墨画",
+    "npc_name": "墨画",
+    "npc_location": "wujun_east.大院",
+    "npc_location_name": "大院(吴郡东区)",
+    "level_required": 1,
+    "prerequisite": null,
+    "description": "前往「大院」与『墨画』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_墨画",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_wu_02",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "墨画",
+          "text": "将军！将军！"
+        },
+        {
+          "speaker": "你",
+          "text": "姑娘慌慌张张何事(你脑袋晕乎乎心想不是在做梦？)！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "墨画",
+          "text": "方才我看到一个黑影鬼鬼祟祟从小姐房中出来，将军快进屋救小姐！"
+        },
+        {
+          "speaker": "你",
+          "text": "啊？啊？啊？"
+        }
+      ]
+    },
+    "next_hint": "前往「厢房」与『孙尚香』对话"
+  },
+  "main_wu_02": {
+    "id": "main_wu_02",
+    "name": "主·初逢尚香",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙尚香",
+    "npc_name": "孙尚香",
+    "npc_location": "wujun_east.厢房",
+    "npc_location_name": "厢房(吴郡东区)",
+    "level_required": 1,
+    "prerequisite": "main_wu_01",
+    "description": "前往「厢房」与『孙尚香』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_孙尚香",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_wu_03",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙尚香",
+          "text": "将军从天上来，难道会是凡人吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "应该不是吧(这是梦还是不是梦呢？)！"
+        },
+        {
+          "speaker": "",
+          "text": "(孙尚香英气一笑，你顿时看呆了)"
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "(小小声)将军倒和我兄长有几分相像呢..."
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙尚香",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙尚香合计。"
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_03": {
+    "id": "main_wu_03",
+    "name": "主·兵书夺回",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙尚香",
+    "npc_name": "孙尚香",
+    "npc_location": "wujun_east.厢房",
+    "npc_location_name": "厢房(吴郡东区)",
+    "level_required": 1,
+    "prerequisite": "main_wu_02",
+    "description": "前往「大院」击杀『窃贼』收集1本[孙吴兵书]",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_wu_bingshu",
+      "item_name": "孙吴兵书",
+      "count": 1,
+      "monster_name": "窃贼"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_wu_04",
+    "target_location": "wujun_east.大院",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "孙尚香",
+          "text": "将军方才有个『窃贼』把我的[孙吴兵书]偷走了，将军可否帮我抢回来？"
+        },
+        {
+          "speaker": "你",
+          "text": "原来那黑影是窃贼，看我这就去取回来。"
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "窃贼还在大院，将军一定要小心。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "孙尚香",
+          "text": "感谢将军，将军果然勇猛过人"
+        },
+        {
+          "speaker": "你",
+          "text": "嘿嘿，我也这么认为"
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "将军这么勇猛，不如帮我带封信给兄长吧？"
+        },
+        {
+          "speaker": "你",
+          "text": "额，行吧..."
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "略略略，谢谢将军。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "quest_wu_xin",
+      "item_name": "家信",
+      "count": 1
+    }
+  },
+  "main_wu_04": {
+    "id": "main_wu_04",
+    "name": "主·初见孙策",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙策",
+    "npc_name": "孙策",
+    "npc_location": "wujun_east.军营",
+    "npc_location_name": "军营(吴郡东区)",
+    "level_required": 1,
+    "prerequisite": "main_wu_03",
+    "description": "前往「军营」与『孙策』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_wu_xin",
+      "item_name": "家信",
+      "count": 1,
+      "target_npc": "npc_wujun_east_孙策"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_wu_05",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "孙策",
+          "text": "是妹妹叫你来的吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "是的，这里有封她的家信。"
+        },
+        {
+          "speaker": "孙策",
+          "text": "那就谢过将军了。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "孙策",
+          "text": "将军既然来了，不如再帮妹妹带份羹点回去？"
+        },
+        {
+          "speaker": "你",
+          "text": "...你以为我想啊，这是孙尚香要的羹点。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "quest_wu_xin_hui",
+      "item_name": "回信",
+      "count": 1
+    }
+  },
+  "main_wu_05": {
+    "id": "main_wu_05",
+    "name": "主·回赠家信",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙尚香",
+    "npc_name": "孙尚香",
+    "npc_location": "wujun_east.厢房",
+    "npc_location_name": "厢房(吴郡东区)",
+    "level_required": 1,
+    "prerequisite": "main_wu_04",
+    "description": "前往「厢房」与『孙尚香』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_wu_xin_hui",
+      "item_name": "回信",
+      "count": 1,
+      "target_npc": "npc_wujun_east_孙尚香"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_wu_06",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙尚香",
+          "text": "哥哥回信了？让我看看。"
+        },
+        {
+          "speaker": "你",
+          "text": "嗯，他还让你准备羹点。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙尚香",
+          "text": "将军这是给老朽送回信来了？"
+        },
+        {
+          "speaker": "你",
+          "text": "正是，物归原主。"
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "有劳将军跑这一趟。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "quest_wu_gengdian",
+      "item_name": "羹点",
+      "count": 1
+    }
+  },
+  "main_wu_06": {
+    "id": "main_wu_06",
+    "name": "主·送羹点",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙策",
+    "npc_name": "孙策",
+    "npc_location": "wujun_east.军营",
+    "npc_location_name": "军营(吴郡东区)",
+    "level_required": 1,
+    "prerequisite": "main_wu_05",
+    "description": "前往「军营」与『孙策』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_wu_gengdian",
+      "item_name": "羹点",
+      "count": 1,
+      "target_npc": "npc_wujun_east_孙策"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_wu_07",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙策",
+          "text": "还是妹妹有心，这羹点正合我意。"
+        },
+        {
+          "speaker": "你",
+          "text": "那敢情好，我能走了吧？"
+        },
+        {
+          "speaker": "孙策",
+          "text": "将军且慢，小巷里有位智者，将军不妨去拜访。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙策",
+          "text": "将军这是给老朽送羹点来了？"
+        },
+        {
+          "speaker": "你",
+          "text": "正是，物归原主。"
+        },
+        {
+          "speaker": "孙策",
+          "text": "有劳将军跑这一趟。"
+        }
+      ]
+    }
+  },
+  "main_wu_07": {
+    "id": "main_wu_07",
+    "name": "主·初见智者",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 3,
+    "prerequisite": "main_wu_06",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_wu_08",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "哈哈，将军人不可貌相，若不信可去问问技能馆的学徒。"
+        },
+        {
+          "speaker": "你",
+          "text": "老先生告辞，我这就去。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军一路走好(终于走了)。"
+        },
+        {
+          "speaker": "你",
+          "text": "不过技能馆在哪里？"
+        },
+        {
+          "speaker": "智者",
+          "text": "「技能馆」(吴郡中区)就在广场东面。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_08": {
+    "id": "main_wu_08",
+    "name": "主·询问学徒",
+    "type": "main",
+    "npc_id": "npc_wujun_center_学徒",
+    "npc_name": "学徒",
+    "npc_location": "wujun_center.技能馆",
+    "npc_location_name": "技能馆(吴郡中区)",
+    "level_required": 3,
+    "prerequisite": "main_wu_07",
+    "description": "前往「技能馆」与『学徒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_学徒",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_wu_09",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "学徒",
+          "text": "将军要学技能？找技能教官便是。"
+        },
+        {
+          "speaker": "你",
+          "text": "多谢。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "学徒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与学徒合计。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_09": {
+    "id": "main_wu_09",
+    "name": "主·学习技能",
+    "type": "main",
+    "npc_id": "npc_wujun_center_技能教官",
+    "npc_name": "教官",
+    "npc_location": "wujun_center.技能馆",
+    "npc_location_name": "技能馆(吴郡中区)",
+    "level_required": 3,
+    "prerequisite": "main_wu_08",
+    "description": "前往「技能馆」与『教官』对话",
+    "objective": {
+      "type": "learn_skill",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_wu_10",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "技能教官",
+          "text": "将军已习得一门技能，往后战斗中可施展。"
+        },
+        {
+          "speaker": "你",
+          "text": "受教了。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "教官",
+          "text": "将军来学艺？坐。"
+        },
+        {
+          "speaker": "你",
+          "text": "正想讨教几手绝活。"
+        },
+        {
+          "speaker": "教官",
+          "text": "那便随我入内，莫要外传。"
+        }
+      ]
+    }
+  },
+  "main_wu_10": {
+    "id": "main_wu_10",
+    "name": "主·回报学徒",
+    "type": "main",
+    "npc_id": "npc_wujun_center_学徒",
+    "npc_name": "学徒",
+    "npc_location": "wujun_center.技能馆",
+    "npc_location_name": "技能馆(吴郡中区)",
+    "level_required": 3,
+    "prerequisite": "main_wu_09",
+    "description": "前往「技能馆」与『学徒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_学徒",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_wu_11",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "学徒",
+          "text": "将军既已习得技能，何不去试试身手？智者有话要交代。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "学徒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与学徒合计。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_11": {
+    "id": "main_wu_11",
+    "name": "主·智者指引",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 4,
+    "prerequisite": "main_wu_10",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 300,
+      "gold": 100
+    },
+    "next_quest": "main_wu_12",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "将军要练手，东城楼有铜人，去打十个回来。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_12": {
+    "id": "main_wu_12",
+    "name": "主·铜人试炼",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 4,
+    "prerequisite": "main_wu_11",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "铜人",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 300,
+      "gold": 100
+    },
+    "next_quest": "main_wu_13",
+    "target_location": "wujun_center.东城楼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "不错，将军已有几分武人模样。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军，东城楼一带的铜人猖獗得很，扰得四方不宁。"
+        },
+        {
+          "speaker": "你",
+          "text": "10个铜人？小菜一碟。"
+        },
+        {
+          "speaker": "智者",
+          "text": "有劳将军，此去务必小心。"
+        }
+      ]
+    }
+  },
+  "main_wu_13": {
+    "id": "main_wu_13",
+    "name": "主·孙策相邀",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙策",
+    "npc_name": "孙策",
+    "npc_location": "wujun_east.军营",
+    "npc_location_name": "军营(吴郡东区)",
+    "level_required": 5,
+    "prerequisite": "main_wu_12",
+    "description": "前往「军营」与『孙策』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_孙策",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_14",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙策",
+          "text": "将军武艺渐长，军营副将统领正招揽豪杰，将军可去一见。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙策",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙策合计。"
+        },
+        {
+          "speaker": "孙策",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_14": {
+    "id": "main_wu_14",
+    "name": "主·副将招募",
+    "type": "main",
+    "npc_id": "npc_wujun_east_副将统领",
+    "npc_name": "统领",
+    "npc_location": "wujun_east.军营",
+    "npc_location_name": "军营(吴郡东区)",
+    "level_required": 5,
+    "prerequisite": "main_wu_13",
+    "description": "前往「军营」与『统领』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_副将统领",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_15",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "副将统领",
+          "text": "将军若得副将相助，如虎添翼。这枚招募令给你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "统领",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与统领合计。"
+        },
+        {
+          "speaker": "统领",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "lt_recruit",
+      "item_name": "副将招募令",
+      "count": 1
+    }
+  },
+  "main_wu_15": {
+    "id": "main_wu_15",
+    "name": "主·智者再嘱",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 5,
+    "prerequisite": "main_wu_14",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_16",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "箭楼有野狗为患，将军去清一清。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_16": {
+    "id": "main_wu_16",
+    "name": "主·清剿野狗",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 5,
+    "prerequisite": "main_wu_15",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "野狗",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_17",
+    "target_location": "wujun_east.箭楼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "野狗既清，将军可去铁匠铺看看。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军，箭楼一带的野狗猖獗得很，扰得四方不宁。"
+        },
+        {
+          "speaker": "你",
+          "text": "10个野狗？小菜一碟。"
+        },
+        {
+          "speaker": "智者",
+          "text": "有劳将军，此去务必小心。"
+        }
+      ]
+    }
+  },
+  "main_wu_17": {
+    "id": "main_wu_17",
+    "name": "主·初访铁匠",
+    "type": "main",
+    "npc_id": "npc_wujun_east_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "wujun_east.铁匠铺",
+    "npc_location_name": "铁匠铺(吴郡东区)",
+    "level_required": 6,
+    "prerequisite": "main_wu_16",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_18",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军来得正好，我这有把铁剑，送你防身。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_18": {
+    "id": "main_wu_18",
+    "name": "主·智者中段",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 6,
+    "prerequisite": "main_wu_17",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_19",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "有了兵刃，再找铁匠聊聊强化之事。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_19": {
+    "id": "main_wu_19",
+    "name": "主·铁匠赠剑",
+    "type": "main",
+    "npc_id": "npc_wujun_east_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "wujun_east.铁匠铺",
+    "npc_location_name": "铁匠铺(吴郡东区)",
+    "level_required": 6,
+    "prerequisite": "main_wu_18",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_20",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "这把铁剑将军先用着，往后再来强化。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "equipment_tie_sword_quest",
+      "item_name": "铁剑",
+      "count": 1
+    }
+  },
+  "main_wu_20": {
+    "id": "main_wu_20",
+    "name": "主·智者点拨",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 6,
+    "prerequisite": "main_wu_19",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_21",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "强化装备需用宝玉，铁匠处可问。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_21": {
+    "id": "main_wu_21",
+    "name": "主·强化宝玉",
+    "type": "main",
+    "npc_id": "npc_wujun_east_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "wujun_east.铁匠铺",
+    "npc_location_name": "铁匠铺(吴郡东区)",
+    "level_required": 7,
+    "prerequisite": "main_wu_20",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_wu_22",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "这块强化宝玉送你，往后强化装备用得上。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "enhance_gem",
+      "item_name": "强化宝玉",
+      "count": 1
+    }
+  },
+  "main_wu_22": {
+    "id": "main_wu_22",
+    "name": "主·再清野狗",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 7,
+    "prerequisite": "main_wu_21",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "野狗",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 700,
+      "gold": 100
+    },
+    "next_quest": "main_wu_23",
+    "target_location": "wujun_east.箭楼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "好身手，去客栈歇歇脚吧。"
+        }
+      ]
+    }
+  },
+  "main_wu_23": {
+    "id": "main_wu_23",
+    "name": "主·客栈歇脚",
+    "type": "main",
+    "npc_id": "npc_wujun_center_王老板",
+    "npc_name": "王老板",
+    "npc_location": "wujun_center.客栈_南",
+    "npc_location_name": "客栈(吴郡中区)",
+    "level_required": 7,
+    "prerequisite": "main_wu_22",
+    "description": "前往「客栈」与『王老板』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_王老板",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_24",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "王老板",
+          "text": "将军舟马劳顿，小店有上好酒菜，请进。"
+        },
+        {
+          "speaker": "你",
+          "text": "多谢老板。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "王老板",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与王老板合计。"
+        },
+        {
+          "speaker": "王老板",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_24": {
+    "id": "main_wu_24",
+    "name": "主·智者再叙",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 7,
+    "prerequisite": "main_wu_23",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_25",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "将军已历练有成，孙尚香有话要带给你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_25": {
+    "id": "main_wu_25",
+    "name": "主·迷茫称号",
+    "type": "main",
+    "npc_id": "npc_wujun_east_孙尚香",
+    "npc_name": "孙尚香",
+    "npc_location": "wujun_east.厢房",
+    "npc_location_name": "厢房(吴郡东区)",
+    "level_required": 8,
+    "prerequisite": "main_wu_24",
+    "description": "前往「厢房」与『孙尚香』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_孙尚香",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_26",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙尚香",
+          "text": "将军初入江湖，前路迷茫，这卷称号送你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙尚香",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙尚香合计。"
+        },
+        {
+          "speaker": "孙尚香",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "title_prefix_mangmang",
+      "item_name": "称号卷轴-迷茫的",
+      "count": 1
+    }
+  },
+  "main_wu_26": {
+    "id": "main_wu_26",
+    "name": "主·神游之果",
+    "type": "main",
+    "npc_id": "npc_wujun_east_智者",
+    "npc_name": "智者",
+    "npc_location": "wujun_east.小巷",
+    "npc_location_name": "小巷(吴郡东区)",
+    "level_required": 8,
+    "prerequisite": "main_wu_25",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_east_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_27",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "这枚神游果收好，日后进入副本需用。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "shenyou_guo",
+      "item_name": "神游果",
+      "count": 1
+    }
+  },
+  "main_wu_27": {
+    "id": "main_wu_27",
+    "name": "主·初访张昭",
+    "type": "main",
+    "npc_id": "npc_wujun_center_张昭副本",
+    "npc_name": "张昭",
+    "npc_location": "wujun_center.观星台",
+    "npc_location_name": "观星台(吴郡中区)",
+    "level_required": 8,
+    "prerequisite": "main_wu_26",
+    "description": "前往「观星台」与『张昭』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_张昭副本",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_28",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张昭",
+          "text": "将军之名，昭已听闻。江东正需将军这般豪杰。"
+        },
+        {
+          "speaker": "你",
+          "text": "先生过奖。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "张昭",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与张昭合计。"
+        },
+        {
+          "speaker": "张昭",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_28": {
+    "id": "main_wu_28",
+    "name": "主·张昭论势",
+    "type": "main",
+    "npc_id": "npc_wujun_center_张昭副本",
+    "npc_name": "张昭",
+    "npc_location": "wujun_center.观星台",
+    "npc_location_name": "观星台(吴郡中区)",
+    "level_required": 8,
+    "prerequisite": "main_wu_27",
+    "description": "前往「观星台」与『张昭』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_张昭副本",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_29",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张昭",
+          "text": "如今天下大乱，江东孙氏欲成霸业，将军可愿相助？"
+        },
+        {
+          "speaker": "你",
+          "text": "愿闻其详。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "张昭",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与张昭合计。"
+        },
+        {
+          "speaker": "张昭",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_29": {
+    "id": "main_wu_29",
+    "name": "主·张昭荐引",
+    "type": "main",
+    "npc_id": "npc_wujun_center_张昭副本",
+    "npc_name": "张昭",
+    "npc_location": "wujun_center.观星台",
+    "npc_location_name": "观星台(吴郡中区)",
+    "level_required": 9,
+    "prerequisite": "main_wu_28",
+    "description": "前往「观星台」与『张昭』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_张昭副本",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_30",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张昭",
+          "text": "将军可去药铺寻华大夫备些伤药，再去太守府拜见孙坚太守。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "张昭",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与张昭合计。"
+        },
+        {
+          "speaker": "张昭",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_30": {
+    "id": "main_wu_30",
+    "name": "主·观星台议",
+    "type": "main",
+    "npc_id": "npc_wujun_center_张昭副本",
+    "npc_name": "张昭",
+    "npc_location": "wujun_center.观星台",
+    "npc_location_name": "观星台(吴郡中区)",
+    "level_required": 9,
+    "prerequisite": "main_wu_29",
+    "description": "前往「观星台」与『张昭』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_张昭副本",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_31",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "张昭",
+          "text": "孙坚太守乃江东猛虎，将军持我荐书去太守府，必得重用。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "张昭",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与张昭合计。"
+        },
+        {
+          "speaker": "张昭",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_31": {
+    "id": "main_wu_31",
+    "name": "主·购置金疮药",
+    "type": "main",
+    "npc_id": "npc_wujun_center_华大夫",
+    "npc_name": "华大夫",
+    "npc_location": "wujun_center.药铺_北",
+    "npc_location_name": "药铺(吴郡中区)",
+    "level_required": 10,
+    "prerequisite": "main_wu_30",
+    "description": "前往「药铺」与『华大夫』对话",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_wujun_center_华大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_wu_32",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "华大夫",
+          "text": "金疮药已备齐，将军保重。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "华大夫",
+          "text": "将军要的金疮药，小店正好有货。"
+        },
+        {
+          "speaker": "你",
+          "text": "正缺这个，给我来1个。"
+        },
+        {
+          "speaker": "华大夫",
+          "text": "将军爽快，银货两讫。"
+        }
+      ]
+    }
+  },
+  "main_wu_32": {
+    "id": "main_wu_32",
+    "name": "主·拜见孙坚",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 10,
+    "prerequisite": "main_wu_31",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_孙坚荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_wu_33",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "张昭荐你来，必是良才。钱庄有贼人作乱，将军可去清剿。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙坚",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙坚合计。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_33": {
+    "id": "main_wu_33",
+    "name": "主·清剿小偷",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 11,
+    "prerequisite": "main_wu_32",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "小偷",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_wu_34",
+    "target_location": "wujun_center.钱庄",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "钱庄既安，将军之功。"
+        }
+      ]
+    }
+  },
+  "main_wu_34": {
+    "id": "main_wu_34",
+    "name": "主·孙坚嘉奖",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 11,
+    "prerequisite": "main_wu_33",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_孙坚荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200,
+      "honor": 2
+    },
+    "next_quest": "main_wu_35",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "将军屡立奇功，赏你荣誉。北境黑野猪为患，将军可去余杭山清剿。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙坚",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙坚合计。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_35": {
+    "id": "main_wu_35",
+    "name": "主·余猎黑野猪",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 16,
+    "prerequisite": "main_wu_34",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "黑野猪",
+      "count": 5
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_wu_36",
+    "target_location": "wujun_north.余杭山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "黑野猪既除，北境稍安。"
+        }
+      ]
+    }
+  },
+  "main_wu_36": {
+    "id": "main_wu_36",
+    "name": "主·平叛余烬",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 16,
+    "prerequisite": "main_wu_35",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_孙坚荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_37",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "余杭既平，残部却向西遁——柴桑苍狼蠢蠢欲动。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "我疑有人暗中通敌，你且去柴桑，将那伙苍狼收拾干净。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙坚",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙坚合计。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_37": {
+    "id": "main_wu_37",
+    "name": "主·踏平苍狼",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 16,
+    "prerequisite": "main_wu_36",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "苍狼",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 3800,
+      "gold": 220
+    },
+    "next_quest": "main_wu_38",
+    "target_location": "chaisang_west.南山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "好身手！苍狼既除，柴桑暂安。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "然探子回报，太平流寇频频出没，怕是有人在背后撑腰。"
+        }
+      ]
+    }
+  },
+  "main_wu_38": {
+    "id": "main_wu_38",
+    "name": "主·太平流寇",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 17,
+    "prerequisite": "main_wu_37",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "太平流寇",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 4200,
+      "gold": 240
+    },
+    "next_quest": "main_wu_39",
+    "target_location": "chaisang_east.镇关西",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "流寇已除，临死前他们口中只念一个名字——黄能。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "黄能盘踞柴桑东境，暗通异族，图谋不轨。取他首级时，搜出通敌密信！"
+        }
+      ]
+    }
+  },
+  "main_wu_39": {
+    "id": "main_wu_39",
+    "name": "主·逆贼黄能",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 17,
+    "prerequisite": "main_wu_38",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_mixin",
+      "item_name": "逆臣密信",
+      "count": 1,
+      "monster_name": "黄能"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 400,
+      "honor": 3
+    },
+    "next_quest": "main_wu_40",
+    "target_location": "chaisang_east.林外林",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "孙坚",
+          "text": "黄能此贼，必除之而后快。把那通敌密信给我带回来！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "密信在此……黄能竟与异族歃血为盟，欲图江东！"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "铁证如山，逆贼伏诛。此功当记，赏你荣誉3点。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "我修书一封，你持密信出使柴桑太守吕范——他乃忠勇之人，定会接应。"
+        }
+      ]
+    }
+  },
+  "main_wu_40": {
+    "id": "main_wu_40",
+    "name": "主·西出吴郡",
+    "type": "main",
+    "npc_id": "npc_wujun_center_孙坚荣誉",
+    "npc_name": "孙坚",
+    "npc_location": "wujun_center.太守府",
+    "npc_location_name": "太守府(吴郡中区)",
+    "level_required": 18,
+    "prerequisite": "main_wu_39",
+    "description": "前往「太守府」与『孙坚』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_wujun_center_孙坚荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_wu_41",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙坚",
+          "text": "出吴郡北界或西界，过山岭，便是柴桑地界。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "柴桑驿站的柴桑车夫认得吕范太守的人，你寻他引荐。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "孙坚",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与孙坚合计。"
+        },
+        {
+          "speaker": "孙坚",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "前往吴郡北界或西界进入柴桑，至柴桑中区驿站寻『柴桑车夫』"
+  },
+  "main_wu_41": {
+    "id": "main_wu_41",
+    "name": "主·初入柴桑",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_柴桑车夫",
+    "npc_name": "柴桑车夫",
+    "npc_location": "chaisang_center.驿站",
+    "npc_location_name": "驿站(柴桑中区)",
+    "level_required": 18,
+    "prerequisite": "main_wu_40",
+    "description": "前往「驿站」与『柴桑车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chaisang_center_柴桑车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3200,
+      "gold": 200
+    },
+    "next_quest": "main_wu_42",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "柴桑车夫",
+          "text": "哟，这位客官从吴郡来？一路辛苦。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持吴郡孙坚太守之荐，欲见柴桑吕范太守。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "柴桑车夫",
+          "text": "孙坚太守的人？贵客！吕范太守就在太守府。"
+        },
+        {
+          "speaker": "柴桑车夫",
+          "text": "我给你指路——出驿站便是。"
+        }
+      ]
+    }
+  },
+  "main_wu_42": {
+    "id": "main_wu_42",
+    "name": "主·投奔吕范",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_柴桑车夫",
+    "npc_name": "柴桑车夫",
+    "npc_location": "chaisang_center.驿站",
+    "npc_location_name": "驿站(柴桑中区)",
+    "level_required": 19,
+    "prerequisite": "main_wu_41",
+    "description": "前往「驿站」与『柴桑车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chaisang_center_吕范荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3500,
+      "gold": 220
+    },
+    "next_quest": "main_wu_43",
+    "target_location": "chaisang_center.太守府",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "柴桑车夫",
+          "text": "太守府就在近处，吕范太守素有知人之明，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "孙坚的书信与黄能密信，我皆已阅。异族窥我柴桑，诚可忧也。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "你既千里赴义，便留在我麾下。柴桑四境皆有祸患，正需你这般好手。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "且先去西境，苍狼残部为患已久……不，银狐近来为患，替我平了它。"
+        }
+      ]
+    }
+  },
+  "main_wu_43": {
+    "id": "main_wu_43",
+    "name": "主·银狐为患",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 20,
+    "prerequisite": "main_wu_42",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "银狐",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 300,
+      "honor": 2
+    },
+    "next_quest": "main_wu_44",
+    "target_location": "chaisang_east.浔阳",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "银狐既平，柴桑稍安。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "南境幽影精锐与虎豹营亲卫蠢蠢欲动，黄能余党刘通盘踞北境。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "你去北境，先把刘通这厮收拾了。"
+        }
+      ]
+    }
+  },
+  "main_wu_44": {
+    "id": "main_wu_44",
+    "name": "主·清剿刘通",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 21,
+    "prerequisite": "main_wu_43",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "刘通",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 5200,
+      "gold": 320
+    },
+    "next_quest": "main_wu_45",
+    "target_location": "chaisang_north.北门",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "刘通授首！北境通矣。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "华大夫正为药材发愁，南境杨散霸着要道。你去药铺寻华大夫，他自会告诉你详情。"
+        }
+      ]
+    }
+  },
+  "main_wu_45": {
+    "id": "main_wu_45",
+    "name": "主·药铺采买",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_许大夫",
+    "npc_name": "许大夫",
+    "npc_location": "chaisang_center.药铺",
+    "npc_location_name": "药铺(柴桑中区)",
+    "level_required": 22,
+    "prerequisite": "main_wu_44",
+    "description": "前往「药铺」与『华大夫』对话",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_chaisang_center_许大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_wu_46",
+    "target_location": "chaisang_center.药铺",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手，往后厮杀便多一分底气。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "吕范太守那边怕是又着紧了，你且回太守府听令。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "许大夫",
+          "text": "将军要的金疮药，小店正好有货。"
+        },
+        {
+          "speaker": "你",
+          "text": "正缺这个，给我来1个。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "将军爽快，银货两讫。"
+        }
+      ]
+    }
+  },
+  "main_wu_46": {
+    "id": "main_wu_46",
+    "name": "主·平杨散",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 23,
+    "prerequisite": "main_wu_45",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "杨散",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400,
+      "honor": 3
+    },
+    "next_quest": "main_wu_47",
+    "target_location": "chaisang_south.越阳坡",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "杨散退，柴桑南境暂宁。此功赏你荣誉3点。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "然范漫盘踞西塘坡，乃柴桑大患。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "你既至此，便一鼓作气，取范漫之首！"
+        }
+      ]
+    }
+  },
+  "main_wu_47": {
+    "id": "main_wu_47",
+    "name": "主·范漫之首",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 25,
+    "prerequisite": "main_wu_46",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "范漫",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 7500,
+      "gold": 460,
+      "honor": 3
+    },
+    "next_quest": "main_wu_48",
+    "target_location": "chaisang_south.逆天峰",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "范漫授首！柴桑自此可守矣。赏你荣誉3点。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "柴桑四境既安，皆赖你之力。然中原将有大变……"
+        },
+        {
+          "speaker": "吕范",
+          "text": "建邺孙权太守求贤若渴，我修书荐你前往。"
+        }
+      ]
+    }
+  },
+  "main_wu_48": {
+    "id": "main_wu_48",
+    "name": "主·柴桑固防",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 27,
+    "prerequisite": "main_wu_47",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chaisang_center_吕范荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 560,
+      "honor": 4
+    },
+    "next_quest": "main_wu_49",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "柴桑已固，皆你之功。赏你荣誉4点，记你首功。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "建邺乃江东根本，孙权太守在那等你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "吕范",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与吕范合计。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_49": {
+    "id": "main_wu_49",
+    "name": "主·辞别柴桑",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 29,
+    "prerequisite": "main_wu_48",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chaisang_center_吕范荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 500,
+      "honor": 5
+    },
+    "next_quest": "main_wu_50",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "建邺在建邺中区，驿站车夫会引你入宫。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "孙权太守识人，你自会有一番作为。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "吕范",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与吕范合计。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "前往柴桑北界进入建邺，至建邺中区驿站寻『建邺车夫』"
+  },
+  "main_wu_50": {
+    "id": "main_wu_50",
+    "name": "主·南下建邺",
+    "type": "main",
+    "npc_id": "npc_chaisang_center_吕范荣誉",
+    "npc_name": "吕范",
+    "npc_location": "chaisang_center.太守府",
+    "npc_location_name": "太守府(柴桑中区)",
+    "level_required": 30,
+    "prerequisite": "main_wu_49",
+    "description": "前往「太守府」与『吕范』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chaisang_center_吕范荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "next_quest": "main_wu_51",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "吕范",
+          "text": "你之名已传至建邺。孙权太守求贤若渴，正是你施展之时。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "建邺驿站的建邺车夫乃孙公心腹，你寻他引荐。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "吕范",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与吕范合计。"
+        },
+        {
+          "speaker": "吕范",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_wu_51": {
+    "id": "main_wu_51",
+    "name": "主·初入建邺",
+    "type": "main",
+    "npc_id": "npc_jianye_center_建邺车夫",
+    "npc_name": "建邺车夫",
+    "npc_location": "jianye_center.驿站",
+    "npc_location_name": "驿站(建邺中区)",
+    "level_required": 30,
+    "prerequisite": "main_wu_50",
+    "description": "前往「驿站」与『建邺车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianye_center_建邺车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "next_quest": "main_wu_52",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "建邺车夫",
+          "text": "这位壮士，从柴桑远道而来？一路辛苦。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持柴桑吕范太守之荐，欲面见孙权太守。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "建邺车夫",
+          "text": "吕范太守的人？贵客！孙权太守正在皇宫理政。"
+        },
+        {
+          "speaker": "建邺车夫",
+          "text": "我引你入宫——孙公识人，他自会考校于你。"
+        }
+      ]
+    }
+  },
+  "main_wu_52": {
+    "id": "main_wu_52",
+    "name": "主·面见孙权",
+    "type": "main",
+    "npc_id": "npc_jianye_center_建邺车夫",
+    "npc_name": "建邺车夫",
+    "npc_location": "jianye_center.驿站",
+    "npc_location_name": "驿站(建邺中区)",
+    "level_required": 30,
+    "prerequisite": "main_wu_51",
+    "description": "前往「驿站」与『建邺车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianye_center_孙权荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400
+    },
+    "next_quest": "main_wu_53",
+    "target_location": "jianye_center.皇宫",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "建邺车夫",
+          "text": "皇宫就在近处，孙公威仪，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "吕范荐书我已阅。能守柴桑者，必是可用之材。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "然建邺四境仍有余孽——陈兰盘踞南境，欺压百姓。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "你既投我幕府，便先取陈兰之首，让我看看你的本事！"
+        }
+      ]
+    }
+  },
+  "main_wu_53": {
+    "id": "main_wu_53",
+    "name": "主·南境陈兰",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 31,
+    "prerequisite": "main_wu_52",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "陈兰",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 500,
+      "honor": 2
+    },
+    "next_quest": "main_wu_54",
+    "target_location": "jianye_south.南门",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "陈兰授首！南境百姓得脱其苦。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "建邺卫兵近来懈怠，有人与流寇私通。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "你去北境整肃一番，杀鸡儆猴。"
+        }
+      ]
+    }
+  },
+  "main_wu_54": {
+    "id": "main_wu_54",
+    "name": "主·北境兵痞",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 32,
+    "prerequisite": "main_wu_53",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "兵痞",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 560,
+      "honor": 1
+    },
+    "next_quest": "main_wu_55",
+    "target_location": "jianye_south.子明丘",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "北境既安，通敌之徒已诛。此功赏你荣誉1点。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "建邺卫兵懈怠，你去整肃。"
+        }
+      ]
+    }
+  },
+  "main_wu_55": {
+    "id": "main_wu_55",
+    "name": "主·整肃建邺卫兵",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 34,
+    "prerequisite": "main_wu_54",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "建邺卫兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 11500,
+      "gold": 640
+    },
+    "next_quest": "main_wu_56",
+    "target_location": "jianye_north.北门",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "建邺卫兵既清，北境再无私通之忧。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "你连番厮杀，伤药可曾备齐？华大夫药铺就在城中。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "去买几支金疮药傍身——刀头舔血，总要有备无患。"
+        }
+      ]
+    }
+  },
+  "main_wu_56": {
+    "id": "main_wu_56",
+    "name": "主·购置金疮药",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 33,
+    "prerequisite": "main_wu_55",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_jianye_center_许大夫"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 200
+    },
+    "next_quest": "main_wu_57",
+    "target_location": "jianye_center.药铺",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "孙权",
+          "text": "药铺在建邺中区，华大夫乃杏林圣手。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手。孙公麾下办事，果然利落。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "战场凶险，这药关键时刻能救命。"
+        }
+      ]
+    }
+  },
+  "main_wu_57": {
+    "id": "main_wu_57",
+    "name": "主·吴军护兵",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 35,
+    "prerequisite": "main_wu_56",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "吴军护兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 12000,
+      "gold": 700,
+      "honor": 2
+    },
+    "next_quest": "main_wu_58",
+    "target_location": "jianye_center.战场",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "吴军护兵既平，校军场再无隐患。赏你荣誉2点。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "雷薄聚众自固，屡抗王师，必除之！"
+        }
+      ]
+    }
+  },
+  "main_wu_58": {
+    "id": "main_wu_58",
+    "name": "主·雷薄之首",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 35,
+    "prerequisite": "main_wu_57",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "雷薄",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 13500,
+      "gold": 800,
+      "honor": 3
+    },
+    "next_quest": "main_wu_59",
+    "target_location": "jianye_north.北门",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "雷薄授首！赏你荣誉3点，记你大功。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "杨弘与雷薄同气连枝，必为后患。乘胜追击！"
+        }
+      ]
+    }
+  },
+  "main_wu_59": {
+    "id": "main_wu_59",
+    "name": "主·杨弘授首",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 37,
+    "prerequisite": "main_wu_58",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "杨弘",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 15000,
+      "gold": 900,
+      "honor": 3
+    },
+    "next_quest": "main_wu_60",
+    "target_location": "jianye_west.石头路",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "杨弘既除，建邺东境尽灭！赏你荣誉3点。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "连番征讨，军械辎重堆积如山。金掌柜仓库正需人手盘点。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "你去钱庄寻金掌柜，替我理一理这批军资。"
+        }
+      ]
+    }
+  },
+  "main_wu_60": {
+    "id": "main_wu_60",
+    "name": "主·仓库盘点",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 36,
+    "prerequisite": "main_wu_59",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianye_center_金掌柜仓库",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 7000,
+      "gold": 400
+    },
+    "next_quest": "main_wu_61",
+    "target_location": "jianye_center.钱庄",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "孙权",
+          "text": "金掌柜的钱庄在建邺中区，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "金掌柜",
+          "text": "壮士来了！这批军资我可等了好些时日，多亏你帮忙。"
+        },
+        {
+          "speaker": "金掌柜",
+          "text": "仓库已理清，往后你有什物要存，尽管来寻我。"
+        }
+      ]
+    }
+  },
+  "main_wu_61": {
+    "id": "main_wu_61",
+    "name": "主·凤鸟之患",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 38,
+    "prerequisite": "main_wu_60",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "凤鸟",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 16000,
+      "gold": 1000,
+      "honor": 2
+    },
+    "next_quest": "main_wu_62",
+    "target_location": "jianye_east.西霞谷",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "凤鸟既灭，东境为之一清。赏你荣誉2点。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "山越左骑使盘踞南境，乃建邺大患。取其首级！"
+        }
+      ]
+    }
+  },
+  "main_wu_62": {
+    "id": "main_wu_62",
+    "name": "主·山越左骑使",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 39,
+    "prerequisite": "main_wu_61",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "山越左骑使",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 18000,
+      "gold": 1200,
+      "honor": 4
+    },
+    "next_quest": "main_wu_63",
+    "target_location": "jianye_south.山越地",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "山越左骑使授首！建邺四境大定。赏你荣誉4点，记你首功。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "小公主有要事相告，她急得紧。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "你且先去皇宫见她，我随后设宴为你庆功。"
+        }
+      ]
+    }
+  },
+  "main_wu_63": {
+    "id": "main_wu_63",
+    "name": "主·小公主之忧",
+    "type": "main",
+    "npc_id": "npc_jianye_center_孙权荣誉",
+    "npc_name": "孙权",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 38,
+    "prerequisite": "main_wu_62",
+    "description": "前往「皇宫」与『孙权』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianye_center_小公主",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 8000,
+      "gold": 600
+    },
+    "next_quest": "main_wu_64",
+    "target_location": "jianye_center.皇宫",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "孙权",
+          "text": "小公主在皇宫内，她性子急，你快去快回。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "小公主",
+          "text": "壮士！我听闻北方下邳城近来异动频频，似有中立之豪强欲起事。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "下邳乃南北要冲，若失，建邺门户洞开。父王正欲设宴，定有差遣于你。"
+        }
+      ]
+    }
+  },
+  "main_wu_64": {
+    "id": "main_wu_64",
+    "name": "主·建邺庆功宴",
+    "type": "main",
+    "npc_id": "npc_jianye_center_小公主",
+    "npc_name": "小公主",
+    "npc_location": "jianye_center.皇宫",
+    "npc_location_name": "皇宫(建邺中区)",
+    "level_required": 39,
+    "prerequisite": "main_wu_63",
+    "description": "前往「皇宫」与『小公主』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianye_center_孙权荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 1000,
+      "honor": 5
+    },
+    "next_quest": null,
+    "target_location": "jianye_center.皇宫",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "孙权",
+          "text": "高台之上，对酒当歌。你平建邺四境，功在社稷，赏你荣誉5点！"
+        },
+        {
+          "speaker": "孙权",
+          "text": "然如小公主所言，下邳中立城暗流涌动，南北要冲不可失。"
+        },
+        {
+          "speaker": "孙权",
+          "text": "待你功力再进一步，便北上下邳一探究竟——那，将是你新的征程。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "小公主",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与小公主合计。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "此为当前主线终点。待等级更高时，北上下邳中立城的征程将开启。"
+  },
+  "main_shu_01": {
+    "id": "main_shu_01",
+    "name": "主·初入蜀地",
+    "type": "main",
+    "npc_id": "npc_jianing_west_金锁",
+    "npc_name": "金锁",
+    "npc_location": "jianing_west.大院",
+    "npc_location_name": "大院(建宁西区)",
+    "level_required": 1,
+    "prerequisite": null,
+    "description": "前往「大院」与『金锁』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_金锁",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_shu_02",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "金锁",
+          "text": "将军！将军！"
+        },
+        {
+          "speaker": "你",
+          "text": "姑娘慌慌张张何事(你脑袋晕乎乎心想不是在做梦？)！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "金锁",
+          "text": "方才我看到一个黑影鬼鬼祟祟从小姐房中出来，将军快进屋救小姐！"
+        },
+        {
+          "speaker": "你",
+          "text": "啊？啊？啊？"
+        }
+      ]
+    },
+    "next_hint": "前往「厢房」与『刘雅』对话"
+  },
+  "main_shu_02": {
+    "id": "main_shu_02",
+    "name": "主·初逢刘雅",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘雅",
+    "npc_name": "刘雅",
+    "npc_location": "jianing_west.厢房",
+    "npc_location_name": "厢房(建宁西区)",
+    "level_required": 1,
+    "prerequisite": "main_shu_01",
+    "description": "前往「厢房」与『刘雅』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_刘雅",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_shu_03",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘雅",
+          "text": "将军从天上来，难道会是凡人吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "应该不是吧(这是梦还是不是梦呢？)！"
+        },
+        {
+          "speaker": "",
+          "text": "(刘雅浅浅一笑，你顿时看呆了)"
+        },
+        {
+          "speaker": "刘雅",
+          "text": "(小小声)将军倒和我家兄长有几分相像呢..."
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "刘雅",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与刘雅合计。"
+        },
+        {
+          "speaker": "刘雅",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_03": {
+    "id": "main_shu_03",
+    "name": "主·锦囊夺回",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘雅",
+    "npc_name": "刘雅",
+    "npc_location": "jianing_west.厢房",
+    "npc_location_name": "厢房(建宁西区)",
+    "level_required": 1,
+    "prerequisite": "main_shu_02",
+    "description": "前往「大院」击杀『窃贼』收集1个[诸葛锦囊]",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_shu_jinnang",
+      "item_name": "诸葛锦囊",
+      "count": 1,
+      "monster_name": "窃贼"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_shu_04",
+    "target_location": "jianing_west.大院",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "刘雅",
+          "text": "将军方才有个『窃贼』把我的[诸葛锦囊]偷走了，将军可否帮我抢回来？"
+        },
+        {
+          "speaker": "你",
+          "text": "原来那黑影是窃贼，看我这就去取回来。"
+        },
+        {
+          "speaker": "刘雅",
+          "text": "窃贼还在大院，将军一定要小心。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "刘雅",
+          "text": "感谢将军，将军果然勇猛过人"
+        },
+        {
+          "speaker": "你",
+          "text": "嘿嘿，我也这么认为"
+        },
+        {
+          "speaker": "刘雅",
+          "text": "将军这么勇猛，不如帮我带封信给兄长吧？"
+        },
+        {
+          "speaker": "你",
+          "text": "额，行吧..."
+        },
+        {
+          "speaker": "刘雅",
+          "text": "略略略，谢谢将军。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "quest_shu_xin",
+      "item_name": "家信",
+      "count": 1
+    }
+  },
+  "main_shu_04": {
+    "id": "main_shu_04",
+    "name": "主·初见刘封",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘封",
+    "npc_name": "刘封",
+    "npc_location": "jianing_west.军营",
+    "npc_location_name": "军营(建宁西区)",
+    "level_required": 1,
+    "prerequisite": "main_shu_03",
+    "description": "前往「军营」与『刘封』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_shu_xin",
+      "item_name": "家信",
+      "count": 1,
+      "target_npc": "npc_jianing_west_刘封"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_shu_05",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "刘封",
+          "text": "是妹妹叫你来的吗？"
+        },
+        {
+          "speaker": "你",
+          "text": "是的，这里有封她的家信。"
+        },
+        {
+          "speaker": "刘封",
+          "text": "那就谢过将军了。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "刘封",
+          "text": "将军既然来了，不如再帮妹妹带份茶食回去？"
+        },
+        {
+          "speaker": "你",
+          "text": "...你以为我想啊，这是刘雅要的茶食。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "quest_shu_xin_hui",
+      "item_name": "回信",
+      "count": 1
+    }
+  },
+  "main_shu_05": {
+    "id": "main_shu_05",
+    "name": "主·回赠家信",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘雅",
+    "npc_name": "刘雅",
+    "npc_location": "jianing_west.厢房",
+    "npc_location_name": "厢房(建宁西区)",
+    "level_required": 1,
+    "prerequisite": "main_shu_04",
+    "description": "前往「厢房」与『刘雅』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_shu_xin_hui",
+      "item_name": "回信",
+      "count": 1,
+      "target_npc": "npc_jianing_west_刘雅"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_shu_06",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘雅",
+          "text": "哥哥回信了？让我看看。"
+        },
+        {
+          "speaker": "你",
+          "text": "嗯，他还让你准备茶食。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "刘雅",
+          "text": "将军这是给老朽送回信来了？"
+        },
+        {
+          "speaker": "你",
+          "text": "正是，物归原主。"
+        },
+        {
+          "speaker": "刘雅",
+          "text": "有劳将军跑这一趟。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "quest_shu_chashi",
+      "item_name": "茶食",
+      "count": 1
+    }
+  },
+  "main_shu_06": {
+    "id": "main_shu_06",
+    "name": "主·送茶食",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘封",
+    "npc_name": "刘封",
+    "npc_location": "jianing_west.军营",
+    "npc_location_name": "军营(建宁西区)",
+    "level_required": 1,
+    "prerequisite": "main_shu_05",
+    "description": "前往「军营」与『刘封』对话",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "quest_shu_chashi",
+      "item_name": "茶食",
+      "count": 1,
+      "target_npc": "npc_jianing_west_刘封"
+    },
+    "rewards": {
+      "experience": 100,
+      "gold": 100
+    },
+    "next_quest": "main_shu_07",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘封",
+          "text": "还是妹妹有心，这茶食正合我意。"
+        },
+        {
+          "speaker": "你",
+          "text": "那敢情好，我能走了吧？"
+        },
+        {
+          "speaker": "刘封",
+          "text": "将军且慢，小巷里有位智者，将军不妨去拜访。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "刘封",
+          "text": "将军这是给老朽送茶食来了？"
+        },
+        {
+          "speaker": "你",
+          "text": "正是，物归原主。"
+        },
+        {
+          "speaker": "刘封",
+          "text": "有劳将军跑这一趟。"
+        }
+      ]
+    }
+  },
+  "main_shu_07": {
+    "id": "main_shu_07",
+    "name": "主·初见智者",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 3,
+    "prerequisite": "main_shu_06",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_shu_08",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "哈哈，将军人不可貌相，若不信可去问问技能馆的学徒。"
+        },
+        {
+          "speaker": "你",
+          "text": "老先生告辞，我这就去。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军一路走好(终于走了)。"
+        },
+        {
+          "speaker": "你",
+          "text": "不过技能馆在哪里？"
+        },
+        {
+          "speaker": "智者",
+          "text": "「技能馆」(建宁中区)就在广场东面。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_08": {
+    "id": "main_shu_08",
+    "name": "主·询问学徒",
+    "type": "main",
+    "npc_id": "npc_jianing_center_学徒",
+    "npc_name": "学徒",
+    "npc_location": "jianing_center.技能馆",
+    "npc_location_name": "技能馆(建宁中区)",
+    "level_required": 3,
+    "prerequisite": "main_shu_07",
+    "description": "前往「技能馆」与『学徒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_学徒",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_shu_09",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "学徒",
+          "text": "将军要学技能？找技能教官便是。"
+        },
+        {
+          "speaker": "你",
+          "text": "多谢。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "学徒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与学徒合计。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_09": {
+    "id": "main_shu_09",
+    "name": "主·学习技能",
+    "type": "main",
+    "npc_id": "npc_jianing_center_技能教官",
+    "npc_name": "教官",
+    "npc_location": "jianing_center.技能馆",
+    "npc_location_name": "技能馆(建宁中区)",
+    "level_required": 3,
+    "prerequisite": "main_shu_08",
+    "description": "前往「技能馆」与『教官』对话",
+    "objective": {
+      "type": "learn_skill",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_shu_10",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "技能教官",
+          "text": "将军已习得一门技能，往后战斗中可施展。"
+        },
+        {
+          "speaker": "你",
+          "text": "受教了。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "教官",
+          "text": "将军来学艺？坐。"
+        },
+        {
+          "speaker": "你",
+          "text": "正想讨教几手绝活。"
+        },
+        {
+          "speaker": "教官",
+          "text": "那便随我入内，莫要外传。"
+        }
+      ]
+    }
+  },
+  "main_shu_10": {
+    "id": "main_shu_10",
+    "name": "主·回报学徒",
+    "type": "main",
+    "npc_id": "npc_jianing_center_学徒",
+    "npc_name": "学徒",
+    "npc_location": "jianing_center.技能馆",
+    "npc_location_name": "技能馆(建宁中区)",
+    "level_required": 3,
+    "prerequisite": "main_shu_09",
+    "description": "前往「技能馆」与『学徒』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_学徒",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 200,
+      "gold": 100
+    },
+    "next_quest": "main_shu_11",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "学徒",
+          "text": "将军既已习得技能，何不去试试身手？智者有话要交代。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "学徒",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与学徒合计。"
+        },
+        {
+          "speaker": "学徒",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_11": {
+    "id": "main_shu_11",
+    "name": "主·智者指引",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 4,
+    "prerequisite": "main_shu_10",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 300,
+      "gold": 100
+    },
+    "next_quest": "main_shu_12",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "将军要练手，西城楼有铜人，去打十个回来。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_12": {
+    "id": "main_shu_12",
+    "name": "主·铜人试炼",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 4,
+    "prerequisite": "main_shu_11",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "铜人",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 300,
+      "gold": 100
+    },
+    "next_quest": "main_shu_13",
+    "target_location": "jianing_center.西城楼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "不错，将军已有几分武人模样。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军，西城楼一带的铜人猖獗得很，扰得四方不宁。"
+        },
+        {
+          "speaker": "你",
+          "text": "10个铜人？小菜一碟。"
+        },
+        {
+          "speaker": "智者",
+          "text": "有劳将军，此去务必小心。"
+        }
+      ]
+    }
+  },
+  "main_shu_13": {
+    "id": "main_shu_13",
+    "name": "主·刘封相邀",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘封",
+    "npc_name": "刘封",
+    "npc_location": "jianing_west.军营",
+    "npc_location_name": "军营(建宁西区)",
+    "level_required": 5,
+    "prerequisite": "main_shu_12",
+    "description": "前往「军营」与『刘封』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_刘封",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_14",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘封",
+          "text": "将军武艺渐长，军营副将统领正招揽豪杰，将军可去一见。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "刘封",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与刘封合计。"
+        },
+        {
+          "speaker": "刘封",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_14": {
+    "id": "main_shu_14",
+    "name": "主·副将招募",
+    "type": "main",
+    "npc_id": "npc_jianing_west_副将统领",
+    "npc_name": "统领",
+    "npc_location": "jianing_west.军营",
+    "npc_location_name": "军营(建宁西区)",
+    "level_required": 5,
+    "prerequisite": "main_shu_13",
+    "description": "前往「军营」与『统领』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_副将统领",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_15",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "副将统领",
+          "text": "将军若得副将相助，如虎添翼。这枚招募令给你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "统领",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与统领合计。"
+        },
+        {
+          "speaker": "统领",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "lt_recruit",
+      "item_name": "副将招募令",
+      "count": 1
+    }
+  },
+  "main_shu_15": {
+    "id": "main_shu_15",
+    "name": "主·智者再嘱",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 5,
+    "prerequisite": "main_shu_14",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_16",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "箭楼有野狗为患，将军去清一清。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_16": {
+    "id": "main_shu_16",
+    "name": "主·清剿野狗",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 5,
+    "prerequisite": "main_shu_15",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "野狗",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_17",
+    "target_location": "jianing_west.箭楼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "野狗既清，将军可去铁匠铺看看。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军，箭楼一带的野狗猖獗得很，扰得四方不宁。"
+        },
+        {
+          "speaker": "你",
+          "text": "10个野狗？小菜一碟。"
+        },
+        {
+          "speaker": "智者",
+          "text": "有劳将军，此去务必小心。"
+        }
+      ]
+    }
+  },
+  "main_shu_17": {
+    "id": "main_shu_17",
+    "name": "主·初访铁匠",
+    "type": "main",
+    "npc_id": "npc_jianing_west_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "jianing_west.铁匠铺",
+    "npc_location_name": "铁匠铺(建宁西区)",
+    "level_required": 6,
+    "prerequisite": "main_shu_16",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_18",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军来得正好，我这有把铁剑，送你防身。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_18": {
+    "id": "main_shu_18",
+    "name": "主·智者中段",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 6,
+    "prerequisite": "main_shu_17",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_19",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "有了兵刃，再找铁匠聊聊强化之事。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_19": {
+    "id": "main_shu_19",
+    "name": "主·铁匠赠剑",
+    "type": "main",
+    "npc_id": "npc_jianing_west_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "jianing_west.铁匠铺",
+    "npc_location_name": "铁匠铺(建宁西区)",
+    "level_required": 6,
+    "prerequisite": "main_shu_18",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_20",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "这把铁剑将军先用着，往后再来强化。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "equipment_tie_sword_quest",
+      "item_name": "铁剑",
+      "count": 1
+    }
+  },
+  "main_shu_20": {
+    "id": "main_shu_20",
+    "name": "主·智者点拨",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 6,
+    "prerequisite": "main_shu_19",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_21",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "强化装备需用宝玉，铁匠处可问。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_21": {
+    "id": "main_shu_21",
+    "name": "主·强化宝玉",
+    "type": "main",
+    "npc_id": "npc_jianing_west_李铁匠",
+    "npc_name": "李铁匠",
+    "npc_location": "jianing_west.铁匠铺",
+    "npc_location_name": "铁匠铺(建宁西区)",
+    "level_required": 7,
+    "prerequisite": "main_shu_20",
+    "description": "前往「铁匠铺」与『李铁匠』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_李铁匠",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 100
+    },
+    "next_quest": "main_shu_22",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李铁匠",
+          "text": "这块强化宝玉送你，往后强化装备用得上。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李铁匠",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李铁匠合计。"
+        },
+        {
+          "speaker": "李铁匠",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "enhance_gem",
+      "item_name": "强化宝玉",
+      "count": 1
+    }
+  },
+  "main_shu_22": {
+    "id": "main_shu_22",
+    "name": "主·再清野狗",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 7,
+    "prerequisite": "main_shu_21",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "野狗",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 700,
+      "gold": 100
+    },
+    "next_quest": "main_shu_23",
+    "target_location": "jianing_west.箭楼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "好身手，去客栈歇歇脚吧。"
+        }
+      ]
+    }
+  },
+  "main_shu_23": {
+    "id": "main_shu_23",
+    "name": "主·客栈歇脚",
+    "type": "main",
+    "npc_id": "npc_jianing_center_王老板",
+    "npc_name": "王老板",
+    "npc_location": "jianing_center.客栈_南",
+    "npc_location_name": "客栈(建宁中区)",
+    "level_required": 7,
+    "prerequisite": "main_shu_22",
+    "description": "前往「客栈」与『王老板』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_王老板",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_24",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "王老板",
+          "text": "将军舟马劳顿，小店有上好酒菜，请进。"
+        },
+        {
+          "speaker": "你",
+          "text": "多谢老板。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "王老板",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与王老板合计。"
+        },
+        {
+          "speaker": "王老板",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_24": {
+    "id": "main_shu_24",
+    "name": "主·智者再叙",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 7,
+    "prerequisite": "main_shu_23",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_25",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "将军已历练有成，刘雅有话要带给你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_25": {
+    "id": "main_shu_25",
+    "name": "主·迷茫称号",
+    "type": "main",
+    "npc_id": "npc_jianing_west_刘雅",
+    "npc_name": "刘雅",
+    "npc_location": "jianing_west.厢房",
+    "npc_location_name": "厢房(建宁西区)",
+    "level_required": 8,
+    "prerequisite": "main_shu_24",
+    "description": "前往「厢房」与『刘雅』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_刘雅",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_26",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘雅",
+          "text": "将军初入江湖，前路迷茫，这卷称号送你。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "刘雅",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与刘雅合计。"
+        },
+        {
+          "speaker": "刘雅",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "title_prefix_mangmang",
+      "item_name": "称号卷轴-迷茫的",
+      "count": 1
+    }
+  },
+  "main_shu_26": {
+    "id": "main_shu_26",
+    "name": "主·神游之果",
+    "type": "main",
+    "npc_id": "npc_jianing_west_智者",
+    "npc_name": "智者",
+    "npc_location": "jianing_west.小巷",
+    "npc_location_name": "小巷(建宁西区)",
+    "level_required": 8,
+    "prerequisite": "main_shu_25",
+    "description": "前往「小巷」与『智者』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_west_智者",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_27",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "智者",
+          "text": "这枚神游果收好，日后进入副本需用。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "智者",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与智者合计。"
+        },
+        {
+          "speaker": "智者",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "grant_item": {
+      "item_id": "shenyou_guo",
+      "item_name": "神游果",
+      "count": 1
+    }
+  },
+  "main_shu_27": {
+    "id": "main_shu_27",
+    "name": "主·初访马良",
+    "type": "main",
+    "npc_id": "npc_jianing_center_马良",
+    "npc_name": "马良",
+    "npc_location": "jianing_center.观星台",
+    "npc_location_name": "观星台(建宁中区)",
+    "level_required": 8,
+    "prerequisite": "main_shu_26",
+    "description": "前往「观星台」与『马良』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_马良",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 1000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_28",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "马良",
+          "text": "将军之名，良已听闻。蜀中正需将军这般豪杰。"
+        },
+        {
+          "speaker": "你",
+          "text": "先生过奖。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "马良",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与马良合计。"
+        },
+        {
+          "speaker": "马良",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_28": {
+    "id": "main_shu_28",
+    "name": "主·马良论势",
+    "type": "main",
+    "npc_id": "npc_jianing_center_马良",
+    "npc_name": "马良",
+    "npc_location": "jianing_center.观星台",
+    "npc_location_name": "观星台(建宁中区)",
+    "level_required": 8,
+    "prerequisite": "main_shu_27",
+    "description": "前往「观星台」与『马良』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_马良",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_29",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "马良",
+          "text": "如今天下大乱，汉室倾颓，将军可愿匡扶社稷？"
+        },
+        {
+          "speaker": "你",
+          "text": "愿闻其详。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "马良",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与马良合计。"
+        },
+        {
+          "speaker": "马良",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_29": {
+    "id": "main_shu_29",
+    "name": "主·马良荐引",
+    "type": "main",
+    "npc_id": "npc_jianing_center_马良",
+    "npc_name": "马良",
+    "npc_location": "jianing_center.观星台",
+    "npc_location_name": "观星台(建宁中区)",
+    "level_required": 9,
+    "prerequisite": "main_shu_28",
+    "description": "前往「观星台」与『马良』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_马良",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_30",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "马良",
+          "text": "将军可去药铺寻华大夫备些伤药，再去太守府拜见霍弋太守。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "马良",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与马良合计。"
+        },
+        {
+          "speaker": "马良",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_30": {
+    "id": "main_shu_30",
+    "name": "主·观星台议",
+    "type": "main",
+    "npc_id": "npc_jianing_center_马良",
+    "npc_name": "马良",
+    "npc_location": "jianing_center.观星台",
+    "npc_location_name": "观星台(建宁中区)",
+    "level_required": 9,
+    "prerequisite": "main_shu_29",
+    "description": "前往「观星台」与『马良』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_马良",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_31",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "马良",
+          "text": "霍弋太守乃蜀中柱石，将军持我荐书去太守府，必得重用。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "马良",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与马良合计。"
+        },
+        {
+          "speaker": "马良",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_31": {
+    "id": "main_shu_31",
+    "name": "主·购置金疮药",
+    "type": "main",
+    "npc_id": "npc_jianing_center_华大夫",
+    "npc_name": "华大夫",
+    "npc_location": "jianing_center.药铺_北",
+    "npc_location_name": "药铺(建宁中区)",
+    "level_required": 10,
+    "prerequisite": "main_shu_30",
+    "description": "前往「药铺」与『华大夫』对话",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_jianing_center_华大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_shu_32",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "华大夫",
+          "text": "金疮药已备齐，将军保重。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "华大夫",
+          "text": "将军要的金疮药，小店正好有货。"
+        },
+        {
+          "speaker": "你",
+          "text": "正缺这个，给我来1个。"
+        },
+        {
+          "speaker": "华大夫",
+          "text": "将军爽快，银货两讫。"
+        }
+      ]
+    }
+  },
+  "main_shu_32": {
+    "id": "main_shu_32",
+    "name": "主·拜见霍弋",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 10,
+    "prerequisite": "main_shu_31",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_霍弋荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_shu_33",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "马良荐你来，必是良才。钱庄有贼人作乱，将军可去清剿。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "霍弋",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与霍弋合计。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_33": {
+    "id": "main_shu_33",
+    "name": "主·清剿小偷",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 11,
+    "prerequisite": "main_shu_32",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "小偷",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_shu_34",
+    "target_location": "jianing_center.钱庄",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "钱庄既安，将军之功。"
+        }
+      ]
+    }
+  },
+  "main_shu_34": {
+    "id": "main_shu_34",
+    "name": "主·霍弋嘉奖",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 11,
+    "prerequisite": "main_shu_33",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_霍弋荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200,
+      "honor": 2
+    },
+    "next_quest": "main_shu_35",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "将军屡立奇功，赏你荣誉。北境流民为患，将军可去金雁塔清剿。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "霍弋",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与霍弋合计。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_35": {
+    "id": "main_shu_35",
+    "name": "主·金雁流民",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 16,
+    "prerequisite": "main_shu_34",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "流民",
+      "count": 5
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_shu_36",
+    "target_location": "jianing_north.金雁塔",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "流民既除，北境稍安。"
+        }
+      ]
+    }
+  },
+  "main_shu_36": {
+    "id": "main_shu_36",
+    "name": "主·平叛余烬",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 16,
+    "prerequisite": "main_shu_35",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_霍弋荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_37",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "建宁既平，残部却向东遁——永安邪恶祭司蠢蠢欲动。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "我疑有人暗中通敌，你且去永安，将那伙邪恶祭司收拾干净。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "霍弋",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与霍弋合计。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_37": {
+    "id": "main_shu_37",
+    "name": "主·踏平祭司",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 16,
+    "prerequisite": "main_shu_36",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "邪恶祭司",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 3800,
+      "gold": 220
+    },
+    "next_quest": "main_shu_38",
+    "target_location": "yong_an_west.彩云湖",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "好身手！邪恶祭司既除，永安暂安。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "然探子回报，炼丹童子频频出没，怕是有人在背后撑腰。"
+        }
+      ]
+    }
+  },
+  "main_shu_38": {
+    "id": "main_shu_38",
+    "name": "主·炼丹童子",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 17,
+    "prerequisite": "main_shu_37",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "炼丹童子",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 4200,
+      "gold": 240
+    },
+    "next_quest": "main_shu_39",
+    "target_location": "yong_an_west.西旷山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "童子已除，临死前他们口中只念一个名字——徐商。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "徐商盘踞永安北境，暗通异族，图谋不轨。取他首级时，搜出通敌密信！"
+        }
+      ]
+    }
+  },
+  "main_shu_39": {
+    "id": "main_shu_39",
+    "name": "主·逆贼徐商",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 17,
+    "prerequisite": "main_shu_38",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "collect_item",
+      "item_id": "quest_mixin",
+      "item_name": "逆臣密信",
+      "count": 1,
+      "monster_name": "徐商"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 400,
+      "honor": 3
+    },
+    "next_quest": "main_shu_40",
+    "target_location": "yong_an_north.北峡",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "霍弋",
+          "text": "徐商此贼，必除之而后快。把那通敌密信给我带回来！"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "密信在此……徐商竟与异族歃血为盟，欲图蜀中！"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "铁证如山，逆贼伏诛。此功当记，赏你荣誉3点。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "我修书一封，你持密信出使永安太守李严——他乃忠勇之人，定会接应。"
+        }
+      ]
+    }
+  },
+  "main_shu_40": {
+    "id": "main_shu_40",
+    "name": "主·东出建宁",
+    "type": "main",
+    "npc_id": "npc_jianing_center_霍弋荣誉",
+    "npc_name": "霍弋",
+    "npc_location": "jianing_center.太守府",
+    "npc_location_name": "太守府(建宁中区)",
+    "level_required": 18,
+    "prerequisite": "main_shu_39",
+    "description": "前往「太守府」与『霍弋』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_jianing_center_霍弋荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 200
+    },
+    "next_quest": "main_shu_41",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "霍弋",
+          "text": "出建宁东界，过永安，便是成都门户。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "永安驿站的永安车夫认得李严太守的人，你寻他引荐。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "霍弋",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与霍弋合计。"
+        },
+        {
+          "speaker": "霍弋",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "前往「建宁东界」向东进入永安，至永安中区驿站寻『永安车夫』"
+  },
+  "main_shu_41": {
+    "id": "main_shu_41",
+    "name": "主·初入永安",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_永安车夫",
+    "npc_name": "永安车夫",
+    "npc_location": "yong_an_center.驿站",
+    "npc_location_name": "驿站(永安中区)",
+    "level_required": 18,
+    "prerequisite": "main_shu_40",
+    "description": "前往「驿站」与『永安车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_yong_an_center_永安车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3200,
+      "gold": 200
+    },
+    "next_quest": "main_shu_42",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "永安车夫",
+          "text": "哟，这位客官从建宁来？一路辛苦。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持建宁霍弋太守之荐，欲见永安李严太守。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "永安车夫",
+          "text": "霍弋太守的人？贵客！李严太守就在太守府。"
+        },
+        {
+          "speaker": "永安车夫",
+          "text": "我给你指路——出驿站便是。"
+        }
+      ]
+    }
+  },
+  "main_shu_42": {
+    "id": "main_shu_42",
+    "name": "主·投奔李严",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_永安车夫",
+    "npc_name": "永安车夫",
+    "npc_location": "yong_an_center.驿站",
+    "npc_location_name": "驿站(永安中区)",
+    "level_required": 19,
+    "prerequisite": "main_shu_41",
+    "description": "前往「驿站」与『永安车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_yong_an_center_李严荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 3500,
+      "gold": 220
+    },
+    "next_quest": "main_shu_43",
+    "target_location": "yong_an_center.太守府",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "永安车夫",
+          "text": "太守府就在近处，李严太守素有知人之明，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "霍弋的书信与徐商密信，我皆已阅。异族窥我永安，诚可忧也。"
+        },
+        {
+          "speaker": "李严",
+          "text": "你既千里赴义，便留在我麾下。永安四境皆有祸患，正需你这般好手。"
+        },
+        {
+          "speaker": "李严",
+          "text": "且先去南境，叛军剑手近来为患，替我平了它。"
+        }
+      ]
+    }
+  },
+  "main_shu_43": {
+    "id": "main_shu_43",
+    "name": "主·叛军剑手",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 20,
+    "prerequisite": "main_shu_42",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "叛军剑手",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 300,
+      "honor": 2
+    },
+    "next_quest": "main_shu_44",
+    "target_location": "yong_an_south.南淼",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "叛军剑手既平，永安稍安。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "李严",
+          "text": "北境徐商余党朱褒、吕建蠢蠢欲动。"
+        },
+        {
+          "speaker": "李严",
+          "text": "你去南境药王山，先把朱褒这厮收拾了。"
+        }
+      ]
+    }
+  },
+  "main_shu_44": {
+    "id": "main_shu_44",
+    "name": "主·清剿朱褒",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 21,
+    "prerequisite": "main_shu_43",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "朱褒",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 5200,
+      "gold": 320
+    },
+    "next_quest": "main_shu_45",
+    "target_location": "yong_an_south.药王山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "朱褒授首！南境通矣。"
+        },
+        {
+          "speaker": "李严",
+          "text": "华大夫正为药材发愁，北境吕建霸着要道。你去药铺寻华大夫，他自会告诉你详情。"
+        }
+      ]
+    }
+  },
+  "main_shu_45": {
+    "id": "main_shu_45",
+    "name": "主·药铺采买",
+    "type": "main",
+    "npc_id": "npc_jianing_center_华大夫",
+    "npc_name": "华大夫",
+    "npc_location": "jianing_center.药铺_北",
+    "npc_location_name": "药铺(建宁中区)",
+    "level_required": 22,
+    "prerequisite": "main_shu_44",
+    "description": "前往「药铺」与『华大夫』对话",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_yong_an_center_许大夫"
+    },
+    "rewards": {
+      "experience": 3000,
+      "gold": 100
+    },
+    "next_quest": "main_shu_46",
+    "target_location": "yong_an_center.药铺",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手，往后厮杀便多一分底气。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "李严太守那边怕是又着紧了，你且回太守府听令。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "华大夫",
+          "text": "将军要的金疮药，小店正好有货。"
+        },
+        {
+          "speaker": "你",
+          "text": "正缺这个，给我来1个。"
+        },
+        {
+          "speaker": "华大夫",
+          "text": "将军爽快，银货两讫。"
+        }
+      ]
+    }
+  },
+  "main_shu_46": {
+    "id": "main_shu_46",
+    "name": "主·平吕建",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 23,
+    "prerequisite": "main_shu_45",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "吕建",
+      "count": 10
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400,
+      "honor": 3
+    },
+    "next_quest": "main_shu_47",
+    "target_location": "yong_an_north.柳溪",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "吕建退，永安北境暂宁。此功赏你荣誉3点。"
+        },
+        {
+          "speaker": "李严",
+          "text": "然雍凯盘踞盘蛇山，乃永安大患。"
+        },
+        {
+          "speaker": "李严",
+          "text": "你既至此，便一鼓作气，取雍凯之首！"
+        }
+      ]
+    }
+  },
+  "main_shu_47": {
+    "id": "main_shu_47",
+    "name": "主·雍凯之首",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 25,
+    "prerequisite": "main_shu_46",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "雍凯",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 7500,
+      "gold": 460,
+      "honor": 3
+    },
+    "next_quest": "main_shu_48",
+    "target_location": "yong_an_south.盘蛇山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "雍凯授首！永安自此可守矣。赏你荣誉3点。"
+        },
+        {
+          "speaker": "李严",
+          "text": "永安四境既安，皆赖你之力。然中原将有大变……"
+        },
+        {
+          "speaker": "李严",
+          "text": "成都刘备皇叔求贤若渴，我修书荐你前往。"
+        }
+      ]
+    }
+  },
+  "main_shu_48": {
+    "id": "main_shu_48",
+    "name": "主·永安固防",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 27,
+    "prerequisite": "main_shu_47",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_yong_an_center_李严荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 560,
+      "honor": 4
+    },
+    "next_quest": "main_shu_49",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "永安已固，皆你之功。赏你荣誉4点，记你首功。"
+        },
+        {
+          "speaker": "李严",
+          "text": "成都在永安之北，驿站车夫会引你入宫。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李严",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李严合计。"
+        },
+        {
+          "speaker": "李严",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_49": {
+    "id": "main_shu_49",
+    "name": "主·辞别永安",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 29,
+    "prerequisite": "main_shu_48",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_yong_an_center_李严荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 500,
+      "honor": 5
+    },
+    "next_quest": "main_shu_50",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "成都乃蜀中根本，刘备皇叔在那等你。"
+        },
+        {
+          "speaker": "李严",
+          "text": "皇叔识人，你自会有一番作为。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李严",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李严合计。"
+        },
+        {
+          "speaker": "李严",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "前往永安北界进入成都，至成都中区驿站寻『成都车夫』"
+  },
+  "main_shu_50": {
+    "id": "main_shu_50",
+    "name": "主·北上成都",
+    "type": "main",
+    "npc_id": "npc_yong_an_center_李严荣誉",
+    "npc_name": "李严",
+    "npc_location": "yong_an_center.太守府",
+    "npc_location_name": "太守府(永安中区)",
+    "level_required": 30,
+    "prerequisite": "main_shu_49",
+    "description": "前往「太守府」与『李严』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_yong_an_center_李严荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "next_quest": "main_shu_51",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "李严",
+          "text": "你之名已传至成都。刘备皇叔求贤若渴，正是你施展之时。"
+        },
+        {
+          "speaker": "李严",
+          "text": "成都驿站的成都车夫乃皇叔心腹，你寻他引荐。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "李严",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与李严合计。"
+        },
+        {
+          "speaker": "李严",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    }
+  },
+  "main_shu_51": {
+    "id": "main_shu_51",
+    "name": "主·初入成都",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_成都车夫",
+    "npc_name": "成都车夫",
+    "npc_location": "chengdu_center.驿站",
+    "npc_location_name": "驿站(成都中区)",
+    "level_required": 30,
+    "prerequisite": "main_shu_50",
+    "description": "前往「驿站」与『成都车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chengdu_center_成都车夫",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 300
+    },
+    "next_quest": "main_shu_52",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "成都车夫",
+          "text": "这位壮士，从永安远道而来？一路辛苦。"
+        },
+        {
+          "speaker": "你",
+          "text": "我持永安李严太守之荐，欲面见刘备皇叔。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "成都车夫",
+          "text": "李严太守的人？贵客！皇叔正在皇宫理政。"
+        },
+        {
+          "speaker": "成都车夫",
+          "text": "我引你入宫——皇叔识人，他自会考校于你。"
+        }
+      ]
+    }
+  },
+  "main_shu_52": {
+    "id": "main_shu_52",
+    "name": "主·面见皇叔",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_成都车夫",
+    "npc_name": "成都车夫",
+    "npc_location": "chengdu_center.驿站",
+    "npc_location_name": "驿站(成都中区)",
+    "level_required": 30,
+    "prerequisite": "main_shu_51",
+    "description": "前往「驿站」与『成都车夫』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chengdu_center_刘备荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 6500,
+      "gold": 400
+    },
+    "next_quest": "main_shu_53",
+    "target_location": "chengdu_center.皇宫",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "成都车夫",
+          "text": "皇宫就在近处，皇叔仁德，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "李严荐书我已阅。能守永安者，必是可用之材。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "然成都四境仍有余孽——韦康盘踞南境，欺压百姓。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "你既投我幕府，便先取韦康之首，让我看看你的本事！"
+        }
+      ]
+    }
+  },
+  "main_shu_53": {
+    "id": "main_shu_53",
+    "name": "主·南境韦康",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 31,
+    "prerequisite": "main_shu_52",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "韦康",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 9000,
+      "gold": 500,
+      "honor": 2
+    },
+    "next_quest": "main_shu_54",
+    "target_location": "chengdu_south.南门",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "韦康授首！南境百姓得脱其苦。此功记下，赏你荣誉2点。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "汉军守卫近来懈怠，有人与流寇私通。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "你去北境整肃一番，杀鸡儆猴。"
+        }
+      ]
+    }
+  },
+  "main_shu_54": {
+    "id": "main_shu_54",
+    "name": "主·北境汉军守卫",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 32,
+    "prerequisite": "main_shu_53",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "汉军守卫",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 560,
+      "honor": 1
+    },
+    "next_quest": "main_shu_55",
+    "target_location": "chengdu_north.北门",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "北境既安，通敌之徒已诛。此功赏你荣誉1点。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "汉军刀手懈怠，你去绵竹整肃。"
+        }
+      ]
+    }
+  },
+  "main_shu_55": {
+    "id": "main_shu_55",
+    "name": "主·整肃汉军刀手",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 34,
+    "prerequisite": "main_shu_54",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "汉军刀手",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 11500,
+      "gold": 640
+    },
+    "next_quest": "main_shu_56",
+    "target_location": "chengdu_north.绵竹",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "汉军刀手既清，北境再无私通之忧。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "你连番厮杀，伤药可曾备齐？许大夫药铺就在城中。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "去买几支金疮药傍身——刀头舔血，总要有备无患。"
+        }
+      ]
+    }
+  },
+  "main_shu_56": {
+    "id": "main_shu_56",
+    "name": "主·购置金疮药",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 33,
+    "prerequisite": "main_shu_55",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "buy_item",
+      "item_id": "potion_heal_100",
+      "item_name": "金疮药",
+      "count": 1,
+      "npc_id": "npc_chengdu_center_许大夫"
+    },
+    "rewards": {
+      "experience": 6000,
+      "gold": 200
+    },
+    "next_quest": "main_shu_57",
+    "target_location": "chengdu_center.药铺",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "刘备",
+          "text": "药铺在成都中区，许大夫乃杏林圣手。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许大夫",
+          "text": "金疮药已入手。皇叔麾下办事，果然利落。"
+        },
+        {
+          "speaker": "许大夫",
+          "text": "战场凶险，这药关键时刻能救命。"
+        }
+      ]
+    }
+  },
+  "main_shu_57": {
+    "id": "main_shu_57",
+    "name": "主·蜀军护兵",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 35,
+    "prerequisite": "main_shu_56",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "蜀军护兵",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 12000,
+      "gold": 700,
+      "honor": 2
+    },
+    "next_quest": "main_shu_58",
+    "target_location": "chengdu_center.战场",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "蜀军护兵既平，校军场再无隐患。赏你荣誉2点。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "赵昂聚众自固，屡抗王师，必除之！"
+        }
+      ]
+    }
+  },
+  "main_shu_58": {
+    "id": "main_shu_58",
+    "name": "主·赵昂之首",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 35,
+    "prerequisite": "main_shu_57",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "赵昂",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 13500,
+      "gold": 800,
+      "honor": 3
+    },
+    "next_quest": "main_shu_59",
+    "target_location": "chengdu_west.青城山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "赵昂授首！赏你荣誉3点，记你大功。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "刘进与赵昂同气连枝，必为后患。乘胜追击！"
+        }
+      ]
+    }
+  },
+  "main_shu_59": {
+    "id": "main_shu_59",
+    "name": "主·刘进授首",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 37,
+    "prerequisite": "main_shu_58",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "刘进",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 15000,
+      "gold": 900,
+      "honor": 3
+    },
+    "next_quest": "main_shu_60",
+    "target_location": "chengdu_south.云崖山",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "刘进既除，成都东境尽灭！赏你荣誉3点。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "连番征讨，军械辎重堆积如山。金掌柜仓库正需人手盘点。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "你去钱庄寻金掌柜，替我理一理这批军资。"
+        }
+      ]
+    }
+  },
+  "main_shu_60": {
+    "id": "main_shu_60",
+    "name": "主·仓库盘点",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 36,
+    "prerequisite": "main_shu_59",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chengdu_center_金掌柜仓库",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 7000,
+      "gold": 400
+    },
+    "next_quest": "main_shu_61",
+    "target_location": "chengdu_center.钱庄",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "刘备",
+          "text": "金掌柜的钱庄在成都中区，你且去。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "金掌柜",
+          "text": "壮士来了！这批军资我可等了好些时日，多亏你帮忙。"
+        },
+        {
+          "speaker": "金掌柜",
+          "text": "仓库已理清，往后你有什物要存，尽管来寻我。"
+        }
+      ]
+    }
+  },
+  "main_shu_61": {
+    "id": "main_shu_61",
+    "name": "主·汉军遗贼",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 38,
+    "prerequisite": "main_shu_60",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "汉军遗贼",
+      "count": 8
+    },
+    "rewards": {
+      "experience": 16000,
+      "gold": 1000,
+      "honor": 2
+    },
+    "next_quest": "main_shu_62",
+    "target_location": "chengdu_north.黄龙溪",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "汉军遗贼既灭，北境为之一清。赏你荣誉2点。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "刘安盘踞东境十二桥，乃成都大患。取其首级！"
+        }
+      ]
+    }
+  },
+  "main_shu_62": {
+    "id": "main_shu_62",
+    "name": "主·刘安授首",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 39,
+    "prerequisite": "main_shu_61",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "kill_monster",
+      "monster_name": "刘安",
+      "count": 6
+    },
+    "rewards": {
+      "experience": 18000,
+      "gold": 1200,
+      "honor": 4
+    },
+    "next_quest": "main_shu_63",
+    "target_location": "chengdu_east.十二桥",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "刘安授首！成都四境大定。赏你荣誉4点，记你首功。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "小公主有要事相告，她急得紧。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "你且先去皇宫见她，我随后设宴为你庆功。"
+        }
+      ]
+    }
+  },
+  "main_shu_63": {
+    "id": "main_shu_63",
+    "name": "主·小公主之忧",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_刘备荣誉",
+    "npc_name": "刘备",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 38,
+    "prerequisite": "main_shu_62",
+    "description": "前往「皇宫」与『刘备』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chengdu_center_小公主",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 8000,
+      "gold": 600
+    },
+    "next_quest": "main_shu_64",
+    "target_location": "chengdu_center.皇宫",
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "刘备",
+          "text": "小公主在皇宫内，她性子急，你快去快回。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "小公主",
+          "text": "壮士！我听闻北方下邳城近来异动频频，似有中立之豪强欲起事。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "下邳乃南北要冲，若失，成都门户洞开。父王正欲设宴，定有差遣于你。"
+        }
+      ]
+    }
+  },
+  "main_shu_64": {
+    "id": "main_shu_64",
+    "name": "主·成都庆功宴",
+    "type": "main",
+    "npc_id": "npc_chengdu_center_小公主",
+    "npc_name": "小公主",
+    "npc_location": "chengdu_center.皇宫",
+    "npc_location_name": "皇宫(成都中区)",
+    "level_required": 39,
+    "prerequisite": "main_shu_63",
+    "description": "前往「皇宫」与『小公主』对话",
+    "objective": {
+      "type": "talk_npc",
+      "npc_id": "npc_chengdu_center_刘备荣誉",
+      "count": 1
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 1000,
+      "honor": 5
+    },
+    "next_quest": null,
+    "target_location": "chengdu_center.皇宫",
+    "dialogs": {
+      "complete": [
+        {
+          "speaker": "刘备",
+          "text": "高台之上，对酒当歌。你平成都四境，功在社稷，赏你荣誉5点！"
+        },
+        {
+          "speaker": "刘备",
+          "text": "然如小公主所言，下邳中立城暗流涌动，南北要冲不可失。"
+        },
+        {
+          "speaker": "刘备",
+          "text": "待你功力再进一步，便北上下邳一探究竟——那，将是你新的征程。"
+        }
+      ],
+      "accept": [
+        {
+          "speaker": "小公主",
+          "text": "将军今日怎么得空过来？"
+        },
+        {
+          "speaker": "你",
+          "text": "（正经事要紧）此来有一桩事，想与小公主合计。"
+        },
+        {
+          "speaker": "小公主",
+          "text": "将军请讲，我洗耳恭听。"
+        }
+      ]
+    },
+    "next_hint": "此为当前主线终点。待等级更高时，北上下邳中立城的征程将开启。"
   }
 }

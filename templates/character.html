@@ -17,10 +17,14 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    {% for message in messages %}
+    {% for category, message in messages %}
+    {% if category == 'levelup' %}
+    <div style="color:#2e7d32;padding:4px 8px;margin:4px 0;border:1px solid #2e7d32;border-radius:3px;background:#e8f5e9">{{ message|safe }}</div>
+    {% else %}
     <div style="color:#2e7d32;padding:4px 8px;margin:4px 0;border:1px solid #2e7d32;border-radius:3px;background:#e8f5e9">{{ message }}</div>
+    {% endif %}
     {% endfor %}
     {% endif %}
     {% endwith %}
@@ -41,7 +45,7 @@
     军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>
     荣誉:{{ player.honor }}<br/>
     等级:{{ player.level }}<br/>
-    经验:{{ player.experience }}/{{ player.exp_to_next_level }}<br/>
+    经验:{{ player.experience }}/{{ player.exp_to_next_level }}{% if can_level_up %} <a href="{{ url_for('player.level_up') }}">升级</a>{% endif %}<br/>
     生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
     魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
     物攻:{{ player.effective_attack }}{% if player.rank_attack > 0 %}<span class="buff-effect">(+{{ player.rank_attack }}军衔)</span>{% endif %}<br/>
@@ -54,10 +58,6 @@
     缘分值:{{ total_fate }}<br/>
     {% if player.signature %}{{ player.signature }}{% else %}这个家伙很懒，没留下任何签名。{% endif %}<br/>
     <a href="{{ url_for('player.edit_signature') }}">修改</a><br/>
-
-    {% if can_level_up %}
-    <a href="{{ url_for('player.level_up') }}">升级</a><br/>
-    {% endif %}
 
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 

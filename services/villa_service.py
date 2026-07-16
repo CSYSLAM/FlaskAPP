@@ -30,8 +30,7 @@ _BASE_SEEDS = {
     'seed_shenxuedan': {'name': '神血丹种子', 'grow_time': 57600, 'harvest': 'potion_heal_2250', 'harvest_name': '神血丹', 'count': 1, 'ap_cost': 5, 'min_level': 7},
     'seed_qinglinglu': {'name': '清灵露种子', 'grow_time': 57600, 'harvest': 'potion_mana_2250', 'harvest_name': '清灵露', 'count': 1, 'ap_cost': 5, 'min_level': 7},
     # 经验丹种子
-    'seed_jingyandan': {'name': '经验丹种子', 'grow_time': 86400, 'harvest': 'exp_small', 'harvest_name': '经验丹', 'count': 1, 'ap_cost': 5, 'min_level': 2},
-    'exp_seed': {'name': '经验丹种子', 'grow_time': 86400, 'harvest': 'exp_small', 'harvest_name': '经验丹', 'count': 1, 'ap_cost': 5, 'min_level': 2},
+    'exp_seed': {'name': '经验丹种子', 'grow_time': 86400, 'harvest': 'exp_small', 'harvest_name': '小经验丹', 'count': 1, 'ap_cost': 5, 'min_level': 2},
     'seed_big_exp': {'name': '大经验丹种子', 'grow_time': 86400, 'harvest': 'exp_large', 'harvest_name': '大经验丹', 'count': 1, 'ap_cost': 10, 'min_level': 4},
 }
 

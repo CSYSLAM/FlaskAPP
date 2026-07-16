@@ -20,7 +20,10 @@
       "exits": {
         "north": "wujun_center.北街",
         "south": "wujun_center.广场"
-      }
+      },
+      "npcs": [
+        "npc_wujun_center_孙坚荣誉"
+      ]
     },
     "北街": {
       "name": "北街",

@@ -74,7 +74,7 @@ class Monster:
     def attack_player(self, player):
         from services.player_service import PlayerService
         from services.battle_service import BattleService
-        self.last_action = "使用了普通攻击"
+        self.last_action = f"『{self.name}』使用了普通攻击"
         self.last_skill = "普通攻击"
 
         if random.random() >= player.dodge_rate:
