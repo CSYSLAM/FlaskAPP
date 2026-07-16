@@ -15,12 +15,18 @@ def enter(dungeon_id):
     definition = CopyDungeonService.get_definition(dungeon_id)
     success, msg = CopyDungeonService.enter_dungeon(player, dungeon_id)
     if success:
-        entry_item_id = definition.get('entry_item_id') if definition else None
-        entry_item = DataService.get_item(entry_item_id) if entry_item_id else None
-        entry_item_name = entry_item.get('name', entry_item_id) if entry_item else (definition.get('name', dungeon_id) if definition else dungeon_id)
+        # 显示进入副本后的剧情，标注本次费用（免费/1神游果/2神游果）
+        dg_level = CopyDungeonService._dungeon_level(definition) if definition else 0
+        daily = CopyDungeonService._get_daily_state(player)
+        free = not daily.get('free_used', True)
+        if free:
+            cost_title = '免费进入'
+        else:
+            needed = 2 if dg_level >= 40 else 1
+            cost_title = f'消耗{needed}个神游果'
         return render_template(
             'story.html',
-            story_title=f"{entry_item_name}-{definition.get('entry_item_count', 1) if definition else 1}",
+            story_title=cost_title if definition else dungeon_id,
             story_lines=definition.get('story_intro', []) if definition else [],
             continue_url=url_for('game.scene'),
             player=player,

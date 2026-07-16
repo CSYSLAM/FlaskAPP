@@ -210,9 +210,18 @@ class CopyDungeonService:
         monster_data = DataService.get_monster(npc_id) or {}
         in_dungeon = cls._is_in_dungeon(player, dungeon_id)
 
-        # entry_npc outside dungeon: always show "can enter" marker
+        # entry_npc outside dungeon: show "can enter" marker with cost info
         if monster_data.get('copy_role') == 'entry_npc' and not in_dungeon:
-            return {'icon': 'gt.gif', 'label': '可进入副本'}
+            daily = cls._get_daily_state(player)
+            free = not daily.get('free_used', True)
+            dg_level = cls._dungeon_level(definition)
+            if free:
+                label = '可进入副本(今日免费)'
+            elif dg_level >= 40:
+                label = '可进入副本(需2神游果)'
+            else:
+                label = '可进入副本'
+            return {'icon': 'gt.gif', 'label': label}
 
         # entry_npc inside dungeon: treat as quest_giver
         if monster_data.get('copy_role') == 'entry_npc' and in_dungeon:
@@ -410,6 +419,41 @@ class CopyDungeonService:
         return definition.get('return_location') if definition else None
 
     @classmethod
+    def _get_daily_state(cls, player):
+        """获取本日副本进入记录（每日首次免费，之后需消耗神游果）。"""
+        from datetime import date
+        data = player.activity_data
+        if not isinstance(data, dict):
+            data = {}
+        daily = data.get('copy_dungeon_daily', {})
+        today = date.today().isoformat()
+        if not isinstance(daily, dict) or daily.get('date') != today:
+            daily = {'date': today, 'free_used': False}
+            data['copy_dungeon_daily'] = daily
+            player.activity_data = data
+            db.session.commit()
+        return daily
+
+    @classmethod
+    def _use_daily_free(cls, player):
+        """消耗本日免费次数。"""
+        daily = cls._get_daily_state(player)
+        daily['free_used'] = True
+        data = player.activity_data
+        if not isinstance(data, dict):
+            data = {}
+        data['copy_dungeon_daily'] = daily
+        player.activity_data = data
+        db.session.commit()
+
+    @classmethod
+    def _dungeon_level(cls, definition):
+        """从副本名称中解析等级，如 '火烧博望(16级副本)' -> 16。"""
+        import re
+        m = re.search(r'\((\d+)级', definition.get('name', ''))
+        return int(m.group(1)) if m else 0
+
+    @classmethod
     def enter_dungeon(cls, player, dungeon_id):
         definition = cls.get_definition(dungeon_id)
         if not definition:
@@ -420,15 +464,26 @@ class CopyDungeonService:
         if entry_location not in locations:
             return False, '副本入口未配置'
 
-        entry_item_id = definition.get('entry_item_id')
-        entry_item_count = definition.get('entry_item_count', 1)
-        if entry_item_id:
-            entry_item = DataService.get_item(entry_item_id)
-            entry_item_name = entry_item.get('name', entry_item_id) if entry_item else entry_item_id
-            inv = DataService.get_inventory_item(player.id, entry_item_id)
-            if not inv or inv.quantity < entry_item_count:
-                return False, f'进入副本需要消耗{entry_item_count}个{entry_item_name}'
-            DataService.remove_item_from_inventory(player.id, entry_item_id, entry_item_count)
+        # 每日免费 + 神游果消耗系统
+        entry_item_id = definition.get('entry_item_id', 'shenyou_guo')
+        daily = cls._get_daily_state(player)
+        free = not daily.get('free_used', True)
+
+        if free:
+            # 本日首次副本：免费
+            cls._use_daily_free(player)
+        else:
+            # 非首次：需消耗神游果（40级+副本消耗2个）
+            dg_level = cls._dungeon_level(definition)
+            required = 2 if dg_level >= 40 else 1
+            if entry_item_id:
+                entry_item = DataService.get_item(entry_item_id)
+                entry_item_name = entry_item.get('name', entry_item_id) if entry_item else entry_item_id
+                inv = DataService.get_inventory_item(player.id, entry_item_id)
+                if not inv or inv.quantity < required:
+                    free_hint = '（每日首次副本免费，今日已用）'
+                    return False, f'进入副本需要消耗{required}个{entry_item_name}{free_hint}'
+                DataService.remove_item_from_inventory(player.id, entry_item_id, required)
 
         state = cls.get_state(player, dungeon_id)
         if state.get('completed') or state.get('reward_claimed'):
