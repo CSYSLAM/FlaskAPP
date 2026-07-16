@@ -420,15 +420,22 @@ class CopyDungeonService:
 
     @classmethod
     def _get_daily_state(cls, player):
-        """获取本日副本进入记录（每日首次免费，之后需消耗神游果）。"""
+        """获取本日副本进入记录（每日首次免费，之后需消耗神游果）。
+        仅在首次初始化或跨天时写入数据库。"""
         from datetime import date
         data = player.activity_data
         if not isinstance(data, dict):
             data = {}
         daily = data.get('copy_dungeon_daily', {})
         today = date.today().isoformat()
-        if not isinstance(daily, dict) or daily.get('date') != today:
+        changed = False
+        if not isinstance(daily, dict):
             daily = {'date': today, 'free_used': False}
+            changed = True
+        elif daily.get('date') != today:
+            daily = {'date': today, 'free_used': False}
+            changed = True
+        if changed:
             data['copy_dungeon_daily'] = daily
             player.activity_data = data
             db.session.commit()
