@@ -156,7 +156,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "max_health": 100
+    "max_health": 100,
+    "copy_dungeon_id": "jiding_liaodong",
+    "copy_role": "entry_npc"
   },
   "npc_beiping_center_公孙瓒荣誉": {
     "name": "公孙瓒【荣誉】",
@@ -2055,7 +2057,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "max_health": 100
+    "max_health": 100,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_role": "entry_npc"
   },
   "npc_beiping_east_曹彰": {
     "name": "曹彰",
@@ -3631,7 +3635,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "max_health": 100
+    "max_health": 100,
+    "copy_dungeon_id": "weizhen_xiaoyaojin",
+    "copy_role": "entry_npc"
   },
   "npc_xuchang_center_许大夫": {
     "name": "许大夫",
@@ -3810,40 +3816,6 @@
     "killable": false,
     "immortal": true,
     "description": "军情传令之使，关乎军团征伐之事。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_xuchang_center_曹昂副本": {
-    "name": "曹昂【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "曹操长子，温厚孝悌，宛城之难殉身。",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -8629,40 +8601,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_wa_island_south_镇倭大将军副本": {
-    "name": "镇倭大将军【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "镇守倭岛的大将军，威震海外。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "npc_wa_island_south_医师": {
     "name": "医师",
     "level": 50,
@@ -9649,43 +9587,9 @@
     "is_divine_beast": false,
     "is_copy": false,
     "copy_only": false,
-    "max_health": 100
-  },
-  "npc_luoyang_west_诸葛亮副本": {
-    "name": "诸葛亮【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "身长八尺，面如冠玉，头戴纶巾，身披鹤氅，飘飘然有神仙之概.",
-    "copy_dungeon_id": "qiqinmenghuo",
-    "copy_role": "entry_npc",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
+    "max_health": 100,
+    "copy_dungeon_id": "zhidou_machao",
+    "copy_role": "entry_npc"
   },
   "npc_ice_tower_寒冰使者活动": {
     "name": "寒冰使者【活动】",
@@ -10747,40 +10651,6 @@
     "killable": false,
     "immortal": true,
     "description": "为四方游侠分发差事的使者。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_jianye_center_陆逊副本": {
-    "name": "陆逊【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "东吴儒将，夷陵火攻连营，社稷之臣。",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -12316,40 +12186,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_chaisang_south_甘宁副本": {
-    "name": "甘宁【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "东吴锦帆猛将，百骑劫营，威震逍遥津。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "monster_wujun_center_小偷": {
     "name": "小偷",
     "level": 5,
@@ -13582,40 +13418,6 @@
     "killable": false,
     "immortal": true,
     "description": "坐堂郎中，悬壶济世，疗伤续命。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_wujun_east_左慈副本": {
-    "name": "左慈【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "东汉方士，号乌角先生，戏弄权贵的仙人。",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -14891,40 +14693,6 @@
     "killable": false,
     "immortal": true,
     "description": "为四方游侠分发差事的使者。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_chengdu_center_黄忠副本": {
-    "name": "黄忠【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "蜀汉老将，老当益壮，定军山阵斩夏侯渊。",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -17823,40 +17591,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_jianing_west_左慈副本": {
-    "name": "左慈【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "东汉方士，号乌角先生，戏弄权贵的仙人。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "npc_jianing_west_副将统领": {
     "name": "副将统领",
     "level": 50,
@@ -17864,40 +17598,6 @@
     "killable": false,
     "immortal": true,
     "description": "军中副将，统御麾下将士，可点拨副将。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_jianing_west_黄月英副本": {
-    "name": "黄月英【副本】",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "诸葛亮之妻，巧思绝世，通晓机巧之术。",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -19680,40 +19380,6 @@
     "killable": false,
     "immortal": true,
     "description": "专司城中往来接送，熟记每一条街巷。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_kunlun_昆仑使者副本": {
-    "name": "昆仑使者",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "昆仑仙境的引路使者，超然物外。",
     "base_stats": {
       "health": 99999,
       "mana": 9999,
@@ -23791,40 +23457,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_shennong_神农使者副本": {
-    "name": "神农使者",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "司掌百草的神农化身，惠泽苍生。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "npc_shennong_医师": {
     "name": "医师",
     "level": 50,
@@ -24403,7 +24035,7 @@
     "name": "荀爽",
     "description": "残汉太傅，须发皆白而风骨犹存，愿开洛阳城门纳天下义师。"
   },
-  "npc_luoyang_center_烛龙": {
+  "npc_luoyang_center_董卓": {
     "level": 50,
     "is_elite": false,
     "killable": false,
@@ -24434,8 +24066,8 @@
     "is_copy": false,
     "copy_only": false,
     "max_health": 100,
-    "name": "烛龙",
-    "description": "蛰伏宗亲，表面温润，实则野心滔天，欲借传国玉玺再起烽火。"
+    "name": "董卓",
+    "description": "西凉权臣，废立天子、窃据传国玉玺，欲以兵威挟天下而称孤道寡。"
   },
   "npc_luoyang_center_蔡文姬": {
     "level": 50,
@@ -24503,7 +24135,7 @@
     "copy_only": false,
     "max_health": 100,
     "name": "影",
-    "description": "烛龙麾下得力臂助，至此图穷匕见，拦在义军之前。"
+    "description": "董卓麾下神秘部下，于江湖中自立『玄鸦卫』，往来暗影间替董卓清剿异己、搜寻玉玺，至此图穷匕见，拦在义军之前。"
   },
   "npc_luoyang_center_残汉老臣": {
     "level": 50,
@@ -24538,726 +24170,6 @@
     "max_health": 100,
     "name": "残汉老臣",
     "description": "洛阳宫中老臣，亲历倾覆，誓要护住最后一点汉室尊严。"
-  },
-  "monster_q_应龙": {
-    "name": "应龙",
-    "level": 40,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【应龙】，阻于xiapi_south.南门。",
-    "base_stats": {
-      "health": 10000,
-      "mana": 1250,
-      "attack": 168,
-      "defense": 6520,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 110,
-        "max": 240
-      },
-      "experience": 511
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_吴军守卫": {
-    "name": "吴军守卫",
-    "level": 42,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【吴军守卫】，阻于xiapi_south.南门。",
-    "base_stats": {
-      "health": 10600,
-      "mana": 1325,
-      "attack": 176,
-      "defense": 6840,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 114,
-        "max": 248
-      },
-      "experience": 577
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_魏军守卫": {
-    "name": "魏军守卫",
-    "level": 43,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【魏军守卫】，阻于xiapi_east.东门。",
-    "base_stats": {
-      "health": 10900,
-      "mana": 1362,
-      "attack": 180,
-      "defense": 7000,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 116,
-        "max": 252
-      },
-      "experience": 610
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_孙桓": {
-    "name": "孙桓",
-    "level": 45,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【孙桓】，阻于xiapi_east.东门。",
-    "base_stats": {
-      "health": 11500,
-      "mana": 1437,
-      "attack": 188,
-      "defense": 7320,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 120,
-        "max": 260
-      },
-      "experience": 676
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_蜀军守卫": {
-    "name": "蜀军守卫",
-    "level": 44,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【蜀军守卫】，阻于xiapi_west.西门。",
-    "base_stats": {
-      "health": 11200,
-      "mana": 1400,
-      "attack": 184,
-      "defense": 7160,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 118,
-        "max": 256
-      },
-      "experience": 643
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_庞德": {
-    "name": "庞德",
-    "level": 46,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【庞德】，阻于xiapi_north.北门。",
-    "base_stats": {
-      "health": 11800,
-      "mana": 1475,
-      "attack": 192,
-      "defense": 7480,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 122,
-        "max": 264
-      },
-      "experience": 709
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_吴军前锋": {
-    "name": "吴军前锋",
-    "level": 48,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【吴军前锋】，阻于jiangling_west.西门。",
-    "base_stats": {
-      "health": 12400,
-      "mana": 1550,
-      "attack": 200,
-      "defense": 7800,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 126,
-        "max": 272
-      },
-      "experience": 775
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_孙静": {
-    "name": "孙静",
-    "level": 48,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【孙静】，阻于jiangling_east.东门。",
-    "base_stats": {
-      "health": 12400,
-      "mana": 1550,
-      "attack": 200,
-      "defense": 7800,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 126,
-        "max": 272
-      },
-      "experience": 775
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_刘封": {
-    "name": "刘封",
-    "level": 49,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【刘封】，阻于jiangling_west.西门。",
-    "base_stats": {
-      "health": 12700,
-      "mana": 1587,
-      "attack": 204,
-      "defense": 7960,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 128,
-        "max": 276
-      },
-      "experience": 808
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_步骘": {
-    "name": "步骘",
-    "level": 50,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【步骘】，阻于jiangling_west.西门。",
-    "base_stats": {
-      "health": 13000,
-      "mana": 1625,
-      "attack": 208,
-      "defense": 8120,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 130,
-        "max": 280
-      },
-      "experience": 841
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_潘章": {
-    "name": "潘章",
-    "level": 51,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【潘章】，阻于jiangling_north.北门。",
-    "base_stats": {
-      "health": 13300,
-      "mana": 1662,
-      "attack": 212,
-      "defense": 8280,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 132,
-        "max": 284
-      },
-      "experience": 874
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_灵火道人": {
-    "name": "灵火道人",
-    "level": 53,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【灵火道人】，阻于hanzhong_west.西门。",
-    "base_stats": {
-      "health": 13900,
-      "mana": 1737,
-      "attack": 220,
-      "defense": 8600,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 136,
-        "max": 292
-      },
-      "experience": 940
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_廖化": {
-    "name": "廖化",
-    "level": 53,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【廖化】，阻于hanzhong_south.南门。",
-    "base_stats": {
-      "health": 13900,
-      "mana": 1737,
-      "attack": 220,
-      "defense": 8600,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 136,
-        "max": 292
-      },
-      "experience": 940
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_张济": {
-    "name": "张济",
-    "level": 55,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【张济】，阻于luoyang_north.北门。",
-    "base_stats": {
-      "health": 14500,
-      "mana": 1812,
-      "attack": 228,
-      "defense": 8920,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 140,
-        "max": 300
-      },
-      "experience": 1006
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_徐荣": {
-    "name": "徐荣",
-    "level": 56,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【徐荣】，阻于luoyang_west.西门。",
-    "base_stats": {
-      "health": 14800,
-      "mana": 1850,
-      "attack": 232,
-      "defense": 9080,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 142,
-        "max": 304
-      },
-      "experience": 1039
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_虎豹队长": {
-    "name": "虎豹队长",
-    "level": 57,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【虎豹队长】，阻于luoyang_south.南门。",
-    "base_stats": {
-      "health": 15100,
-      "mana": 1887,
-      "attack": 236,
-      "defense": 9240,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 144,
-        "max": 308
-      },
-      "experience": 1072
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_连弩队长": {
-    "name": "连弩队长",
-    "level": 58,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【连弩队长】，阻于luoyang_center.广场。",
-    "base_stats": {
-      "health": 15400,
-      "mana": 1925,
-      "attack": 240,
-      "defense": 9400,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 146,
-        "max": 312
-      },
-      "experience": 1105
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_神秘将军": {
-    "name": "神秘将军",
-    "level": 59,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【神秘将军】，阻于luoyang_north.北门。",
-    "base_stats": {
-      "health": 15700,
-      "mana": 1962,
-      "attack": 244,
-      "defense": 9560,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 148,
-        "max": 316
-      },
-      "experience": 1138
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_青龙": {
-    "name": "青龙",
-    "level": 59,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【青龙】，阻于luoyang_north.北门。",
-    "base_stats": {
-      "health": 15700,
-      "mana": 1962,
-      "attack": 244,
-      "defense": 9560,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 148,
-        "max": 316
-      },
-      "experience": 1138
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "monster_q_玄武": {
-    "name": "玄武",
-    "level": 60,
-    "is_elite": false,
-    "killable": true,
-    "immortal": false,
-    "description": "烬焰盟爪牙【玄武】，阻于luoyang_north.北门。",
-    "base_stats": {
-      "health": 16000,
-      "mana": 2000,
-      "attack": 248,
-      "defense": 9720,
-      "crit_rate": 0.05,
-      "dodge_rate": 0.05
-    },
-    "skills": [
-      "normal_attack"
-    ],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 150,
-        "max": 320
-      },
-      "experience": 1171
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
   },
   "npc_chengdu_center_刘备副本": {
     "name": "刘备【副本】",
@@ -25722,5 +24634,626 @@
       },
       "experience": 0
     }
+  },
+  "monster_jiangling_west_乌篷舵手": {
+    "name": "乌篷舵手",
+    "level": 48,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "乌篷舵手",
+    "base_stats": {
+      "health": 12400,
+      "mana": 1550,
+      "attack": 200,
+      "defense": 7800,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_400": 0.01,
+        "potion_mana_800": 0.01
+      },
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 785
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_jiangling_east_江淮水匪": {
+    "name": "江淮水匪",
+    "level": 48,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "江淮水匪",
+    "base_stats": {
+      "health": 12400,
+      "mana": 1550,
+      "attack": 200,
+      "defense": 7800,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_400": 0.01,
+        "potion_mana_800": 0.01
+      },
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 785
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_jiangling_west_沉沙鳄鲧": {
+    "name": "沉沙鳄鲧",
+    "level": 49,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "沉沙鳄鲧",
+    "base_stats": {
+      "health": 12700,
+      "mana": 1587,
+      "attack": 204,
+      "defense": 7960,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_400": 0.01,
+        "potion_mana_800": 0.01
+      },
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 818
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_jiangling_west_浔水蛟鳄": {
+    "name": "浔水蛟鳄",
+    "level": 50,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "浔水蛟鳄",
+    "base_stats": {
+      "health": 13000,
+      "mana": 1625,
+      "attack": 208,
+      "defense": 8120,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_400": 0.01,
+        "potion_mana_800": 0.01
+      },
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 851
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_jiangling_north_褒斜苍猿": {
+    "name": "褒斜苍猿",
+    "level": 51,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "褒斜苍猿",
+    "base_stats": {
+      "health": 13300,
+      "mana": 1662,
+      "attack": 212,
+      "defense": 8280,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_400": 0.01,
+        "potion_mana_800": 0.01
+      },
+      "money": {
+        "min": 28,
+        "max": 62
+      },
+      "experience": 884
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_hanzhong_west_云台玄狐": {
+    "name": "云台玄狐",
+    "level": 53,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "云台玄狐",
+    "base_stats": {
+      "health": 13900,
+      "mana": 1737,
+      "attack": 220,
+      "defense": 8600,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "bailian_helmet_49",
+          "bailian_armor_48",
+          "bailian_pants_47",
+          "bailian_gloves_46",
+          "bailian_shoes_45",
+          "jinxiu_helmet_49",
+          "jinxiu_armor_48",
+          "jinxiu_pants_47",
+          "jinxiu_gloves_46",
+          "jinxiu_shoes_45",
+          "queling_helmet_49",
+          "queling_armor_48",
+          "queling_pants_47",
+          "queling_gloves_46",
+          "queling_shoes_45"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_400": 0.01,
+        "potion_mana_800": 0.01
+      },
+      "money": {
+        "min": 26,
+        "max": 62
+      },
+      "experience": 950
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_hanzhong_south_汉南夜鸮": {
+    "name": "汉南夜鸮",
+    "level": 53,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "汉南夜鸮",
+    "base_stats": {
+      "health": 13900,
+      "mana": 1737,
+      "attack": 220,
+      "defense": 8600,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.15,
+        "templates": [
+          "jinggang_helmet_39",
+          "jinggang_armor_38",
+          "jinggang_pants_37",
+          "jinggang_gloves_36",
+          "jinggang_shoes_35",
+          "yuanlv_helmet_39",
+          "yuanlv_armor_38",
+          "yuanlv_pants_37",
+          "yuanlv_gloves_36",
+          "yuanlv_shoes_35",
+          "jifeng_helmet_39",
+          "jifeng_armor_38",
+          "jifeng_pants_37",
+          "jifeng_gloves_36",
+          "jifeng_shoes_35"
+        ],
+        "rarity_weights": {
+          "common": 50,
+          "uncommon": 30,
+          "rare": 15,
+          "epic": 4,
+          "legendary": 1
+        }
+      },
+      "items": {
+        "potion_heal_800": 0.01
+      },
+      "money": {
+        "min": 28,
+        "max": 66
+      },
+      "experience": 950
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_luoyang_north_殿前玄鸦": {
+    "name": "殿前玄鸦",
+    "level": 59,
+    "is_elite": true,
+    "is_one_time_elite": true,
+    "quest_gate": "main_all_59a",
+    "killable": true,
+    "immortal": false,
+    "description": "影麾下玄鸦卫的殿前统领，仅在有任务时现身，被杀后永久消失。",
+    "base_stats": {
+      "health": 15700,
+      "mana": 1962,
+      "attack": 244,
+      "defense": 9560,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 0
+        }
+      },
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1148
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
+  },
+  "monster_luoyang_north_阵眼墨鸦": {
+    "name": "阵眼墨鸦",
+    "level": 59,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "阵眼墨鸦，仅在有任务时现身，被杀后永久消失。",
+    "base_stats": {
+      "health": 15700,
+      "mana": 1962,
+      "attack": 244,
+      "defense": 9560,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 0
+        }
+      },
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1148
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "is_one_time_elite": true,
+    "quest_gate": "main_all_59b"
+  },
+  "monster_luoyang_north_霜翎鸷": {
+    "name": "霜翎鸷",
+    "level": 60,
+    "is_elite": true,
+    "killable": true,
+    "immortal": false,
+    "description": "霜翎鸷，仅在有任务时现身，被杀后永久消失。",
+    "base_stats": {
+      "health": 16000,
+      "mana": 2000,
+      "attack": 248,
+      "defense": 9720,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    },
+    "skills": [
+      "normal_attack"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.3,
+        "templates": [
+          "heilong_helmet_54",
+          "heilong_armor_53",
+          "heilong_pants_52",
+          "heilong_gloves_51",
+          "heilong_shoes_50",
+          "fengluan_helmet_54",
+          "fengluan_armor_53",
+          "fengluan_pants_52",
+          "fengluan_gloves_51",
+          "fengluan_shoes_50",
+          "yanling_helmet_54",
+          "yanling_armor_53",
+          "yanling_pants_52",
+          "yanling_gloves_51",
+          "yanling_shoes_50"
+        ],
+        "rarity_weights": {
+          "common": 15,
+          "uncommon": 30,
+          "rare": 30,
+          "epic": 20,
+          "legendary": 0
+        }
+      },
+      "items": {
+        "craft_houpi": 0.15,
+        "craft_nirong": 0.15,
+        "craft_zitanmu": 0.15,
+        "craft_jingjinkuang": 0.15
+      },
+      "money": {
+        "min": 45,
+        "max": 100
+      },
+      "experience": 1181
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100,
+    "is_one_time_elite": true,
+    "quest_gate": "main_all_60b"
   }
 }

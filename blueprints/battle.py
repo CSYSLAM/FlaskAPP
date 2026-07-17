@@ -30,9 +30,9 @@ def battle():
         db.session.commit()
         return redirect(url_for("game.scene"))
 
-    # World boss: check if still alive
-    if monster.is_elite:
-        from services.world_boss_service import WorldBossService
+    # World boss: check if still alive (shared-HP elites only; one-time & copy elites are personal)
+    from services.world_boss_service import WorldBossService
+    if monster.is_elite and not getattr(monster, 'is_one_time_elite', False) and not getattr(monster, 'is_copy', False):
         boss = WorldBossService.get_boss(monster.monster_id)
         if boss and boss.current_health <= 0 and not boss.is_alive:
             player.in_battle = False

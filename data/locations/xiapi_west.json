@@ -7,9 +7,7 @@
         "east": "xiapi_center.西城楼",
         "west": "xiapi_west.西郊"
       },
-      "monsters": [
-        "monster_q_蜀军守卫"
-      ]
+      "monsters": []
     },
     "西郊": {
       "name": "西郊",

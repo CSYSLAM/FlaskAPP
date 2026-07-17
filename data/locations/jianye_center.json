@@ -20,9 +20,7 @@
         "west": "jianye_center.白虎街",
         "east": "jianye_center.广场"
       },
-      "npcs": [
-        "npc_jianye_center_陆逊副本"
-      ]
+      "npcs": []
     },
     "白虎街": {
       "name": "白虎街",

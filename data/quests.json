@@ -8927,7 +8927,7 @@
     "rewards": {
       "experience": 20200,
       "gold": 1350,
-      "honor": 4
+      "honor": 2
     },
     "dialogs": {
       "accept": [
@@ -8976,22 +8976,22 @@
     "npc_location_name": "广场(下邳中区)",
     "level_required": 40,
     "prerequisite": "main_all_40a",
-    "description": "下邳南郊妖兽作乱，疑为烬焰盟纵妖。前往「下邳南」击杀1头【应龙】。",
+    "description": "下邳南郊黄巾余党趁乱生事，疑受烬焰盟煽动。前往「下邳南」击杀10名【黄巾守卫】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "应龙",
-      "count": 1
+      "monster_name": "黄巾守卫",
+      "count": 10
     },
     "rewards": {
       "experience": 20200,
       "gold": 1350,
-      "honor": 4
+      "honor": 2
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "水镜先生",
-          "text": "南郊传来喊杀，应是烬焰盟纵出的妖兽『应龙』在噬人。"
+          "text": "南郊又闹起黄巾余党，烬焰盟怕是暗中煽动，正趁乱噬人。"
         },
         {
           "speaker": "你",
@@ -9001,16 +9001,16 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "妖兽已诛，只是它颈间挂一枚烬焰盟的青铜令。"
+          "text": "黄巾余党已诛，只是其中一人颈间挂一枚烬焰盟的青铜令。"
         },
         {
           "speaker": "水镜先生",
-          "text": "果然是他们。此令所刻『烛龙』二字，便是那盟主代号。记下了。"
+          "text": "果然是他们。此令背刻一『董』字，乃西凉权臣之印记——烬焰盟的底，怕是连着洛阳那座宫城。记下了。"
         }
       ]
     },
-    "target_location": "xiapi_south.南门",
-    "next_hint": "前往「客栈」与蔡文姬对话",
+    "target_location": "xiapi_south.颍川",
+    "next_hint": "持烬焰令回「广场」告水镜，再寻蔡文姬",
     "next_quest": "main_all_41a"
   },
   "main_all_41a": {
@@ -9032,7 +9032,7 @@
     "rewards": {
       "experience": 22400,
       "gold": 1500,
-      "honor": 5
+      "honor": 2
     },
     "dialogs": {
       "accept": [
@@ -9082,7 +9082,7 @@
     "rewards": {
       "experience": 22400,
       "gold": 1500,
-      "honor": 5
+      "honor": 2
     },
     "dialogs": {
       "accept": [
@@ -9123,16 +9123,16 @@
     "npc_location_name": "钱庄(下邳中区)",
     "level_required": 42,
     "prerequisite": "main_all_41b",
-    "description": "南郊码头守卫阻截私运，前往「下邳南」击杀1名【吴军守卫】。",
+    "description": "下邳南郊烬焰盟暗中勾结黄巾力士，前往「下邳南」击杀10名【黄巾力士】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "吴军守卫",
-      "count": 1
+      "monster_name": "黄巾力士",
+      "count": 10
     },
     "rewards": {
       "experience": 24600,
       "gold": 1650,
-      "honor": 5
+      "honor": 2
     },
     "dialogs": {
       "accept": [
@@ -9156,7 +9156,7 @@
         }
       ]
     },
-    "target_location": "xiapi_south.南门",
+    "target_location": "xiapi_south.葛坡",
     "next_hint": "前往「酒馆」会神秘客影",
     "next_quest": "main_all_42b"
   },
@@ -9179,7 +9179,7 @@
     "rewards": {
       "experience": 24600,
       "gold": 1650,
-      "honor": 5
+      "honor": 2
     },
     "dialogs": {
       "accept": [
@@ -9189,17 +9189,17 @@
         },
         {
           "speaker": "你",
-          "text": "你是烬焰盟的人？烛龙又是谁？"
+          "text": "你是烬焰盟的人？背后又是谁？"
         },
         {
           "speaker": "影",
-          "text": "将军不必知道太多。玉玺的线索，盟里迟早会亲手取回。"
+          "text": "烬焰盟不过是洛阳抛出来的一层皮。影在江湖另立『玄鸦卫』，替主上做些见不得光的活儿。将军不必知道太多。"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "取回？怕是取不回了。你主子藏在洛阳，我迟早寻去。"
+          "text": "见不得光？你主子藏在洛阳宫里，我迟早寻去。"
         },
         {
           "speaker": "影",
@@ -9220,22 +9220,22 @@
     "npc_location_name": "客栈(下邳中区)",
     "level_required": 43,
     "prerequisite": "main_all_42b",
-    "description": "烬焰盟探子围了客栈，前往「下邳东」击杀1名【魏军守卫】解围。",
+    "description": "烬焰盟收买的魏军逃卒围了客栈，前往「下邳北」击杀10名【魏军守卫】解围。",
     "objective": {
       "type": "kill_monster",
       "monster_name": "魏军守卫",
-      "count": 1
+      "count": 10
     },
     "rewards": {
       "experience": 26800,
       "gold": 1800,
-      "honor": 6
+      "honor": 3
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "蔡文姬",
-          "text": "将军！门外来了许多生脸人，腰间皆是乌金短刃，分明是烬焰盟的死士。"
+          "text": "将军！门外来了许多生脸人，皆是被烬焰盟收买的魏军逃卒，腰间乌金短刃，分明是死士伪装。"
         },
         {
           "speaker": "你",
@@ -9253,7 +9253,7 @@
         }
       ]
     },
-    "target_location": "xiapi_east.东门",
+    "target_location": "xiapi_north.东岭",
     "next_hint": "前往「太守府」见陈宫",
     "next_quest": "main_all_43b"
   },
@@ -9276,7 +9276,7 @@
     "rewards": {
       "experience": 26800,
       "gold": 1800,
-      "honor": 6
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9317,16 +9317,16 @@
     "npc_location_name": "太守府(下邳中区)",
     "level_required": 44,
     "prerequisite": "main_all_43b",
-    "description": "西后街杀出烬焰盟信使，前往「下邳西」击杀1名【蜀军守卫】夺信。",
+    "description": "西后街杀出烬焰盟信使，前往「下邳西」击杀10名【蜀军守卫】夺信。",
     "objective": {
       "type": "kill_monster",
       "monster_name": "蜀军守卫",
-      "count": 1
+      "count": 10
     },
     "rewards": {
       "experience": 29000,
       "gold": 1950,
-      "honor": 6
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9350,7 +9350,7 @@
         }
       ]
     },
-    "target_location": "xiapi_west.西门",
+    "target_location": "xiapi_west.小沛",
     "next_hint": "将密信交回陈宫",
     "next_quest": "main_all_44b",
     "grant_item": {
@@ -9380,7 +9380,7 @@
     "rewards": {
       "experience": 29000,
       "gold": 1950,
-      "honor": 6
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9426,7 +9426,7 @@
     "rewards": {
       "experience": 31200,
       "gold": 2100,
-      "honor": 7
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9467,16 +9467,16 @@
     "npc_location_name": "客栈(下邳中区)",
     "level_required": 45,
     "prerequisite": "main_all_45a",
-    "description": "出城遭烬焰盟伏击，前往「下邳东」击杀1名【孙桓】开路。",
+    "description": "出城遭烬焰盟伏击，倭寇细作拦路，前往「下邳南」击杀10名【倭寇细作】开路。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "孙桓",
-      "count": 1
+      "monster_name": "倭寇细作",
+      "count": 10
     },
     "rewards": {
       "experience": 31200,
       "gold": 2100,
-      "honor": 7
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9492,7 +9492,7 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "孙桓已倒，去路已通。上船！"
+          "text": "倭寇细作已除，去路已通。上船！"
         },
         {
           "speaker": "蔡文姬",
@@ -9500,7 +9500,7 @@
         }
       ]
     },
-    "target_location": "xiapi_east.东门",
+    "target_location": "xiapi_south.南郊",
     "next_hint": "前往「军营」辞别水镜先生",
     "next_quest": "main_all_46a"
   },
@@ -9523,7 +9523,7 @@
     "rewards": {
       "experience": 33400,
       "gold": 2250,
-      "honor": 7
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9564,16 +9564,16 @@
     "npc_location_name": "广场(下邳中区)",
     "level_required": 46,
     "prerequisite": "main_all_46a",
-    "description": "烬焰盟最后一批追兵扑向北城楼，前往「下邳北」击杀1名【庞德】。",
+    "description": "烬焰盟收买的守城兵据北城楼顽抗，前往「下邳中」击杀10名【守城兵】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "庞德",
-      "count": 1
+      "monster_name": "守城兵",
+      "count": 10
     },
     "rewards": {
       "experience": 33400,
       "gold": 2250,
-      "honor": 7
+      "honor": 3
     },
     "dialogs": {
       "accept": [
@@ -9589,7 +9589,7 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "庞德授首，下邳再无烬焰盟的旗号。"
+          "text": "守城兵已除，下邳再无烬焰盟的旗号。"
         },
         {
           "speaker": "水镜先生",
@@ -9597,7 +9597,7 @@
         }
       ]
     },
-    "target_location": "xiapi_north.北门",
+    "target_location": "xiapi_center.北城楼",
     "next_hint": "乘船前往江陵",
     "next_quest": "main_all_47a"
   },
@@ -9620,7 +9620,7 @@
     "rewards": {
       "experience": 35600,
       "gold": 2400,
-      "honor": 8
+      "honor": 4
     },
     "dialogs": {
       "accept": [
@@ -9670,7 +9670,7 @@
     "rewards": {
       "experience": 35600,
       "gold": 2400,
-      "honor": 8
+      "honor": 4
     },
     "dialogs": {
       "accept": [
@@ -9711,26 +9711,26 @@
     "npc_location_name": "钱庄(江陵中区)",
     "level_required": 48,
     "prerequisite": "main_all_47b",
-    "description": "随苏飞潜入水寨，巡哨阻路，前往「江陵西」击杀1名【吴军前锋】。",
+    "description": "随苏飞潜入水寨，巡哨阻路，前往「江陵西」击杀10名【乌篷舵手】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "吴军前锋",
-      "count": 1
+      "monster_name": "乌篷舵手",
+      "count": 10
     },
     "rewards": {
       "experience": 37800,
       "gold": 2550,
-      "honor": 8
+      "honor": 4
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "苏飞",
-          "text": "到了，前头便是巡哨。将军手脚轻些。"
+          "text": "到了，前头便是巡哨。这伙水匪替烬焰盟看门，将军手脚轻些。"
         },
         {
           "speaker": "你",
-          "text": "哨卫交给我，苏当家且在外接应。"
+          "text": "乌篷舵手交给我，苏当家且在外接应。"
         }
       ],
       "complete": [
@@ -9758,16 +9758,16 @@
     "npc_location_name": "客栈(江陵中区)",
     "level_required": 48,
     "prerequisite": "main_all_48a",
-    "description": "回客栈惊觉文姬被掳，前往「江陵东」击杀1名【孙静】逼问下落。",
+    "description": "回客栈惊觉文姬被掳，贼人向东遁去，前往「江陵东」击杀10名【江淮水匪】逼问下落。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "孙静",
-      "count": 1
+      "monster_name": "江淮水匪",
+      "count": 10
     },
     "rewards": {
       "experience": 37800,
       "gold": 2550,
-      "honor": 8
+      "honor": 4
     },
     "dialogs": {
       "accept": [
@@ -9781,13 +9781,13 @@
         },
         {
           "speaker": "你",
-          "text": "孙静，文姬在哪？说！"
+          "text": "江淮水匪，文姬在哪？说！"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "孙静已亡，线索指向水寨密室——他们要把文姬带去洛阳！"
+          "text": "江淮水匪已除，线索指向水寨密室——他们要把文姬带去洛阳！"
         },
         {
           "speaker": "蔡文姬",
@@ -9822,7 +9822,7 @@
     "rewards": {
       "experience": 42200,
       "gold": 2850,
-      "honor": 9
+      "honor": 4
     },
     "dialogs": {
       "accept": [
@@ -9863,22 +9863,22 @@
     "npc_location_name": "太守府(江陵中区)",
     "level_required": 50,
     "prerequisite": "main_all_50a",
-    "description": "烬焰盟残部据西城楼死守，前往「江陵西」击杀1名【步骘】。",
+    "description": "烬焰盟残部据西郊水泽死守，前往「江陵西」击杀10名【浔水蛟鳄】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "步骘",
-      "count": 1
+      "monster_name": "浔水蛟鳄",
+      "count": 10
     },
     "rewards": {
       "experience": 42200,
       "gold": 2850,
-      "honor": 9
+      "honor": 4
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "黄祖",
-          "text": "西城楼还剩一伙顽敌，将军顺手清了，江陵便干净了。"
+          "text": "西郊水泽还剩一伙顽敌与水怪为伍，将军顺手清了，江陵便干净了。"
         },
         {
           "speaker": "你",
@@ -9888,7 +9888,7 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "步骘已死，江陵再无烬焰盟的旗号。"
+          "text": "浔水蛟鳄已除，江陵再无烬焰盟的旗号。"
         },
         {
           "speaker": "黄祖",
@@ -9896,7 +9896,7 @@
         }
       ]
     },
-    "target_location": "jiangling_west.西门",
+    "target_location": "jiangling_west.西郊",
     "next_hint": "陆路向汉中进发",
     "next_quest": "main_all_51a"
   },
@@ -9919,7 +9919,7 @@
     "rewards": {
       "experience": 44400,
       "gold": 3000,
-      "honor": 10
+      "honor": 5
     },
     "dialogs": {
       "accept": [
@@ -9960,22 +9960,22 @@
     "npc_location_name": "客栈(江陵中区)",
     "level_required": 51,
     "prerequisite": "main_all_51a",
-    "description": "入汉中道中遭伏，前往「江陵北」击杀1名【潘章】开路。",
+    "description": "出江陵北入秦岭余脉、褒斜道口遭伏，前往「江陵北」击杀10名【褒斜苍猿】开路。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "潘章",
-      "count": 1
+      "monster_name": "褒斜苍猿",
+      "count": 10
     },
     "rewards": {
       "experience": 44400,
       "gold": 3000,
-      "honor": 10
+      "honor": 5
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "蔡文姬",
-          "text": "将军！北面山道杀声又起！"
+          "text": "将军！北面山道杀声又起，竟是放出了山猿乱道！"
         },
         {
           "speaker": "你",
@@ -9985,11 +9985,11 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "潘章授首，褒斜道通了。文姬，江陵珍重。"
+          "text": "苍猿已除，褒斜道口通了。文姬，江陵珍重，此去汉中我便与田豫会合。"
         },
         {
           "speaker": "蔡文姬",
-          "text": "（挥手）将军——洛阳见！"
+          "text": "（挥手）将军——洛阳见！文姬在江陵候你凯旋。"
         }
       ]
     },
@@ -10016,7 +10016,7 @@
     "rewards": {
       "experience": 46600,
       "gold": 3150,
-      "honor": 10
+      "honor": 5
     },
     "dialogs": {
       "accept": [
@@ -10066,7 +10066,7 @@
     "rewards": {
       "experience": 46600,
       "gold": 3150,
-      "honor": 10
+      "honor": 5
     },
     "dialogs": {
       "accept": [
@@ -10080,7 +10080,7 @@
         },
         {
           "speaker": "胡昭",
-          "text": "粮屯在北麓大营，守备森严。然其枢纽，在『灵火道人』执掌的火库。"
+          "text": "粮屯在北麓大营，守备森严。然其枢纽，在火库守将『邪恶道士』执掌的火库。"
         }
       ],
       "complete": [
@@ -10107,22 +10107,22 @@
     "npc_location_name": "广场(汉中中区)",
     "level_required": 53,
     "prerequisite": "main_all_52b",
-    "description": "随田豫夜袭北麓大营火库，守库道人顽抗，前往「汉中西」击杀1名【灵火道人】。",
+    "description": "随田豫夜袭北麓大营火库，守库的玄狐顽抗，前往「汉中西」击杀10名【云台玄狐】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "灵火道人",
-      "count": 1
+      "monster_name": "云台玄狐",
+      "count": 10
     },
     "rewards": {
       "experience": 48800,
       "gold": 3300,
-      "honor": 11
+      "honor": 5
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "田豫",
-          "text": "时机到了。火库守将灵火道人，便交给将军。"
+          "text": "时机到了。火库守将是一群通灵的云台玄狐，便交给将军。"
         },
         {
           "speaker": "你",
@@ -10132,7 +10132,7 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "灵火道人已诛，火库既破，粮道自乱。"
+          "text": "云台玄狐已诛，火库既破，粮道自乱。"
         },
         {
           "speaker": "田豫",
@@ -10154,36 +10154,36 @@
     "npc_location_name": "广场(汉中中区)",
     "level_required": 53,
     "prerequisite": "main_all_53a",
-    "description": "乘势扫平粮屯，前往「汉中南」击杀1名【廖化】夺回洛阳布防图。",
+    "description": "乘势扫平粮屯，夜鸮守图，前往「汉中南」击杀10名【汉南夜鸮】夺回洛阳布防图。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "廖化",
-      "count": 1
+      "monster_name": "汉南夜鸮",
+      "count": 10
     },
     "rewards": {
       "experience": 48800,
       "gold": 3300,
-      "honor": 11
+      "honor": 5
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "田豫",
-          "text": "粮屯已乱，将军速去夺图！"
+          "text": "粮屯已乱，将军速去夺图！那图被一群夜鸮衔着，破之即得。"
         },
         {
           "speaker": "你",
-          "text": "廖化守图，破之即得。"
+          "text": "汉南夜鸮守图，破之即得。"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "廖化伏诛，洛阳布防图到手。烛龙的真名，图上竟有标注！"
+          "text": "汉南夜鸮伏诛，洛阳布防图到手。图角竟烙着西凉权臣董卓的印记！"
         },
         {
           "speaker": "田豫",
-          "text": "哦？何种人物，竟敢以宗亲之身，行此逆谋？"
+          "text": "哦？那董贼废立天子、窃据玉玺，竟还暗布烬焰盟于四方？此獠不除，天下无安。"
         }
       ]
     },
@@ -10206,7 +10206,7 @@
     "npc_location_name": "酒馆(汉中中区)",
     "level_required": 54,
     "prerequisite": "main_all_53b",
-    "description": "将洛阳布防图交胡昭参详，识破烛龙真身。",
+    "description": "将洛阳布防图交胡昭参详，坐实烬焰盟背后即董卓。",
     "objective": {
       "type": "deliver_item",
       "item_id": "quest_luoyang_bu",
@@ -10217,7 +10217,7 @@
     "rewards": {
       "experience": 51000,
       "gold": 3450,
-      "honor": 11
+      "honor": 5
     },
     "dialogs": {
       "accept": [
@@ -10227,17 +10227,17 @@
         },
         {
           "speaker": "你",
-          "text": "图上烛龙真名，先生可曾看出？"
+          "text": "图上那『董』字印记，先生可曾看出端倪？"
         }
       ],
       "complete": [
         {
           "speaker": "胡昭",
-          "text": "（失声）竟是蛰伏的宗亲刘琰！此人素装恭顺，暗里养士聚兵，狼子野心。"
+          "text": "（抚须）原来如此。烬焰盟并非宗室作乱，乃是董卓那西凉权臣所设的影子。他借盟暗煽四方、搜罗玉玺拓片，欲在明面废立之外，再以暗手钳制天下。"
         },
         {
           "speaker": "你",
-          "text": "刘琰……原来是他。洛阳一战，某必会会会这位『烛龙』。"
+          "text": "董卓……原来是他。洛阳一战，某必会会会这位权臣。"
         }
       ]
     },
@@ -10263,7 +10263,7 @@
     "rewards": {
       "experience": 51000,
       "gold": 3450,
-      "honor": 11
+      "honor": 5
     },
     "dialogs": {
       "accept": [
@@ -10283,7 +10283,7 @@
         },
         {
           "speaker": "田豫",
-          "text": "将军去吧。那『烛龙』刘琰，便交给将军了。"
+          "text": "将军去吧。那董卓老贼，便交给将军了。"
         }
       ]
     },
@@ -10309,7 +10309,7 @@
     "rewards": {
       "experience": 53200,
       "gold": 3600,
-      "honor": 12
+      "honor": 6
     },
     "dialogs": {
       "accept": [
@@ -10319,11 +10319,11 @@
         },
         {
           "speaker": "你",
-          "text": "老太傅，某非乱兵，是来除烬焰盟、护这旧都的。"
+          "text": "老太傅，某非乱兵，是来除董卓、护这旧都的。"
         },
         {
           "speaker": "荀爽",
-          "text": "烬焰盟……老夫守这宫墙半生，等的便是这句话。开城门！"
+          "text": "董贼……老夫守这宫墙半生，等的便是这句话。开城门！"
         }
       ],
       "complete": [
@@ -10333,7 +10333,7 @@
         },
         {
           "speaker": "荀爽",
-          "text": "将军且入皇宫查探。那刘琰，便在宫深处。"
+          "text": "将军且入皇宫查探。那董贼，便在宫深处。"
         }
       ]
     },
@@ -10350,32 +10350,32 @@
     "npc_location_name": "广场(洛阳中区)",
     "level_required": 55,
     "prerequisite": "main_all_55a",
-    "description": "皇宫前卫拦路，前往「洛阳北」击杀1名【张济】。",
+    "description": "皇宫前卫与洛阳劫匪拦路，前往「洛阳东」击杀10名【洛阳劫匪】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "张济",
-      "count": 1
+      "monster_name": "洛阳劫匪",
+      "count": 10
     },
     "rewards": {
       "experience": 53200,
       "gold": 3600,
-      "honor": 12
+      "honor": 6
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "荀爽",
-          "text": "宫门有刘琰的亲卫，将军且破之。"
+          "text": "宫门外有董卓收买的洛阳劫匪，将军且破之。"
         },
         {
           "speaker": "你",
-          "text": "张济守门，某去会会。"
+          "text": "洛阳劫匪守门，某去会会。"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "张济已倒，宫门洞开。刘琰，你躲不掉了。"
+          "text": "洛阳劫匪已除，宫门洞开。董卓，你躲不掉了。"
         },
         {
           "speaker": "荀爽",
@@ -10383,44 +10383,44 @@
         }
       ]
     },
-    "target_location": "luoyang_north.北门",
-    "next_hint": "深入皇宫，破徐荣",
+    "target_location": "luoyang_east.东门",
+    "next_hint": "深入皇宫，破董军弓兵",
     "next_quest": "main_all_56a"
   },
   "main_all_56a": {
     "id": "main_all_56a",
     "name": "主·深宫对峙",
     "type": "main",
-    "npc_id": "npc_luoyang_center_烛龙",
-    "npc_name": "烛龙",
+    "npc_id": "npc_luoyang_center_董卓",
+    "npc_name": "董卓",
     "npc_location": "luoyang_center.皇宫",
     "npc_location_name": "皇宫(洛阳中区)",
     "level_required": 56,
     "prerequisite": "main_all_55b",
-    "description": "深入皇宫，与烛龙（刘琰）首次对峙，其臂助影现身。",
+    "description": "深入皇宫，与董卓首次对峙，其神秘部下影现身。",
     "objective": {
       "type": "talk_npc",
-      "npc_id": "npc_luoyang_center_烛龙",
+      "npc_id": "npc_luoyang_center_董卓",
       "count": 1
     },
     "rewards": {
       "experience": 55400,
       "gold": 3750,
-      "honor": 12
+      "honor": 6
     },
     "dialogs": {
       "accept": [
         {
-          "speaker": "烛龙",
-          "text": "呵，远来的贵客。你一路破我三城，倒是让本王刮目。"
+          "speaker": "董卓",
+          "text": "呵，远来的贵客。你一路破我三城，倒教本相刮目。"
         },
         {
           "speaker": "你",
-          "text": "刘琰，你以宗亲之身行此逆谋，可知天下不容？"
+          "text": "董卓，你废立天子、窃据玉玺，以兵威行此逆谋，可知天下不容？"
         },
         {
-          "speaker": "烛龙",
-          "text": "宗亲？正是宗亲，才配执玉玺、再立新廷。将军何不投我，共享富贵？"
+          "speaker": "董卓",
+          "text": "天子？玉玺？有兵有玺，便是名正言顺。将军何不投我，共享这富贵天下？"
         },
         {
           "speaker": "你",
@@ -10429,8 +10429,8 @@
       ],
       "complete": [
         {
-          "speaker": "烛龙",
-          "text": "冥顽。影，替本王送客。"
+          "speaker": "董卓",
+          "text": "冥顽。影，替本相送客。"
         },
         {
           "speaker": "影",
@@ -10438,7 +10438,7 @@
         }
       ]
     },
-    "next_hint": "宫中再战，破影与徐荣",
+    "next_hint": "宫中再战，破影与董军弓兵",
     "next_quest": "main_all_56b"
   },
   "main_all_56b": {
@@ -10451,16 +10451,16 @@
     "npc_location_name": "酒馆(洛阳中区)",
     "level_required": 56,
     "prerequisite": "main_all_56a",
-    "description": "影领死士阻于宫道，前往「洛阳西」击杀1名【徐荣】。",
+    "description": "影领死士阻于宫道，董军弓兵列阵，前往「洛阳南」击杀10名【董军弓兵】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "徐荣",
-      "count": 1
+      "monster_name": "董军弓兵",
+      "count": 10
     },
     "rewards": {
       "experience": 55400,
       "gold": 3750,
-      "honor": 12
+      "honor": 6
     },
     "dialogs": {
       "accept": [
@@ -10470,22 +10470,22 @@
         },
         {
           "speaker": "你",
-          "text": "你的主子都不敢亲自出手，你倒卖力。"
+          "text": "你主子都不敢亲自出手，你倒卖力。"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "徐荣已亡。影，你主子的棋，快下完了。"
+          "text": "董军弓兵已除。影，你主子的棋，快下完了。"
         },
         {
           "speaker": "影",
-          "text": "（咬牙）将军莫狂，总坛尚有一战。"
+          "text": "（咬牙）将军莫狂，玄鸦卫尚在，总坛还有一战。"
         }
       ]
     },
-    "target_location": "luoyang_west.西门",
-    "next_hint": "重入皇宫，破虎豹精锐",
+    "target_location": "luoyang_south.乌林",
+    "next_hint": "重入皇宫，破董军长弓手",
     "next_quest": "main_all_57a"
   },
   "main_all_57a": {
@@ -10498,22 +10498,22 @@
     "npc_location_name": "军营(洛阳中区)",
     "level_required": 57,
     "prerequisite": "main_all_56b",
-    "description": "义军整队，残汉老臣助你破刘琰虎豹精锐，前往「洛阳南」击杀1名【虎豹队长】。",
+    "description": "义军整队，残汉老臣助你破董军长弓精锐，前往「洛阳南」击杀10名【董军长弓手】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "虎豹队长",
-      "count": 1
+      "monster_name": "董军长弓手",
+      "count": 10
     },
     "rewards": {
       "experience": 57600,
       "gold": 3900,
-      "honor": 13
+      "honor": 6
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "残汉老臣",
-          "text": "将军，老臣虽老，尚能提剑。虎豹营便交老臣与将军。"
+          "text": "将军，老臣虽老，尚能提剑。长弓营便交老臣与将军。"
         },
         {
           "speaker": "你",
@@ -10523,7 +10523,7 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "虎豹队长授首，刘琰的牙爪去了一截。"
+          "text": "董军长弓手授首，董卓的牙爪去了一截。"
         },
         {
           "speaker": "残汉老臣",
@@ -10554,13 +10554,13 @@
     "rewards": {
       "experience": 57600,
       "gold": 3900,
-      "honor": 13
+      "honor": 6
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "蔡文姬",
-          "text": "将军果真打到了洛阳。文姬不放心，便也来了。"
+          "text": "将军果真打到了洛阳。文姬不放心，自江陵一路赶来，正赶上这一战。"
         },
         {
           "speaker": "你",
@@ -10568,7 +10568,7 @@
         },
         {
           "speaker": "蔡文姬",
-          "text": "玉玺拓片与残图皆已印证，刘琰的总坛便在皇宫正殿之后。"
+          "text": "玉玺拓片与残图皆已印证，董卓的总坛便在皇宫正殿之后。那传国玉玺本体，或亦藏于宫中密室——破阵之后，务必寻得。"
         }
       ],
       "complete": [
@@ -10595,22 +10595,22 @@
     "npc_location_name": "广场(洛阳中区)",
     "level_required": 58,
     "prerequisite": "main_all_57b",
-    "description": "总攻开始，外垣连弩精兵顽抗，前往「洛阳中」击杀1名【连弩队长】。",
+    "description": "皇宫外围董卓护卫拦路，前往「洛阳中」击杀10名【董卓护卫】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "连弩队长",
-      "count": 1
+      "monster_name": "董卓护卫",
+      "count": 10
     },
     "rewards": {
       "experience": 59800,
       "gold": 4050,
-      "honor": 13
+      "honor": 6
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "荀爽",
-          "text": "将军，总坛外垣的连弩营，是入殿的最后屏障。"
+          "text": "将军，总坛外垣的护军，是入殿的最后屏障。"
         },
         {
           "speaker": "你",
@@ -10620,11 +10620,11 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "连弩队长已亡，殿后便无遮挡。刘琰，出来罢。"
+          "text": "董卓护卫已除，殿后便无遮挡。董卓，出来罢。"
         }
       ]
     },
-    "target_location": "luoyang_center.广场",
+    "target_location": "luoyang_center.定北后街",
     "next_hint": "焚盟书，断其根基",
     "next_quest": "main_all_58b"
   },
@@ -10638,7 +10638,7 @@
     "npc_location_name": "广场(洛阳中区)",
     "level_required": 58,
     "prerequisite": "main_all_58a",
-    "description": "冲入总坛密室，焚毁烬焰盟书，断其根基。",
+    "description": "冲入总坛密室，焚毁烬焰盟书与玄鸦卫名册，断其暗手根基。",
     "objective": {
       "type": "talk_npc",
       "npc_id": "npc_luoyang_center_荀爽",
@@ -10647,17 +10647,17 @@
     "rewards": {
       "experience": 59800,
       "gold": 4050,
-      "honor": 13
+      "honor": 6
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "荀爽",
-          "text": "密室之中，便是那卷盟书。将军，烧了它！"
+          "text": "密室之中，便是那卷盟书与玄鸦卫的名册。将军，一并烧了它！"
         },
         {
           "speaker": "你",
-          "text": "（举火）烬焰盟的算计，随这把火，散罢。"
+          "text": "（举火）董卓明暗两手的算计，随这把火，散罢。"
         }
       ],
       "complete": [
@@ -10667,11 +10667,11 @@
         },
         {
           "speaker": "你",
-          "text": "根断了，人还未除。刘琰，某亲自去会。"
+          "text": "根断了，人还未除。董卓，某亲自去会。"
         }
       ]
     },
-    "next_hint": "正殿决战，破神秘将军",
+    "next_hint": "殿前死战，破影与殿前玄鸦",
     "next_quest": "main_all_59a"
   },
   "main_all_59a": {
@@ -10684,16 +10684,16 @@
     "npc_location_name": "酒馆(洛阳中区)",
     "level_required": 59,
     "prerequisite": "main_all_58b",
-    "description": "影率最后死士据殿前死战，前往「洛阳北」击杀1名【神秘将军】。",
+    "description": "影率玄鸦卫最后死士据殿前官道死战，其首领殿前玄鸦仅此一现身，前往「洛阳北」击杀【殿前玄鸦】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "神秘将军",
+      "monster_name": "殿前玄鸦",
       "count": 1
     },
     "rewards": {
       "experience": 62000,
       "gold": 4200,
-      "honor": 14
+      "honor": 7
     },
     "dialogs": {
       "accept": [
@@ -10707,13 +10707,13 @@
         },
         {
           "speaker": "影",
-          "text": "（惨笑）值不值，影自有分晓。"
+          "text": "（惨笑）值不值，影自有分晓。玄鸦卫的弟兄们，是替董相守这一程。"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "神秘将军已倒。影，你这一局，也输了。"
+          "text": "殿前玄鸦已除。影，你这一局，也输了。"
         },
         {
           "speaker": "影",
@@ -10721,8 +10721,8 @@
         }
       ]
     },
-    "target_location": "luoyang_north.北门",
-    "next_hint": "四象守阵，破青龙白虎",
+    "target_location": "luoyang_north.官道",
+    "next_hint": "四象守阵，破阵卒",
     "next_quest": "main_all_59b"
   },
   "main_all_59b": {
@@ -10735,86 +10735,86 @@
     "npc_location_name": "军营(洛阳中区)",
     "level_required": 59,
     "prerequisite": "main_all_59a",
-    "description": "刘琰以四象守阵护殿，前往「洛阳北」击杀1名【青龙】（或白虎）。",
+    "description": "董卓以四象守阵护殿，阵眼墨鸦盘旋顽抗，前往「洛阳北」击杀【阵眼墨鸦】。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "青龙",
+      "monster_name": "阵眼墨鸦",
       "count": 1
     },
     "rewards": {
       "experience": 62000,
       "gold": 4200,
-      "honor": 14
+      "honor": 7
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "残汉老臣",
-          "text": "殿前四象阵——青龙、白虎、朱雀、玄武，乃刘琰最后依仗。"
+          "text": "殿前四象阵——青龙、白虎、朱雀、玄武四象旗门下，阵眼墨鸦盘旋不去，乃董卓借玄鸦卫布下的最后依仗。"
         },
         {
           "speaker": "你",
-          "text": "四象又如何？某先破青龙。"
+          "text": "四象又如何？某先破其阵眼。"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "青龙已碎，阵眼已破其半。刘琰，你的阵撑不住了。"
+          "text": "阵眼墨鸦已破，四象阵损其大半。董卓，你的阵撑不住了。"
         },
         {
           "speaker": "残汉老臣",
-          "text": "将军神勇！老臣替将军压住白虎那一象。"
+          "text": "将军神勇！老臣替将军压住其余阵门。"
         }
       ]
     },
-    "target_location": "luoyang_north.北门",
-    "next_hint": "终战烛龙刘琰",
+    "target_location": "luoyang_north.七星阁",
+    "next_hint": "终战董卓",
     "next_quest": "main_all_60a"
   },
   "main_all_60b": {
     "id": "main_all_60b",
     "name": "主·烽火终章",
     "type": "main",
-    "npc_id": "npc_luoyang_center_烛龙",
-    "npc_name": "烛龙",
+    "npc_id": "npc_luoyang_center_董卓",
+    "npc_name": "董卓",
     "npc_location": "luoyang_center.皇宫",
     "npc_location_name": "皇宫(洛阳中区)",
     "level_required": 60,
     "prerequisite": "main_all_60a",
-    "description": "正殿决战烛龙刘琰，前往「洛阳北」击杀1名【玄武】，了断烽火。",
+    "description": "正殿决战董卓，殿外霜翎鸷盘旋顽抗，前往「洛阳北」击杀【霜翎鸷】，了断烽火。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "玄武",
+      "monster_name": "霜翎鸷",
       "count": 1
     },
     "rewards": {
       "experience": 64200,
       "gold": 4350,
-      "honor": 14
+      "honor": 7
     },
     "dialogs": {
       "accept": [
         {
-          "speaker": "烛龙",
-          "text": "将军执玺而来，是要与本王争这天下？"
+          "speaker": "董卓",
+          "text": "将军执玺而来，是要与本相争这天下？"
         },
         {
           "speaker": "你",
-          "text": "某不为天下，为这四海不再烽火。刘琰，你的梦，醒了。"
+          "text": "某不为天下，为这四海不再烽火。董卓，你的梦，醒了。"
         },
         {
-          "speaker": "烛龙",
-          "text": "（狂笑）既有玉玺，何不索性……（阵动）玄武，护我！"
+          "speaker": "董卓",
+          "text": "（狂笑）既有玉玺，何不索性……（阵动）霜翎鸷，护我！"
         }
       ],
       "complete": [
         {
           "speaker": "你",
-          "text": "玄武已灭，四象尽碎。刘琰，你输了。"
+          "text": "霜翎鸷已灭，四象尽碎。董卓，你输了。"
         },
         {
-          "speaker": "烛龙",
+          "speaker": "董卓",
           "text": "（颓然）玉玺……竟落在一个不想要天下的人手里……"
         },
         {
@@ -10823,7 +10823,7 @@
         }
       ]
     },
-    "target_location": "luoyang_north.北门",
+    "target_location": "luoyang_north.虎牢关",
     "next_hint": "（主线终章·汉室余晖）"
   },
   "main_all_49a": {
@@ -10836,22 +10836,22 @@
     "npc_location_name": "钱庄(江陵中区)",
     "level_required": 49,
     "prerequisite": "main_all_48b",
-    "description": "随苏飞再入水寨密室，守卫顽抗，前往「江陵西」击杀1名【刘封】夺回拓片与文姬。",
+    "description": "随苏飞再入水寨水牢密室，守牢的水怪顽抗，前往「江陵西」击杀10名【沉沙鳄鲧】夺回拓片与文姬。",
     "objective": {
       "type": "kill_monster",
-      "monster_name": "刘封",
-      "count": 1
+      "monster_name": "沉沙鳄鲧",
+      "count": 10
     },
     "rewards": {
       "experience": 40000,
       "gold": 2700,
-      "honor": 9
+      "honor": 4
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "苏飞",
-          "text": "密室在后头水牢，某带你抄近路。"
+          "text": "密室在水牢后头，那处养着几头吞人的鳄鲧，某带你抄近路。"
         },
         {
           "speaker": "你",
@@ -10861,7 +10861,7 @@
       "complete": [
         {
           "speaker": "你",
-          "text": "刘封伏诛，拓片到手，文姬也救下了！"
+          "text": "鳄鲧伏诛，拓片到手，文姬也救下了！"
         },
         {
           "speaker": "蔡文姬",
@@ -10869,11 +10869,11 @@
         },
         {
           "speaker": "你",
-          "text": "说过护你，便不会食言。"
+          "text": "说过护你，便不会食言。这一路，你且随我同行。"
         }
       ]
     },
-    "target_location": "jiangling_west.西门",
+    "target_location": "jiangling_west.龙子湖",
     "next_hint": "将拓片交黄承彦辨真伪",
     "next_quest": "main_all_49b",
     "grant_item": {
@@ -10903,7 +10903,7 @@
     "rewards": {
       "experience": 40000,
       "gold": 2700,
-      "honor": 9
+      "honor": 4
     },
     "dialogs": {
       "accept": [
@@ -10949,13 +10949,13 @@
     "rewards": {
       "experience": 64200,
       "gold": 4350,
-      "honor": 14
+      "honor": 7
     },
     "dialogs": {
       "accept": [
         {
           "speaker": "荀爽",
-          "text": "将军，老臣于密室夹墙寻得此物——传国玉玺。天下气运所系，将军定夺。"
+          "text": "将军，老臣依文姬所言，于正殿密室夹墙寻得此物——传国玉玺。天下气运所系，将军定夺。"
         },
         {
           "speaker": "你",
@@ -10973,7 +10973,7 @@
         }
       ]
     },
-    "next_hint": "入正殿，决战烛龙刘琰",
+    "next_hint": "入正殿，决战董卓",
     "next_quest": "main_all_60b",
     "grant_item": {
       "item_id": "quest_chuanguo_yuxi",

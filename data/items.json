@@ -4537,7 +4537,7 @@
   "quest_luoyang_bu": {
     "name": "洛阳布防图",
     "type": "quest",
-    "description": "汉中军帐中夺得的洛阳布防图，标注烛龙总坛虚实。",
+    "description": "汉中军帐中夺得的洛阳布防图，背烙董卓印记，标注烬焰盟总坛虚实。",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,

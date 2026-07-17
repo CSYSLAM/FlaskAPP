@@ -7,9 +7,7 @@
         "north": "xiapi_north.北郊",
         "south": "xiapi_center.北城楼"
       },
-      "monsters": [
-        "monster_q_庞德"
-      ],
+      "monsters": [],
       "npcs": [
         "npc_xiapi_north_张辽副本"
       ]

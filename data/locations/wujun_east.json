@@ -35,9 +35,7 @@
         "east": "wujun_east.军营"
       },
       "monster_type": "monster_wujun_east_野狗",
-      "npcs": [
-        "npc_wujun_east_左慈副本"
-      ]
+      "npcs": []
     },
     "军营": {
       "name": "军营",

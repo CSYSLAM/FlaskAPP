@@ -8,9 +8,7 @@
         "west": "luoyang_west.西郊",
         "east": "luoyang_center.西城楼"
       },
-      "monsters": [
-        "monster_q_徐荣"
-      ]
+      "monsters": []
     },
     "华府": {
       "name": "华府",
@@ -48,9 +46,7 @@
         "north": "luoyang_west.流风阵",
         "south": "luoyang_west.女兵营"
       },
-      "npcs": [
-        "npc_luoyang_west_诸葛亮副本"
-      ]
+      "npcs": []
     },
     "流风阵": {
       "name": "流风阵",
