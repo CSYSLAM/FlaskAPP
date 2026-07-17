@@ -193,3 +193,49 @@ def jump(npc_id, target):
         flash(msg)
         return redirect(url_for('game.view_npc', monster_id=npc_id))
     return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/leave_scene/<dungeon_id>', methods=['POST'])
+@login_required
+def leave_scene(dungeon_id):
+    """从场景页直接离开副本：清空副本进度并回到入口NPC处。"""
+    player = current_user
+    if getattr(player, 'in_battle', False):
+        flash('战斗中无法离开')
+        return redirect(url_for('game.scene'))
+    success, msg = CopyDungeonService.leave_dungeon(player, dungeon_id)
+    flash(msg)
+    db.session.commit()
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/leave_scene/<dungeon_id>/link')
+@login_required
+def leave_scene_link(dungeon_id):
+    """场景页『显示地图』处的离开副本链接入口（GET，非按钮）。"""
+    player = current_user
+    if getattr(player, 'in_battle', False):
+        flash('战斗中无法离开')
+        return redirect(url_for('game.scene'))
+    success, msg = CopyDungeonService.leave_dungeon(player, dungeon_id)
+    flash(msg)
+    db.session.commit()
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/quest_jump_entry/<dungeon_id>')
+@login_required
+def quest_jump_entry(dungeon_id):
+    """副本任务详情页『传送』：传送到当前阶段任务NPC处。"""
+    success, msg = CopyDungeonService.jump_to_entry(current_user, dungeon_id)
+    flash(msg)
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/quest_jump_stage/<dungeon_id>')
+@login_required
+def quest_jump_stage(dungeon_id):
+    """副本任务详情页『快速前往目的地』：传送到当前阶段目标场景。"""
+    success, msg = CopyDungeonService.jump_to_current_stage(current_user, dungeon_id)
+    flash(msg)
+    return redirect(url_for('game.scene'))

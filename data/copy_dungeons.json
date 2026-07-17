@@ -38,7 +38,9 @@
           "gold": 150,
           "items": []
         },
-        "complete_story": "斥候尽除。左慈捋须而笑：「好——黄巾军的耳目已盲，前锋可进。」"
+        "complete_story": "斥候尽除。左慈捋须而笑：「好——黄巾军的耳目已盲，前锋可进。」",
+        "quest_giver_npc_id": "npc_huangjin_copy_左慈",
+        "quest_giver_location": "huangjin_copy_live.洛阳皇宫"
       },
       {
         "id": "step_2",
@@ -56,7 +58,9 @@
           "gold": 200,
           "items": []
         },
-        "complete_story": "黄巾头目纷纷溃散。左慈微微颔首：「前营已下，斩将夺旗的时机到了。」"
+        "complete_story": "黄巾头目纷纷溃散。左慈微微颔首：「前营已下，斩将夺旗的时机到了。」",
+        "quest_giver_npc_id": "npc_huangjin_copy_左慈",
+        "quest_giver_location": "huangjin_copy_live.洛阳皇宫"
       },
       {
         "id": "step_3",
@@ -74,7 +78,9 @@
           "gold": 300,
           "items": []
         },
-        "complete_story": "波才败亡。左慈将拂尘搭在臂上：「波才是黄巾军第一等勇将。他死了，张曼成独木难支。」"
+        "complete_story": "波才败亡。左慈将拂尘搭在臂上：「波才是黄巾军第一等勇将。他死了，张曼成独木难支。」",
+        "quest_giver_npc_id": "npc_huangjin_copy_左慈",
+        "quest_giver_location": "huangjin_copy_live.洛阳皇宫"
       },
       {
         "id": "step_4",
@@ -92,7 +98,9 @@
           "gold": 350,
           "items": []
         },
-        "complete_story": "张曼成被斩于阵前。左慈闭目片刻：「宛城血债……终得偿还。渡河去吧。」"
+        "complete_story": "张曼成被斩于阵前。左慈闭目片刻：「宛城血债……终得偿还。渡河去吧。」",
+        "quest_giver_npc_id": "npc_huangjin_copy_左慈",
+        "quest_giver_location": "huangjin_copy_live.洛阳皇宫"
       },
       {
         "id": "step_5",
@@ -115,7 +123,9 @@
           "gold": 500,
           "items": []
         },
-        "complete_story": "张氏三兄弟全部授首。左慈将桃木符收起：「黄巾之乱——今日终了。天下大势，就看将军的了。」"
+        "complete_story": "张氏三兄弟全部授首。左慈将桃木符收起：「黄巾之乱——今日终了。天下大势，就看将军的了。」",
+        "quest_giver_npc_id": "npc_huangjin_copy_左慈",
+        "quest_giver_location": "huangjin_copy_live.洛阳皇宫"
       }
     ]
   },
@@ -1122,7 +1132,9 @@
           "experience": 6720,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_2",
@@ -1140,7 +1152,9 @@
           "experience": 7140,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_3",
@@ -1158,7 +1172,9 @@
           "experience": 6720,
           "gold": 100,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_4",
@@ -1176,7 +1192,9 @@
           "experience": 7980,
           "gold": 150,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_5",
@@ -1194,7 +1212,9 @@
           "experience": 7980,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_6",
@@ -1212,7 +1232,9 @@
           "experience": 9240,
           "gold": 200,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_7",
@@ -1230,7 +1252,9 @@
           "experience": 7980,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_8",
@@ -1248,7 +1272,9 @@
           "experience": 8400,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_9",
@@ -1287,7 +1313,9 @@
           "experience": 8400,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.白河",
+        "quest_giver_npc_id": "npc_huoshao_bowang_赵云"
       },
       {
         "id": "step_11",
@@ -1305,7 +1333,9 @@
           "experience": 9240,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.白河",
+        "quest_giver_npc_id": "npc_huoshao_bowang_赵云"
       },
       {
         "id": "step_12",
@@ -1323,7 +1353,9 @@
           "experience": 9240,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.博望坡",
+        "quest_giver_npc_id": "npc_huoshao_bowang_黄月英"
       },
       {
         "id": "step_13",
@@ -1341,7 +1373,9 @@
           "experience": 9240,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_location": "huoshao_bowang_copy_live.白河",
+        "quest_giver_npc_id": "npc_huoshao_bowang_赵云"
       }
     ]
   },
@@ -1389,7 +1423,9 @@
           "experience": 10920,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_2",
@@ -1407,7 +1443,9 @@
           "experience": 11760,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_3",
@@ -1425,7 +1463,9 @@
           "experience": 10920,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_4",
@@ -1443,7 +1483,9 @@
           "experience": 11760,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_5",
@@ -1461,7 +1503,9 @@
           "experience": 12180,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_6",
@@ -1479,7 +1523,9 @@
           "experience": 12180,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_7",
@@ -1497,7 +1543,9 @@
           "experience": 12180,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_8",
@@ -1515,7 +1563,9 @@
           "experience": 12600,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_9",
@@ -1533,7 +1583,9 @@
           "experience": 13020,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_10",
@@ -1551,7 +1603,9 @@
           "experience": 13020,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_11",
@@ -1569,7 +1623,9 @@
           "experience": 13440,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_12",
@@ -1587,7 +1643,9 @@
           "experience": 13860,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_13",
@@ -1605,7 +1663,9 @@
           "experience": 13860,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_14",
@@ -1624,7 +1684,9 @@
           "gold": 1092,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_15",
@@ -1642,7 +1704,9 @@
           "experience": 14280,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       },
       {
         "id": "step_16",
@@ -1660,7 +1724,9 @@
           "experience": 14280,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
+        "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       }
     ]
   },
@@ -1728,7 +1794,9 @@
           "experience": 15120,
           "gold": 150,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_3",
@@ -1766,7 +1834,9 @@
           "experience": 15540,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_5",
@@ -1784,7 +1854,9 @@
           "experience": 15960,
           "gold": 300,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_张飞",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.巨鹿"
       },
       {
         "id": "step_6",
@@ -1802,7 +1874,9 @@
           "experience": 15960,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_7",
@@ -1820,7 +1894,9 @@
           "experience": 15960,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_张飞",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.巨鹿"
       },
       {
         "id": "step_8",
@@ -1838,7 +1914,9 @@
           "experience": 16380,
           "gold": 300,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_9",
@@ -1857,7 +1935,9 @@
           "gold": 500,
           "items": []
         },
-        "complete_hint": "返回桃园向刘备复命，领取通关奖励。"
+        "complete_hint": "返回桃园向刘备复命，领取通关奖励。",
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_10",
@@ -1875,7 +1955,9 @@
           "experience": 17220,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_11",
@@ -1893,7 +1975,9 @@
           "experience": 17220,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_12",
@@ -1911,7 +1995,9 @@
           "experience": 18480,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       },
       {
         "id": "step_13",
@@ -1929,7 +2015,9 @@
           "experience": 18480,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
+        "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       }
     ]
   },
@@ -2018,7 +2106,9 @@
           "experience": 19740,
           "gold": 300,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_4",
@@ -2036,7 +2126,9 @@
           "experience": 20160,
           "gold": 500,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_5",
@@ -2054,7 +2146,9 @@
           "experience": 19740,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_6",
@@ -2072,7 +2166,9 @@
           "experience": 20160,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_7",
@@ -2110,7 +2206,9 @@
           "experience": 20580,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_9",
@@ -2128,7 +2226,9 @@
           "experience": 21000,
           "gold": 400,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_张飞",
+        "quest_giver_location": "dazhan_changban_copy_live.当阳桥"
       },
       {
         "id": "step_10",
@@ -2146,7 +2246,9 @@
           "experience": 20580,
           "gold": 400,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_张飞",
+        "quest_giver_location": "dazhan_changban_copy_live.当阳桥"
       },
       {
         "id": "step_11",
@@ -2165,7 +2267,9 @@
           "gold": 300,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_12",
@@ -2183,7 +2287,9 @@
           "experience": 21000,
           "gold": 500,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_13",
@@ -2201,7 +2307,9 @@
           "experience": 21420,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       },
       {
         "id": "step_14",
@@ -2219,7 +2327,9 @@
           "experience": 22680,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_刘备",
+        "quest_giver_location": "dazhan_changban_copy_live.当阳桥"
       },
       {
         "id": "step_15",
@@ -2237,7 +2347,9 @@
           "experience": 22680,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_dazhan_changban_赵云",
+        "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       }
     ]
   },
@@ -2305,7 +2417,9 @@
           "experience": 23520,
           "gold": 800,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_3",
@@ -2323,7 +2437,9 @@
           "experience": 23520,
           "gold": 700,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_4",
@@ -2361,7 +2477,9 @@
           "experience": 23940,
           "gold": 900,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_6",
@@ -2379,7 +2497,9 @@
           "experience": 23940,
           "gold": 700,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_7",
@@ -2397,7 +2517,9 @@
           "experience": 24360,
           "gold": 900,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_8",
@@ -2415,7 +2537,9 @@
           "experience": 23940,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_9",
@@ -2433,7 +2557,9 @@
           "experience": 24360,
           "gold": 900,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_10",
@@ -2451,7 +2577,9 @@
           "experience": 24780,
           "gold": 1000,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_11",
@@ -2469,7 +2597,9 @@
           "experience": 24360,
           "gold": 700,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_12",
@@ -2488,7 +2618,9 @@
           "gold": 1200,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_13",
@@ -2506,7 +2638,9 @@
           "experience": 24360,
           "gold": 700,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_14",
@@ -2524,7 +2658,9 @@
           "experience": 25200,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       },
       {
         "id": "step_15",
@@ -2542,7 +2678,9 @@
           "experience": 25200,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
+        "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       }
     ]
   },
@@ -2630,7 +2768,9 @@
           "experience": 15540,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_4",
@@ -2648,7 +2788,9 @@
           "experience": 15540,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_甄氏",
+        "quest_giver_location": "caopi_xuanfei_copy_live.深宫"
       },
       {
         "id": "step_5",
@@ -2666,7 +2808,9 @@
           "experience": 15960,
           "gold": 400,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_6",
@@ -2684,7 +2828,9 @@
           "experience": 16380,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_7",
@@ -2702,7 +2848,9 @@
           "experience": 15960,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_8",
@@ -2721,7 +2869,9 @@
           "gold": 600,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_9",
@@ -2739,7 +2889,9 @@
           "experience": 15960,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_10",
@@ -2757,7 +2909,9 @@
           "experience": 16800,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_11",
@@ -2775,7 +2929,9 @@
           "experience": 16800,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_甄氏",
+        "quest_giver_location": "caopi_xuanfei_copy_live.深宫"
       },
       {
         "id": "step_12",
@@ -2793,7 +2949,9 @@
           "experience": 18480,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       },
       {
         "id": "step_13",
@@ -2811,7 +2969,9 @@
           "experience": 18480,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
+        "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       }
     ]
   },
@@ -2879,7 +3039,9 @@
           "experience": 19740,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_3",
@@ -2897,7 +3059,9 @@
           "experience": 19740,
           "gold": 200,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_4",
@@ -2915,7 +3079,9 @@
           "experience": 19740,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_5",
@@ -2933,7 +3099,9 @@
           "experience": 20160,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_6",
@@ -2951,7 +3119,9 @@
           "experience": 20580,
           "gold": 500,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_7",
@@ -2969,7 +3139,9 @@
           "experience": 20580,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_8",
@@ -2987,7 +3159,9 @@
           "experience": 21000,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_9",
@@ -3005,7 +3179,9 @@
           "experience": 20580,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_10",
@@ -3023,7 +3199,9 @@
           "experience": 21420,
           "gold": 600,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_11",
@@ -3042,7 +3220,9 @@
           "gold": 800,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_12",
@@ -3060,7 +3240,9 @@
           "experience": 21840,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_13",
@@ -3078,7 +3260,9 @@
           "experience": 21840,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_14",
@@ -3096,7 +3280,9 @@
           "experience": 22680,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       },
       {
         "id": "step_15",
@@ -3114,7 +3300,9 @@
           "experience": 22680,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
+        "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       }
     ]
   },
@@ -3182,7 +3370,9 @@
           "experience": 23520,
           "gold": 300,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_3",
@@ -3200,7 +3390,9 @@
           "experience": 23940,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_4",
@@ -3218,7 +3410,9 @@
           "experience": 24360,
           "gold": 600,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_5",
@@ -3236,7 +3430,9 @@
           "experience": 23940,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_6",
@@ -3254,7 +3450,9 @@
           "experience": 24360,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_7",
@@ -3272,7 +3470,9 @@
           "experience": 24780,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_8",
@@ -3290,7 +3490,9 @@
           "experience": 24360,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_9",
@@ -3309,7 +3511,9 @@
           "gold": 1200,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_10",
@@ -3327,7 +3531,9 @@
           "experience": 24360,
           "gold": 400,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_11",
@@ -3345,7 +3551,9 @@
           "experience": 24780,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_12",
@@ -3363,7 +3571,9 @@
           "experience": 24780,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_13",
@@ -3381,7 +3591,9 @@
           "experience": 25200,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       },
       {
         "id": "step_14",
@@ -3399,7 +3611,9 @@
           "experience": 25200,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
+        "quest_giver_location": "zhidou_machao_copy_live.长安城"
       }
     ]
   },
@@ -3467,7 +3681,9 @@
           "experience": 6720,
           "gold": 100,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_3",
@@ -3485,7 +3701,9 @@
           "experience": 7140,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_4",
@@ -3503,7 +3721,9 @@
           "experience": 7560,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_5",
@@ -3521,7 +3741,9 @@
           "experience": 7140,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_6",
@@ -3539,7 +3761,9 @@
           "experience": 7560,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_7",
@@ -3557,7 +3781,9 @@
           "experience": 7560,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_8",
@@ -3576,7 +3802,9 @@
           "gold": 300,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_9",
@@ -3594,7 +3822,9 @@
           "experience": 7560,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_10",
@@ -3612,7 +3842,9 @@
           "experience": 8400,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_11",
@@ -3630,7 +3862,9 @@
           "experience": 8400,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_12",
@@ -3648,7 +3882,9 @@
           "experience": 9660,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       },
       {
         "id": "step_13",
@@ -3666,7 +3902,9 @@
           "experience": 9660,
           "gold": 672,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
+        "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       }
     ]
   },
@@ -3734,7 +3972,9 @@
           "experience": 11340,
           "gold": 150,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_3",
@@ -3752,7 +3992,9 @@
           "experience": 11760,
           "gold": 200,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_4",
@@ -3770,7 +4012,9 @@
           "experience": 11340,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_5",
@@ -3788,7 +4032,9 @@
           "experience": 12180,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_6",
@@ -3806,7 +4052,9 @@
           "experience": 12600,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_7",
@@ -3824,7 +4072,9 @@
           "experience": 12600,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_8",
@@ -3842,7 +4092,9 @@
           "experience": 13020,
           "gold": 400,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_9",
@@ -3860,7 +4112,9 @@
           "experience": 12600,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_10",
@@ -3879,7 +4133,9 @@
           "gold": 500,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_11",
@@ -3897,7 +4153,9 @@
           "experience": 13860,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_12",
@@ -3915,7 +4173,9 @@
           "experience": 13860,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_13",
@@ -3933,7 +4193,9 @@
           "experience": 14700,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       },
       {
         "id": "step_14",
@@ -3951,7 +4213,9 @@
           "experience": 14700,
           "gold": 1092,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_huoshao_lianying_李典",
+        "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       }
     ]
   },
@@ -4019,7 +4283,9 @@
           "experience": 15120,
           "gold": 200,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_3",
@@ -4037,7 +4303,9 @@
           "experience": 15540,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_4",
@@ -4055,7 +4323,9 @@
           "experience": 15960,
           "gold": 400,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_5",
@@ -4073,7 +4343,9 @@
           "experience": 15960,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_6",
@@ -4091,7 +4363,9 @@
           "experience": 16380,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_7",
@@ -4109,7 +4383,9 @@
           "experience": 15960,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_8",
@@ -4127,7 +4403,9 @@
           "experience": 16800,
           "gold": 600,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_9",
@@ -4145,7 +4423,9 @@
           "experience": 16800,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_10",
@@ -4164,7 +4444,9 @@
           "gold": 500,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_11",
@@ -4182,7 +4464,9 @@
           "experience": 16800,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_12",
@@ -4200,7 +4484,9 @@
           "experience": 17640,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_13",
@@ -4218,7 +4504,9 @@
           "experience": 17640,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       },
       {
         "id": "step_14",
@@ -4236,7 +4524,9 @@
           "experience": 18480,
           "gold": 1512,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
+        "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       }
     ]
   },
@@ -4303,7 +4593,9 @@
           "experience": 19740,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_3",
@@ -4321,7 +4613,9 @@
           "experience": 19740,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_4",
@@ -4339,7 +4633,9 @@
           "experience": 19740,
           "gold": 200,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_5",
@@ -4357,7 +4653,9 @@
           "experience": 20160,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_6",
@@ -4375,7 +4673,9 @@
           "experience": 20160,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_7",
@@ -4393,7 +4693,9 @@
           "experience": 20580,
           "gold": 500,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_8",
@@ -4411,7 +4713,9 @@
           "experience": 21000,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_9",
@@ -4429,7 +4733,9 @@
           "experience": 21000,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_10",
@@ -4448,7 +4754,9 @@
           "gold": 800,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_11",
@@ -4466,7 +4774,9 @@
           "experience": 21000,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_12",
@@ -4484,7 +4794,9 @@
           "experience": 21840,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_13",
@@ -4502,7 +4814,9 @@
           "experience": 21840,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       },
       {
         "id": "step_14",
@@ -4520,7 +4834,9 @@
           "experience": 22680,
           "gold": 1932,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
+        "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       }
     ]
   },
@@ -4588,7 +4904,9 @@
           "experience": 23520,
           "gold": 300,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_3",
@@ -4606,7 +4924,9 @@
           "experience": 23940,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_4",
@@ -4624,7 +4944,9 @@
           "experience": 23940,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_5",
@@ -4662,7 +4984,9 @@
           "experience": 23940,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_7",
@@ -4680,7 +5004,9 @@
           "experience": 24360,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_8",
@@ -4698,7 +5024,9 @@
           "experience": 24780,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_9",
@@ -4716,7 +5044,9 @@
           "experience": 24780,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_10",
@@ -4734,7 +5064,9 @@
           "experience": 24780,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_11",
@@ -4752,7 +5084,9 @@
           "experience": 25200,
           "gold": 800,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_12",
@@ -4770,7 +5104,9 @@
           "experience": 25200,
           "gold": 800,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_13",
@@ -4789,7 +5125,9 @@
           "gold": 1200,
           "items": []
         },
-        "complete_hint": "返回副本入口领取通关奖励"
+        "complete_hint": "返回副本入口领取通关奖励",
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_14",
@@ -4807,7 +5145,9 @@
           "experience": 25200,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       },
       {
         "id": "step_15",
@@ -4825,7 +5165,9 @@
           "experience": 25200,
           "gold": 2352,
           "items": []
-        }
+        },
+        "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
+        "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       }
     ]
   }

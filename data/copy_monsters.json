@@ -2425,7 +2425,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_bowang",
-    "copy_stage": "step_2",
+    "copy_stage": "step_3",
     "base_stats": {
       "health": 3680,
       "mana": 2880,
@@ -2472,7 +2472,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_bowang",
-    "copy_stage": "step_3",
+    "copy_stage": "step_4",
     "base_stats": {
       "health": 3680,
       "mana": 2880,
@@ -2519,7 +2519,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_bowang",
-    "copy_stage": "step_4",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 10304,
       "mana": 8063,
@@ -2566,7 +2566,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_bowang",
-    "copy_stage": "step_5",
+    "copy_stage": "step_9",
     "base_stats": {
       "health": 3680,
       "mana": 2880,
@@ -2775,7 +2775,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_3",
+    "copy_stage": "step_4",
     "base_stats": {
       "health": 5980,
       "mana": 4680,
@@ -2822,7 +2822,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 16744,
       "mana": 13104,
@@ -2869,7 +2869,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_5",
+    "copy_stage": "step_7",
     "base_stats": {
       "health": 5980,
       "mana": 4680,
@@ -2916,7 +2916,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 16744,
       "mana": 13104,
@@ -2963,7 +2963,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_7",
+    "copy_stage": "step_10",
     "base_stats": {
       "health": 5980,
       "mana": 4680,
@@ -3010,7 +3010,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_8",
+    "copy_stage": "step_11",
     "base_stats": {
       "health": 16744,
       "mana": 13104,
@@ -3057,7 +3057,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_9",
+    "copy_stage": "step_13",
     "base_stats": {
       "health": 5980,
       "mana": 4680,
@@ -3104,7 +3104,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qianli_danqi",
-    "copy_stage": "step_10",
+    "copy_stage": "step_14",
     "base_stats": {
       "health": 16744,
       "mana": 13104,
@@ -3292,7 +3292,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "taoyuan_jieyi",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 23184,
       "mana": 18144,
@@ -3339,7 +3339,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "taoyuan_jieyi",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 8280,
       "mana": 6480,
@@ -3386,7 +3386,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "taoyuan_jieyi",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 23184,
       "mana": 18144,
@@ -3433,7 +3433,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "taoyuan_jieyi",
-    "copy_stage": "step_7",
+    "copy_stage": "step_9",
     "base_stats": {
       "health": 23184,
       "mana": 18144,
@@ -3736,7 +3736,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "dazhan_changban",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -3783,7 +3783,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "dazhan_changban",
-    "copy_stage": "step_6",
+    "copy_stage": "step_7",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -3830,7 +3830,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "dazhan_changban",
-    "copy_stage": "step_7",
+    "copy_stage": "step_9",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -3877,7 +3877,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "dazhan_changban",
-    "copy_stage": "step_8",
+    "copy_stage": "step_11",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -4120,7 +4120,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qiqinmenghuo_hi",
-    "copy_stage": "step_3",
+    "copy_stage": "step_4",
     "base_stats": {
       "health": 12880,
       "mana": 10080,
@@ -4167,7 +4167,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qiqinmenghuo_hi",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -4214,7 +4214,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qiqinmenghuo_hi",
-    "copy_stage": "step_5",
+    "copy_stage": "step_7",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -4261,7 +4261,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qiqinmenghuo_hi",
-    "copy_stage": "step_6",
+    "copy_stage": "step_9",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -4308,7 +4308,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qiqinmenghuo_hi",
-    "copy_stage": "step_7",
+    "copy_stage": "step_10",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -4355,7 +4355,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "qiqinmenghuo_hi",
-    "copy_stage": "step_8",
+    "copy_stage": "step_12",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -4611,7 +4611,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "caopi_xuanfei",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 23184,
       "mana": 18144,
@@ -4658,7 +4658,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "caopi_xuanfei",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 8280,
       "mana": 6480,
@@ -4705,7 +4705,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "caopi_xuanfei",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 23184,
       "mana": 18144,
@@ -4961,7 +4961,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_wuchao",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -5008,7 +5008,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_wuchao",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -5055,7 +5055,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_wuchao",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -5102,7 +5102,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_wuchao",
-    "copy_stage": "step_7",
+    "copy_stage": "step_10",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -5149,7 +5149,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_wuchao",
-    "copy_stage": "step_8",
+    "copy_stage": "step_11",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -5418,7 +5418,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "zhidou_machao",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 12880,
       "mana": 10080,
@@ -5465,7 +5465,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "zhidou_machao",
-    "copy_stage": "step_6",
+    "copy_stage": "step_7",
     "base_stats": {
       "health": 12880,
       "mana": 10080,
@@ -5512,7 +5512,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "zhidou_machao",
-    "copy_stage": "step_7",
+    "copy_stage": "step_9",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -5687,7 +5687,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "baiyi_dujiang",
-    "copy_stage": "step_3",
+    "copy_stage": "step_4",
     "base_stats": {
       "health": 3680,
       "mana": 2880,
@@ -5734,7 +5734,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "baiyi_dujiang",
-    "copy_stage": "step_4",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 3680,
       "mana": 2880,
@@ -5781,7 +5781,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "baiyi_dujiang",
-    "copy_stage": "step_5",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 10304,
       "mana": 8063,
@@ -6003,7 +6003,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_lianying",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 5980,
       "mana": 4680,
@@ -6050,7 +6050,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_lianying",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 5980,
       "mana": 4680,
@@ -6097,7 +6097,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_lianying",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 16744,
       "mana": 13104,
@@ -6144,7 +6144,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "huoshao_lianying",
-    "copy_stage": "step_7",
+    "copy_stage": "step_10",
     "base_stats": {
       "health": 16744,
       "mana": 13104,
@@ -6413,7 +6413,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "jiangdong_bawang",
-    "copy_stage": "step_5",
+    "copy_stage": "step_6",
     "base_stats": {
       "health": 8280,
       "mana": 6480,
@@ -6460,7 +6460,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "jiangdong_bawang",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 23184,
       "mana": 18144,
@@ -6507,7 +6507,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "jiangdong_bawang",
-    "copy_stage": "step_7",
+    "copy_stage": "step_10",
     "base_stats": {
       "health": 8280,
       "mana": 6480,
@@ -6682,7 +6682,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "shiting_zhizhan",
-    "copy_stage": "step_3",
+    "copy_stage": "step_4",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -6729,7 +6729,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "shiting_zhizhan",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -6776,7 +6776,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "shiting_zhizhan",
-    "copy_stage": "step_5",
+    "copy_stage": "step_7",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -6823,7 +6823,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "shiting_zhizhan",
-    "copy_stage": "step_6",
+    "copy_stage": "step_8",
     "base_stats": {
       "health": 10580,
       "mana": 8280,
@@ -6870,7 +6870,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "shiting_zhizhan",
-    "copy_stage": "step_7",
+    "copy_stage": "step_10",
     "base_stats": {
       "health": 29623,
       "mana": 23184,
@@ -7092,7 +7092,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "chibi_aobing",
-    "copy_stage": "step_4",
+    "copy_stage": "step_5",
     "base_stats": {
       "health": 12880,
       "mana": 10080,
@@ -7139,7 +7139,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "chibi_aobing",
-    "copy_stage": "step_5",
+    "copy_stage": "step_7",
     "base_stats": {
       "health": 12880,
       "mana": 10080,
@@ -7186,7 +7186,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "chibi_aobing",
-    "copy_stage": "step_6",
+    "copy_stage": "step_9",
     "base_stats": {
       "health": 12880,
       "mana": 10080,
@@ -7233,7 +7233,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "chibi_aobing",
-    "copy_stage": "step_7",
+    "copy_stage": "step_11",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -7280,7 +7280,7 @@
     "is_copy": true,
     "copy_only": true,
     "copy_dungeon_id": "chibi_aobing",
-    "copy_stage": "step_8",
+    "copy_stage": "step_13",
     "base_stats": {
       "health": 36064,
       "mana": 28224,
@@ -11519,6 +11519,108 @@
         "max": 168
       },
       "experience": 1400
+    }
+  },
+  "npc_huangjin_copy_左慈": {
+    "name": "左慈",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "【副本任务NPC】左慈，鹤发童颜，仙风道骨，黄巾起义副本全程任务授予者。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "huangjin_trial",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_qianli_danqi_copy_关羽": {
+    "name": "关羽",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "【副本任务NPC】关羽，千里走单骑副本全程任务授予者。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "qianli_danqi",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    }
+  },
+  "npc_dazhan_changban_刘备": {
+    "name": "刘备",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "【副本任务NPC】刘备，大战长坂副本中收拢残兵于当阳桥，接引赵云归还少主。",
+    "is_copy": true,
+    "copy_only": true,
+    "copy_dungeon_id": "dazhan_changban",
+    "copy_role": "quest_giver",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
     }
   }
 }

@@ -193,7 +193,17 @@
       "Bash(python3 -c \"import json; d=json.load\\(open\\('/mnt/FlaskAPP/data/equipment_sets/artifact_weapons.json'\\)\\); [print\\(k, json.dumps\\(v, ensure_ascii=False\\)\\) for k,v in d.items\\(\\) if '60' in k][:3]\")",
       "Bash(python3 -c \"import ast; ast.parse\\(open\\('app.py'\\).read\\(\\)\\); ast.parse\\(open\\('blueprints/auth.py'\\).read\\(\\)\\); ast.parse\\(open\\('services/window_session_service.py'\\).read\\(\\)\\); ast.parse\\(open\\('services/auth_session_service.py'\\).read\\(\\)\\); print\\('syntax OK'\\)\")",
       "Bash(cat ~/.ssh/config 2>/dev/null || echo \"文件不存在\")",
-      "Bash(ls -la ~/.ssh/ 2>/dev/null || echo \"目录不存在\")"
+      "Bash(ls -la ~/.ssh/ 2>/dev/null || echo \"目录不存在\")",
+      "Bash(fuser 5000/tcp)",
+      "Bash(ps -o ppid= -p 124515)",
+      "Bash(systemctl list-units *)",
+      "Bash(pstree -ap)",
+      "Bash(ps -p 25627 -o pid,ppid,etime,cmd=)",
+      "Bash(./venv/bin/python -c ' *)",
+      "Bash(grep -vE \"WARNING|Debug|Serving|Running|Press|development server|production|^\\\\s*$\")",
+      "Bash(awk -F: '{print $1}')",
+      "Bash(awk 'NR>=2244 && NR<=2548' /mnt/FlaskAPP/data/copy_dungeons.json)",
+      "Bash(awk 'NR>=3406 && NR<=3700' /mnt/FlaskAPP/data/copy_dungeons.json)"
     ]
   },
   "mcpServers": {

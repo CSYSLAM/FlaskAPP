@@ -1,5 +1,5 @@
 {
-  "name": "huoshao_bowang",
+  "name": "火烧博望副本",
   "is_copy_map": true,
   "copy_dungeon_id": "huoshao_bowang",
   "scenes": {
@@ -14,6 +14,9 @@
         "mon_huoshao_bowang_elite_夏侯惇",
         "mon_huoshao_bowang_曹军溃兵",
         "mon_huoshao_bowang_曹军俘虏营"
+      ],
+      "npcs": [
+        "npc_huoshao_bowang_黄月英"
       ]
     },
     "huoshao_bowang_copy_live.伏兵谷": {

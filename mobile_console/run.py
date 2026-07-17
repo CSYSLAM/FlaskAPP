@@ -612,6 +612,71 @@ app.config.update(
     SESSION_COOKIE_SAMESITE="Lax",
 )
 
+# ---------------------------------------------------------------------------
+# Claude API 配置切换:两套 env(讯飞 xf-yun / unisound),通过覆盖
+# /home/console/.claude.env 切换。claude 每条指令都 source 该文件,所以切换后
+# 下一条指令即生效(当前正在执行的指令已 source 旧值,需等其结束)。
+# ---------------------------------------------------------------------------
+CLAUDE_USER = "console"
+CLAUDE_ENV_DIR = Path("/home/" + CLAUDE_USER)
+# 可选配置: name -> (模板文件, 显示名, 模型, 网关)
+CLAUDE_CONFIGS = {
+    "xfyun": {
+        "file": ".claude.env.xfyun",
+        "label": "讯飞(xf-yun 华北1)",
+        "model": "astron-code-latest",
+        "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
+    },
+    "unisound": {
+        "file": ".claude.env.unisound",
+        "label": "云知声(unisound)",
+        "model": "glm-5.2",
+        "base": "maas-api.unisound.com",
+    },
+}
+CLAUDE_ENV_ACTIVE = ".claude.env.active"   # 记录当前激活的配置名
+CLAUDE_ENV_LIVE = ".claude.env"            # claude 实际 source 的文件
+
+
+def _claude_active_config():
+    """返回当前激活的配置名(xfyun/unisound),读不到则回退 xfyun。"""
+    try:
+        f = (CLAUDE_ENV_DIR / CLAUDE_ENV_ACTIVE)
+        name = f.read_text(encoding="utf-8").strip() if f.exists() else ""
+        return name if name in CLAUDE_CONFIGS else "xfyun"
+    except Exception:
+        return "xfyun"
+
+
+def _claude_switch_config(name):
+    """切换配置:把模板复制为 .claude.env,并写 active 标记。以 console 身份执行。"""
+    if name not in CLAUDE_CONFIGS:
+        return False, "未知配置: " + name
+    info = CLAUDE_CONFIGS[name]
+    src = CLAUDE_ENV_DIR / info["file"]
+    live = CLAUDE_ENV_DIR / CLAUDE_ENV_LIVE
+    active = CLAUDE_ENV_DIR / CLAUDE_ENV_ACTIVE
+    if not src.exists():
+        return False, "模板文件不存在: " + info["file"]
+    # 复制 + 写标记 都以 console 身份(这些文件权限 600, root 可读写但保持归属一致更稳)
+    import shlex
+    shell_cmd = (
+        f"cp {shlex.quote(str(src))} {shlex.quote(str(live))} && "
+        f"chmod 600 {shlex.quote(str(live))} && "
+        f"printf %s {shlex.quote(name)} > {shlex.quote(str(active))} && "
+        f"chmod 600 {shlex.quote(str(active))}"
+    )
+    try:
+        r = subprocess.run(
+            ["runuser", "-l", CLAUDE_USER, "-c", shell_cmd],
+            capture_output=True, text=True, timeout=10)
+        if r.returncode != 0:
+            return False, "切换失败: " + (r.stderr or r.stdout).strip()
+    except Exception as e:
+        return False, "切换异常: " + str(e)
+    return True, f"已切换到 {info['label']}({info['model']})。下条指令生效。"
+
+
 # 单窗口登录状态:token -> 当前有效 session_id
 # 登录时生成新 token 并把 _ACTIVE_TOKEN 指向它;旧 session 的 token 不再匹配即视为被踢
 import threading as _t
@@ -712,6 +777,7 @@ def api_status():
         "procs": [p.status() for p in PROCS.values()],
         "lan_ip": LAN_IP,
         "game_url": f"http://{LAN_IP}:{GAME_PORT}",
+        "claude_config": _claude_active_config(),
     })
 
 
@@ -832,6 +898,25 @@ def api_interrupt(key):
         return jsonify({"ok": False, "msg": "未知进程"}), 400
     ok, msg = p.interrupt()
     return jsonify({"ok": ok, "msg": msg})
+
+
+@app.route("/api/claude_config", methods=["GET"])
+def api_claude_config_get():
+    """返回当前激活的 Claude 配置 + 可选列表。"""
+    active = _claude_active_config()
+    options = [
+        {"name": n, "label": c["label"], "model": c["model"], "active": n == active}
+        for n, c in CLAUDE_CONFIGS.items()
+    ]
+    return jsonify({"ok": True, "active": active, "options": options})
+
+
+@app.route("/api/claude_config/<name>", methods=["POST"])
+def api_claude_config_set(name):
+    """切换 Claude API 配置(覆盖 .claude.env)。下一条指令即生效。"""
+    ok, msg = _claude_switch_config(name)
+    return jsonify({"ok": ok, "msg": msg})
+
 
 
 @app.route("/api/upload", methods=["POST"])
@@ -1124,6 +1209,12 @@ PAGE_HTML = r"""
         <button class="btn stop" onclick="act('stop','claude')">停止</button>
         <button class="btn interrupt" id="btn-interrupt" onclick="interruptAgent('claude')">✋ 打断</button>
       </div>
+      <div class="row" style="margin-top:6px;align-items:center;flex-wrap:wrap">
+        <span class="hint" style="margin:0">API配置:</span>
+        <span id="claude-cfg-label" class="hint" style="margin:0;color:var(--flase,#7fd1b9)">-</span>
+        <select id="claude-cfg-select" onchange="switchClaudeConfig()" style="font-size:14px;padding:2px 4px"></select>
+      </div>
+      <div class="hint">切换 API 配置(讯飞/云知声)后,下一条指令即生效;当前正在执行的指令仍用旧配置。</div>
       <div class="hint">启用后,在下方输入框发指令。每条指令以无人值守模式执行(--dangerously-skip-permissions),Claude 会直接读改代码/跑命令,多条指令共享同一会话保持记忆。点"打断"可中止当前指令(等同按 Esc)。</div>
     </div>
     <div class="card">
@@ -1234,6 +1325,38 @@ function onKicked(){
 
 async function act(action,key){
   try{ const j = await postJSON('/api/'+action+'/'+key); flash(j.msg||''); }catch(e){}
+  refreshStatus();
+}
+// Claude API 配置切换
+async function loadClaudeConfig(){
+  try{
+    const r = await fetch('/api/claude_config');
+    if(r.status===401){ onKicked(); return; }
+    const j = await r.json();
+    const sel = document.getElementById('claude-cfg-select');
+    const lbl = document.getElementById('claude-cfg-label');
+    if(!sel) return;
+    sel.innerHTML = '';
+    (j.options||[]).forEach(o=>{
+      const opt = document.createElement('option');
+      opt.value = o.name; opt.textContent = `${o.label} (${o.model})`;
+      if(o.active) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    const cur = (j.options||[]).find(o=>o.active);
+    if(lbl && cur) lbl.textContent = `${cur.label} · ${cur.model}`;
+  }catch(e){}
+}
+async function switchClaudeConfig(){
+  const sel = document.getElementById('claude-cfg-select');
+  if(!sel) return;
+  const name = sel.value;
+  if(!confirm('确定切换 Claude API 配置到: '+name+'?\n(下一条指令生效,当前指令仍用旧配置)')){ loadClaudeConfig(); return; }
+  try{
+    const j = await postJSON('/api/claude_config/'+name);
+    flash(j.msg||'');
+  }catch(e){}
+  loadClaudeConfig();
   refreshStatus();
 }
 async function startAll(){
@@ -1385,6 +1508,16 @@ function refreshStatus(){
     if(bannerCb){
       bannerCb.classList.toggle('hidden', !(codebuddy && codebuddy.running && codebuddy.busy));
     }
+    // Claude 当前 API 配置显示
+    if(j.claude_config){
+      const lbl = document.getElementById('claude-cfg-label');
+      if(lbl){
+        const map = {xfyun:'讯飞(xf-yun) · astron-code-latest', unisound:'云知声(unisound) · glm-5.2'};
+        lbl.textContent = map[j.claude_config] || j.claude_config;
+      }
+      const sel = document.getElementById('claude-cfg-select');
+      if(sel && !sel.matches(':focus')) sel.value = j.claude_config;
+    }
   }).catch(()=>{});
 }
 
@@ -1413,6 +1546,7 @@ function connectSSE(){
 }
 refreshStatus();
 setInterval(refreshStatus, 3000);
+loadClaudeConfig();
 connectSSE();
 </script>
 </body>

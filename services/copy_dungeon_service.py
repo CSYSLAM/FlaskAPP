@@ -266,19 +266,21 @@ class CopyDungeonService:
         if monster_data.get('copy_role') == 'entry_npc' and in_dungeon:
             pass  # fall through to quest_giver logic below
 
-        # quest_giver: only show markers if this NPC is the current stage's quest giver
+        # quest_giver: 仅当该 NPC 是当前阶段的任务授予者才显示标记
+        # （未配置 quest_giver_npc_id 的阶段不亮任何标记，避免误亮——需在数据中补全配置）
         stage = cls.get_current_stage(definition, state)
         if stage and stage.get('quest_giver_npc_id'):
             if npc_id != stage.get('quest_giver_npc_id'):
                 return None
         else:
-            # fallback: if no quest_giver_npc_id configured, allow all quest_givers
-            pass
+            # 当前阶段未配置任务授予者 NPC：副本内 quest_giver/entry_npc 一律不亮
+            if monster_data.get('copy_role') in ('quest_giver', 'entry_npc'):
+                return None
 
-        if state.get('accepted') and state.get('ready_to_complete') and not state.get('reward_claimed'):
+        if state.get('accepted') and state.get('ready_to_complete'):
             return {'icon': 'wh.gif', 'label': '可交任务'}
 
-        if state.get('accepted') and not state.get('completed') and not state.get('reward_claimed'):
+        if state.get('accepted'):
             return {'icon': 'gt.gif', 'label': '进行中'}
 
         if not state.get('accepted'):
@@ -299,6 +301,22 @@ class CopyDungeonService:
         steps = definition.get('steps') or definition.get('stages', [])
         index = min(state.get('stage_index', 0), max(0, len(steps) - 1))
         return steps[index] if steps else None
+
+    @classmethod
+    def get_current_stage_quest(cls, player):
+        """玩家位于副本地图内时，把当前副本阶段包装成类主线任务的 dict，
+        供『可接任务』列表与任务详情页展示，并支持传送/快速前往目的地。
+        玩家不在副本地图内或无副本定义时返回 None。"""
+        loc = DataService.get_location(player.current_location)
+        if not loc or not loc.get('is_copy_map'):
+            return None
+        dungeon_id = loc.get('copy_dungeon_id')
+        definition = cls.get_definition(dungeon_id) if dungeon_id else None
+        if not definition:
+            return None
+        state = cls.get_state(player, dungeon_id)
+        stage_index = int(state.get('stage_index', 0))
+        return cls._stage_quest_dict(definition, dungeon_id, stage_index, state, player)
 
     @classmethod
     def _is_in_dungeon(cls, player, dungeon_id):
@@ -350,15 +368,8 @@ class CopyDungeonService:
             }
 
         state = cls.get_state(player, dungeon_id)
-        # entry_npc inside dungeon: treat as quest_giver for the current stage
-        if monster_data.get('copy_role') == 'entry_npc' and in_dungeon:
-            if state.get('completed') or state.get('reward_claimed'):
-                cls.clear_state(player, dungeon_id)
-                state = cls.get_state(player, dungeon_id)
-
-        if monster_data.get('copy_role') == 'quest_giver' and (state.get('completed') or state.get('reward_claimed')):
-            cls.clear_state(player, dungeon_id)
-            state = cls.get_state(player, dungeon_id)
+        # 新模型下副本阶段不再使用 completed/reward_claimed 标志位（完成即清 state 或推进 stage_index），
+        # 此处仅读取当前阶段，不清理，以免误清 active_quests 中仍在途的任务记录。
 
         stage = cls.get_current_stage(definition, state)
         next_stage = None
@@ -519,6 +530,87 @@ class CopyDungeonService:
         m = re.search(r'\((\d+)级', definition.get('name', ''))
         return int(m.group(1)) if m else 0
 
+    # ===== 阶段任务 id 编码（每个阶段=独立任务，可进 active_quests）=====
+    # id 形如 copy_<dungeon_id>_<stage_index>，前缀 copy_ 让 quest_detail 走副本分支
+
+    @classmethod
+    def stage_quest_id(cls, dungeon_id, stage_index):
+        return f'copy_{dungeon_id}_{stage_index}'
+
+    @classmethod
+    def parse_stage_quest_id(cls, quest_id):
+        """解析 copy_<dungeon_id>_<stage_index>，返回 (dungeon_id, stage_index) 或 None。"""
+        if not quest_id or not quest_id.startswith('copy_'):
+            return None
+        body = quest_id[len('copy_'):]
+        # dungeon_id 自身可能含下划线，末段为 stage_index
+        if '_' not in body:
+            return None
+        dungeon_id, _, idx_str = body.rpartition('_')
+        if not idx_str.isdigit():
+            return None
+        return dungeon_id, int(idx_str)
+
+    @classmethod
+    def _stage_quest_dict(cls, definition, dungeon_id, stage_index, state, player=None):
+        """把指定阶段包装成类主线任务的 dict（供任务列表/详情/传送）。"""
+        steps = definition.get('steps') or definition.get('stages', [])
+        if stage_index < 0 or stage_index >= len(steps):
+            return None
+        stage = steps[stage_index]
+        accepted = bool(state.get('accepted')) and int(state.get('stage_index', 0)) == stage_index
+        ready = bool(state.get('ready_to_complete')) and accepted
+
+        giver_loc = stage.get('quest_giver_location') or definition.get('entry_location')
+        giver_loc_data = DataService.get_location(giver_loc) if giver_loc else None
+        giver_loc_name = giver_loc_data.get('name', giver_loc) if giver_loc_data else (giver_loc or '')
+        target_loc = stage.get('scene_id') or ''
+
+        npc_name = ''
+        npc_id = stage.get('quest_giver_npc_id')
+        if npc_id:
+            nd = DataService.get_monster(npc_id)
+            if nd:
+                npc_name = nd.get('name', '')
+
+        reward = stage.get('reward') or {}
+        required_count = stage.get('required_count', 0) or 0
+        return {
+            'id': cls.stage_quest_id(dungeon_id, stage_index),
+            'name': f"副·{stage.get('name', definition.get('name', dungeon_id))}",
+            'level_required': cls._dungeon_level(definition),
+            'npc_name': npc_name or definition.get('name', ''),
+            'npc_id': npc_id or '',
+            'npc_location': giver_loc or '',
+            'npc_location_name': giver_loc_name,
+            'target_location': target_loc,
+            'description': stage.get('objective', ''),
+            'progress': state.get('progress', 0) if accepted else 0,
+            'target': required_count,
+            'is_ready': ready,
+            'rewards': reward,
+            'is_copy_quest': True,
+            'dungeon_id': dungeon_id,
+            'stage_index': stage_index,
+            'accepted': accepted,
+            'required_items': stage.get('required_items', {}) or {},
+            'story': stage.get('story', ''),
+            'complete_story': stage.get('complete_story', ''),
+        }
+
+    @classmethod
+    def get_stage_quest(cls, player, quest_id):
+        """根据阶段任务 id 构造 quest dict（供任务详情页/列表统一渲染）。"""
+        parsed = cls.parse_stage_quest_id(quest_id)
+        if not parsed:
+            return None
+        dungeon_id, stage_index = parsed
+        definition = cls.get_definition(dungeon_id)
+        if not definition:
+            return None
+        state = cls.get_state(player, dungeon_id)
+        return cls._stage_quest_dict(definition, dungeon_id, stage_index, state, player)
+
     @classmethod
     def enter_dungeon(cls, player, dungeon_id):
         definition = cls.get_definition(dungeon_id)
@@ -554,6 +646,20 @@ class CopyDungeonService:
         state = cls.get_state(player, dungeon_id)
         if state.get('completed') or state.get('reward_claimed'):
             cls.clear_state(player, dungeon_id)
+            state = cls.get_state(player, dungeon_id)
+
+        # 进入副本时校准阶段：若有在途副本阶段任务(active_quests)，恢复到该阶段；
+        # 否则从第一个阶段开始（副本支持重复刷：清掉该副本旧的阶段 completed 记录）
+        resumed = cls._resume_stage_from_active(player, dungeon_id, state)
+        if not resumed:
+            # 无在途任务 → 从头开始；若该副本阶段已全部 completed(上次通关未清的残留)也重置
+            state['stage_index'] = 0
+            state['accepted'] = False
+            state['progress'] = 0
+            state['ready_to_complete'] = False
+            state['defeated_monsters'] = []
+            cls._clear_dungeon_completed(player, dungeon_id)
+            cls.save_state(player, dungeon_id, state)
 
         # 记录入口NPC，用于退出时返回正确城市（三国不同起始城）
         cls._save_entry_npc(player, dungeon_id, player.current_location)
@@ -561,6 +667,28 @@ class CopyDungeonService:
         player.current_location = entry_location
         db.session.commit()
         return True, f"已进入【{definition.get('name', dungeon_id)}】"
+
+    @classmethod
+    def _resume_stage_from_active(cls, player, dungeon_id, state):
+        """若 active_quests 中有该副本的在途阶段任务，把副本 state 校准到该阶段。返回是否恢复。"""
+        from services.quest_service import QuestService
+        active = QuestService.get_active_quests(player)
+        parsed = None
+        for qid in active:
+            p = cls.parse_stage_quest_id(qid)
+            if p and p[0] == dungeon_id:
+                parsed = p
+                qprogress = active[qid]
+                break
+        if not parsed:
+            return False
+        _, stage_index = parsed
+        state['stage_index'] = stage_index
+        state['accepted'] = True
+        state['progress'] = qprogress.get('progress', 0)
+        state['ready_to_complete'] = state['progress'] >= qprogress.get('target', state.get('progress', 0) + 1) and qprogress.get('target', 0) > 0
+        cls.save_state(player, dungeon_id, state)
+        return True
 
     @classmethod
     def leave_dungeon(cls, player, dungeon_id):
@@ -578,6 +706,11 @@ class CopyDungeonService:
             data[cls.STATE_KEY] = root
             player.activity_data = data
 
+        # 同步清除该副本在 active_quests / completed_quests 中的阶段任务，
+        # 让玩家下次进入从第一个阶段重新接取（副本可重复刷）
+        cls._clear_dungeon_active(player, dungeon_id)
+        cls._clear_dungeon_completed(player, dungeon_id)
+
         if return_location:
             player.current_location = return_location
 
@@ -586,63 +719,115 @@ class CopyDungeonService:
 
     @classmethod
     def accept_task(cls, player, dungeon_id):
+        """接受副本当前阶段任务（写作独立任务写入 active_quests，任务列表可见）。
+        完成一个阶段后 accepted 复位为 False，下一阶段需玩家再次点『接受任务』，不自动接取。"""
         definition = cls.get_definition(dungeon_id)
         if not definition:
             return False, '副本不存在', None
 
         state = cls.get_state(player, dungeon_id)
+        stage = cls.get_current_stage(definition, state)
+        if not stage:
+            return False, '副本阶段异常', None
 
-        quest_giver_location = cls._get_quest_giver_location(definition, state)
+        # 已接受当前阶段且在途 → 不重复接
+        if state.get('accepted'):
+            return False, '当前阶段任务已接受', None
 
+        quest_giver_location = stage.get('quest_giver_location') or definition.get('entry_location')
         if player.current_location != quest_giver_location:
             location_data = DataService.get_location(quest_giver_location)
             location_name = location_data.get('name', quest_giver_location) if location_data else quest_giver_location
             return False, f'请先前往{location_name}接受任务', None
 
-        if state.get('accepted') and not state.get('completed') and not state.get('reward_claimed'):
-            return False, '副本任务进行中', None
-
-        state = cls._fresh_run_state()
+        stage_index = int(state.get('stage_index', 0))
         state['accepted'] = True
+        state['progress'] = 0
+        state['ready_to_complete'] = False
 
-        # For delivery-type first stage, auto-check required items
-        first_stage = cls.get_current_stage(definition, state)
-        if first_stage and not first_stage.get('target_monsters') and first_stage.get('required_count', 1) == 0:
-            required_items = first_stage.get('required_items', {})
+        # 交付物型阶段（无 target_monsters 且 required_count==0），接受时若已持有物品则直接可交
+        if not stage.get('target_monsters') and stage.get('required_count', 1) == 0:
+            required_items = stage.get('required_items', {})
             if required_items:
                 has_items, _ = cls._has_required_items(player, required_items)
                 if has_items:
                     state['ready_to_complete'] = True
 
         cls.save_state(player, dungeon_id, state)
+
+        # 写入主线任务体系 active_quests，使任务列表可见
+        cls._register_active_stage(player, dungeon_id, stage_index, stage)
+
         db.session.commit()
-        stage = cls.get_current_stage(definition, state)
-        return True, f"已接受【{definition.get('name', dungeon_id)}】", {
+        return True, f"已接受【副·{stage.get('name', definition.get('name', dungeon_id))}】", {
             'dungeon': definition,
             'stage': stage,
+            'stage_index': stage_index,
         }
 
     @classmethod
+    def _register_active_stage(cls, player, dungeon_id, stage_index, stage):
+        """把阶段任务写入 player.active_quests（与主线任务共存）。"""
+        from services.quest_service import QuestService
+        active = QuestService.get_active_quests(player)
+        qid = cls.stage_quest_id(dungeon_id, stage_index)
+        active[qid] = {
+            'progress': 0,
+            'target': stage.get('required_count', 0) or 0,
+        }
+        QuestService.set_active_quests(player, active)
+
+    @classmethod
+    def _unregister_active_stage(cls, player, qid):
+        from services.quest_service import QuestService
+        active = QuestService.get_active_quests(player)
+        if qid in active:
+            del active[qid]
+            QuestService.set_active_quests(player, active)
+
+    @classmethod
+    def abandon_copy_quest(cls, player, quest_id):
+        """放弃某阶段副本任务（从 active 移除；副本内进度清零，可再次接取）。"""
+        parsed = cls.parse_stage_quest_id(quest_id)
+        if not parsed:
+            return False, '任务不存在'
+        dungeon_id, stage_index = parsed
+        definition = cls.get_definition(dungeon_id)
+        if not definition:
+            return False, '副本不存在'
+        cls._unregister_active_stage(player, quest_id)
+        state = cls.get_state(player, dungeon_id)
+        if int(state.get('stage_index', 0)) == stage_index:
+            state['accepted'] = False
+            state['progress'] = 0
+            state['ready_to_complete'] = False
+            cls.save_state(player, dungeon_id, state)
+        db.session.commit()
+        return True, '已放弃'
+
+    @classmethod
     def complete_stage(cls, player, dungeon_id):
+        """完成当前阶段：发奖励、移除 active 任务、记 completed。
+        非末阶段：stage_index+=1 且 accepted=False（下一阶段需手动接受，不自动接取）。
+        末阶段：发通关奖励、清进度、返回入口、副本通关计数+1。"""
         definition = cls.get_definition(dungeon_id)
         if not definition:
             return False, '副本不存在', False, None
 
         state = cls.get_state(player, dungeon_id)
-        quest_giver_location = cls._get_quest_giver_location(definition, state)
+        stage = cls.get_current_stage(definition, state)
+        if not stage:
+            return False, '副本阶段异常', False, None
+        if not state.get('accepted'):
+            return False, '请先接受副本任务', False, None
+        if not state.get('ready_to_complete'):
+            return False, '当前阶段目标尚未完成', False, None
 
+        quest_giver_location = stage.get('quest_giver_location') or definition.get('entry_location')
         if player.current_location != quest_giver_location:
             location_data = DataService.get_location(quest_giver_location)
             location_name = location_data.get('name', quest_giver_location) if location_data else quest_giver_location
             return False, f'请先返回{location_name}完成任务', False, None
-
-        stage = cls.get_current_stage(definition, state)
-        if not state.get('accepted'):
-            return False, '请先接受副本任务', False, None
-        if not stage:
-            return False, '副本阶段异常', False, None
-        if not state.get('ready_to_complete'):
-            return False, '当前阶段目标尚未完成', False, None
 
         required_items = stage.get('required_items', {})
         has_required_items, missing_message = cls._has_required_items(player, required_items)
@@ -654,15 +839,28 @@ class CopyDungeonService:
             DataService.remove_item_from_inventory(player.id, item_id, count)
 
         cls._grant_reward(player, stage.get('reward', {}))
+
+        stage_index = int(state.get('stage_index', 0))
+        qid = cls.stage_quest_id(dungeon_id, stage_index)
+        # 从 active 移除、记 completed（仅用于阶段顺序，进入副本时会按需清除以支持重刷）
+        cls._unregister_active_stage(player, qid)
+        from services.quest_service import QuestService
+        completed = QuestService.get_completed_quests(player)
+        if qid not in completed:
+            completed.append(qid)
+            QuestService.set_completed_quests(player, completed)
+
         steps = definition.get('steps') or definition.get('stages', [])
-        is_last = state.get('stage_index', 0) >= len(steps) - 1
+        is_last = stage_index >= len(steps) - 1
         if is_last:
             final_reward = definition.get('reward', {})
             cls._grant_reward(player, final_reward)
-            return_location = definition.get('return_location', player.current_location)
+            return_location = cls._resolve_return_location(player, dungeon_id) or definition.get('return_location', player.current_location)
             return_location_data = DataService.get_location(return_location) if return_location else None
             player.current_location = return_location
             cls.clear_state(player, dungeon_id)
+            # 副本可重刷： cleared 该副本各阶段 completed 记录，玩家下次可从首阶段重新接取
+            cls._clear_dungeon_completed(player, dungeon_id)
             # Track dungeon clear count
             clears = player.dungeon_clears
             clears[dungeon_id] = clears.get(dungeon_id, 0) + 1
@@ -683,29 +881,55 @@ class CopyDungeonService:
                 'reward_items': final_reward.get('items', []),
             }
 
-        state['stage_index'] += 1
+        # 非末阶段：推进到下一阶段但不自动接受（accepted=False，下一阶段进入『可接任务』）
+        state['stage_index'] = stage_index + 1
+        state['accepted'] = False
         state['progress'] = 0
         state['ready_to_complete'] = False
-
-        # For delivery-type stages (no target monsters), auto-check required items
-        next_stage = cls.get_current_stage(definition, state)
-        if next_stage and not next_stage.get('target_monsters') and next_stage.get('required_count', 1) == 0:
-            required_items = next_stage.get('required_items', {})
-            if required_items:
-                has_items, _ = cls._has_required_items(player, required_items)
-                if has_items:
-                    state['ready_to_complete'] = True
-
+        state['defeated_monsters'] = []
         cls.save_state(player, dungeon_id, state)
         db.session.commit()
+        next_stage = cls.get_current_stage(definition, state)
         next_name = next_stage.get('name', '下一阶段') if next_stage else '下一阶段'
+        next_qid = cls.stage_quest_id(dungeon_id, state['stage_index']) if next_stage else None
         return True, f"阶段已完成，已开启【{next_name}】", False, {
             'dungeon': definition,
             'completed_stage': stage,
             'next_stage': next_stage,
             'stage': stage,
             'reward': stage.get('reward', {}),
+            'next_quest_id': next_qid,
         }
+
+    @classmethod
+    def _clear_dungeon_completed(cls, player, dungeon_id):
+        """从 completed_quests 中清除某副本的全部阶段记录，支持副本重复刷。"""
+        from services.quest_service import QuestService
+        completed = QuestService.get_completed_quests(player)
+        prefix = f'copy_{dungeon_id}_'
+        completed = [qid for qid in completed if not qid.startswith(prefix)]
+        QuestService.set_completed_quests(player, completed)
+
+    @classmethod
+    def _clear_dungeon_active(cls, player, dungeon_id):
+        """从 active_quests 中清除某副本的全部在途阶段任务。"""
+        from services.quest_service import QuestService
+        active = QuestService.get_active_quests(player)
+        prefix = f'copy_{dungeon_id}_'
+        active = {qid: v for qid, v in active.items() if not qid.startswith(prefix)}
+        QuestService.set_active_quests(player, active)
+
+    @classmethod
+    def clear_all_dungeon_quests(cls, player):
+        """玩家离开副本场景（进入非副本场景）时调用：清除全部副本阶段任务
+        （active + completed + copy state），下次进入任意副本均从首阶段开始。"""
+        from services.quest_service import QuestService
+        active = QuestService.get_active_quests(player)
+        active = {qid: v for qid, v in active.items() if not qid.startswith('copy_')}
+        QuestService.set_active_quests(player, active)
+        completed = QuestService.get_completed_quests(player)
+        completed = [qid for qid in completed if not qid.startswith('copy_')]
+        QuestService.set_completed_quests(player, completed)
 
     @classmethod
     def claim_reward(cls, player, dungeon_id):
@@ -788,6 +1012,19 @@ class CopyDungeonService:
             else:
                 note = f"{progress_label}({progress}/{required_count})"
             cls.save_state(player, dungeon_id, state)
+            # 同步主线任务体系 active_quests 进度，使任务列表进度实时可见
+            cls._sync_active_progress(player, dungeon_id, int(state.get('stage_index', 0)), progress, required_count)
             return note
 
         return None
+
+    @classmethod
+    def _sync_active_progress(cls, player, dungeon_id, stage_index, progress, target):
+        """把副本阶段击杀进度同步到 active_quests 中对应阶段任务。"""
+        from services.quest_service import QuestService
+        active = QuestService.get_active_quests(player)
+        qid = cls.stage_quest_id(dungeon_id, stage_index)
+        if qid in active:
+            active[qid]['progress'] = progress
+            active[qid]['target'] = target
+            QuestService.set_active_quests(player, active)

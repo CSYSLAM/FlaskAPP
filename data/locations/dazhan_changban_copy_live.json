@@ -1,5 +1,5 @@
 {
-  "name": "dazhan_changban",
+  "name": "大战长坂副本",
   "is_copy_map": true,
   "copy_dungeon_id": "dazhan_changban",
   "scenes": {
@@ -79,7 +79,8 @@
         "mon_dazhan_changban_曹军殿后"
       ],
       "npcs": [
-        "npc_dazhan_changban_张飞"
+        "npc_dazhan_changban_张飞",
+        "npc_dazhan_changban_刘备"
       ]
     },
     "dazhan_changban_copy_live.山道": {

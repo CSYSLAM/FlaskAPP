@@ -1,5 +1,5 @@
 {
-  "name": "qianli_danqi",
+  "name": "千里单骑副本",
   "is_copy_map": true,
   "copy_dungeon_id": "qianli_danqi",
   "scenes": {
@@ -12,6 +12,9 @@
         "mon_qianli_danqi_东岭关守军",
         "mon_qianli_danqi_elite_孔秀",
         "mon_qianli_danqi_伏兵"
+      ],
+      "npcs": [
+        "npc_qianli_danqi_copy_关羽"
       ]
     },
     "qianli_danqi_copy_live.洛阳关": {

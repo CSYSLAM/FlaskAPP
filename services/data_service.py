@@ -103,7 +103,13 @@ class DataService:
                 area_name = area_data.get('name', area_key)
                 area_meta = {key: value for key, value in area_data.items() if key not in {'name', 'scenes'}}
                 for scene_key, scene_data in area_data['scenes'].items():
-                    full_id = f"{area_key}.{scene_key}"
+                    # scene_key may already be a full id ("area.scene") for some
+                    # copy-live files, or a short name ("scene") for others.
+                    # Only prepend area_key for the short-name form, otherwise
+                    # the flat id would get a doubled prefix (area.area.scene)
+                    # and exits/entry_location lookups would miss.
+                    prefix = area_key + '.'
+                    full_id = scene_key if scene_key.startswith(prefix) else f"{area_key}.{scene_key}"
                     entry = dict(scene_data)
                     entry['area_id'] = area_key
                     entry['area_name'] = area_name

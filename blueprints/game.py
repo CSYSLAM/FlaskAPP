@@ -66,6 +66,10 @@ def scene():
             copy_states = data.get('copy_dungeons', {})
             if copy_states:
                 data['copy_dungeons'] = {}
+            # 离开副本地图时一并清掉副本内“继续遇怪”记忆，避免串到其它场景
+            data.pop('last_copy_kill', None)
+            # 离开副本即清空所有副本阶段任务（active/completed），下次进入从首阶段重新接取
+            CopyDungeonService.clear_all_dungeon_quests(player)
         # Get other players in the same location
         other_players = PlayerModel.query.filter(
             PlayerModel.current_location == location_id,
@@ -319,6 +323,7 @@ def view_npc(monster_id):
                 'player': player,
                 'monster': monster,
                 'view_mode': view_mode,
+                'DataService': DataService,
             })
             return render_template("copy_dungeon.html", **context)
 

@@ -5300,7 +5300,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "范漫",
-      "count": 8
+      "count": 1
     },
     "rewards": {
       "experience": 7500,
@@ -5576,7 +5576,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "陈兰",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 9000,
@@ -5770,7 +5770,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "雷薄",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 13500,
@@ -5806,7 +5806,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "杨弘",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 15000,
@@ -5923,7 +5923,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "山越左骑使",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 18000,
@@ -8911,7 +8911,7 @@
   },
   "main_all_40a": {
     "id": "main_all_40a",
-    "name": "共·烽烟初探",
+    "name": "主·烽烟初探",
     "type": "main",
     "npc_id": "npc_xiapi_center_水镜先生",
     "npc_name": "水镜先生",
@@ -8968,7 +8968,7 @@
   },
   "main_all_40b": {
     "id": "main_all_40b",
-    "name": "共·夜巷妖影",
+    "name": "主·夜巷妖影",
     "type": "main",
     "npc_id": "npc_xiapi_center_水镜先生",
     "npc_name": "水镜先生",
@@ -9015,7 +9015,7 @@
   },
   "main_all_41a": {
     "id": "main_all_41a",
-    "name": "共·文姬之秘",
+    "name": "主·文姬之秘",
     "type": "main",
     "npc_id": "npc_xiapi_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9065,7 +9065,7 @@
   },
   "main_all_41b": {
     "id": "main_all_41b",
-    "name": "共·钱庄暗账",
+    "name": "主·钱庄暗账",
     "type": "main",
     "npc_id": "npc_xiapi_center_糜竺",
     "npc_name": "糜竺",
@@ -9115,7 +9115,7 @@
   },
   "main_all_42a": {
     "id": "main_all_42a",
-    "name": "共·截江夺货",
+    "name": "主·截江夺货",
     "type": "main",
     "npc_id": "npc_xiapi_center_糜竺",
     "npc_name": "糜竺",
@@ -9162,7 +9162,7 @@
   },
   "main_all_42b": {
     "id": "main_all_42b",
-    "name": "共·影中之人",
+    "name": "主·影中之人",
     "type": "main",
     "npc_id": "npc_xiapi_center_影",
     "npc_name": "影",
@@ -9212,7 +9212,7 @@
   },
   "main_all_43a": {
     "id": "main_all_43a",
-    "name": "共·客栈惊变",
+    "name": "主·客栈惊变",
     "type": "main",
     "npc_id": "npc_xiapi_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9259,7 +9259,7 @@
   },
   "main_all_43b": {
     "id": "main_all_43b",
-    "name": "共·旧臣筹谋",
+    "name": "主·旧臣筹谋",
     "type": "main",
     "npc_id": "npc_xiapi_center_陈宫",
     "npc_name": "陈宫",
@@ -9309,7 +9309,7 @@
   },
   "main_all_44a": {
     "id": "main_all_44a",
-    "name": "共·截获密信",
+    "name": "主·截获密信",
     "type": "main",
     "npc_id": "npc_xiapi_center_陈宫",
     "npc_name": "陈宫",
@@ -9361,7 +9361,7 @@
   },
   "main_all_44b": {
     "id": "main_all_44b",
-    "name": "共·密信呈交",
+    "name": "主·密信呈交",
     "type": "main",
     "npc_id": "npc_xiapi_center_陈宫",
     "npc_name": "陈宫",
@@ -9409,7 +9409,7 @@
   },
   "main_all_45a": {
     "id": "main_all_45a",
-    "name": "共·文姬随行",
+    "name": "主·文姬随行",
     "type": "main",
     "npc_id": "npc_xiapi_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9459,7 +9459,7 @@
   },
   "main_all_45b": {
     "id": "main_all_45b",
-    "name": "共·东郊突围",
+    "name": "主·东郊突围",
     "type": "main",
     "npc_id": "npc_xiapi_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9506,7 +9506,7 @@
   },
   "main_all_46a": {
     "id": "main_all_46a",
-    "name": "共·水镜赠言",
+    "name": "主·水镜赠言",
     "type": "main",
     "npc_id": "npc_xiapi_center_水镜先生",
     "npc_name": "水镜先生",
@@ -9556,7 +9556,7 @@
   },
   "main_all_46b": {
     "id": "main_all_46b",
-    "name": "共·下邳落幕",
+    "name": "主·下邳落幕",
     "type": "main",
     "npc_id": "npc_xiapi_center_水镜先生",
     "npc_name": "水镜先生",
@@ -9603,7 +9603,7 @@
   },
   "main_all_47a": {
     "id": "main_all_47a",
-    "name": "共·江陵初临",
+    "name": "主·江陵初临",
     "type": "main",
     "npc_id": "npc_jiangling_center_黄承彦",
     "npc_name": "黄承彦",
@@ -9653,7 +9653,7 @@
   },
   "main_all_47b": {
     "id": "main_all_47b",
-    "name": "共·船王之诺",
+    "name": "主·船王之诺",
     "type": "main",
     "npc_id": "npc_jiangling_center_苏飞",
     "npc_name": "苏飞",
@@ -9703,7 +9703,7 @@
   },
   "main_all_48a": {
     "id": "main_all_48a",
-    "name": "共·夜潜水寨",
+    "name": "主·夜潜水寨",
     "type": "main",
     "npc_id": "npc_jiangling_center_苏飞",
     "npc_name": "苏飞",
@@ -9750,7 +9750,7 @@
   },
   "main_all_48b": {
     "id": "main_all_48b",
-    "name": "共·文姬遇险",
+    "name": "主·文姬遇险",
     "type": "main",
     "npc_id": "npc_jiangling_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9805,7 +9805,7 @@
   },
   "main_all_50a": {
     "id": "main_all_50a",
-    "name": "共·守将迟疑",
+    "name": "主·守将迟疑",
     "type": "main",
     "npc_id": "npc_jiangling_center_黄祖",
     "npc_name": "黄祖",
@@ -9855,7 +9855,7 @@
   },
   "main_all_50b": {
     "id": "main_all_50b",
-    "name": "共·江陵余烬",
+    "name": "主·江陵余烬",
     "type": "main",
     "npc_id": "npc_jiangling_center_黄祖",
     "npc_name": "黄祖",
@@ -9902,7 +9902,7 @@
   },
   "main_all_51a": {
     "id": "main_all_51a",
-    "name": "共·入汉道中",
+    "name": "主·入汉道中",
     "type": "main",
     "npc_id": "npc_jiangling_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9952,7 +9952,7 @@
   },
   "main_all_51b": {
     "id": "main_all_51b",
-    "name": "共·褒斜截杀",
+    "name": "主·褒斜截杀",
     "type": "main",
     "npc_id": "npc_jiangling_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -9999,7 +9999,7 @@
   },
   "main_all_52a": {
     "id": "main_all_52a",
-    "name": "共·镇北迎宾",
+    "name": "主·镇北迎宾",
     "type": "main",
     "npc_id": "npc_hanzhong_center_田豫",
     "npc_name": "田豫",
@@ -10049,7 +10049,7 @@
   },
   "main_all_52b": {
     "id": "main_all_52b",
-    "name": "共·隐士机要",
+    "name": "主·隐士机要",
     "type": "main",
     "npc_id": "npc_hanzhong_center_胡昭",
     "npc_name": "胡昭",
@@ -10099,7 +10099,7 @@
   },
   "main_all_53a": {
     "id": "main_all_53a",
-    "name": "共·夜夺火库",
+    "name": "主·夜夺火库",
     "type": "main",
     "npc_id": "npc_hanzhong_center_田豫",
     "npc_name": "田豫",
@@ -10146,7 +10146,7 @@
   },
   "main_all_53b": {
     "id": "main_all_53b",
-    "name": "共·断粮夺图",
+    "name": "主·断粮夺图",
     "type": "main",
     "npc_id": "npc_hanzhong_center_田豫",
     "npc_name": "田豫",
@@ -10198,7 +10198,7 @@
   },
   "main_all_54a": {
     "id": "main_all_54a",
-    "name": "共·图穷名现",
+    "name": "主·图穷名现",
     "type": "main",
     "npc_id": "npc_hanzhong_center_胡昭",
     "npc_name": "胡昭",
@@ -10246,7 +10246,7 @@
   },
   "main_all_54b": {
     "id": "main_all_54b",
-    "name": "共·汉中山岳",
+    "name": "主·汉中山岳",
     "type": "main",
     "npc_id": "npc_hanzhong_center_田豫",
     "npc_name": "田豫",
@@ -10292,7 +10292,7 @@
   },
   "main_all_55a": {
     "id": "main_all_55a",
-    "name": "共·残汉开门",
+    "name": "主·残汉开门",
     "type": "main",
     "npc_id": "npc_luoyang_center_荀爽",
     "npc_name": "荀爽",
@@ -10342,7 +10342,7 @@
   },
   "main_all_55b": {
     "id": "main_all_55b",
-    "name": "共·宫门初战",
+    "name": "主·宫门初战",
     "type": "main",
     "npc_id": "npc_luoyang_center_荀爽",
     "npc_name": "荀爽",
@@ -10389,7 +10389,7 @@
   },
   "main_all_56a": {
     "id": "main_all_56a",
-    "name": "共·深宫对峙",
+    "name": "主·深宫对峙",
     "type": "main",
     "npc_id": "npc_luoyang_center_烛龙",
     "npc_name": "烛龙",
@@ -10443,7 +10443,7 @@
   },
   "main_all_56b": {
     "id": "main_all_56b",
-    "name": "共·影刃当前",
+    "name": "主·影刃当前",
     "type": "main",
     "npc_id": "npc_luoyang_center_影",
     "npc_name": "影",
@@ -10490,7 +10490,7 @@
   },
   "main_all_57a": {
     "id": "main_all_57a",
-    "name": "共·虎豹精锐",
+    "name": "主·虎豹精锐",
     "type": "main",
     "npc_id": "npc_luoyang_center_残汉老臣",
     "npc_name": "残汉老臣",
@@ -10537,7 +10537,7 @@
   },
   "main_all_57b": {
     "id": "main_all_57b",
-    "name": "共·文姬入洛",
+    "name": "主·文姬入洛",
     "type": "main",
     "npc_id": "npc_luoyang_center_蔡文姬",
     "npc_name": "蔡文姬",
@@ -10587,7 +10587,7 @@
   },
   "main_all_58a": {
     "id": "main_all_58a",
-    "name": "共·总坛外垣",
+    "name": "主·总坛外垣",
     "type": "main",
     "npc_id": "npc_luoyang_center_荀爽",
     "npc_name": "荀爽",
@@ -10630,7 +10630,7 @@
   },
   "main_all_58b": {
     "id": "main_all_58b",
-    "name": "共·焚书断根",
+    "name": "主·焚书断根",
     "type": "main",
     "npc_id": "npc_luoyang_center_荀爽",
     "npc_name": "荀爽",
@@ -10676,7 +10676,7 @@
   },
   "main_all_59a": {
     "id": "main_all_59a",
-    "name": "共·殿前死战",
+    "name": "主·殿前死战",
     "type": "main",
     "npc_id": "npc_luoyang_center_影",
     "npc_name": "影",
@@ -10727,7 +10727,7 @@
   },
   "main_all_59b": {
     "id": "main_all_59b",
-    "name": "共·四象守阵",
+    "name": "主·四象守阵",
     "type": "main",
     "npc_id": "npc_luoyang_center_残汉老臣",
     "npc_name": "残汉老臣",
@@ -10774,7 +10774,7 @@
   },
   "main_all_60b": {
     "id": "main_all_60b",
-    "name": "共·烽火终章",
+    "name": "主·烽火终章",
     "type": "main",
     "npc_id": "npc_luoyang_center_烛龙",
     "npc_name": "烛龙",
@@ -10828,7 +10828,7 @@
   },
   "main_all_49a": {
     "id": "main_all_49a",
-    "name": "共·密室夺图",
+    "name": "主·密室夺图",
     "type": "main",
     "npc_id": "npc_jiangling_center_苏飞",
     "npc_name": "苏飞",
@@ -10884,7 +10884,7 @@
   },
   "main_all_49b": {
     "id": "main_all_49b",
-    "name": "共·拓片辨真",
+    "name": "主·拓片辨真",
     "type": "main",
     "npc_id": "npc_jiangling_center_黄承彦",
     "npc_name": "黄承彦",
@@ -10932,7 +10932,7 @@
   },
   "main_all_60a": {
     "id": "main_all_60a",
-    "name": "共·玉玺归处",
+    "name": "主·玉玺归处",
     "type": "main",
     "npc_id": "npc_luoyang_center_荀爽",
     "npc_name": "荀爽",
