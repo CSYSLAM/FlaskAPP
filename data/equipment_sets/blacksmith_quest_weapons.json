@@ -1,0 +1,107 @@
+{
+  "xitiesha_jian_15": {
+    "name": "细铁剑",
+    "description": "以细铁砂反复锻打而成的长剑，全职业通用",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 15,
+    "class_required": null,
+    "base_price": 3000,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 72
+    },
+    "max_extra_stats": {
+      "attack": 76,
+      "crit_rate": 0.02,
+      "defense": 3,
+      "max_health": 0,
+      "max_mana": 120,
+      "dodge_rate": 0.0
+    }
+  },
+  "shengtie_jian_25": {
+    "name": "生铁剑",
+    "description": "以生铁锭铸造的长剑，坚韧锋利，全职业通用",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5500,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 115
+    },
+    "max_extra_stats": {
+      "attack": 121,
+      "crit_rate": 0.025,
+      "defense": 5,
+      "max_health": 0,
+      "max_mana": 280,
+      "dodge_rate": 0.0
+    }
+  },
+  "hantie_jian_35": {
+    "name": "寒铁剑",
+    "description": "以寒铁锭淬炼的长剑，寒光凛凛，全职业通用",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 35,
+    "class_required": null,
+    "base_price": 8500,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 195
+    },
+    "max_extra_stats": {
+      "attack": 205,
+      "crit_rate": 0.03,
+      "defense": 8,
+      "max_health": 0,
+      "max_mana": 520,
+      "dodge_rate": 0.0
+    }
+  },
+  "xuantie_jian_45": {
+    "name": "玄铁剑",
+    "description": "以玄铁锭千锤百炼的长剑，沉重刚猛，全职业通用",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 45,
+    "class_required": null,
+    "base_price": 12000,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 282
+    },
+    "max_extra_stats": {
+      "attack": 296,
+      "crit_rate": 0.032,
+      "defense": 12,
+      "max_health": 0,
+      "max_mana": 850,
+      "dodge_rate": 0.0
+    }
+  },
+  "wangyue_qiang_55": {
+    "name": "望月枪",
+    "description": "以百炼钢锻造的长枪，枪锋如月，全职业通用",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 55,
+    "class_required": null,
+    "base_price": 16000,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 348
+    },
+    "max_extra_stats": {
+      "attack": 365,
+      "crit_rate": 0.034,
+      "defense": 16,
+      "max_health": 0,
+      "max_mana": 1100,
+      "dodge_rate": 0.0
+    }
+  }
+}

@@ -20,8 +20,6 @@
     {% set rarity_colors = {'普通': '', '精良': '#1a8c1a', '卓越': '#0070dd', '史诗': '#a335ee', '神器': '#ff8000'} %}
     {% set rc = rarity_colors.get(equipment.rarity, '') %}
 
-    <a href="{{ url_for('player.equipment_list') }}">装备</a><br/>
-
     {% if rc %}<font color="{{ rc }}">{% endif %}{{ equipment.name }}{% if rc %}</font>{% endif %}{% if equipment.is_bound %}<span class="bound">(绑定)</span>{% endif %}<br/>
     [{{ slot_name }}]{% if equipment.rarity != '普通' %}{{ equipment.rarity }}{% endif %} {{ equipment.enhance_level }}级<br/>
     {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
@@ -39,7 +37,7 @@
     附加属性:<br/>
     {% for stat, val_stars in extra.items() %}
     {% if val_stars[0] %}
-    &nbsp;&nbsp;{{ EquipmentInstance.STAT_NAMES.get(stat, stat) }}:{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.2f"|format(val_stars[0] * 100) }}%{% else %}{{ val_stars[0]|round|int }}{% endif %}<font size="1">{% for i in range(5) %}{% if i < val_stars[1] %}★{% else %}☆{% endif %}{% endfor %}</font><br/>
+    &nbsp;&nbsp;{{ EquipmentInstance.STAT_NAMES.get(stat, stat) }}:{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.2f"|format(val_stars[0] * 100) }}%{% else %}{{ val_stars[0]|round|int }}{% endif %}({{ val_stars[1]|int }}星)<br/>
     {% endif %}
     {% endfor %}
     {% endif %}
@@ -62,10 +60,11 @@
     {% endif %}<br/>
 
     {% if from_page == 'equipment' %}
-    <a href="{{ url_for('player.equipment_list') }}">返回装备</a><br/>
+    <a href="{{ url_for('player.equipment_list') }}">返回上级</a><br/>
     {% else %}
-    <a href="{{ url_for('player.inventory') }}">返回背包</a><br/>
+    <a href="{{ url_for('player.inventory') }}">返回上级</a><br/>
     {% endif %}
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>
     var aLinks=document.getElementsByTagName("a");
