@@ -627,6 +627,36 @@ CLAUDE_CONFIGS = {
         "model": "astron-code-latest",
         "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
     },
+    "auto": {
+        "file": ".claude.env.auto",
+        "label": "讯飞 auto",
+        "model": "auto",
+        "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
+    },
+    "xopglm52": {
+        "file": ".claude.env.xopglm52",
+        "label": "讯飞 xopglm52",
+        "model": "xopglm52",
+        "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
+    },
+    "xopglm51": {
+        "file": ".claude.env.xopglm51",
+        "label": "讯飞 xopglm51",
+        "model": "xopglm51",
+        "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
+    },
+    "xopdeepseekv4pro": {
+        "file": ".claude.env.xopdeepseekv4pro",
+        "label": "讯飞 xopdeepseekv4pro",
+        "model": "xopdeepseekv4pro",
+        "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
+    },
+    "xopkimik26": {
+        "file": ".claude.env.xopkimik26",
+        "label": "讯飞 xopkimik26",
+        "model": "xopkimik26",
+        "base": "maas-coding-api.cn-huabei-1.xf-yun.com",
+    },
     "unisound": {
         "file": ".claude.env.unisound",
         "label": "云知声(unisound)",
@@ -1512,8 +1542,10 @@ function refreshStatus(){
     if(j.claude_config){
       const lbl = document.getElementById('claude-cfg-label');
       if(lbl){
+        // 优先用下拉框里该项的 label·model 文案,找不到再回退到旧的写死映射
+        const opt = document.querySelector('#claude-cfg-select option[value="' + j.claude_config + '"]');
         const map = {xfyun:'讯飞(xf-yun) · astron-code-latest', unisound:'云知声(unisound) · glm-5.2'};
-        lbl.textContent = map[j.claude_config] || j.claude_config;
+        lbl.textContent = (opt ? opt.textContent : (map[j.claude_config] || j.claude_config));
       }
       const sel = document.getElementById('claude-cfg-select');
       if(sel && !sel.matches(':focus')) sel.value = j.claude_config;

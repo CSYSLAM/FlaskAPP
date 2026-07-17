@@ -9,9 +9,7 @@
         "east": "chaisang_south.战国墓",
         "south": "chaisang_south.越阳坡"
       },
-      "npcs": [
-        "npc_chaisang_south_甘宁副本"
-      ],
+      "npcs": [],
       "monster_type": "monster_chaisang_south_幽影精锐"
     },
     "烽火台": {

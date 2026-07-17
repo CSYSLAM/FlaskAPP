@@ -20,9 +20,7 @@
         "west": "chengdu_center.赵府",
         "east": "chengdu_center.广场"
       },
-      "npcs": [
-        "npc_chengdu_center_黄忠副本"
-      ]
+      "npcs": []
     },
     "赵府": {
       "name": "赵府",

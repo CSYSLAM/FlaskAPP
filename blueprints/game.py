@@ -84,15 +84,22 @@ def scene():
             from services.world_boss_service import WorldBossService
             for monster_id in location_monsters:
                 monster_data = all_monsters.get(monster_id)
-                if monster_data and CopyDungeonService.should_show_monster_in_scene(player, monster_id):
-                    from models.monster import Monster
-                    m = Monster.from_dict(monster_id, monster_data)
-                    if monster_data.get("is_elite") and not monster_data.get("is_copy"):
-                        remaining = WorldBossService.get_respawn_remaining(monster_id)
-                        if remaining > 0:
-                            m.respawning = True
-                            m.respawn_remaining = remaining
-                    monsters_list.append(m)
+                if not monster_data:
+                    continue
+                if not CopyDungeonService.should_show_monster_in_scene(player, monster_id):
+                    continue
+                # 一次性精英怪：仅任务进行中且未击杀时对当前玩家可见
+                from services.one_time_elite_service import OneTimeEliteService
+                if not OneTimeEliteService.should_show_in_scene(player, monster_id):
+                    continue
+                from models.monster import Monster
+                m = Monster.from_dict(monster_id, monster_data)
+                if monster_data.get("is_elite") and not monster_data.get("is_copy") and not monster_data.get("is_one_time_elite"):
+                    remaining = WorldBossService.get_respawn_remaining(monster_id)
+                    if remaining > 0:
+                        m.respawning = True
+                        m.respawn_remaining = remaining
+                monsters_list.append(m)
 
         # Finance bandit: if a bandit is alive at this location, show it as a world boss (理财·劫匪)
         # 击杀后（复活中）不在场景显示，仅在金珠股市劫匪情报中显示复活倒计时

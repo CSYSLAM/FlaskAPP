@@ -8,9 +8,6 @@
         "south": "luoyang_south.汜水关"
       },
       "monster_type": "monster_luoyang_south_董军长弓手",
-      "monsters": [
-        "monster_q_虎豹队长"
-      ],
       "npcs": [
         "npc_luoyang_south_司马懿副本"
       ]

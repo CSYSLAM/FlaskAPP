@@ -674,19 +674,26 @@ def bulk_use_item(item_id):
     cat = request.form.get('category', '全部')
     page = request.form.get('page', '1')
     per_page = request.form.get('per_page', '10')
-    quantity = int(request.form.get('quantity', 1))
+    quantity_raw = request.form.get('quantity', 1)
     is_bound = request.form.get('is_bound')
     bound_val = None
     if is_bound == '1':
         bound_val = True
     elif is_bound == '0':
         bound_val = False
+    try:
+        quantity = int(quantity_raw)
+    except (ValueError, TypeError):
+        flash('请输入有效数量')
+        return redirect(url_for('player.view_item', item_id=item_id,
+                                is_bound='1' if bound_val else '0',
+                                category=cat, page=page, per_page=per_page))
     inv = DataService.get_inventory_item(player.id, item_id, is_bound=bound_val)
     if not inv:
         return redirect(url_for('player.inventory', category=cat, page=page, per_page=per_page))
 
-    quantity = min(quantity, inv.quantity)
-    if quantity < 1:
+    if quantity < 1 or quantity > inv.quantity:
+        flash(f'数量需在1~{inv.quantity}之间')
         return redirect(url_for('player.view_item', item_id=item_id,
                                 is_bound='1' if bound_val else '0',
                                 category=cat, page=page, per_page=per_page))

@@ -5,6 +5,7 @@ from services.data_service import DataService
 from services.player_service import PlayerService
 from services.world_boss_service import WorldBossService
 from services.copy_dungeon_service import CopyDungeonService
+from services.one_time_elite_service import OneTimeEliteService
 from models.player import PlayerModel, EquipmentInstance, InventoryItem, PlayerSkill
 from models.monster import Monster
 from models.lieutenant import Lieutenant
@@ -398,7 +399,8 @@ class BattleService:
         all_monsters = DataService.get_monsters()
         killable_ids = [mid for mid in monster_ids
                         if all_monsters.get(mid, {}).get("killable", True)
-                        and CopyDungeonService.should_show_monster_in_scene(player, mid)]
+                        and CopyDungeonService.should_show_monster_in_scene(player, mid)
+                        and OneTimeEliteService.should_show_in_scene(player, mid)]
         if not killable_ids and not monster_id:
             return None, "这里没有怪物"
 
@@ -448,9 +450,10 @@ class BattleService:
         monster_data = all_monsters.get(monster_id, {})
         is_elite = monster_data.get("is_elite", False)
         is_copy_monster = monster_data.get("is_copy") or monster_data.get("copy_only")
+        is_one_time = monster_data.get("is_one_time_elite", False)
 
-        # World boss check
-        if is_elite and not is_copy_monster:
+        # World boss check (one-time elites use personal full-HP fights, no respawn lock)
+        if is_elite and not is_copy_monster and not is_one_time:
             remaining = WorldBossService.get_respawn_remaining(monster_id)
             if remaining > 0:
                 return None, f"该怪物已被击杀，正在复活中（剩余{remaining}秒）"
@@ -459,8 +462,8 @@ class BattleService:
         if not monster:
             return None, "怪物数据异常"
 
-        # World boss: use shared HP (copy dungeon elites are personal, not world bosses)
-        if is_elite and not is_copy_monster:
+        # World boss: use shared HP (copy dungeon elites & one-time elites are personal, not world bosses)
+        if is_elite and not is_copy_monster and not is_one_time:
             boss = WorldBossService.get_boss(monster_id)
             if boss:
                 monster.health = boss.current_health
@@ -523,6 +526,7 @@ class BattleService:
             'name': monster.name,
             'level': monster.level,
             'is_elite': monster.is_elite,
+            'is_one_time_elite': getattr(monster, 'is_one_time_elite', False),
             'is_divine_beast': monster.is_divine_beast,
             'is_copy': getattr(monster, 'is_copy', False),
             'copy_only': getattr(monster, 'copy_only', False),
@@ -549,7 +553,7 @@ class BattleService:
             'last_damage_dealt': monster.last_damage_dealt,
             'last_action': monster.last_action,
             'last_skill': monster.last_skill,
-            'is_world_boss': monster.is_elite and not getattr(monster, 'is_copy', False),
+            'is_world_boss': monster.is_elite and not getattr(monster, 'is_copy', False) and not getattr(monster, 'is_one_time_elite', False),
             'guaranteed_items': getattr(monster, 'guaranteed_items', []),
         }
         player.set_current_encounter_data(encounter)
@@ -1115,6 +1119,10 @@ class BattleService:
             else:
                 loot_text = dungeon_note
 
+        # One-time elite: mark permanently defeated for this player (vanishes, no respawn)
+        if getattr(monster, 'is_one_time_elite', False):
+            OneTimeEliteService.record_kill(player, monster.monster_id)
+
         player.in_battle = False
         player.last_battle_result = f"击败了『{monster.name}』！获得{money}银两、{exp}经验"
         if loot_text:
@@ -1156,8 +1164,8 @@ class BattleService:
                     pts_msg += f"，兑换金珠{info['jinzu']}枚"
                 player.last_battle_result += f"。救济富商，{pts_msg}"
 
-        # World boss: broadcast defeat via last_battle_result
-        if monster.is_elite and not getattr(monster, 'is_copy', False):
+        # World boss: broadcast defeat via last_battle_result (one-time & copy elites are personal, skip)
+        if monster.is_elite and not getattr(monster, 'is_copy', False) and not getattr(monster, 'is_one_time_elite', False):
             boss = WorldBossService.get_boss(monster.monster_id)
             if boss:
                 player.last_battle_result += f" [世界BOSS已被击败，{boss.respawn_time}秒后复活]"

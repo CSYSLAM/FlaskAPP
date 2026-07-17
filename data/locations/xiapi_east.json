@@ -8,10 +8,7 @@
         "east": "xiapi_east.逍遥津",
         "north": "xiapi_east.东郊"
       },
-      "monsters": [
-        "monster_q_魏军守卫",
-        "monster_q_孙桓"
-      ]
+      "monsters": []
     },
     "东郊": {
       "name": "东郊",

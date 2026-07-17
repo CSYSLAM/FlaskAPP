@@ -14,9 +14,7 @@
         "npc_luoyang_center_诸葛亮副本",
         "npc_luoyang_center_周瑜副本"
       ],
-      "monsters": [
-        "monster_q_连弩队长"
-      ]
+      "monsters": []
     },
     "定北前街": {
       "name": "定北前街",
@@ -73,7 +71,7 @@
       },
       "npcs": [
         "npc_luoyang_center_董卓荣誉",
-        "npc_luoyang_center_烛龙"
+        "npc_luoyang_center_董卓"
       ]
     },
     "战场": {

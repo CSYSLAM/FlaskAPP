@@ -126,14 +126,15 @@ def accept_quest(quest_id):
         success, msg, result = CopyDungeonService.accept_task(player, dungeon_id)
         if success:
             stage = (result or {}).get('stage') or {}
-            story_lines = []
+            npc_name = (result or {}).get('npc_name') or CopyDungeonService.get_definition(dungeon_id).get('name', '')
+            dialogs = []
             if stage.get('story'):
-                story_lines.append(f"{(result or {}).get('npc_name') or CopyDungeonService.get_definition(dungeon_id).get('name','')}: {stage.get('story')}")
+                dialogs.append({'speaker': npc_name, 'text': stage.get('story')})
             if stage.get('objective'):
-                story_lines.append(f"目标: {stage.get('objective')}")
+                dialogs.append({'speaker': '', 'text': f"目标: {stage.get('objective')}"})
             return render_template("quest_dialog.html", player=player,
                                  quest={'id': quest_id, 'name': f"副·{stage.get('name','任务')}"},
-                                 dialogs=[{'speaker': '', 'text': line} for line in story_lines] or [{'speaker':'','text':msg}],
+                                 dialogs=dialogs or [{'speaker': '', 'text': msg}],
                                  phase='accept')
         return render_template("quest_error.html", player=player, error=msg)
 
@@ -173,17 +174,21 @@ def complete_quest(quest_id):
             # 非末阶段完成：展示奖励 + 下一阶段提示，引导玩家去接下一阶段
             stage = (result or {}).get('stage') or {}
             next_stage = (result or {}).get('next_stage') or {}
-            story_lines = []
+            dialogs = []
             for ri in (stage.get('reward') or {}).get('items', []):
                 item_data = DataService.get_item(ri.get('item_id'))
                 item_name = item_data.get('name', ri.get('item_id')) if item_data else ri.get('item_id')
-                story_lines.append(f"获得 {item_name} x{ri.get('count', 1)}")
-            if (stage.get('reward') or {}).get('experience'):
-                story_lines.append(f"经验+{stage['reward']['experience']}")
-            if (stage.get('reward') or {}).get('gold'):
-                story_lines.append(f"银两+{stage['reward']['gold']}")
+                dialogs.append({'speaker': '', 'text': f"获得 {item_name} x{ri.get('count', 1)}"})
+            # 经验/银两由 quest_complete.html 模板的 rewards 字段显示，不再重复写入 dialogs
             if stage.get('complete_story'):
-                story_lines.append(stage.get('complete_story'))
+                # complete_story 中可能含 NPC 对话，尝试提取 NPC 名
+                npc_id = stage.get('quest_giver_npc_id')
+                npc_name = ''
+                if npc_id:
+                    nd = DataService.get_monster(npc_id)
+                    if nd:
+                        npc_name = nd.get('name', '')
+                dialogs.append({'speaker': npc_name, 'text': stage.get('complete_story')})
             if next_stage:
                 next_loc = next_stage.get('quest_giver_location', '')
                 next_loc_data = DataService.get_location(next_loc) if next_loc else None
@@ -191,11 +196,11 @@ def complete_quest(quest_id):
                 next_npc_id = next_stage.get('quest_giver_npc_id')
                 next_npc = DataService.get_monster(next_npc_id) if next_npc_id else None
                 next_npc_name = next_npc.get('name', 'NPC') if next_npc else 'NPC'
-                story_lines.append(f"提示:前往「{next_loc_name}」与『{next_npc_name}』对话接取下一阶段")
+                dialogs.append({'speaker': '', 'text': f"提示:前往「{next_loc_name}」与『{next_npc_name}』对话接取下一阶段"})
             return render_template("quest_complete.html", player=player,
                                  quest={'id': quest_id, 'name': f"副·{stage.get('name','任务')}"},
                                  rewards=stage.get('reward') or {},
-                                 dialogs=[{'speaker': '', 'text': line} for line in story_lines],
+                                 dialogs=dialogs,
                                  next_hint='下一阶段可在『可接任务』中查看并接受')
         return render_template("quest_error.html", player=player, error=msg)
 
@@ -215,7 +220,21 @@ def complete_quest(quest_id):
 @login_required
 def abandon_quest(quest_id):
     player = current_user
+    # 任务目标已达成时禁止放弃（防止放弃后重复刷精英怪）
+    from services.quest_service import QuestService
+    active = QuestService.get_active_quests(player)
+    if quest_id in active:
+        progress = active[quest_id]
+        if progress.get('progress', 0) >= progress.get('target', 1) and progress.get('target', 0) > 0:
+            return render_template("quest_error.html", player=player, error='任务目标已达成，请完成任务而非放弃')
     if quest_id.startswith('copy_'):
+        # 副本任务：检查 ready_to_complete
+        parsed = CopyDungeonService.parse_stage_quest_id(quest_id)
+        if parsed:
+            dungeon_id, _ = parsed
+            state = CopyDungeonService.get_state(player, dungeon_id)
+            if state.get('ready_to_complete'):
+                return render_template("quest_error.html", player=player, error='副本任务目标已达成，请完成任务而非放弃')
         success, msg = CopyDungeonService.abandon_copy_quest(player, quest_id)
         if success:
             return redirect(url_for('quest.quest_list'))

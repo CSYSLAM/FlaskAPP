@@ -203,7 +203,13 @@
       "Bash(grep -vE \"WARNING|Debug|Serving|Running|Press|development server|production|^\\\\s*$\")",
       "Bash(awk -F: '{print $1}')",
       "Bash(awk 'NR>=2244 && NR<=2548' /mnt/FlaskAPP/data/copy_dungeons.json)",
-      "Bash(awk 'NR>=3406 && NR<=3700' /mnt/FlaskAPP/data/copy_dungeons.json)"
+      "Bash(awk 'NR>=3406 && NR<=3700' /mnt/FlaskAPP/data/copy_dungeons.json)",
+      "Bash(runuser -l console -c 'cat /home/console/.claude.env.xfyun')",
+      "Bash(./venv/bin/python -m py_compile mobile_console/run.py)",
+      "Bash(bash /mnt/FlaskAPP/mobile_console/restart.sh)",
+      "Bash(./venv/bin/python3 -c ' *)",
+      "Bash(./venv/bin/python3 *)",
+      "Bash(xxd /mnt/FlaskAPP/230D22BBB67E1370C4CCFDC7A16F2537.jpg)"
     ]
   },
   "mcpServers": {

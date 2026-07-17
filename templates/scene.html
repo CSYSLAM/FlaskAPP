@@ -55,29 +55,14 @@ a:link { color: #136ec2; text-decoration: none; }
 
 .block {
     text-align: center; font-size: 12px;
-    display: inline-block; width: 24px; height: 16px; line-height: 16px;
-    border: 1px ridge #fafad2; border-style: solid; border-color: #fafad2;
+    display: inline-block; width: 28px; height: 18px; line-height: 18px;
+    border: 1px solid #d0d0a0;
 }
-.now_map_block { background: #FF9999; }
+.now_map_block { background: #FF9999; font-weight: bold; }
 .map_block { background: #fafad2; }
-.empty_map_block { background: #fafad2; }
-.heng { background-color: #fafad2; font-size: 1px; width: 5px; font-weight: bolder; }
-.centered-vertical-line {
-    background-color: #fafad2; position: relative; display: inline-block;
-    width: 30px; height: 5px; text-align: center; line-height: 5px;
-}
-.centered-vertical-line::before {
-    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    border-left: 1px solid black; height: 100%;
-}
-.ncentered-vertical-line {
-    background-color: #fafad2; position: relative; display: inline-block;
-    width: 30px; height: 5px; text-align: center; line-height: 5px; color: #fafad2;
-}
-.ncentered-vertical-line::before {
-    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    border-left: 1px solid #fafad2; height: 100%; color: #fafad2;
-}
+.empty_map_block { background: #f5f5dc; color: #f5f5dc; }
+.heng { background-color: transparent; font-size: 10px; width: auto; min-width: 4px; display: inline-block; text-align: center; line-height: 18px; color: #999; }
+.vline { display: inline-block; width: 28px; height: 8px; text-align: center; line-height: 8px; font-size: 10px; color: #999; }
 
 #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
 #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -113,113 +98,61 @@ a:link { color: #136ec2; text-decoration: none; }
 {% if current_main %}
 【当前主线】<a href="{{ url_for('quest.quest_detail', quest_id=current_main.id) }}">{{ current_main.name }}</a><br/>
 {% endif %}
-*{{ location.get('name', '未知') }}({{ location.get('area_name', '') }}){% if location.get('is_copy_map') %}【副本地图】{% endif %}<br/>
+*{{ location.get('name', '未知') }}({{ location.get('area_name', '') }}){% if location.get('is_copy_map') %}【副本地图】{% endif %}{% if location.get('is_copy_map') and location.get('copy_dungeon_id') %} <a href="{{ url_for('dungeon.leave_scene_link', dungeon_id=location.copy_dungeon_id) }}" data-confirm="确定离开副本？副本进度将重置，下次进入需从头开始。">离开副本</a>{% endif %}<br/>
 
-<div class="map-label">显示地图{% if location.get('is_copy_map') and location.get('copy_dungeon_id') %} <a href="{{ url_for('dungeon.leave_scene_link', dungeon_id=location.copy_dungeon_id) }}" data-confirm="确定离开副本？副本进度将重置，下次进入需从头开始。">离开副本</a>{% endif %}</div>
-<div id="mapContainer" style="width: 130px; background-color: #fafad2;">
+<div id="mapContainer" style="line-height:1;">
 <div style="font-size:0;">
-
-<span class="ncentered-vertical-line">竖线</span>
-<span class="ncentered-vertical-line">竖线</span>
-<span class="ncentered-vertical-line">竖线</span>
-
-</div>
-<div style="font-size:0;">
-
-{% if location.get('north_exit') and locations[location['north_exit']].get('west_exit') %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block map_block">{{ locations[locations[location['north_exit']]['west_exit']].get('name', '')[:2] }}</span>
-<span class="heng">-</span>
+{% if location.get('north_exit') and location['north_exit'] in locations and locations[location['north_exit']].get('west_exit') and locations[location['north_exit']]['west_exit'] in locations %}
+<span class="heng">-</span><span class="block map_block">{{ locations[locations[location['north_exit']]['west_exit']].get('name', '')[:2] }}</span><span class="heng">-</span>
 {% else %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="heng"> </span><span class="block empty_map_block">··</span><span class="heng"> </span>
 {% endif %}
-
-{% if location.get('north_exit') %}
+{% if location.get('north_exit') and location['north_exit'] in locations %}
 <span class="block map_block">{{ locations[location['north_exit']].get('name', '')[:2] }}</span>
 {% else %}
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="block empty_map_block">··</span>
 {% endif %}
-
-{% if location.get('north_exit') and locations[location['north_exit']].get('east_exit') %}
-<span class="heng">-</span>
-<span class="block map_block">{{ locations[locations[location['north_exit']]['east_exit']].get('name', '')[:2] }}</span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+{% if location.get('north_exit') and location['north_exit'] in locations and locations[location['north_exit']].get('east_exit') and locations[location['north_exit']]['east_exit'] in locations %}
+<span class="heng">-</span><span class="block map_block">{{ locations[locations[location['north_exit']]['east_exit']].get('name', '')[:2] }}</span><span class="heng"> </span>
 {% else %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="heng"> </span><span class="block empty_map_block">··</span><span class="heng"> </span>
 {% endif %}
-
 </div>
 <div style="font-size:0;">
-
-<span class="ncentered-vertical-line">竖线</span>
-<span class="ncentered-vertical-line">竖线</span>
-<span class="ncentered-vertical-line">竖线</span>
-
+<span class="vline">│</span><span class="vline">│</span><span class="vline">│</span>
 </div>
 <div style="font-size:0;">
-
-{% if location.get('west_exit') %}
-<span class="heng" style="color:red">-</span>
-<span class="block map_block">{{ locations[location['west_exit']].get('name', '')[:2] }}</span>
-<span class="heng">-</span>
+{% if location.get('west_exit') and location['west_exit'] in locations %}
+<span class="heng" style="color:red">-</span><span class="block map_block">{{ locations[location['west_exit']].get('name', '')[:2] }}</span><span class="heng">-</span>
 {% else %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="heng"> </span><span class="block empty_map_block">··</span><span class="heng"> </span>
 {% endif %}
-
 <span class="block now_map_block">{{ location.get('name', '')[:2] }}</span>
-
-{% if location.get('east_exit') %}
-<span class="heng">-</span>
-<span class="block map_block">{{ locations[location['east_exit']].get('name', '')[:2] }}</span>
-<span class="heng" style="color:red">-</span>
+{% if location.get('east_exit') and location['east_exit'] in locations %}
+<span class="heng">-</span><span class="block map_block">{{ locations[location['east_exit']].get('name', '')[:2] }}</span><span class="heng" style="color:red"> </span>
 {% else %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="heng"> </span><span class="block empty_map_block">··</span><span class="heng"> </span>
 {% endif %}
-
 </div>
 <div style="font-size:0;">
-
-<span class="ncentered-vertical-line">竖线</span>
-<span class="ncentered-vertical-line">竖线</span>
-<span class="ncentered-vertical-line">竖线</span>
-
+<span class="vline">│</span><span class="vline">│</span><span class="vline">│</span>
 </div>
 <div style="font-size:0;">
-
-{% if location.get('south_exit') and locations[location['south_exit']].get('west_exit') %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block map_block">{{ locations[locations[location['south_exit']]['west_exit']].get('name', '')[:2] }}</span>
-<span class="heng">-</span>
+{% if location.get('south_exit') and location['south_exit'] in locations and locations[location['south_exit']].get('west_exit') and locations[location['south_exit']]['west_exit'] in locations %}
+<span class="heng">-</span><span class="block map_block">{{ locations[locations[location['south_exit']]['west_exit']].get('name', '')[:2] }}</span><span class="heng">-</span>
 {% else %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="heng"> </span><span class="block empty_map_block">··</span><span class="heng"> </span>
 {% endif %}
-
-{% if location.get('south_exit') %}
+{% if location.get('south_exit') and location['south_exit'] in locations %}
 <span class="block map_block">{{ locations[location['south_exit']].get('name', '')[:2] }}</span>
 {% else %}
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
+<span class="block empty_map_block">··</span>
 {% endif %}
-
-{% if location.get('south_exit') and locations[location['south_exit']].get('east_exit') %}
-<span class="heng">-</span>
-<span class="block map_block">{{ locations[locations[location['south_exit']]['east_exit']].get('name', '')[:2] }}</span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+{% if location.get('south_exit') and location['south_exit'] in locations and locations[location['south_exit']].get('east_exit') and locations[location['south_exit']]['east_exit'] in locations %}
+<span class="heng">-</span><span class="block map_block">{{ locations[locations[location['south_exit']]['east_exit']].get('name', '')[:2] }}</span><span class="heng"> </span>
 {% else %}
-<span class="heng" style="color: #E6ECBE;">-</span>
-<span class="block empty_map_block"><font color="#E6ECBE">⠀</font></span>
-<span class="heng" style="color: #E6ECBE;">-</span>
+<span class="heng"> </span><span class="block empty_map_block">··</span><span class="heng"> </span>
 {% endif %}
-
 </div>
 </div>
 
@@ -227,12 +160,12 @@ a:link { color: #136ec2; text-decoration: none; }
 <a href="javascript:void(0)" onclick="toggleMap()" id="mapToggle">关地图</a>. <a href="{{ url_for('guide.index') }}">攻略</a><br/>
 </div>
 
-{% if location.get('north_exit') %}
+{% if location.get('north_exit') and location['north_exit'] in locations %}
 北:↑ <a href="{{ url_for('game.move', direction='north') }}">{{ locations[location['north_exit']].get('name', '') }}</a><br/>
 {% endif %}
 {% set has_wood_raft = DataService.get_inventory_item(player.id, 'wood_raft') %}
-{% if location.get('west_exit') or location.get('east_exit') %}
-{% if location.get('west_exit') %}
+{% if (location.get('west_exit') and location['west_exit'] in locations) or (location.get('east_exit') and location['east_exit'] in locations) %}
+{% if location.get('west_exit') and location['west_exit'] in locations %}
 {% if location.get('name') == '兖州' and locations[location['west_exit']].get('name') == '黄河岸边' %}
 {% if has_wood_raft %}
 西:← <a href="{{ url_for('game.move', direction='west') }}">渡河至[{{ locations[location['west_exit']].get('name', '') }}]</a>
@@ -243,8 +176,8 @@ a:link { color: #136ec2; text-decoration: none; }
 西:← <a href="{{ url_for('game.move', direction='west') }}">{{ locations[location['west_exit']].get('name', '') }}</a>
 {% endif %}
 {% endif %}
-{% if location.get('west_exit') and location.get('east_exit') %}  {% endif %}
-{% if location.get('east_exit') %}
+{% if location.get('west_exit') and location['west_exit'] in locations and location.get('east_exit') and location['east_exit'] in locations %}  {% endif %}
+{% if location.get('east_exit') and location['east_exit'] in locations %}
 {% if location.get('name') == '黄河岸边' and locations[location['east_exit']].get('name') == '兖州' %}
 {% if has_wood_raft %}
 右:→ <a href="{{ url_for('game.move', direction='east') }}">渡河至[{{ locations[location['east_exit']].get('name', '') }}]</a>
@@ -257,11 +190,9 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endif %}
 <br/>
 {% endif %}
-{% if location.get('south_exit') %}
+{% if location.get('south_exit') and location['south_exit'] in locations %}
 南:↓ <a href="{{ url_for('game.move', direction='south') }}">{{ locations[location['south_exit']].get('name', '') }}</a><br/>
 {% endif %}
-
-<br/>
 {% if monsters is defined and monsters %}
 怪物:
 {% for monster in monsters %}
@@ -288,11 +219,9 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endfor %}
 <br/>
 {% endif %}
-
 {% if npcs %}
 看到：{% for npc in npcs %}{% set _icon = 'wh.gif' if npc.has_completable else ('gt.gif' if npc.has_quest else (npc.task_icon or '')) %}{% if _icon %}<img src="{{ url_for('static', filename='renwu/' ~ _icon) }}" border="0">{% endif %}<a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">{{ npc.name }}</a> {% endfor %}<br/>
 {% endif %}
-
 {% if ground_items %}
 地上物品：
 {% for gitem in ground_items %}
@@ -301,7 +230,6 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endfor %}
 <br/>
 {% endif %}
-
 {% if other_players %}
 看到:
 {% for other_player in other_players %}
@@ -309,8 +237,6 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endfor %}
 <br/>
 {% endif %}
-
-<br/>
 <div class="quick-actions">
     <div class="quick-actions-row">
         <a href="{{ url_for('player.character') }}">角色</a> .<a href="{{ url_for('player.inventory') }}">背包</a> .<a href="{{ url_for('legion.index') }}">军团</a> .<a href="{{ url_for('activity.index') }}">活动</a>
@@ -319,18 +245,10 @@ a:link { color: #136ec2; text-decoration: none; }
         <a href="{{ url_for('party.index') }}">队伍</a> .<a href="{{ url_for('villa.index') }}">山庄</a> .<a href="{{ url_for('social.social_index') }}">社交</a> .<a href="{{ url_for('social.chat') }}">聊天</a>
     </div>
     <div class="quick-actions-row">
-        <a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a> .<a href="{{ url_for('shop.shop') }}">商城</a>
-    </div>
-    <div class="quick-actions-row">
-        <a href="{{ url_for('guide.index') }}">攻略</a>
-        {% if player.is_designer %}
-         .<a href="{{ url_for('workbench.index') }}">工作台</a>
-        {% endif %}
+        <a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a>{% if player.is_designer %} .<a href="{{ url_for('workbench.index') }}">工作台</a>{% endif %}
     </div>
 </div>
-<br/>
 当前时间：{{ now.strftime('%H:%M') }}<br/>
-<br/>
 <a href="{{ url_for('auth.logout') }}">退出登录</a><br/>
 
 <script>

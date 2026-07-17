@@ -127,244 +127,8 @@
         "quest_giver_npc_id": "npc_huangjin_copy_左慈",
         "quest_giver_location": "huangjin_copy_live.洛阳皇宫"
       }
-    ]
-  },
-  "guandu_battle": {
-    "name": "官渡之战(36级副本)",
-    "is_copy_dungeon": true,
-    "entry_location": "guandu_copy_live.曹军大营",
-    "entry_npc_id": "npc_xuchang_center_曹昂副本",
-    "entry_item_id": "shenyou_guo",
-    "entry_item_count": 1,
-    "return_location": "xuchang_center.广场",
-    "story_intro": [
-      "东汉末年，群雄割据，曹操与袁绍两大势力在官渡展开决战。",
-      "袁绍兵多将广，号称十万大军，此战关乎北方霸业之归属。",
-      "你身为魏国大将，理应为曹公效力，助其在官渡之战中击败袁绍，一统北方。"
     ],
-    "story_outro": [
-      "历经苦战终于助曹操在官渡之战中大败袁绍！",
-      "韩猛、高览、张郃等袁绍名将尽数被斩，袁军主力覆灭。",
-      "此次大胜，一统天下、恢复汉室指日可待！返回许昌广场继续征战吧。"
-    ],
-    "reward": {
-      "experience": 42000,
-      "gold": 4200,
-      "items": [
-        {
-          "item_id": "chest_copy_mid_bound",
-          "count": 1
-        }
-      ]
-    },
-    "steps": [
-      {
-        "id": "step_1",
-        "name": "击杀韩猛",
-        "scene_id": "guandu_copy_live.官渡渡口",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「官渡渡口」击杀『【精】韩猛』",
-        "progress_label": "已击败【精】韩猛(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_韩猛"
-        ],
-        "required_count": 1,
-        "story": "袁绍手下有一员大将，名叫『韩猛』，正在「官渡渡口」叫骂，你速去将其击杀！",
-        "complete_story": "有你相助，何惧袁绍！",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_2",
-        "name": "清理前线",
-        "scene_id": "guandu_copy_live.前营",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「前营」清理5名『袁军前锋』",
-        "progress_label": "已击败袁军前锋(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_袁军前锋"
-        ],
-        "required_count": 5,
-        "story": "你前往「前营」清理5名『袁军前锋』！",
-        "complete_story": "前方已经清理干净，继续攻城拔寨！",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_3",
-        "name": "清理主力",
-        "scene_id": "guandu_copy_live.左营",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「左营」清理5名『袁军弩手』",
-        "progress_label": "已击败袁军弩手(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_袁军弩手"
-        ],
-        "required_count": 5,
-        "story": "袁军主力正聚集，你去「左营」清理5名『袁军弩手』！",
-        "complete_story": "干的漂亮，不愧是我魏国大将！",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_4",
-        "name": "又遇敌手",
-        "scene_id": "guandu_copy_live.密山山路",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「密山山路」击杀『【精】高览』",
-        "progress_label": "已击败【精】高览(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_高览"
-        ],
-        "required_count": 1,
-        "story": "袁绍又派出另一员大将，名叫『高览』，目前在「密山山路」，你去把他也杀了！",
-        "complete_story": "高览乃袁绍四大将军之一，高览一死，胜利在望！",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_5",
-        "name": "后院起火",
-        "scene_id": "guandu_copy_live.土丘",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「土丘」击杀5名『掘子军』",
-        "progress_label": "已击败掘子军(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_掘子军"
-        ],
-        "required_count": 5,
-        "story": "袁绍派人从后山偷袭，你前往「土丘」击杀5名『掘子军』！",
-        "complete_story": "差点后院起火，还好有将军相助。",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_6",
-        "name": "击杀赵睿",
-        "scene_id": "guandu_copy_live.土山",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「土山」击杀『【精】赵睿』",
-        "progress_label": "已击败【精】赵睿(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_赵睿"
-        ],
-        "required_count": 1,
-        "story": "袁绍居然又派人骚扰我军后方，你前往「土山」击杀『赵睿』！",
-        "complete_story": "后方已稳固，将军前往北面的「后山」助『张辽』一臂之力吧！",
-        "complete_hint": "前往「后山」与『张辽』对话",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_7",
-        "name": "截取粮草",
-        "scene_id": "guandu_copy_live.粮营前关",
-        "quest_giver_location": "guandu_copy_live.后山",
-        "quest_giver_npc_id": "npc_guandu_copy_张辽",
-        "objective": "前往「粮营前关」收集5份『粮草』(击杀押粮兵)",
-        "progress_label": "已收集粮草",
-        "target_monsters": [
-          "monster_guandu_copy_押粮兵"
-        ],
-        "required_count": 5,
-        "required_items": {
-          "liangcao": 5
-        },
-        "story": "俗话说兵马未动，粮草先行。咱们的粮草马上就要用完了，今天有一路『押粮兵』从「粮营前关」经过，你去截取5份粮草回来！",
-        "complete_story": "这下粮草也充足了！",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_8",
-        "name": "击杀郭于琼",
-        "scene_id": "guandu_copy_live.粮营",
-        "quest_giver_location": "guandu_copy_live.后山",
-        "quest_giver_npc_id": "npc_guandu_copy_张辽",
-        "objective": "前往「粮营」击杀『【精】郭玉琼』",
-        "progress_label": "已击败【精】郭玉琼(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_郭玉琼"
-        ],
-        "required_count": 1,
-        "story": "「粮营」的『淳于琼』听说你截了他们的粮草，要和你决斗，淳于琼乃袁绍四大战将，小心应敌！",
-        "complete_story": "将军神勇，将军赶快返回「曹军大营」将此处战况汇报给主公！",
-        "complete_hint": "前往「曹军大营」与『曹操』对话",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_9",
-        "name": "胜利在望",
-        "scene_id": "guandu_copy_live.南营",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「南营」击杀『【精】张郃』",
-        "progress_label": "已击败【精】张郃(36级)",
-        "target_monsters": [
-          "monster_guandu_copy_张郃"
-        ],
-        "required_count": 1,
-        "story": "袁军基本被消灭殆尽，只剩下一些残余势力，张郃依然图谋不轨，你前往「南营」击杀『张郃』！",
-        "complete_story": "胜利就在眼前！",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      },
-      {
-        "id": "step_10",
-        "name": "最终决战",
-        "scene_id": "guandu_copy_live.东营",
-        "quest_giver_location": "guandu_copy_live.曹军大营",
-        "quest_giver_npc_id": "npc_guandu_copy_曹操",
-        "objective": "前往「东营」击杀『【精】蒋奇』",
-        "progress_label": "已击败【精】蒋奇(40级)",
-        "target_monsters": [
-          "monster_guandu_copy_蒋奇"
-        ],
-        "required_count": 1,
-        "story": "袁军不过垂死挣扎，你前往「东营」击杀『蒋奇』！",
-        "complete_story": "此次大胜，一统天下，恢复汉室指日可待！",
-        "complete_hint": "副本结束，返回场景领取通关奖励",
-        "reward": {
-          "experience": 10000,
-          "gold": 700,
-          "items": []
-        }
-      }
-    ]
+    "country": ""
   },
   "qiqinmenghuo": {
     "name": "七擒孟获(46级副本)",
@@ -647,7 +411,8 @@
           "items": []
         }
       }
-    ]
+    ],
+    "country": "蜀"
   },
   "jiding_liaodong": {
     "name": "计定辽东(16级副本)",
@@ -886,7 +651,8 @@
           "items": []
         }
       }
-    ]
+    ],
+    "country": "魏"
   },
   "weizhen_xiaoyaojin": {
     "name": "威震逍遥津(26级副本)",
@@ -1086,7 +852,8 @@
           "items": []
         }
       }
-    ]
+    ],
+    "country": "魏"
   },
   "huoshao_bowang": {
     "name": "火烧博望(16级副本)",
@@ -1377,7 +1144,8 @@
         "quest_giver_location": "huoshao_bowang_copy_live.白河",
         "quest_giver_npc_id": "npc_huoshao_bowang_赵云"
       }
-    ]
+    ],
+    "country": "蜀"
   },
   "qianli_danqi": {
     "name": "千里单骑(26级副本)",
@@ -1728,7 +1496,8 @@
         "quest_giver_npc_id": "npc_qianli_danqi_copy_关羽",
         "quest_giver_location": "qianli_danqi_copy_live.东岭关"
       }
-    ]
+    ],
+    "country": "蜀"
   },
   "taoyuan_jieyi": {
     "name": "桃园结义(36级副本)",
@@ -2019,7 +1788,8 @@
         "quest_giver_npc_id": "npc_taoyuan_jieyi_刘备",
         "quest_giver_location": "taoyuan_jieyi_copy_live.桃园"
       }
-    ]
+    ],
+    "country": "蜀"
   },
   "dazhan_changban": {
     "name": "大战长坂(46级副本)",
@@ -2351,7 +2121,8 @@
         "quest_giver_npc_id": "npc_dazhan_changban_赵云",
         "quest_giver_location": "dazhan_changban_copy_live.长坂坡"
       }
-    ]
+    ],
+    "country": "蜀"
   },
   "qiqinmenghuo_hi": {
     "name": "七擒孟获(56级副本)",
@@ -2682,7 +2453,8 @@
         "quest_giver_npc_id": "npc_qiqinmenghuo_hi_诸葛亮",
         "quest_giver_location": "qiqinmenghuo_hi_copy_live.五溪洞"
       }
-    ]
+    ],
+    "country": ""
   },
   "caopi_xuanfei": {
     "name": "曹丕选妃(36级副本)",
@@ -2973,7 +2745,8 @@
         "quest_giver_npc_id": "npc_caopi_xuanfei_曹丕",
         "quest_giver_location": "caopi_xuanfei_copy_live.铜雀台"
       }
-    ]
+    ],
+    "country": "魏"
   },
   "huoshao_wuchao": {
     "name": "火烧乌巢(46级副本)",
@@ -3304,7 +3077,8 @@
         "quest_giver_npc_id": "npc_huoshao_wuchao_张辽",
         "quest_giver_location": "huoshao_wuchao_copy_live.乌巢大营"
       }
-    ]
+    ],
+    "country": "魏"
   },
   "zhidou_machao": {
     "name": "智斗马超(56级副本)",
@@ -3615,7 +3389,8 @@
         "quest_giver_npc_id": "npc_zhidou_machao_司马懿",
         "quest_giver_location": "zhidou_machao_copy_live.长安城"
       }
-    ]
+    ],
+    "country": ""
   },
   "baiyi_dujiang": {
     "name": "白衣渡江(16级副本)",
@@ -3906,7 +3681,8 @@
         "quest_giver_npc_id": "npc_baiyi_dujiang_郭嘉",
         "quest_giver_location": "baiyi_dujiang_copy_live.陆口港"
       }
-    ]
+    ],
+    "country": "吴"
   },
   "huoshao_lianying": {
     "name": "火烧连营(26级副本)",
@@ -4217,7 +3993,8 @@
         "quest_giver_npc_id": "npc_huoshao_lianying_李典",
         "quest_giver_location": "huoshao_lianying_copy_live.夷陵大营"
       }
-    ]
+    ],
+    "country": "吴"
   },
   "jiangdong_bawang": {
     "name": "江东霸王(36级副本)",
@@ -4528,7 +4305,8 @@
         "quest_giver_npc_id": "npc_jiangdong_bawang_曹丕",
         "quest_giver_location": "jiangdong_bawang_copy_live.曲阿"
       }
-    ]
+    ],
+    "country": "吴"
   },
   "shiting_zhizhan": {
     "name": "石亭之战(46级副本)",
@@ -4838,7 +4616,8 @@
         "quest_giver_npc_id": "npc_shiting_zhizhan_陆逊",
         "quest_giver_location": "shiting_zhizhan_copy_live.石亭大营"
       }
-    ]
+    ],
+    "country": "吴"
   },
   "chibi_aobing": {
     "name": "赤壁鏖兵(56级副本)",
@@ -5169,6 +4948,7 @@
         "quest_giver_npc_id": "npc_chibi_aobing_周瑜",
         "quest_giver_location": "chibi_aobing_copy_live.江东水寨"
       }
-    ]
+    ],
+    "country": ""
   }
 }

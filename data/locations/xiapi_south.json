@@ -7,10 +7,7 @@
         "north": "xiapi_center.南城楼",
         "south": "xiapi_south.南郊"
       },
-      "monsters": [
-        "monster_q_应龙",
-        "monster_q_吴军守卫"
-      ]
+      "monsters": []
     },
     "南郊": {
       "name": "南郊",

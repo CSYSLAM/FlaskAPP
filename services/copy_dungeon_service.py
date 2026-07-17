@@ -617,6 +617,13 @@ class CopyDungeonService:
         if not definition:
             return False, '副本不存在'
 
+        # 国家校验：country 字段为空表示三国通用，否则仅该国玩家可进入
+        dungeon_country = definition.get('country')
+        if dungeon_country:
+            player_country = getattr(player, 'country', None) or '魏'
+            if player_country != dungeon_country:
+                return False, f'该副本属于{dungeon_country}，仅{dungeon_country}玩家可进入'
+
         entry_location = definition.get('entry_location')
         locations = DataService.get_locations()
         if entry_location not in locations:

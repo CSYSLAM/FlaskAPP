@@ -35,9 +35,7 @@
         "east": "jianing_west.西门"
       },
       "monster_type": "monster_jianing_west_野狗",
-      "npcs": [
-        "npc_jianing_west_左慈副本"
-      ]
+      "npcs": []
     },
     "军营": {
       "name": "军营",
@@ -49,7 +47,6 @@
       },
       "npcs": [
         "npc_jianing_west_副将统领",
-        "npc_jianing_west_黄月英副本",
         "npc_jianing_west_刘封"
       ]
     },

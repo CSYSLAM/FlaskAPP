@@ -11,6 +11,7 @@ class Monster:
     def __init__(self, monster_id, data):
         self.monster_id = monster_id
         self.is_elite = data.get("is_elite", False)
+        self.is_one_time_elite = data.get("is_one_time_elite", False)
         self.is_divine_beast = data.get("is_divine_beast", False)
         self.is_copy = data.get("is_copy", False) or data.get("copy_only", False)
         self.copy_only = data.get("copy_only", False)
