@@ -10,7 +10,9 @@
         "south": "jiangling_center.南前街"
       },
       "npcs": [
-        "npc_jiangling_center_任务使者"
+        "npc_jiangling_center_任务使者",
+        "npc_jiangling_center_黄承彦",
+        "npc_jiangling_center_赵云副本"
       ]
     },
     "太守府": {
@@ -19,7 +21,8 @@
         "east": "jiangling_center.北前街"
       },
       "npcs": [
-        "npc_jiangling_center_刘表荣誉"
+        "npc_jiangling_center_刘表荣誉",
+        "npc_jiangling_center_黄祖"
       ]
     },
     "北前街": {
@@ -62,7 +65,8 @@
         "west": "jiangling_center.北前街"
       },
       "npcs": [
-        "npc_jiangling_center_金掌柜仓库"
+        "npc_jiangling_center_金掌柜仓库",
+        "npc_jiangling_center_苏飞"
       ]
     },
     "客栈": {
@@ -71,7 +75,8 @@
         "south": "jiangling_center.东后街"
       },
       "npcs": [
-        "npc_jiangling_center_王老板"
+        "npc_jiangling_center_王老板",
+        "npc_jiangling_center_蔡文姬"
       ]
     },
     "西前街": {
@@ -95,7 +100,8 @@
         "north": "jiangling_center.西中街"
       },
       "npcs": [
-        "npc_jiangling_center_店小二"
+        "npc_jiangling_center_店小二",
+        "npc_jiangling_center_影"
       ]
     },
     "西后街": {

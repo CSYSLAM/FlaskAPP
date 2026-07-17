@@ -10,7 +10,8 @@
         "south": "huangjin_copy_live.豫州"
       },
       "npcs": [
-        "npc_huangjin_copy_灵帝"
+        "npc_huangjin_copy_灵帝",
+        "npc_huangjin_copy_左慈"
       ]
     },
     "黄河岸边": {

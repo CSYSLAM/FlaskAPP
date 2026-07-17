@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>天命三国2</title>
+    <title>梦回三国</title>
     <style>
         body { margin: 0 10px; font-size: 16px; line-height: 1.8; }
         a:link, a:visited { color: #136ec2; text-decoration: none; }
@@ -28,8 +28,9 @@
     {% endif %}
     {% endwith %}
 
-    天命三国2<br/>
+    梦回三国<br/>
 
+    {% set _quest_id = 'copy_' ~ dungeon_id ~ '_' ~ state['stage_index'] %}
     {% if monster.copy_role == 'entry_npc' and not in_dungeon %}
     {{ dungeon.name }}<br/>
     {{ dungeon.story_intro[0] if dungeon.story_intro else '' }}<br/>
@@ -37,58 +38,25 @@
     <br/>
     <a href="{{ url_for('dungeon.enter', dungeon_id=dungeon_id) }}">进入副本({{ entry_item_name }}x{{ entry_item_count }})</a><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
-    {% elif view_mode == 'npc' %}
-    {{ monster.name }}<br/>
-    {{ monster.description }}<br/>
-    {% if stage and is_current_quest_giver %}
-    <a href="{{ url_for('game.view_npc', monster_id=npc_id, mode='handin' if state.accepted and state.ready_to_complete else 'task') }}">{{ quest_title }}</a><br/>
-    {% endif %}
-    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
-    {% elif view_mode == 'handin' and stage %}
+    {% elif stage and is_current_quest_giver %}
     {{ quest_title }}<br/>
+    任务来自:{{ monster.name }}<br/>
+    {% if stage.scene_id %}目标地点:{{ stage.scene_id.split('.')[-1] }}<br/>{% endif %}
     {{ stage.objective }}<br/>
-    任务奖励:<br/>
-    经验+{{ stage.reward.experience or 0 }}<br/>
-    银两+{{ stage.reward.gold or 0 }}<br/>
-    任务进度:<br/>
-    {{ progress_text }}<br/>
-    {% if state.accepted and state.ready_to_complete and not state.completed %}
-    <form method="POST" action="{{ url_for('dungeon.action', npc_id=npc_id) }}">
-        <input type="hidden" name="action" value="complete">
-        <input type="submit" value="完成任务">
-    </form><br/>
-    {% endif %}
-    <a href="{{ url_for('game.view_npc', monster_id=npc_id) }}">返回</a><br/>
-    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
-    {% elif stage %}
-    {{ quest_title }}<br/>
     {% if state.accepted %}
-    任务来自:{{ monster.name }} <a href="{{ url_for('dungeon.jump', npc_id=npc_id, target='entry') }}">传送</a><br/>
-    {% endif %}
-    {{ stage.objective }}<br/>
-    {% if state.accepted and not state.ready_to_complete %}
-    <a href="{{ url_for('dungeon.jump', npc_id=npc_id, target='stage') }}">快速前往目的地</a><br/>
+    任务进度:{{ progress_text }}<br/>
     {% endif %}
     任务奖励:<br/>
-    经验+{{ stage.reward.experience or 0 }}<br/>
-    银两+{{ stage.reward.gold or 0 }}<br/>
-    {% if state.accepted %}
-    任务进度:<br/>
-    {{ progress_text }}<br/>
-    {% endif %}
+    经验+{{ (stage.reward or {}).get('experience') or 0 }}<br/>
+    银两+{{ (stage.reward or {}).get('gold') or 0 }}<br/>
+    {% for ri in ((stage.reward or {}).get('items') or []) %}{% set _it = DataService.get_item(ri.get('item_id')) %}{{ _it.name if _it else ri.get('item_id') }}×{{ ri.get('count', 1) }}<br/>{% endfor %}
     {% if not state.accepted %}
-    <form method="POST" action="{{ url_for('dungeon.action', npc_id=npc_id) }}">
-        <input type="hidden" name="action" value="accept">
-        <input type="submit" value="接受任务">
-    </form><br/>
+    <a href="{{ url_for('quest.accept_quest', quest_id=_quest_id) }}">接受任务</a><br/>
+    {% elif state.accepted and state.ready_to_complete %}
+    <a href="{{ url_for('quest.complete_quest', quest_id=_quest_id) }}">完成任务</a><br/>
+    {% elif state.accepted %}
+    <a href="{{ url_for('quest.go_to_target', quest_id=_quest_id) }}">快速前往目的地</a><br/>
     {% endif %}
-    {% if state.accepted and not state.completed and not state.reward_claimed %}
-    <form method="POST" action="{{ url_for('dungeon.action', npc_id=npc_id) }}">
-        <input type="hidden" name="action" value="leave">
-        <input type="submit" value="离开副本">
-    </form><br/>
-    {% endif %}
-    <a href="{{ url_for('game.view_npc', monster_id=npc_id) }}">返回</a><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
     {% else %}
     {{ monster.name }}<br/>

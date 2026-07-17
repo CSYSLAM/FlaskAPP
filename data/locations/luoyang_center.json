@@ -8,7 +8,15 @@
         "west": "luoyang_center.镇西前街",
         "east": "luoyang_center.乐东前街",
         "south": "luoyang_center.安南前街"
-      }
+      },
+      "npcs": [
+        "npc_luoyang_center_荀爽",
+        "npc_luoyang_center_诸葛亮副本",
+        "npc_luoyang_center_周瑜副本"
+      ],
+      "monsters": [
+        "monster_q_连弩队长"
+      ]
     },
     "定北前街": {
       "name": "定北前街",
@@ -52,7 +60,8 @@
         "west": "luoyang_center.定北后街"
       },
       "npcs": [
-        "npc_luoyang_center_副将统领"
+        "npc_luoyang_center_副将统领",
+        "npc_luoyang_center_残汉老臣"
       ]
     },
     "皇宫": {
@@ -63,7 +72,8 @@
         "south": "luoyang_center.定北后街"
       },
       "npcs": [
-        "npc_luoyang_center_董卓荣誉"
+        "npc_luoyang_center_董卓荣誉",
+        "npc_luoyang_center_烛龙"
       ]
     },
     "战场": {
@@ -105,7 +115,8 @@
         "north": "luoyang_center.镇西中街"
       },
       "npcs": [
-        "npc_luoyang_center_店小二"
+        "npc_luoyang_center_店小二",
+        "npc_luoyang_center_影"
       ]
     },
     "镇西后街": {
@@ -146,7 +157,8 @@
         "south": "luoyang_center.乐东前街"
       },
       "npcs": [
-        "npc_luoyang_center_王老板"
+        "npc_luoyang_center_王老板",
+        "npc_luoyang_center_蔡文姬"
       ]
     },
     "乐东后街": {

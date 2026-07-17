@@ -6,7 +6,10 @@
       "exits": {
         "north": "jiangling_north.北郊",
         "south": "jiangling_center.北城楼"
-      }
+      },
+      "monsters": [
+        "monster_q_潘章"
+      ]
     },
     "北郊": {
       "name": "北郊",

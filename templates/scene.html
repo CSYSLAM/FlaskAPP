@@ -115,7 +115,7 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endif %}
 *{{ location.get('name', '未知') }}({{ location.get('area_name', '') }}){% if location.get('is_copy_map') %}【副本地图】{% endif %}<br/>
 
-<div class="map-label">显示地图</div>
+<div class="map-label">显示地图{% if location.get('is_copy_map') and location.get('copy_dungeon_id') %} <a href="{{ url_for('dungeon.leave_scene_link', dungeon_id=location.copy_dungeon_id) }}" data-confirm="确定离开副本？副本进度将重置，下次进入需从头开始。">离开副本</a>{% endif %}</div>
 <div id="mapContainer" style="width: 130px; background-color: #fafad2;">
 <div style="font-size:0;">
 
@@ -290,7 +290,7 @@ a:link { color: #136ec2; text-decoration: none; }
 {% endif %}
 
 {% if npcs %}
-看到：{% for npc in npcs %}{% if npc.has_completable %}<img src="{{ url_for('static', filename='renwu/wh.gif') }}" border="0">{% elif npc.has_quest %}<img src="{{ url_for('static', filename='renwu/gt.gif') }}" border="0">{% endif %}<a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">{{ npc.name }}</a> {% endfor %}<br/>
+看到：{% for npc in npcs %}{% set _icon = 'wh.gif' if npc.has_completable else ('gt.gif' if npc.has_quest else (npc.task_icon or '')) %}{% if _icon %}<img src="{{ url_for('static', filename='renwu/' ~ _icon) }}" border="0">{% endif %}<a href="{{ url_for('game.view_npc', monster_id=npc.monster_id) }}">{{ npc.name }}</a> {% endfor %}<br/>
 {% endif %}
 
 {% if ground_items %}
@@ -345,6 +345,7 @@ function toggleMap() {
 }
 var aLinks = document.getElementsByTagName("a");
 for(var i=0;i<aLinks.length;i++){ if(aLinks[i].href.indexOf('javascript:')===0)continue; aLinks[i].onclick=function(){
+    if(this.getAttribute('data-confirm') && !confirm(this.getAttribute('data-confirm'))){ return false; }
     document.getElementById('loading').style.display='block';
 }; }
 setTimeout(function(){ document.getElementById('loading').style.display='none'; }, 350);

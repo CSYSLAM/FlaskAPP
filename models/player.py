@@ -455,7 +455,7 @@ class PlayerModel(db.Model, UserMixin):
             "level_up_stats": {
                 "max_health": 120, "max_mana": 20,
                 "attack": 4, "defense": 26,
-                "crit_rate": 0.001, "dodge_rate": 0.001
+                "crit_rate": 0.0008, "dodge_rate": 0.0008
             }
         },
         "刺客": {
@@ -467,7 +467,7 @@ class PlayerModel(db.Model, UserMixin):
             "level_up_stats": {
                 "max_health": 100, "max_mana": 30,
                 "attack": 5, "defense": 25,
-                "crit_rate": 0.002, "dodge_rate": 0.002
+                "crit_rate": 0.0015, "dodge_rate": 0.0015
             }
         }
     }

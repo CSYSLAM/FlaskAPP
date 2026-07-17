@@ -255,11 +255,11 @@ def level_up():
                 continue
             if k in ('crit_rate', 'dodge_rate'):
                 # 暴击/闪避存为小数，展示为百分比
-                parts.append(f"{name}+{delta*100:.1f}%")
+                parts.append(f"{name}+{delta*100:.2f}%")
             else:
                 parts.append(f"{name}+{int(delta)}")
         if parts:
-            flash(f"恭喜升到{player.level}级！本次加成：<span style='color:#136ec2'>{'，'.join(parts)}</span>", 'levelup')
+            flash(f"<span style='color:#136ec2'>恭喜升到{player.level}级！本次加成：{'，'.join(parts)}</span>", 'levelup')
         else:
             flash(f"恭喜升到{player.level}级！", 'levelup')
     return redirect(url_for("player.character"))

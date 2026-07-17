@@ -7,7 +7,10 @@
         "west": "jiangling_center.东城楼",
         "north": "jiangling_east.城隍庙",
         "east": "jiangling_east.东郊"
-      }
+      },
+      "monsters": [
+        "monster_q_孙静"
+      ]
     },
     "城隍庙": {
       "name": "城隍庙",

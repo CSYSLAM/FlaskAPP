@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>{{ quest.name }}</title><style>body{font-size:16px}a:link{color:#136ec2;text-decoration:none}#loading{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.3);z-index:9999}#loading span{display:block;width:40px;height:40px;margin:40vh auto;border:4px solid #fff;border-top-color:#136ec2;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}</style></head><body style='margin-left:10px;margin-right:10px'><div id="loading"><span></span></div>
 {{ quest.name }}{% if is_completed %}(已完成){% endif %}<br/>
 任务来自:{{ quest.npc_name }}<br/>
+{% if quest.level_required %}等级要求:Lv.{{ quest.level_required }}<br/>{% endif %}
 {% if quest.npc_location_name %}
 <a href="{{ url_for('quest.go_to_quest', quest_id=quest.id) }}">传送</a><br/>
 {% endif %}

@@ -1,0 +1,196 @@
+{
+  "name": "石亭之战副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "shiting_zhizhan",
+  "scenes": {
+    "shiting_zhizhan_copy_live.石亭大营": {
+      "name": "石亭大营",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.夹石"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹军信使",
+        "mon_shiting_zhizhan_elite_曹休",
+        "mon_shiting_zhizhan_曹休残将",
+        "mon_shiting_zhizhan_曹军逃兵"
+      ],
+      "npcs": [
+        "npc_shiting_zhizhan_陆逊"
+      ]
+    },
+    "shiting_zhizhan_copy_live.夹石": {
+      "name": "夹石",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.石亭山道",
+        "west": "shiting_zhizhan_copy_live.石亭大营"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹军斥候",
+        "mon_shiting_zhizhan_曹营暗哨",
+        "mon_shiting_zhizhan_曹休亲兵"
+      ]
+    },
+    "shiting_zhizhan_copy_live.石亭山道": {
+      "name": "石亭山道",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.石亭",
+        "west": "shiting_zhizhan_copy_live.夹石"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹军前哨",
+        "mon_shiting_zhizhan_曹军偏军"
+      ]
+    },
+    "shiting_zhizhan_copy_live.石亭": {
+      "name": "石亭",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.夹山",
+        "west": "shiting_zhizhan_copy_live.石亭山道",
+        "north": "shiting_zhizhan_copy_live.山道"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹军主力",
+        "mon_shiting_zhizhan_elite_贾逵",
+        "mon_shiting_zhizhan_曹军水夫",
+        "mon_shiting_zhizhan_曹军夜哨"
+      ]
+    },
+    "shiting_zhizhan_copy_live.夹山": {
+      "name": "夹山",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.山道",
+        "west": "shiting_zhizhan_copy_live.石亭",
+        "south": "shiting_zhizhan_copy_live.夹石"
+      },
+      "monsters": [
+        "mon_shiting_zhizhan_曹军辎重队"
+      ]
+    },
+    "shiting_zhizhan_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.林间小径",
+        "west": "shiting_zhizhan_copy_live.夹山"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.河岸边",
+        "west": "shiting_zhizhan_copy_live.山道",
+        "north": "shiting_zhizhan_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.荒野",
+        "west": "shiting_zhizhan_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.破庙",
+        "west": "shiting_zhizhan_copy_live.河岸边",
+        "south": "shiting_zhizhan_copy_live.山道"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.古井旁",
+        "west": "shiting_zhizhan_copy_live.荒野",
+        "north": "shiting_zhizhan_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.断桥",
+        "west": "shiting_zhizhan_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.山洞入口",
+        "west": "shiting_zhizhan_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.密林深处",
+        "west": "shiting_zhizhan_copy_live.断桥",
+        "north": "shiting_zhizhan_copy_live.溪谷",
+        "south": "shiting_zhizhan_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.溪谷",
+        "west": "shiting_zhizhan_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.高坡",
+        "west": "shiting_zhizhan_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.废弃营地",
+        "west": "shiting_zhizhan_copy_live.溪谷",
+        "north": "shiting_zhizhan_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.石碑前",
+        "west": "shiting_zhizhan_copy_live.高坡",
+        "south": "shiting_zhizhan_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.石碑前": {
+      "name": "石碑前",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.岔路口",
+        "west": "shiting_zhizhan_copy_live.废弃营地"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.岔路口": {
+      "name": "岔路口",
+      "exits": {
+        "east": "shiting_zhizhan_copy_live.芦苇荡",
+        "west": "shiting_zhizhan_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "shiting_zhizhan_copy_live.芦苇荡": {
+      "name": "芦苇荡",
+      "exits": {
+        "west": "shiting_zhizhan_copy_live.岔路口"
+      },
+      "monsters": []
+    }
+  }
+}
