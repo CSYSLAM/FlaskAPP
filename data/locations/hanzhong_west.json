@@ -47,7 +47,10 @@
       "exits": {
         "east": "hanzhong_center.西城楼",
         "west": "hanzhong_west.西郊"
-      }
+      },
+      "monsters": [
+        "monster_hanzhong_west_云台玄狐"
+      ]
     }
   }
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>修改{{ lt.name }}</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        label { display: inline-block; min-width: 120px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>修改副将【{{ lt.name }}】</h3>
+    <a href="{{ url_for('workbench.lieutenant_view', lt_id=lt.id) }}">返回详情</a><br/><br/>
+
+    <form method="post">
+        {% for field, label, default, ftype in fields %}
+        {% if ftype == 'class' %}
+        <label>{{ label }}</label>
+        <select name="{{ field }}">
+            {% for val, cn in class_choices %}
+            <option value="{{ val }}" {% if lt.class_type == val %}selected{% endif %}>{{ cn }}</option>
+            {% endfor %}
+        </select><br/>
+        {% elif ftype == 'gender' %}
+        <label>{{ label }}</label>
+        <select name="{{ field }}">
+            <option value="male" {% if lt.gender=='male' %}selected{% endif %}>男</option>
+            <option value="female" {% if lt.gender=='female' %}selected{% endif %}>女</option>
+        </select><br/>
+        {% elif ftype == 'tier' %}
+        <label>{{ label }}</label>
+        <select name="{{ field }}">
+            {% for val, cn in tier_choices %}
+            <option value="{{ val }}" {% if lt.tier == val %}selected{% endif %}>{{ cn }}</option>
+            {% endfor %}
+        </select><br/>
+        {% elif ftype == 'position' %}
+        <label>{{ label }}</label>
+        <select name="{{ field }}">
+            {% for val, cn in position_choices %}
+            <option value="{{ val }}" {% if lt.position == val %}selected{% endif %}>{{ cn }}</option>
+            {% endfor %}
+        </select><br/>
+        {% elif ftype == 'bool' %}
+        <label>{{ label }}</label>
+        <input type="hidden" name="{{ field }}" value="0">
+        <input type="checkbox" name="{{ field }}" value="1" {% if field_values[field] %}checked{% endif %}><br/>
+        {% elif ftype == 'str' %}
+        <label>{{ label }}</label>
+        <input type="text" name="{{ field }}" value="{{ field_values[field] }}" style="width:200px"><br/>
+        {% else %}
+        <label>{{ label }}</label>
+        {% set _val = field_values[field] %}
+        <input type="number" name="{{ field }}" value="{{ '' if _val is none else _val }}"{% if ftype=='opt_float' %} step="0.0001"{% endif %}><br/>
+        {% endif %}
+        {% endfor %}
+        <br/>
+        <button type="submit">保存</button>
+    </form>
+    <br/>
+    <a href="{{ url_for('workbench.lieutenant_view', lt_id=lt.id) }}">取消</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>战斗测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 90px; }
+        input, select { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        input[type=number] { width: 90px; }
+        input[type=text] { width: 120px; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .side { display: inline-block; vertical-align: top; margin: 4px 8px 4px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px 0; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .hint { color: #888; font-size: 13px; }
+        .explain { color: #888; font-size: 13px; padding: 4px 12px; border-left: 3px solid #ddd; margin: 4px 0; }
+        .result-box { margin: 6px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .stat-row { padding: 1px 0 1px 12px; }
+        .crit { color: #c62828; font-weight: bold; }
+        .dodge { color: #999; }
+        .win { color: #2e7d32; font-weight: bold; }
+        .lose { color: #c62828; font-weight: bold; }
+        .draw { color: #f57f17; font-weight: bold; }
+        .summary { margin: 8px 0; padding: 8px; border: 1px solid #2e7d32; border-radius: 4px; background: #f1f8f1; }
+        .summary.m { border-color: #c62828; background: #ffebee; }
+        .formula { color: #136ec2; font-size: 13px; }
+        .checkbox-row { margin: 2px 0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>战斗测试（自定义人物 vs 自定义怪物）</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/><br/>
+
+    <div class="explain">
+        伤害公式：<span class="formula">伤害 = 攻击 × (1 + 攻击 / max(1,防御)) × 系数</span><br/>
+        人物先手普攻/技能，怪物反击普攻。暴击 ×1.5，闪避归零。<br/>
+        怪物享有等级保底伤害：min_damage = 等级×2(精英) 或 等级(普通)，与真实战斗一致。<br/>
+        逐回合扣血，直到一方倒下或达到回合上限。<b>全程纯内存模拟，不落库、不影响真实数据。</b>
+    </div>
+
+    <form method="post">
+        <div class="section">人物侧</div>
+        <div class="side">
+            <span class="label">职业:</span>
+            <select name="player_class" class="class-select" data-skill="player_skill_id">
+                {% for c in classes %}<option value="{{ c }}" {{ 'selected' if form.player_class==c }}>{{ c }}</option>{% endfor %}
+            </select><br/>
+            <span class="label">等级:</span>
+            <input type="number" name="player_level" value="{{ form.player_level }}" min="1"><br/>
+            {% for key, name, _ in player_stats %}
+            <span class="label">{{ name }}:</span>
+            <input type="number" step="{{ '0.01' if 'rate' in key else '1' }}" name="player_{{ key }}" value="{{ form['player_'~key] }}"><br/>
+            {% endfor %}
+        </div>
+        <div class="side">
+            <span class="label">技能:</span>
+            <select name="player_skill_id" class="skill-select" data-side="player">
+                <option value="attack" {{ 'selected' if form.player_skill_id=='attack' }}>普攻</option>
+            </select><br/>
+            <span class="label">技能等级:</span>
+            <input type="number" name="player_skill_level" value="{{ form.player_skill_level }}" min="1" max="10">
+        </div>
+
+        <div class="section">怪物侧</div>
+        <div class="side">
+            <span class="label">名称:</span>
+            <input type="text" name="monster_name" value="{{ form.monster_name }}"><br/>
+            <span class="label">等级:</span>
+            <input type="number" name="monster_level" value="{{ form.monster_level }}" min="1"><br/>
+            {% for key, name, _ in monster_stats %}
+            <span class="label">{{ name }}:</span>
+            <input type="number" step="{{ '0.01' if 'rate' in key else '1' }}" name="monster_{{ key }}" value="{{ form['monster_'~key] }}"><br/>
+            {% endfor %}
+            <div class="checkbox-row">
+                <label><input type="checkbox" name="monster_is_elite" {{ 'checked' if form.monster_is_elite }}> 精英（保底×2）</label>
+            </div>
+            <div class="checkbox-row">
+                <label><input type="checkbox" name="monster_is_divine_beast" {{ 'checked' if form.monster_is_divine_beast }}> 神兽</label>
+            </div>
+        </div>
+
+        <div class="section">模拟</div>
+        <span class="label">回合上限:</span>
+        <input type="number" name="max_rounds" value="{{ form.max_rounds }}" min="1" max="200" style="width:80px"><br/>
+        <button type="submit" class="btn">开始战斗</button>
+    </form>
+
+    {% if results %}
+    <div class="section">结果</div>
+    <div class="explain">
+        {% if results.winner == 'player' %}
+        <span class="win">★ 人物胜利（{{ results.rounds }} 回合击杀）</span>
+        {% elif results.winner == 'monster' %}
+        <span class="lose">★ 怪物胜利（{{ results.rounds }} 回合击杀）</span>
+        {% else %}
+        <span class="draw">★ 平局（{{ results.rounds }} 回合未分胜负）</span>
+        {% endif %}<br/>
+        人物: {{ results.player.class }}{{ results.player.level }}级 {{ results.player.skill_name }}{{ results.player.skill_level }}级
+        (系数 {{ results.player.coefficient }} | 连击 {{ results.player.hits }} | 耗魔 {{ results.player.mana_cost }})<br/>
+        怪物: {{ results.monster.name }}{{ results.monster.level }}级{% if results.monster.is_elite %}·精英{% endif %}{% if results.monster.is_divine_beast %}·神兽{% endif %}
+        (攻击 {{ results.monster.attack }} vs 防御 {{ results.player.defense }} → 保底 {{ results.per_round[0].monster.min_damage if results.per_round and results.per_round[0].monster }})
+    </div>
+
+    {% for r in results.per_round %}
+    <div class="result-box">
+        <span>第{{ r.round }}回合：</span>
+        <span class="hint">人物 {{ r.player_hp_before }} → {{ r.player_hp }} | 怪物 {{ r.monster_hp_before }} → {{ r.monster_hp }}</span><br/>
+        <span class="stat-row">人物→怪物:
+            {% if r.player.dodged %}
+            <span class="dodge">闪避 (0)</span>
+            {% else %}
+            <b>{{ r.player.total }}</b>
+            {% if r.player.hits|length > 1 %}<span class="hint">[{{ r.player.hits|join('+') }}]</span>{% endif %}
+            {% if r.player.crit %}<span class="crit">(暴击)</span>{% endif %}
+            {% endif %}
+        </span><br/>
+        <span class="stat-row">怪物→人物:
+            {% if r.monster is none %}
+            <span class="hint">—（怪物已死亡，未反击）</span>
+            {% elif r.monster.dodged %}
+            <span class="dodge">闪避 (0)</span>
+            {% else %}
+            <b>{{ r.monster.total }}</b>
+            {% if r.monster.crit %}<span class="crit">(暴击)</span>{% endif %}
+            <span class="hint">(保底{{ r.monster.min_damage }})</span>
+            {% endif %}
+        </span>
+    </div>
+    {% endfor %}
+
+    <div class="summary">
+        <b>人物统计（{{ results.rounds }} 回合）</b><br/>
+        剩余血量: {{ results.player.final_hp }} / {{ results.player.max_health }}<br/>
+        造成总伤害: {{ results.player.total_dealt }}<br/>
+        暴击: {{ results.player.crit_count }}次<br/>
+        闪避怪物攻击: {{ results.player.dodge_count }}次
+    </div>
+    <div class="summary m">
+        <b>怪物统计（{{ results.rounds }} 回合）</b><br/>
+        剩余血量: {{ results.monster.final_hp }} / {{ results.monster.max_health }}<br/>
+        造成总伤害: {{ results.monster.total_dealt }}<br/>
+        暴击: {{ results.monster.crit_count }}次<br/>
+        闪避人物攻击: {{ results.monster.dodge_count }}次
+    </div>
+    {% endif %}
+
+    <script>
+        var SKILLS = {{ skills_json | tojson }};
+        var INITIAL = { player: {{ form.player_skill_id | tojson }} };
+
+        function rebuildSkills(side, cls, keepId) {
+            var sel = document.querySelector('.skill-select[data-side="' + side + '"]');
+            if (!sel) return;
+            var keep = keepId || sel.value;
+            var ok = (keep === 'attack');
+            var lists = [SKILLS[cls] || [], SKILLS['通用'] || []];
+            for (var i = 0; i < lists.length && !ok; i++) {
+                for (var j = 0; j < lists[i].length; j++) {
+                    if (lists[i][j].id === keep) { ok = true; break; }
+                }
+            }
+            var target = ok ? keep : 'attack';
+
+            sel.innerHTML = '';
+            var optAttack = document.createElement('option');
+            optAttack.value = 'attack';
+            optAttack.textContent = '普攻';
+            sel.appendChild(optAttack);
+
+            var classList = SKILLS[cls] || [];
+            if (classList.length) {
+                var og = document.createElement('optgroup');
+                og.label = cls;
+                for (var k = 0; k < classList.length; k++) {
+                    var o = document.createElement('option');
+                    o.value = classList[k].id;
+                    o.textContent = classList[k].name;
+                    og.appendChild(o);
+                }
+                sel.appendChild(og);
+            }
+            var commonList = SKILLS['通用'] || [];
+            if (commonList.length) {
+                var og2 = document.createElement('optgroup');
+                og2.label = '通用';
+                for (var m = 0; m < commonList.length; m++) {
+                    var o2 = document.createElement('option');
+                    o2.value = commonList[m].id;
+                    o2.textContent = commonList[m].name;
+                    og2.appendChild(o2);
+                }
+                sel.appendChild(og2);
+            }
+            sel.value = target;
+            if (!sel.value) sel.value = 'attack';
+        }
+
+        document.querySelectorAll('.class-select').forEach(function(sel) {
+            rebuildSkills('player', sel.value, INITIAL.player);
+            sel.addEventListener('change', function() { rebuildSkills('player', sel.value); });
+        });
+    </script>
+</div>
+</body>
+</html>

@@ -19,37 +19,34 @@
     需等待{{ remaining }}秒才能再次攻击<br/>
     {% endif %}
 
+    {% for slot in ['skill1', 'skill2', 'skill3', 'skill4'] %}
+    {% set sid = player.shortcuts[slot] %}
+    {% set sname = '普攻' if sid == 'attack' else (DataService.get_skill(sid)['name'] if DataService.get_skill(sid) else sid) %}
     {% if is_pk %}
-    <form action="{{ url_for('battle.pk_fight') }}" method="post" style="display:inline;">
+    <a href="{{ url_for('battle.pk_use_skill', opponent=monster.username, skill_id=sid) }}">{{ sname }}</a>
     {% else %}
-    <form action="{{ url_for('battle.fight') }}" method="post" style="display:inline;">
+    <a href="{{ url_for('battle.use_skill', skill_id=sid) }}">{{ sname }}</a>
     {% endif %}
-    <button type="submit" name="action" value="{{ player.shortcuts.skill1 }}">{% if player.shortcuts.skill1 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill1 }}{% endif %}</button>
-    <button type="submit" name="action" value="{{ player.shortcuts.skill2 }}">{% if player.shortcuts.skill2 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill2 }}{% endif %}</button>
-    <button type="submit" name="action" value="{{ player.shortcuts.skill3 }}">{% if player.shortcuts.skill3 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill3 }}{% endif %}</button>
-    <button type="submit" name="action" value="{{ player.shortcuts.skill4 }}">{% if player.shortcuts.skill4 == 'attack' %}普攻{% else %}{{ player.shortcuts.skill4 }}{% endif %}</button>
+    {% endfor %}
     <a href="{{ url_for('battle.shortcuts') }}">技键</a>
-    </form><br/>
+    <br/>
 
-    {% if is_pk %}
-    <form action="{{ url_for('battle.pk_fight') }}" method="post" style="display:inline;">
-    {% else %}
-    <form action="{{ url_for('battle.fight') }}" method="post" style="display:inline;">
+    {% if not is_pk %}
+    {% for pslot in ['potion1', 'potion2'] %}
+    {% set pid = player.shortcuts[pslot] %}
+    {% if pid and pid in player.inventory %}
+    <a href="{{ url_for('battle.use_potion', item_id=pid) }}">{{ player.inventory[pid].item.name }}</a>
     {% endif %}
-    {% if player.shortcuts.potion1 and player.shortcuts.potion1 in player.inventory %}
-    <button type="submit" name="action" value="use:{{ player.shortcuts.potion1 }}">{{ player.inventory[player.shortcuts.potion1].item.name }}</button>
-    {% endif %}
-    {% if player.shortcuts.potion2 and player.shortcuts.potion2 in player.inventory %}
-    <button type="submit" name="action" value="use:{{ player.shortcuts.potion2 }}">{{ player.inventory[player.shortcuts.potion2].item.name }}</button>
-    {% endif %}
+    {% endfor %}
     <a href="{{ url_for('battle.shortcuts') }}">药键</a>
+    {% endif %}
     <a href="{{ url_for('battle.flee') }}">撤退</a>
-    </form><br/>
+    <br/>
 
     生命储备:{{ player.blood_reserve }}{% if player.blood_reserve_enabled %}<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">关闭</a>{% else %}<a href="{{ url_for('player.toggle_reserve', reserve_type='blood') }}">开启</a>{% endif %}<br/>
     魔法储备:{{ player.mana_reserve }}{% if player.mana_reserve_enabled %}<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">关闭</a>{% else %}<a href="{{ url_for('player.toggle_reserve', reserve_type='mana') }}">开启</a>{% endif %}<br/>
-    生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
-    魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
+    生命:{{ player.health }}/{{ player.effective_max_health }}{% if player.last_hp_delta %}({% if player.last_hp_delta > 0 %}-{{ player.last_hp_delta }}{% else %}+{{ player.last_hp_delta * -1 }}{% endif %}){% endif %}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}{% if player.last_mp_delta %}({% if player.last_mp_delta > 0 %}-{{ player.last_mp_delta }}{% else %}+{{ player.last_mp_delta * -1 }}{% endif %}){% endif %}<br/>
 
     {% if lieutenant %}
     『{{ lieutenant.name }}』({{ '后卫' if lieutenant.position == 'back' else '前卫' }})<br/>

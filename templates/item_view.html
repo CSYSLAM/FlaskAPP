@@ -16,9 +16,11 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
-    <a href="{{ url_for('player.inventory') }}">背包</a><br/>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}{% for msg in messages %}{{ msg }}<br/>{% endfor %}{% endif %}
+    {% endwith %}
 
-    {{ item.name }}{% if is_bound %}<span class="bound">(绑定)</span>{% endif %}x{{ quantity }}<br/>
+    <b>{{ item.name }}</b>{% if is_bound %}<span class="bound">(绑定)</span>{% endif %}x{{ quantity }}<br/>
 
     {% if item.get('description') %}
     {{ item.description }}<br/>
@@ -44,16 +46,46 @@
     包含:{% for content in item.chest_contents %}{{ content.get('name', '') }}{% if not loop.last %}、{% endif %}{% endfor %}<br/>
     {% endif %}
 
-    <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">使用</a>
+    {% if item_id == 'lt_forget_page' and forget_page_count is defined %}
+    合成遗忘之章：消耗{{ forget_tome_cost }}个残页合成1个遗忘之章(当前{{ forget_page_count }}个)<br/>
+    {% if forget_page_count >= forget_tome_cost %}
+    <a href="{{ url_for('player.synthesize_forget_tome') }}">【合成遗忘之章】</a><br/>
+    {% else %}
+    <span class="bound">残页不足，需要{{ forget_tome_cost }}个才能合成</span><br/>
+    {% endif %}
+    {% endif %}
+
+    {% if quick_use %}
+    <form method="post" action="{{ url_for('player.bulk_use_item', item_id=item_id) }}">
+        <input type="hidden" name="is_bound" value="{{ '1' if is_bound else '0' }}">
+        <input type="hidden" name="category" value="{{ category }}">
+        <input type="hidden" name="page" value="{{ page }}">
+        <input type="hidden" name="per_page" value="{{ per_page }}">
+        <input type="hidden" name="quantity" value="{{ quantity }}">
+        <input type="submit" value="一键使用({{ quantity }}个)" style="padding:0;border:0;background:none;color:#136ec2;font:inherit;cursor:pointer;">
+    </form>
+    <form method="post" action="{{ url_for('player.bulk_use_item', item_id=item_id) }}">
+        <input type="hidden" name="is_bound" value="{{ '1' if is_bound else '0' }}">
+        <input type="hidden" name="category" value="{{ category }}">
+        <input type="hidden" name="page" value="{{ page }}">
+        <input type="hidden" name="per_page" value="{{ per_page }}">
+        数量<input type="number" name="quantity" min="1" max="{{ quantity }}" value="1" style="width:60px;">&nbsp;<input type="submit" value="批量使用" style="padding:0;border:0;background:none;color:#136ec2;font:inherit;cursor:pointer;">
+    </form>
+    {% else %}
+    <a href="{{ url_for('player.use_item', item_id=item_id, is_bound='1' if is_bound else '0', category=category, page=page, per_page=per_page) }}">使用</a>
+    {% endif %}
     <a href="{{ url_for('player.sell_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">出售</a>
     <a href="{{ url_for('player.destroy_item', item_id=item_id, is_bound='1' if is_bound else '0') }}">丢弃</a><br/>
 
     <a href="{{ url_for('player.inventory') }}">返回背包</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
-    <script>
-    var aLinks=document.getElementsByTagName("a");
-    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
-    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
-    </script>
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+var inputs=document.getElementsByTagName("input");
+for(var j=0;j<inputs.length;j++){if(inputs[j].type==='submit'){inputs[j].onclick=function(){document.getElementById('loading').style.display='block';};}}
+setTimeout(function(){document.getElementById('loading').style.display='none'},350);
+</script>
 </body>
 </html>

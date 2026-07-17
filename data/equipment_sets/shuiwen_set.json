@@ -1,102 +1,137 @@
 {
   "shuiwen_helmet_19": {
     "name": "水纹头巾",
-    "description": "术士专属，以水之灵纹编织的神秘头巾，蕴含水元素之力",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "水纹套",
     "level_required": 19,
     "class_required": "术士",
-    "base_price": 3500,
     "is_artifact": false,
-    "set_name": "水纹套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 22
+      "defense": 135
     },
     "max_extra_stats": {
-      "defense": 12,
-      "max_health": 40,
-      "max_mana": 30,
-      "dodge_rate": 0.03
+      "attack": 0,
+      "defense": 135,
+      "max_health": 496,
+      "max_mana": 375,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3500,
+    "description": "术士专属，以水之灵纹编织的神秘头巾，蕴含水元素之力",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_huangtongkuang": 20
     }
   },
   "shuiwen_armor_18": {
     "name": "水纹法袍",
-    "description": "术士专属，以水之灵丝织成的法袍，流转着水纹光华",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "水纹套",
     "level_required": 18,
     "class_required": "术士",
-    "base_price": 4200,
     "is_artifact": false,
-    "set_name": "水纹套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 28
+      "defense": 135
     },
     "max_extra_stats": {
-      "defense": 15,
-      "max_health": 50,
-      "max_mana": 40,
-      "crit_rate": 0.03
+      "attack": 0,
+      "defense": 135,
+      "max_health": 496,
+      "max_mana": 375,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 4200,
+    "description": "术士专属，以水之灵丝织成的法袍，流转着水纹光华",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_suipi": 20,
+      "craft_mabu": 20
     }
   },
   "shuiwen_gloves_16": {
     "name": "水纹手套",
-    "description": "术士专属，以水之灵丝编织的手套，增强法术掌控力",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "水纹套",
     "level_required": 16,
     "class_required": "术士",
-    "base_price": 3000,
     "is_artifact": false,
-    "set_name": "水纹套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 18
+      "defense": 135
     },
     "max_extra_stats": {
-      "attack": 10,
-      "crit_rate": 0.04,
-      "max_mana": 20,
-      "dodge_rate": 0.03
+      "attack": 0,
+      "defense": 135,
+      "max_health": 0,
+      "max_mana": 375,
+      "crit_rate": 0.0074,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3000,
+    "description": "术士专属，以水之灵丝编织的手套，增强法术掌控力",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangyangmu": 20,
+      "craft_huangtongkuang": 20
     }
   },
   "shuiwen_pants_17": {
     "name": "水纹裤子",
-    "description": "术士专属，以水之灵丝织成的护腿，轻盈灵动",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "水纹套",
     "level_required": 17,
     "class_required": "术士",
-    "base_price": 3800,
     "is_artifact": false,
-    "set_name": "水纹套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 24
+      "defense": 135
     },
     "max_extra_stats": {
-      "defense": 12,
-      "max_health": 45,
-      "max_mana": 25,
-      "dodge_rate": 0.03
+      "attack": 0,
+      "defense": 135,
+      "max_health": 496,
+      "max_mana": 375,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 3800,
+    "description": "术士专属，以水之灵丝织成的护腿，轻盈灵动",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_mabu": 20,
+      "craft_huangyangmu": 20
     }
   },
   "shuiwen_shoes_15": {
     "name": "水纹鞋",
-    "description": "术士专属，以水之灵丝编织的布鞋，踏水无痕",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "水纹套",
     "level_required": 15,
     "class_required": "术士",
-    "base_price": 2800,
     "is_artifact": false,
-    "set_name": "水纹套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 16
+      "defense": 135
     },
     "max_extra_stats": {
-      "dodge_rate": 0.04,
-      "defense": 8,
-      "max_mana": 20,
-      "max_health": 25
+      "attack": 0,
+      "defense": 135,
+      "max_health": 0,
+      "max_mana": 375,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0065
+    },
+    "base_price": 2800,
+    "description": "术士专属，以水之灵丝编织的布鞋，踏水无痕",
+    "craft_silver": 2440,
+    "craft_materials": {
+      "craft_huangtongkuang": 20,
+      "craft_huangyangmu": 20
     }
   }
 }

@@ -1,102 +1,137 @@
 {
   "queling_helmet_49": {
     "name": "雀翎盔",
-    "description": "刺客专属，以雀翎之羽编织的头盔，轻灵飘逸",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "雀翔套",
     "level_required": 49,
     "class_required": "刺客",
-    "base_price": 11000,
     "is_artifact": false,
-    "set_name": "雀翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 50
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 25,
-      "max_health": 85,
-      "dodge_rate": 0.07,
-      "crit_rate": 0.06
+      "attack": 0,
+      "defense": 325,
+      "max_health": 1499,
+      "max_mana": 1032,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 11000,
+    "description": "刺客专属，以雀翎之羽编织的头盔，轻灵飘逸",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
     }
   },
   "queling_armor_48": {
     "name": "雀翎轻甲",
-    "description": "刺客专属，以雀翎之羽织成的轻甲，翔空无影",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "雀翔套",
     "level_required": 48,
     "class_required": "刺客",
-    "base_price": 13000,
     "is_artifact": false,
-    "set_name": "雀翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 62
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 30,
-      "max_health": 100,
-      "dodge_rate": 0.06,
-      "crit_rate": 0.07
+      "attack": 0,
+      "defense": 325,
+      "max_health": 1499,
+      "max_mana": 1032,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 13000,
+    "description": "刺客专属，以雀翎之羽织成的轻甲，翔空无影",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
     }
   },
   "queling_gloves_46": {
     "name": "鹰爪护手",
-    "description": "刺客专属，以鹰爪之形锻造的护手，锋利无比",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "雀翔套",
     "level_required": 46,
     "class_required": "刺客",
-    "base_price": 9500,
     "is_artifact": false,
-    "set_name": "雀翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 52
+      "defense": 325
     },
     "max_extra_stats": {
-      "attack": 24,
-      "crit_rate": 0.08,
-      "dodge_rate": 0.06,
-      "max_health": 50
+      "attack": 0,
+      "defense": 325,
+      "max_health": 0,
+      "max_mana": 1032,
+      "crit_rate": 0.024,
+      "dodge_rate": 0.0
+    },
+    "base_price": 9500,
+    "description": "刺客专属，以鹰爪之形锻造的护手，锋利无比",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
     }
   },
   "queling_pants_47": {
     "name": "雀翎皮裤",
-    "description": "刺客专属，以雀翎之羽织成的护腿，轻灵耐用",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "雀翔套",
     "level_required": 47,
     "class_required": "刺客",
-    "base_price": 11500,
     "is_artifact": false,
-    "set_name": "雀翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 52
+      "defense": 325
     },
     "max_extra_stats": {
-      "defense": 26,
-      "max_health": 85,
-      "dodge_rate": 0.07,
-      "crit_rate": 0.06
+      "attack": 0,
+      "defense": 325,
+      "max_health": 1499,
+      "max_mana": 1032,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 11500,
+    "description": "刺客专属，以雀翎之羽织成的护腿，轻灵耐用",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
     }
   },
   "queling_shoes_45": {
     "name": "鹰嘴靴",
-    "description": "刺客专属，以鹰嘴之形设计的战靴，疾行如鹰",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "雀翔套",
     "level_required": 45,
     "class_required": "刺客",
-    "base_price": 9000,
     "is_artifact": false,
-    "set_name": "雀翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 35
+      "defense": 325
     },
     "max_extra_stats": {
-      "dodge_rate": 0.08,
-      "defense": 16,
-      "crit_rate": 0.06,
-      "max_health": 50
+      "attack": 0,
+      "defense": 325,
+      "max_health": 0,
+      "max_mana": 1032,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.023
+    },
+    "base_price": 9000,
+    "description": "刺客专属，以鹰嘴之形设计的战靴，疾行如鹰",
+    "craft_silver": 8440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
     }
   }
 }

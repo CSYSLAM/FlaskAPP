@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>添加套装</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 100px; }
+        input, select, textarea { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        input[type="text"], input[type="number"], textarea { width: 200px; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .slot-section { margin: 8px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .slot-title { font-weight: bold; }
+        .stat-grid { display: grid; grid-template-columns: auto auto; gap: 2px 8px; padding-left: 12px; }
+        .stat-grid label { font-size: 14px; color: #666; }
+        .stat-grid input { width: 80px; font-size: 14px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .hint { color: #888; font-size: 13px; }
+        .disabled { opacity: 0.4; pointer-events: none; }
+        .file-mode { margin: 4px 0; }
+        .file-mode label { cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>添加套装</h3>
+    <a href="{{ url_for('workbench.equip_design') }}">返回列表</a><br/><br/>
+
+    <form method="post" id="setForm">
+        <div class="section">套装基本信息</div>
+        <span class="label">套装名称:</span>
+        <input type="text" name="set_name" required placeholder="如: 百炼套" id="set_name"><br/>
+        <span class="label">套装描述:</span>
+        <input type="text" name="set_description" placeholder="可选，所有部件共用"><br/>
+        <span class="label">职业限制:</span>
+        <select name="set_class_required" title="职业限制">
+            {% for c in class_choices %}
+            <option value="{{ c if c else '' }}">{% if c %}{{ c }}{% else %}全职业{% endif %}</option>
+            {% endfor %}
+        </select><br/>
+        <span class="label">是否神器:</span>
+        <input type="checkbox" name="set_is_artifact" value="1"><br/>
+        <span class="label">是否绑定:</span>
+        <input type="checkbox" name="set_is_bound" value="1"><br/>
+        <span class="label">基础等级:</span>
+        <input type="number" name="set_base_level" value="1" min="1" id="base_level"><br/>
+        <span class="label">基础价格:</span>
+        <input type="number" name="set_base_price" value="0" min="0"><br/>
+
+        <div class="section">目标文件</div>
+        <div class="file-mode">
+            <label><input type="radio" name="file_mode" value="existing" checked onclick="toggleFileMode()"> 写入已有文件</label><br/>
+            <label><input type="radio" name="file_mode" value="new" onclick="toggleFileMode()"> 新建文件</label>
+        </div>
+        <div id="existing_file">
+            <span class="label">选择文件:</span>
+            <select name="target_file" title="选择目标文件">
+                {% for f in set_files %}
+                <option value="{{ f }}">{{ f }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="new_file" style="display:none">
+            <span class="label">文件名:</span>
+            <input type="text" name="new_filename" placeholder="如: baopi_set"><br/>
+            <span class="hint">只能用小写英文、数字、下划线，以字母开头，自动补.json后缀<br/>
+            现有风格: chulong_set / baopi_set / leiting_set / artifact_weapons / craft_accessories</span>
+        </div>
+
+        <div class="section">各部位装备 (勾选启用)</div>
+        {% for slot in slot_choices %}
+        <div class="slot-section" id="slot_{{ slot }}_section">
+            <input type="checkbox" name="slot_{{ slot }}_enabled" value="1" onclick="toggleSlot('{{ slot }}')" checked>
+            <span class="slot-title">{{ slot_names.get(slot, slot) }} ({{ slot }})</span><br/>
+
+            <div id="slot_{{ slot }}_fields">
+                <span class="label">名称:</span>
+                <input type="text" name="slot_{{ slot }}_name" placeholder="{{ slot_names.get(slot, slot) }}名称"><br/>
+                <span class="label">等级偏移:</span>
+                <input type="number" name="slot_{{ slot }}_level_offset" value="0" min="-10" max="10" style="width:60px">
+                <span class="hint">实际等级=基础等级+偏移</span><br/>
+                <span class="label">单独价格:</span>
+                <input type="number" name="slot_{{ slot }}_price" value="0" min="0" style="width:80px">
+                <span class="hint">0=使用基础价格</span><br/>
+
+                <div class="stat-grid">
+                    {% for sk in stat_keys %}
+                    <label>{{ stat_names.get(sk, sk) }}:</label>
+                    <input type="number" step="any" name="slot_{{ slot }}_base_{{ sk }}" placeholder="基础">
+                    {% endfor %}
+                </div>
+                <span class="hint">基础属性(至少填一个)</span><br/>
+
+                <div class="stat-grid">
+                    {% for sk in stat_keys %}
+                    <label>{{ stat_names.get(sk, sk) }}:</label>
+                    <input type="number" step="any" name="slot_{{ slot }}_max_{{ sk }}" placeholder="最大额外">
+                    {% endfor %}
+                </div>
+                <span class="hint">最大额外属性(5星满值)</span>
+            </div>
+        </div>
+        {% endfor %}
+
+        <br/>
+        <button type="submit" class="btn">确认添加套装</button>
+        <a href="{{ url_for('workbench.equip_design') }}">取消</a>
+    </form>
+</div>
+
+<script>
+function toggleSlot(slot) {
+    var cb = document.querySelector('input[name="slot_' + slot + '_enabled"]');
+    var fields = document.getElementById('slot_' + slot + '_fields');
+    if (cb.checked) {
+        fields.classList.remove('disabled');
+    } else {
+        fields.classList.add('disabled');
+    }
+}
+function toggleFileMode() {
+    var existing = document.querySelector('input[name="file_mode"][value="existing"]').checked;
+    document.getElementById('existing_file').style.display = existing ? '' : 'none';
+    document.getElementById('new_file').style.display = existing ? 'none' : '';
+}
+// Initialize all slots
+document.querySelectorAll('input[name$="_enabled"]').forEach(function(cb) {
+    var slot = cb.name.replace('slot_', '').replace('_enabled', '');
+    toggleSlot(slot);
+});
+</script>
+</body>
+</html>

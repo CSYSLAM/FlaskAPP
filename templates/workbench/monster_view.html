@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>怪物详情</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .elite { color: #c62828; font-weight: bold; }
+        .divine { color: #ff6600; font-weight: bold; }
+        .npc { color: #2e7d32; font-weight: bold; }
+        .filtered { color: #c62828; text-decoration: line-through; }
+        .label { color: #666; }
+        .value { font-weight: bold; }
+        .stat-row { padding: 1px 0 1px 12px; }
+        .btn { display: inline-block; padding: 4px 10px; margin: 2px; border: 1px solid #136ec2; border-radius: 3px; color: #136ec2; text-decoration: none; font-size: 14px; }
+        .btn:hover { background: #136ec2; color: #fff; }
+        .btn-danger { border-color: #c62828; color: #c62828; }
+        .btn-danger:hover { background: #c62828; color: #fff; }
+        .btn-success { border-color: #2e7d32; color: #2e7d32; }
+        .btn-success:hover { background: #2e7d32; color: #fff; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .explain { color: #888; font-size: 13px; padding: 2px 12px; }
+        .warn { color: #c62828; font-size: 13px; padding: 2px 12px; border-left: 3px solid #c62828; margin: 4px 0; background: #fff8f8; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>怪物详情</h3>
+    <a href="{{ url_for('workbench.monster_design') }}">返回列表</a><br/><br/>
+
+    <div class="section">基本信息</div>
+    怪物ID: <span class="value">{{ monster_id }}</span><br/>
+    名称: <span class="value">{{ monster.name }}</span><br/>
+    {% if monster.description %}描述: {{ monster.description }}<br/>{% endif %}
+    等级: <span class="value">{{ monster.level }}</span><br/>
+    精英: {% if monster.is_elite %}<span class="elite">是</span>{% else %}否{% endif %}<br/>
+    神兽: {% if monster.is_divine_beast %}<span class="divine">是</span>{% else %}否{% endif %}<br/>
+    可攻击: {% if monster.killable %}是{% else %}<span class="npc">否(NPC)</span>{% endif %}<br/>
+    不死: {% if monster.immortal %}是{% else %}否{% endif %}<br/>
+    副本: {% if monster.is_copy or monster.copy_only %}是{% else %}否{% endif %}<br/>
+    {% if monster.copy_dungeon_id %}副本ID: {{ monster.copy_dungeon_id }}<br/>{% endif %}
+    {% if monster.copy_stage %}副本阶段: {{ monster.copy_stage }}<br/>{% endif %}
+    {% if monster.copy_final_boss %}<span class="elite">副本BOSS</span><br/>{% endif %}
+    {% if monster.copy_role %}NPC角色: {{ monster.copy_role }}<br/>{% endif %}
+    {% if monster.get('respawn_time') %}自定义复活时间: {{ monster.respawn_time }}秒<br/>{% endif %}
+    {% if respawn_desc %}实际复活时间: <span class="value">{{ respawn_desc }}</span><br/>{% endif %}
+    来源文件: <span class="value">{{ source_file or '未知' }}</span><br/>
+
+    <div class="section">基础属性 (base_stats)</div>
+    {% for sk, sv in monster.base_stats.items() %}
+    <div class="stat-row">
+        {{ stat_names.get(sk, sk) }}: <span class="value">{% if sk in ('crit_rate', 'dodge_rate') %}{{ "%.1f%%"|format(sv * 100) }}{% else %}{{ sv }}{% endif %}</span>
+    </div>
+    {% endfor %}
+
+    <div class="section">技能 (skills)</div>
+    {% if monster.skills %}
+    {% for skill in monster.skills %}{{ skill }}{% if not loop.last %}, {% endif %}{% endfor %}
+    {% else %}无技能{% endif %}<br/>
+
+    <div class="section">装备掉落 (equipment_drop)</div>
+    掉落率: <span class="value">{{ "%.1f%%"|format(monster.drops.equipment_drop.drop_rate * 100) }}</span>
+    <span class="explain">— 每次击杀有此概率触发一次装备掉落判定</span><br/>
+    {% if monster.drops.equipment_drop.templates %}
+    掉落池: {{ monster.drops.equipment_drop.templates|join(', ') }}<br/>
+    {% endif %}
+    {% if monster.drops.equipment_drop.rarity_weights %}
+    数据中的品质权重:
+    {% for rk, rv in monster.drops.equipment_drop.rarity_weights.items() %}
+    {{ rarity_weight_names.get(rk, rk) }}={{ rv }}{% if not loop.last %}, {% endif %}
+    {% endfor %}<br/>
+    {% endif %}
+    {% if sanitized_rw %}
+    实际生效品质权重:
+    {% for rk, rv in sanitized_rw.items() %}
+    {{ rarity_weight_names.get(rk, rk) }}={{ rv }}{% if not loop.last %}, {% endif %}
+    {% endfor %}<br/>
+    {% endif %}
+    {% if filtered_rarities %}
+    <div class="warn">⚠ 以下品质权重在数据中存在但会被系统过滤掉（非神兽不能出神器）:
+    {% for rk in filtered_rarities %}{{ rarity_weight_names.get(rk, rk) }}{% if not loop.last %}, {% endif %}{% endfor %}
+    </div>
+    {% endif %}
+    {% if monster.drops.equipment_drop.artifact_template %}
+    神器模板: <span class="divine">{{ monster.drops.equipment_drop.artifact_template }}</span>
+    (掉率 {{ "%.0f%%"|format(monster.drops.equipment_drop.artifact_drop_rate * 100) }})<br/>
+    {% endif %}
+
+    <div class="section">物品掉落 (items)</div>
+    {% if monster.drops['items'] %}
+    {% for item_id, chance in monster.drops['items'].items() %}
+    <div class="stat-row">{{ item_id }}: {{ "%.0f%%"|format(chance * 100) if chance <= 1 else chance }}%</div>
+    {% endfor %}
+    <div class="explain">物品掉落独立于装备掉落，各自按概率判定</div>
+    {% else %}无物品掉落<br/>{% endif %}
+
+    <div class="section">银两/经验</div>
+    银两: {{ monster.drops.money.min }}~{{ monster.drops.money.max }}<br/>
+    经验: <span class="value">{{ monster.drops.experience }}</span><br/>
+
+    {% if monster.guaranteed_items %}
+    <div class="section">必掉物品 (guaranteed_items)</div>
+    {% for item_id in monster.guaranteed_items %}
+    <div class="stat-row">{{ item_id }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="section">操作</div>
+    <a href="{{ url_for('workbench.monster_edit', monster_id=monster_id) }}" class="btn">编辑</a>
+    <a href="{{ url_for('workbench.monster_delete', monster_id=monster_id) }}" class="btn btn-danger">删除</a>
+    {% if monster.killable %}
+    <a href="{{ url_for('workbench.monster_test', monster_id=monster_id) }}" class="btn btn-success">测试战斗/掉落</a>
+    {% endif %}
+</div>
+</body>
+</html>

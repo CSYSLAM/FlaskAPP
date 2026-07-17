@@ -67,6 +67,15 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
+    {% for stat in ['exp_rate', 'experience', 'lt_exp_rate'] %}
+        {% set descriptions = player.get_temp_effects_description(stat) %}
+        {% if descriptions %}
+            {% for desc in descriptions %}
+                {% if has_effects.append(1) %}{% endif %}
+    <span class="buff-effect">{{ desc }}</span><br/>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
     {% if not has_effects %}无<br/>{% endif %}
     ----------------<br/>
 

@@ -8,7 +8,9 @@
         "south": "chaisang_center.驿站"
       },
       "npcs": [
-        "npc_chaisang_center_任务使者"
+        "npc_chaisang_center_任务使者",
+        "npc_chaisang_center_李典副本",
+        "npc_chaisang_center_陆逊副本"
       ]
     },
     "太守府": {

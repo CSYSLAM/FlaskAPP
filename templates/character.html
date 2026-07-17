@@ -17,6 +17,18 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'levelup' %}
+    <div style="color:#2e7d32;padding:4px 8px;margin:4px 0;border:1px solid #2e7d32;border-radius:3px;background:#e8f5e9">{{ message|safe }}</div>
+    {% else %}
+    <div style="color:#2e7d32;padding:4px 8px;margin:4px 0;border:1px solid #2e7d32;border-radius:3px;background:#e8f5e9">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <a href="{{ url_for('player.equipment_list') }}">装备</a>|<a href="{{ url_for('player.skill_view') }}">技能</a>|<a href="{{ url_for('player.titles') }}">称号</a>|<a href="{{ url_for('player.achievements') }}">成就</a>|<a href="{{ url_for('player.marriage') }}">婚姻</a><br/>
 
     <img src="{{ url_for('static', filename=player.get_avatar_path()) }}" border="0" height="53" width="45"/><br/>
@@ -33,23 +45,19 @@
     军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>
     荣誉:{{ player.honor }}<br/>
     等级:{{ player.level }}<br/>
-    经验:{{ player.experience }}/{{ player.exp_to_next_level }}<br/>
+    经验:{{ player.experience }}/{{ player.exp_to_next_level }}{% if can_level_up %} <a href="{{ url_for('player.level_up') }}">升级</a>{% endif %}<br/>
     生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
     魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
     物攻:{{ player.effective_attack }}{% if player.rank_attack > 0 %}<span class="buff-effect">(+{{ player.rank_attack }}军衔)</span>{% endif %}<br/>
     防御:{{ player.effective_defense }}<br/>
     暴击率:{{ "%.1f"|format(player.effective_crit_rate * 100) }}% 闪避率:{{ "%.1f"|format(player.effective_dodge_rate * 100) }}%<br/>
-    <a href="{{ url_for('player.character_status') }}">状态</a>:无<br/>
+    <a href="{{ url_for('player.character_status') }}">状态</a>:{% if player.status_effect %}{{ player.status_effect }}{% else %}无{% endif %}<br/>
     队伍:{% if party_info %}<a href="{{ url_for('party.index') }}">{{ party_info.name }}({{ party_info.count }}人)</a>{% else %}无{% endif %}<br/>
     军团:{% if legion_info %}<a href="{{ url_for('legion.index') }}">{{ legion_info.name }}({{ legion_info.country }})</a>{% else %}无{% endif %}<br/>
     红颜:{{ hongyan_count }}知己:{{ zhiji_count }}<br/>
     缘分值:{{ total_fate }}<br/>
     {% if player.signature %}{{ player.signature }}{% else %}这个家伙很懒，没留下任何签名。{% endif %}<br/>
     <a href="{{ url_for('player.edit_signature') }}">修改</a><br/>
-
-    {% if can_level_up %}
-    <a href="{{ url_for('player.level_up') }}">升级</a><br/>
-    {% endif %}
 
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 

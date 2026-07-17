@@ -1,0 +1,137 @@
+{
+  "qinglong_helmet_59": {
+    "name": "青龙重盔",
+    "slot": "helmet",
+    "set_name": "青龙套",
+    "level_required": 59,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 520
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 520,
+      "max_health": 2080,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16000,
+    "description": "战士专属，以青龙之鳞锻造的重盔，青龙护首，威严四方",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_jingjinkuang": 20
+    }
+  },
+  "qinglong_armor_58": {
+    "name": "青龙重甲",
+    "slot": "armor",
+    "set_name": "青龙套",
+    "level_required": 58,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 520
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 520,
+      "max_health": 2080,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18500,
+    "description": "战士专属，以青龙之鳞铸造的重甲，龙鳞覆体，刀枪不入",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_nirong": 20
+    }
+  },
+  "qinglong_pants_57": {
+    "name": "青龙护腿",
+    "slot": "pants",
+    "set_name": "青龙套",
+    "level_required": 57,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 520
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 520,
+      "max_health": 2080,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16500,
+    "description": "战士专属，以青龙之鳞铸造的护腿，龙鳞护腿，坚如磐石",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_nirong": 20,
+      "craft_zitanmu": 20
+    }
+  },
+  "qinglong_gloves_56": {
+    "name": "青龙护手",
+    "slot": "gloves",
+    "set_name": "青龙套",
+    "level_required": 56,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 520
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 520,
+      "max_health": 0,
+      "max_mana": 1300,
+      "crit_rate": 0.029,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "战士专属，以青龙之爪锻造的护手，龙力无穷，握物即碎",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_zitanmu": 20,
+      "craft_jingjinkuang": 20
+    }
+  },
+  "qinglong_shoes_55": {
+    "name": "青龙重靴",
+    "slot": "shoes",
+    "set_name": "青龙套",
+    "level_required": 55,
+    "class_required": "战士",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 520
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 520,
+      "max_health": 0,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.028
+    },
+    "base_price": 13500,
+    "description": "战士专属，以青龙之骨铸造的重靴，踏地龙吟，步步生威",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_jingjinkuang": 20,
+      "craft_zitanmu": 20
+    }
+  }
+}

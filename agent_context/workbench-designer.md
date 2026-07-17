@@ -49,4 +49,16 @@ UPDATE players SET is_designer = 1 WHERE player_uid = '目标UID';
 ## _find_player() 查询逻辑
 - 10位字母数字组合 → 按 player_uid 查找
 - 纯数字 → 按数据库 id 查找
+
+## 装备属性规则（2026-07-01 重做）
+装备/武器模板的 `max_extra_stats` 必须包含全部 6 个属性（attack/defense/max_health/max_mana/crit_rate/dodge_rate，缺失补 `0.0`，不改已有非零值）。值为 `0` 的属性在生成附加属性时被跳过：不参与随机星级生成、不占用品质条数名额、不计入总星级、不在装备详情显示。
+
+**基础属性与品质、星级的关系**：模板 `base_stats` 定义的是该装备最高品质（史诗）属性值。基础属性**只按品质系数衰减**，与星级无关（不管几星基础属性一致）：
+- 普通 80% / 精良 90% / 卓越 95% / 史诗 100% / 神器 100%（见 `DataService.RARITY_BASE_RATIO`）
+
+**附加属性星级系数**：每条附加属性独立随机 1-5 星（在目标星级 ±1 波动），按该星级查系数区间随机；`max_extra_stats` 即 5 星上限：
+- 5星 100-110% / 4星 100-106% / 3星 100-102% / 2星 98-102% / 1星 96-100%（见 `DataService.EXTRA_STAT_STAR_RANGES`）
+- 装备总星级 = floor(各附加属性星级之和 / 条数)，由附加属性反推；调用方传入的 `stars` 仅作为各条附加属性星级波动的中心。
+
+实现位于 `services/data_service.py:create_equipment_instance()` / `_generate_extra_stats()`，工作台预览 `blueprints/workbench.py:_simulate_generate()` 与之保持一致，旧 `models/equipment.py:Equipment` 同步。详见 `.claude/skills/equipment_design.md`「基础属性与品质」「附加属性数值计算」。
 - 其他 → 按 username 查找

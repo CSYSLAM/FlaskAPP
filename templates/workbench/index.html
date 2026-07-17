@@ -17,10 +17,19 @@
     <a href="{{ url_for('game.scene') }}">返回场景</a><br/><br/>
 
     功能列表：<br/>
-    1. <a href="{{ url_for('workbench.edit_player') }}">修改玩家属性</a> — 查询玩家并修改各项属性值<br/>
-    2. <a href="{{ url_for('workbench.view_player') }}">查看玩家详情</a> — 查看属性公式拆解明细<br/>
-    3. <a href="{{ url_for('workbench.announce') }}">发送系统公告</a> — 发送全服系统公告<br/>
-    4. <a href="{{ url_for('workbench.set_designer') }}">设置设计师</a> — 一键设置/取消设计师权限<br/>
+    1. <a href="{{ url_for('workbench.online_players') }}">在线玩家</a> — 查看当前在线玩家，点击进入玩家详情<br/>
+    2. <a href="{{ url_for('workbench.edit_player') }}">修改玩家属性</a> — 查询玩家并修改各项属性值<br/>
+    3. <a href="{{ url_for('workbench.view_player') }}">查看玩家详情</a> — 查看属性公式拆解明细<br/>
+    4. <a href="{{ url_for('workbench.announce') }}">发送系统公告</a> — 发送全服系统公告<br/>
+    5. <a href="{{ url_for('workbench.set_designer') }}">设置设计师</a> — 一键设置/取消设计师权限<br/>
+    6. <a href="{{ url_for('workbench.equip_design') }}">装备设计系统</a> — 查看/增删改装备模板与随机生成测试<br/>
+    7. <a href="{{ url_for('workbench.monster_design') }}">怪物设计系统</a> — 查看/增删改怪物数据与战斗/掉落测试<br/>
+    8. <a href="{{ url_for('workbench.item_design') }}">物品设计系统</a> — 查看/增删改物品数据与使用效果测试<br/>
+    9. <a href="{{ url_for('workbench.damage_test') }}">伤害测试</a> — 自定义双方职业/属性/技能等级，模拟伤害（纯公式不落库）<br/>
+    10. <a href="{{ url_for('workbench.battle_test') }}">战斗测试</a> — 自定义人物属性 vs 自定义怪物属性，逐回合模拟战斗至胜负（纯内存不落库）<br/>
+    11. <a href="{{ url_for('workbench.lieutenant_design') }}">副将设计系统</a> — 查看增删改所有副将属性 + 技能定义(倍率/魔法消耗)持久化<br/>
+    12. <a href="{{ url_for('workbench.lieutenant_damage_test') }}">副将伤害测试</a> — 自定义副将配置，单次伤害拆解（纯公式不落库）<br/>
+    13. <a href="{{ url_for('workbench.lieutenant_battle_test') }}">副将战斗测试</a> — 副将为主人出战 vs 自定义怪物，逐回合模拟（主动/触发/挡刀/耗蓝）<br/>
 </div>
 </body>
 </html>

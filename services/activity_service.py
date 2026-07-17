@@ -102,18 +102,7 @@ class ActivityService:
         {'name': '紫檀木', 'item_id': 'zitan_mu', 'weight': 300},                # 0.3%
         {'name': '呢绒', 'item_id': 'craft_nirong', 'weight': 300},              # 0.3%
         {'name': '精金矿', 'item_id': 'jingjin_kuang', 'weight': 300},           # 0.3%
-        {'name': '技能残页·入门·吸收', 'item_id': 'skill_page_absorb_0', 'weight': 500},
-        {'name': '技能残页·入门·护佑', 'item_id': 'skill_page_protect_0', 'weight': 500},
-        {'name': '技能残页·入门·嗜血', 'item_id': 'skill_page_blood_0', 'weight': 500},
-        {'name': '技能残页·入门·狂雷', 'item_id': 'skill_page_thunder_0', 'weight': 500},
-        {'name': '技能残页·入门·火神', 'item_id': 'skill_page_fire_0', 'weight': 500},
-        {'name': '技能残页·入门·冰封', 'item_id': 'skill_page_ice_0', 'weight': 500},
-        {'name': '技能残页·入门·风行', 'item_id': 'skill_page_wind_0', 'weight': 500},
-        {'name': '技能残页·入门·磐石', 'item_id': 'skill_page_rock_0', 'weight': 500},
-        {'name': '技能残页·入门·驱散', 'item_id': 'skill_page_dispel_0', 'weight': 500},
-        {'name': '技能残页·进阶·吸收', 'item_id': 'skill_page_absorb_1', 'weight': 300},
-        {'name': '技能残页·进阶·护佑', 'item_id': 'skill_page_protect_1', 'weight': 300},
-        {'name': '技能残页·进阶·嗜血', 'item_id': 'skill_page_blood_1', 'weight': 300},
+        {'name': '技能残页', 'item_id': 'skill_page', 'weight': 5400},
     ]
 
     # Card flip prize pool - 72 items matching reference server
@@ -168,27 +157,7 @@ class ActivityService:
         {'name': '紫檀木包', 'item_id': 'zitan_mu_pack', 'weight': 300},         # 0.3%
         {'name': '呢绒包', 'item_id': 'nirong_pack', 'weight': 300},             # 0.3%
         {'name': '精金矿包', 'item_id': 'jingjin_kuang_pack', 'weight': 300},    # 0.3%
-        {'name': '技能残页·入门·吸收', 'item_id': 'skill_page_absorb_0', 'weight': 500},
-        {'name': '技能残页·入门·护佑', 'item_id': 'skill_page_protect_0', 'weight': 500},
-        {'name': '技能残页·入门·嗜血', 'item_id': 'skill_page_blood_0', 'weight': 500},
-        {'name': '技能残页·入门·狂雷', 'item_id': 'skill_page_thunder_0', 'weight': 500},
-        {'name': '技能残页·入门·火神', 'item_id': 'skill_page_fire_0', 'weight': 500},
-        {'name': '技能残页·入门·冰封', 'item_id': 'skill_page_ice_0', 'weight': 500},
-        {'name': '技能残页·入门·风行', 'item_id': 'skill_page_wind_0', 'weight': 500},
-        {'name': '技能残页·入门·磐石', 'item_id': 'skill_page_rock_0', 'weight': 500},
-        {'name': '技能残页·入门·驱散', 'item_id': 'skill_page_dispel_0', 'weight': 500},
-        {'name': '技能残页·进阶·吸收', 'item_id': 'skill_page_absorb_1', 'weight': 500},
-        {'name': '技能残页·进阶·护佑', 'item_id': 'skill_page_protect_1', 'weight': 500},
-        {'name': '技能残页·进阶·嗜血', 'item_id': 'skill_page_blood_1', 'weight': 500},
-        {'name': '技能残页·精通·吸收', 'item_id': 'skill_page_absorb_2', 'weight': 200},
-        {'name': '技能残页·精通·护佑', 'item_id': 'skill_page_protect_2', 'weight': 200},
-        {'name': '技能残页·精通·嗜血', 'item_id': 'skill_page_blood_2', 'weight': 100},
-        {'name': '技能残页·精通·狂雷', 'item_id': 'skill_page_thunder_2', 'weight': 100},
-        {'name': '技能残页·精通·火神', 'item_id': 'skill_page_fire_2', 'weight': 100},
-        {'name': '技能残页·精通·冰封', 'item_id': 'skill_page_ice_2', 'weight': 100},
-        {'name': '技能残页·精通·风行', 'item_id': 'skill_page_wind_2', 'weight': 100},
-        {'name': '技能残页·精通·磐石', 'item_id': 'skill_page_rock_2', 'weight': 100},
-        {'name': '技能残页·精通·驱散', 'item_id': 'skill_page_dispel_2', 'weight': 100},
+        {'name': '技能残页', 'item_id': 'skill_page', 'weight': 7100},
     ]
 
     # Quiz questions pool

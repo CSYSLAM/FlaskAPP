@@ -15,12 +15,18 @@ def enter(dungeon_id):
     definition = CopyDungeonService.get_definition(dungeon_id)
     success, msg = CopyDungeonService.enter_dungeon(player, dungeon_id)
     if success:
-        entry_item_id = definition.get('entry_item_id') if definition else None
-        entry_item = DataService.get_item(entry_item_id) if entry_item_id else None
-        entry_item_name = entry_item.get('name', entry_item_id) if entry_item else (definition.get('name', dungeon_id) if definition else dungeon_id)
+        # 显示进入副本后的剧情，标注本次费用（免费/1神游果/2神游果）
+        dg_level = CopyDungeonService._dungeon_level(definition) if definition else 0
+        daily = CopyDungeonService._get_daily_state(player)
+        free = not daily.get('free_used', True)
+        if free:
+            cost_title = '免费进入'
+        else:
+            needed = 2 if dg_level >= 40 else 1
+            cost_title = f'消耗{needed}个神游果'
         return render_template(
             'story.html',
-            story_title=f"{entry_item_name}-{definition.get('entry_item_count', 1) if definition else 1}",
+            story_title=cost_title if definition else dungeon_id,
             story_lines=definition.get('story_intro', []) if definition else [],
             continue_url=url_for('game.scene'),
             player=player,
@@ -48,7 +54,13 @@ def action(npc_id):
             stage_name = stage.get('name', '任务') if stage else '任务'
             story_lines = []
             if stage and stage.get('story'):
-                story_lines.append(f"灵帝: {stage.get('story')}")
+                # 用实际的 quest_giver NPC 名称代替硬编码的「灵帝」
+                npc_id = stage.get('quest_giver_npc_id')
+                npc_name = 'NPC'
+                if npc_id:
+                    npc_data = DataService.get_monster(npc_id) or {}
+                    npc_name = npc_data.get('name', 'NPC')
+                story_lines.append(f"{npc_name}: {stage.get('story')}")
             if stage and stage.get('objective'):
                 story_lines.append(f"目标: {stage.get('objective')}")
             return render_template(
@@ -180,4 +192,50 @@ def jump(npc_id, target):
     if not success:
         flash(msg)
         return redirect(url_for('game.view_npc', monster_id=npc_id))
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/leave_scene/<dungeon_id>', methods=['POST'])
+@login_required
+def leave_scene(dungeon_id):
+    """从场景页直接离开副本：清空副本进度并回到入口NPC处。"""
+    player = current_user
+    if getattr(player, 'in_battle', False):
+        flash('战斗中无法离开')
+        return redirect(url_for('game.scene'))
+    success, msg = CopyDungeonService.leave_dungeon(player, dungeon_id)
+    flash(msg)
+    db.session.commit()
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/leave_scene/<dungeon_id>/link')
+@login_required
+def leave_scene_link(dungeon_id):
+    """场景页『显示地图』处的离开副本链接入口（GET，非按钮）。"""
+    player = current_user
+    if getattr(player, 'in_battle', False):
+        flash('战斗中无法离开')
+        return redirect(url_for('game.scene'))
+    success, msg = CopyDungeonService.leave_dungeon(player, dungeon_id)
+    flash(msg)
+    db.session.commit()
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/quest_jump_entry/<dungeon_id>')
+@login_required
+def quest_jump_entry(dungeon_id):
+    """副本任务详情页『传送』：传送到当前阶段任务NPC处。"""
+    success, msg = CopyDungeonService.jump_to_entry(current_user, dungeon_id)
+    flash(msg)
+    return redirect(url_for('game.scene'))
+
+
+@dungeon_bp.route('/quest_jump_stage/<dungeon_id>')
+@login_required
+def quest_jump_stage(dungeon_id):
+    """副本任务详情页『快速前往目的地』：传送到当前阶段目标场景。"""
+    success, msg = CopyDungeonService.jump_to_current_stage(current_user, dungeon_id)
+    flash(msg)
     return redirect(url_for('game.scene'))

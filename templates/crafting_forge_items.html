@@ -29,12 +29,21 @@
     {% endif %}
     {% endfor %}
     <br/>
+    {% elif page_type == 'set' and class_tabs %}
+    {% for cls in class_tabs %}
+    {% if cls == active_class %}
+    {{ cls }}
+    {% else %}
+    <a href="{{ url_for('crafting.epic_forge_set', set_id=set_id, class_name=cls) }}">{{ cls }}</a>
+    {% endif %}
+    {% endfor %}
+    <br/>
     {% endif %}
     ----------------
     {% for item in items %}
     <div class="forge-row">
         <div class="tooltip"><span class="name">{{ item.name }}({{ item.level_required }}级{% if item.class_required %}{{ item.class_required[:1] }}{% else %}全{% endif %})</span>
-            <span class="tooltiptext">打造需要: 银两x{{ item.silver }}{% for m in item.materials %}、{{ m.name }}x{{ m.quantity }}{% endfor %}</span>
+            <span class="tooltiptext">打造需要:{% if item.blueprint %}{{ item.blueprint.name }}x{{ item.blueprint.quantity }}、{% endif %}银两x{{ item.silver }}{% for m in item.materials %}、{{ m.name }}x{{ m.quantity }}{% endfor %}</span>
         </div>|
         <form method="POST" action="{{ url_for('crafting.forge_equipment', template_id=item.template_id) }}" style="display:inline;">
             <a href="#" class="forge-link" onclick="this.parentNode.submit();return false;">打造</a>

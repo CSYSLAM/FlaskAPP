@@ -14,7 +14,7 @@
 {% if active_list %}
 {% for q in active_list %}
 <a href="{{ url_for('quest.quest_detail', quest_id=q.id) }}">{{ q.name }}</a>
-{% if q.is_ready %}[可完成]{% else %}({{ q.progress }}/{{ q.target }}){% endif %}<br/>
+{% if q.is_ready %}[可完成]{% else %}({{ q.progress }}/{{ q.target }}){% endif %}{% if q.level_required %} ·Lv.{{ q.level_required }}{% endif %}<br/>
 {% endfor %}
 {% else %}
 暂无进行中的任务<br/>

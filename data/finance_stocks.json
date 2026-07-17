@@ -1,0 +1,85 @@
+{
+  "stocks": [
+    {
+      "stock_id": "beiping_inn",
+      "name": "北平客栈",
+      "city": "北平",
+      "npc_keyword": "王老板",
+      "area_id": "beiping_center",
+      "base_price": 100.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "beiping_bank",
+      "name": "北平钱庄",
+      "city": "北平",
+      "npc_keyword": "金掌柜",
+      "area_id": "beiping_center",
+      "base_price": 120.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "xiapi_blacksmith",
+      "name": "下邳铁匠铺",
+      "city": "下邳",
+      "npc_keyword": "铁匠",
+      "area_id": "xiapi_center",
+      "base_price": 80.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "hanzhong_inn",
+      "name": "汉中客栈",
+      "city": "汉中",
+      "npc_keyword": "王老板",
+      "area_id": "hanzhong_center",
+      "base_price": 90.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "chaisang_bank",
+      "name": "柴桑钱庄",
+      "city": "柴桑",
+      "npc_keyword": "金掌柜",
+      "area_id": "chaisang_center",
+      "base_price": 110.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "luoyang_bank",
+      "name": "洛阳钱庄",
+      "city": "洛阳",
+      "npc_keyword": "金掌柜",
+      "area_id": "luoyang_center",
+      "base_price": 150.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "jianye_inn",
+      "name": "建邺客栈",
+      "city": "建邺",
+      "npc_keyword": "王老板",
+      "area_id": "jianye_center",
+      "base_price": 95.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "chengdu_blacksmith",
+      "name": "成都铁匠铺",
+      "city": "成都",
+      "npc_keyword": "铁匠",
+      "area_id": "chengdu_center",
+      "base_price": 85.0,
+      "total_shares": 5000
+    },
+    {
+      "stock_id": "xuchang_bank",
+      "name": "许昌钱庄",
+      "city": "许昌",
+      "npc_keyword": "金掌柜",
+      "area_id": "xuchang_center",
+      "base_price": 130.0,
+      "total_shares": 5000
+    }
+  ]
+}

@@ -1,97 +1,112 @@
 {
   "mabu_helmet_5": {
     "name": "麻布头巾",
-    "description": "粗麻编织的简易头巾，虽不起眼却能提供基本防护",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "麻布套",
     "level_required": 5,
     "class_required": null,
-    "base_price": 800,
     "is_artifact": false,
-    "set_name": "麻布套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 8
+      "defense": 50
     },
     "max_extra_stats": {
-      "defense": 5,
-      "max_health": 20,
-      "dodge_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 50,
+      "max_health": 200,
+      "max_mana": 200,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 800,
+    "description": "粗麻编织的简易头巾，虽不起眼却能提供基本防护"
   },
   "mabu_armor_5": {
     "name": "麻布上衣",
-    "description": "多层麻布缝制而成的轻便上衣，适合初学者穿着",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "麻布套",
     "level_required": 5,
     "class_required": null,
-    "base_price": 1000,
     "is_artifact": false,
-    "set_name": "麻布套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 12
+      "defense": 50
     },
     "max_extra_stats": {
-      "defense": 7,
-      "max_health": 30,
-      "crit_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 50,
+      "max_health": 200,
+      "max_mana": 200,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 1000,
+    "description": "多层麻布缝制而成的轻便上衣，适合初学者穿着"
   },
   "mabu_gloves_5": {
     "name": "麻布手套",
-    "description": "以麻线编织的护手，保护双手免受磨损",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "麻布套",
     "level_required": 5,
     "class_required": null,
-    "base_price": 700,
     "is_artifact": false,
-    "set_name": "麻布套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 6
+      "defense": 50
     },
     "max_extra_stats": {
-      "attack": 4,
-      "crit_rate": 0.03,
-      "dodge_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 50,
+      "max_health": 0,
+      "max_mana": 20,
+      "crit_rate": 0.0033,
+      "dodge_rate": 0.0
+    },
+    "base_price": 700,
+    "description": "以麻线编织的护手，保护双手免受磨损"
   },
   "mabu_pants_5": {
     "name": "麻布裤子",
-    "description": "粗麻编织的耐磨裤子，行动自如",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "麻布套",
     "level_required": 5,
     "class_required": null,
-    "base_price": 900,
     "is_artifact": false,
-    "set_name": "麻布套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 10
+      "defense": 50
     },
     "max_extra_stats": {
-      "defense": 5,
-      "max_health": 25,
-      "dodge_rate": 0.02
-    }
+      "attack": 0,
+      "defense": 50,
+      "max_health": 200,
+      "max_mana": 200,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 900,
+    "description": "粗麻编织的耐磨裤子，行动自如"
   },
   "mabu_shoes_5": {
     "name": "麻布鞋",
-    "description": "麻布包裹的软底布鞋，行走轻便",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "麻布套",
     "level_required": 5,
     "class_required": null,
-    "base_price": 750,
     "is_artifact": false,
-    "set_name": "麻布套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 6
+      "defense": 50
     },
     "max_extra_stats": {
-      "dodge_rate": 0.03,
-      "defense": 4,
-      "max_health": 15
-    }
+      "attack": 0,
+      "defense": 50,
+      "max_health": 0,
+      "max_mana": 200,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0025
+    },
+    "base_price": 750,
+    "description": "麻布包裹的软底布鞋，行走轻便"
   }
 }

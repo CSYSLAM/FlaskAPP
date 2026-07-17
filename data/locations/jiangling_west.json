@@ -6,21 +6,30 @@
       "exits": {
         "east": "jiangling_center.西城楼",
         "west": "jiangling_west.西郊"
-      }
+      },
+      "monsters": [
+        "monster_jiangling_west_乌篷舵手"
+      ]
     },
     "西郊": {
       "name": "西郊",
       "exits": {
         "east": "jiangling_west.西门",
         "west": "jiangling_west.龙子湖"
-      }
+      },
+      "monsters": [
+        "monster_jiangling_west_浔水蛟鳄"
+      ]
     },
     "龙子湖": {
       "name": "龙子湖",
       "exits": {
         "east": "jiangling_west.西郊",
         "west": "jiangling_west.蜀前营"
-      }
+      },
+      "monsters": [
+        "monster_jiangling_west_沉沙鳄鲧"
+      ]
     },
     "蜀前营": {
       "name": "蜀前营",

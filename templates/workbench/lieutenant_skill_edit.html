@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>副将技能定义</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        .skill-block { border: 1px solid #ddd; padding: 8px; margin: 6px 0; }
+        .meta { color: #888; font-size: 14px; }
+        label { display: inline-block; min-width: 100px; }
+        input[type=text] { width: 320px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>副将技能定义管理</h3>
+    <a href="{{ url_for('workbench.lieutenant_design') }}">返回副将设计</a><br/><br/>
+
+    <span class="meta">修改后保存即生效并持久化到 data/lieutenant_skills.json。列表字段用英文逗号分隔(如 12,18,24)。</span><br/><br/>
+
+    <form method="post">
+    {% for sid, sdef in skills.items() %}
+    <div class="skill-block">
+        <b>{{ sdef.name }}</b>({{ sid }}) - {{ '主动' if sdef.type=='active' else '触发' if sdef.type=='triggered' else '被动' }}
+        {% if sdef.class_required %} - {{ {'warrior':'战士','mage':'术士','assassin':'刺客'}.get(sdef.class_required) }}{% endif %}
+        <br/>
+        {% for field, label, is_pct in editable.get(sdef.type, []) %}
+        {% if sdef.get(field) is not none %}
+        <label>{{ label }}</label>
+        {% if sdef[field] is iterable and sdef[field] is not string and sdef[field] is mapping %}{% else %}
+        {% set val = sdef[field]|join(',') if sdef[field] is iterable and sdef[field] is not string else sdef[field] %}
+        <input type="text" name="{{ sid }}_{{ field }}" value="{{ val }}">
+        {% if is_pct %}<span class="meta">(数值,非小数)</span>{% endif %}
+        <br/>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <label>描述</label>
+        <input type="text" name="{{ sid }}_description" value="{{ sdef.description }}"><br/>
+    </div>
+    {% endfor %}
+    <br/>
+    <button type="submit">保存全部</button>
+    </form>
+    <br/>
+    <form method="post" action="{{ url_for('workbench.lieutenant_skill_reset') }}" onsubmit="return confirm('确定恢复所有技能为默认值？')">
+        <button type="submit">恢复默认值</button>
+    </form>
+</div>
+</body>
+</html>

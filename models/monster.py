@@ -11,6 +11,7 @@ class Monster:
     def __init__(self, monster_id, data):
         self.monster_id = monster_id
         self.is_elite = data.get("is_elite", False)
+        self.is_one_time_elite = data.get("is_one_time_elite", False)
         self.is_divine_beast = data.get("is_divine_beast", False)
         self.is_copy = data.get("is_copy", False) or data.get("copy_only", False)
         self.copy_only = data.get("copy_only", False)
@@ -73,14 +74,17 @@ class Monster:
 
     def attack_player(self, player):
         from services.player_service import PlayerService
-        self.last_action = "使用了普通攻击"
+        from services.battle_service import BattleService
+        self.last_action = f"『{self.name}』使用了普通攻击"
         self.last_skill = "普通攻击"
 
         if random.random() >= player.dodge_rate:
             min_damage = self.level * 2 if self.is_elite else self.level
-            damage = max(min_damage, self.attack - player.defense)
+            damage = BattleService._compute_damage(
+                self.attack, PlayerService.get_defense(player),
+                coefficient=1.0, min_damage=min_damage)
             if random.random() <= self.crit_rate:
-                damage *= 2
+                damage = int(damage * 1.5)
                 self.last_damage_dealt = f"{damage}(暴击!)"
             else:
                 self.last_damage_dealt = str(int(damage))

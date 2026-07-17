@@ -8,13 +8,34 @@ from models.villa import Villa
 from models.lieutenant import Lieutenant
 
 
-# Seed definitions for garden
-SEEDS = {
-    'seed_herb': {'name': '草药种子', 'grow_time': 3600, 'harvest': 'herb', 'harvest_name': '草药', 'count': 3},
-    'seed_flower': {'name': '玫瑰花种子', 'grow_time': 7200, 'harvest': 'flower', 'harvest_name': '玫瑰花', 'count': 2},
-    'seed_ginseng': {'name': '人参种子', 'grow_time': 14400, 'harvest': 'ginseng', 'harvest_name': '人参', 'count': 2},
-    'seed_dragon': {'name': '龙血参种子', 'grow_time': 28800, 'harvest': 'dragon_herb', 'harvest_name': '龙血参', 'count': 1},
+# Seed definitions for garden - base seeds with hardcoded config
+_BASE_SEEDS = {
+    'seed_herb': {'name': '草药种子', 'grow_time': 3600, 'harvest': 'herb', 'harvest_name': '草药', 'count': 3, 'ap_cost': 2},
+    'seed_flower': {'name': '玫瑰花种子', 'grow_time': 7200, 'harvest': 'flower', 'harvest_name': '玫瑰花', 'count': 2, 'ap_cost': 2},
+    'seed_ginseng': {'name': '人参种子', 'grow_time': 14400, 'harvest': 'ginseng', 'harvest_name': '人参', 'count': 2, 'ap_cost': 2},
+    'seed_dragon': {'name': '龙血参种子', 'grow_time': 28800, 'harvest': 'dragon_herb', 'harvest_name': '龙血参', 'count': 1, 'ap_cost': 2},
+    # 药品种子
+    'seed_jinchuangyao': {'name': '金疮药种子', 'grow_time': 3600, 'harvest': 'potion_heal_100', 'harvest_name': '金疮药', 'count': 1, 'ap_cost': 2, 'min_level': 1},
+    'seed_jumosan': {'name': '凝魔散种子', 'grow_time': 3600, 'harvest': 'potion_mana_100', 'harvest_name': '聚魔散', 'count': 1, 'ap_cost': 2, 'min_level': 1},
+    'seed_yangshengwan': {'name': '养生丸种子', 'grow_time': 7200, 'harvest': 'potion_heal_200', 'harvest_name': '养生丸', 'count': 1, 'ap_cost': 2, 'min_level': 2},
+    'seed_xingshenshui': {'name': '醒神水种子', 'grow_time': 7200, 'harvest': 'potion_mana_200', 'harvest_name': '醒神水', 'count': 1, 'ap_cost': 2, 'min_level': 2},
+    'seed_dabuwan': {'name': '大补丸种子', 'grow_time': 14400, 'harvest': 'potion_heal_400', 'harvest_name': '大补丸', 'count': 1, 'ap_cost': 3, 'min_level': 3},
+    'seed_yeshanshen': {'name': '野山参种子', 'grow_time': 28800, 'harvest': 'potion_heal_800', 'harvest_name': '野山参', 'count': 1, 'ap_cost': 3, 'min_level': 4},
+    'seed_xuelianlu': {'name': '雪莲露种子', 'grow_time': 28800, 'harvest': 'potion_mana_800', 'harvest_name': '雪莲露', 'count': 1, 'ap_cost': 3, 'min_level': 4},
+    'seed_zhenzhubei': {'name': '珍珠贝种子', 'grow_time': 43200, 'harvest': 'potion_heal_950', 'harvest_name': '珍珠贝', 'count': 1, 'ap_cost': 4, 'min_level': 5},
+    'seed_huanyangdan': {'name': '还阳丹种子', 'grow_time': 43200, 'harvest': 'potion_heal_1150', 'harvest_name': '还阳丹', 'count': 1, 'ap_cost': 4, 'min_level': 5},
+    'seed_guanyinshui': {'name': '观音水种子', 'grow_time': 43200, 'harvest': 'potion_mana_1150', 'harvest_name': '观音水', 'count': 1, 'ap_cost': 4, 'min_level': 5},
+    'seed_tiancandan': {'name': '天蚕丹种子', 'grow_time': 57600, 'harvest': 'potion_heal_2000', 'harvest_name': '天蚕丹', 'count': 1, 'ap_cost': 5, 'min_level': 6},
+    'seed_huashenshui': {'name': '化神水种子', 'grow_time': 57600, 'harvest': 'potion_mana_2000', 'harvest_name': '化神水', 'count': 1, 'ap_cost': 5, 'min_level': 6},
+    'seed_shenxuedan': {'name': '神血丹种子', 'grow_time': 57600, 'harvest': 'potion_heal_2250', 'harvest_name': '神血丹', 'count': 1, 'ap_cost': 5, 'min_level': 7},
+    'seed_qinglinglu': {'name': '清灵露种子', 'grow_time': 57600, 'harvest': 'potion_mana_2250', 'harvest_name': '清灵露', 'count': 1, 'ap_cost': 5, 'min_level': 7},
+    # 经验丹种子
+    'exp_seed': {'name': '经验丹种子', 'grow_time': 86400, 'harvest': 'exp_small', 'harvest_name': '小经验丹', 'count': 1, 'ap_cost': 5, 'min_level': 2},
+    'seed_big_exp': {'name': '大经验丹种子', 'grow_time': 86400, 'harvest': 'exp_large', 'harvest_name': '大经验丹', 'count': 1, 'ap_cost': 10, 'min_level': 4},
 }
+
+# Public SEEDS dict (backward compatible)
+SEEDS = _BASE_SEEDS
 
 HARVEST_ITEMS = {
     'herb': 'potion_heal',
@@ -200,8 +221,19 @@ class VillaService:
         """Plant a seed in a plot."""
         villa = cls.get_or_create_villa(player)
 
-        if villa.action_points < 2:
-            return False, "行动力不足，需要2点行动力"
+        if seed_id not in SEEDS:
+            return False, "无效的种子"
+
+        seed_info = SEEDS[seed_id]
+        ap_cost = seed_info.get('ap_cost', 2)
+
+        if villa.action_points < ap_cost:
+            return False, f"行动力不足，需要{ap_cost}点行动力"
+
+        # Check garden level requirement
+        min_level = seed_info.get('min_level', 1)
+        if villa.level < min_level:
+            return False, f"需要百草园{min_level}级"
 
         slots = villa.get_garden_slots()
         if plot_index < 0 or plot_index >= slots:
@@ -213,16 +245,13 @@ class VillaService:
         if plot.get('status') not in ('empty', 'harvested'):
             return False, "该土地正在使用中"
 
-        if seed_id not in SEEDS:
-            return False, "无效的种子"
-
         # Check if player has the seed
         inv = DataService.get_inventory_item(player.id, seed_id)
         if not inv or inv.quantity <= 0:
             return False, "没有该种子"
 
         DataService.remove_item_from_inventory(player.id, seed_id, 1)
-        villa.action_points -= 2
+        villa.action_points -= ap_cost
 
         garden[str(plot_index)] = {
             'status': 'growing',
@@ -231,7 +260,7 @@ class VillaService:
         }
         villa.garden_data = garden
         db.session.commit()
-        return True, f"已种植{SEEDS[seed_id]['name']}"
+        return True, f"已种植{seed_info['name']}"
 
     @classmethod
     def harvest_plot(cls, player, plot_index):
@@ -245,7 +274,9 @@ class VillaService:
 
         seed_id = plot.get('seed_id')
         seed_info = SEEDS.get(seed_id, {})
-        harvest_id = HARVEST_ITEMS.get(seed_info.get('harvest', ''))
+        harvest_key = seed_info.get('harvest', '')
+        # New seeds store item_id directly; old seeds use HARVEST_ITEMS mapping
+        harvest_id = HARVEST_ITEMS.get(harvest_key, harvest_key)
         count = seed_info.get('count', 1)
 
         if harvest_id:
@@ -259,6 +290,35 @@ class VillaService:
         villa.garden_data = garden
         db.session.commit()
         return True, f"收获了{count}个{seed_info.get('harvest_name', '作物')}"
+
+    @classmethod
+    def ripen_plot(cls, player, plot_index):
+        """Use a ripening agent to instantly mature a growing crop."""
+        villa = cls.get_or_create_villa(player)
+        garden = villa.garden_data
+        plot = garden.get(str(plot_index), {})
+
+        if plot.get('status') != 'growing':
+            return False, "该土地没有正在生长的作物"
+
+        # Check ripening agent
+        inv = DataService.get_inventory_item(player.id, 'ripening_agent')
+        if not inv or inv.quantity <= 0:
+            return False, "没有催熟剂"
+
+        seed_id = plot.get('seed_id')
+        seed_info = SEEDS.get(seed_id, {})
+
+        DataService.remove_item_from_inventory(player.id, 'ripening_agent', 1)
+        garden[str(plot_index)] = {
+            'status': 'ready',
+            'seed_id': seed_id,
+            'start_time': plot.get('start_time', time.time()),
+            'ready_count': seed_info.get('count', 1)
+        }
+        villa.garden_data = garden
+        db.session.commit()
+        return True, f"催熟成功，{seed_info.get('harvest_name', '作物')}已成熟"
 
     # --- Stealing (偷取) ---
 

@@ -21,6 +21,11 @@ def is_player_online(player_id):
     return player_id in _online_players
 
 
+def get_online_player_ids():
+    """返回当前在线的 player_id 列表（副本）。"""
+    return list(_online_players)
+
+
 class PartyState:
     __slots__ = ('party_id', 'leader_id', 'members', 'created_at', 'invites', 'applications')
 

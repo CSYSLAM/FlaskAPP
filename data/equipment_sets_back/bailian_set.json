@@ -1,0 +1,102 @@
+{
+  "bailian_helmet_49": {
+    "name": "百炼重盔",
+    "description": "战士专属，百炼精钢锻造的重盔，历经千锤百炼",
+    "slot": "helmet",
+    "is_bound": false,
+    "level_required": 49,
+    "class_required": "战士",
+    "base_price": 11000,
+    "is_artifact": false,
+    "set_name": "百炼套",
+    "base_stats": {
+      "defense": 62
+    },
+    "max_extra_stats": {
+      "defense": 32,
+      "max_health": 110,
+      "attack": 8,
+      "crit_rate": 0.05
+    }
+  },
+  "bailian_armor_48": {
+    "name": "百炼战甲",
+    "description": "战士专属，百炼精钢铸造的战甲，刀枪不入",
+    "slot": "armor",
+    "is_bound": false,
+    "level_required": 48,
+    "class_required": "战士",
+    "base_price": 13000,
+    "is_artifact": false,
+    "set_name": "百炼套",
+    "base_stats": {
+      "defense": 74
+    },
+    "max_extra_stats": {
+      "defense": 38,
+      "max_health": 130,
+      "attack": 10,
+      "crit_rate": 0.05
+    }
+  },
+  "bailian_gloves_46": {
+    "name": "百炼护手",
+    "description": "战士专属，百炼精钢锻造的护手，力拔山兮",
+    "slot": "gloves",
+    "is_bound": false,
+    "level_required": 46,
+    "class_required": "战士",
+    "base_price": 9500,
+    "is_artifact": false,
+    "set_name": "百炼套",
+    "base_stats": {
+      "defense": 50
+    },
+    "max_extra_stats": {
+      "attack": 22,
+      "crit_rate": 0.06,
+      "defense": 11,
+      "max_health": 55
+    }
+  },
+  "bailian_pants_47": {
+    "name": "百炼护腿",
+    "description": "战士专属，百炼精钢铸造的护腿，坚如磐石",
+    "slot": "pants",
+    "is_bound": false,
+    "level_required": 47,
+    "class_required": "战士",
+    "base_price": 11500,
+    "is_artifact": false,
+    "set_name": "百炼套",
+    "base_stats": {
+      "defense": 64
+    },
+    "max_extra_stats": {
+      "defense": 32,
+      "max_health": 110,
+      "attack": 6,
+      "dodge_rate": 0.05
+    }
+  },
+  "bailian_shoes_45": {
+    "name": "百炼重靴",
+    "description": "战士专属，百炼精钢铸造的重靴，踏地如雷",
+    "slot": "shoes",
+    "is_bound": false,
+    "level_required": 45,
+    "class_required": "战士",
+    "base_price": 9000,
+    "is_artifact": false,
+    "set_name": "百炼套",
+    "base_stats": {
+      "defense": 44
+    },
+    "max_extra_stats": {
+      "defense": 22,
+      "max_health": 65,
+      "attack": 5,
+      "crit_rate": 0.05
+    }
+  }
+}

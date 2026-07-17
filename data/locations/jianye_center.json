@@ -10,7 +10,8 @@
         "south": "jianye_center.驿站"
       },
       "npcs": [
-        "npc_jianye_center_任务使者"
+        "npc_jianye_center_任务使者",
+        "npc_jianye_center_曹丕副本"
       ]
     },
     "校军场": {
@@ -19,9 +20,7 @@
         "west": "jianye_center.白虎街",
         "east": "jianye_center.广场"
       },
-      "npcs": [
-        "npc_jianye_center_陆逊副本"
-      ]
+      "npcs": []
     },
     "白虎街": {
       "name": "白虎街",

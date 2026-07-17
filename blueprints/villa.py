@@ -22,13 +22,18 @@ def index():
     if villa.defender_id:
         defender = Lieutenant.query.get(villa.defender_id)
 
+    # Get vitality card count for action points replenish
+    vitality_inv = DataService.get_inventory_item(player.id, 'vitality_card')
+    vitality_count = vitality_inv.quantity if vitality_inv else 0
+
     return render_template("villa_index.html",
                          player=player,
                          villa=villa,
                          training_status=training_status,
                          garden_plots=garden_plots,
                          defender=defender,
-                         SEEDS=SEEDS)
+                         SEEDS=SEEDS,
+                         vitality_count=vitality_count)
 
 
 @villa_bp.route("/rename", methods=["POST"])
@@ -60,6 +65,29 @@ def remove_defender():
     player = current_user
     success, msg = VillaService.remove_defender(player)
     flash(msg)
+    return redirect(url_for('villa.index'))
+
+
+@villa_bp.route("/use_vitality_card")
+@login_required
+def use_vitality_card():
+    """使用活力卡恢复10点行动力"""
+    player = current_user
+    villa = VillaService.get_or_create_villa(player)
+
+    if villa.action_points >= villa.max_action_points:
+        flash("行动力已满，无需补充")
+        return redirect(url_for('villa.index'))
+
+    inv = DataService.get_inventory_item(player.id, 'vitality_card')
+    if not inv or inv.quantity <= 0:
+        flash("没有活力卡")
+        return redirect(url_for('villa.index'))
+
+    DataService.remove_item_from_inventory(player.id, 'vitality_card', 1)
+    villa.action_points = min(villa.max_action_points, villa.action_points + 10)
+    db.session.commit()
+    flash(f"使用活力卡，行动力恢复10点，当前{villa.action_points}/{villa.max_action_points}")
     return redirect(url_for('villa.index'))
 
 
@@ -104,19 +132,27 @@ def garden_page():
     villa = VillaService.get_or_create_villa(player)
     plots = VillaService.get_garden_status(villa)
 
-    # Get seeds in inventory
+    # Get seeds in inventory (only show seeds that meet garden level requirement)
     seeds_inv = {}
-    for seed_id in SEEDS:
+    for seed_id, seed_info in SEEDS.items():
+        min_level = seed_info.get('min_level', 1)
+        if villa.level < min_level:
+            continue
         inv = DataService.get_inventory_item(player.id, seed_id)
         if inv and inv.quantity > 0:
             seeds_inv[seed_id] = inv.quantity
+
+    # Get ripening agent count
+    ripening_inv = DataService.get_inventory_item(player.id, 'ripening_agent')
+    ripening_count = ripening_inv.quantity if ripening_inv else 0
 
     return render_template("villa_garden.html",
                          player=player,
                          villa=villa,
                          plots=plots,
                          SEEDS=SEEDS,
-                         seeds_inv=seeds_inv)
+                         seeds_inv=seeds_inv,
+                         ripening_count=ripening_count)
 
 
 @villa_bp.route("/plant/<int:plot_index>", methods=["POST"])
@@ -138,6 +174,16 @@ def plant_seed(plot_index):
 def harvest_plot(plot_index):
     player = current_user
     success, msg = VillaService.harvest_plot(player, plot_index)
+    flash(msg)
+    return redirect(url_for('villa.garden_page'))
+
+
+@villa_bp.route("/ripen/<int:plot_index>")
+@login_required
+def ripen_plot(plot_index):
+    """使用催熟剂催熟作物"""
+    player = current_user
+    success, msg = VillaService.ripen_plot(player, plot_index)
     flash(msg)
     return redirect(url_for('villa.garden_page'))
 

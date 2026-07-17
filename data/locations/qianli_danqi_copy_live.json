@@ -1,0 +1,198 @@
+{
+  "name": "千里单骑副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "qianli_danqi",
+  "scenes": {
+    "qianli_danqi_copy_live.东岭关": {
+      "name": "东岭关",
+      "exits": {
+        "east": "qianli_danqi_copy_live.洛阳关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_东岭关守军",
+        "mon_qianli_danqi_elite_孔秀",
+        "mon_qianli_danqi_伏兵"
+      ],
+      "npcs": [
+        "npc_qianli_danqi_copy_关羽"
+      ]
+    },
+    "qianli_danqi_copy_live.洛阳关": {
+      "name": "洛阳关",
+      "exits": {
+        "east": "qianli_danqi_copy_live.汜水关",
+        "west": "qianli_danqi_copy_live.东岭关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_洛阳守军",
+        "mon_qianli_danqi_elite_韩福",
+        "mon_qianli_danqi_韩福部将"
+      ]
+    },
+    "qianli_danqi_copy_live.汜水关": {
+      "name": "汜水关",
+      "exits": {
+        "east": "qianli_danqi_copy_live.荥阳关",
+        "west": "qianli_danqi_copy_live.洛阳关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_汜水关守军",
+        "mon_qianli_danqi_elite_卞喜"
+      ]
+    },
+    "qianli_danqi_copy_live.荥阳关": {
+      "name": "荥阳关",
+      "exits": {
+        "east": "qianli_danqi_copy_live.黄河渡口",
+        "west": "qianli_danqi_copy_live.汜水关",
+        "north": "qianli_danqi_copy_live.山道"
+      },
+      "monsters": [
+        "mon_qianli_danqi_荥阳伏兵",
+        "mon_qianli_danqi_荥阳守军",
+        "mon_qianli_danqi_elite_王植"
+      ]
+    },
+    "qianli_danqi_copy_live.黄河渡口": {
+      "name": "黄河渡口",
+      "exits": {
+        "east": "qianli_danqi_copy_live.山道",
+        "west": "qianli_danqi_copy_live.荥阳关",
+        "south": "qianli_danqi_copy_live.洛阳关"
+      },
+      "monsters": [
+        "mon_qianli_danqi_渡口弓兵",
+        "mon_qianli_danqi_渡口守军",
+        "mon_qianli_danqi_elite_秦琪",
+        "mon_qianli_danqi_渡口伏兵",
+        "mon_qianli_danqi_曹操追兵"
+      ]
+    },
+    "qianli_danqi_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "qianli_danqi_copy_live.林间小径",
+        "west": "qianli_danqi_copy_live.黄河渡口"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "qianli_danqi_copy_live.河岸边",
+        "west": "qianli_danqi_copy_live.山道",
+        "north": "qianli_danqi_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "qianli_danqi_copy_live.荒野",
+        "west": "qianli_danqi_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "qianli_danqi_copy_live.破庙",
+        "west": "qianli_danqi_copy_live.河岸边",
+        "south": "qianli_danqi_copy_live.山道"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "qianli_danqi_copy_live.古井旁",
+        "west": "qianli_danqi_copy_live.荒野",
+        "north": "qianli_danqi_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "qianli_danqi_copy_live.断桥",
+        "west": "qianli_danqi_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "qianli_danqi_copy_live.山洞入口",
+        "west": "qianli_danqi_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "qianli_danqi_copy_live.密林深处",
+        "west": "qianli_danqi_copy_live.断桥",
+        "north": "qianli_danqi_copy_live.溪谷",
+        "south": "qianli_danqi_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "qianli_danqi_copy_live.溪谷",
+        "west": "qianli_danqi_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "qianli_danqi_copy_live.高坡",
+        "west": "qianli_danqi_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "qianli_danqi_copy_live.废弃营地",
+        "west": "qianli_danqi_copy_live.溪谷",
+        "north": "qianli_danqi_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "east": "qianli_danqi_copy_live.石碑前",
+        "west": "qianli_danqi_copy_live.高坡",
+        "south": "qianli_danqi_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.石碑前": {
+      "name": "石碑前",
+      "exits": {
+        "east": "qianli_danqi_copy_live.岔路口",
+        "west": "qianli_danqi_copy_live.废弃营地"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.岔路口": {
+      "name": "岔路口",
+      "exits": {
+        "east": "qianli_danqi_copy_live.芦苇荡",
+        "west": "qianli_danqi_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "qianli_danqi_copy_live.芦苇荡": {
+      "name": "芦苇荡",
+      "exits": {
+        "west": "qianli_danqi_copy_live.岔路口"
+      },
+      "monsters": []
+    }
+  }
+}

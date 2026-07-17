@@ -30,9 +30,9 @@ def battle():
         db.session.commit()
         return redirect(url_for("game.scene"))
 
-    # World boss: check if still alive
-    if monster.is_elite:
-        from services.world_boss_service import WorldBossService
+    # World boss: check if still alive (shared-HP elites only; one-time & copy elites are personal)
+    from services.world_boss_service import WorldBossService
+    if monster.is_elite and not getattr(monster, 'is_one_time_elite', False) and not getattr(monster, 'is_copy', False):
         boss = WorldBossService.get_boss(monster.monster_id)
         if boss and boss.current_health <= 0 and not boss.is_alive:
             player.in_battle = False
@@ -80,8 +80,9 @@ def fight():
     elif action.startswith("use:"):
         item_id = action.split(":")[1]
         if item_id:
-            ItemService.use_item(player, item_id)
-        result_monster, error, result = monster, None, None
+            result_monster, error, result = BattleService.use_potion(player, item_id)
+        else:
+            result_monster, error, result = monster, None, None
     else:
         result_monster, error, result = BattleService.use_skill(player, action)
 
@@ -160,11 +161,18 @@ def battle_result():
         player.experience -= lost_exp
 
     is_pk = player.in_pk
+    last_action = player.last_action or ""
+    # 读取并清除“上次击杀是否为精英/世界boss”标记（精英/世界boss击杀后隐藏“继续挑战”）
+    _ad = player.activity_data
+    hide_continue = _ad.pop('last_kill_special', False)
+    player.activity_data = _ad
     db.session.commit()
     return render_template("battle_result.html",
                        result=result,
                        lost_experience=lost_exp,
-                       is_pk=is_pk)
+                       is_pk=is_pk,
+                       last_action=last_action,
+                       hide_continue=hide_continue)
 
 
 @battle_bp.route("/continue_battle")
@@ -178,6 +186,52 @@ def continue_battle():
             return redirect(url_for("battle.revive"))
         flash(error or "这里没有怪物")
         return redirect(url_for("game.scene"))
+    return redirect(url_for("battle.battle"))
+
+
+@battle_bp.route("/use_skill/<skill_id>")
+@login_required
+def use_skill(skill_id):
+    """GET 版技能释放（供战斗界面技键链接调用）。"""
+    player = current_user
+    if not player.in_battle:
+        return redirect(url_for("game.scene"))
+
+    action = skill_id if skill_id != "attack" else "attack"
+    if action == "attack":
+        result_monster, error, result = BattleService.player_attack(player)
+    else:
+        result_monster, error, result = BattleService.use_skill(player, action)
+
+    if result == "你被击败了":
+        return redirect(url_for("battle.revive"))
+
+    if result:
+        return redirect(url_for("battle.battle_result"))
+
+    if error:
+        flash(error)
+    return redirect(url_for("battle.battle"))
+
+
+@battle_bp.route("/use_potion/<item_id>")
+@login_required
+def use_potion(item_id):
+    """GET 版战斗中使用药品（供药键链接调用，算作一个完整回合：用药+怪物反击）。"""
+    player = current_user
+    if not player.in_battle:
+        return redirect(url_for("game.scene"))
+
+    result_monster, error, result = BattleService.use_potion(player, item_id)
+
+    if result == "你被击败了":
+        return redirect(url_for("battle.revive"))
+
+    if result:
+        return redirect(url_for("battle.battle_result"))
+
+    if error:
+        flash(error)
     return redirect(url_for("battle.battle"))
 
 
@@ -209,10 +263,25 @@ def shortcuts():
 def set_shortcut():
     player = current_user
     shortcuts = player.get_shortcuts()
-    shortcuts['skill1'] = request.form.get('skill1', 'attack')
-    shortcuts['skill2'] = request.form.get('skill2', 'attack')
-    shortcuts['skill3'] = request.form.get('skill3', 'attack')
-    shortcuts['skill4'] = request.form.get('skill4', 'attack')
+
+    # 技能技键校验：只允许 普攻(attack) 或 本职业已学习的主动技能
+    learned = set(player.learned_skills)
+    def _valid_skill(skill_id):
+        if skill_id == 'attack':
+            return True
+        if skill_id not in learned:
+            return False
+        sd = DataService.get_skill(skill_id)
+        if not sd or sd.get('skill_type') != 'active':
+            return False
+        cls_req = sd.get('class_required')
+        if cls_req and cls_req != player.player_class:
+            return False
+        return True
+
+    for slot in ['skill1', 'skill2', 'skill3', 'skill4']:
+        sid = request.form.get(slot, 'attack')
+        shortcuts[slot] = sid if _valid_skill(sid) else 'attack'
 
     potion1 = request.form.get('potion1')
     potion2 = request.form.get('potion2')
@@ -328,3 +397,52 @@ def pk_fight():
         return redirect(url_for('battle.pk_battle', opponent=opponent.username))
 
     return redirect(url_for('battle.pk_battle', opponent=opponent.username))
+
+
+@battle_bp.route("/pk_use_skill/<opponent>/<skill_id>")
+@login_required
+def pk_use_skill(opponent, skill_id):
+    """GET 版 PK 技能释放（供战斗界面技键链接调用）。"""
+    player = current_user
+    if not player.in_pk or player.pk_opponent != opponent:
+        return redirect(url_for('game.scene'))
+
+    target = DataService.get_player_by_username(opponent)
+    if not target:
+        player.in_pk = False
+        player.pk_opponent = None
+        db.session.commit()
+        flash("对方玩家数据未找到")
+        return redirect(url_for('game.scene'))
+
+    if player.health <= 1:
+        flash("你已被击败")
+        return redirect(url_for('battle.revive'))
+
+    if target.health <= 1:
+        result = f"你击败了{target.nickname}！"
+        player.last_battle_result = result
+        BattleService._end_pk(player, target)
+        db.session.commit()
+        return redirect(url_for('battle.battle_result'))
+
+    current_time = time.time()
+    if current_time - player.last_attack_time < 2:
+        remaining = 2 - (current_time - player.last_attack_time)
+        return redirect(url_for('battle.pk_battle',
+                               opponent=opponent, remaining=remaining))
+
+    player.last_attack_time = current_time
+
+    if skill_id == "attack":
+        result, error = BattleService.pk_attack(player, target)
+    else:
+        result, error = BattleService.pk_use_skill(player, target, skill_id)
+
+    if result:
+        player.last_battle_result = result
+        return redirect(url_for('battle.battle_result'))
+
+    if error:
+        flash(error)
+    return redirect(url_for('battle.pk_battle', opponent=opponent))

@@ -1,36 +1,60 @@
 # 战斗系统公式和规则
 
+## 核心伤害公式（统一乘法模型）
+
+所有伤害路径（玩家打怪/怪物打玩家/PK双方/副将）统一用此公式，由 `BattleService._compute_damage(atk, defense, coefficient, min_damage)` 实现：
+
+```
+最终伤害 = atk × (1 + atk / max(1, defense)) × coefficient
+```
+
+- `coefficient`：伤害系数。普攻 = 1.0；技能 = `damage_rate`（见技能章）
+- `max(1, defense)`：防除零。defense≤0 时按 1 计，此时 atk/1 项会让伤害暴涨（低防单位受高攻打击会爆伤，符合"破甲"直觉，但怪物防御须与玩家攻击同量级才平衡）
+- `min_damage`：保底。**仅怪物打玩家保留等级保底**（普通怪=等级，精英=等级×2）；玩家/副将/PK 无保底（min_damage=0，但公式天然 ≥1）
+- 暴击：`× 1.5`（怪物暴击原 ×2，已统一为 ×1.5）
+- 闪避：伤害归 0
+- 全部 `int()` 向下取整
+
+### 数值特性（设计注意）
+
+- 当 `atk ≪ def`：`atk/def` 项趋 0，伤害≈`atk×coefficient`，防御有效压制攻击
+- 当 `atk ≈ def`：伤害≈`2×atk×coefficient`
+- 当 `atk ≫ def`：`atk/def` 项爆炸，伤害远超 atk——**防御形同虚设**。因此怪物防御值必须随玩家攻击力同步增长，否则高战玩家会秒杀低防怪
+
 ## 一、普通攻击公式
 
 ### 玩家攻击怪物
 ```
-基础伤害 = 玩家攻击力 - 怪物防御力
-最低伤害 = 1
-最终伤害 = max(1, 基础伤害)
-暴击时 = 最终伤害 × 1.5
-怪物闪避时 = 0
+coefficient = 1.0
+命中: random() >= monster.dodge_rate
+damage = _compute_damage(玩家攻击力, 怪物防御力, 1.0)
+暴击: random() <= 玩家暴击率 → damage = int(damage × 1.5)
+怪物被混乱时: damage = int(damage × 0.5)   # 受击减半
+闪避时: damage = 0
 ```
 
 ### 怪物攻击玩家
 ```
-基础伤害 = 怪物攻击力 - 玩家防御力
-最低伤害 = 怪物等级 (普通怪) 或 怪物等级 × 2 (精英怪)
-最终伤害 = max(最低伤害, 基础伤害)
-暴击时 = 最终伤害 × 2 (怪物暴击翻倍)
-玩家闪避时 = 0
+coefficient = 1.0
+min_damage = 怪物等级 (普通怪) 或 怪物等级×2 (精英怪)
+命中: random() >= 玩家闪避率
+damage = _compute_damage(怪物攻击力, 玩家防御力, 1.0, min_damage)
+暴击: × 1.5
+闪避时: 0
+怪物被混乱时: 本回合无法行动，伤害=0
 ```
 
 ### 副将攻击怪物
 ```
-基础伤害 = 副将攻击力 - 怪物防御力
-最低伤害 = 1
-最终伤害 = max(1, 基础伤害)
+coefficient = 1.0
+damage = _compute_damage(副将攻击力, 怪物防御力, 1.0)
 暴击 = 无 (副将不暴击)
+闪避时: 0
 ```
 
 ### 怪物攻击副将（前置位）
 ```
-伤害计算同"怪物攻击玩家"
+伤害计算同"怪物攻击玩家"（用副将所在格的防御逻辑：怪物攻击力 vs 玩家防御力）
 副将承受全部伤害
 副将死亡时，溢出伤害由玩家承受
 ```
@@ -39,11 +63,12 @@
 
 ### 主动技能
 ```
-技能伤害 = 玩家攻击力 × 伤害倍率 - 怪物防御力
-伤害倍率 = 基础倍率 + 每级倍率增长 × (技能等级 - 1)
-连击技能：每击独立计算，总伤害 = 各击伤害之和
-最低伤害 = 1 (每击)
-魔法消耗 = 基础消耗 + 每级消耗 × (技能等级 - 1)
+coefficient = damage_rate = base_damage_rate + damage_rate_per_level × (技能等级 - 1)
+破甲技能(pierce_defense_pct): effective_def = int(defense × (1 - pierce_pct))，例如破甲刺无视10%防
+每击: damage = _compute_damage(玩家攻击力, effective_def, damage_rate)
+       暴击 ×1.5；目标被混乱 ×0.5
+连击技能(hits>1): 每击独立判定命中/暴击，总伤害=各击之和
+魔法消耗 = base_mana_cost + mana_cost_per_level × (技能等级 - 1)
 ```
 
 ### 技能类型
@@ -63,10 +88,44 @@
 ```
 
 ### 装备属性加成
-- 基础属性（base_stats）：直接加算
+- 基础属性（base_stats）：直接加算；强化后 base_stats = 初始属性 + int(初始属性 × 0.01 × enhance_level)（每级 +1%，向下取整，上限 +50）
 - 附加属性（extra_stats）：直接加算
 - 所有品质装备属性均参与计算（包括神器）
 - 部位基础属性规则见 `monster_equipment_drop_rules.md`
+
+## 三半、战斗状态效果
+
+技能命中后可施加状态效果，由 `BattleService._apply_skill_effect` 处理。状态以"剩余回合数"计，回合结束时递减。
+
+### 效果类型
+
+| effect_type | 触发概率字段 | 持续 | 效果 |
+| --- | --- | --- | --- |
+| confuse | effect_chance | effect_rounds(默认3) | 目标无法普攻/技能/撤退；且受击伤害减半 |
+| silence | effect_chance | effect_rounds(默认3) | 目标无法使用技能（可普攻/撤退） |
+| bleed | effect_chance | effect_rounds(默认3) | 每回合扣 `int(施法者攻击力 × effect_value)` 血，持续 effect_rounds 回合 |
+| lifesteal | 1.0（必触发） | 即时 | 施法者回复 `int(造成伤害 × effect_value)` 生命 |
+| pierce | — | 即时 | `pierce_defense_pct` 无视目标防御百分比（破甲刺=10%），写法不同：直接在技能 JSON 设 `pierce_defense_pct: 0.10`，不配 effect_type |
+
+### 状态存储位置
+
+- **玩家身上**（持久化列，PVE/PK 通用）：`status_confuse_rounds`、`status_silence_rounds`、`status_bleed_rounds`、`status_bleed_value`
+- **怪物身上**（怪物非 ORM，存于 `current_encounter` JSON 的 `monster_status` 字段）：`{confuse: 回合数, silence: 回合数, bleed: {rounds, value}}`
+
+### 回合结算顺序
+
+1. 玩家行动（攻击/技能，命中后施加效果）
+2. 副将攻击
+3. 怪物反击（怪物混乱则跳过）
+4. **状态递减**：`_tick_monster_status`（怪物流血即时扣血）+ `_tick_player_status`（玩家混乱/封魔回合-1）；PK 用 `_tick_pk_bleed` 结算双方流血
+
+### 关键代码
+
+- 公式：`BattleService._compute_damage`
+- 效果施加：`BattleService._apply_skill_effect`
+- 玩家状态：`_player_is_confused` / `_player_is_silenced` / `_tick_player_status`
+- 怪物状态：`_get_monster_status` / `_set_monster_status` / `_tick_monster_status`
+- PK 流血：`_tick_pk_bleed`
 
 ## 四、战斗流程
 
@@ -194,3 +253,6 @@ VIP经验加成 = 基础经验 × VIP经验倍率
 | 2026-06-06 | 修正 _get_equipment_stat_sum 对 crit_rate/dodge_rate 返回 float 而非 int |
 | 2026-06-07 | 新增个人精英怪（副本精英）vs 世界BOSS的区分规则 |
 | 2026-06-07 | 新增神兽/精英怪复活公告机制 |
+| 2026-07-02 | 装备强化收益调整：每级 +1% 初始属性（原 +10%），成功每次全服广播（原每 +10 级广播） |
+| 2026-07-02 | **伤害公式重构为统一乘法模型** `atk×(1+atk/max(1,def))×coefficient`，废弃减法模型。4 条路径（玩家打怪/怪物打玩家/PK/副将）统一用 `BattleService._compute_damage`。怪物暴击由 ×2 统一为 ×1.5。详见核心伤害公式章 |
+| 2026-07-02 | **新增战斗状态效果系统**：混乱/封魔/流血/吸血/破甲。玩家状态存于新列 `status_confuse_rounds`/`status_silence_rounds`/`status_bleed_rounds`/`status_bleed_value`；怪物状态存于 `current_encounter.monster_status`。详见「三半、战斗状态效果」章。迁移脚本 `scripts/migrate_add_status_columns.py` |

@@ -6,15 +6,17 @@
     "level_required": 10,
     "class_required": null,
     "is_artifact": false,
+    "is_bound": false,
     "base_stats": {
-      "attack": 24
+      "attack": 60
     },
     "max_extra_stats": {
-      "attack": 15,
-      "max_health": 60,
-      "crit_rate": 0.05,
-      "max_mana": 30,
-      "defense": 8
+      "attack": 60,
+      "defense": 0,
+      "max_health": 0,
+      "max_mana": 250,
+      "crit_rate": 0.004,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_helmet_10": {
@@ -24,15 +26,18 @@
     "level_required": 10,
     "class_required": null,
     "is_artifact": false,
+    "is_bound": false,
     "base_stats": {
-      "defense": 10
+      "defense": 80,
+      "max_health": 0
     },
     "max_extra_stats": {
-      "defense": 8,
-      "max_health": 60,
-      "max_mana": 30,
-      "crit_rate": 0.03,
-      "attack": 5
+      "attack": 0,
+      "defense": 80,
+      "max_health": 350,
+      "max_mana": 350,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_armor_10": {
@@ -42,15 +47,17 @@
     "level_required": 10,
     "class_required": null,
     "is_artifact": false,
+    "is_bound": false,
     "base_stats": {
-      "defense": 14
+      "defense": 80
     },
     "max_extra_stats": {
-      "defense": 10,
-      "max_health": 80,
-      "max_mana": 40,
-      "crit_rate": 0.03,
-      "attack": 5
+      "attack": 0,
+      "defense": 80,
+      "max_health": 350,
+      "max_mana": 350,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_gloves_10": {
@@ -60,15 +67,17 @@
     "level_required": 10,
     "class_required": null,
     "is_artifact": false,
+    "is_bound": false,
     "base_stats": {
-      "defense": 12
+      "defense": 80
     },
     "max_extra_stats": {
-      "attack": 6,
-      "crit_rate": 0.03,
-      "max_health": 30,
-      "max_mana": 25,
-      "defense": 5
+      "attack": 0,
+      "defense": 80,
+      "max_health": 350,
+      "max_mana": 350,
+      "crit_rate": 0.0045,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_pants_10": {
@@ -78,15 +87,17 @@
     "level_required": 10,
     "class_required": null,
     "is_artifact": false,
+    "is_bound": false,
     "base_stats": {
-      "defense": 12
+      "defense": 80
     },
     "max_extra_stats": {
-      "defense": 9,
-      "max_health": 70,
-      "max_mana": 35,
-      "crit_rate": 0.03,
-      "attack": 5
+      "attack": 0,
+      "defense": 80,
+      "max_health": 350,
+      "max_mana": 350,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
     }
   },
   "qingbu_shoes_10": {
@@ -96,16 +107,17 @@
     "level_required": 10,
     "class_required": null,
     "is_artifact": false,
+    "is_bound": false,
     "base_stats": {
-      "defense": 8
+      "defense": 80
     },
     "max_extra_stats": {
-      "defense": 6,
-      "max_health": 50,
-      "max_mana": 25,
-      "crit_rate": 0.03,
-      "attack": 4,
-      "dodge_rate": 0.03
+      "attack": 0,
+      "defense": 80,
+      "max_health": 350,
+      "max_mana": 350,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.003
     }
   }
 }

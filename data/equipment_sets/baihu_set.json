@@ -1,0 +1,137 @@
+{
+  "baihu_helmet_59": {
+    "name": "白虎头冠",
+    "slot": "helmet",
+    "set_name": "白虎套",
+    "level_required": 59,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 430
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 430,
+      "max_health": 2150,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16000,
+    "description": "刺客专属，以白虎之骨锻造的头冠，白虎护首，虎威凛凛",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_jingjinkuang": 20
+    }
+  },
+  "baihu_armor_58": {
+    "name": "白虎轻甲",
+    "slot": "armor",
+    "set_name": "白虎套",
+    "level_required": 58,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 430
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 430,
+      "max_health": 2150,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 18500,
+    "description": "刺客专属，以白虎之皮缝制的轻甲，虎纹交错，轻灵坚韧",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_houpi": 20,
+      "craft_nirong": 20
+    }
+  },
+  "baihu_pants_57": {
+    "name": "白虎护腿",
+    "slot": "pants",
+    "set_name": "白虎套",
+    "level_required": 57,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 430
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 430,
+      "max_health": 2150,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16500,
+    "description": "刺客专属，以白虎之皮缝制的护腿，虎影随身，迅疾如风",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_nirong": 20,
+      "craft_zitanmu": 20
+    }
+  },
+  "baihu_gloves_56": {
+    "name": "白虎护手",
+    "slot": "gloves",
+    "set_name": "白虎套",
+    "level_required": 56,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 430
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 430,
+      "max_health": 0,
+      "max_mana": 1300,
+      "crit_rate": 0.058,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "刺客专属，以白虎之爪锻造的护手，虎爪附手，一击致命",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_zitanmu": 20,
+      "craft_jingjinkuang": 20
+    }
+  },
+  "baihu_shoes_55": {
+    "name": "白虎靴",
+    "slot": "shoes",
+    "set_name": "白虎套",
+    "level_required": 55,
+    "class_required": "刺客",
+    "is_artifact": false,
+    "is_bound": false,
+    "base_stats": {
+      "defense": 430
+    },
+    "max_extra_stats": {
+      "attack": 0,
+      "defense": 430,
+      "max_health": 0,
+      "max_mana": 1300,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.057
+    },
+    "base_price": 13500,
+    "description": "刺客专属，以白虎之皮缝制的轻靴，踏雪无痕，虎步生风",
+    "craft_silver": 14440,
+    "craft_materials": {
+      "craft_jingjinkuang": 20,
+      "craft_zitanmu": 20
+    }
+  }
+}

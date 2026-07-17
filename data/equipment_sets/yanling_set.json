@@ -1,102 +1,137 @@
 {
   "yanling_helmet_54": {
     "name": "雁翎盔",
-    "description": "刺客专属，以雁翎之羽编织的头盔，翱翔天际",
     "slot": "helmet",
-    "is_bound": false,
+    "set_name": "雁翔套",
     "level_required": 54,
     "class_required": "刺客",
-    "base_price": 14000,
     "is_artifact": false,
-    "set_name": "雁翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 58
+      "defense": 390
     },
     "max_extra_stats": {
-      "defense": 28,
-      "max_health": 100,
-      "dodge_rate": 0.08,
-      "crit_rate": 0.07
+      "attack": 0,
+      "defense": 390,
+      "max_health": 1955,
+      "max_mana": 1170,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14000,
+    "description": "刺客专属，以雁翎之羽编织的头盔，翱翔天际",
+    "craft_silver": 10440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_heitiekuang": 20
     }
   },
   "yanling_armor_53": {
     "name": "雁翎轻甲",
-    "description": "刺客专属，以雁翎之羽织成的轻甲，雁行无声",
     "slot": "armor",
-    "is_bound": false,
+    "set_name": "雁翔套",
     "level_required": 53,
     "class_required": "刺客",
-    "base_price": 16500,
     "is_artifact": false,
-    "set_name": "雁翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 72
+      "defense": 390
     },
     "max_extra_stats": {
-      "defense": 35,
-      "max_health": 115,
-      "dodge_rate": 0.07,
-      "crit_rate": 0.08
+      "attack": 0,
+      "defense": 390,
+      "max_health": 1955,
+      "max_mana": 1170,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 16500,
+    "description": "刺客专属，以雁翎之羽织成的轻甲，雁行无声",
+    "craft_silver": 10440,
+    "craft_materials": {
+      "craft_yingpi": 20,
+      "craft_mianbu": 20
     }
   },
   "yanling_gloves_51": {
     "name": "雁翎护手",
-    "description": "刺客专属，以雁翎之羽为饰的护手，凌厉如雁",
     "slot": "gloves",
-    "is_bound": false,
+    "set_name": "雁翔套",
     "level_required": 51,
     "class_required": "刺客",
-    "base_price": 12000,
     "is_artifact": false,
-    "set_name": "雁翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 60
+      "defense": 390
     },
     "max_extra_stats": {
-      "attack": 28,
-      "crit_rate": 0.09,
-      "dodge_rate": 0.07,
-      "max_health": 55
+      "attack": 0,
+      "defense": 390,
+      "max_health": 0,
+      "max_mana": 1170,
+      "crit_rate": 0.027,
+      "dodge_rate": 0.0
+    },
+    "base_price": 12000,
+    "description": "刺客专属，以雁翎之羽为饰的护手，凌厉如雁",
+    "craft_silver": 10440,
+    "craft_materials": {
+      "craft_chenxiangmu": 20,
+      "craft_heitiekuang": 20
     }
   },
   "yanling_pants_52": {
     "name": "雁翎皮裤",
-    "description": "刺客专属，以雁翎之羽织成的护腿，雁行千里",
     "slot": "pants",
-    "is_bound": false,
+    "set_name": "雁翔套",
     "level_required": 52,
     "class_required": "刺客",
-    "base_price": 14500,
     "is_artifact": false,
-    "set_name": "雁翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 60
+      "defense": 390
     },
     "max_extra_stats": {
-      "defense": 30,
-      "max_health": 100,
-      "dodge_rate": 0.08,
-      "crit_rate": 0.07
+      "attack": 0,
+      "defense": 390,
+      "max_health": 1955,
+      "max_mana": 1170,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.0
+    },
+    "base_price": 14500,
+    "description": "刺客专属，以雁翎之羽织成的护腿，雁行千里",
+    "craft_silver": 10440,
+    "craft_materials": {
+      "craft_mianbu": 20,
+      "craft_chenxiangmu": 20
     }
   },
   "yanling_shoes_50": {
     "name": "雁翎靴",
-    "description": "刺客专属，以雁翎之羽织成的战靴，踏雁而行",
     "slot": "shoes",
-    "is_bound": false,
+    "set_name": "雁翔套",
     "level_required": 50,
     "class_required": "刺客",
-    "base_price": 11500,
     "is_artifact": false,
-    "set_name": "雁翔套",
+    "is_bound": false,
     "base_stats": {
-      "defense": 40
+      "defense": 390
     },
     "max_extra_stats": {
-      "dodge_rate": 0.09,
-      "defense": 19,
-      "crit_rate": 0.07,
-      "max_health": 55
+      "attack": 0,
+      "defense": 390,
+      "max_health": 0,
+      "max_mana": 1170,
+      "crit_rate": 0.0,
+      "dodge_rate": 0.026
+    },
+    "base_price": 11500,
+    "description": "刺客专属，以雁翎之羽织成的战靴，踏雁而行",
+    "craft_silver": 10440,
+    "craft_materials": {
+      "craft_heitiekuang": 20,
+      "craft_chenxiangmu": 20
     }
   }
 }

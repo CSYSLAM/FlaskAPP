@@ -1,11 +1,14 @@
+import math
 from services import db
 from flask_login import UserMixin
 
 
-QUALITY_NAMES = {0: '普通', 1: '平凡', 2: '平凡', 3: '聪颖', 4: '聪颖',
-                 5: '优秀', 6: '优秀', 7: '优秀', 8: '卓越', 9: '卓越',
-                 10: '卓越', 11: '卓越', 12: '完美', 13: '完美', 14: '完美',
-                 15: '完美', 16: '完美', 17: '完美', 18: '完美', 19: '完美', 20: '完美'}
+QUALITY_NAMES = {0: '普通', 1: '普通', 2: '普通', 3: '普通', 4: '普通',
+                 5: '普通', 6: '普通', 7: '普通', 8: '普通', 9: '普通',
+                 10: '优良', 11: '优良', 12: '优良', 13: '优良', 14: '优良',
+                 15: '优良', 16: '优良',
+                 17: '杰出', 18: '杰出', 19: '杰出',
+                 20: '完美'}
 
 QUALITY_MULTIPLIER = {0: 0.5, 1: 0.6, 2: 0.7, 3: 0.8, 4: 0.9,
                       5: 1.0, 6: 1.1, 7: 1.2, 8: 1.3, 9: 1.4,
@@ -14,8 +17,21 @@ QUALITY_MULTIPLIER = {0: 0.5, 1: 0.6, 2: 0.7, 3: 0.8, 4: 0.9,
 
 GENDER_NAMES = {'male': '男', 'female': '女'}
 CLASS_NAMES = {'warrior': '战士', 'mage': '术士', 'assassin': '刺客'}
-TIER_NAMES = {0: '普通', 1: '一级', 2: '二级', 3: '三级'}
+TIER_NAMES = {0: '普通', 1: '一级', 2: '二级', 3: '三级', 4: '顶级', 5: '超凡'}
 TIER_FRAGMENTS = {1: 10, 2: 3, 3: 1}
+
+# 品质类型倍率(按 quality 档位):普通0-9 / 优良10-16 / 杰出17-19 / 完美20
+QUALITY_TYPE_MULT = {0: 1.03, 1: 1.03, 2: 1.03, 3: 1.03, 4: 1.03, 5: 1.03, 6: 1.03,
+                     7: 1.03, 8: 1.03, 9: 1.03, 10: 1.05, 11: 1.05, 12: 1.05,
+                     13: 1.05, 14: 1.05, 15: 1.05, 16: 1.05, 17: 1.07, 18: 1.07,
+                     19: 1.07, 20: 1.10}
+
+# 职业基础属性(无自定义 base 时用):生命/魔法/攻击/防御
+CLASS_BASE_STATS = {
+    'warrior':  {'max_health': 60, 'max_mana': 5,  'attack': 8,  'defense': 12},
+    'assassin': {'max_health': 50, 'max_mana': 8,  'attack': 10, 'defense': 10},
+    'mage':     {'max_health': 40, 'max_mana': 15, 'attack': 12, 'defense': 6},
+}
 
 
 class Lieutenant(db.Model):
@@ -41,6 +57,15 @@ class Lieutenant(db.Model):
     skill_slots = db.Column(db.Integer, nullable=False, default=3)
     tier = db.Column(db.Integer, nullable=False, default=3)
     is_alive = db.Column(db.Boolean, nullable=False, default=True)
+    # 设计专用标记:工作台创建的副将=True,只在工作台设计区可见,不进玩家正式副将列表
+    is_design_only = db.Column(db.Boolean, nullable=False, default=False)
+    # 自定义基础属性(可空):设计者手动指定时优先于公式;None 则走 get_max_health 等公式
+    base_max_health = db.Column(db.Integer, nullable=True, default=None)
+    base_max_mana = db.Column(db.Integer, nullable=True, default=None)
+    base_attack = db.Column(db.Integer, nullable=True, default=None)
+    base_defense = db.Column(db.Integer, nullable=True, default=None)
+    base_crit_rate = db.Column(db.Float, nullable=True, default=None)
+    base_dodge_rate = db.Column(db.Float, nullable=True, default=None)
 
     @property
     def quality_name(self):
@@ -71,39 +96,51 @@ class Lieutenant(db.Model):
         return QUALITY_MULTIPLIER.get(self.quality, 0.5)
 
     @property
+    def quality_type_mult(self):
+        """品质类型倍率:普通1.03/优良1.05/杰出1.07/完美1.10。"""
+        return QUALITY_TYPE_MULT.get(self.quality, 1.03)
+
+    @property
+    def reinforce_mult(self):
+        """强化加成:1+0.005×强化(0点=1.0, 20点=1.10)。"""
+        return 1.0 + self.reinforce * 0.005
+
+    @property
     def enlightenment_mult(self):
         return 1.0 + self.enlightenment * 0.05
 
+    def _stat_base(self, stat_key):
+        """取某项基础属性:有自定义 base 用自定义,否则用职业基础表。"""
+        base_field = 'base_' + stat_key
+        custom = getattr(self, base_field, None)
+        if custom is not None:
+            return custom
+        return CLASS_BASE_STATS.get(self.class_type, CLASS_BASE_STATS['warrior']).get(stat_key, 0)
+
     def get_max_health(self):
-        base = 200 + self.level * 50
-        return int(base * self.quality_mult * self.enlightenment_mult * (1 + self.reinforce * 0.03))
+        # 公式: 基础属性 × 副将等级 × 品质类型倍率 × 强化加成（向上取整）
+        return math.ceil(self._stat_base('max_health') * self.level * self.quality_type_mult * self.reinforce_mult)
 
     def get_max_mana(self):
-        if self.class_type == 'mage':
-            base = 150 + self.level * 40
-        elif self.class_type == 'assassin':
-            base = 80 + self.level * 25
-        else:
-            base = 60 + self.level * 20
-        return int(base * self.quality_mult * self.enlightenment_mult * (1 + self.reinforce * 0.03))
+        return math.ceil(self._stat_base('max_mana') * self.level * self.quality_type_mult * self.reinforce_mult)
 
     def get_attack(self):
-        if self.class_type == 'warrior':
-            base = 20 + self.level * 8
-        elif self.class_type == 'assassin':
-            base = 18 + self.level * 9
-        else:
-            base = 12 + self.level * 6
-        return int(base * self.quality_mult * self.enlightenment_mult * (1 + self.reinforce * 0.03))
+        return math.ceil(self._stat_base('attack') * self.level * self.quality_type_mult * self.reinforce_mult)
 
     def get_defense(self):
-        if self.class_type == 'warrior':
-            base = 15 + self.level * 6
-        elif self.class_type == 'mage':
-            base = 8 + self.level * 3
-        else:
-            base = 10 + self.level * 4
-        return int(base * self.quality_mult * self.enlightenment_mult * (1 + self.reinforce * 0.03))
+        return math.ceil(self._stat_base('defense') * self.level * self.quality_type_mult * self.reinforce_mult)
+
+    def get_crit_rate(self):
+        """副将暴击率:自定义值按 基础×品质×强化 计算(不乘等级,避免百分比爆表);无自定义取被动加成。"""
+        if self.base_crit_rate is not None:
+            return self.base_crit_rate * self.quality_type_mult * self.reinforce_mult
+        return self.get_passive_bonus().get('crit', 0)
+
+    def get_dodge_rate(self):
+        """副将闪避率:自定义值按 基础×品质×强化 计算(不乘等级);无自定义取被动加成。"""
+        if self.base_dodge_rate is not None:
+            return self.base_dodge_rate
+        return self.get_passive_bonus().get('dodge', 0)
 
     def can_deploy(self):
         if self.loyalty < 30:

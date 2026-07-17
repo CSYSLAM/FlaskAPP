@@ -10,7 +10,8 @@
         "south": "xuchang_center.驿站"
       },
       "npcs": [
-        "npc_xuchang_center_任务使者"
+        "npc_xuchang_center_任务使者",
+        "npc_xuchang_center_曹丕副本"
       ]
     },
     "皇宫": {
@@ -73,9 +74,7 @@
         "west": "xuchang_center.白虎街",
         "east": "xuchang_center.广场"
       },
-      "npcs": [
-        "npc_xuchang_center_曹昂副本"
-      ]
+      "npcs": []
     },
     "白虎街": {
       "name": "白虎街",

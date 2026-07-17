@@ -17,7 +17,7 @@ class ShopService:
         return cls._shops_cache
 
     @classmethod
-    def get_shop_data(cls, shop_id, tab=None):
+    def get_shop_data(cls, shop_id, tab=None, **kwargs):
         """Return shop config with items for a given tab."""
         shops = cls._load_shops()
         shop = shops.get(shop_id)
@@ -27,16 +27,30 @@ class ShopService:
         if not tab:
             tab = list(tabs.keys())[0] if tabs else None
 
-        # Special handling for test shop: populate with all items at 1 gold
+        # Special handling for test shop: populate with all items at 1 gold.
+        # Supports pagination + search since the catalog is large (~360 items).
         if shop_id == 'test':
-            all_items = cls._build_test_items()
+            page = max(1, int(kwargs.get('page') or 1))
+            per_page = max(1, min(100, int(kwargs.get('per_page') or 30)))
+            search = (kwargs.get('search') or '').strip()
+            all_items = cls._build_test_items(search=search)
+            total = len(all_items)
+            total_pages = max(1, (total + per_page - 1) // per_page)
+            page = min(page, total_pages)
+            start = (page - 1) * per_page
             return {
                 'id': shop_id,
                 'name': shop.get('name', shop_id),
                 'currency': 'gold',
                 'tab': tab,
                 'tabs': tabs,
-                'items': all_items,
+                'items': all_items[start:start + per_page],
+                # pagination metadata (only used by test shop template)
+                'page': page,
+                'per_page': per_page,
+                'total': total,
+                'total_pages': total_pages,
+                'search': search,
             }
 
         items = shop.get('items', {}).get(tab, [])
@@ -50,11 +64,24 @@ class ShopService:
         }
 
     @classmethod
-    def _build_test_items(cls):
-        """Build test shop items: all items at 1 gold."""
+    def _build_test_items(cls, search=''):
+        """Build test shop items: all items at 1 gold, optionally filtered by search.
+
+        Search matches against item id, name, type, and description (case-insensitive).
+        """
+        search = (search or '').strip().lower()
         items = []
         all_items = DataService.get_items()
         for item_id, item_data in all_items.items():
+            if search:
+                haystack = ' '.join(str(x) for x in (
+                    item_id,
+                    item_data.get('name', ''),
+                    item_data.get('type', ''),
+                    item_data.get('description', ''),
+                )).lower()
+                if search not in haystack:
+                    continue
             items.append({
                 'id': item_id,
                 'name': item_data.get('name', item_id),

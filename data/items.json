@@ -153,24 +153,6 @@
     },
     "capacity": 0.1
   },
-  "potion_health": {
-    "name": "生命秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%生命上限,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "max_health",
-          "rate": 0.05,
-          "duration": 120,
-          "effect_name": "生命秘药"
-        }
-      ]
-    },
-    "capacity": 0
-  },
   "megaphone": {
     "name": "大喇叭",
     "type": "other",
@@ -446,135 +428,20 @@
     },
     "capacity": 0
   },
-  "potion_mana_temp": {
-    "name": "魔法秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%魔法上限,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "max_mana",
-          "rate": 0.05,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_crit": {
-    "name": "暴击秘药",
-    "type": "potion",
-    "description": "使用后临时提升3%暴击率,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "crit_rate",
-          "rate": 0.03,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_dodge": {
-    "name": "闪避秘药",
-    "type": "potion",
-    "description": "使用后临时提升3%闪避率,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "dodge_rate",
-          "rate": 0.03,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
   "potion_package": {
     "name": "秘药礼包",
-    "type": "potion",
+    "type": "other",
     "description": "使用后随机获得一种秘药",
     "price": 150,
     "is_usable": true,
     "usage_effect": {
-      "random_items": [
-        {
-          "item_id": "potion_attack",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_defense",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_health",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_mana_temp",
-          "max_count": 1,
-          "chance": 0.2,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_crit",
-          "max_count": 1,
-          "chance": 0.1,
-          "guaranteed_count": 1
-        },
-        {
-          "item_id": "potion_dodge",
-          "max_count": 1,
-          "chance": 0.1,
-          "guaranteed_count": 1
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_attack": {
-    "name": "攻击秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%攻击力,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "attack",
-          "rate": 0.05,
-          "duration": 120
-        }
-      ]
-    },
-    "capacity": 0
-  },
-  "potion_defense": {
-    "name": "防御秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%防御力,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "defense",
-          "rate": 0.05,
-          "duration": 120
-        }
+      "random_one_of": [
+        "potion_health_buff",
+        "potion_mana_buff",
+        "potion_attack_buff",
+        "potion_defense_buff",
+        "potion_crit_buff",
+        "potion_dodge_buff"
       ]
     },
     "capacity": 0
@@ -641,12 +508,12 @@
   "money_small": {
     "name": "小银两包",
     "type": "consumable",
-    "description": "打开获得少量银两",
+    "description": "使用后可获100000银两",
     "price": 0,
     "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "grant_gold": 10000
+      "grant_gold": 100000
     },
     "capacity": 0.1
   },
@@ -752,7 +619,7 @@
   },
   "potion_revive": {
     "name": "续命灯",
-    "type": "potion",
+    "type": "other",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
@@ -762,26 +629,9 @@
   "blood_stone_small": {
     "name": "小血石",
     "type": "consumable",
-    "description": "使用后增加1000点生命储备，战斗中可自动回复",
+    "description": "使用可获生命储备5000点",
     "price": 200,
     "sell_price": 50,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "blood_reserve": 1000
-      },
-      "effect_descriptions": {
-        "blood_reserve": "生命储备+1000"
-      }
-    },
-    "capacity": 0.1
-  },
-  "blood_stone_medium": {
-    "name": "中血石",
-    "type": "consumable",
-    "description": "使用后增加5000点生命储备，战斗中可自动回复",
-    "price": 800,
-    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -789,6 +639,23 @@
       },
       "effect_descriptions": {
         "blood_reserve": "生命储备+5000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "blood_stone_medium": {
+    "name": "中血石",
+    "type": "consumable",
+    "description": "使用可获生命储备10000点",
+    "price": 800,
+    "sell_price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "blood_reserve": 10000
+      },
+      "effect_descriptions": {
+        "blood_reserve": "生命储备+10000"
       }
     },
     "capacity": 0.1
@@ -813,26 +680,9 @@
   "mana_stone_small": {
     "name": "小魔石",
     "type": "consumable",
-    "description": "使用后增加1000点魔法储备，战斗中可自动回复",
+    "description": "使用可获魔法储备5000点",
     "price": 200,
     "sell_price": 50,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "mana_reserve": 1000
-      },
-      "effect_descriptions": {
-        "mana_reserve": "魔法储备+1000"
-      }
-    },
-    "capacity": 0.1
-  },
-  "mana_stone_medium": {
-    "name": "中魔石",
-    "type": "consumable",
-    "description": "使用后增加5000点魔法储备，战斗中可自动回复",
-    "price": 800,
-    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -840,6 +690,23 @@
       },
       "effect_descriptions": {
         "mana_reserve": "魔法储备+5000"
+      }
+    },
+    "capacity": 0.1
+  },
+  "mana_stone_medium": {
+    "name": "中魔石",
+    "type": "consumable",
+    "description": "使用可获魔法储备10000点",
+    "price": 800,
+    "sell_price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana_reserve": 10000
+      },
+      "effect_descriptions": {
+        "mana_reserve": "魔法储备+10000"
       }
     },
     "capacity": 0.1
@@ -1341,24 +1208,6 @@
     "is_usable": false,
     "capacity": 0.1
   },
-  "potion_health_temp": {
-    "name": "生命秘药",
-    "type": "potion",
-    "description": "使用后临时提升5%生命上限,持续2分钟",
-    "price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "max_health",
-          "rate": 0.05,
-          "duration": 120,
-          "effect_name": "生命秘药"
-        }
-      ]
-    },
-    "capacity": 0
-  },
   "chest_lv10_gear": {
     "name": "10级装备礼盒",
     "type": "chest",
@@ -1493,7 +1342,7 @@
   },
   "yb_revive": {
     "name": "续命灯",
-    "type": "material",
+    "type": "other",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
@@ -1511,32 +1360,15 @@
   },
   "jz_revive": {
     "name": "续命灯",
-    "type": "material",
+    "type": "other",
     "description": "可以满血复活",
     "price": 200,
     "currency": "jinzu",
     "is_usable": false,
     "capacity": 0.1
   },
-  "jz_big_exp": {
-    "name": "大经验丹",
-    "type": "other",
-    "description": "使用后增加10万经验",
-    "price": 1200,
-    "currency": "jinzu",
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "experience": 100000
-      },
-      "effect_descriptions": {
-        "experience": "获得{value}经验"
-      }
-    },
-    "capacity": 0
-  },
   "jz_honor_scroll": {
-    "name": "荣誉卷轴",
+    "name": "高级荣誉卷轴",
     "type": "material",
     "description": "使用后可获得10点荣誉值",
     "price": 500,
@@ -1616,46 +1448,6 @@
     },
     "capacity": 0
   },
-  "lt_quality_pill": {
-    "name": "副将资质丹",
-    "type": "material",
-    "description": "洗副将资质，随机刷新品质(0-20)",
-    "price": 500,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_enlighten_pill": {
-    "name": "副将悟性丹",
-    "type": "material",
-    "description": "提升副将悟性，成功悟性+1，失败不变",
-    "price": 800,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_reinforce_pill": {
-    "name": "副将强化丹",
-    "type": "material",
-    "description": "强化副将，成功+1，失败不变",
-    "price": 600,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_loyalty_pill": {
-    "name": "副将忠诚丹",
-    "type": "material",
-    "description": "恢复副将忠诚度+20",
-    "price": 300,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
-  "lt_lifespan_pill": {
-    "name": "副将寿命丹",
-    "type": "material",
-    "description": "恢复副将寿命+20",
-    "price": 300,
-    "currency": "yuanbao",
-    "capacity": 0.1
-  },
   "lt_skill_expand": {
     "name": "副将技能扩展符",
     "type": "material",
@@ -1666,7 +1458,7 @@
   },
   "lt_slot_expand": {
     "name": "副将扩充符",
-    "type": "material",
+    "type": "other",
     "description": "扩充副将位+1",
     "price": 2000,
     "currency": "yuanbao",
@@ -1674,14 +1466,14 @@
   },
   "lt_potion_heal": {
     "name": "副将补药",
-    "type": "potion",
+    "type": "other",
     "description": "恢复副将生命值100",
     "price": 200,
     "capacity": 0
   },
   "lt_potion_mana": {
     "name": "副将魔药",
-    "type": "potion",
+    "type": "other",
     "description": "恢复副将魔法值50",
     "price": 200,
     "capacity": 0
@@ -1692,7 +1484,8 @@
     "description": "副将学习连击1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_combo_2": {
     "name": "连击进阶",
@@ -1700,7 +1493,8 @@
     "description": "副将学习连击2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_combo_3": {
     "name": "连击精通",
@@ -1708,7 +1502,8 @@
     "description": "副将学习连击3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_smash_1": {
     "name": "猛击入门",
@@ -1716,7 +1511,8 @@
     "description": "副将学习猛击1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_smash_2": {
     "name": "猛击进阶",
@@ -1724,7 +1520,8 @@
     "description": "副将学习猛击2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_smash_3": {
     "name": "猛击精通",
@@ -1732,7 +1529,8 @@
     "description": "副将学习猛击3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_thunder_1": {
     "name": "天雷入门",
@@ -1740,7 +1538,8 @@
     "description": "副将学习天雷1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_thunder_2": {
     "name": "天雷进阶",
@@ -1748,7 +1547,8 @@
     "description": "副将学习天雷2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_thunder_3": {
     "name": "天雷精通",
@@ -1756,7 +1556,8 @@
     "description": "副将学习天雷3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_absorb_1": {
     "name": "吸收入门",
@@ -1764,7 +1565,8 @@
     "description": "副将学习吸收1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_absorb_2": {
     "name": "吸收进阶",
@@ -1772,7 +1574,8 @@
     "description": "副将学习吸收2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_absorb_3": {
     "name": "吸收精通",
@@ -1780,7 +1583,8 @@
     "description": "副将学习吸收3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_heal_trigger_1": {
     "name": "回春入门",
@@ -1788,7 +1592,8 @@
     "description": "副将学习回春1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_heal_trigger_2": {
     "name": "回春进阶",
@@ -1796,7 +1601,8 @@
     "description": "副将学习回春2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_heal_trigger_3": {
     "name": "回春精通",
@@ -1804,7 +1610,8 @@
     "description": "副将学习回春3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_sharp_1": {
     "name": "锐利入门",
@@ -1812,7 +1619,8 @@
     "description": "副将学习锐利1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_sharp_2": {
     "name": "锐利进阶",
@@ -1820,7 +1628,8 @@
     "description": "副将学习锐利2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_sharp_3": {
     "name": "锐利精通",
@@ -1828,7 +1637,8 @@
     "description": "副将学习锐利3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_tough_1": {
     "name": "坚韧入门",
@@ -1836,7 +1646,8 @@
     "description": "副将学习坚韧1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_tough_2": {
     "name": "坚韧进阶",
@@ -1844,7 +1655,8 @@
     "description": "副将学习坚韧2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_tough_3": {
     "name": "坚韧精通",
@@ -1852,7 +1664,8 @@
     "description": "副将学习坚韧3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_protect_1": {
     "name": "护佑入门",
@@ -1860,7 +1673,8 @@
     "description": "副将学习护佑1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_protect_2": {
     "name": "护佑进阶",
@@ -1868,7 +1682,8 @@
     "description": "副将学习护佑2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_protect_3": {
     "name": "护佑精通",
@@ -1876,7 +1691,8 @@
     "description": "副将学习护佑3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_magic_1": {
     "name": "法能入门",
@@ -1884,7 +1700,8 @@
     "description": "副将学习法能1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_magic_2": {
     "name": "法能进阶",
@@ -1892,7 +1709,8 @@
     "description": "副将学习法能2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_magic_3": {
     "name": "法能精通",
@@ -1900,7 +1718,8 @@
     "description": "副将学习法能3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_brave_1": {
     "name": "勇猛入门",
@@ -1908,7 +1727,8 @@
     "description": "副将学习勇猛1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_brave_2": {
     "name": "勇猛进阶",
@@ -1916,7 +1736,8 @@
     "description": "副将学习勇猛2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_brave_3": {
     "name": "勇猛精通",
@@ -1924,7 +1745,8 @@
     "description": "副将学习勇猛3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_calm_1": {
     "name": "冷静入门",
@@ -1932,7 +1754,8 @@
     "description": "副将学习冷静1级所需",
     "price": 200,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_calm_2": {
     "name": "冷静进阶",
@@ -1940,7 +1763,8 @@
     "description": "副将学习冷静2级所需",
     "price": 400,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_skill_calm_3": {
     "name": "冷静精通",
@@ -1948,7 +1772,8 @@
     "description": "副将学习冷静3级所需",
     "price": 800,
     "currency": "yuanbao",
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "seed_herb": {
     "name": "草药种子",
@@ -1984,6 +1809,7 @@
     "description": "送给异性增加魅力和缘分",
     "sell_price": 50,
     "price": 100,
+    "is_usable": false,
     "capacity": 0.1
   },
   "ginseng": {
@@ -2103,7 +1929,7 @@
   },
   "revive_lamp": {
     "name": "续命灯",
-    "type": "material",
+    "type": "other",
     "description": "可以满血复活",
     "price": 20,
     "currency": "yuanbao",
@@ -2518,7 +2344,7 @@
   },
   "seed_jinchuangyao": {
     "name": "金疮药种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植金疮药。",
     "price": 240,
     "is_usable": false,
@@ -2526,7 +2352,7 @@
   },
   "seed_jumosan": {
     "name": "凝魔散种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植聚魔散。",
     "price": 240,
     "is_usable": false,
@@ -2534,7 +2360,7 @@
   },
   "seed_yangshengwan": {
     "name": "养生丸种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植养生丸。",
     "price": 480,
     "is_usable": false,
@@ -2542,7 +2368,7 @@
   },
   "seed_xingshenshui": {
     "name": "醒神水种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植醒神水。",
     "price": 480,
     "is_usable": false,
@@ -2550,7 +2376,7 @@
   },
   "seed_dabuwan": {
     "name": "大补丸种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植大补丸。",
     "price": 960,
     "is_usable": false,
@@ -2558,7 +2384,7 @@
   },
   "seed_yeshanshen": {
     "name": "野山参种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植野山参。",
     "price": 1920,
     "is_usable": false,
@@ -2566,7 +2392,7 @@
   },
   "seed_xuelianlu": {
     "name": "雪莲露种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植雪莲露。",
     "price": 1920,
     "is_usable": false,
@@ -2574,7 +2400,7 @@
   },
   "seed_zhenzhubei": {
     "name": "珍珠贝种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植珍珠贝。",
     "price": 2440,
     "is_usable": false,
@@ -2582,7 +2408,7 @@
   },
   "seed_huanyangdan": {
     "name": "还阳丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植还阳丹。",
     "price": 2980,
     "is_usable": false,
@@ -2590,7 +2416,7 @@
   },
   "seed_guanyinshui": {
     "name": "观音水种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植观音水。",
     "price": 2980,
     "is_usable": false,
@@ -2598,7 +2424,7 @@
   },
   "seed_tiancandan": {
     "name": "天蚕丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植天蚕丹。",
     "price": 4960,
     "is_usable": false,
@@ -2606,23 +2432,15 @@
   },
   "seed_huashenshui": {
     "name": "化神水种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植化神水。",
     "price": 4960,
     "is_usable": false,
     "capacity": 0
   },
-  "seed_jingyandan": {
-    "name": "经验丹种子",
-    "type": "seed",
-    "description": "可在山庄种植经验丹。",
-    "price": 10000,
-    "is_usable": false,
-    "capacity": 0
-  },
   "seed_shenxuedan": {
     "name": "神血丹种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植神血丹。",
     "price": 5960,
     "is_usable": false,
@@ -2630,7 +2448,7 @@
   },
   "seed_qinglinglu": {
     "name": "清灵露种子",
-    "type": "seed",
+    "type": "material",
     "description": "可在山庄种植清灵露。",
     "price": 5960,
     "is_usable": false,
@@ -2665,22 +2483,6 @@
     "price": 500,
     "is_usable": false,
     "capacity": 0
-  },
-  "recruitment_token": {
-    "name": "招募令",
-    "type": "material",
-    "description": "用于在副将统领处招募一名随机普通副将。",
-    "price": 5000,
-    "is_usable": false,
-    "capacity": 0
-  },
-  "soul_banner_fragment": {
-    "name": "聚魂幡碎片",
-    "type": "material",
-    "description": "集齐10个可以合成1个聚魂幡。",
-    "price": 500,
-    "is_usable": false,
-    "capacity": 0.1
   },
   "soul_banner": {
     "name": "聚魂幡",
@@ -3129,19 +2931,19 @@
     "is_usable": false,
     "capacity": 0
   },
-  "quest_fancai": {
-    "name": "饭菜",
+  "quest_jiashu_hui": {
+    "name": "回信",
     "type": "quest",
-    "description": "曹樱为父亲准备的饭菜",
+    "description": "曹彰写给曹樱的回信",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0
   },
-  "lt_recruit_token": {
-    "name": "副将招募令",
+  "quest_fancai": {
+    "name": "饭菜",
     "type": "quest",
-    "description": "可在副将统领处招募一名副将",
+    "description": "曹樱为父亲准备的饭菜",
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
@@ -3157,16 +2959,16 @@
     "capacity": 0
   },
   "bag_expand_scroll": {
-    "name": "秘背包扩容卷",
+    "name": "背包扩容卷",
     "type": "item",
     "description": "使用后增加背包容量5格",
     "price": 0,
-    "sell_price": 0,
     "is_usable": true,
+    "capacity": 0.0,
+    "sell_price": 0,
     "usage_effect": {
       "expand_backpack": 5
-    },
-    "capacity": 0
+    }
   },
   "battle_challenge_token": {
     "name": "战场请战符",
@@ -3398,22 +3200,22 @@
   },
   "ripening_agent": {
     "name": "催熟剂",
-    "type": "consumable",
-    "description": "使用后加速植物生长",
+    "type": "other",
+    "description": "用于百草园作物催熟的道具",
     "price": 0,
     "sell_price": 30,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "vitality_card": {
     "name": "活力卡",
     "type": "consumable",
-    "description": "使用后恢复全部活力",
+    "description": "每张卡可恢复10点山庄行动力",
     "price": 0,
     "sell_price": 100,
-    "is_usable": true,
+    "is_usable": false,
     "usage_effect": {
-      "restore_vitality": 999
+      "restore_vitality": 10
     },
     "capacity": 0.1
   },
@@ -3447,19 +3249,19 @@
   "money_large": {
     "name": "大银两包",
     "type": "consumable",
-    "description": "打开获得大量银两",
+    "description": "使用后可获500000银两",
     "price": 0,
     "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "grant_gold": 100000
+      "grant_gold": 500000
     },
     "capacity": 0.1
   },
   "death_substitute": {
     "name": "死亡替身符",
-    "type": "consumable",
-    "description": "死亡时自动消耗，免除死亡惩罚",
+    "type": "other",
+    "description": "蕴含神奇保护力量的符咒，PK死亡后不会损失经验与掉落银两、道具、荣誉，每次PK死亡自动消耗1个",
     "price": 0,
     "sell_price": 200,
     "is_usable": false,
@@ -3666,43 +3468,25 @@
   "mi_yao_pack": {
     "name": "秘药礼包",
     "type": "consumable",
-    "description": "打开获得随机属性秘药",
+    "description": "打开随机获得一种属性秘药",
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
-      "random_items": [
-        {
-          "item_id": "pill_attack",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        },
-        {
-          "item_id": "pill_defense",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        },
-        {
-          "item_id": "pill_max_health",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        },
-        {
-          "item_id": "pill_max_mana",
-          "guaranteed_count": 0,
-          "max_count": 1,
-          "chance": 0.25
-        }
+      "random_one_of": [
+        "potion_health_buff",
+        "potion_mana_buff",
+        "potion_attack_buff",
+        "potion_defense_buff",
+        "potion_crit_buff",
+        "potion_dodge_buff"
       ]
     },
     "capacity": 0.1
   },
   "double_exp_card": {
     "name": "双倍经验卡",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后1小时内打怪经验增加1倍",
     "price": 0,
     "sell_price": 200,
@@ -3824,16 +3608,16 @@
   "big_hp_stone": {
     "name": "大血石",
     "type": "consumable",
-    "description": "使用后增加20000点生命储备",
+    "description": "使用可获生命储备25000点",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "blood_reserve": 20000
+        "blood_reserve": 25000
       },
       "effect_descriptions": {
-        "blood_reserve": "生命储备+20000"
+        "blood_reserve": "生命储备+25000"
       }
     },
     "capacity": 0.1
@@ -3841,16 +3625,16 @@
   "big_mp_stone": {
     "name": "大魔石",
     "type": "consumable",
-    "description": "使用后增加20000点魔法储备",
+    "description": "使用可获魔法储备25000点",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "mana_reserve": 20000
+        "mana_reserve": 25000
       },
       "effect_descriptions": {
-        "mana_reserve": "魔法储备+20000"
+        "mana_reserve": "魔法储备+25000"
       }
     },
     "capacity": 0.1
@@ -3923,7 +3707,7 @@
   },
   "lt_recruit": {
     "name": "副将招募令",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后招募随机副将",
     "price": 0,
     "sell_price": 500,
@@ -4092,193 +3876,13 @@
     "is_usable": false,
     "capacity": 0.1
   },
-  "skill_page_absorb_0": {
-    "name": "技能残页·入门·吸收",
-    "type": "consumable",
-    "description": "使用后可学习技能",
+  "skill_page": {
+    "name": "技能残页",
+    "type": "material",
+    "description": "记载着残缺技能的古老书页，可在合成界面合成完整技能书。",
     "price": 0,
     "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_protect_0": {
-    "name": "技能残页·入门·护佑",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_blood_0": {
-    "name": "技能残页·入门·嗜血",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_thunder_0": {
-    "name": "技能残页·入门·狂雷",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_fire_0": {
-    "name": "技能残页·入门·火神",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_ice_0": {
-    "name": "技能残页·入门·冰封",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_wind_0": {
-    "name": "技能残页·入门·风行",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_rock_0": {
-    "name": "技能残页·入门·磐石",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_dispel_0": {
-    "name": "技能残页·入门·驱散",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_absorb_1": {
-    "name": "技能残页·进阶·吸收",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_protect_1": {
-    "name": "技能残页·进阶·护佑",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_blood_1": {
-    "name": "技能残页·进阶·嗜血",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_absorb_2": {
-    "name": "技能残页·精通·吸收",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_protect_2": {
-    "name": "技能残页·精通·护佑",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_blood_2": {
-    "name": "技能残页·精通·嗜血",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_thunder_2": {
-    "name": "技能残页·精通·狂雷",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_fire_2": {
-    "name": "技能残页·精通·火神",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_ice_2": {
-    "name": "技能残页·精通·冰封",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_wind_2": {
-    "name": "技能残页·精通·风行",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_rock_2": {
-    "name": "技能残页·精通·磐石",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "skill_page_dispel_2": {
-    "name": "技能残页·精通·驱散",
-    "type": "consumable",
-    "description": "使用后可学习技能",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "chest_changan": {
@@ -4333,9 +3937,10 @@
   "duanchang_cao": {
     "name": "断肠草",
     "type": "material",
-    "description": "用于与红颜或知己断交",
+    "description": "斩断情丝，忘却因缘！离婚必备道具。",
     "price": 0,
     "sell_price": 200,
+    "is_usable": false,
     "capacity": 0.1
   },
   "enhance_lucky": {
@@ -4362,9 +3967,10 @@
   "friend_wine": {
     "name": "结交酒",
     "type": "material",
-    "description": "用于与红颜或知己结交",
+    "description": "用于红颜、知己结交的道具",
     "price": 0,
     "sell_price": 200,
+    "is_usable": false,
     "capacity": 0.1
   },
   "kongming_lantern": {
@@ -4447,7 +4053,8 @@
     "description": "用于副将遗忘技能",
     "price": 0,
     "sell_price": 1000,
-    "capacity": 0.1
+    "capacity": 0.1,
+    "is_usable": false
   },
   "lt_soul_pack_1": {
     "name": "一级名将魂魄包",
@@ -4460,11 +4067,14 @@
   },
   "peace_token": {
     "name": "免战符",
-    "type": "material",
-    "description": "使用后一段时间内不会被其他玩家攻击",
+    "type": "other",
+    "description": "120分钟内未主动攻击他人可使用，使用后将进入300分免战状态，可叠加但无法提前结束；免战状态期间除特定活动外将无法攻击与被其他玩家攻击。",
     "price": 0,
     "sell_price": 110,
     "is_usable": true,
+    "usage_effect": {
+      "peace_status": 300
+    },
     "capacity": 0.1
   },
   "rename_card": {
@@ -4482,19 +4092,19 @@
   "return_scroll": {
     "name": "回城符",
     "type": "consumable",
-    "description": "使用后立即返回主城",
+    "description": "仅在城镇地图可用，可在[场景]-[地图]-[回城]中快速前往所在城镇驿站！",
     "price": 0,
     "sell_price": 10,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "speed_scroll": {
     "name": "神行符",
     "type": "consumable",
-    "description": "使用后一段时间内移动速度提升",
+    "description": "仅在城镇地图可用，可在[场景]-[地图]-[神行]中进行城镇快捷传送！",
     "price": 0,
     "sell_price": 10,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "wood_hammer": {
@@ -4550,5 +4160,396 @@
     "sell_price": 100,
     "is_usable": false,
     "capacity": 0.1
+  },
+  "lt_skill_magic_shield_1": {
+    "name": "法相入门",
+    "type": "material",
+    "description": "副将学习法相1级所需",
+    "price": 200,
+    "currency": "yuanbao",
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_skill_magic_shield_2": {
+    "name": "法相进阶",
+    "type": "material",
+    "description": "副将学习法相2级所需",
+    "price": 400,
+    "currency": "yuanbao",
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_skill_magic_shield_3": {
+    "name": "法相精通",
+    "type": "material",
+    "description": "副将学习法相3级所需",
+    "price": 800,
+    "currency": "yuanbao",
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "lt_forget_tome": {
+    "name": "遗忘之章",
+    "type": "material",
+    "description": "副将遗忘技能所需，可由50个遗忘之章残页合成。",
+    "price": 0,
+    "sell_price": 5000,
+    "is_usable": false,
+    "capacity": 0.1
+  },
+  "bp_tiangang_helmet": {
+    "name": "【图纸】天罡重盔",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡重盔",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_armor": {
+    "name": "【图纸】天罡重甲",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡重甲",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_pants": {
+    "name": "【图纸】天罡护腿",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡护腿",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_gloves": {
+    "name": "【图纸】天罡护手",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡护手",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_tiangang_shoes": {
+    "name": "【图纸】天罡重靴",
+    "type": "material",
+    "description": "可用于打造60级战士史诗防具·天罡重靴",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_helmet": {
+    "name": "【图纸】紫云羽冠",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云羽冠",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_armor": {
+    "name": "【图纸】紫云羽衣",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云羽衣",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_pants": {
+    "name": "【图纸】紫云羽裤",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云羽裤",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_gloves": {
+    "name": "【图纸】紫云护手",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云护手",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_ziyun_shoes": {
+    "name": "【图纸】紫云靴",
+    "type": "material",
+    "description": "可用于打造60级术士史诗防具·紫云靴",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_helmet": {
+    "name": "【图纸】烈焰头冠",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰头冠",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_armor": {
+    "name": "【图纸】烈焰轻甲",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰轻甲",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_pants": {
+    "name": "【图纸】烈焰皮裤",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰皮裤",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_gloves": {
+    "name": "【图纸】烈焰护手",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰护手",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "bp_lieyan_shoes": {
+    "name": "【图纸】烈焰靴",
+    "type": "material",
+    "description": "可用于打造60级刺客史诗防具·烈焰靴",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0.05
+  },
+  "potion_health_buff": {
+    "name": "生命秘药",
+    "type": "other",
+    "description": "使用后临时提升5%生命上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_health",
+          "rate": 0.05,
+          "duration": 120,
+          "effect_name": "生命秘药"
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_mana_buff": {
+    "name": "魔法秘药",
+    "type": "other",
+    "description": "使用后临时提升5%魔法上限,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "max_mana",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_attack_buff": {
+    "name": "攻击秘药",
+    "type": "other",
+    "description": "使用后临时提升5%攻击力,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "attack",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_defense_buff": {
+    "name": "防御秘药",
+    "type": "other",
+    "description": "使用后临时提升5%防御力,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "defense",
+          "rate": 0.05,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_crit_buff": {
+    "name": "暴击秘药",
+    "type": "other",
+    "description": "使用后临时提升3%暴击率,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "crit_rate",
+          "rate": 0.03,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "potion_dodge_buff": {
+    "name": "闪避秘药",
+    "type": "other",
+    "description": "使用后临时提升3%闪避率,持续2分钟",
+    "price": 200,
+    "is_usable": true,
+    "usage_effect": {
+      "temp_effects": [
+        {
+          "stat": "dodge_rate",
+          "rate": 0.03,
+          "duration": 120
+        }
+      ]
+    },
+    "capacity": 0
+  },
+  "quest_mixin": {
+    "name": "逆臣密信",
+    "type": "quest",
+    "description": "从逆臣高干身上搜出的通敌密信，似与塞外异族歃血为盟。需交予北平太守公孙瓒。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_bingshu": {
+    "name": "孙吴兵书",
+    "type": "quest",
+    "description": "孙尚香被窃贼偷走的兵书，记载了江东战法。需夺回交予孙尚香。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_xin": {
+    "name": "家信",
+    "type": "quest",
+    "description": "孙尚香写给兄长孙策的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_xin_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "孙策写给孙尚香的回信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_wu_gengdian": {
+    "name": "羹点",
+    "type": "quest",
+    "description": "孙尚香为兄长孙策准备的羹点",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_jinnang": {
+    "name": "诸葛锦囊",
+    "type": "quest",
+    "description": "刘雅被窃贼偷走的锦囊，内藏军机妙计。需夺回交予刘雅。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_xin": {
+    "name": "家信",
+    "type": "quest",
+    "description": "刘雅写给刘封的家信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_xin_hui": {
+    "name": "回信",
+    "type": "quest",
+    "description": "刘封写给刘雅的回信",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_shu_chashi": {
+    "name": "茶食",
+    "type": "quest",
+    "description": "刘雅为刘封准备的茶食",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_jinmi_xin": {
+    "name": "烬焰密信",
+    "type": "quest",
+    "description": "截获的烬焰盟密信，墨迹未干，暗藏接头暗号。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_yuxi_tapan": {
+    "name": "玉玺拓片",
+    "type": "quest",
+    "description": "江陵水寨密室中所得的传国玉玺拓片，纹路诡谲。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_luoyang_bu": {
+    "name": "洛阳布防图",
+    "type": "quest",
+    "description": "汉中军帐中夺得的洛阳布防图，背烙董卓印记，标注烬焰盟总坛虚实。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "quest_chuanguo_yuxi": {
+    "name": "传国玉玺",
+    "type": "quest",
+    "description": "失传已久的传国玉玺，和氏之璧琢成，乃天下气运所系。",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": false,
+    "capacity": 0
   }
 }

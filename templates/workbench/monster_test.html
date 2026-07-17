@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>怪物测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 110px; }
+        input, select { font-size: 16px; padding: 3px 5px; margin: 2px 0; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .result-box { margin: 6px 0; padding: 6px 8px; border: 1px solid #e0e0e0; border-radius: 4px; background: #fafafa; }
+        .result-title { font-weight: bold; margin-bottom: 4px; }
+        .stat-row { padding: 1px 0 1px 12px; }
+        .loot-eq { color: #ff6600; }
+        .loot-item { color: #2e7d32; }
+        .loot-money { color: #666; }
+        .loot-exp { color: #136ec2; }
+        .elite { color: #c62828; font-weight: bold; }
+        .divine { color: #ff6600; font-weight: bold; }
+        .no-drop { color: #999; }
+        .hint { color: #888; font-size: 13px; }
+        .explain { color: #888; font-size: 13px; padding: 4px 12px; border-left: 3px solid #ddd; margin: 4px 0; }
+        .summary { margin: 8px 0; padding: 8px; border: 1px solid #2e7d32; border-radius: 4px; background: #f1f8f1; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>怪物测试</h3>
+    <a href="{{ url_for('workbench.monster_view', monster_id=monster_id) }}">返回详情</a><br/><br/>
+
+    怪物: <b>{{ monster.name }}</b> ({{ monster.level }}级)
+    {% if monster.is_elite %}<span class="elite">[精英]</span>{% endif %}
+    {% if monster.is_divine_beast %}<span class="divine">[兽王]</span>{% endif %}<br/>
+
+    <div class="explain">
+        掉落机制说明：<br/>
+        装备掉落率 {{ "%.1f%%"|format(monster.drops.equipment_drop.drop_rate * 100) }} — 每次击杀先判定是否触发装备掉落，触发后从掉落池中按品质权重随机抽取一件<br/>
+        物品掉落 — 每件物品独立概率判定，可与装备掉落同时发生<br/>
+        神器掉落 — 神兽专属，独立于装备掉落另行判定<br/>
+    </div>
+
+    <div class="section">测试参数</div>
+    <form method="post">
+        <span class="label">模拟玩家等级:</span>
+        <input type="number" name="player_level" value="1" min="1" style="width:80px"><br/>
+        <span class="label">模拟次数:</span>
+        <input type="number" name="count" value="5" min="1" max="20" style="width:80px"><br/>
+        <button type="submit" class="btn">开始模拟</button>
+    </form>
+
+    {% if results %}
+    <div class="section">模拟结果 ({{ results|length }}次)</div>
+    {% set eq_count = [] %}
+    {% set item_count = [] %}
+    {% for result in results %}
+    <div class="result-box">
+        <div class="result-title">第{{ loop.index }}次模拟</div>
+        {% if result.damage_preview %}
+        <div class="stat-row">攻击力: <b>{{ result.damage_preview.attack_power }}</b></div>
+        <div class="stat-row">暴击率: {{ result.damage_preview.crit_rate }}</div>
+        {% endif %}
+        {% if result.loot_preview %}
+        <div class="stat-row">掉落结果:</div>
+        {% if result.loot_preview.equipment %}
+        {% if eq_count.append(1) %}{% endif %}
+        <div class="stat-row loot-eq">  装备: {{ result.loot_preview.equipment.get('name', result.loot_preview.equipment.get('template_id', '未知')) }}
+        {% if result.loot_preview.equipment.get('rarity') %}({{ result.loot_preview.equipment.rarity }}{% if result.loot_preview.equipment.get('stars') %} {{ result.loot_preview.equipment.stars }}星{% endif %}){% endif %}
+        </div>
+        {% else %}
+        <div class="stat-row no-drop">  装备: 未掉落</div>
+        {% endif %}
+        {% if result.loot_preview.dropped_items %}
+        {% if item_count.append(1) %}{% endif %}
+        {% for item_id in result.loot_preview.dropped_items %}
+        <div class="stat-row loot-item">  物品: {{ item_id }}</div>
+        {% endfor %}
+        {% endif %}
+        <div class="stat-row loot-money">  银两: {{ result.loot_preview.money }}</div>
+        <div class="stat-row loot-exp">  经验: {{ result.loot_preview.experience }}</div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="summary">
+        <b>统计:</b> {{ results|length }}次模拟中<br/>
+        装备掉落: {{ eq_count|length }}次 ({{ "%.1f%%"|format(eq_count|length * 100.0 / results|length) }})<br/>
+        物品掉落: {{ item_count|length }}次 ({{ "%.1f%%"|format(item_count|length * 100.0 / results|length) }})<br/>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

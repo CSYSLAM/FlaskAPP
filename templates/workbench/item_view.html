@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>物品详情</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .label { color: #666; display: inline-block; min-width: 110px; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .json-box { margin: 4px 0; padding: 6px 8px; border: 1px solid #ddd; border-radius: 4px; background: #f5f5f5; font-size: 14px; white-space: pre-wrap; word-break: break-all; overflow-x: auto; }
+        .usable { color: #2e7d32; font-weight: bold; }
+        .not-usable { color: #999; }
+        .permanent { color: #ff6600; font-size: 13px; }
+        .bulk { color: #136ec2; font-size: 13px; }
+        .btn { display: inline-block; padding: 6px 16px; margin: 4px; border: 1px solid #136ec2; border-radius: 3px; color: #fff; background: #136ec2; text-decoration: none; font-size: 16px; cursor: pointer; }
+        .btn-warn { background: #c62828; border-color: #c62828; }
+        .effect-line { padding: 2px 0 2px 12px; }
+        .effect-key { color: #136ec2; font-weight: bold; }
+        .hint { color: #888; font-size: 13px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>物品详情</h3>
+    <a href="{{ url_for('workbench.item_design') }}">返回列表</a>
+    | <a href="{{ url_for('workbench.item_edit', item_id=item_id) }}">编辑</a>
+    | <a href="{{ url_for('workbench.item_test', item_id=item_id) }}">测试使用</a>
+    | <a href="{{ url_for('workbench.item_delete', item_id=item_id) }}">删除</a><br/><br/>
+
+    <div class="section">基本信息</div>
+    物品ID: <b>{{ item_id }}</b><br/>
+    <span class="label">名称:</span> {{ item.name }}<br/>
+    <span class="label">类型:</span> {{ type_names.get(item.type, item.type) }}({{ item.type }})<br/>
+    <span class="label">描述:</span> {{ item.description }}<br/>
+    <span class="label">价格:</span> {{ item.get('price', 0) }}
+    {% if item.get('currency') %}
+    {{ currency_names.get(item.get('currency'), item.get('currency')) }}
+    {% else %}
+    银两
+    {% endif %}<br/>
+    {% if item.get('sell_price') %}
+    <span class="label">售价:</span> {{ item.sell_price }}<br/>
+    {% endif %}
+    <span class="label">占用容量:</span> {{ item.get('capacity', 0) }}<br/>
+    <span class="label">可使用:</span>
+    {% if item.is_usable %}<span class="usable">是</span>{% else %}<span class="not-usable">否</span>{% endif %}<br/>
+    {% if item.get('is_permanent_buff') %}<span class="permanent">永久增益</span><br/>{% endif %}
+    {% if item.get('can_bulk_use') %}<span class="bulk">可批量使用</span><br/>{% endif %}
+
+    {% if item.get('usage_condition') %}
+    <div class="section">使用条件 (usage_condition)</div>
+    <div class="json-box">{{ item.usage_condition | tojson }}</div>
+    {% if item.usage_condition.get('level_required') %}
+    <div class="effect-line">需要等级: {{ item.usage_condition.level_required }}</div>
+    {% endif %}
+    {% if item.usage_condition.get('required_items') %}
+    <div class="effect-line">需要物品: {% for iid, cnt in item.usage_condition.required_items.items() %}{{ iid }}×{{ cnt }} {% endfor %}</div>
+    {% endif %}
+    {% endif %}
+
+    {% if item.get('usage_effect') %}
+    <div class="section">使用效果 (usage_effect)</div>
+    {% if preview and preview.effect_lines %}
+    {% for line in preview.effect_lines %}
+    <div class="effect-line">{{ line }}</div>
+    {% endfor %}
+    {% endif %}
+    <div class="hint">完整 JSON:</div>
+    <div class="json-box">{{ item.usage_effect | tojson }}</div>
+    {% endif %}
+
+    <div class="section">完整数据 JSON</div>
+    <div class="json-box">{{ item | tojson }}</div>
+</div>
+</body>
+</html>

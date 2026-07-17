@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>装备详情</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .artifact { color: #ff6600; font-weight: bold; }
+        .label { color: #666; }
+        .value { font-weight: bold; }
+        .stat-row { padding: 1px 0 1px 12px; }
+        .btn { display: inline-block; padding: 4px 10px; margin: 2px; border: 1px solid #136ec2; border-radius: 3px; color: #136ec2; text-decoration: none; font-size: 14px; }
+        .btn:hover { background: #136ec2; color: #fff; }
+        .btn-danger { border-color: #c62828; color: #c62828; }
+        .btn-danger:hover { background: #c62828; color: #fff; }
+        .btn-success { border-color: #2e7d32; color: #2e7d32; }
+        .btn-success:hover { background: #2e7d32; color: #fff; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>装备详情</h3>
+    <a href="{{ url_for('workbench.equip_design') }}">返回列表</a><br/><br/>
+
+    <div class="section">基本信息</div>
+    模板ID: <span class="value">{{ template_id }}</span><br/>
+    名称: <span class="value">{{ template.name }}</span><br/>
+    {% if template.description %}描述: {{ template.description }}<br/>{% endif %}
+    部位: <span class="value">{{ slot_names.get(template.slot, template.slot) }}</span> ({{ template.slot }})<br/>
+    套装: <span class="value">{{ template.set_name }}</span>
+    {% if template.set_name %}<a href="{{ url_for('workbench.equip_set', set_name=template.set_name) }}">查看套装</a>{% endif %}<br/>
+    需求等级: <span class="value">{{ template.level_required }}</span><br/>
+    职业限制: <span class="value">{% if template.class_required %}{{ template.class_required }}{% else %}全职业{% endif %}</span><br/>
+    {% if template.is_artifact %}<span class="artifact">★ 神器 ★</span><br/>{% endif %}
+    绑定: {% if template.is_bound %}已绑定{% else %}不绑定{% endif %}<br/>
+    基础价格: {{ template.get('base_price', 0) }}银两<br/>
+    来源文件: {% if source_file %}{{ source_file }}{% else %}<span style="color:#c62828">不在equipment_sets目录(不可编辑)</span>{% endif %}<br/>
+
+    <div class="section">基础属性 (base_stats)</div>
+    {% for sk, sv in template.base_stats.items() %}
+    <div class="stat-row">
+        {{ stat_names.get(sk, sk) }}: <span class="value">{% if sk in ('crit_rate', 'dodge_rate') %}{{ "%.2f%%"|format(sv * 100) }}{% else %}{{ sv }}{% endif %}</span>
+    </div>
+    {% endfor %}
+
+    <div class="section">最大额外属性 (max_extra_stats, 5星满值)</div>
+    {% for sk, sv in template.get('max_extra_stats', {}).items() %}
+    <div class="stat-row">
+        {{ stat_names.get(sk, sk) }}: <span class="value">{% if sk in ('crit_rate', 'dodge_rate') %}{{ "%.2f%%"|format(sv * 100) }}{% else %}{{ sv }}{% endif %}</span>
+    </div>
+    {% endfor %}
+
+    <div class="section">属性范围预览</div>
+    {% for sk, sv in template.base_stats.items() %}
+    {% set max_e = template.get('max_extra_stats', {}).get(sk, 0) %}
+    <div class="stat-row">
+        {{ stat_names.get(sk, sk) }}: 1星={{ sv|round(2) }}~5星={{ (sv + max_e)|round(2) }}
+        {% if sk in ('crit_rate', 'dodge_rate') %}({{ "%.1f%%"|format(sv * 100) }}~{{ "%.1f%%"|format((sv + max_e) * 100) }}){% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="section">操作</div>
+    {% if source_file %}
+    <a href="{{ url_for('workbench.equip_edit', template_id=template_id) }}" class="btn">编辑</a>
+    <a href="{{ url_for('workbench.equip_delete', template_id=template_id) }}" class="btn btn-danger">删除</a>
+    {% endif %}
+    <a href="{{ url_for('workbench.equip_test', template_id=template_id) }}" class="btn btn-success">测试生成</a>
+</div>
+</body>
+</html>

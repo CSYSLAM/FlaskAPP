@@ -1,0 +1,201 @@
+{
+  "name": "赤壁鏖兵副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "chibi_aobing",
+  "scenes": {
+    "chibi_aobing_copy_live.江东水寨": {
+      "name": "江东水寨",
+      "exits": {
+        "east": "chibi_aobing_copy_live.曹军水寨"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军水兵",
+        "mon_chibi_aobing_黄盖亲兵",
+        "mon_chibi_aobing_曹军斥候船",
+        "mon_chibi_aobing_elite_曹仁"
+      ],
+      "npcs": [
+        "npc_chibi_aobing_周瑜"
+      ]
+    },
+    "chibi_aobing_copy_live.曹军水寨": {
+      "name": "曹军水寨",
+      "exits": {
+        "east": "chibi_aobing_copy_live.七星坛",
+        "west": "chibi_aobing_copy_live.江东水寨"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军守船兵",
+        "mon_chibi_aobing_曹军水寨哨兵"
+      ]
+    },
+    "chibi_aobing_copy_live.七星坛": {
+      "name": "七星坛",
+      "exits": {
+        "east": "chibi_aobing_copy_live.赤壁江面",
+        "west": "chibi_aobing_copy_live.曹军水寨"
+      },
+      "monsters": [
+        "mon_chibi_aobing_东风祭品"
+      ],
+      "npcs": [
+        "npc_chibi_aobing_诸葛亮"
+      ]
+    },
+    "chibi_aobing_copy_live.赤壁江面": {
+      "name": "赤壁江面",
+      "exits": {
+        "east": "chibi_aobing_copy_live.乌林北岸",
+        "west": "chibi_aobing_copy_live.七星坛",
+        "north": "chibi_aobing_copy_live.华容道"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军战船兵",
+        "mon_chibi_aobing_曹军战船残兵",
+        "mon_chibi_aobing_魏军拦截船"
+      ]
+    },
+    "chibi_aobing_copy_live.乌林北岸": {
+      "name": "乌林北岸",
+      "exits": {
+        "east": "chibi_aobing_copy_live.华容道",
+        "west": "chibi_aobing_copy_live.赤壁江面",
+        "south": "chibi_aobing_copy_live.曹军水寨"
+      },
+      "monsters": [
+        "mon_chibi_aobing_曹军工程队",
+        "mon_chibi_aobing_曹军溃兵",
+        "mon_chibi_aobing_曹军典狱"
+      ]
+    },
+    "chibi_aobing_copy_live.华容道": {
+      "name": "华容道",
+      "exits": {
+        "east": "chibi_aobing_copy_live.山道",
+        "west": "chibi_aobing_copy_live.乌林北岸"
+      },
+      "monsters": [
+        "mon_chibi_aobing_elite_夏侯杰",
+        "mon_chibi_aobing_elite_于禁"
+      ]
+    },
+    "chibi_aobing_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "chibi_aobing_copy_live.林间小径",
+        "west": "chibi_aobing_copy_live.华容道",
+        "north": "chibi_aobing_copy_live.河岸边"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "chibi_aobing_copy_live.河岸边",
+        "west": "chibi_aobing_copy_live.山道"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "chibi_aobing_copy_live.荒野",
+        "west": "chibi_aobing_copy_live.林间小径",
+        "south": "chibi_aobing_copy_live.华容道"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "chibi_aobing_copy_live.破庙",
+        "west": "chibi_aobing_copy_live.河岸边",
+        "north": "chibi_aobing_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "chibi_aobing_copy_live.古井旁",
+        "west": "chibi_aobing_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "chibi_aobing_copy_live.断桥",
+        "west": "chibi_aobing_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "chibi_aobing_copy_live.山洞入口",
+        "west": "chibi_aobing_copy_live.古井旁",
+        "north": "chibi_aobing_copy_live.密林深处",
+        "south": "chibi_aobing_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "chibi_aobing_copy_live.密林深处",
+        "west": "chibi_aobing_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "chibi_aobing_copy_live.溪谷",
+        "west": "chibi_aobing_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "chibi_aobing_copy_live.高坡",
+        "west": "chibi_aobing_copy_live.密林深处",
+        "north": "chibi_aobing_copy_live.废弃营地"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "chibi_aobing_copy_live.废弃营地",
+        "west": "chibi_aobing_copy_live.溪谷",
+        "south": "chibi_aobing_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "east": "chibi_aobing_copy_live.石碑前",
+        "west": "chibi_aobing_copy_live.高坡"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.石碑前": {
+      "name": "石碑前",
+      "exits": {
+        "east": "chibi_aobing_copy_live.岔路口",
+        "west": "chibi_aobing_copy_live.废弃营地"
+      },
+      "monsters": []
+    },
+    "chibi_aobing_copy_live.岔路口": {
+      "name": "岔路口",
+      "exits": {
+        "west": "chibi_aobing_copy_live.石碑前"
+      },
+      "monsters": []
+    }
+  }
+}

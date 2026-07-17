@@ -80,6 +80,20 @@ def reinforce(lt_id):
     return redirect(url_for('lieutenant.detail', lt_id=lt_id))
 
 
+@lieutenant_bp.route("/level_up/<int:lt_id>")
+@login_required
+def level_up(lt_id):
+    """消耗1个副将高级经验丹升级。"""
+    player = current_user
+    lt = Lieutenant.query.filter_by(id=lt_id, owner_id=player.id).first()
+    if not lt:
+        flash("副将不存在")
+        return redirect(url_for('lieutenant.index'))
+    success, msg = LieutenantService.level_up_with_pill(lt)
+    flash(msg)
+    return redirect(url_for('lieutenant.detail', lt_id=lt_id))
+
+
 @lieutenant_bp.route("/restore_loyalty/<int:lt_id>")
 @login_required
 def restore_loyalty(lt_id):

@@ -71,6 +71,9 @@ class PlayerModel(db.Model, UserMixin):
     last_skill = db.Column(db.String(64), default='')
     last_mana_cost = db.Column(db.Integer, default=0)
     item_effect = db.Column(db.String(256), default='')
+    # 本回合生命/魔法净变化(带符号): 怪物打扣血为正, 回血为负; 用于战斗界面括号显示
+    last_hp_delta = db.Column(db.Integer, default=0)
+    last_mp_delta = db.Column(db.Integer, default=0)
 
     # HP/MP reserve pool (血石/魔石)
     blood_reserve = db.Column(db.Integer, default=0)
@@ -111,6 +114,9 @@ class PlayerModel(db.Model, UserMixin):
 
     activity_data_raw = db.Column('activity_data', db.Text, default='{}')
 
+    # Finance (理财·股市) holdings: {holdings:{stock_id:{shares,avg_cost}}, realized_profit, total_traded}
+    finance_data_raw = db.Column('finance_data', db.Text, default='{}')
+
     # Enemy list (仇人)
     enemies_raw = db.Column('enemies', db.Text, default='[]')
 
@@ -129,6 +135,15 @@ class PlayerModel(db.Model, UserMixin):
     # Need revive flag
     need_revive = db.Column(db.Boolean, default=False)
     killed_by = db.Column(db.String(64), nullable=True)  # Username of killer
+
+    # Battle status effects (rounds remaining; 0 = none)
+    # 混乱: 无法普攻/技能/撤退，且受到攻击伤害减半
+    status_confuse_rounds = db.Column(db.Integer, default=0)
+    # 封魔: 无法使用技能（仅可普攻/撤退）
+    status_silence_rounds = db.Column(db.Integer, default=0)
+    # 流血: 每回合开始流失固定生命值（PK 用，PVE 怪物流血存于 encounter）
+    status_bleed_rounds = db.Column(db.Integer, default=0)
+    status_bleed_value = db.Column(db.Integer, default=0)
 
     # VIP
     vip_level = db.Column(db.Integer, default=1)
@@ -278,6 +293,17 @@ class PlayerModel(db.Model, UserMixin):
         self.activity_data_raw = json.dumps(value, ensure_ascii=False)
 
     @property
+    def finance_data(self):
+        try:
+            return json.loads(self.finance_data_raw) if self.finance_data_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @finance_data.setter
+    def finance_data(self, value):
+        self.finance_data_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
     def enemies(self):
         try:
             return json.loads(self.enemies_raw) if self.enemies_raw else []
@@ -410,38 +436,38 @@ class PlayerModel(db.Model, UserMixin):
     CLASSES = {
         "术士": {
             "base_stats": {
-                "max_health": 80, "max_mana": 100,
-                "attack": 20, "defense": 3,
-                "crit_rate": 0.03, "dodge_rate": 0.03
+                "max_health": 200, "max_mana": 200,
+                "attack": 70, "defense": 150,
+                "crit_rate": 0, "dodge_rate": 0
             },
             "level_up_stats": {
-                "max_health": 15, "max_mana": 20,
-                "attack": 8, "defense": 2,
-                "crit_rate": 0.005, "dodge_rate": 0.005
+                "max_health": 80, "max_mana": 40,
+                "attack": 6, "defense": 24,
+                "crit_rate": 0.0006, "dodge_rate": 0.0006
             }
         },
         "战士": {
             "base_stats": {
-                "max_health": 120, "max_mana": 50,
-                "attack": 15, "defense": 8,
-                "crit_rate": 0.03, "dodge_rate": 0.03
+                "max_health": 300, "max_mana": 100,
+                "attack": 50, "defense": 200,
+                "crit_rate": 0, "dodge_rate": 0
             },
             "level_up_stats": {
-                "max_health": 25, "max_mana": 10,
-                "attack": 5, "defense": 4,
-                "crit_rate": 0.005, "dodge_rate": 0.005
+                "max_health": 120, "max_mana": 20,
+                "attack": 4, "defense": 26,
+                "crit_rate": 0.0008, "dodge_rate": 0.0008
             }
         },
         "刺客": {
             "base_stats": {
-                "max_health": 90, "max_mana": 60,
-                "attack": 18, "defense": 4,
-                "crit_rate": 0.08, "dodge_rate": 0.08
+                "max_health": 250, "max_mana": 150,
+                "attack": 60, "defense": 180,
+                "crit_rate": 0, "dodge_rate": 0
             },
             "level_up_stats": {
-                "max_health": 18, "max_mana": 12,
-                "attack": 6, "defense": 3,
-                "crit_rate": 0.015, "dodge_rate": 0.015
+                "max_health": 100, "max_mana": 30,
+                "attack": 5, "defense": 25,
+                "crit_rate": 0.0015, "dodge_rate": 0.0015
             }
         }
     }
@@ -622,6 +648,34 @@ class PlayerModel(db.Model, UserMixin):
                 descriptions.append(
                     f"{e.effect_name or stat}({'+'.join(parts)})剩余{time_str}")
         return descriptions
+
+    @property
+    def status_effect(self):
+        """根据活跃临时效果生成状态摘要文本，如 '生↑ 攻↑'"""
+        from services.data_service import DataService
+        DataService.clear_expired_effects(self.id)
+        now = time.time()
+        effects = TempEffect.query.filter_by(player_id=self.id).all()
+        if not effects:
+            return None
+        # 秘药缩写映射
+        potion_short = {
+            'max_health': '生', 'max_mana': '魔',
+            'attack': '攻', 'defense': '防',
+            'crit_rate': '暴', 'dodge_rate': '闪',
+            'experience': '经', 'exp_rate': '经',
+            'lt_exp_rate': '副经',
+        }
+        seen = {}
+        for e in effects:
+            if e.expire_time <= now:
+                continue
+            stat = e.stat
+            short = potion_short.get(stat, stat[:2])
+            if stat not in seen:
+                seen[stat] = short
+        parts = [f"{v}↑" for v in seen.values()]
+        return ' '.join(parts) if parts else None
 
     def get_shortcuts(self):
         try:

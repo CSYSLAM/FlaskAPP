@@ -60,6 +60,14 @@ class DataService:
             else:
                 cls._cache[key] = {}
 
+        # Finance stocks (理财·股市) static definitions
+        finance_path = data_dir / 'finance_stocks.json'
+        if finance_path.exists():
+            with open(finance_path, 'r', encoding='utf-8') as f:
+                cls._cache['finance_stocks'] = json.load(f).get('stocks', [])
+        else:
+            cls._cache['finance_stocks'] = []
+
         copy_monsters_path = data_dir / 'copy_monsters.json'
         if copy_monsters_path.exists():
             with open(copy_monsters_path, 'r', encoding='utf-8') as f:
@@ -95,7 +103,13 @@ class DataService:
                 area_name = area_data.get('name', area_key)
                 area_meta = {key: value for key, value in area_data.items() if key not in {'name', 'scenes'}}
                 for scene_key, scene_data in area_data['scenes'].items():
-                    full_id = f"{area_key}.{scene_key}"
+                    # scene_key may already be a full id ("area.scene") for some
+                    # copy-live files, or a short name ("scene") for others.
+                    # Only prepend area_key for the short-name form, otherwise
+                    # the flat id would get a doubled prefix (area.area.scene)
+                    # and exits/entry_location lookups would miss.
+                    prefix = area_key + '.'
+                    full_id = scene_key if scene_key.startswith(prefix) else f"{area_key}.{scene_key}"
                     entry = dict(scene_data)
                     entry['area_id'] = area_key
                     entry['area_name'] = area_name
@@ -130,8 +144,71 @@ class DataService:
         return cls._cache.get('items', {}).get(item_id)
 
     @classmethod
+    def get_item_effect_hint(cls, item_id):
+        """返回物品使用效果摘要文本，如 '攻击+5%' '经验+50000' 等"""
+        item = cls.get_item(item_id)
+        if not item or not item.get('is_usable', False):
+            return ''
+        effect = item.get('usage_effect', {})
+        hints = []
+        # stat_changes
+        for stat, value in effect.get('stat_changes', {}).items():
+            stat_names = {
+                'experience': '经验', 'honor': '荣誉', 'gold': '银两',
+                'yuanbao': '元宝', 'jinzu': '金珠',
+                'pill_attack': '攻击', 'pill_defense': '防御',
+                'pill_max_health': '生命', 'pill_max_mana': '魔法',
+                'blood_reserve': '生命储备', 'mana_reserve': '魔法储备',
+                'health': '生命', 'mana': '魔法',
+            }
+            name = stat_names.get(stat, stat)
+            hints.append(f"{name}+{value}")
+        # temp_effects
+        for te in effect.get('temp_effects', []):
+            stat = te.get('stat', '')
+            rate = te.get('rate', 0)
+            value = te.get('value', 0)
+            stat_names = {
+                'max_health': '生命', 'max_mana': '魔法',
+                'attack': '攻击', 'defense': '防御',
+                'crit_rate': '暴击', 'dodge_rate': '闪避',
+                'experience': '经验', 'exp_rate': '经验',
+                'lt_exp_rate': '副将经验',
+            }
+            name = stat_names.get(stat, stat)
+            if rate > 0:
+                hints.append(f"{name}+{rate*100:.0f}%")
+            elif value > 0:
+                hints.append(f"{name}+{value}")
+        # grant_gold
+        grant_gold = effect.get('grant_gold')
+        if grant_gold:
+            hints.append(f"银两+{grant_gold}")
+        # vip_days
+        vip_days = effect.get('vip_days')
+        if vip_days:
+            hints.append(f"VIP+{vip_days}天")
+        # restore_vitality
+        restore_vitality = effect.get('restore_vitality')
+        if restore_vitality:
+            hints.append(f"行动力+{restore_vitality}")
+        # expand_backpack / expand_warehouse
+        expand_bp = effect.get('expand_backpack')
+        if expand_bp:
+            hints.append(f"背包+{expand_bp}")
+        expand_wh = effect.get('expand_warehouse')
+        if expand_wh:
+            hints.append(f"仓库+{expand_wh}")
+        return ' '.join(hints) if hints else ''
+
+    @classmethod
     def get_monsters(cls):
         return cls._cache.get('monsters', {})
+
+    @classmethod
+    def get_finance_stocks(cls):
+        """Return list of finance stock definitions (理财·股市)."""
+        return cls._cache.get('finance_stocks', [])
 
     @classmethod
     def get_monster(cls, monster_id):
@@ -278,23 +355,49 @@ class DataService:
 
     # --- Equipment Instance CRUD ---
 
+    # 基础属性的品质系数：模板 base_stats 定义的是该装备最高品质（史诗）属性，
+    # 低品质按系数衰减。神器与史诗同等（100%）。
+    RARITY_BASE_RATIO = {
+        "普通": 0.80,
+        "精良": 0.90,
+        "卓越": 0.95,
+        "史诗": 1.00,
+        "神器": 1.00,
+    }
+
+    # 附加属性按“该条附加属性各自的星级”独立计算系数（在区间内随机）。
+    # 模板 max_extra_stats 定义的是 5 星上限值；星级越低系数越低。
+    EXTRA_STAT_STAR_RANGES = {
+        5: (1.00, 1.10),
+        4: (1.00, 1.06),
+        3: (1.00, 1.02),
+        2: (0.98, 1.02),
+        1: (0.96, 1.00),
+    }
+
     @classmethod
     def create_equipment_instance(cls, player_id, template_id, rarity, stars):
         template = cls.get_equipment_template(template_id)
         if not template:
             return None
 
-        ratio = stars / 5
-        base_stats = {stat: int(value * ratio) for stat, value in template.get("base_stats", {}).items()}
+        # 基础属性只与品质有关，与星级无关；模板值即最高品质（史诗/神器）属性
+        base_ratio = cls.RARITY_BASE_RATIO.get(rarity, 1.0)
+        base_stats = {
+            stat: (value if stat in ("crit_rate", "dodge_rate")
+                   else int(value * base_ratio))
+            for stat, value in template.get("base_stats", {}).items()
+        }
         initial_stats = base_stats.copy()
-        extra_stats = cls._generate_extra_stats(template, rarity, stars)
+        # 附加属性：每条独立随机星级，并反推装备总星级
+        extra_stats, derived_stars = cls._generate_extra_stats(template, rarity, stars)
 
         equip = EquipmentInstance(
             player_id=player_id,
             template_id=template_id,
             slot=template.get("slot", "weapon"),
             rarity=rarity,
-            stars=stars,
+            stars=derived_stars,
             level_required=template.get("level_required", 1),
             class_required=template.get("class_required"),
             is_bound=template.get("is_bound", False),
@@ -310,7 +413,15 @@ class DataService:
         return equip
 
     @classmethod
-    def _generate_extra_stats(cls, template, rarity, stars):
+    def _generate_extra_stats(cls, template, rarity, target_stars=1):
+        """生成附加属性。
+
+        每条附加属性先独立随机一个星级（在 target_stars ±1 范围内波动，夹在 1-5），
+        再按该星级对应的系数区间随机出实际值。装备总星级由各条附加属性星级
+        的平均值下取整反推得到。
+
+        返回 (extra_stats, derived_stars)。
+        """
         extra_stats = {}
         stat_counts = {"普通": 1, "精良": 2, "卓越": 3, "史诗": 4, "神器": 5}
         count = stat_counts.get(rarity, 1)
@@ -351,13 +462,30 @@ class DataService:
                     deduped.append(s)
             selected = deduped
 
+        stat_stars_list = []
         for stat in selected:
-            stat_stars = min(5, max(1, random.randint(stars - 1, stars + 1)))
             max_value = template.get("max_extra_stats", {}).get(stat, 0)
-            actual_value = max_value * (stat_stars / 5)
+            # 模板中 max_value 为 0 的属性：不参与随机星级生成、不计入总体星级、不显示
+            if not max_value or max_value == 0:
+                continue
+            # 每条附加属性独立星级，在目标星级 ±1 波动，夹在 1-5
+            stat_stars = min(5, max(1, random.randint(target_stars - 1, target_stars + 1)))
+            lo, hi = cls.EXTRA_STAT_STAR_RANGES.get(stat_stars, (0.96, 1.00))
+            coef = random.uniform(lo, hi)
+            actual_value = max_value * coef
+            # 暴击/闪避保留浮点，其余取整
+            if stat not in ("crit_rate", "dodge_rate"):
+                actual_value = int(actual_value)
             extra_stats[stat] = [actual_value, stat_stars]
+            stat_stars_list.append(stat_stars)
 
-        return extra_stats
+        # 总星级 = 各附加属性星级的平均值下取整；无附加属性时回落到目标星级
+        if stat_stars_list:
+            derived_stars = int(sum(stat_stars_list) // len(stat_stars_list))
+        else:
+            derived_stars = max(1, min(5, target_stars))
+
+        return extra_stats, derived_stars
 
     # --- Inventory CRUD ---
 

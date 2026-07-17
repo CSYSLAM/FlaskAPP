@@ -69,6 +69,9 @@ class WorldBossService:
             # Exclude copy dungeon elites (personal elites, not world bosses)
             if mdata.get('is_copy') or mdata.get('copy_only') or mdata.get('copy_dungeon_id'):
                 continue
+            # Exclude one-time elites (single-player, no respawn, no shared HP)
+            if mdata.get('is_one_time_elite'):
+                continue
             stats = mdata.get('base_stats', {})
             max_hp = stats.get('max_health', stats.get('health', 100))
             respawn = cls._get_respawn_time(mid, mdata)

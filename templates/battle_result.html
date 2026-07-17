@@ -16,6 +16,10 @@
     <div id="loading"><span></span></div>
 
     {{ result }}<br/>
+    {% if last_action %}
+    <br/>
+    {{ last_action }}<br/>
+    {% endif %}
     {% if not is_pk and lost_experience > 0 %}
     损失{{ lost_experience }}经验<br/>
     {% endif %}
@@ -23,7 +27,9 @@
     {% if is_pk %}
     <a href="{{ url_for('game.scene') }}">返回场景</a><br/>
     {% else %}
+    {% if not hide_continue %}
     <a href="{{ url_for('battle.continue_battle') }}">继续挑战</a><br/>
+    {% endif %}
     <a href="{{ url_for('game.scene') }}">返回场景</a><br/>
     {% endif %}
 

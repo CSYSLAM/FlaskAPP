@@ -2,8 +2,9 @@
 『完成任务-{{ quest.name }}』<br/>
 经验+{{ rewards.experience }}<br/>
 银两+{{ rewards.gold }}<br/>
+{% if rewards.honor %}荣誉+{{ rewards.honor }}<br/>{% endif %}
 {% for d in dialogs %}
-{{ d.speaker }}: {{ d.text }}<br/>
+{% if d.speaker %}{{ d.speaker }}：{% endif %}{{ d.text }}<br/>
 {% endfor %}
 {% if next_hint %}
 提示:{{ next_hint }}<br/>

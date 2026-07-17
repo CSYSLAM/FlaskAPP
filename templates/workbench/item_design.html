@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>物品设计系统</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .item-row { padding: 1px 0 1px 12px; }
+        .item-row a { margin-right: 6px; }
+        .usable { color: #2e7d32; font-size: 13px; }
+        .not-usable { color: #999; font-size: 13px; }
+        .hint { color: #888; font-size: 13px; }
+        .stats { font-size: 13px; color: #666; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>物品设计系统</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a> |
+    <a href="{{ url_for('workbench.item_add') }}">添加物品</a><br/>
+    <span class="hint">共 {% set ns = namespace(total=0) %}{% for v in item_index.values() %}{% set ns.total = ns.total + v|length %}{% endfor %}{{ ns.total }} 个物品，按类型分组</span>
+
+    {% for type_key in ['material', 'potion', 'consumable', 'chest', 'other', 'vip', 'quest', 'equipment', 'item'] %}
+    {% if item_index[type_key] %}
+    <div class="section">{{ type_names.get(type_key, type_key) }}({{ type_key }}) — {{ item_index[type_key]|length }}个</div>
+    {% for item in item_index[type_key] %}
+    <div class="item-row">
+        <a href="{{ url_for('workbench.item_view', item_id=item.item_id) }}">{{ item.name }}</a>
+        <span class="stats">{{ item.item_id }}</span>
+        {% if item.is_usable %}<span class="usable">[可用]</span>{% else %}<span class="not-usable">[不可用]</span>{% endif %}
+        {% if item.price > 0 %}<span class="stats">价格:{{ item.price }}</span>{% endif %}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+</div>
+</body>
+</html>

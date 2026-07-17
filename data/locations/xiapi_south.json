@@ -6,7 +6,8 @@
       "exits": {
         "north": "xiapi_center.南城楼",
         "south": "xiapi_south.南郊"
-      }
+      },
+      "monsters": []
     },
     "南郊": {
       "name": "南郊",

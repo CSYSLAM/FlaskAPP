@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>文件详情</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .artifact { color: #ff6600; font-weight: bold; }
+        .section { margin: 12px 0 5px 0; font-weight: bold; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .item-line { padding: 2px 0 2px 12px; }
+        .slot-tag { color: #888; font-size: 14px; }
+        .level-tag { color: #666; font-size: 14px; }
+        .set-tag { color: #7b1fa2; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="color:#c62828;padding:4px 8px;margin:4px 0;border:1px solid #c62828;border-radius:3px;background:#ffebee">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <h3>文件详情 - {{ filename }}</h3>
+    <a href="{{ url_for('workbench.equip_design') }}">返回列表</a><br/><br/>
+
+    文件: data/equipment_sets/{{ filename }}<br/>
+    装备数量: {{ items|length }}<br/><br/>
+
+    {% for item in items %}
+    <div class="item-line">
+        <a href="{{ url_for('workbench.equip_view', template_id=item.template_id) }}">{{ item.name }}</a>
+        <span class="slot-tag">[{{ slot_names.get(item.slot, item.slot) }}]</span>
+        <span class="set-tag">{{ item.set_name }}</span>
+        <span class="level-tag">{{ item.level_required }}级</span>
+        {% if item.class_required %}<span style="color:#2e7d32;font-size:14px">{{ item.class_required }}</span>{% endif %}
+        {% if item.is_artifact %}<span class="artifact">神器</span>{% endif %}
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

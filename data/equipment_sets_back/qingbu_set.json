@@ -1,0 +1,111 @@
+{
+  "qingbu_sword_10": {
+    "name": "青铜剑",
+    "slot": "weapon",
+    "set_name": "青布套",
+    "level_required": 10,
+    "class_required": null,
+    "is_artifact": false,
+    "base_stats": {
+      "attack": 24
+    },
+    "max_extra_stats": {
+      "attack": 15,
+      "max_health": 60,
+      "crit_rate": 0.05,
+      "max_mana": 30,
+      "defense": 8
+    }
+  },
+  "qingbu_helmet_10": {
+    "name": "青布冠",
+    "slot": "helmet",
+    "set_name": "青布套",
+    "level_required": 10,
+    "class_required": null,
+    "is_artifact": false,
+    "base_stats": {
+      "defense": 10
+    },
+    "max_extra_stats": {
+      "defense": 8,
+      "max_health": 60,
+      "max_mana": 30,
+      "crit_rate": 0.03,
+      "attack": 5
+    }
+  },
+  "qingbu_armor_10": {
+    "name": "青布甲",
+    "slot": "armor",
+    "set_name": "青布套",
+    "level_required": 10,
+    "class_required": null,
+    "is_artifact": false,
+    "base_stats": {
+      "defense": 14
+    },
+    "max_extra_stats": {
+      "defense": 10,
+      "max_health": 80,
+      "max_mana": 40,
+      "crit_rate": 0.03,
+      "attack": 5
+    }
+  },
+  "qingbu_gloves_10": {
+    "name": "青布护手",
+    "slot": "gloves",
+    "set_name": "青布套",
+    "level_required": 10,
+    "class_required": null,
+    "is_artifact": false,
+    "base_stats": {
+      "defense": 12
+    },
+    "max_extra_stats": {
+      "attack": 6,
+      "crit_rate": 0.03,
+      "max_health": 30,
+      "max_mana": 25,
+      "defense": 5
+    }
+  },
+  "qingbu_pants_10": {
+    "name": "青布裤",
+    "slot": "pants",
+    "set_name": "青布套",
+    "level_required": 10,
+    "class_required": null,
+    "is_artifact": false,
+    "base_stats": {
+      "defense": 12
+    },
+    "max_extra_stats": {
+      "defense": 9,
+      "max_health": 70,
+      "max_mana": 35,
+      "crit_rate": 0.03,
+      "attack": 5
+    }
+  },
+  "qingbu_shoes_10": {
+    "name": "青布靴",
+    "slot": "shoes",
+    "set_name": "青布套",
+    "level_required": 10,
+    "class_required": null,
+    "is_artifact": false,
+    "base_stats": {
+      "defense": 8
+    },
+    "max_extra_stats": {
+      "defense": 6,
+      "max_health": 50,
+      "max_mana": 25,
+      "crit_rate": 0.03,
+      "attack": 4,
+      "dodge_rate": 0.03
+    }
+  }
+}

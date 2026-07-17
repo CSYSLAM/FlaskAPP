@@ -1,0 +1,196 @@
+{
+  "name": "智斗马超副本",
+  "is_copy_map": true,
+  "copy_dungeon_id": "zhidou_machao",
+  "scenes": {
+    "zhidou_machao_copy_live.长安城": {
+      "name": "长安城",
+      "exits": {
+        "east": "zhidou_machao_copy_live.潼关"
+      },
+      "monsters": [
+        "mon_zhidou_machao_马超前军",
+        "mon_zhidou_machao_西凉溃兵",
+        "mon_zhidou_machao_西凉降兵"
+      ],
+      "npcs": [
+        "npc_zhidou_machao_司马懿"
+      ]
+    },
+    "zhidou_machao_copy_live.潼关": {
+      "name": "潼关",
+      "exits": {
+        "east": "zhidou_machao_copy_live.韩遂大营",
+        "west": "zhidou_machao_copy_live.长安城"
+      },
+      "monsters": [
+        "mon_zhidou_machao_西凉骑兵",
+        "mon_zhidou_machao_elite_马超",
+        "mon_zhidou_machao_凉州残兵",
+        "mon_zhidou_machao_文人学士"
+      ]
+    },
+    "zhidou_machao_copy_live.韩遂大营": {
+      "name": "韩遂大营",
+      "exits": {
+        "east": "zhidou_machao_copy_live.渭水南岸",
+        "west": "zhidou_machao_copy_live.潼关"
+      },
+      "monsters": [
+        "mon_zhidou_machao_韩遂亲卫",
+        "mon_zhidou_machao_elite_韩遂",
+        "mon_zhidou_machao_凉州哨探"
+      ]
+    },
+    "zhidou_machao_copy_live.渭水南岸": {
+      "name": "渭水南岸",
+      "exits": {
+        "east": "zhidou_machao_copy_live.渭水北岸",
+        "west": "zhidou_machao_copy_live.韩遂大营",
+        "north": "zhidou_machao_copy_live.山道"
+      },
+      "monsters": [
+        "mon_zhidou_machao_马超亲兵",
+        "mon_zhidou_machao_马超传令兵",
+        "mon_zhidou_machao_梁兴亲兵"
+      ]
+    },
+    "zhidou_machao_copy_live.渭水北岸": {
+      "name": "渭水北岸",
+      "exits": {
+        "east": "zhidou_machao_copy_live.山道",
+        "west": "zhidou_machao_copy_live.渭水南岸",
+        "south": "zhidou_machao_copy_live.潼关"
+      },
+      "monsters": [
+        "mon_zhidou_machao_凉州八部"
+      ]
+    },
+    "zhidou_machao_copy_live.山道": {
+      "name": "山道",
+      "exits": {
+        "east": "zhidou_machao_copy_live.林间小径",
+        "west": "zhidou_machao_copy_live.渭水北岸"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.林间小径": {
+      "name": "林间小径",
+      "exits": {
+        "east": "zhidou_machao_copy_live.河岸边",
+        "west": "zhidou_machao_copy_live.山道",
+        "north": "zhidou_machao_copy_live.荒野"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.河岸边": {
+      "name": "河岸边",
+      "exits": {
+        "east": "zhidou_machao_copy_live.荒野",
+        "west": "zhidou_machao_copy_live.林间小径"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.荒野": {
+      "name": "荒野",
+      "exits": {
+        "east": "zhidou_machao_copy_live.破庙",
+        "west": "zhidou_machao_copy_live.河岸边",
+        "south": "zhidou_machao_copy_live.山道"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.破庙": {
+      "name": "破庙",
+      "exits": {
+        "east": "zhidou_machao_copy_live.古井旁",
+        "west": "zhidou_machao_copy_live.荒野",
+        "north": "zhidou_machao_copy_live.断桥"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.古井旁": {
+      "name": "古井旁",
+      "exits": {
+        "east": "zhidou_machao_copy_live.断桥",
+        "west": "zhidou_machao_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.断桥": {
+      "name": "断桥",
+      "exits": {
+        "east": "zhidou_machao_copy_live.山洞入口",
+        "west": "zhidou_machao_copy_live.古井旁"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.山洞入口": {
+      "name": "山洞入口",
+      "exits": {
+        "east": "zhidou_machao_copy_live.密林深处",
+        "west": "zhidou_machao_copy_live.断桥",
+        "north": "zhidou_machao_copy_live.溪谷",
+        "south": "zhidou_machao_copy_live.破庙"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.密林深处": {
+      "name": "密林深处",
+      "exits": {
+        "east": "zhidou_machao_copy_live.溪谷",
+        "west": "zhidou_machao_copy_live.山洞入口"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.溪谷": {
+      "name": "溪谷",
+      "exits": {
+        "east": "zhidou_machao_copy_live.高坡",
+        "west": "zhidou_machao_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.高坡": {
+      "name": "高坡",
+      "exits": {
+        "east": "zhidou_machao_copy_live.废弃营地",
+        "west": "zhidou_machao_copy_live.溪谷",
+        "north": "zhidou_machao_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.废弃营地": {
+      "name": "废弃营地",
+      "exits": {
+        "east": "zhidou_machao_copy_live.石碑前",
+        "west": "zhidou_machao_copy_live.高坡",
+        "south": "zhidou_machao_copy_live.密林深处"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.石碑前": {
+      "name": "石碑前",
+      "exits": {
+        "east": "zhidou_machao_copy_live.岔路口",
+        "west": "zhidou_machao_copy_live.废弃营地"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.岔路口": {
+      "name": "岔路口",
+      "exits": {
+        "east": "zhidou_machao_copy_live.芦苇荡",
+        "west": "zhidou_machao_copy_live.石碑前"
+      },
+      "monsters": []
+    },
+    "zhidou_machao_copy_live.芦苇荡": {
+      "name": "芦苇荡",
+      "exits": {
+        "west": "zhidou_machao_copy_live.岔路口"
+      },
+      "monsters": []
+    }
+  }
+}

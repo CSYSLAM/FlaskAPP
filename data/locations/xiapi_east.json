@@ -7,7 +7,8 @@
         "west": "xiapi_center.东城楼",
         "east": "xiapi_east.逍遥津",
         "north": "xiapi_east.东郊"
-      }
+      },
+      "monsters": []
     },
     "东郊": {
       "name": "东郊",
