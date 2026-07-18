@@ -24,7 +24,7 @@
     {% endif %}
     {% endwith %}
 
-{{ equipment.name }}{% if equipment.enhance_level > 0 %}+{{ equipment.enhance_level }}{% endif %}<br/>
+{{ equipment.name }}<br/>
 {% if not equipment.is_bound %}非绑装备{% else %}绑定装备{% endif %}<br/>
 等级:{{ equipment.level_required }}<br/>
 物品级别:{{ equipment.rarity }}<br/>

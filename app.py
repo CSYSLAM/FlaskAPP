@@ -443,10 +443,11 @@ def create_app():
     import time as _time
     _err_lock = _threading.Lock()
 
-    @app.errorhandler(500)
+    @app.errorhandler(Exception)
     def _log_server_error(e):
         try:
             from pathlib import Path as _Path
+            import sys as _sys
             _log_dir = app.instance_path
             _Path(_log_dir).mkdir(parents=True, exist_ok=True)
             _trace = "".join(_tb.format_exception(type(e), e, e.__traceback__))

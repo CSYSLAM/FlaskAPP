@@ -22,22 +22,39 @@ class QuestService:
     @classmethod
     def _is_own_country_quest(cls, player, qid):
         """该任务是否属于玩家本国(按id前缀判断)。非main_开头(如支线)不限制。
-        共享主线(main_all_)对三国均可见。"""
+        共享主线(main_all_)对三国均可见。
+        支线任务若有 country 字段则按字段判断，空字符串表示三国通用。"""
         if not qid:
             return False
         if qid.startswith(cls._ALL_COUNTRY_PREFIX):
             return True
         if not qid.startswith('main_'):
-            return True
+            # 支线任务：检查 quest 定义中的 country 字段
+            q = cls.get_quest(qid)
+            if q:
+                quest_country = q.get('country')
+                if quest_country:  # 非空 = 限国家
+                    player_country = getattr(player, 'country', None) or '魏'
+                    return player_country == quest_country
+            return True  # 无 country 字段 = 三国通用
         return qid.startswith(cls._country_prefix(player))
 
     @classmethod
     def get_country_quests(cls, player):
         """返回玩家本国的所有主线任务(按country前缀过滤),供任务列表/可接任务页展示。
-        共享主线(main_all_)三国通用,一并返回。"""
+        共享主线(main_all_)三国通用,一并返回。
+        支线任务(side_开头)按 country 字段过滤，空country=三国通用。"""
         prefix = cls._country_prefix(player)
-        return {qid: q for qid, q in cls._load().items()
-                if qid.startswith(prefix) or qid.startswith(cls._ALL_COUNTRY_PREFIX)}
+        player_country = getattr(player, 'country', None) or '魏'
+        result = {}
+        for qid, q in cls._load().items():
+            if qid.startswith(prefix) or qid.startswith(cls._ALL_COUNTRY_PREFIX):
+                result[qid] = q
+            elif qid.startswith('side_'):
+                quest_country = q.get('country', '')
+                if not quest_country or quest_country == player_country:
+                    result[qid] = q
+        return result
 
     @classmethod
     def _load(cls):
@@ -138,7 +155,8 @@ class QuestService:
                 and not cls._country_chain_complete(player):
             return False, "需先完成本国主线任务(1-39级)"
         completed = cls.get_completed_quests(player)
-        if quest_id in completed:
+        # 可重复任务：已完成后仍可再次接取
+        if not q.get('is_repeatable') and quest_id in completed:
             return False, "任务已完成"
         active = cls.get_active_quests(player)
         if quest_id in active:
@@ -187,11 +205,16 @@ class QuestService:
             return False, "任务目标未完成"
         # For deliver_item / collect_item: consume the item from inventory.
         # deliver_item 交出的材料、collect_item 收集的证明,交任务后都应从背包扣除,
-        # 否则会出现“交了任务材料背包还有”的残留。
+        # 否则会出现"交了任务材料背包还有"的残留。
         obj = q.get('objective', {})
         if obj.get('type') in ('deliver_item', 'collect_item'):
             item_id = obj.get('item_id', '')
-            DataService.remove_item_from_inventory(player.id, item_id, obj.get('count', 1))
+            required_count = obj.get('count', 1)
+            # 再次校验背包中材料是否足够（防止接任务后材料被用掉）
+            inv = DataService.get_inventory_item(player.id, item_id)
+            if not inv or inv.quantity < required_count:
+                return False, f"背包中{obj.get('item_name', item_id)}不足，需要{required_count}个"
+            DataService.remove_item_from_inventory(player.id, item_id, required_count)
 
         # Apply rewards
         rewards = q.get('rewards', {})
@@ -220,9 +243,23 @@ class QuestService:
             else:
                 DataService.add_item_to_inventory(player.id, item_id, grant.get('count', 1))
 
-        completed = cls.get_completed_quests(player)
-        completed.append(quest_id)
-        cls.set_completed_quests(player, completed)
+        # reward_equipment: 交任务时生成随机品质装备（铁匠铸剑支线等）
+        reward_equip = q.get('reward_equipment')
+        if reward_equip:
+            from services.equipment_service import EquipmentService
+            from services.equipment_generator import EquipmentGenerator
+            template_id = reward_equip.get('template_id', '')
+            rarity_weights = reward_equip.get('rarity_weights')
+            rarity = EquipmentGenerator._roll_rarity_from_weights(rarity_weights, allow_legendary=False)
+            equip = EquipmentService.generate_random_equipment(player.id, template_id, rarity=rarity)
+            if equip:
+                DataService.add_item_to_inventory(player.id, equip.instance_id)
+
+        # 非可重复任务：记入已完成列表
+        if not q.get('is_repeatable'):
+            completed = cls.get_completed_quests(player)
+            completed.append(quest_id)
+            cls.set_completed_quests(player, completed)
         db.session.commit()
         return True, q['name']
 
@@ -359,7 +396,13 @@ class QuestService:
                 seen.add(qid)
                 continue
             # 前置已满足、尚未完成，但因等级不足暂不可接取的任务也要展示，
-            # 让玩家知道任务存在；quest_detail 会显示“需要等级X”并阻止接取。
+            # 让玩家知道任务存在；quest_detail 会显示"需要等级X"并阻止接取。
+            # 可重复任务：已完成后仍展示为可接取
+            if q.get('is_repeatable') and qid not in active:
+                if player.level >= q.get('level_required', 1):
+                    available.append(q)
+                    seen.add(qid)
+                    continue
             if qid not in completed:
                 prereq = q.get('prerequisite')
                 if (not prereq) or (prereq in completed):
@@ -375,3 +418,26 @@ class QuestService:
     @classmethod
     def get_active_quest_count(cls, player):
         return len(cls.get_active_quests(player))
+
+    @classmethod
+    def refresh_deliver_progress(cls, player, quest_id):
+        """刷新 deliver_item 类型任务的进度（根据背包实际数量）。
+        用于任务详情页展示时确保进度同步。"""
+        q = cls.get_quest(quest_id)
+        if not q:
+            return
+        obj = q.get('objective', {})
+        if obj.get('type') != 'deliver_item':
+            return
+        active = cls.get_active_quests(player)
+        if quest_id not in active:
+            return
+        item_id = obj.get('item_id', '')
+        required = obj.get('count', 1)
+        inv = DataService.get_inventory_item(player.id, item_id)
+        have = inv.quantity if inv else 0
+        progress = active[quest_id]
+        progress['progress'] = min(have, required)
+        progress['target'] = required
+        cls.set_active_quests(player, active)
+        db.session.commit()

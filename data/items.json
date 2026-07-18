@@ -3897,7 +3897,7 @@
   "craft_bailiangang": {
     "name": "百炼钢",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "百炼钢，51-60级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 250,
     "capacity": 0.1
@@ -3905,7 +3905,7 @@
   "craft_hantieding": {
     "name": "寒铁锭",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "寒铁锭，36-40级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 160,
     "capacity": 0.1
@@ -3913,7 +3913,7 @@
   "craft_shengtieding": {
     "name": "生铁锭",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "生铁锭，26-35级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 130,
     "capacity": 0.1
@@ -3921,7 +3921,7 @@
   "craft_xitiesha": {
     "name": "细铁砂",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "细铁砂，10-25级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 100,
     "capacity": 0.1
@@ -3929,7 +3929,7 @@
   "craft_xuantieding": {
     "name": "玄铁锭",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "玄铁锭，46-50级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 200,
     "capacity": 0.1

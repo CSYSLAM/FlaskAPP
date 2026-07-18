@@ -47,7 +47,10 @@
       "name": "铁匠铺",
       "exits": {
         "east": "xuchang_center.玄武街"
-      }
+      },
+      "npcs": [
+        "npc_xuchang_center_许昌铁匠"
+      ]
     },
     "药铺": {
       "name": "药铺",
