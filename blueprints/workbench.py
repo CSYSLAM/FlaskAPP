@@ -2869,8 +2869,8 @@ LT_EDIT_FIELDS = [
     ('base_max_health', '自定义生命(留空=公式)', None, 'opt_int'),
     ('base_attack', '自定义攻击(留空=公式)', None, 'opt_int'),
     ('base_defense', '自定义防御(留空=公式)', None, 'opt_int'),
-    ('base_crit_rate', '自定义暴击(0-1,留空=被动)', None, 'opt_float'),
-    ('base_dodge_rate', '自定义闪避(0-1,留空=被动)', None, 'opt_float'),
+    ('base_crit_rate', '自定义暴击(每级成长值,留空=职业默认)', None, 'opt_float'),
+    ('base_dodge_rate', '自定义闪避(每级成长值,留空=职业默认)', None, 'opt_float'),
 ]
 
 

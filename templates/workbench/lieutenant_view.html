@@ -27,18 +27,18 @@
     <b>资质维度</b><br/>
     资质:{{ lt.quality }}({{ lt.quality_name }}，倍率{{ lt.quality_mult }})<br/>
     悟性:{{ lt.enlightenment }}(倍率{{ '%.2f'|format(lt.enlightenment_mult) }})<br/>
-    强化:{{ lt.reinforce }}(倍率{{ '%.3f'|format(1 + lt.reinforce*0.03) }})<br/>
+    强化:{{ lt.reinforce }}(倍率{{ '%.3f'|format(lt.reinforce_mult) }})<br/>
     忠诚:{{ lt.loyalty }} | 寿命:{{ lt.lifespan }}<br/>
     <br/>
 
     <b>属性({% if lt.base_max_health or lt.base_attack or lt.base_defense or lt.base_crit_rate is not none or lt.base_dodge_rate is not none %}自定义{% else %}公式拆解{% endif %})</b><br/>
-    <span class="meta">公式: 基础属性 × 副将等级 × 品质类型倍率 × 强化加成；自定义值优先</span><br/>
+    <span class="meta">公式: 基础属性 × 等级 × 悟性倍率 × 品质倍率 × 强化加成；暴击/闪避: 基础 × (等级+5) × 悟性 × 品质 × 强化</span><br/>
     生命上限:{{ lt.get_max_health() }}{% if lt.base_max_health is not none %} <span class="meta">[自定义{{ lt.base_max_health }}]</span>{% endif %} / 当前:{{ lt.current_health }}<br/>
     魔法上限:{{ lt.get_max_mana() }} / 当前:{{ lt.current_mana }}<br/>
     攻击:{{ lt.get_attack() }}{% if lt.base_attack is not none %} <span class="meta">[自定义{{ lt.base_attack }}]</span>{% endif %}<br/>
     防御:{{ lt.get_defense() }}{% if lt.base_defense is not none %} <span class="meta">[自定义{{ lt.base_defense }}]</span>{% endif %}<br/>
-    暴击:{{ '%.2f%%'|format(lt.get_crit_rate()*100) }}{% if lt.base_crit_rate is not none %} <span class="meta">[自定义{{ '%.2f%%'|format(lt.base_crit_rate*100) }}]</span>{% endif %}<br/>
-    闪避:{{ '%.2f%%'|format(lt.get_dodge_rate()*100) }}{% if lt.base_dodge_rate is not none %} <span class="meta">[自定义{{ '%.2f%%'|format(lt.base_dodge_rate*100) }}]</span>{% endif %}<br/>
+    暴击:{{ '%.2f%%'|format(lt.get_crit_rate()*100) }}{% if lt.base_crit_rate is not none %} <span class="meta">[每级+{{ '%.4f%%'|format(lt.base_crit_rate*100) }}]</span>{% endif %}<br/>
+    闪避:{{ '%.2f%%'|format(lt.get_dodge_rate()*100) }}{% if lt.base_dodge_rate is not none %} <span class="meta">[每级+{{ '%.4f%%'|format(lt.base_dodge_rate*100) }}]</span>{% endif %}<br/>
     <br/>
 
     <b>技能({{ lt.skills|length }}/{{ lt.skill_slots }})</b><br/>

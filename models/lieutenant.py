@@ -121,17 +121,29 @@ class Lieutenant(db.Model):
     def get_defense(self):
         return math.ceil(self._stat_base('defense') * self.level * self.enlightenment_mult * self.quality_mult * self.reinforce_mult)
 
+    # 暴击/闪避每级基础值(按职业，用于无自定义base的普通副将)
+    # 公式: base * (level + FLAT_LEVEL) * enlightenment_mult * quality_mult * reinforce_mult
+    # FLAT_LEVEL=5 保证1级也有最低暴击/闪避(相当于5级虚拟等级)
+    CRIT_FLAT_LEVEL = 5
+    DODGE_FLAT_LEVEL = 5
+    CLASS_BASE_CRIT = {'warrior': 0.00065, 'assassin': 0.00080, 'mage': 0.00050}
+    CLASS_BASE_DODGE = {'warrior': 0.00050, 'assassin': 0.00065, 'mage': 0.00040}
+
     def get_crit_rate(self):
-        """副将暴击率:自定义值按 基础×品质×强化 计算(不乘等级,避免百分比爆表);无自定义取被动加成。"""
+        """副将暴击率: base * (level+5) * 悟性 * 品质 * 强化; 无自定义走职业基础。"""
         if self.base_crit_rate is not None:
-            return self.base_crit_rate * self.quality_mult * self.reinforce_mult
-        return self.get_passive_bonus().get('crit', 0)
+            base = self.base_crit_rate
+        else:
+            base = self.CLASS_BASE_CRIT.get(self.class_type, 0.0015)
+        return base * (self.level + self.CRIT_FLAT_LEVEL) * self.enlightenment_mult * self.quality_mult * self.reinforce_mult
 
     def get_dodge_rate(self):
-        """副将闪避率:自定义值按 基础×品质×强化 计算(不乘等级);无自定义取被动加成。"""
+        """副将闪避率: base * (level+5) * 悟性 * 品质 * 强化; 无自定义走职业基础。"""
         if self.base_dodge_rate is not None:
-            return self.base_dodge_rate * self.quality_mult * self.reinforce_mult
-        return self.get_passive_bonus().get('dodge', 0)
+            base = self.base_dodge_rate
+        else:
+            base = self.CLASS_BASE_DODGE.get(self.class_type, 0.0010)
+        return base * (self.level + self.DODGE_FLAT_LEVEL) * self.enlightenment_mult * self.quality_mult * self.reinforce_mult
 
     def can_deploy(self):
         if self.loyalty < 30:
@@ -143,21 +155,26 @@ class Lieutenant(db.Model):
         return True, ""
 
     def get_passive_bonus(self):
+        """被动技能给主人的属性加成：副将对应属性 × bonus_value%。
+        勇猛(暴击)/冷静(闪避)的bonus基于副将暴击率/闪避率，其他基于副将面板属性。"""
         bonus = {'attack': 0, 'defense': 0, 'health': 0, 'mana': 0, 'crit': 0, 'dodge': 0}
         for skill in self.skills:
             if skill.get('type') == 'passive' and skill.get('level', 0) > 0:
                 bonus_type = skill.get('bonus_type', '')
-                bonus_val = skill.get('bonus_value', 0) * skill.get('level', 1)
+                bonus_pct = skill.get('bonus_value', 0) * skill.get('level', 1)  # 百分比
+                if bonus_pct <= 0:
+                    continue
+                rate = bonus_pct / 100.0
                 if bonus_type == 'attack':
-                    bonus['attack'] += bonus_val
+                    bonus['attack'] += int(self.get_attack() * rate)
                 elif bonus_type == 'defense':
-                    bonus['defense'] += bonus_val
+                    bonus['defense'] += int(self.get_defense() * rate)
                 elif bonus_type == 'health':
-                    bonus['health'] += bonus_val
+                    bonus['health'] += int(self.get_max_health() * rate)
                 elif bonus_type == 'mana':
-                    bonus['mana'] += bonus_val
+                    bonus['mana'] += int(self.get_max_mana() * rate)
                 elif bonus_type == 'crit':
-                    bonus['crit'] += bonus_val
+                    bonus['crit'] += self.get_crit_rate() * rate
                 elif bonus_type == 'dodge':
-                    bonus['dodge'] += bonus_val
+                    bonus['dodge'] += self.get_dodge_rate() * rate
         return bonus
