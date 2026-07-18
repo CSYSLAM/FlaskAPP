@@ -199,8 +199,7 @@
                 {"id": "mi_yao_pack", "name": "秘药礼包", "price": 100, "item_id": "mi_yao_pack"},
                 {"id": "chest_iron", "name": "铁质宝匣", "price": 100, "item_id": "chest_iron"},
                 {"id": "chest_silver", "name": "银质宝匣", "price": 200, "item_id": "chest_silver"},
-                {"id": "chest_gold", "name": "金质宝匣", "price": 300, "item_id": "chest_gold"},
-                {"id": "chest_changan", "name": "长安宝匣", "price": 500, "item_id": "chest_changan"}
+                {"id": "chest_gold", "name": "金质宝匣", "price": 300, "item_id": "chest_gold"}
             ],
             "equip": [
                 {"id": "equip_reshape_talisman", "name": "装备重塑符", "price": 50000, "item_id": "equip_reshape_talisman"},
@@ -219,7 +218,6 @@
                 {"id": "mana_stone_small", "name": "小魔石", "price": 200, "item_id": "mana_stone_small"}
             ],
             "lieutenant": [
-                {"id": "lt_soul_pack_1", "name": "一级名将魂魄包", "price": 100000, "item_id": "lt_soul_pack_1"},
                 {"id": "lt_skill_expand", "name": "副将扩技符", "price": 50000, "item_id": "lt_skill_expand"},
                 {"id": "lt_forget_page", "name": "遗忘之章残页", "price": 1000, "item_id": "lt_forget_page"}
             ]

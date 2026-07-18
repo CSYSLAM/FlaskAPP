@@ -82,9 +82,9 @@ class ActivityService:
         {'name': '活力卡', 'item_id': 'vitality_card', 'weight': 3000},          # 3%
         {'name': '聚魂幡碎片', 'item_id': 'soul_flag_shard', 'weight': 3000},    # 3%
         {'name': '副将招募令', 'item_id': 'lt_recruit', 'weight': 3000},          # 3%
-        {'name': '副将经验丹(低)', 'item_id': 'lt_exp_low', 'weight': 3000},     # 3%
-        {'name': '副将经验丹(中)', 'item_id': 'lt_exp_mid', 'weight': 3000},     # 3%
-        {'name': '副将经验丹(高)', 'item_id': 'lt_exp_high', 'weight': 3000},    # 3%
+        {'name': '副将低级经验丹', 'item_id': 'lt_exp_low', 'weight': 3000},     # 3%
+        {'name': '副将中级经验丹', 'item_id': 'lt_exp_mid', 'weight': 3000},     # 3%
+        {'name': '副将高级经验丹', 'item_id': 'lt_exp_high', 'weight': 3000},    # 3%
         {'name': '副将资质丹', 'item_id': 'lt_aptitude', 'weight': 3000},         # 3%
         {'name': '副将增寿丹', 'item_id': 'lt_life', 'weight': 3000},            # 3%
         {'name': '副将忠诚丹', 'item_id': 'lt_loyalty', 'weight': 3000},         # 3%
@@ -136,9 +136,9 @@ class ActivityService:
         {'name': '活力卡', 'item_id': 'vitality_card', 'weight': 3000},          # 3%
         {'name': '聚魂幡碎片', 'item_id': 'soul_flag_shard', 'weight': 3000},    # 3%
         {'name': '副将招募令', 'item_id': 'lt_recruit', 'weight': 3000},          # 3%
-        {'name': '副将经验丹(低)', 'item_id': 'lt_exp_low', 'weight': 3000},     # 3%
-        {'name': '副将经验丹(中)', 'item_id': 'lt_exp_mid', 'weight': 3000},     # 3%
-        {'name': '副将经验丹(高)', 'item_id': 'lt_exp_high', 'weight': 3000},    # 3%
+        {'name': '副将低级经验丹', 'item_id': 'lt_exp_low', 'weight': 3000},     # 3%
+        {'name': '副将中级经验丹', 'item_id': 'lt_exp_mid', 'weight': 3000},     # 3%
+        {'name': '副将高级经验丹', 'item_id': 'lt_exp_high', 'weight': 3000},    # 3%
         {'name': '副将资质丹', 'item_id': 'lt_aptitude', 'weight': 3000},         # 3%
         {'name': '副将增寿丹', 'item_id': 'lt_life', 'weight': 3000},            # 3%
         {'name': '副将忠诚丹', 'item_id': 'lt_loyalty', 'weight': 3000},         # 3%

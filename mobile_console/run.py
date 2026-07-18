@@ -910,6 +910,15 @@ def api_send(key):
         text = raw.decode("utf-8", "replace").rstrip("\n")
     if not text:
         return jsonify({"ok": False, "msg": "空输入"})
+    # 拦截特殊命令: /compact 或 /new → 重置会话,下一条指令不带 --continue
+    # 效果:上下文过长时避免 400 input token limit,以新对话继续(项目记忆 ~/.claude 仍保留)
+    if key in ("claude", "codebuddy"):
+        cmd = text.strip().lower()
+        if cmd in ("/compact", "/new"):
+            was = "有会话" if p._has_session else "无会话"
+            p._has_session = False
+            p._push(f"▶ {cmd}: 已重置会话(之前{was},下一条指令开始新对话)", "system")
+            return jsonify({"ok": True, "msg": "已重置会话"})
     if key in ("claude", "codebuddy"):
         # 任务队列型 agent 自己会在日志里回显 "you",这里只入队
         ok, msg = p.submit(text)

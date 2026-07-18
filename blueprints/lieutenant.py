@@ -35,10 +35,17 @@ def detail(lt_id):
     if not lt:
         flash("副将不存在")
         return redirect(url_for('lieutenant.index'))
+    from services.data_service import DataService
+    lt_exp_low_inv = DataService.get_inventory_item(player.id, 'lt_exp_low')
+    lt_exp_mid_inv = DataService.get_inventory_item(player.id, 'lt_exp_mid')
+    lt_exp_high_inv = DataService.get_inventory_item(player.id, 'lt_exp_high')
     return render_template("lieutenant_detail.html",
                          player=player,
                          lieutenant=lt,
-                         LieutenantService=LieutenantService)
+                         LieutenantService=LieutenantService,
+                         lt_exp_low_count=lt_exp_low_inv.quantity if lt_exp_low_inv else 0,
+                         lt_exp_mid_count=lt_exp_mid_inv.quantity if lt_exp_mid_inv else 0,
+                         lt_exp_high_count=lt_exp_high_inv.quantity if lt_exp_high_inv else 0)
 
 
 @lieutenant_bp.route("/wash_quality/<int:lt_id>")
@@ -83,13 +90,30 @@ def reinforce(lt_id):
 @lieutenant_bp.route("/level_up/<int:lt_id>")
 @login_required
 def level_up(lt_id):
-    """消耗1个副将高级经验丹升级。"""
+    """手动升级：经验满则升1级，多余经验保留。"""
     player = current_user
     lt = Lieutenant.query.filter_by(id=lt_id, owner_id=player.id).first()
     if not lt:
         flash("副将不存在")
         return redirect(url_for('lieutenant.index'))
-    success, msg = LieutenantService.level_up_with_pill(lt)
+    success, msg = LieutenantService.level_up(lt)
+    flash(msg)
+    return redirect(url_for('lieutenant.detail', lt_id=lt_id))
+
+
+@lieutenant_bp.route("/use_exp_pill/<int:lt_id>/<item_id>")
+@login_required
+def use_exp_pill(lt_id, item_id):
+    """在副将界面使用经验丹，给指定副将加经验。"""
+    player = current_user
+    lt = Lieutenant.query.filter_by(id=lt_id, owner_id=player.id).first()
+    if not lt:
+        flash("副将不存在")
+        return redirect(url_for('lieutenant.index'))
+    if item_id not in ('lt_exp_low', 'lt_exp_mid', 'lt_exp_high'):
+        flash("无效的经验丹")
+        return redirect(url_for('lieutenant.detail', lt_id=lt_id))
+    success, msg = LieutenantService.use_exp_pill(lt, item_id)
     flash(msg)
     return redirect(url_for('lieutenant.detail', lt_id=lt_id))
 

@@ -1,5 +1,19 @@
 {
-  "categories": ["道具", "成长", "副本", "杀怪", "社交", "P K", "赛事", "装备", "财富", "副将", "活动", "任务", "其他"],
+  "categories": [
+    "道具",
+    "成长",
+    "副本",
+    "杀怪",
+    "社交",
+    "P K",
+    "赛事",
+    "装备",
+    "财富",
+    "副将",
+    "活动",
+    "任务",
+    "其他"
+  ],
   "achievements": {
     "item_zhixuecao": {
       "name": "开始磕【止血草】",
@@ -8,7 +22,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "blood_stone_small",
-      "reward": {"max_health": 5}
+      "reward": {
+        "max_health": 5
+      }
     },
     "item_ningmocao": {
       "name": "开始磕【凝魔草】",
@@ -17,7 +33,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "mana_stone_small",
-      "reward": {"max_mana": 5}
+      "reward": {
+        "max_mana": 5
+      }
     },
     "item_jinchuangyao": {
       "name": "开始磕【金疮药】",
@@ -26,7 +44,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "blood_stone_medium",
-      "reward": {"max_health": 10}
+      "reward": {
+        "max_health": 10
+      }
     },
     "item_jumosan": {
       "name": "开始磕【聚魔散】",
@@ -35,7 +55,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "mana_stone_medium",
-      "reward": {"max_mana": 10}
+      "reward": {
+        "max_mana": 10
+      }
     },
     "item_yangshengwan": {
       "name": "开始磕【养生丸】",
@@ -44,7 +66,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "blood_stone_large",
-      "reward": {"max_health": 20}
+      "reward": {
+        "max_health": 20
+      }
     },
     "item_xingshenshui": {
       "name": "开始磕【醒神水】",
@@ -53,7 +77,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "mana_stone_large",
-      "reward": {"max_mana": 20}
+      "reward": {
+        "max_mana": 20
+      }
     },
     "item_huishengwan": {
       "name": "开始磕【回生丸】",
@@ -62,7 +88,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "strong_hp_potion",
-      "reward": {"max_health": 30}
+      "reward": {
+        "max_health": 30
+      }
     },
     "item_dabuwan": {
       "name": "开始磕【大补丸】",
@@ -71,7 +99,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "strong_mp_potion",
-      "reward": {"max_mana": 30}
+      "reward": {
+        "max_mana": 30
+      }
     },
     "item_xiaohuandan": {
       "name": "开始磕【小还丹】",
@@ -80,7 +110,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "strong_atk_potion",
-      "reward": {"attack": 5}
+      "reward": {
+        "attack": 5
+      }
     },
     "item_dahuandan": {
       "name": "开始磕【大还丹】",
@@ -89,7 +121,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "strong_def_potion",
-      "reward": {"defense": 5}
+      "reward": {
+        "defense": 5
+      }
     },
     "item_yeshanshen": {
       "name": "开始磕【野山参】",
@@ -98,7 +132,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "strong_crit_potion",
-      "reward": {"crit_rate": 0.01}
+      "reward": {
+        "crit_rate": 0.01
+      }
     },
     "item_xuelianlu": {
       "name": "开始磕【雪莲露】",
@@ -107,7 +143,9 @@
       "condition_type": "item_use",
       "condition_value": 10,
       "item_id": "strong_dodge_potion",
-      "reward": {"dodge_rate": 0.01}
+      "reward": {
+        "dodge_rate": 0.01
+      }
     },
     "level_10": {
       "name": "初入江湖",
@@ -115,7 +153,10 @@
       "description": "达到10级",
       "condition_type": "level",
       "condition_value": 10,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "level_20": {
       "name": "初出茅庐",
@@ -124,7 +165,10 @@
       "condition_type": "level",
       "condition_value": 20,
       "points": 5,
-      "reward": {"max_health": 5, "defense": 5}
+      "reward": {
+        "max_health": 5,
+        "defense": 5
+      }
     },
     "level_30": {
       "name": "小有名气",
@@ -133,7 +177,10 @@
       "condition_type": "level",
       "condition_value": 30,
       "points": 10,
-      "reward": {"max_health": 10, "defense": 10}
+      "reward": {
+        "max_health": 10,
+        "defense": 10
+      }
     },
     "level_40": {
       "name": "略有一二",
@@ -142,7 +189,10 @@
       "condition_type": "level",
       "condition_value": 40,
       "points": 20,
-      "reward": {"max_health": 15, "defense": 15}
+      "reward": {
+        "max_health": 15,
+        "defense": 15
+      }
     },
     "level_50": {
       "name": "实力雄厚",
@@ -151,7 +201,10 @@
       "condition_type": "level",
       "condition_value": 50,
       "points": 50,
-      "reward": {"max_health": 30, "defense": 30}
+      "reward": {
+        "max_health": 30,
+        "defense": 30
+      }
     },
     "level_60": {
       "name": "谁与争锋",
@@ -160,7 +213,10 @@
       "condition_type": "level",
       "condition_value": 60,
       "points": 80,
-      "reward": {"max_health": 60, "defense": 60}
+      "reward": {
+        "max_health": 60,
+        "defense": 60
+      }
     },
     "level_70": {
       "name": "到达70级！",
@@ -169,7 +225,10 @@
       "condition_type": "level",
       "condition_value": 70,
       "points": 120,
-      "reward": {"max_health": 100, "defense": 100}
+      "reward": {
+        "max_health": 100,
+        "defense": 100
+      }
     },
     "level_80": {
       "name": "传说！",
@@ -178,7 +237,10 @@
       "condition_type": "level",
       "condition_value": 80,
       "points": 180,
-      "reward": {"max_health": 150, "defense": 150}
+      "reward": {
+        "max_health": 150,
+        "defense": 150
+      }
     },
     "level_90": {
       "name": "无尽！",
@@ -187,7 +249,10 @@
       "condition_type": "level",
       "condition_value": 90,
       "points": 250,
-      "reward": {"max_health": 200, "defense": 200}
+      "reward": {
+        "max_health": 200,
+        "defense": 200
+      }
     },
     "enhance_5": {
       "name": "初试锋芒",
@@ -196,7 +261,9 @@
       "condition_type": "enhance",
       "condition_value": 5,
       "points": 5,
-      "reward": {"attack": 3}
+      "reward": {
+        "attack": 3
+      }
     },
     "enhance_10": {
       "name": "百炼成钢",
@@ -205,7 +272,9 @@
       "condition_type": "enhance",
       "condition_value": 10,
       "points": 10,
-      "reward": {"attack": 8}
+      "reward": {
+        "attack": 8
+      }
     },
     "enhance_20": {
       "name": "神工鬼斧",
@@ -214,7 +283,9 @@
       "condition_type": "enhance",
       "condition_value": 20,
       "points": 20,
-      "reward": {"attack": 15}
+      "reward": {
+        "attack": 15
+      }
     },
     "enhance_30": {
       "name": "打造大师",
@@ -223,7 +294,10 @@
       "condition_type": "enhance",
       "condition_value": 30,
       "points": 50,
-      "reward": {"attack": 25, "defense": 15}
+      "reward": {
+        "attack": 25,
+        "defense": 15
+      }
     },
     "enhance_40": {
       "name": "打造宗师",
@@ -232,7 +306,10 @@
       "condition_type": "enhance",
       "condition_value": 40,
       "points": 80,
-      "reward": {"attack": 40, "defense": 25}
+      "reward": {
+        "attack": 40,
+        "defense": 25
+      }
     },
     "enhance_50": {
       "name": "绝世神兵",
@@ -241,7 +318,11 @@
       "condition_type": "enhance",
       "condition_value": 50,
       "points": 120,
-      "reward": {"attack": 60, "defense": 40, "max_health": 100}
+      "reward": {
+        "attack": 60,
+        "defense": 40,
+        "max_health": 100
+      }
     },
     "dungeon_huangjin_100": {
       "name": "100次【黄巾起义】",
@@ -251,7 +332,10 @@
       "condition_value": 100,
       "dungeon_id": "huangjin_copy",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_liaodong_100": {
       "name": "100次【平定辽东】",
@@ -261,7 +345,10 @@
       "condition_value": 100,
       "dungeon_id": "jiding_liaodong_copy_live",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_xiaoyaojin_100": {
       "name": "100次【威震逍遥津】",
@@ -271,7 +358,10 @@
       "condition_value": 100,
       "dungeon_id": "xiaoyaojin_copy",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_guandu_100": {
       "name": "100次【官渡之战】",
@@ -281,7 +371,10 @@
       "condition_value": 100,
       "dungeon_id": "guandu_copy_live",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_qinqin_100": {
       "name": "100次【七擒孟获】",
@@ -291,7 +384,10 @@
       "condition_value": 100,
       "dungeon_id": "qiqin_copy_live",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_machao_100": {
       "name": "100次【智斗马超】",
@@ -301,7 +397,10 @@
       "condition_value": 100,
       "dungeon_id": "machao_copy",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_wokou_100": {
       "name": "100次【倭寇岛】",
@@ -311,7 +410,10 @@
       "condition_value": 100,
       "dungeon_id": "wa_island_south",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_loulan_100": {
       "name": "100次【楼兰秘境】",
@@ -321,7 +423,10 @@
       "condition_value": 100,
       "dungeon_id": "silk_road",
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 20}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
     },
     "dungeon_tower_9": {
       "name": "9层【都统塔】",
@@ -330,7 +435,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 9,
       "points": 10,
-      "reward": {"max_health": 10, "defense": 10}
+      "reward": {
+        "max_health": 10,
+        "defense": 10
+      }
     },
     "dungeon_tower_19": {
       "name": "19层【都统塔】",
@@ -339,7 +447,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 19,
       "points": 20,
-      "reward": {"max_health": 20, "defense": 20}
+      "reward": {
+        "max_health": 20,
+        "defense": 20
+      }
     },
     "dungeon_tower_29": {
       "name": "29层【都统塔】",
@@ -348,7 +459,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 29,
       "points": 30,
-      "reward": {"max_health": 30, "defense": 30}
+      "reward": {
+        "max_health": 30,
+        "defense": 30
+      }
     },
     "dungeon_tower_39": {
       "name": "39层【都统塔】",
@@ -357,7 +471,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 39,
       "points": 40,
-      "reward": {"max_health": 40, "defense": 40}
+      "reward": {
+        "max_health": 40,
+        "defense": 40
+      }
     },
     "dungeon_tower_49": {
       "name": "49层【都统塔】",
@@ -366,7 +483,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 49,
       "points": 50,
-      "reward": {"max_health": 50, "defense": 50}
+      "reward": {
+        "max_health": 50,
+        "defense": 50
+      }
     },
     "dungeon_tower_59": {
       "name": "59层【都统塔】",
@@ -375,7 +495,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 59,
       "points": 60,
-      "reward": {"max_health": 60, "defense": 60}
+      "reward": {
+        "max_health": 60,
+        "defense": 60
+      }
     },
     "dungeon_tower_69": {
       "name": "69层【都统塔】",
@@ -384,7 +507,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 69,
       "points": 70,
-      "reward": {"max_health": 70, "defense": 70}
+      "reward": {
+        "max_health": 70,
+        "defense": 70
+      }
     },
     "dungeon_tower_79": {
       "name": "79层【都统塔】",
@@ -393,7 +519,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 79,
       "points": 80,
-      "reward": {"max_health": 80, "defense": 80}
+      "reward": {
+        "max_health": 80,
+        "defense": 80
+      }
     },
     "dungeon_tower_89": {
       "name": "89层【都统塔】",
@@ -402,7 +531,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 89,
       "points": 90,
-      "reward": {"max_health": 90, "defense": 90}
+      "reward": {
+        "max_health": 90,
+        "defense": 90
+      }
     },
     "dungeon_tower_99": {
       "name": "99层【都统塔】",
@@ -411,7 +543,10 @@
       "condition_type": "dungeon_tower",
       "condition_value": 99,
       "points": 100,
-      "reward": {"max_health": 100, "defense": 100}
+      "reward": {
+        "max_health": 100,
+        "defense": 100
+      }
     },
     "kill_50": {
       "name": "初出茅庐",
@@ -419,7 +554,9 @@
       "description": "击败怪物50次",
       "condition_type": "kill",
       "condition_value": 50,
-      "reward": {"attack": 5}
+      "reward": {
+        "attack": 5
+      }
     },
     "kill_1000": {
       "name": "怪物杀手",
@@ -428,7 +565,9 @@
       "condition_type": "kill",
       "condition_value": 1000,
       "points": 20,
-      "reward": {"attack": 10}
+      "reward": {
+        "attack": 10
+      }
     },
     "kill_5000": {
       "name": "怪物猎人",
@@ -437,7 +576,9 @@
       "condition_type": "kill",
       "condition_value": 5000,
       "points": 50,
-      "reward": {"attack": 25}
+      "reward": {
+        "attack": 25
+      }
     },
     "kill_10000": {
       "name": "怪物屠夫",
@@ -446,7 +587,9 @@
       "condition_type": "kill",
       "condition_value": 10000,
       "points": 100,
-      "reward": {"attack": 50}
+      "reward": {
+        "attack": 50
+      }
     },
     "kill_50000": {
       "name": "怪物梦魇",
@@ -455,7 +598,9 @@
       "condition_type": "kill",
       "condition_value": 50000,
       "points": 200,
-      "reward": {"attack": 100}
+      "reward": {
+        "attack": 100
+      }
     },
     "elite_1": {
       "name": "首斩精英",
@@ -463,7 +608,9 @@
       "description": "击败精英怪1次",
       "condition_type": "elite_kill",
       "condition_value": 1,
-      "reward": {"crit_rate": 0.02}
+      "reward": {
+        "crit_rate": 0.02
+      }
     },
     "elite_100": {
       "name": "精怪杀手",
@@ -472,7 +619,10 @@
       "condition_type": "elite_kill",
       "condition_value": 100,
       "points": 30,
-      "reward": {"crit_rate": 0.02, "attack": 5}
+      "reward": {
+        "crit_rate": 0.02,
+        "attack": 5
+      }
     },
     "elite_500": {
       "name": "精怪猎人",
@@ -481,7 +631,10 @@
       "condition_type": "elite_kill",
       "condition_value": 500,
       "points": 60,
-      "reward": {"crit_rate": 0.03, "attack": 10}
+      "reward": {
+        "crit_rate": 0.03,
+        "attack": 10
+      }
     },
     "elite_1000": {
       "name": "精怪屠夫",
@@ -490,7 +643,10 @@
       "condition_type": "elite_kill",
       "condition_value": 1000,
       "points": 120,
-      "reward": {"crit_rate": 0.05, "attack": 20}
+      "reward": {
+        "crit_rate": 0.05,
+        "attack": 20
+      }
     },
     "elite_5000": {
       "name": "精怪梦魇",
@@ -499,7 +655,10 @@
       "condition_type": "elite_kill",
       "condition_value": 5000,
       "points": 250,
-      "reward": {"crit_rate": 0.08, "attack": 40}
+      "reward": {
+        "crit_rate": 0.08,
+        "attack": 40
+      }
     },
     "boss_qiuniu": {
       "name": "击杀【兽王】囚牛",
@@ -509,7 +668,10 @@
       "condition_value": 1,
       "boss_name": "囚牛",
       "points": 30,
-      "reward": {"attack": 10, "defense": 10}
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
     },
     "boss_qingshe": {
       "name": "击杀【兽王】青蛇",
@@ -519,7 +681,10 @@
       "condition_value": 1,
       "boss_name": "青蛇",
       "points": 30,
-      "reward": {"attack": 10, "defense": 10}
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
     },
     "boss_yihu": {
       "name": "击杀【兽王】翼虎",
@@ -529,7 +694,10 @@
       "condition_value": 1,
       "boss_name": "翼虎",
       "points": 30,
-      "reward": {"attack": 10, "defense": 10}
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
     },
     "boss_yinglong": {
       "name": "击杀【兽王】应龙",
@@ -539,7 +707,10 @@
       "condition_value": 1,
       "boss_name": "应龙",
       "points": 30,
-      "reward": {"attack": 10, "defense": 10}
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
     },
     "boss_chishenshou": {
       "name": "击杀【活动】赤神兽",
@@ -549,7 +720,10 @@
       "condition_value": 1,
       "boss_name": "赤神兽",
       "points": 50,
-      "reward": {"attack": 20, "defense": 20}
+      "reward": {
+        "attack": 20,
+        "defense": 20
+      }
     },
     "boss_lingxi": {
       "name": "瑞兽·灵犀",
@@ -559,7 +733,10 @@
       "condition_value": 1,
       "boss_name": "灵犀",
       "points": 50,
-      "reward": {"attack": 20, "defense": 20}
+      "reward": {
+        "attack": 20,
+        "defense": 20
+      }
     },
     "boss_fengqiyunyong": {
       "name": "风起云涌",
@@ -569,7 +746,10 @@
       "condition_value": 1,
       "boss_name": "风起云涌",
       "points": 100,
-      "reward": {"attack": 30, "defense": 30}
+      "reward": {
+        "attack": 30,
+        "defense": 30
+      }
     },
     "pk_1": {
       "name": "十人斩",
@@ -578,7 +758,10 @@
       "condition_type": "pk_win",
       "condition_value": 10,
       "points": 5,
-      "reward": {"max_health": 10, "defense": 10}
+      "reward": {
+        "max_health": 10,
+        "defense": 10
+      }
     },
     "pk_2": {
       "name": "百人斩",
@@ -587,7 +770,10 @@
       "condition_type": "pk_win",
       "condition_value": 100,
       "points": 20,
-      "reward": {"max_health": 20, "defense": 20}
+      "reward": {
+        "max_health": 20,
+        "defense": 20
+      }
     },
     "pk_3": {
       "name": "千人斩",
@@ -596,7 +782,10 @@
       "condition_type": "pk_win",
       "condition_value": 300,
       "points": 50,
-      "reward": {"max_health": 50, "defense": 50}
+      "reward": {
+        "max_health": 50,
+        "defense": 50
+      }
     },
     "pk_4": {
       "name": "万人敌",
@@ -605,7 +794,11 @@
       "condition_type": "pk_win",
       "condition_value": 500,
       "points": 100,
-      "reward": {"max_health": 200, "attack": 80, "defense": 200}
+      "reward": {
+        "max_health": 200,
+        "attack": 80,
+        "defense": 200
+      }
     },
     "pk_loss_1": {
       "name": "扑街十次",
@@ -614,7 +807,10 @@
       "condition_type": "pk_loss",
       "condition_value": 10,
       "points": 5,
-      "reward": {"max_health": 10, "defense": 10}
+      "reward": {
+        "max_health": 10,
+        "defense": 10
+      }
     },
     "pk_loss_2": {
       "name": "扑街百次",
@@ -623,7 +819,10 @@
       "condition_type": "pk_loss",
       "condition_value": 100,
       "points": 20,
-      "reward": {"max_health": 20, "defense": 20}
+      "reward": {
+        "max_health": 20,
+        "defense": 20
+      }
     },
     "pk_loss_3": {
       "name": "扑街千次",
@@ -632,7 +831,10 @@
       "condition_type": "pk_loss",
       "condition_value": 300,
       "points": 50,
-      "reward": {"max_health": 50, "defense": 50}
+      "reward": {
+        "max_health": 50,
+        "defense": 50
+      }
     },
     "pk_loss_4": {
       "name": "扑街王",
@@ -641,7 +843,10 @@
       "condition_type": "pk_loss",
       "condition_value": 500,
       "points": 100,
-      "reward": {"max_health": 200, "defense": 300}
+      "reward": {
+        "max_health": 200,
+        "defense": 300
+      }
     },
     "visit_5": {
       "name": "初探四方",
@@ -649,7 +854,9 @@
       "description": "探索5个场景",
       "condition_type": "visit",
       "condition_value": 5,
-      "reward": {"dodge_rate": 0.02}
+      "reward": {
+        "dodge_rate": 0.02
+      }
     },
     "visit_15": {
       "name": "行走江湖",
@@ -657,7 +864,9 @@
       "description": "探索15个场景",
       "condition_type": "visit",
       "condition_value": 15,
-      "reward": {"dodge_rate": 0.04}
+      "reward": {
+        "dodge_rate": 0.04
+      }
     },
     "visit_30": {
       "name": "踏遍天下",
@@ -665,7 +874,9 @@
       "description": "探索30个场景",
       "condition_type": "visit",
       "condition_value": 30,
-      "reward": {"dodge_rate": 0.06}
+      "reward": {
+        "dodge_rate": 0.06
+      }
     },
     "quest_10": {
       "name": "初涉任务",
@@ -674,7 +885,10 @@
       "condition_type": "quest",
       "condition_value": 10,
       "points": 10,
-      "reward": {"max_health": 20, "max_mana": 10}
+      "reward": {
+        "max_health": 20,
+        "max_mana": 10
+      }
     },
     "quest_50": {
       "name": "任务达人",
@@ -683,7 +897,10 @@
       "condition_type": "quest",
       "condition_value": 50,
       "points": 30,
-      "reward": {"max_health": 50, "max_mana": 30}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 30
+      }
     },
     "quest_100": {
       "name": "任务大师",
@@ -692,7 +909,11 @@
       "condition_type": "quest",
       "condition_value": 100,
       "points": 50,
-      "reward": {"max_health": 100, "max_mana": 50, "attack": 10}
+      "reward": {
+        "max_health": 100,
+        "max_mana": 50,
+        "attack": 10
+      }
     },
     "quest_500": {
       "name": "任务狂人",
@@ -701,7 +922,12 @@
       "condition_type": "quest",
       "condition_value": 500,
       "points": 100,
-      "reward": {"max_health": 200, "max_mana": 100, "attack": 20, "defense": 20}
+      "reward": {
+        "max_health": 200,
+        "max_mana": 100,
+        "attack": 20,
+        "defense": 20
+      }
     },
     "equip_full": {
       "name": "全副武装",
@@ -710,7 +936,9 @@
       "condition_type": "equip_full",
       "condition_value": 7,
       "points": 10,
-      "reward": {"max_health": 80}
+      "reward": {
+        "max_health": 80
+      }
     },
     "gold_10000": {
       "name": "小有积蓄",
@@ -719,7 +947,9 @@
       "condition_type": "gold_earned",
       "condition_value": 10000,
       "points": 10,
-      "reward": {"max_mana": 30}
+      "reward": {
+        "max_mana": 30
+      }
     },
     "gold_50000": {
       "name": "富甲一方",
@@ -728,7 +958,9 @@
       "condition_type": "gold_earned",
       "condition_value": 50000,
       "points": 20,
-      "reward": {"max_mana": 60}
+      "reward": {
+        "max_mana": 60
+      }
     },
     "gold_100000": {
       "name": "腰缠万贯",
@@ -737,7 +969,10 @@
       "condition_type": "gold_earned",
       "condition_value": 100000,
       "points": 50,
-      "reward": {"max_mana": 100, "max_health": 50}
+      "reward": {
+        "max_mana": 100,
+        "max_health": 50
+      }
     },
     "gold_500000": {
       "name": "富可敌国",
@@ -746,7 +981,11 @@
       "condition_type": "gold_earned",
       "condition_value": 500000,
       "points": 100,
-      "reward": {"max_mana": 200, "max_health": 100, "attack": 20}
+      "reward": {
+        "max_mana": 200,
+        "max_health": 100,
+        "attack": 20
+      }
     },
     "gift_1": {
       "name": "魅力达人",
@@ -755,7 +994,9 @@
       "condition_type": "gift",
       "condition_value": 99,
       "points": 10,
-      "reward": {"max_health": 10}
+      "reward": {
+        "max_health": 10
+      }
     },
     "gift_2": {
       "name": "魅力四射",
@@ -764,7 +1005,9 @@
       "condition_type": "gift",
       "condition_value": 999,
       "points": 30,
-      "reward": {"max_health": 30}
+      "reward": {
+        "max_health": 30
+      }
     },
     "gift_3": {
       "name": "魅力无限",
@@ -773,7 +1016,11 @@
       "condition_type": "gift",
       "condition_value": 9999,
       "points": 50,
-      "reward": {"max_health": 50, "max_mana": 50, "attack": 10}
+      "reward": {
+        "max_health": 50,
+        "max_mana": 50,
+        "attack": 10
+      }
     },
     "gift_4": {
       "name": "名动三国",
@@ -782,7 +1029,14 @@
       "condition_type": "gift",
       "condition_value": 19999,
       "points": 100,
-      "reward": {"max_health": 100, "max_mana": 100, "attack": 20, "defense": 40, "crit_rate": 0.01, "dodge_rate": 0.01}
+      "reward": {
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 20,
+        "defense": 40,
+        "crit_rate": 0.01,
+        "dodge_rate": 0.01
+      }
     },
     "gift_5": {
       "name": "红颜知己",
@@ -791,7 +1045,9 @@
       "condition_type": "chat",
       "condition_value": 10,
       "points": 10,
-      "reward": {"max_health": 10}
+      "reward": {
+        "max_health": 10
+      }
     },
     "gift_6": {
       "name": "海内存知己",
@@ -800,7 +1056,9 @@
       "condition_type": "chat",
       "condition_value": 50,
       "points": 30,
-      "reward": {"max_health": 50}
+      "reward": {
+        "max_health": 50
+      }
     },
     "gift_7": {
       "name": "天下何人不识君！",
@@ -809,7 +1067,9 @@
       "condition_type": "chat",
       "condition_value": 100,
       "points": 50,
-      "reward": {"max_health": 100}
+      "reward": {
+        "max_health": 100
+      }
     },
     "gift_8": {
       "name": "祈福宏愿",
@@ -818,7 +1078,9 @@
       "condition_type": "gift",
       "condition_value": 99,
       "points": 20,
-      "reward": {"attack": 3}
+      "reward": {
+        "attack": 3
+      }
     },
     "gift_9": {
       "name": "诚心诚意",
@@ -827,7 +1089,9 @@
       "condition_type": "gift",
       "condition_value": 299,
       "points": 50,
-      "reward": {"attack": 6}
+      "reward": {
+        "attack": 6
+      }
     },
     "gift_10": {
       "name": "至诚至善",
@@ -836,7 +1100,9 @@
       "condition_type": "gift",
       "condition_value": 999,
       "points": 80,
-      "reward": {"attack": 9}
+      "reward": {
+        "attack": 9
+      }
     },
     "title_newbie": {
       "name": "迷茫新手",
@@ -844,7 +1110,9 @@
       "description": "达到5级",
       "condition_type": "level",
       "condition_value": 5,
-      "reward": {"title": "prefix迷茫"}
+      "reward": {
+        "title": "prefix迷茫"
+      }
     },
     "title_warrior": {
       "name": "真正的勇士",
@@ -852,7 +1120,9 @@
       "description": "击败怪物100次",
       "condition_type": "kill",
       "condition_value": 100,
-      "reward": {"title": "prefix真正"}
+      "reward": {
+        "title": "prefix真正"
+      }
     },
     "title_vip": {
       "name": "尊贵用户",
@@ -860,7 +1130,9 @@
       "description": "累计获得20000金币",
       "condition_type": "gold_earned",
       "condition_value": 20000,
-      "reward": {"title": "prefix被厚待"}
+      "reward": {
+        "title": "prefix被厚待"
+      }
     },
     "title_suffix_newbie": {
       "name": "小白成长",
@@ -868,7 +1140,9 @@
       "description": "达到5级",
       "condition_type": "level",
       "condition_value": 5,
-      "reward": {"title": "suffix小白"}
+      "reward": {
+        "title": "suffix小白"
+      }
     },
     "title_suffix_warrior": {
       "name": "勇士之路",
@@ -876,7 +1150,9 @@
       "description": "击败怪物100次",
       "condition_type": "kill",
       "condition_value": 100,
-      "reward": {"title": "suffix勇士"}
+      "reward": {
+        "title": "suffix勇士"
+      }
     },
     "vip1": {
       "name": "三国特权VIP1",
@@ -884,7 +1160,10 @@
       "description": "达到VIP1等级",
       "condition_type": "vip_level",
       "condition_value": 1,
-      "reward": {"attack": 5, "defense": 5}
+      "reward": {
+        "attack": 5,
+        "defense": 5
+      }
     },
     "vip2": {
       "name": "三国特权VIP2",
@@ -892,7 +1171,11 @@
       "description": "达到VIP2等级",
       "condition_type": "vip_level",
       "condition_value": 2,
-      "reward": {"attack": 10, "defense": 10, "title": "suffixVIP用户"}
+      "reward": {
+        "attack": 10,
+        "defense": 10,
+        "title": "suffixVIP用户"
+      }
     },
     "vip3": {
       "name": "三国特权VIP3",
@@ -900,7 +1183,11 @@
       "description": "达到VIP3等级",
       "condition_type": "vip_level",
       "condition_value": 3,
-      "reward": {"attack": 20, "defense": 20, "max_health": 100}
+      "reward": {
+        "attack": 20,
+        "defense": 20,
+        "max_health": 100
+      }
     },
     "vip4": {
       "name": "三国特权VIP4",
@@ -908,7 +1195,11 @@
       "description": "达到VIP4等级",
       "condition_type": "vip_level",
       "condition_value": 4,
-      "reward": {"attack": 30, "defense": 30, "max_health": 200}
+      "reward": {
+        "attack": 30,
+        "defense": 30,
+        "max_health": 200
+      }
     },
     "vip5": {
       "name": "三国特权VIP5",
@@ -916,43 +1207,11 @@
       "description": "达到VIP5等级",
       "condition_type": "vip_level",
       "condition_value": 5,
-      "reward": {"attack": 50, "defense": 50, "max_health": 500}
-    },
-    "lt_dianwei": {
-      "name": "一级名将【典韦】",
-      "category": "副将",
-      "description": "拥有一级副将典韦",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "典韦",
-      "reward": {"attack": 15, "defense": 10}
-    },
-    "lt_huangzhong": {
-      "name": "一级名将【黄忠】",
-      "category": "副将",
-      "description": "拥有一级副将黄忠",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "黄忠",
-      "reward": {"attack": 15, "crit_rate": 0.02}
-    },
-    "lt_pangtong": {
-      "name": "一级名将【庞统】",
-      "category": "副将",
-      "description": "拥有一级副将庞统",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "庞统",
-      "reward": {"max_mana": 150, "attack": 10}
-    },
-    "lt_xunyu": {
-      "name": "一级名将【荀彧】",
-      "category": "副将",
-      "description": "拥有一级副将荀彧",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "荀彧",
-      "reward": {"max_mana": 150, "defense": 10}
+      "reward": {
+        "attack": 50,
+        "defense": 50,
+        "max_health": 500
+      }
     },
     "lt_zhouyu": {
       "name": "一级名将【周瑜】",
@@ -961,43 +1220,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "周瑜",
-      "reward": {"max_mana": 200, "attack": 10}
-    },
-    "lt_diaochan": {
-      "name": "一级名将【貂蝉】",
-      "category": "副将",
-      "description": "拥有一级副将貂蝉",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "貂蝉",
-      "reward": {"dodge_rate": 0.03, "max_health": 100}
-    },
-    "lt_guojia": {
-      "name": "一级名将【郭嘉】",
-      "category": "副将",
-      "description": "拥有一级副将郭嘉",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "郭嘉",
-      "reward": {"max_mana": 150, "attack": 15}
-    },
-    "lt_machao": {
-      "name": "一级名将【马超】",
-      "category": "副将",
-      "description": "拥有一级副将马超",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "马超",
-      "reward": {"attack": 20, "crit_rate": 0.02}
-    },
-    "lt_liru": {
-      "name": "一级名将【李儒】",
-      "category": "副将",
-      "description": "拥有一级副将李儒",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "李儒",
-      "reward": {"max_mana": 150, "attack": 10}
+      "reward": {
+        "max_mana": 200,
+        "attack": 10
+      }
     },
     "lt_xuchu": {
       "name": "一级名将【许褚】",
@@ -1006,16 +1232,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "许褚",
-      "reward": {"attack": 15, "defense": 15}
-    },
-    "lt_dengai": {
-      "name": "一级名将【邓艾】",
-      "category": "副将",
-      "description": "拥有一级副将邓艾",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "邓艾",
-      "reward": {"attack": 15, "crit_rate": 0.02}
+      "reward": {
+        "attack": 15,
+        "defense": 15
+      }
     },
     "lt_taishici": {
       "name": "一级名将【太史慈】",
@@ -1024,7 +1244,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "太史慈",
-      "reward": {"attack": 15, "dodge_rate": 0.02}
+      "reward": {
+        "attack": 15,
+        "dodge_rate": 0.02
+      }
     },
     "lt_xiaoqiao": {
       "name": "二级名将【小乔】",
@@ -1033,25 +1256,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "小乔",
-      "reward": {"max_mana": 80, "dodge_rate": 0.01}
-    },
-    "lt_zhugejin": {
-      "name": "二级名将【诸葛瑾】",
-      "category": "副将",
-      "description": "拥有二级副将诸葛瑾",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "诸葛瑾",
-      "reward": {"max_mana": 80, "defense": 8}
-    },
-    "lt_sunliang": {
-      "name": "二级名将【孙亮】",
-      "category": "副将",
-      "description": "拥有二级副将孙亮",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "孙亮",
-      "reward": {"attack": 8, "defense": 5}
+      "reward": {
+        "max_mana": 80,
+        "dodge_rate": 0.01
+      }
     },
     "lt_liufeng": {
       "name": "二级名将【刘封】",
@@ -1060,25 +1268,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "刘封",
-      "reward": {"attack": 8, "max_health": 50}
-    },
-    "lt_jiangwan": {
-      "name": "二级名将【蒋琬】",
-      "category": "副将",
-      "description": "拥有二级副将蒋琬",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "蒋琬",
-      "reward": {"max_mana": 80, "attack": 5}
-    },
-    "lt_manchong": {
-      "name": "二级名将【满宠】",
-      "category": "副将",
-      "description": "拥有二级副将满宠",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "满宠",
-      "reward": {"max_mana": 80, "defense": 8}
+      "reward": {
+        "attack": 8,
+        "max_health": 50
+      }
     },
     "lt_daqiao": {
       "name": "二级名将【大乔】",
@@ -1087,7 +1280,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "大乔",
-      "reward": {"max_mana": 100, "dodge_rate": 0.01}
+      "reward": {
+        "max_mana": 100,
+        "dodge_rate": 0.01
+      }
     },
     "lt_guanping": {
       "name": "二级名将【关平】",
@@ -1096,7 +1292,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "关平",
-      "reward": {"attack": 10, "max_health": 50}
+      "reward": {
+        "attack": 10,
+        "max_health": 50
+      }
     },
     "lt_caozhen": {
       "name": "二级名将【曹真】",
@@ -1105,7 +1304,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "曹真",
-      "reward": {"attack": 8, "defense": 8}
+      "reward": {
+        "attack": 8,
+        "defense": 8
+      }
     },
     "lt_pangde": {
       "name": "二级名将【庞德】",
@@ -1114,34 +1316,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "庞德",
-      "reward": {"attack": 10, "defense": 5}
-    },
-    "lt_caiwenji": {
-      "name": "二级名将【蔡文姬】",
-      "category": "副将",
-      "description": "拥有二级副将蔡文姬",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "蔡文姬",
-      "reward": {"max_mana": 100, "max_health": 50}
-    },
-    "lt_mayunlu": {
-      "name": "二级名将【马云禄】",
-      "category": "副将",
-      "description": "拥有二级副将马云禄",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "马云禄",
-      "reward": {"attack": 8, "dodge_rate": 0.01}
-    },
-    "lt_dengzhong": {
-      "name": "二级名将【邓忠】",
-      "category": "副将",
-      "description": "拥有二级副将邓忠",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "邓忠",
-      "reward": {"attack": 8, "crit_rate": 0.01}
+      "reward": {
+        "attack": 10,
+        "defense": 5
+      }
     },
     "lt_adou": {
       "name": "三级名将【阿斗】",
@@ -1150,7 +1328,9 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "阿斗",
-      "reward": {"max_health": 30}
+      "reward": {
+        "max_health": 30
+      }
     },
     "lt_liaohua": {
       "name": "三级名将【廖化】",
@@ -1159,16 +1339,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "廖化",
-      "reward": {"attack": 3, "max_health": 20}
-    },
-    "lt_lvkuang": {
-      "name": "三级名将【吕旷】",
-      "category": "副将",
-      "description": "拥有三级副将吕旷",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "吕旷",
-      "reward": {"attack": 3, "defense": 3}
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
     },
     "lt_zhaoguang": {
       "name": "三级名将【赵广】",
@@ -1177,7 +1351,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "赵广",
-      "reward": {"attack": 3, "crit_rate": 0.01}
+      "reward": {
+        "attack": 3,
+        "crit_rate": 0.01
+      }
     },
     "lt_xuyou": {
       "name": "三级名将【许攸】",
@@ -1186,7 +1363,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "许攸",
-      "reward": {"max_mana": 30, "attack": 2}
+      "reward": {
+        "max_mana": 30,
+        "attack": 2
+      }
     },
     "lt_wuguotai": {
       "name": "三级名将【吴国太】",
@@ -1195,7 +1375,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "吴国太",
-      "reward": {"max_mana": 30, "defense": 3}
+      "reward": {
+        "max_mana": 30,
+        "defense": 3
+      }
     },
     "lt_zhenji": {
       "name": "三级名将【甄姬】",
@@ -1204,16 +1387,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "甄姬",
-      "reward": {"max_mana": 40, "dodge_rate": 0.01}
-    },
-    "lt_zhangxiu": {
-      "name": "三级名将【张绣】",
-      "category": "副将",
-      "description": "拥有三级副将张绣",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "张绣",
-      "reward": {"attack": 3, "max_health": 20}
+      "reward": {
+        "max_mana": 40,
+        "dodge_rate": 0.01
+      }
     },
     "lt_wangmeiren": {
       "name": "三级名将【王美人】",
@@ -1222,7 +1399,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "王美人",
-      "reward": {"max_mana": 30, "max_health": 20}
+      "reward": {
+        "max_mana": 30,
+        "max_health": 20
+      }
     },
     "lt_yuejin": {
       "name": "三级名将【乐进】",
@@ -1231,16 +1411,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "乐进",
-      "reward": {"attack": 5, "defense": 2}
-    },
-    "lt_matie": {
-      "name": "三级名将【马铁】",
-      "category": "副将",
-      "description": "拥有三级副将马铁",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "马铁",
-      "reward": {"attack": 3, "max_health": 20}
+      "reward": {
+        "attack": 5,
+        "defense": 2
+      }
     },
     "lt_xiahouba": {
       "name": "三级名将【夏侯霸】",
@@ -1249,16 +1423,10 @@
       "condition_type": "lieutenant_owned",
       "condition_value": 1,
       "lt_name": "夏侯霸",
-      "reward": {"attack": 4, "defense": 3}
-    },
-    "lt_dongbai": {
-      "name": "三级名将【董白】",
-      "category": "副将",
-      "description": "拥有三级副将董白",
-      "condition_type": "lieutenant_owned",
-      "condition_value": 1,
-      "lt_name": "董白",
-      "reward": {"max_health": 30, "dodge_rate": 0.01}
+      "reward": {
+        "attack": 4,
+        "defense": 3
+      }
     }
   }
 }
