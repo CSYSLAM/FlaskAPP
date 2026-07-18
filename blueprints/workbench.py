@@ -3536,3 +3536,106 @@ def _simulate_lt_battle(form):
         'player': {'final_hp': max(0, player['health'])},
         'monster': {'name': monster['name'], 'final_hp': max(0, monster['health'])},
     }
+
+
+@workbench_bp.route("/honor_test", methods=["GET", "POST"])
+@login_required
+def honor_test():
+    """荣誉军衔测试：选择职业/性别/等级/荣誉 → 显示对应军衔与头像。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    from models.player import PlayerModel
+    from services.player_service import PlayerService
+
+    CLASS_CHOICES = ['战士', '术士', '刺客']
+
+    form = {
+        'player_class': '战士',
+        'gender': '男',
+        'level': 30,
+        'honor': 5000,
+    }
+    results = None
+
+    if request.method == "POST":
+        form['player_class'] = request.form.get('player_class', '战士')
+        form['gender'] = request.form.get('gender', '男')
+        try:
+            form['level'] = max(1, min(60, int(request.form.get('level', 30))))
+        except (ValueError, TypeError):
+            form['level'] = 30
+        try:
+            form['honor'] = max(0, int(request.form.get('honor', 5000)))
+        except (ValueError, TypeError):
+            form['honor'] = 5000
+
+        level = form['level']
+        honor = form['honor']
+
+        # Compute rank (same logic as PlayerService.update_military_rank)
+        rank_name = "士兵"
+        rank_attack = 0
+        for rn, rd in sorted(PlayerModel.MILITARY_RANKS.items(),
+                              key=lambda x: x[1]["level"], reverse=True):
+            if level >= rd["level"] and honor >= rd["honor"]:
+                rank_name = rn
+                rank_attack = rd["attack"]
+                break
+
+        # Compute avatar path (same logic as PlayerService.get_avatar_path)
+        prefix_map = {
+            ("男", "刺客"): "a", ("女", "刺客"): "b",
+            ("男", "战士"): "c", ("女", "战士"): "q",
+            ("男", "术士"): "f", ("女", "术士"): "s",
+        }
+        prefix = prefix_map.get((form['gender'], form['player_class']), "a")
+        rank_tiers = [
+            "列兵", "十夫长", "百夫长", "校尉", "都尉",
+            "裨将", "偏将", "中郎将", "车骑将军", "骠骑将军",
+            "大司马", "大都督",
+        ]
+        # 士兵 maps to same tier as 列兵
+        display_rank = "列兵" if rank_name == "士兵" else rank_name
+        idx = rank_tiers.index(display_rank) if display_rank in rank_tiers else 0
+        tier = min(idx + 1, 11)
+        avatar_path = f"rongyu/{prefix}{tier:02d}.png"
+
+        # Next rank info
+        next_rank = None
+        sorted_ranks = sorted(PlayerModel.MILITARY_RANKS.items(),
+                              key=lambda x: x[1]["level"])
+        for rn, rd in sorted_ranks:
+            if (rd["level"] > level or rd["honor"] > honor) and rn != rank_name:
+                level_gap = max(0, rd["level"] - level)
+                honor_gap = max(0, rd["honor"] - honor)
+                next_rank = {
+                    "name": rn,
+                    "level": rd["level"],
+                    "honor": rd["honor"],
+                    "level_gap": level_gap,
+                    "honor_gap": honor_gap,
+                }
+                break
+
+        # All ranks table
+        all_ranks = []
+        for rn, rd in sorted_ranks:
+            is_current = (rn == rank_name)
+            reachable = (level >= rd["level"] and honor >= rd["honor"])
+            all_ranks.append({
+                "name": rn, "level": rd["level"], "honor": rd["honor"],
+                "attack": rd["attack"], "is_current": is_current, "reachable": reachable,
+            })
+
+        results = {
+            "rank_name": rank_name,
+            "rank_attack": rank_attack,
+            "avatar_path": avatar_path,
+            "next_rank": next_rank,
+            "all_ranks": all_ranks,
+        }
+
+    return render_template("workbench/honor_test.html",
+                           form=form, results=results,
+                           classes=CLASS_CHOICES)
