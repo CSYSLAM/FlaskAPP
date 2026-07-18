@@ -141,7 +141,7 @@
     ----------------<br/>
     {% for slot_name in EquipmentInstance.SLOTS %}
         {% set equip = target_equipped.get(slot_name) %}
-        {{ EquipmentInstance.SLOT_NAMES[slot_name] }}:{% if equip %}<a href="#">{{ equip.name }}</a>{% else %}未装备{% endif %}<br/>
+        {{ EquipmentInstance.SLOT_NAMES[slot_name] }}:{% if equip %}<a href="{{ url_for('player.view_equipment_public', equipment_instance_id=equip.instance_id) }}">{{ equip.name }}</a>{% else %}未装备{% endif %}<br/>
     {% endfor %}
     <a href="{{ url_for('player.view_player', username=target_player.username) }}">返回</a><br/>
 

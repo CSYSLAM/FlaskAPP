@@ -16,13 +16,29 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     {% set slot_name = EquipmentInstance.SLOT_NAMES.get(equipment.slot, equipment.slot) %}
     {% set rarity_colors = {'普通': '', '精良': '#1a8c1a', '卓越': '#0070dd', '史诗': '#a335ee', '神器': '#ff8000'} %}
     {% set rc = rarity_colors.get(equipment.rarity, '') %}
+    {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
 
     {% if rc %}<font color="{{ rc }}">{% endif %}{{ equipment.name }}{% if rc %}</font>{% endif %}{% if equipment.is_bound %}<span class="bound">(绑定)</span>{% endif %}<br/>
+    {% if equipment_image %}<img src="{{ url_for('static', filename=equipment_image) }}" style="max-width:120px;"><br/>{% endif %}
+    {% if not readonly %}
+    {% if is_equipped.val %}
+    <a href="{{ url_for('player.unequip', slot=equipment.slot) }}">卸下</a>
+    {% else %}
+    <a href="{{ url_for('player.equip_item', equipment_instance_id=item_id) }}">装备</a>{% if old_equip %}(替换:{{ old_equip.name }}){% endif %} <a href="{{ url_for('player.show_equipment', equipment_instance_id=item_id) }}">展示(500银两)</a>
+    {% endif %}<br/>
+    {% endif %}
     [{{ slot_name }}]{% if equipment.rarity != '普通' %}{{ equipment.rarity }}{% endif %} {{ equipment.enhance_level }}级<br/>
-    {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
     {% if tpl and tpl.get('set_name') %}套装:{{ tpl.set_name }}<br/>{% endif %}
 
     基础属性:<br/>
@@ -49,27 +65,22 @@
     需要职业:{{ equipment.class_required }}<br/>
     {% endif %}
 
-    {% if is_equipped.val %}
-    <a href="{{ url_for('player.unequip', slot=equipment.slot) }}">卸下</a>
-    {% else %}
-    <a href="{{ url_for('player.equip_item', equipment_instance_id=item_id) }}">装备</a>
-    {% if old_equip %}(替换:{{ old_equip.name }}){% endif %}
-    <a href="{{ url_for('player.enhance_page', equipment_instance_id=item_id) }}">强化</a>
-    <a href="{{ url_for('player.sell_item', item_id=item_id) }}">出售</a>
-    <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a>
-    {% endif %}<br/>
-
+    {% if not readonly %}
+    {% if not is_equipped.val %}
+    <a href="{{ url_for('player.enhance_page', equipment_instance_id=item_id) }}">强化</a> <a href="{{ url_for('player.sell_item', item_id=item_id) }}">出售</a> <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a><br/>
+    {% endif %}
     {% if from_page == 'equipment' %}
     <a href="{{ url_for('player.equipment_list') }}">返回上级</a><br/>
     {% else %}
     <a href="{{ url_for('player.inventory') }}">返回上级</a><br/>
+    {% endif %}
     {% endif %}
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>
     var aLinks=document.getElementsByTagName("a");
     for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
-    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    setTimeout(function(){document.getElementById('loading').style.display='none'},350);
     </script>
 </body>
 </html>

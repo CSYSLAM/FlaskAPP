@@ -12,6 +12,20 @@ from services.equipment_service import EquipmentService
 player_bp = Blueprint('player', __name__)
 
 
+def _get_equipment_image(equip):
+    """查找装备对应的图片路径，仅神器有图片。返回如 'equipment_sets/赤霄剑.png' 或 None。"""
+    tpl = DataService.get_equipment_template(equip.template_id)
+    if not tpl or not tpl.get('is_artifact'):
+        return None
+    import os
+    name = tpl.get('name', '')
+    img_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'equipment_sets')
+    for ext in ('.jpg', '.png', '.gif'):
+        if os.path.exists(os.path.join(img_dir, name + ext)):
+            return f'equipment_sets/{name}{ext}'
+    return None
+
+
 @player_bp.route("/character")
 @login_required
 def character():
@@ -464,6 +478,7 @@ def view_equipped(slot):
     player = current_user
     equip = DataService.get_equipped(player.id).get(slot)
     if equip:
+        equipment_image = _get_equipment_image(equip)
         return render_template('equipment_view.html',
                              player=player,
                              equipment=equip,
@@ -471,7 +486,8 @@ def view_equipped(slot):
                              is_equipped={'val': True},
                              old_equip=None,
                              EquipmentInstance=EquipmentInstance,
-                             DataService=DataService)
+                             DataService=DataService,
+                             equipment_image=equipment_image)
     return redirect(url_for('player.equipment_list'))
 
 
@@ -740,6 +756,7 @@ def view_item(item_id):
             instance_id=real_id, player_id=player.id).first()
         if equip:
             old_equip = DataService.get_equipped(player.id).get(equip.slot)
+            equipment_image = _get_equipment_image(equip)
             return render_template('equipment_view.html',
                                  player=player,
                                  equipment=equip,
@@ -748,7 +765,8 @@ def view_item(item_id):
                                  old_equip=old_equip,
                                  EquipmentInstance=EquipmentInstance,
                                  DataService=DataService,
-                                 from_page=from_page)
+                                 from_page=from_page,
+                                 equipment_image=equipment_image)
     else:
         item_data = DataService.get_item(item_id)
         inv = DataService.get_inventory_item(player.id, item_id, is_bound=bound_val)
@@ -1301,6 +1319,66 @@ def rename_character():
     db.session.commit()
     flash(f"改名成功，新名字：{new_name}")
     return redirect(url_for("player.character"))
+
+
+@player_bp.route("/show_equipment/<equipment_instance_id>")
+@login_required
+def show_equipment(equipment_instance_id):
+    """展示装备：消耗500银两，通过系统消息广播给所有在线玩家。"""
+    player = current_user
+    real_id = equipment_instance_id
+    if real_id.startswith('equipment_'):
+        real_id = real_id[len('equipment_'):]
+
+    equip = EquipmentInstance.query.filter_by(
+        instance_id=real_id, player_id=player.id).first()
+    if not equip:
+        flash('装备不存在')
+        return redirect(url_for('player.inventory'))
+
+    if player.gold < 500:
+        flash('银两不足500，无法展示')
+        return redirect(url_for('player.view_item', item_id=equipment_instance_id))
+
+    player.gold -= 500
+    db.session.commit()
+
+    # 广播系统消息（链接不带tic/sid，避免其他玩家点击时被限流）
+    from services.public_chat import PublicChat
+    view_url = url_for('player.view_equipment_public', equipment_instance_id=real_id, _external=False)
+    # 去掉url_for自动附加的sid/tic参数
+    if '?' in view_url:
+        view_url = view_url.split('?')[0]
+    PublicChat.broadcast(f'玩家【{player.nickname}】正在展示 {equip.name}，<a href="{view_url}">点击查看</a>')
+
+    flash('展示成功！已发送系统消息')
+    return redirect(url_for('player.view_item', item_id=equipment_instance_id))
+
+
+@player_bp.route("/view_equipment_public/<equipment_instance_id>")
+@login_required
+def view_equipment_public(equipment_instance_id):
+    """公开查看其他玩家展示的装备。"""
+    player = current_user
+    equip = EquipmentInstance.query.filter_by(
+        instance_id=equipment_instance_id).first()
+    if not equip:
+        flash('装备不存在')
+        return redirect(url_for('game.scene'))
+
+    equipment_image = _get_equipment_image(equip)
+    tpl = DataService.get_equipment_template(equip.template_id)
+    return render_template('equipment_view.html',
+                         player=player,
+                         equipment=equip,
+                         item_id='public',
+                         is_equipped={'val': True},
+                         old_equip=None,
+                         EquipmentInstance=EquipmentInstance,
+                         DataService=DataService,
+                         equipment_image=equipment_image,
+                         from_page='equipment',
+                         readonly=True)
 
 
 from services import db
