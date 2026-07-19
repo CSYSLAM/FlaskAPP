@@ -27,13 +27,13 @@ LIEUTENANT_DATA = {
     1: {
         'taishici': {'name': '太史慈', 'gender': 'male', 'class_type': 'mage',
                      'base_max_health': 105, 'base_max_mana': 112, 'base_attack': 22, 'base_defense': 57,
-                     'base_crit_rate': 0.00120, 'base_dodge_rate': 0.00090},
+                     'base_crit_rate': 0.00128, 'base_dodge_rate': 0.00090},
         'xuchu': {'name': '许褚', 'gender': 'male', 'class_type': 'warrior',
                   'base_max_health': 126, 'base_max_mana': 37, 'base_attack': 19, 'base_defense': 71,
-                  'base_crit_rate': 0.00116, 'base_dodge_rate': 0.00086},
+                  'base_crit_rate': 0.00124, 'base_dodge_rate': 0.00086},
         'zhouyu': {'name': '周瑜', 'gender': 'male', 'class_type': 'assassin',
                    'base_max_health': 117, 'base_max_mana': 60, 'base_attack': 21, 'base_defense': 62,
-                   'base_crit_rate': 0.00150, 'base_dodge_rate': 0.00112},
+                   'base_crit_rate': 0.00160, 'base_dodge_rate': 0.00112},
     },
     2: {
         'guanping': {'name': '关平', 'gender': 'male', 'class_type': 'mage',
