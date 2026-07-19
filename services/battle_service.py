@@ -1037,10 +1037,37 @@ class BattleService:
                 LieutenantService.gain_experience(lt, lt_exp)
 
         # Track kill counts
+        mon_id = getattr(monster, 'id', '') or getattr(monster, 'monster_id', '')
         if monster.is_elite:
             player.elite_kill_count = (player.elite_kill_count or 0) + 1
+            # Track elite kills by area (kunlun/shennong/wokou)
+            area = None
+            if 'kunlun' in mon_id:
+                area = 'kunlun'
+            elif 'shennong' in mon_id:
+                area = 'shennong'
+            elif 'wokou' in mon_id or 'wa_' in mon_id:
+                area = 'wokou'
+            if area:
+                kills_by_area = player.elite_kills_by_area
+                if not isinstance(kills_by_area, dict):
+                    kills_by_area = {}
+                kills_by_area[area] = kills_by_area.get(area, 0) + 1
+                player.elite_kills_by_area = kills_by_area
         else:
             player.kill_count = (player.kill_count or 0) + 1
+
+        # Track per-monster kill counts (for elite_kill_monster / kill_monster achievements)
+        if mon_id:
+            mk = player.monster_kills
+            if not isinstance(mk, dict):
+                mk = {}
+            mk[mon_id] = mk.get(mon_id, 0) + 1
+            player.monster_kills = mk
+
+        # Track divine beast cumulative kills
+        if monster.is_divine_beast:
+            player.divine_beast_kills = (player.divine_beast_kills or 0) + 1
 
         # Update quest kill progress and drop quest items
         from services.quest_service import QuestService
@@ -1177,6 +1204,13 @@ class BattleService:
         from services.achievement_service import AchievementService
         ctype = 'elite_kill' if monster.is_elite else 'kill'
         AchievementService.check(player, ctype, player.elite_kill_count if monster.is_elite else player.kill_count)
+        if monster.is_elite:
+            AchievementService.check(player, 'elite_kill_area')
+        # Check per-monster kill achievements
+        AchievementService.check(player, 'elite_kill_monster' if monster.is_elite else 'kill_monster')
+        # Check divine beast cumulative kill achievements
+        if monster.is_divine_beast:
+            AchievementService.check(player, 'divine_beast_kill')
         AchievementService.check(player, 'gold_earned', player.gold_earned)
 
         return player.last_battle_result

@@ -8,7 +8,8 @@ class AchievementService:
 
     @classmethod
     def check_all(cls, player):
-        for ctype in ['level', 'kill', 'elite_kill', 'pk_win', 'pk_loss', 'enhance',
+        for ctype in ['level', 'kill', 'elite_kill', 'elite_kill_area', 'elite_kill_monster', 'kill_monster',
+                       'divine_beast_kill', 'pk_win', 'pk_loss', 'enhance',
                        'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
                        'boss_kill', 'quest']:
@@ -74,6 +75,14 @@ class AchievementService:
             return cls._get_dungeon_tower_progress(player, adef) >= val
         elif ctype == 'boss_kill':
             return cls._get_boss_kill_progress(player, adef) >= val
+        elif ctype == 'elite_kill_area':
+            return cls._get_elite_kill_area_progress(player, adef) >= val
+        elif ctype == 'elite_kill_monster':
+            return cls._get_elite_kill_monster_progress(player, adef) >= val
+        elif ctype == 'kill_monster':
+            return cls._get_kill_monster_progress(player, adef) >= val
+        elif ctype == 'divine_beast_kill':
+            return cls._get_divine_beast_kill_progress(player, adef) >= val
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef) >= val
         return False
@@ -194,6 +203,14 @@ class AchievementService:
             return cls._get_dungeon_tower_progress(player, adef)
         elif ctype == 'boss_kill':
             return cls._get_boss_kill_progress(player, adef)
+        elif ctype == 'elite_kill_area':
+            return cls._get_elite_kill_area_progress(player, adef)
+        elif ctype == 'elite_kill_monster':
+            return cls._get_elite_kill_monster_progress(player, adef)
+        elif ctype == 'kill_monster':
+            return cls._get_kill_monster_progress(player, adef)
+        elif ctype == 'divine_beast_kill':
+            return cls._get_divine_beast_kill_progress(player, adef)
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef)
         return 0
@@ -271,6 +288,44 @@ class AchievementService:
         return kills.get(boss_name, 0)
 
     @classmethod
+    def _get_elite_kill_area_progress(cls, player, adef):
+        """按区域统计精英击杀数: player.elite_kills_by_area = {'kunlun': 5, ...}"""
+        area = adef.get('area', '')
+        if not area:
+            return 0
+        kills = getattr(player, 'elite_kills_by_area', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(area, 0)
+
+    @classmethod
+    def _get_elite_kill_monster_progress(cls, player, adef):
+        """按monster_id统计精英击杀数: player.monster_kills = {monster_id: count}"""
+        monster_id = adef.get('monster_id', '')
+        if not monster_id:
+            return 0
+        kills = getattr(player, 'monster_kills', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(monster_id, 0)
+
+    @classmethod
+    def _get_kill_monster_progress(cls, player, adef):
+        """按monster_id统计普通怪击杀数: player.monster_kills = {monster_id: count}"""
+        monster_id = adef.get('monster_id', '')
+        if not monster_id:
+            return 0
+        kills = getattr(player, 'monster_kills', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(monster_id, 0)
+
+    @classmethod
+    def _get_divine_beast_kill_progress(cls, player, adef):
+        """神兽累计击杀数: player.divine_beast_kills (int)"""
+        return getattr(player, 'divine_beast_kills', 0) or 0
+
+    @classmethod
     def _get_quest_progress(cls, player, adef):
         import json
         try:
@@ -290,7 +345,7 @@ class AchievementService:
             return '道具'
         if condition_type in ('level', 'enhance'):
             return '成长'
-        if condition_type in ('kill', 'elite_kill', 'boss_kill'):
+        if condition_type in ('kill', 'elite_kill', 'boss_kill', 'elite_kill_monster', 'kill_monster', 'divine_beast_kill'):
             return '杀怪'
         if condition_type in ('pk_win', 'pk_loss'):
             return 'P K'

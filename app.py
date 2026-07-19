@@ -421,6 +421,21 @@ def create_app():
             db.session.commit()
         except Exception:
             db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN elite_kills_by_area_raw TEXT DEFAULT '{}'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN monster_kills_raw TEXT DEFAULT '{}'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN divine_beast_kills INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
         # 为没有 player_uid 的旧玩家生成 UID
         import random
         import string

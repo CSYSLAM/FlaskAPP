@@ -514,7 +514,11 @@ class LieutenantService:
         DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_aptitude', 1)
 
         old_quality = lieutenant.quality
-        new_quality = random.randint(0, 20)
+        # 洗资质：完美(20)概率1%，其余0-19均匀分配99%
+        if random.random() < 0.01:
+            new_quality = 20
+        else:
+            new_quality = random.randint(0, 19)
         lieutenant.quality = new_quality
 
         max_hp = lieutenant.get_max_health()
@@ -541,7 +545,11 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_wuxing', 1)
 
-        success_rate = max(0.06, (1.0 - lieutenant.enlightenment * 0.07) / 5)
+        # 悟性提升概率：每次6%，最后两次(8→9、9→10)为3%
+        if lieutenant.enlightenment >= 8:
+            success_rate = 0.03
+        else:
+            success_rate = 0.06
         if random.random() < success_rate:
             lieutenant.enlightenment += 1
             max_hp = lieutenant.get_max_health()
@@ -570,7 +578,11 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_enhance', 1)
 
-        success_rate = max(0.06, (0.95 - lieutenant.reinforce * 0.03) / 5)
+        # 强化成功概率：每次8%，最后两次(18→19、19→20)为4%
+        if lieutenant.reinforce >= 18:
+            success_rate = 0.04
+        else:
+            success_rate = 0.08
         if random.random() < success_rate:
             lieutenant.reinforce += 1
             max_hp = lieutenant.get_max_health()

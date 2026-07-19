@@ -218,42 +218,6 @@
         "defense": 60
       }
     },
-    "level_70": {
-      "name": "到达70级！",
-      "category": "成长",
-      "description": "等级达到70级",
-      "condition_type": "level",
-      "condition_value": 70,
-      "points": 120,
-      "reward": {
-        "max_health": 100,
-        "defense": 100
-      }
-    },
-    "level_80": {
-      "name": "传说！",
-      "category": "成长",
-      "description": "等级达到80级",
-      "condition_type": "level",
-      "condition_value": 80,
-      "points": 180,
-      "reward": {
-        "max_health": 150,
-        "defense": 150
-      }
-    },
-    "level_90": {
-      "name": "无尽！",
-      "category": "成长",
-      "description": "等级达到90级",
-      "condition_type": "level",
-      "condition_value": 90,
-      "points": 250,
-      "reward": {
-        "max_health": 200,
-        "defense": 200
-      }
-    },
     "enhance_5": {
       "name": "初试锋芒",
       "category": "装备",
@@ -330,7 +294,33 @@
       "description": "通关100次黄巾起义副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "huangjin_copy",
+      "dungeon_id": "huangjin_trial",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_huoshao_bowang_100": {
+      "name": "100次【火烧博望】",
+      "category": "副本",
+      "description": "通关100次火烧博望副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "huoshao_bowang",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_baiyi_dujiang_100": {
+      "name": "100次【白衣渡江】",
+      "category": "副本",
+      "description": "通关100次白衣渡江副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "baiyi_dujiang",
       "points": 50,
       "reward": {
         "max_health": 50,
@@ -338,12 +328,12 @@
       }
     },
     "dungeon_liaodong_100": {
-      "name": "100次【平定辽东】",
+      "name": "100次【计定辽东】",
       "category": "副本",
-      "description": "通关100次平定辽东副本",
+      "description": "通关100次计定辽东副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "jiding_liaodong_copy_live",
+      "dungeon_id": "jiding_liaodong",
       "points": 50,
       "reward": {
         "max_health": 50,
@@ -356,204 +346,149 @@
       "description": "通关100次威震逍遥津副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "xiaoyaojin_copy",
+      "dungeon_id": "weizhen_xiaoyaojin",
       "points": 50,
       "reward": {
         "max_health": 50,
         "max_mana": 20
       }
     },
-    "dungeon_guandu_100": {
-      "name": "100次【官渡之战】",
+    "dungeon_qianli_danqi_100": {
+      "name": "100次【千里单骑】",
       "category": "副本",
-      "description": "通关100次官渡之战副本",
+      "description": "通关100次千里单骑副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "guandu_copy_live",
+      "dungeon_id": "qianli_danqi",
       "points": 50,
       "reward": {
         "max_health": 50,
         "max_mana": 20
       }
     },
-    "dungeon_qinqin_100": {
-      "name": "100次【七擒孟获】",
+    "dungeon_huoshao_lianying_100": {
+      "name": "100次【火烧连营】",
       "category": "副本",
-      "description": "通关100次七擒孟获副本",
+      "description": "通关100次火烧连营副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "qiqin_copy_live",
+      "dungeon_id": "huoshao_lianying",
       "points": 50,
       "reward": {
         "max_health": 50,
         "max_mana": 20
       }
     },
-    "dungeon_machao_100": {
+    "dungeon_taoyuan_jieyi_100": {
+      "name": "100次【桃园结义】",
+      "category": "副本",
+      "description": "通关100次桃园结义副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "taoyuan_jieyi",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_caopi_xuanfei_100": {
+      "name": "100次【曹丕选妃】",
+      "category": "副本",
+      "description": "通关100次曹丕选妃副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "caopi_xuanfei",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_jiangdong_bawang_100": {
+      "name": "100次【江东霸王】",
+      "category": "副本",
+      "description": "通关100次江东霸王副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "jiangdong_bawang",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_dazhan_changban_100": {
+      "name": "100次【大战长坂】",
+      "category": "副本",
+      "description": "通关100次大战长坂副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "dazhan_changban",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_shiting_zhizhan_100": {
+      "name": "100次【石亭之战】",
+      "category": "副本",
+      "description": "通关100次石亭之战副本",
+      "condition_type": "dungeon_clear",
+      "condition_value": 100,
+      "dungeon_id": "shiting_zhizhan",
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 20
+      }
+    },
+    "dungeon_zhidou_machao_100": {
       "name": "100次【智斗马超】",
       "category": "副本",
       "description": "通关100次智斗马超副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "machao_copy",
+      "dungeon_id": "zhidou_machao",
       "points": 50,
       "reward": {
         "max_health": 50,
         "max_mana": 20
       }
     },
-    "dungeon_wokou_100": {
-      "name": "100次【倭寇岛】",
+    "dungeon_qiqinmenghuo_hi_100": {
+      "name": "100次【七擒孟获】",
       "category": "副本",
-      "description": "通关100次倭寇岛副本",
+      "description": "通关100次七擒孟获(56级)副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "wa_island_south",
+      "dungeon_id": "qiqinmenghuo_hi",
       "points": 50,
       "reward": {
         "max_health": 50,
         "max_mana": 20
       }
     },
-    "dungeon_loulan_100": {
-      "name": "100次【楼兰秘境】",
+    "dungeon_chibi_aobing_100": {
+      "name": "100次【赤壁鏖兵】",
       "category": "副本",
-      "description": "通关100次楼兰秘境副本",
+      "description": "通关100次赤壁鏖兵副本",
       "condition_type": "dungeon_clear",
       "condition_value": 100,
-      "dungeon_id": "silk_road",
+      "dungeon_id": "chibi_aobing",
       "points": 50,
       "reward": {
         "max_health": 50,
         "max_mana": 20
-      }
-    },
-    "dungeon_tower_9": {
-      "name": "9层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到9层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 9,
-      "points": 10,
-      "reward": {
-        "max_health": 10,
-        "defense": 10
-      }
-    },
-    "dungeon_tower_19": {
-      "name": "19层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到19层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 19,
-      "points": 20,
-      "reward": {
-        "max_health": 20,
-        "defense": 20
-      }
-    },
-    "dungeon_tower_29": {
-      "name": "29层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到29层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 29,
-      "points": 30,
-      "reward": {
-        "max_health": 30,
-        "defense": 30
-      }
-    },
-    "dungeon_tower_39": {
-      "name": "39层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到39层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 39,
-      "points": 40,
-      "reward": {
-        "max_health": 40,
-        "defense": 40
-      }
-    },
-    "dungeon_tower_49": {
-      "name": "49层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到49层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 49,
-      "points": 50,
-      "reward": {
-        "max_health": 50,
-        "defense": 50
-      }
-    },
-    "dungeon_tower_59": {
-      "name": "59层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到59层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 59,
-      "points": 60,
-      "reward": {
-        "max_health": 60,
-        "defense": 60
-      }
-    },
-    "dungeon_tower_69": {
-      "name": "69层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到69层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 69,
-      "points": 70,
-      "reward": {
-        "max_health": 70,
-        "defense": 70
-      }
-    },
-    "dungeon_tower_79": {
-      "name": "79层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到79层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 79,
-      "points": 80,
-      "reward": {
-        "max_health": 80,
-        "defense": 80
-      }
-    },
-    "dungeon_tower_89": {
-      "name": "89层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到89层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 89,
-      "points": 90,
-      "reward": {
-        "max_health": 90,
-        "defense": 90
-      }
-    },
-    "dungeon_tower_99": {
-      "name": "99层【都统塔】",
-      "category": "副本",
-      "description": "都统塔层数达到99层",
-      "condition_type": "dungeon_tower",
-      "condition_value": 99,
-      "points": 100,
-      "reward": {
-        "max_health": 100,
-        "defense": 100
       }
     },
     "kill_50": {
       "name": "初出茅庐",
       "category": "杀怪",
-      "description": "击败怪物50次",
+      "description": "击败怪物200次",
       "condition_type": "kill",
-      "condition_value": 50,
+      "condition_value": 200,
       "reward": {
         "attack": 5
       }
@@ -561,9 +496,9 @@
     "kill_1000": {
       "name": "怪物杀手",
       "category": "杀怪",
-      "description": "累计击杀1000只不低于自身20级的怪物",
+      "description": "累计击杀4000只不低于自身20级的怪物",
       "condition_type": "kill",
-      "condition_value": 1000,
+      "condition_value": 4000,
       "points": 20,
       "reward": {
         "attack": 10
@@ -572,9 +507,9 @@
     "kill_5000": {
       "name": "怪物猎人",
       "category": "杀怪",
-      "description": "累计击杀5000只不低于自身20级的怪物",
+      "description": "累计击杀20000只不低于自身20级的怪物",
       "condition_type": "kill",
-      "condition_value": 5000,
+      "condition_value": 20000,
       "points": 50,
       "reward": {
         "attack": 25
@@ -583,9 +518,9 @@
     "kill_10000": {
       "name": "怪物屠夫",
       "category": "杀怪",
-      "description": "累计击杀10000只不低于自身20级的怪物",
+      "description": "累计击杀40000只不低于自身20级的怪物",
       "condition_type": "kill",
-      "condition_value": 10000,
+      "condition_value": 40000,
       "points": 100,
       "reward": {
         "attack": 50
@@ -594,9 +529,9 @@
     "kill_50000": {
       "name": "怪物梦魇",
       "category": "杀怪",
-      "description": "累计击杀50000只不低于自身20级的怪物",
+      "description": "累计击杀200000只不低于自身20级的怪物",
       "condition_type": "kill",
-      "condition_value": 50000,
+      "condition_value": 200000,
       "points": 200,
       "reward": {
         "attack": 100
@@ -615,9 +550,9 @@
     "elite_100": {
       "name": "精怪杀手",
       "category": "杀怪",
-      "description": "击杀100只精英怪物",
+      "description": "击杀200只精英怪物",
       "condition_type": "elite_kill",
-      "condition_value": 100,
+      "condition_value": 200,
       "points": 30,
       "reward": {
         "crit_rate": 0.02,
@@ -627,9 +562,9 @@
     "elite_500": {
       "name": "精怪猎人",
       "category": "杀怪",
-      "description": "击杀500只精英怪物",
+      "description": "击杀1000只精英怪物",
       "condition_type": "elite_kill",
-      "condition_value": 500,
+      "condition_value": 1000,
       "points": 60,
       "reward": {
         "crit_rate": 0.03,
@@ -639,9 +574,9 @@
     "elite_1000": {
       "name": "精怪屠夫",
       "category": "杀怪",
-      "description": "击杀1000只精英怪物",
+      "description": "击杀2000只精英怪物",
       "condition_type": "elite_kill",
-      "condition_value": 1000,
+      "condition_value": 2000,
       "points": 120,
       "reward": {
         "crit_rate": 0.05,
@@ -651,9 +586,9 @@
     "elite_5000": {
       "name": "精怪梦魇",
       "category": "杀怪",
-      "description": "击杀5000只精英怪物",
+      "description": "击杀10000只精英怪物",
       "condition_type": "elite_kill",
-      "condition_value": 5000,
+      "condition_value": 10000,
       "points": 250,
       "reward": {
         "crit_rate": 0.08,
@@ -712,43 +647,251 @@
         "defense": 10
       }
     },
-    "boss_chishenshou": {
-      "name": "击杀【活动】赤神兽",
+    "boss_qingluan": {
+      "name": "击杀【灵兽】青鸾",
       "category": "杀怪",
-      "description": "击杀活动BOSS赤神兽",
+      "description": "击杀灵兽青鸾",
       "condition_type": "boss_kill",
       "condition_value": 1,
-      "boss_name": "赤神兽",
-      "points": 50,
+      "boss_name": "青鸾",
+      "points": 30,
       "reward": {
-        "attack": 20,
-        "defense": 20
+        "attack": 10,
+        "defense": 10
       }
     },
-    "boss_lingxi": {
-      "name": "瑞兽·灵犀",
+    "boss_jiaolong": {
+      "name": "击杀【灵兽】蛟龙",
       "category": "杀怪",
-      "description": "击杀瑞兽灵犀",
+      "description": "击杀灵兽蛟龙",
       "condition_type": "boss_kill",
       "condition_value": 1,
-      "boss_name": "灵犀",
-      "points": 50,
+      "boss_name": "蛟龙",
+      "points": 30,
       "reward": {
-        "attack": 20,
-        "defense": 20
+        "attack": 10,
+        "defense": 10
       }
     },
-    "boss_fengqiyunyong": {
-      "name": "风起云涌",
+    "boss_bixie": {
+      "name": "击杀【灵兽】辟邪",
       "category": "杀怪",
-      "description": "击杀特殊BOSS",
+      "description": "击杀灵兽辟邪",
       "condition_type": "boss_kill",
       "condition_value": 1,
-      "boss_name": "风起云涌",
-      "points": 100,
+      "boss_name": "辟邪",
+      "points": 30,
       "reward": {
-        "attack": 30,
-        "defense": 30
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_jiuseshenlu": {
+      "name": "击杀【稀有神兽】九色神鹿",
+      "category": "杀怪",
+      "description": "击杀稀有神兽九色神鹿",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "九色神鹿",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_huofenghuang": {
+      "name": "击杀【稀有神兽】火凤凰",
+      "category": "杀怪",
+      "description": "击杀稀有神兽火凤凰",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "火凤凰",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_jingwei": {
+      "name": "击杀【稀有神兽】精卫",
+      "category": "杀怪",
+      "description": "击杀稀有神兽精卫",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "精卫",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_zhuque": {
+      "name": "击杀【圣兽】朱雀",
+      "category": "杀怪",
+      "description": "击杀圣兽朱雀",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "朱雀",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_xuanwu": {
+      "name": "击杀【圣兽】玄武",
+      "category": "杀怪",
+      "description": "击杀圣兽玄武",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "玄武",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_baihu": {
+      "name": "击杀【圣兽】白虎",
+      "category": "杀怪",
+      "description": "击杀圣兽白虎",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "白虎",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_qinglong": {
+      "name": "击杀【圣兽】青龙",
+      "category": "杀怪",
+      "description": "击杀圣兽青龙",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "青龙",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_xingtian": {
+      "name": "击杀【稀有神兽】刑天之影",
+      "category": "杀怪",
+      "description": "击杀稀有神兽刑天之影",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "刑天之影",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_yandi": {
+      "name": "击杀【稀有神兽】炎帝之影",
+      "category": "杀怪",
+      "description": "击杀稀有神兽炎帝之影",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "炎帝之影",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_qiongqi": {
+      "name": "击杀【稀有神兽】穷奇",
+      "category": "杀怪",
+      "description": "击杀稀有神兽穷奇",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "穷奇",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_tianzhao": {
+      "name": "击杀【稀有神兽】天照",
+      "category": "杀怪",
+      "description": "击杀稀有神兽天照",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "天照",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_yuedu": {
+      "name": "击杀【稀有神兽】月读",
+      "category": "杀怪",
+      "description": "击杀稀有神兽月读",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "月读",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "boss_bifang": {
+      "name": "击杀【灵兽】毕方",
+      "category": "杀怪",
+      "description": "击杀灵兽毕方",
+      "condition_type": "boss_kill",
+      "condition_value": 1,
+      "boss_name": "毕方",
+      "points": 30,
+      "reward": {
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "elite_kunlun_1000": {
+      "name": "昆仑千斩",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有1000次",
+      "condition_type": "elite_kill_area",
+      "condition_value": 1000,
+      "area": "kunlun",
+      "points": 80,
+      "reward": {
+        "attack": 15,
+        "defense": 10
+      }
+    },
+    "elite_shennong_1000": {
+      "name": "神农千斩",
+      "category": "杀怪",
+      "description": "击杀神农稀有1000次",
+      "condition_type": "elite_kill_area",
+      "condition_value": 1000,
+      "area": "shennong",
+      "points": 80,
+      "reward": {
+        "attack": 15,
+        "defense": 10
+      }
+    },
+    "elite_wokou_1000": {
+      "name": "倭寇千斩",
+      "category": "杀怪",
+      "description": "击杀倭寇岛精英1000次",
+      "condition_type": "elite_kill_area",
+      "condition_value": 1000,
+      "area": "wokou",
+      "points": 80,
+      "reward": {
+        "attack": 15,
+        "defense": 10
       }
     },
     "pk_1": {
@@ -1114,16 +1257,6 @@
         "title": "prefix迷茫"
       }
     },
-    "title_warrior": {
-      "name": "真正的勇士",
-      "category": "杀怪",
-      "description": "击败怪物100次",
-      "condition_type": "kill",
-      "condition_value": 100,
-      "reward": {
-        "title": "prefix真正"
-      }
-    },
     "title_vip": {
       "name": "尊贵用户",
       "category": "财富",
@@ -1142,16 +1275,6 @@
       "condition_value": 5,
       "reward": {
         "title": "suffix小白"
-      }
-    },
-    "title_suffix_warrior": {
-      "name": "勇士之路",
-      "category": "杀怪",
-      "description": "击败怪物100次",
-      "condition_type": "kill",
-      "condition_value": 100,
-      "reward": {
-        "title": "suffix勇士"
       }
     },
     "vip1": {
@@ -1426,6 +1549,682 @@
       "reward": {
         "attack": 4,
         "defense": 3
+      }
+    },
+    "divine_beast_50": {
+      "name": "神兽屠杀者",
+      "category": "杀怪",
+      "description": "击杀神兽累计50次",
+      "condition_type": "divine_beast_kill",
+      "condition_value": 50,
+      "points": 50,
+      "reward": {
+        "attack": 20,
+        "defense": 20
+      }
+    },
+    "divine_beast_400": {
+      "name": "神兽垄断者",
+      "category": "杀怪",
+      "description": "击杀神兽累计400次",
+      "condition_type": "divine_beast_kill",
+      "condition_value": 400,
+      "points": 120,
+      "reward": {
+        "attack": 50,
+        "defense": 50,
+        "crit_rate": 0.02
+      }
+    },
+    "divine_beast_800": {
+      "name": "神兽灭绝者",
+      "category": "杀怪",
+      "description": "击杀神兽累计800次",
+      "condition_type": "divine_beast_kill",
+      "condition_value": 800,
+      "points": 250,
+      "reward": {
+        "attack": 100,
+        "defense": 100,
+        "crit_rate": 0.03,
+        "dodge_rate": 0.03
+      }
+    },
+    "elite_kill_monster_kunlun_大白兔": {
+      "name": "200次【稀有】大白兔",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有大白兔 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_大白兔",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_妖女树": {
+      "name": "200次【稀有】妖女树",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有妖女树 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_妖女树",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_幻影狼": {
+      "name": "200次【稀有】幻影狼",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有幻影狼 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_幻影狼",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_昆仑仙道": {
+      "name": "200次【稀有】昆仑仙道",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有昆仑仙道 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_昆仑仙道",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_海霆蛇": {
+      "name": "200次【稀有】海霆蛇",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有海霆蛇 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_海霆蛇",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_白梦蝶": {
+      "name": "200次【稀有】白梦蝶",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有白梦蝶 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_白梦蝶",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_赢鱼": {
+      "name": "200次【稀有】赢鱼",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有赢鱼 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_赢鱼",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_kunlun_金倪兽": {
+      "name": "200次【稀有】金倪兽",
+      "category": "杀怪",
+      "description": "击杀昆仑稀有金倪兽 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_kunlun_金倪兽",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_九尾狐": {
+      "name": "200次【稀有】九尾狐",
+      "category": "杀怪",
+      "description": "击杀神农稀有九尾狐 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_九尾狐",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_潮水龟": {
+      "name": "200次【稀有】潮水龟",
+      "category": "杀怪",
+      "description": "击杀神农稀有潮水龟 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_潮水龟",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_盘岩龙": {
+      "name": "200次【稀有】盘岩龙",
+      "category": "杀怪",
+      "description": "击杀神农稀有盘岩龙 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_盘岩龙",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_红狐_稀有": {
+      "name": "200次【稀有】红狐",
+      "category": "杀怪",
+      "description": "击杀神农稀有红狐 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_红狐_稀有",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_遮光巨树": {
+      "name": "200次【稀有】遮光巨树",
+      "category": "杀怪",
+      "description": "击杀神农稀有遮光巨树 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_遮光巨树",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_野人头目": {
+      "name": "200次【稀有】野人头目",
+      "category": "杀怪",
+      "description": "击杀神农稀有野人头目 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_野人头目",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_雪狼王": {
+      "name": "200次【稀有】雪狼王",
+      "category": "杀怪",
+      "description": "击杀神农稀有雪狼王 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_雪狼王",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_shennong_龙蛇": {
+      "name": "200次【稀有】龙蛇",
+      "category": "杀怪",
+      "description": "击杀神农稀有龙蛇 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_shennong_龙蛇",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_九变妖媸": {
+      "name": "200次【稀有】九变妖媸",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有九变妖媸 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_九变妖媸",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_倭国武剑士": {
+      "name": "200次【稀有】倭国武剑士",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有倭国武剑士 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_倭国武剑士",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_八岐邪神": {
+      "name": "200次【稀有】八岐邪神",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有八岐邪神 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_八岐邪神",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_天象火魔": {
+      "name": "200次【稀有】天象火魔",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有天象火魔 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_天象火魔",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_无极忍者": {
+      "name": "200次【稀有】无极忍者",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有无极忍者 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_无极忍者",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_缺颅蛮妖": {
+      "name": "200次【稀有】缺颅蛮妖",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有缺颅蛮妖 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_缺颅蛮妖",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_邪马狼将": {
+      "name": "200次【稀有】邪马狼将",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有邪马狼将 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_邪马狼将",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "elite_kill_monster_wokou_鬼蛛夜魔海": {
+      "name": "200次【稀有】鬼蛛夜魔海",
+      "category": "杀怪",
+      "description": "击杀倭寇稀有鬼蛛夜魔海 200次",
+      "condition_type": "elite_kill_monster",
+      "condition_value": 200,
+      "monster_id": "monster_wokou_鬼蛛夜魔海",
+      "points": 20,
+      "reward": {
+        "attack": 5,
+        "defense": 3
+      }
+    },
+    "kill_monster_kunlun_五毒蟾蜍": {
+      "name": "5000次五毒蟾蜍",
+      "category": "杀怪",
+      "description": "击杀昆仑五毒蟾蜍 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_五毒蟾蜍",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_小山精": {
+      "name": "5000次小山精",
+      "category": "杀怪",
+      "description": "击杀昆仑小山精 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_小山精",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_小白兔": {
+      "name": "5000次小白兔",
+      "category": "杀怪",
+      "description": "击杀昆仑小白兔 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_小白兔",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_枯萎之藤": {
+      "name": "5000次枯萎之藤",
+      "category": "杀怪",
+      "description": "击杀昆仑枯萎之藤 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_枯萎之藤",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_灰岩巨蟒": {
+      "name": "5000次灰岩巨蟒",
+      "category": "杀怪",
+      "description": "击杀昆仑灰岩巨蟒 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_灰岩巨蟒",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_灰毛熊": {
+      "name": "5000次灰毛熊",
+      "category": "杀怪",
+      "description": "击杀昆仑灰毛熊 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_灰毛熊",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_迷幻草": {
+      "name": "5000次迷幻草",
+      "category": "杀怪",
+      "description": "击杀昆仑迷幻草 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_迷幻草",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_kunlun_雪鹞": {
+      "name": "5000次雪鹞",
+      "category": "杀怪",
+      "description": "击杀昆仑雪鹞 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_kunlun_雪鹞",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_坡脚狼": {
+      "name": "5000次坡脚狼",
+      "category": "杀怪",
+      "description": "击杀神农坡脚狼 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_坡脚狼",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_大脚怪": {
+      "name": "5000次大脚怪",
+      "category": "杀怪",
+      "description": "击杀神农大脚怪 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_大脚怪",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_巨蟒": {
+      "name": "5000次巨蟒",
+      "category": "杀怪",
+      "description": "击杀神农巨蟒 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_巨蟒",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_松针鼠": {
+      "name": "5000次松针鼠",
+      "category": "杀怪",
+      "description": "击杀神农松针鼠 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_松针鼠",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_森林巨龟": {
+      "name": "5000次森林巨龟",
+      "category": "杀怪",
+      "description": "击杀神农森林巨龟 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_森林巨龟",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_红狐": {
+      "name": "5000次红狐",
+      "category": "杀怪",
+      "description": "击杀神农红狐 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_红狐",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_野人": {
+      "name": "5000次野人",
+      "category": "杀怪",
+      "description": "击杀神农野人 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_野人",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_shennong_黑风野猪": {
+      "name": "5000次黑风野猪",
+      "category": "杀怪",
+      "description": "击杀神农黑风野猪 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_shennong_黑风野猪",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_亡命囚徒": {
+      "name": "5000次亡命囚徒",
+      "category": "杀怪",
+      "description": "击杀倭寇亡命囚徒 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_亡命囚徒",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_倭国探子": {
+      "name": "5000次倭国探子",
+      "category": "杀怪",
+      "description": "击杀倭寇倭国探子 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_倭国探子",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_发疯的海盗": {
+      "name": "5000次发疯的海盗",
+      "category": "杀怪",
+      "description": "击杀倭寇发疯的海盗 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_发疯的海盗",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_扶桑武士": {
+      "name": "5000次扶桑武士",
+      "category": "杀怪",
+      "description": "击杀倭寇扶桑武士 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_扶桑武士",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_无间杀手": {
+      "name": "5000次无间杀手",
+      "category": "杀怪",
+      "description": "击杀倭寇无间杀手 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_无间杀手",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_滨山护卫": {
+      "name": "5000次滨山护卫",
+      "category": "杀怪",
+      "description": "击杀倭寇滨山护卫 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_滨山护卫",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_滨山流匪": {
+      "name": "5000次滨山流匪",
+      "category": "杀怪",
+      "description": "击杀倭寇滨山流匪 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_滨山流匪",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_落魄浪人": {
+      "name": "5000次落魄浪人",
+      "category": "杀怪",
+      "description": "击杀倭寇落魄浪人 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_落魄浪人",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
+      }
+    },
+    "kill_monster_wokou_金环蛇王": {
+      "name": "5000次金环蛇王",
+      "category": "杀怪",
+      "description": "击杀倭寇金环蛇王 5000次",
+      "condition_type": "kill_monster",
+      "condition_value": 5000,
+      "monster_id": "monster_wokou_金环蛇王",
+      "points": 10,
+      "reward": {
+        "attack": 3,
+        "max_health": 20
       }
     }
   }

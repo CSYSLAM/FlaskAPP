@@ -105,6 +105,9 @@ class PlayerModel(db.Model, UserMixin):
     item_usage_raw = db.Column(db.Text, default='{}')  # JSON: {item_id: count}
     dungeon_clears_raw = db.Column(db.Text, default='{}')  # JSON: {dungeon_id: clear_count}
     boss_kills_raw = db.Column(db.Text, default='{}')  # JSON: {boss_name: kill_count}
+    elite_kills_by_area_raw = db.Column(db.Text, default='{}')  # JSON: {area: kill_count} (kunlun/shennong/wokou)
+    monster_kills_raw = db.Column(db.Text, default='{}')  # JSON: {monster_id: kill_count}
+    divine_beast_kills = db.Column(db.Integer, default=0)  # 神兽累计击杀数
     tower_max_floor = db.Column(db.Integer, default=0)
     visited_locations_raw = db.Column('visited_locations', db.Text, default='[]')
 
@@ -269,6 +272,28 @@ class PlayerModel(db.Model, UserMixin):
     @boss_kills.setter
     def boss_kills(self, value):
         self.boss_kills_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def elite_kills_by_area(self):
+        try:
+            return json.loads(self.elite_kills_by_area_raw) if self.elite_kills_by_area_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @elite_kills_by_area.setter
+    def elite_kills_by_area(self, value):
+        self.elite_kills_by_area_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def monster_kills(self):
+        try:
+            return json.loads(self.monster_kills_raw) if self.monster_kills_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @monster_kills.setter
+    def monster_kills(self, value):
+        self.monster_kills_raw = json.dumps(value, ensure_ascii=False)
 
     @property
     def owned_titles(self):
