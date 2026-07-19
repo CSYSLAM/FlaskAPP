@@ -18,6 +18,7 @@ import json
 import time
 import shutil
 import secrets
+import signal
 import base64
 import threading
 import subprocess
@@ -73,6 +74,62 @@ def _win_quote(s):
     if s and not any(c in s for c in ' \t&|<>"^()'):
         return s
     return '"' + s.replace('"', '\\"') + '"'
+
+
+# ---------------------------------------------------------------------------
+# 日志持久化(模块级函数,供 ManagedProcess 和 AgentRunner 共用)
+# ---------------------------------------------------------------------------
+_log_lock = threading.Lock()  # 全局文件写入锁
+
+def _append_log_file(log_prefix, tag, line):
+    """通用日志持久化:追加到 logs/<log_prefix>-YYYY-MM-DD.log。
+    tag: you / claude / codebuddy / flask / system / error,决定行首标签。失败不影响主流程。"""
+    try:
+        LOG_DIR.mkdir(parents=True, exist_ok=True)
+        fname = LOG_DIR / f"{log_prefix}-{time.strftime('%Y-%m-%d')}.log"
+        ts = time.strftime("%H:%M:%S")
+        label = {"you": "you", "claude": "claude", "codebuddy": "codebuddy",
+                 "flask": "flask", "system": "sys", "error": "ERR"}.get(tag, tag)
+        body = str(line).rstrip("\n")
+        stamp = f"{ts} [{label}] "
+        out = "".join(
+            (stamp if i == 0 else " " * len(stamp)) + ln + "\n"
+            for i, ln in enumerate(body.split("\n"))
+        )
+        with _log_lock:
+            with open(fname, "a", encoding="utf-8") as f:
+                f.write(out)
+    except Exception:
+        pass
+
+
+def _parse_log_file(filepath, max_lines=200):
+    """解析持久化日志文件,返回 [{ts, tag, line}, ...]。
+    格式: HH:MM:SS [tag] content  (续行以空格开头,合并到上一条)"""
+    import re
+    result = []
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+    except Exception:
+        return result
+    # 从末尾取 max_lines 行(最新的)
+    if len(lines) > max_lines:
+        lines = lines[-max_lines:]
+    tag_map = {"you": "you", "claude": "claude", "codebuddy": "codebuddy",
+               "flask": "flask", "sys": "system", "ERR": "error"}
+    header_re = re.compile(r'^(\d{2}:\d{2}:\d{2}) \[(\w+)\] (.*)$')
+    for raw in lines:
+        raw = raw.rstrip("\n")
+        m = header_re.match(raw)
+        if m:
+            ts, raw_tag, content = m.group(1), m.group(2), m.group(3)
+            tag = tag_map.get(raw_tag, raw_tag)
+            result.append({"ts": ts, "tag": tag, "line": content})
+        elif result and raw.startswith(" "):
+            # 续行:合并到上一条
+            result[-1]["line"] += "\n" + raw.strip()
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +219,8 @@ class ManagedProcess:
                 self.log_q.put_nowait((time.strftime("%H:%M:%S"), tag, line))
             except Exception:
                 pass
+        # 持久化到日志文件
+        _append_log_file(self.key, tag, line)
 
     def send(self, text):
         with self._lock:
@@ -237,30 +296,6 @@ class AgentRunner:
         self._has_session = False # 是否已有会话可 continue
         self._current_proc = None # 当前正在跑的 claude 子进程(供打断用)
         self._interrupted = False # 当前这条是否被用户打断
-        self._log_lock = threading.Lock()  # 持久化日志文件写入锁
-
-    def _append_log(self, tag, line):
-        """把一条交互追加到按天的纯文本日志文件(电脑端历史记录)。
-        路径:mobile_console/logs/<log_prefix>-YYYY-MM-DD.log
-        tag: you / claude / system / error,决定行首标签。失败不影响主流程。"""
-        try:
-            LOG_DIR.mkdir(parents=True, exist_ok=True)
-            fname = LOG_DIR / f"{self.log_prefix}-{time.strftime('%Y-%m-%d')}.log"
-            # 多行内容每行都带时间戳+标签,方便 grep / tail 时行行可定位
-            ts = time.strftime("%H:%M:%S")
-            label = {"you": "you", "claude": "claude", "system": "sys", "error": "ERR"}.get(tag, tag)
-            body = str(line).rstrip("\n")
-            stamp = f"{ts} [{label}] "
-            out = "".join(
-                (stamp if i == 0 else " " * len(stamp)) + ln + "\n"
-                for i, ln in enumerate(body.split("\n"))
-            )
-            with self._log_lock:
-                with open(fname, "a", encoding="utf-8") as f:
-                    f.write(out)
-        except Exception:
-            # 持久化日志写失败不能影响手机端实时交互
-            pass
 
     def _push(self, line, tag):
         try:
@@ -272,7 +307,7 @@ class AgentRunner:
             except Exception:
                 pass
         # 同步落盘:手机端历史 = 电脑端历史,服务重启不丢
-        self._append_log(tag, line)
+        _append_log_file(self.log_prefix, tag, line)
 
     def is_running(self):
         return self._started
@@ -376,7 +411,8 @@ class AgentRunner:
         on_windows = os.name == "nt"
 
         # 组装 CLI 参数(不含 prompt,prompt 走 stdin)
-        cli_args = [cli_bin, "-p"]
+        cli_args = [cli_bin, "-p", "--output-format", "stream-json", "--verbose",
+                    "--include-partial-messages"]
         if self._has_session:
             cli_args.append("--continue")
         cli_args.append(self.skip_flag)
@@ -440,7 +476,7 @@ class AgentRunner:
                 shell=False,
             )
 
-        self._push(f"▶ 调用: {self.binary} -p{' --continue' if self._has_session else ''} {self.skip_flag} \"<你的指令>\"", "system")
+        self._push(f"▶ 调用: {self.binary} -p{' --continue' if self._has_session else ''} --output-format stream-json {self.skip_flag} \"<你的指令>\"", "system")
         try:
             proc = subprocess.Popen(cmd, **popen_kwargs)
             self._current_proc = proc   # 记录给 interrupt() 用
@@ -450,16 +486,19 @@ class AgentRunner:
                 proc.stdin.close()
             except Exception as e:
                 self._push(f"⚠ 写入 stdin 失败: {e}", "error")
-            # 逐行读,但对超长无换行输出做截断,防止 OOM
-            # (claude 偶尔会 dump 大块无换行内容,如 base64/压缩 JSON)
-            MAX_LINE = 8192
+            # 逐行读 stream-json 输出,解析后实时推送
+            MAX_LINE = 65536  # stream-json 单行可能很长(含工具调用详情)
+            self._text_buf = ""  # 增量文本缓冲区,攒够后合并推送
             while True:
                 line = proc.stdout.readline()
                 if not line:
                     break
+                line = line.rstrip("\n")
                 if len(line) > MAX_LINE:
-                    line = line[:MAX_LINE] + f" …[截断,本行原长{len(line)}字符]\n"
-                self._push(line.rstrip("\n"), self.key)
+                    line = line[:MAX_LINE] + f" …[截断,本行原长{len(line)}字符]"
+                self._handle_stream_line(line)
+            # 读取结束,flush剩余缓冲
+            self._flush_text_buf()
             proc.wait()
             if self._interrupted:
                 # 被 interrupt() 杀掉的,不算异常
@@ -471,6 +510,88 @@ class AgentRunner:
                 self._push(f"■ 本条异常退出 (exit={proc.returncode})", "error")
         except Exception as e:
             self._push(f"✗ 调用失败: {e}", "error")
+
+    def _flush_text_buf(self):
+        """将增量文本缓冲区的内容合并推送并清空。"""
+        if self._text_buf:
+            self._push(self._text_buf, self.key)
+            self._text_buf = ""
+
+    def _handle_stream_line(self, line):
+        """解析 claude/codebuddy stream-json 输出的单行,提取关键信息推送。
+        增量文本(delta)会攒到 _text_buf,遇到换行/非delta事件/缓冲超量时flush,
+        避免每个碎片单独推送导致前端显示碎片化。"""
+        if not line:
+            return
+        try:
+            obj = json.loads(line)
+        except (json.JSONDecodeError, ValueError):
+            # 非JSON行(旧版输出或错误信息),flush缓冲后原样推送
+            self._flush_text_buf()
+            self._push(line, self.key)
+            return
+
+        msg_type = obj.get("type", "")
+
+        if msg_type == "system":
+            self._flush_text_buf()
+            subtype = obj.get("subtype", "")
+            if subtype == "init":
+                model = obj.get("model", "?")
+                self._push(f"⚙️ 模型: {model}", "system")
+            elif subtype == "status":
+                status = obj.get("status", "")
+                if status == "requesting":
+                    self._push("⏳ 请求中…", "system")
+            # 其他system消息忽略
+
+        elif msg_type == "stream_event":
+            event = obj.get("event", {})
+            event_type = event.get("type", "")
+            if event_type == "content_block_delta":
+                delta = event.get("delta", {})
+                text = delta.get("text", "")
+                if text:
+                    self._text_buf += text
+                    # 遇到换行符或缓冲超过200字符时flush
+                    if "\n" in text or len(self._text_buf) > 200:
+                        self._flush_text_buf()
+            elif event_type == "content_block_start":
+                # 工具调用开始:flush文本,显示工具名
+                self._flush_text_buf()
+                cb = event.get("content_block", {})
+                if cb.get("type") == "tool_use":
+                    tool_name = cb.get("name", "")
+                    if tool_name:
+                        self._push(f"🔧 调用工具: {tool_name}", "system")
+            elif event_type == "content_block_stop":
+                # 文本块结束,flush剩余文本
+                self._flush_text_buf()
+            # 其他stream_event忽略(message_delta/message_stop)
+
+        elif msg_type == "assistant":
+            # 完整assistant消息,已通过delta推送,忽略
+            pass
+
+        elif msg_type == "result":
+            self._flush_text_buf()
+            subtype = obj.get("subtype", "")
+            duration = obj.get("duration_ms", 0)
+            cost = obj.get("total_cost_usd", 0)
+            if subtype == "success":
+                info = f"✅ 完成"
+                if duration:
+                    info += f" · 耗时{duration/1000:.1f}s"
+                if cost:
+                    info += f" · ${cost:.4f}"
+                self._push(info, "system")
+            elif subtype == "error":
+                error_msg = obj.get("error", {}) if isinstance(obj.get("error"), dict) else {}
+                err_text = error_msg.get("message", str(obj.get("error", ""))) if error_msg else str(obj.get("error", ""))
+                self._push(f"❌ 错误: {err_text}", "error")
+            elif subtype == "cancelled":
+                self._push("⚠️ 已取消", "system")
+            # result里的result_text不再推送(已通过delta推送过)
 
     def status(self):
         return {
@@ -502,13 +623,39 @@ flask_proc = ManagedProcess("flask", "FlaskAPP (app.py)", "flask")
 PROCS = {"claude": claude_proc, "codebuddy": codebuddy_proc, "flask": flask_proc}
 
 
+def _kill_port_occupant(port=5000):
+    """杀掉占用指定端口的进程（无论谁启动的）。
+    防止手动启动的 gunicorn 占着端口，导致手机控制台启动失败。"""
+    if os.name == "nt":
+        return  # Windows 暂不处理
+    try:
+        import subprocess as sp
+        # fuser 返回占用端口的 PID 列表
+        result = sp.run(["fuser", f"{port}/tcp"],
+                        capture_output=True, text=True, timeout=5)
+        pids = result.stdout.split()
+        for pid_str in pids:
+            try:
+                pid = int(pid_str.strip())
+                if pid != os.getpid():  # 不杀自己
+                    os.kill(pid, signal.SIGTERM)
+            except (ValueError, ProcessLookupError, PermissionError):
+                pass
+        if pids:
+            import time
+            time.sleep(1)  # 等端口释放
+    except Exception:
+        pass
+
+
 def start_flask():
     """以 gunicorn 启动游戏（生产级 WSGI 服务器），绑 0.0.0.0:5000。
 
     用 gunicorn 替代 Flask 自带 dev server，解决移动端多连接/keep-alive 下
-    "网页无法加载"的问题。4 worker × gthread，每 worker 4 线程，共 16 并发。
-    stop() 用 killpg 杀整个进程组（master + workers），不会留孤儿 worker。
+    "网页无法加载"的问题。单 worker × gthread 16 线程，保证世界BOSS等内存状态唯一。
+    启动前先清理端口占用，防止手动启动的 gunicorn 导致 Address already in use。
     """
+    _kill_port_occupant(5000)
     env = os.environ.copy()
     env["FLASK_ENV"] = "development"
     # 单 worker 多线程 + --preload：
@@ -986,6 +1133,60 @@ def api_upload():
                     "filename": f.filename, "block": block})
 
 
+@app.route("/api/clear_history/<agent>", methods=["POST"])
+def api_clear_history(agent):
+    """清空指定 agent 的前端实时记录(DOM)和当天持久化日志文件。"""
+    if agent not in ("claude", "codebuddy", "flask"):
+        return jsonify({"ok": False, "msg": "未知agent"}), 400
+    # 删除当天的持久化日志文件
+    log_prefix = agent
+    filepath = LOG_DIR / f"{log_prefix}-{time.strftime('%Y-%m-%d')}.log"
+    try:
+        if filepath.exists():
+            filepath.unlink()
+    except Exception as e:
+        return jsonify({"ok": False, "msg": f"删除日志失败: {e}"}), 500
+    # 清空内存队列中的现有消息
+    p = PROCS.get(agent)
+    if p:
+        while True:
+            try:
+                p.log_q.get_nowait()
+            except queue.Empty:
+                break
+    return jsonify({"ok": True, "msg": "已清空历史记录"})
+
+
+@app.route("/api/new_session/<agent>", methods=["POST"])
+def api_new_session(agent):
+    """重置指定 agent 的会话(下一条指令不带 --continue,开始新对话)。
+    上下文过长时避免 input token limit。项目记忆(~/.claude)仍保留。"""
+    if agent not in ("claude", "codebuddy"):
+        return jsonify({"ok": False, "msg": "仅支持 claude/codebuddy"}), 400
+    p = PROCS.get(agent)
+    if not p:
+        return jsonify({"ok": False, "msg": "未知agent"}), 400
+    was = "有会话" if p._has_session else "无会话"
+    p._has_session = False
+    p._push(f"▶ /new: 已重置会话(之前{was},下一条指令开始新对话)", "system")
+    return jsonify({"ok": True, "msg": "已重置会话,下一条指令开始新对话"})
+
+
+@app.route("/api/history/<agent>")
+def api_history(agent):
+    """返回指定 agent 当天的持久化日志(供页面加载/断连恢复时回放历史)。
+    agent: claude / codebuddy / flask
+    ?lines=N 限制返回条数(默认50,最大500)"""
+    if agent not in ("claude", "codebuddy", "flask"):
+        return jsonify({"ok": False, "msg": "未知agent"}), 400
+    max_lines = min(int(request.args.get("lines", 50)), 500)
+    # 确定日志文件路径
+    log_prefix = agent  # claude/codebuddy/flask 与文件前缀一致
+    filepath = LOG_DIR / f"{log_prefix}-{time.strftime('%Y-%m-%d')}.log"
+    entries = _parse_log_file(filepath, max_lines)
+    return jsonify(entries)
+
+
 @app.route("/api/logs")
 def api_logs():
     """SSE: 把所有进程的日志实时推给手机。"""
@@ -1248,6 +1449,10 @@ PAGE_HTML = r"""
         <button class="btn stop" onclick="act('stop','claude')">停止</button>
         <button class="btn interrupt" id="btn-interrupt" onclick="interruptAgent('claude')">✋ 打断</button>
       </div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn restart" onclick="newSession('claude')">🔄 新对话</button>
+        <button class="btn stop" onclick="clearHistory('claude')">🗑️ 清历史</button>
+      </div>
       <div class="row" style="margin-top:6px;align-items:center;flex-wrap:wrap">
         <span class="hint" style="margin:0">API配置:</span>
         <span id="claude-cfg-label" class="hint" style="margin:0;color:var(--flase,#7fd1b9)">-</span>
@@ -1284,6 +1489,10 @@ PAGE_HTML = r"""
         <button class="btn start" onclick="act('start','codebuddy')">启用CodeBuddy</button>
         <button class="btn stop" onclick="act('stop','codebuddy')">停止</button>
         <button class="btn interrupt" id="btn-interrupt-cb" onclick="interruptAgent('codebuddy')">✋ 打断</button>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn restart" onclick="newSession('codebuddy')">🔄 新对话</button>
+        <button class="btn stop" onclick="clearHistory('codebuddy')">🗑️ 清历史</button>
       </div>
       <div class="hint">启用后,在下方输入框发指令。每条指令以无人值守模式执行(--dangerously-skip-permissions,即无需手动点 yes 授权),CodeBuddy 会直接读改代码/跑命令,多条指令共享同一会话保持记忆。点"打断"可中止当前指令(等同按 Esc)。</div>
     </div>
@@ -1365,6 +1574,35 @@ function onKicked(){
 async function act(action,key){
   try{ const j = await postJSON('/api/'+action+'/'+key); flash(j.msg||''); }catch(e){}
   refreshStatus();
+}
+// 新对话:重置会话(下一条指令不带--continue),上下文过长时用
+async function newSession(key){
+  if(!confirm('确定开启新对话？当前会话上下文将被重置(项目记忆仍保留)。')) return;
+  try{
+    const j = await postJSON('/api/new_session/'+key);
+    flash(j.msg||'已重置');
+  }catch(e){}
+}
+// 清历史:清空前端DOM + 持久化日志文件
+async function clearHistory(key){
+  if(!confirm('确定清空历史记录？将删除今天的日志文件,不可恢复。')) return;
+  try{
+    const j = await postJSON('/api/clear_history/'+key);
+    if(j.ok){
+      // 清空前端DOM
+      const termId = key==='flask' ? 'log-flask' : 'log-'+key;
+      const box = document.getElementById(termId);
+      if(box) box.innerHTML = '';
+      // 也清空log-all中对应agent的内容(简单做法:全部清空再重新加载其他agent)
+      const allBox = document.getElementById('log-all');
+      if(allBox) allBox.innerHTML = '';
+      // 重新加载其他agent的历史
+      ['claude','codebuddy','flask'].forEach(a=>{
+        if(a !== key) loadHistory(a);
+      });
+    }
+    flash(j.msg||'已清空');
+  }catch(e){}
 }
 // Claude API 配置切换
 async function loadClaudeConfig(){
@@ -1563,10 +1801,58 @@ function refreshStatus(){
 }
 
 // SSE 日志流(cookie 鉴权,EventSource 自动带同源 cookie)
+let _lastLogTs = {};  // 记录每个tag最后一条日志的时间戳,用于断连恢复
+let _historyLoaded = false;  // 首次历史是否已加载
+
+async function loadHistory(agent, afterTs){
+  try{
+    let url = '/api/history/' + agent + '?lines=50';
+    const r = await fetch(url);
+    if(r.status===401){ onKicked(); return; }
+    const lines = await r.json();
+    const termId = agent==='flask' ? 'log-flask' : 'log-'+agent;
+    for(const l of lines){
+      if(afterTs && l.ts <= afterTs) continue;  // 只追加断连后的
+      // 去重:检查DOM中是否已有相同时间戳+内容
+      const box = document.getElementById(termId);
+      if(box && box.querySelector('[data-ts="'+l.ts+'"][data-line="'+esc(l.line).substring(0,80)+'"]')) continue;
+      appendLogWithMeta(termId, l.ts, l.tag, l.line);
+      appendLogWithMeta('log-all', l.ts, l.tag, l.line);
+    }
+  }catch(e){}
+}
+
+function appendLogWithMeta(termId, ts, tag, line){
+  const box = document.getElementById(termId);
+  if(!box) return;
+  // 移除上一条的高亮(claude / codebuddy 对话区做高亮区分)
+  if(termId==='log-claude' || termId==='log-codebuddy'){
+    const prev = box.querySelector('.ln.last');
+    if(prev) prev.classList.remove('last');
+  }
+  const div = document.createElement('div');
+  div.className='ln' + ((termId==='log-claude'||termId==='log-codebuddy')?' last':'');
+  div.setAttribute('data-ts', ts);
+  div.setAttribute('data-line', (line||'').substring(0,80));
+  div.innerHTML = '<span class="ts">'+esc(ts)+'</span><span class="tag-'+esc(tag)+'">'+esc(line)+'</span>';
+  box.appendChild(div);
+  // 限长,防止爆内存
+  while(box.children.length>800) box.removeChild(box.firstChild);
+  box.scrollTop = box.scrollHeight;
+}
+
 function connectSSE(){
   const es = new EventSource('/api/logs');
   window._es = es;
-  es.addEventListener('hello', ()=>{});
+  es.addEventListener('hello', ()=>{
+    // 首次连接:加载历史
+    if(!_historyLoaded){
+      _historyLoaded = true;
+      loadHistory('claude');
+      loadHistory('codebuddy');
+      loadHistory('flask');
+    }
+  });
   es.onmessage = function(ev){
     try{
       const d = JSON.parse(ev.data);
@@ -1577,12 +1863,23 @@ function connectSSE(){
         appendLog('log-codebuddy', d.ts, d.tag, d.line);
       if(d.tag==='flask'||d.tag==='system'||d.tag==='error')
         appendLog('log-flask', d.ts, d.tag, d.line);
+      // 更新最后时间戳
+      _lastLogTs[d.tag] = d.ts;
     }catch(e){}
   };
   es.onerror = ()=>{
     try{ es.close(); }catch(e){}
     if(_kickedShown) return;   // 已被踢就不重连
-    setTimeout(connectSSE, 1500);
+    setTimeout(()=>{
+      connectSSE();
+      // 重连后补拉断连期间的历史
+      const lastTs = _lastLogTs['claude'] || _lastLogTs['system'] || '';
+      if(lastTs){
+        loadHistory('claude', lastTs);
+        loadHistory('codebuddy', lastTs);
+        loadHistory('flask', lastTs);
+      }
+    }, 1500);
   };
 }
 refreshStatus();
