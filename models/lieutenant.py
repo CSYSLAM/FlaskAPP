@@ -153,12 +153,21 @@ class Lieutenant(db.Model):
 
     def get_passive_bonus(self):
         """被动技能给主人的属性加成：副将对应属性 × bonus_value%。
-        勇猛(暴击)/冷静(闪避)的bonus基于副将暴击率/闪避率，其他基于副将面板属性。"""
+        勇猛(暴击)/冷静(闪避)的bonus基于副将暴击率/闪避率，其他基于副将面板属性。
+        bonus_value为数组时按等级取值(如[5,8,11]→1级5%,2级8%,3级11%)，为数字时直接使用(已按等级取好)。"""
         bonus = {'attack': 0, 'defense': 0, 'health': 0, 'mana': 0, 'crit': 0, 'dodge': 0}
         for skill in self.skills:
             if skill.get('type') == 'passive' and skill.get('level', 0) > 0:
                 bonus_type = skill.get('bonus_type', '')
-                bonus_pct = skill.get('bonus_value', 0) * skill.get('level', 1)  # 百分比
+                bv = skill.get('bonus_value', 0)
+                lv = skill.get('level', 1)
+                # bonus_value为数组时按等级索引取值，为数字时直接使用(learn/upgrade已按等级取好)
+                if isinstance(bv, list) and len(bv) >= lv:
+                    bonus_pct = bv[lv - 1]
+                elif isinstance(bv, (int, float)):
+                    bonus_pct = bv
+                else:
+                    bonus_pct = 0
                 if bonus_pct <= 0:
                     continue
                 rate = bonus_pct / 100.0

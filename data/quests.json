@@ -8038,7 +8038,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "朱褒",
-      "count": 8
+      "count": 1
     },
     "rewards": {
       "experience": 5200,

@@ -523,6 +523,11 @@ class LieutenantService:
         lieutenant.current_mana = min(lieutenant.current_mana, max_mp)
 
         db.session.commit()
+        # 洗资质播报
+        from models.player import PlayerModel
+        owner = PlayerModel.query.get(lieutenant.owner_id)
+        if owner:
+            DataService.broadcast_system(f"{owner.nickname}给副将【{lieutenant.name}】洗资质成功，变为{lieutenant.quality_name}，恭喜恭喜！")
         return True, f"资质从{QUALITY_NAMES.get(old_quality, '普通')}变为{lieutenant.quality_name}"
 
     @classmethod
@@ -544,6 +549,11 @@ class LieutenantService:
             lieutenant.current_health = min(lieutenant.current_health, max_hp)
             lieutenant.current_mana = min(lieutenant.current_mana, max_mp)
             db.session.commit()
+            # 悟性提升成功播报
+            from models.player import PlayerModel
+            owner = PlayerModel.query.get(lieutenant.owner_id)
+            if owner:
+                DataService.broadcast_system(f"{owner.nickname}给副将【{lieutenant.name}】提升悟性成功，悟性达到{lieutenant.enlightenment}，恭喜恭喜！")
             return True, f"悟性提升至{lieutenant.enlightenment}"
         else:
             db.session.commit()
@@ -568,6 +578,11 @@ class LieutenantService:
             lieutenant.current_health = min(lieutenant.current_health, max_hp)
             lieutenant.current_mana = min(lieutenant.current_mana, max_mp)
             db.session.commit()
+            # 强化成功播报
+            from models.player import PlayerModel
+            owner = PlayerModel.query.get(lieutenant.owner_id)
+            if owner:
+                DataService.broadcast_system(f"{owner.nickname}给副将【{lieutenant.name}】强化成功，强化达到+{lieutenant.reinforce}，恭喜恭喜！")
             return True, f"强化成功，+{lieutenant.reinforce}"
         else:
             db.session.commit()
