@@ -122,28 +122,25 @@ class Lieutenant(db.Model):
         return math.ceil(self._stat_base('defense') * self.level * self.enlightenment_mult * self.quality_mult * self.reinforce_mult)
 
     # 暴击/闪避每级基础值(按职业，用于无自定义base的普通副将)
-    # 公式: base * (level + FLAT_LEVEL) * enlightenment_mult * quality_mult * reinforce_mult
-    # FLAT_LEVEL=5 保证1级也有最低暴击/闪避(相当于5级虚拟等级)
-    CRIT_FLAT_LEVEL = 5
-    DODGE_FLAT_LEVEL = 5
+    # 公式与攻击/防御/生命一致: base * level * enlightenment_mult * quality_mult * reinforce_mult
     CLASS_BASE_CRIT = {'warrior': 0.00065, 'assassin': 0.00080, 'mage': 0.00050}
     CLASS_BASE_DODGE = {'warrior': 0.00050, 'assassin': 0.00065, 'mage': 0.00040}
 
     def get_crit_rate(self):
-        """副将暴击率: base * (level+5) * 悟性 * 品质 * 强化; 无自定义走职业基础。"""
+        """副将暴击率: base * level * 悟性 * 品质 * 强化; 无自定义走职业基础。"""
         if self.base_crit_rate is not None:
             base = self.base_crit_rate
         else:
-            base = self.CLASS_BASE_CRIT.get(self.class_type, 0.0015)
-        return base * (self.level + self.CRIT_FLAT_LEVEL) * self.enlightenment_mult * self.quality_mult * self.reinforce_mult
+            base = self.CLASS_BASE_CRIT.get(self.class_type, 0.00065)
+        return base * self.level * self.enlightenment_mult * self.quality_mult * self.reinforce_mult
 
     def get_dodge_rate(self):
-        """副将闪避率: base * (level+5) * 悟性 * 品质 * 强化; 无自定义走职业基础。"""
+        """副将闪避率: base * level * 悟性 * 品质 * 强化; 无自定义走职业基础。"""
         if self.base_dodge_rate is not None:
             base = self.base_dodge_rate
         else:
-            base = self.CLASS_BASE_DODGE.get(self.class_type, 0.0010)
-        return base * (self.level + self.DODGE_FLAT_LEVEL) * self.enlightenment_mult * self.quality_mult * self.reinforce_mult
+            base = self.CLASS_BASE_DODGE.get(self.class_type, 0.00050)
+        return base * self.level * self.enlightenment_mult * self.quality_mult * self.reinforce_mult
 
     def can_deploy(self):
         if self.loyalty < 30:

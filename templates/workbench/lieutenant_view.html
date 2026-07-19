@@ -32,7 +32,7 @@
     <br/>
 
     <b>属性({% if lt.base_max_health or lt.base_attack or lt.base_defense or lt.base_crit_rate is not none or lt.base_dodge_rate is not none %}自定义{% else %}公式拆解{% endif %})</b><br/>
-    <span class="meta">公式: 基础属性 × 等级 × 悟性倍率 × 品质倍率 × 强化加成；暴击/闪避: 基础 × (等级+5) × 悟性 × 品质 × 强化</span><br/>
+    <span class="meta">公式: 基础属性 × 等级 × 悟性倍率 × 品质倍率 × 强化加成（暴击/闪避同公式）</span><br/>
     生命上限:{{ lt.get_max_health() }}{% if lt.base_max_health is not none %} <span class="meta">[自定义{{ lt.base_max_health }}]</span>{% endif %} / 当前:{{ lt.current_health }}<br/>
     魔法上限:{{ lt.get_max_mana() }} / 当前:{{ lt.current_mana }}<br/>
     攻击:{{ lt.get_attack() }}{% if lt.base_attack is not none %} <span class="meta">[自定义{{ lt.base_attack }}]</span>{% endif %}<br/>
