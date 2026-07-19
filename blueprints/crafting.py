@@ -117,24 +117,16 @@ def forge_equipment(template_id):
     player = current_user
     success, result = CraftingService.forge_equipment(player, template_id)
 
-    if not success:
-        ref = request.referrer or url_for('crafting.epic_forge')
-        return render_template("crafting_error.html", player=player, error=result,
-                              back_url=ref)
-
-    cost_info = CraftingService.get_template_info(template_id)
-    # Compute back URL based on slot type
+    # Compute back URL based on slot type (always, for both success and failure)
     template = DataService.get_equipment_template(template_id)
     slot = template.get("slot", "") if template else ""
-    set_name = template.get("set_name", "") if template else ""
 
     if slot == "weapon":
         back_url = url_for('crafting.epic_forge_weapons', class_name=player.player_class)
     elif slot == "accessory":
         back_url = url_for('crafting.epic_forge_accessories')
     else:
-        # Armor set - find which set this template belongs to (across all classes,
-        # since the player may have switched the in-page class tab of a grouped set)
+        # Armor set - find which set this template belongs to
         found_set_id = None
         found_class = None
         for s in CraftingService.SET_DEFINITIONS:
@@ -144,12 +136,16 @@ def forge_equipment(template_id):
                 break
         if found_set_id:
             set_def = CraftingService.get_set_by_id(found_set_id)
-            # For grouped sets, jump back to the class tab of the set just forged
             back_class = found_class if (set_def and set_def.get("group")) else player.player_class
             back_url = url_for('crafting.epic_forge_set', set_id=found_set_id, class_name=back_class)
         else:
             back_url = url_for('crafting.epic_forge')
 
+    if not success:
+        return render_template("crafting_error.html", player=player, error=result,
+                              back_url=back_url)
+
+    cost_info = CraftingService.get_template_info(template_id)
     return render_template("forge_result.html", player=player, equipment=result,
                            cost_info=cost_info, back_url=back_url)
 

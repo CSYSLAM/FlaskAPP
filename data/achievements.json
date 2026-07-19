@@ -218,76 +218,6 @@
         "defense": 60
       }
     },
-    "enhance_5": {
-      "name": "初试锋芒",
-      "category": "装备",
-      "description": "装备强化达到5级",
-      "condition_type": "enhance",
-      "condition_value": 5,
-      "points": 5,
-      "reward": {
-        "attack": 3
-      }
-    },
-    "enhance_10": {
-      "name": "百炼成钢",
-      "category": "装备",
-      "description": "装备强化达到10级",
-      "condition_type": "enhance",
-      "condition_value": 10,
-      "points": 10,
-      "reward": {
-        "attack": 8
-      }
-    },
-    "enhance_20": {
-      "name": "神工鬼斧",
-      "category": "装备",
-      "description": "装备强化达到20级",
-      "condition_type": "enhance",
-      "condition_value": 20,
-      "points": 20,
-      "reward": {
-        "attack": 15
-      }
-    },
-    "enhance_30": {
-      "name": "打造大师",
-      "category": "装备",
-      "description": "装备强化达到30级",
-      "condition_type": "enhance",
-      "condition_value": 30,
-      "points": 50,
-      "reward": {
-        "attack": 25,
-        "defense": 15
-      }
-    },
-    "enhance_40": {
-      "name": "打造宗师",
-      "category": "装备",
-      "description": "装备强化达到40级",
-      "condition_type": "enhance",
-      "condition_value": 40,
-      "points": 80,
-      "reward": {
-        "attack": 40,
-        "defense": 25
-      }
-    },
-    "enhance_50": {
-      "name": "绝世神兵",
-      "category": "装备",
-      "description": "装备强化达到50级",
-      "condition_type": "enhance",
-      "condition_value": 50,
-      "points": 120,
-      "reward": {
-        "attack": 60,
-        "defense": 40,
-        "max_health": 100
-      }
-    },
     "dungeon_huangjin_100": {
       "name": "100次【黄巾起义】",
       "category": "副本",
@@ -1070,17 +1000,6 @@
         "max_mana": 100,
         "attack": 20,
         "defense": 20
-      }
-    },
-    "equip_full": {
-      "name": "全副武装",
-      "category": "装备",
-      "description": "穿齐7件装备",
-      "condition_type": "equip_full",
-      "condition_value": 7,
-      "points": 10,
-      "reward": {
-        "max_health": 80
       }
     },
     "gold_10000": {
@@ -2225,6 +2144,363 @@
       "reward": {
         "attack": 3,
         "max_health": 20
+      }
+    },
+    "forge_50": {
+      "name": "打造菜鸟",
+      "category": "装备",
+      "description": "累计打造50次装备",
+      "condition_type": "forge",
+      "condition_value": 50,
+      "points": 10,
+      "reward": {
+        "attack": 5
+      }
+    },
+    "forge_100": {
+      "name": "打造学徒",
+      "category": "装备",
+      "description": "累计打造100次装备",
+      "condition_type": "forge",
+      "condition_value": 100,
+      "points": 20,
+      "reward": {
+        "attack": 10
+      }
+    },
+    "forge_300": {
+      "name": "打造大师",
+      "category": "装备",
+      "description": "累计打造300次装备",
+      "condition_type": "forge",
+      "condition_value": 300,
+      "points": 100,
+      "reward": {
+        "attack": 50
+      }
+    },
+    "forge_500": {
+      "name": "打造宗师",
+      "category": "装备",
+      "description": "累计打造500次装备",
+      "condition_type": "forge",
+      "condition_value": 500,
+      "points": 200,
+      "reward": {
+        "attack": 100,
+        "defense": 50
+      }
+    },
+    "enhance_success_100": {
+      "name": "我想要更好的装备",
+      "category": "装备",
+      "description": "累计强化装备成功100次",
+      "condition_type": "enhance_success",
+      "condition_value": 100,
+      "points": 10,
+      "reward": {
+        "attack": 10
+      }
+    },
+    "enhance_success_300": {
+      "name": "闪闪发光的装备",
+      "category": "装备",
+      "description": "累计强化装备成功300次",
+      "condition_type": "enhance_success",
+      "condition_value": 300,
+      "points": 50,
+      "reward": {
+        "max_mana": 25,
+        "attack": 25
+      }
+    },
+    "enhance_success_600": {
+      "name": "幸运星",
+      "category": "装备",
+      "description": "累计强化装备成功600次",
+      "condition_type": "enhance_success",
+      "condition_value": 600,
+      "points": 80,
+      "reward": {
+        "max_mana": 40,
+        "attack": 40
+      }
+    },
+    "enhance_success_1000": {
+      "name": "无敌幸运星",
+      "category": "装备",
+      "description": "累计强化装备成功1000次",
+      "condition_type": "enhance_success",
+      "condition_value": 1000,
+      "points": 120,
+      "reward": {
+        "max_mana": 60,
+        "attack": 60
+      }
+    },
+    "enhance_fail_100": {
+      "name": "为什么总是失败",
+      "category": "装备",
+      "description": "累计强化装备失败100次",
+      "condition_type": "enhance_fail",
+      "condition_value": 100,
+      "points": 20,
+      "reward": {
+        "max_health": 20,
+        "attack": 10,
+        "defense": 20
+      }
+    },
+    "enhance_fail_300": {
+      "name": "扫把星",
+      "category": "装备",
+      "description": "累计强化装备失败300次",
+      "condition_type": "enhance_fail",
+      "condition_value": 300,
+      "points": 50,
+      "reward": {
+        "max_health": 50,
+        "attack": 10,
+        "defense": 50
+      }
+    },
+    "enhance_fail_600": {
+      "name": "脸黑王",
+      "category": "装备",
+      "description": "累计强化装备失败600次",
+      "condition_type": "enhance_fail",
+      "condition_value": 600,
+      "points": 80,
+      "reward": {
+        "max_health": 80,
+        "attack": 10,
+        "defense": 80
+      }
+    },
+    "enhance_fail_1000": {
+      "name": "超级脸黑王",
+      "category": "装备",
+      "description": "累计强化装备失败1000次",
+      "condition_type": "enhance_fail",
+      "condition_value": 1000,
+      "points": 120,
+      "reward": {
+        "max_health": 120,
+        "attack": 10,
+        "defense": 120,
+        "crit_rate": 0.005
+      }
+    },
+    "enhance_50_1": {
+      "name": "强化+50的大神【1次】",
+      "category": "装备",
+      "description": "累计强化1件+50的装备",
+      "condition_type": "enhance_50",
+      "condition_value": 1,
+      "points": 10,
+      "reward": {
+        "max_health": 20,
+        "max_mana": 10,
+        "attack": 2,
+        "defense": 2
+      }
+    },
+    "enhance_50_3": {
+      "name": "强化+50的大神【3次】",
+      "category": "装备",
+      "description": "累计强化3件+50的装备",
+      "condition_type": "enhance_50",
+      "condition_value": 3,
+      "points": 20,
+      "reward": {
+        "max_health": 30,
+        "max_mana": 20,
+        "attack": 3,
+        "defense": 3
+      }
+    },
+    "enhance_50_5": {
+      "name": "强化+50的大神【5次】",
+      "category": "装备",
+      "description": "累计强化5件+50的装备",
+      "condition_type": "enhance_50",
+      "condition_value": 5,
+      "points": 30,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 30,
+        "attack": 5,
+        "defense": 5
+      }
+    },
+    "artifact_paoding_caidao": {
+      "name": "我最爱的【庖丁菜刀】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】庖丁菜刀，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "paoding_caidao",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_wuhu_duanhun_dao": {
+      "name": "我最爱的【五虎断魂刀】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】五虎断魂刀，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "wuhu_duanhun_dao",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_qisheng_dao": {
+      "name": "我最爱的【七圣刀】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】七圣刀，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "qisheng_dao",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_chixiao_jian": {
+      "name": "我最爱的【赤霄剑】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】赤霄剑，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "chixiao_jian",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_qinghong_jian": {
+      "name": "我最爱的【青虹剑】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】青虹剑，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "qinghong_jian",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_chengying_jian": {
+      "name": "我最爱的【承影剑】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】承影剑，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "chengying_jian",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_longlin": {
+      "name": "我最爱的【龙鳞】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】龙鳞，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "longlin",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_yuchang_jian": {
+      "name": "我最爱的【鱼肠】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】鱼肠，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "yuchang_jian",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_juque_jian": {
+      "name": "我最爱的【巨阙】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】巨阙，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "juque_jian",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_longhun_zhu": {
+      "name": "我最爱的【龙魂珠】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】龙魂珠，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "longhun_zhu",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_yu_lingzhi": {
+      "name": "我最爱的【玉灵芝】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】玉灵芝，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "yu_lingzhi",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "artifact_heshi_bi": {
+      "name": "我最爱的【和氏璧】",
+      "category": "装备",
+      "description": "拥有一件绑定的【神器】和氏璧，神器装备可在背包绑定",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "heshi_bi",
+      "points": 30,
+      "reward": {
+        "max_health": 20,
+        "attack": 10
+      }
+    },
+    "enhance_50_7": {
+      "name": "强化+50的大神【7次】",
+      "category": "装备",
+      "description": "累计强化7件+50的装备",
+      "condition_type": "enhance_50",
+      "condition_value": 7,
+      "points": 50,
+      "reward": {
+        "max_health": 80,
+        "max_mana": 50,
+        "attack": 8,
+        "defense": 8
       }
     }
   }

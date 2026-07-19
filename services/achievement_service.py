@@ -9,7 +9,8 @@ class AchievementService:
     @classmethod
     def check_all(cls, player):
         for ctype in ['level', 'kill', 'elite_kill', 'elite_kill_area', 'elite_kill_monster', 'kill_monster',
-                       'divine_beast_kill', 'pk_win', 'pk_loss', 'enhance',
+                       'divine_beast_kill', 'pk_win', 'pk_loss', 'enhance', 'enhance_success', 'enhance_fail',
+                       'enhance_50', 'forge', 'artifact_owned',
                        'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
                        'boss_kill', 'quest']:
@@ -83,6 +84,16 @@ class AchievementService:
             return cls._get_kill_monster_progress(player, adef) >= val
         elif ctype == 'divine_beast_kill':
             return cls._get_divine_beast_kill_progress(player, adef) >= val
+        elif ctype == 'forge':
+            return (player.forge_count or 0) >= val
+        elif ctype == 'enhance_success':
+            return (player.enhance_success_count or 0) >= val
+        elif ctype == 'enhance_fail':
+            return (player.enhance_fail_count or 0) >= val
+        elif ctype == 'enhance_50':
+            return (player.enhance_50_count or 0) >= val
+        elif ctype == 'artifact_owned':
+            return cls._get_artifact_owned_progress(player, adef) >= val
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef) >= val
         return False
@@ -211,6 +222,16 @@ class AchievementService:
             return cls._get_kill_monster_progress(player, adef)
         elif ctype == 'divine_beast_kill':
             return cls._get_divine_beast_kill_progress(player, adef)
+        elif ctype == 'forge':
+            return player.forge_count or 0
+        elif ctype == 'enhance_success':
+            return player.enhance_success_count or 0
+        elif ctype == 'enhance_fail':
+            return player.enhance_fail_count or 0
+        elif ctype == 'enhance_50':
+            return player.enhance_50_count or 0
+        elif ctype == 'artifact_owned':
+            return cls._get_artifact_owned_progress(player, adef)
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef)
         return 0
@@ -326,6 +347,18 @@ class AchievementService:
         return getattr(player, 'divine_beast_kills', 0) or 0
 
     @classmethod
+    def _get_artifact_owned_progress(cls, player, adef):
+        """拥有绑定的神器装备: 查询EquipmentInstance中is_bound=True且rarity=神器且template_id匹配"""
+        template_id = adef.get('template_id', '')
+        if not template_id:
+            return 0
+        from models.player import EquipmentInstance
+        return EquipmentInstance.query.filter_by(
+            player_id=player.id, template_id=template_id,
+            is_bound=True, rarity='神器'
+        ).count()
+
+    @classmethod
     def _get_quest_progress(cls, player, adef):
         import json
         try:
@@ -350,6 +383,8 @@ class AchievementService:
         if condition_type in ('pk_win', 'pk_loss'):
             return 'P K'
         if condition_type == 'equip_full':
+            return '装备'
+        if condition_type in ('forge', 'enhance_success', 'enhance_fail', 'enhance_50', 'artifact_owned'):
             return '装备'
         if condition_type == 'gold_earned':
             return '财富'

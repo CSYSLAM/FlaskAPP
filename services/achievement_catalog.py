@@ -136,7 +136,7 @@ ITEM_SERIES = [
     {"slug": "xiaomoshi", "name": "小魔石", "reward_family": "mana", "tracking_keys": ["mana_stone_small"]},
     {"slug": "zhongmoshi", "name": "中魔石", "reward_family": "mana_plus", "tracking_keys": ["mana_stone_medium"]},
     {"slug": "damoshi", "name": "大魔石", "reward_family": "mana_plus", "tracking_keys": ["mana_stone_large"]},
-    {"slug": "double_exp_card", "name": "双倍经验卡", "reward_family": "exp", "tracking_keys": ["yb_exp_double"]},
+    {"slug": "double_exp_card", "name": "双倍经验卡", "reward_family": "exp", "tracking_keys": ["double_exp_card"]},
     {"slug": "miyaolibao", "name": "秘药礼包", "reward_family": "bundle", "tracking_keys": ["potion_package"]},
     {"slug": "shenxuedan", "name": "神血丹", "reward_family": "health_plus", "tracking_keys": ["potion_heal_2250"]},
     {"slug": "qinglinglu", "name": "清灵露", "reward_family": "mana_dodge", "tracking_keys": ["potion_mana_2250"]},

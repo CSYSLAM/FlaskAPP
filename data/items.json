@@ -164,8 +164,9 @@
   "shenyou_guo": {
     "name": "神游果",
     "type": "other",
-    "description": "进入副本需要消耗1个",
-    "price": 50,
+    "description": "进入副本的门票消耗品",
+    "price": 0,
+    "sell_price": 100,
     "is_usable": false,
     "capacity": 0
   },
@@ -430,9 +431,10 @@
   },
   "potion_package": {
     "name": "秘药礼包",
-    "type": "other",
-    "description": "使用后随机获得一种秘药",
-    "price": 150,
+    "type": "consumable",
+    "description": "打开随机获得一种属性秘药",
+    "price": 0,
+    "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
       "random_one_of": [
@@ -444,7 +446,7 @@
         "potion_dodge_buff"
       ]
     },
-    "capacity": 0
+    "capacity": 0.1
   },
   "honor_scroll": {
     "name": "荣誉卷轴",
@@ -467,7 +469,8 @@
     "name": "强化宝玉",
     "type": "material",
     "description": "用于强化装备的宝玉",
-    "price": 1000,
+    "price": 500,
+    "currency": "jinzu",
     "is_usable": false,
     "capacity": 0.1
   },
@@ -507,13 +510,18 @@
   },
   "money_small": {
     "name": "小银两包",
-    "type": "consumable",
-    "description": "使用后可获100000银两",
-    "price": 0,
-    "sell_price": 0,
+    "type": "material",
+    "description": "使用后获得100000银两",
+    "price": 1000,
+    "currency": "yuanbao",
     "is_usable": true,
     "usage_effect": {
-      "grant_gold": 100000
+      "stat_changes": {
+        "gold": 100000
+      },
+      "effect_descriptions": {
+        "gold": "获得{value}银两"
+      }
     },
     "capacity": 0.1
   },
@@ -628,20 +636,12 @@
   },
   "blood_stone_small": {
     "name": "小血石",
-    "type": "consumable",
-    "description": "使用可获生命储备5000点",
-    "price": 200,
-    "sell_price": 50,
+    "type": "material",
+    "description": "增加生命值",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "blood_reserve": 5000
-      },
-      "effect_descriptions": {
-        "blood_reserve": "生命储备+5000"
-      }
-    },
-    "capacity": 0.1
+    "capacity": 0
   },
   "blood_stone_medium": {
     "name": "中血石",
@@ -663,36 +663,28 @@
   "blood_stone_large": {
     "name": "大血石",
     "type": "consumable",
-    "description": "使用后增加20000点生命储备，战斗中可自动回复",
-    "price": 3000,
-    "sell_price": 750,
+    "description": "使用可获生命储备25000点",
+    "price": 0,
+    "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "blood_reserve": 20000
+        "blood_reserve": 25000
       },
       "effect_descriptions": {
-        "blood_reserve": "生命储备+20000"
+        "blood_reserve": "生命储备+25000"
       }
     },
     "capacity": 0.1
   },
   "mana_stone_small": {
     "name": "小魔石",
-    "type": "consumable",
-    "description": "使用可获魔法储备5000点",
-    "price": 200,
-    "sell_price": 50,
+    "type": "material",
+    "description": "增加魔法值",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "mana_reserve": 5000
-      },
-      "effect_descriptions": {
-        "mana_reserve": "魔法储备+5000"
-      }
-    },
-    "capacity": 0.1
+    "capacity": 0
   },
   "mana_stone_medium": {
     "name": "中魔石",
@@ -714,16 +706,16 @@
   "mana_stone_large": {
     "name": "大魔石",
     "type": "consumable",
-    "description": "使用后增加20000点魔法储备，战斗中可自动回复",
-    "price": 3000,
-    "sell_price": 750,
+    "description": "使用可获魔法储备25000点",
+    "price": 0,
+    "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "mana_reserve": 20000
+        "mana_reserve": 25000
       },
       "effect_descriptions": {
-        "mana_reserve": "魔法储备+20000"
+        "mana_reserve": "魔法储备+25000"
       }
     },
     "capacity": 0.1
@@ -1278,93 +1270,35 @@
     },
     "capacity": 0
   },
-  "yb_enhance_gem": {
-    "name": "强化宝玉",
-    "type": "material",
-    "description": "用于强化装备的宝玉",
-    "price": 50,
-    "currency": "yuanbao",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "yb_exp_double": {
+  "double_exp_card": {
     "name": "双倍经验卡",
     "type": "other",
-    "description": "使用后60分钟内打怪经验翻倍",
-    "price": 50,
-    "currency": "yuanbao",
+    "description": "使用后1小时内打怪经验增加1倍",
+    "price": 0,
+    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "temp_effects": [
         {
-          "stat": "experience",
+          "stat": "exp_rate",
           "rate": 1.0,
           "duration": 3600,
           "effect_name": "双倍经验卡"
         }
       ]
     },
-    "capacity": 0
+    "capacity": 0.1
   },
-  "yb_big_money": {
+  "money_large": {
     "name": "大银两包",
-    "type": "material",
-    "description": "使用后获得500000银两",
-    "price": 5000,
-    "currency": "yuanbao",
+    "type": "consumable",
+    "description": "使用后可获500000银两",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "stat_changes": {
-        "gold": 500000
-      },
-      "effect_descriptions": {
-        "gold": "获得{value}银两"
-      }
+      "grant_gold": 500000
     },
-    "capacity": 0.1
-  },
-  "yb_small_money": {
-    "name": "小银两包",
-    "type": "material",
-    "description": "使用后获得100000银两",
-    "price": 1000,
-    "currency": "yuanbao",
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "gold": 100000
-      },
-      "effect_descriptions": {
-        "gold": "获得{value}银两"
-      }
-    },
-    "capacity": 0.1
-  },
-  "yb_revive": {
-    "name": "续命灯",
-    "type": "other",
-    "description": "可以满血复活",
-    "price": 20,
-    "currency": "yuanbao",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "jz_enhance_gem": {
-    "name": "强化宝玉",
-    "type": "material",
-    "description": "用于强化装备的宝玉",
-    "price": 500,
-    "currency": "jinzu",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "jz_revive": {
-    "name": "续命灯",
-    "type": "other",
-    "description": "可以满血复活",
-    "price": 200,
-    "currency": "jinzu",
-    "is_usable": false,
     "capacity": 0.1
   },
   "jz_honor_scroll": {
@@ -1798,11 +1732,11 @@
   },
   "flower_rose": {
     "name": "玫瑰花",
-    "type": "material",
-    "description": "送给异性增加魅力和缘分",
+    "type": "consumable",
+    "description": "送给他人增加好感度",
+    "price": 0,
     "sell_price": 50,
-    "price": 100,
-    "is_usable": false,
+    "is_usable": true,
     "capacity": 0.1
   },
   "ginseng": {
@@ -1902,30 +1836,11 @@
   },
   "horn_small": {
     "name": "小喇叭",
-    "type": "other",
-    "description": "在公共频道发言一次",
-    "is_usable": false,
-    "capacity": 0
-  },
-  "box_key": {
-    "name": "宝匣钥匙",
-    "type": "material",
-    "description": "用于打开宝匣",
-    "capacity": 0.1
-  },
-  "revive_lamp": {
-    "name": "续命灯",
-    "type": "other",
-    "description": "可以满血复活",
-    "price": 20,
-    "currency": "yuanbao",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "reinforce_gem": {
-    "name": "强化宝玉",
-    "type": "material",
-    "description": "用于强化装备的宝玉",
+    "type": "consumable",
+    "description": "使用后发送全服公告",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
     "capacity": 0.1
   },
   "craft_suipi": {
@@ -2724,17 +2639,17 @@
     "is_usable": false,
     "capacity": 0
   },
-  "bag_expand_scroll": {
+  "bag_expand": {
     "name": "背包扩容卷",
-    "type": "item",
-    "description": "使用后增加背包容量5格",
+    "type": "consumable",
+    "description": "使用后背包容量+5",
     "price": 0,
+    "sell_price": 300,
     "is_usable": true,
-    "capacity": 0.0,
-    "sell_price": 0,
     "usage_effect": {
       "expand_backpack": 5
-    }
+    },
+    "capacity": 0.1
   },
   "battle_challenge_token": {
     "name": "战场请战符",
@@ -2797,24 +2712,6 @@
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
-    "capacity": 0
-  },
-  "small_blood_stone": {
-    "name": "小血石",
-    "type": "material",
-    "description": "增加生命值",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": true,
-    "capacity": 0
-  },
-  "small_mana_stone": {
-    "name": "小魔石",
-    "type": "material",
-    "description": "增加魔法值",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": true,
     "capacity": 0
   },
   "strong_hp_potion": {
@@ -3010,18 +2907,6 @@
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
-    "capacity": 0.1
-  },
-  "money_large": {
-    "name": "大银两包",
-    "type": "consumable",
-    "description": "使用后可获500000银两",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_gold": 500000
-    },
     "capacity": 0.1
   },
   "death_substitute": {
@@ -3231,83 +3116,6 @@
       ]
     }
   },
-  "mi_yao_pack": {
-    "name": "秘药礼包",
-    "type": "consumable",
-    "description": "打开随机获得一种属性秘药",
-    "price": 0,
-    "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "random_one_of": [
-        "potion_health_buff",
-        "potion_mana_buff",
-        "potion_attack_buff",
-        "potion_defense_buff",
-        "potion_crit_buff",
-        "potion_dodge_buff"
-      ]
-    },
-    "capacity": 0.1
-  },
-  "double_exp_card": {
-    "name": "双倍经验卡",
-    "type": "other",
-    "description": "使用后1小时内打怪经验增加1倍",
-    "price": 0,
-    "sell_price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "exp_rate",
-          "rate": 1.0,
-          "duration": 3600,
-          "effect_name": "双倍经验卡"
-        }
-      ]
-    },
-    "capacity": 0.1
-  },
-  "shen_you_guo": {
-    "name": "神游果",
-    "type": "other",
-    "description": "进入副本的门票消耗品",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": false,
-    "capacity": 0
-  },
-  "bag_expand": {
-    "name": "背包扩容卷",
-    "type": "consumable",
-    "description": "使用后背包容量+5",
-    "price": 0,
-    "sell_price": 300,
-    "is_usable": true,
-    "usage_effect": {
-      "expand_backpack": 5
-    },
-    "capacity": 0.1
-  },
-  "rose": {
-    "name": "玫瑰花",
-    "type": "consumable",
-    "description": "送给他人增加好感度",
-    "price": 0,
-    "sell_price": 50,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "small_horn": {
-    "name": "小喇叭",
-    "type": "consumable",
-    "description": "使用后发送全服公告",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
   "hunt_order": {
     "name": "追杀令",
     "type": "other",
@@ -3353,15 +3161,6 @@
     },
     "capacity": 0.1
   },
-  "rose_seed": {
-    "name": "玫瑰花种子",
-    "type": "material",
-    "description": "种植可获得玫瑰花",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
   "exp_seed": {
     "name": "经验丹种子",
     "type": "material",
@@ -3369,40 +3168,6 @@
     "price": 0,
     "sell_price": 40,
     "is_usable": false,
-    "capacity": 0.1
-  },
-  "big_hp_stone": {
-    "name": "大血石",
-    "type": "consumable",
-    "description": "使用可获生命储备25000点",
-    "price": 0,
-    "sell_price": 300,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "blood_reserve": 25000
-      },
-      "effect_descriptions": {
-        "blood_reserve": "生命储备+25000"
-      }
-    },
-    "capacity": 0.1
-  },
-  "big_mp_stone": {
-    "name": "大魔石",
-    "type": "consumable",
-    "description": "使用可获魔法储备25000点",
-    "price": 0,
-    "sell_price": 300,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "mana_reserve": 25000
-      },
-      "effect_descriptions": {
-        "mana_reserve": "魔法储备+25000"
-      }
-    },
     "capacity": 0.1
   },
   "big_hp_stone_pack": {
@@ -3415,7 +3180,7 @@
     "usage_effect": {
       "random_items": [
         {
-          "item_id": "big_hp_stone",
+          "item_id": "blood_stone_large",
           "guaranteed_count": 15,
           "max_count": 15,
           "chance": 1.0
@@ -3434,7 +3199,7 @@
     "usage_effect": {
       "random_items": [
         {
-          "item_id": "big_mp_stone",
+          "item_id": "mana_stone_large",
           "guaranteed_count": 15,
           "max_count": 15,
           "chance": 1.0
@@ -3453,7 +3218,7 @@
     "usage_effect": {
       "random_items": [
         {
-          "item_id": "small_horn",
+          "item_id": "horn_small",
           "guaranteed_count": 15,
           "max_count": 15,
           "chance": 1.0
@@ -3552,96 +3317,6 @@
     "is_usable": true,
     "capacity": 0.1
   },
-  "sui_pi": {
-    "name": "碎皮",
-    "type": "material",
-    "description": "制作材料-碎皮",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "huangyang_mu": {
-    "name": "黄杨木",
-    "type": "material",
-    "description": "制作材料-黄杨木",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "ma_bu": {
-    "name": "麻布",
-    "type": "material",
-    "description": "制作材料-麻布",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "huangtong_kuang": {
-    "name": "黄铜矿",
-    "type": "material",
-    "description": "制作材料-黄铜矿",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "ying_pi": {
-    "name": "硬皮",
-    "type": "material",
-    "description": "制作材料-硬皮",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "chenxiang_mu": {
-    "name": "沉香木",
-    "type": "material",
-    "description": "制作材料-沉香木",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "mian_bu": {
-    "name": "棉布",
-    "type": "material",
-    "description": "制作材料-棉布",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "heitie_kuang": {
-    "name": "黑铁矿",
-    "type": "material",
-    "description": "制作材料-黑铁矿",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "zitan_mu": {
-    "name": "紫檀木",
-    "type": "material",
-    "description": "制作材料-紫檀木",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "jingjin_kuang": {
-    "name": "精金矿",
-    "type": "material",
-    "description": "制作材料-精金矿",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
   "skill_page": {
     "name": "技能残页",
     "type": "material",
@@ -3718,15 +3393,6 @@
     "description": "已下架物品，无法使用",
     "price": 0,
     "sell_price": 100,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "friend_wine": {
-    "name": "结交酒",
-    "type": "material",
-    "description": "用于红颜、知己结交的道具",
-    "price": 0,
-    "sell_price": 200,
     "is_usable": false,
     "capacity": 0.1
   },

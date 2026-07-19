@@ -17,12 +17,12 @@
                 {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn_pack"}
             ],
             "other": [
-                {"id": "mi_yao_pack", "name": "秘药礼包", "price": 10, "item_id": "mi_yao_pack"},
+                {"id": "potion_package", "name": "秘药礼包", "price": 10, "item_id": "potion_package"},
                 {"id": "double_exp_card", "name": "双倍经验卡", "price": 50, "item_id": "double_exp_card"},
-                {"id": "shen_you_guo", "name": "神游果", "price": 100, "item_id": "shen_you_guo"},
+                {"id": "shenyou_guo", "name": "神游果", "price": 100, "item_id": "shenyou_guo"},
                 {"id": "bag_expand", "name": "背包扩容卷", "price": 50, "item_id": "bag_expand"},
-                {"id": "rose", "name": "玫瑰花", "price": 10, "item_id": "rose"},
-                {"id": "small_horn", "name": "小喇叭", "price": 100, "item_id": "small_horn"},
+                {"id": "flower_rose", "name": "玫瑰花", "price": 10, "item_id": "flower_rose"},
+                {"id": "horn_small", "name": "小喇叭", "price": 100, "item_id": "horn_small"},
                 {"id": "battle_flag_1", "name": "战场令旗(低级)", "price": 100, "item_id": "battle_flag_1"},
                 {"id": "battle_flag_2", "name": "战场令旗(中级)", "price": 200, "item_id": "battle_flag_2"},
                 {"id": "battle_flag_3", "name": "战场令旗(高级)", "price": 500, "item_id": "battle_flag_3"},
@@ -65,7 +65,7 @@
                 {"id": "death_substitute", "name": "死亡替身符", "price": 50, "item_id": "death_substitute"},
                 {"id": "exp_seed", "name": "经验丹种子", "price": 10, "item_id": "exp_seed"},
                 {"id": "seed_big_exp", "name": "大经验丹种子", "price": 50, "item_id": "seed_big_exp"},
-                {"id": "friend_wine", "name": "结交酒", "price": 200, "item_id": "friend_wine"},
+                {"id": "bond_wine", "name": "结交酒", "price": 200, "item_id": "bond_wine"},
                 {"id": "break_wine", "name": "断交酒", "price": 200, "item_id": "break_wine"},
                 {"id": "duanchang_cao", "name": "断肠草", "price": 200, "item_id": "duanchang_cao"},
                 {"id": "ripening_agent", "name": "催熟剂", "price": 50, "item_id": "ripening_agent"},
@@ -73,8 +73,8 @@
                 {"id": "mana_stone_small", "name": "小魔石", "price": 20, "item_id": "mana_stone_small"},
                 {"id": "blood_stone_medium", "name": "中血石", "price": 40, "item_id": "blood_stone_medium"},
                 {"id": "mana_stone_medium", "name": "中魔石", "price": 40, "item_id": "mana_stone_medium"},
-                {"id": "big_hp_stone", "name": "大血石", "price": 100, "item_id": "big_hp_stone"},
-                {"id": "big_mp_stone", "name": "大魔石", "price": 100, "item_id": "big_mp_stone"},
+                {"id": "blood_stone_large", "name": "大血石", "price": 100, "item_id": "blood_stone_large"},
+                {"id": "mana_stone_large", "name": "大魔石", "price": 100, "item_id": "mana_stone_large"},
                 {"id": "vitality_card", "name": "活力卡", "price": 10, "item_id": "vitality_card"},
                 {"id": "peace_token", "name": "免战符", "price": 110, "item_id": "peace_token"}
             ],
@@ -110,12 +110,12 @@
                 {"id": "small_horn_pack", "name": "小喇叭特惠包", "price": 1200, "item_id": "small_horn_pack"}
             ],
             "other": [
-                {"id": "mi_yao_pack", "name": "秘药礼包", "price": 10, "item_id": "mi_yao_pack"},
+                {"id": "potion_package", "name": "秘药礼包", "price": 10, "item_id": "potion_package"},
                 {"id": "double_exp_card", "name": "双倍经验卡", "price": 50, "item_id": "double_exp_card"},
-                {"id": "shen_you_guo", "name": "神游果", "price": 100, "item_id": "shen_you_guo"},
+                {"id": "shenyou_guo", "name": "神游果", "price": 100, "item_id": "shenyou_guo"},
                 {"id": "bag_expand", "name": "背包扩容卷", "price": 50, "item_id": "bag_expand"},
-                {"id": "rose", "name": "玫瑰花", "price": 10, "item_id": "rose"},
-                {"id": "small_horn", "name": "小喇叭", "price": 100, "item_id": "small_horn"},
+                {"id": "flower_rose", "name": "玫瑰花", "price": 10, "item_id": "flower_rose"},
+                {"id": "horn_small", "name": "小喇叭", "price": 100, "item_id": "horn_small"},
                 {"id": "battle_flag_1", "name": "战场令旗(低级)", "price": 100, "item_id": "battle_flag_1"},
                 {"id": "battle_flag_2", "name": "战场令旗(中级)", "price": 200, "item_id": "battle_flag_2"},
                 {"id": "battle_flag_3", "name": "战场令旗(高级)", "price": 500, "item_id": "battle_flag_3"},
@@ -158,7 +158,7 @@
                 {"id": "death_substitute", "name": "死亡替身符", "price": 50, "item_id": "death_substitute"},
                 {"id": "exp_seed", "name": "经验丹种子", "price": 10, "item_id": "exp_seed"},
                 {"id": "seed_big_exp", "name": "大经验丹种子", "price": 50, "item_id": "seed_big_exp"},
-                {"id": "friend_wine", "name": "结交酒", "price": 200, "item_id": "friend_wine"},
+                {"id": "bond_wine", "name": "结交酒", "price": 200, "item_id": "bond_wine"},
                 {"id": "break_wine", "name": "断交酒", "price": 200, "item_id": "break_wine"},
                 {"id": "duanchang_cao", "name": "断肠草", "price": 200, "item_id": "duanchang_cao"},
                 {"id": "ripening_agent", "name": "催熟剂", "price": 50, "item_id": "ripening_agent"},
@@ -166,8 +166,8 @@
                 {"id": "mana_stone_small", "name": "小魔石", "price": 20, "item_id": "mana_stone_small"},
                 {"id": "blood_stone_medium", "name": "中血石", "price": 40, "item_id": "blood_stone_medium"},
                 {"id": "mana_stone_medium", "name": "中魔石", "price": 40, "item_id": "mana_stone_medium"},
-                {"id": "big_hp_stone", "name": "大血石", "price": 100, "item_id": "big_hp_stone"},
-                {"id": "big_mp_stone", "name": "大魔石", "price": 100, "item_id": "big_mp_stone"},
+                {"id": "blood_stone_large", "name": "大血石", "price": 100, "item_id": "blood_stone_large"},
+                {"id": "mana_stone_large", "name": "大魔石", "price": 100, "item_id": "mana_stone_large"},
                 {"id": "vitality_card", "name": "活力卡", "price": 10, "item_id": "vitality_card"},
                 {"id": "peace_token", "name": "免战符", "price": 110, "item_id": "peace_token"}
             ],
@@ -196,7 +196,7 @@
         },
         "items": {
             "other": [
-                {"id": "mi_yao_pack", "name": "秘药礼包", "price": 100, "item_id": "mi_yao_pack"},
+                {"id": "potion_package", "name": "秘药礼包", "price": 100, "item_id": "potion_package"},
                 {"id": "chest_iron", "name": "铁质宝匣", "price": 100, "item_id": "chest_iron"},
                 {"id": "chest_silver", "name": "银质宝匣", "price": 200, "item_id": "chest_silver"},
                 {"id": "chest_gold", "name": "金质宝匣", "price": 300, "item_id": "chest_gold"}

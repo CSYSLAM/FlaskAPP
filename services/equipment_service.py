@@ -130,7 +130,15 @@ class EquipmentService:
                 f"{player.nickname}成功将{equip.name}强化至+{equip.enhance_level}")
 
             from services.achievement_service import AchievementService
-            AchievementService.check(player, 'enhance', equip.enhance_level)
+
+            # Track enhance success count
+            player.enhance_success_count = (player.enhance_success_count or 0) + 1
+            AchievementService.check(player, 'enhance_success', player.enhance_success_count)
+
+            # Track enhance +50 count
+            if equip.enhance_level >= 50:
+                player.enhance_50_count = (player.enhance_50_count or 0) + 1
+                AchievementService.check(player, 'enhance_50', player.enhance_50_count)
 
             db.session.commit()
             return True, f"强化成功！装备等级提升至+{equip.enhance_level}"
@@ -145,6 +153,11 @@ class EquipmentService:
                 new_base[stat] = initial_value + total_bonus
             equip.set_base_stats(new_base)
             equip.update_name()
+
+            # Track enhance fail count
+            player.enhance_fail_count = (player.enhance_fail_count or 0) + 1
+            from services.achievement_service import AchievementService
+            AchievementService.check(player, 'enhance_fail', player.enhance_fail_count)
 
             db.session.commit()
             return False, f"强化失败！装备等级降至+{equip.enhance_level}，下次成功率+5%"

@@ -53,18 +53,18 @@ class ActivityService:
         30: {'name': '活跃度30奖励', 'items': [('potion_heal', 10), ('potion_mana', 10)], 'yuanbao': 3},
         50: {'name': '活跃度50奖励', 'items': [('enhance_gem', 2), ('money_small', 1)], 'yuanbao': 5},
         80: {'name': '活跃度80奖励', 'items': [('enhance_gem', 3), ('potion_revive', 2), ('money_large', 1)], 'yuanbao': 10},
-        100: {'name': '活跃度100奖励', 'items': [('mi_yao_pack', 1), ('double_exp_card', 1), ('bag_expand', 1)], 'yuanbao': 20},
+        100: {'name': '活跃度100奖励', 'items': [('potion_package', 1), ('double_exp_card', 1), ('bag_expand', 1)], 'yuanbao': 20},
     }
 
     # Smash egg prize pool (weighted random) - 52 items matching reference server
     EGG_PRIZES = [
         {'name': '哥姐徽章', 'item_id': 'badge_gejie', 'weight': 1},             # 0.001%
-        {'name': '秘药礼包', 'item_id': 'mi_yao_pack', 'weight': 5000},          # 5%
+        {'name': '秘药礼包', 'item_id': 'potion_package', 'weight': 5000},          # 5%
         {'name': '双倍经验卡', 'item_id': 'double_exp_card', 'weight': 5000},     # 5%
-        {'name': '神游果', 'item_id': 'shen_you_guo', 'weight': 2000},           # 2%
+        {'name': '神游果', 'item_id': 'shenyou_guo', 'weight': 2000},           # 2%
         {'name': '背包扩容卷', 'item_id': 'bag_expand', 'weight': 5000},          # 5%
-        {'name': '玫瑰花', 'item_id': 'rose', 'weight': 5000},                   # 5%
-        {'name': '小喇叭', 'item_id': 'small_horn', 'weight': 2000},             # 2%
+        {'name': '玫瑰花', 'item_id': 'flower_rose', 'weight': 5000},                   # 5%
+        {'name': '小喇叭', 'item_id': 'horn_small', 'weight': 2000},             # 2%
         {'name': '续命灯', 'item_id': 'potion_revive', 'weight': 5000},          # 5%
         {'name': '强化宝玉', 'item_id': 'enhance_gem', 'weight': 5000},           # 5%
         {'name': '宝匣钥匙', 'item_id': 'chest_key', 'weight': 2000},            # 2%
@@ -73,12 +73,12 @@ class ActivityService:
         {'name': '诸侯令1天', 'item_id': 'duke_token_1d', 'weight': 2000},      # 2%
         {'name': '诸侯令7天', 'item_id': 'duke_token_7d', 'weight': 500},       # 0.5%
         {'name': '小银两包', 'item_id': 'money_small', 'weight': 100},           # 0.1%
-        {'name': '玫瑰花种子', 'item_id': 'rose_seed', 'weight': 5000},          # 5%
+        {'name': '玫瑰花种子', 'item_id': 'seed_flower', 'weight': 5000},          # 5%
         {'name': '经验丹种子', 'item_id': 'exp_seed', 'weight': 2000},           # 2%
         {'name': '大经验丹种子', 'item_id': 'seed_big_exp', 'weight': 1000},     # 1%
         {'name': '催熟剂', 'item_id': 'ripening_agent', 'weight': 3000},         # 3%
-        {'name': '大血石', 'item_id': 'big_hp_stone', 'weight': 2000},           # 2%
-        {'name': '大魔石', 'item_id': 'big_mp_stone', 'weight': 2000},           # 2%
+        {'name': '大血石', 'item_id': 'blood_stone_large', 'weight': 2000},           # 2%
+        {'name': '大魔石', 'item_id': 'mana_stone_large', 'weight': 2000},           # 2%
         {'name': '活力卡', 'item_id': 'vitality_card', 'weight': 3000},          # 3%
         {'name': '聚魂幡碎片', 'item_id': 'soul_flag_shard', 'weight': 3000},    # 3%
         {'name': '副将招募令', 'item_id': 'lt_recruit', 'weight': 3000},          # 3%
@@ -90,18 +90,18 @@ class ActivityService:
         {'name': '副将忠诚丹', 'item_id': 'lt_loyalty', 'weight': 3000},         # 3%
         {'name': '副将强化丹', 'item_id': 'lt_enhance', 'weight': 3000},         # 3%
         {'name': '副将悟性丹', 'item_id': 'lt_wuxing', 'weight': 3000},          # 3%
-        {'name': '碎皮', 'item_id': 'sui_pi', 'weight': 700},                    # 0.7%
-        {'name': '黄杨木', 'item_id': 'huangyang_mu', 'weight': 700},            # 0.7%
-        {'name': '麻布', 'item_id': 'ma_bu', 'weight': 700},                     # 0.7%
-        {'name': '黄铜矿', 'item_id': 'huangtong_kuang', 'weight': 700},         # 0.7%
-        {'name': '硬皮', 'item_id': 'ying_pi', 'weight': 500},                   # 0.5%
-        {'name': '沉香木', 'item_id': 'chenxiang_mu', 'weight': 500},            # 0.5%
-        {'name': '棉布', 'item_id': 'mian_bu', 'weight': 500},                   # 0.5%
-        {'name': '黑铁矿', 'item_id': 'heitie_kuang', 'weight': 500},            # 0.5%
+        {'name': '碎皮', 'item_id': 'craft_suipi', 'weight': 700},                    # 0.7%
+        {'name': '黄杨木', 'item_id': 'craft_huangyangmu', 'weight': 700},            # 0.7%
+        {'name': '麻布', 'item_id': 'craft_mabu', 'weight': 700},                     # 0.7%
+        {'name': '黄铜矿', 'item_id': 'craft_huangtongkuang', 'weight': 700},         # 0.7%
+        {'name': '硬皮', 'item_id': 'craft_yingpi', 'weight': 500},                   # 0.5%
+        {'name': '沉香木', 'item_id': 'craft_chenxiangmu', 'weight': 500},            # 0.5%
+        {'name': '棉布', 'item_id': 'craft_mianbu', 'weight': 500},                   # 0.5%
+        {'name': '黑铁矿', 'item_id': 'craft_heitiekuang', 'weight': 500},            # 0.5%
         {'name': '厚皮', 'item_id': 'craft_houpi', 'weight': 300},               # 0.3%
-        {'name': '紫檀木', 'item_id': 'zitan_mu', 'weight': 300},                # 0.3%
+        {'name': '紫檀木', 'item_id': 'craft_zitanmu', 'weight': 300},                # 0.3%
         {'name': '呢绒', 'item_id': 'craft_nirong', 'weight': 300},              # 0.3%
-        {'name': '精金矿', 'item_id': 'jingjin_kuang', 'weight': 300},           # 0.3%
+        {'name': '精金矿', 'item_id': 'craft_jingjinkuang', 'weight': 300},           # 0.3%
         {'name': '技能残页', 'item_id': 'skill_page', 'weight': 5400},
     ]
 
@@ -110,12 +110,12 @@ class ActivityService:
         {'name': '哥姐徽章', 'item_id': 'badge_gejie', 'weight': 1},             # 0.001%
         {'name': '副将扩技符', 'item_id': 'lt_skill_expand', 'weight': 1},       # 0.001%
         {'name': '装备重塑符', 'item_id': 'equip_reshape_talisman', 'weight': 1},# 0.001%
-        {'name': '秘药礼包', 'item_id': 'mi_yao_pack', 'weight': 5000},          # 5%
+        {'name': '秘药礼包', 'item_id': 'potion_package', 'weight': 5000},          # 5%
         {'name': '双倍经验卡', 'item_id': 'double_exp_card', 'weight': 5000},     # 5%
-        {'name': '神游果', 'item_id': 'shen_you_guo', 'weight': 2000},           # 2%
+        {'name': '神游果', 'item_id': 'shenyou_guo', 'weight': 2000},           # 2%
         {'name': '背包扩容卷', 'item_id': 'bag_expand', 'weight': 5000},          # 5%
-        {'name': '玫瑰花x2', 'item_id': 'rose', 'count': 2, 'weight': 5000},     # 5%
-        {'name': '小喇叭', 'item_id': 'small_horn', 'weight': 2000},             # 2%
+        {'name': '玫瑰花x2', 'item_id': 'flower_rose', 'count': 2, 'weight': 5000},     # 5%
+        {'name': '小喇叭', 'item_id': 'horn_small', 'weight': 2000},             # 2%
         {'name': '续命灯', 'item_id': 'potion_revive', 'weight': 5000},          # 5%
         {'name': '强化宝玉', 'item_id': 'enhance_gem', 'weight': 5000},           # 5%
         {'name': '宝匣钥匙', 'item_id': 'chest_key', 'weight': 2000},            # 2%
@@ -127,12 +127,12 @@ class ActivityService:
         {'name': '诸侯令30天', 'item_id': 'duke_token_30d', 'weight': 50},      # 0.05%
         {'name': '小银两包', 'item_id': 'money_small', 'weight': 100},           # 0.1%
         {'name': '大银两包', 'item_id': 'money_large', 'weight': 50},            # 0.05%
-        {'name': '玫瑰花种子', 'item_id': 'rose_seed', 'weight': 5000},          # 5%
+        {'name': '玫瑰花种子', 'item_id': 'seed_flower', 'weight': 5000},          # 5%
         {'name': '经验丹种子', 'item_id': 'exp_seed', 'weight': 2000},           # 2%
         {'name': '大经验丹种子', 'item_id': 'seed_big_exp', 'weight': 1000},     # 1%
         {'name': '催熟剂', 'item_id': 'ripening_agent', 'weight': 3000},         # 3%
-        {'name': '大血石', 'item_id': 'big_hp_stone', 'weight': 2000},           # 2%
-        {'name': '大魔石', 'item_id': 'big_mp_stone', 'weight': 2000},           # 2%
+        {'name': '大血石', 'item_id': 'blood_stone_large', 'weight': 2000},           # 2%
+        {'name': '大魔石', 'item_id': 'mana_stone_large', 'weight': 2000},           # 2%
         {'name': '活力卡', 'item_id': 'vitality_card', 'weight': 3000},          # 3%
         {'name': '聚魂幡碎片', 'item_id': 'soul_flag_shard', 'weight': 3000},    # 3%
         {'name': '副将招募令', 'item_id': 'lt_recruit', 'weight': 3000},          # 3%
@@ -657,7 +657,7 @@ class ActivityService:
         {'name': '装备重塑符', 'item_id': 'equip_reshape_talisman', 'cost': 300},
         {'name': '诸侯令30天', 'item_id': 'duke_token_30d', 'cost': 200},
         {'name': '大银两包', 'item_id': 'money_large', 'cost': 100},
-        {'name': '秘药礼包', 'item_id': 'mi_yao_pack', 'cost': 50},
+        {'name': '秘药礼包', 'item_id': 'potion_package', 'cost': 50},
         {'name': '双倍经验卡', 'item_id': 'double_exp_card', 'cost': 50},
         {'name': '副将扩技符', 'item_id': 'lt_skill_expand', 'cost': 80},
         {'name': '副将招募令', 'item_id': 'lt_recruit', 'cost': 30},

@@ -468,7 +468,7 @@ class LegionService:
         'other': {
             'name': '其他',
             'items': {
-                'bag_expand_scroll': {'name': '秘背包扩容卷', 'cost': 50, 'item_id': 'bag_expand_scroll'},
+                'bag_expand': {'name': '秘背包扩容卷', 'cost': 50, 'item_id': 'bag_expand'},
                 'battle_challenge_token': {'name': '战场请战符', 'cost': 100, 'item_id': 'battle_challenge_token'},
                 'battle_revive_lamp': {'name': '战场续命灯', 'cost': 150, 'item_id': 'battle_revive_lamp'},
             }
@@ -486,8 +486,8 @@ class LegionService:
         'assist': {
             'name': '辅助',
             'items': {
-                'small_blood_stone': {'name': '小血石', 'cost': 20, 'item_id': 'small_blood_stone'},
-                'small_mana_stone': {'name': '小魔石', 'cost': 20, 'item_id': 'small_mana_stone'},
+                'blood_stone_small': {'name': '小血石', 'cost': 20, 'item_id': 'blood_stone_small'},
+                'mana_stone_small': {'name': '小魔石', 'cost': 20, 'item_id': 'mana_stone_small'},
             }
         },
     }

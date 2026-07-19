@@ -108,6 +108,10 @@ class PlayerModel(db.Model, UserMixin):
     elite_kills_by_area_raw = db.Column(db.Text, default='{}')  # JSON: {area: kill_count} (kunlun/shennong/wokou)
     monster_kills_raw = db.Column(db.Text, default='{}')  # JSON: {monster_id: kill_count}
     divine_beast_kills = db.Column(db.Integer, default=0)  # 神兽累计击杀数
+    forge_count = db.Column(db.Integer, default=0)  # 累计打造装备次数
+    enhance_success_count = db.Column(db.Integer, default=0)  # 累计强化成功次数
+    enhance_fail_count = db.Column(db.Integer, default=0)  # 累计强化失败次数
+    enhance_50_count = db.Column(db.Integer, default=0)  # 累计强化到+50的装备件数
     tower_max_floor = db.Column(db.Integer, default=0)
     visited_locations_raw = db.Column('visited_locations', db.Text, default='[]')
 
