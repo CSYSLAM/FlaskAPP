@@ -110,6 +110,21 @@ Certain items have restricted usage contexts — they **cannot be used from the 
 - **聚魂幡**：80%三级/19%二级/1%一级，创建时品质0-9随机
 - **系统播报**：洗资质/悟性成功/强化成功时播报，失败不播
 
+## PK & Combat Loss (PK与战斗损失) System
+
+详见 `.claude/skills/pk_combat_design.md`，包含PK发起条件、荣誉/银两分档、减免、被怪死亡惩罚、复活、免战符、仇敌追杀等完整规则。
+
+关键要点速查：
+- **PK发起**：25级开启、同场景、场景`can_pk`(安全区=*前缀地图禁止)、对方未死/未免战、60秒内对同一目标最多3次
+- **荣誉分档**（胜级−败级）：败方更高+15 / 低10级内+10 / 低11-20级+5 / 低20级以上+0；**零和**(胜方得=败方扣，受败方余额上限)
+- **荣誉减免**（取高不叠加,向下取整）：VIP1-5少扣10-50%(`vip_config.pk_drop_reduction`)、死亡替身符少扣30%(仅当高于VIP才消耗)
+- **银两分档**：×败方等级(败方更高×10/低10级内×6/低11-20级×3/低20级以上×0)，零和
+- **PK战败**：不掉装备、不扣经验、副将掉忠诚、异国记仇敌、同国无任何损失；成就仅异国记录
+- **被怪击杀**：扣经验10%+银两(怪级×1)，**死亡时扣**、VIP(`non_pk_loss_exempt`)全免、荣誉不变
+- **复活**：续命灯满血无损/虚弱复活10%血蓝(不扣经验)/回城疗伤(300银两→虚弱复活+本城客栈)
+- **免战符**(`peace_token`)：背包使用→30分钟免疫被发起PK(`activity_data.pk_immunity_until`)
+- **战场**(`battlefield_service`)是独立系统(段位`TIER_HONOR`)，不适用以上规则
+
 ## Garden (百草园) System
 
 - Seeds defined in `services/villa_service.py` SEEDS dict (21 seed types)

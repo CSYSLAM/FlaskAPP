@@ -13,7 +13,7 @@ class AchievementService:
                        'enhance_50', 'forge', 'artifact_owned',
                        'visit', 'equip_full', 'gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
-                       'boss_kill', 'quest']:
+                       'boss_kill', 'quest', 'quest_done']:
             cls.check(player, ctype)
 
     @classmethod
@@ -102,6 +102,8 @@ class AchievementService:
             return cls._get_artifact_owned_progress(player, adef) >= val
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef) >= val
+        elif ctype == 'quest_done':
+            return cls._get_quest_done_progress(player, adef) >= val
         return False
 
     @classmethod
@@ -246,6 +248,8 @@ class AchievementService:
             return cls._get_artifact_owned_progress(player, adef)
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef)
+        elif ctype == 'quest_done':
+            return cls._get_quest_done_progress(player, adef)
         return 0
 
     @classmethod
@@ -380,6 +384,18 @@ class AchievementService:
             return 0
 
     @classmethod
+    def _get_quest_done_progress(cls, player, adef):
+        import json
+        try:
+            completed = json.loads(player.completed_quests) if player.completed_quests else []
+        except (json.JSONDecodeError, TypeError):
+            return 0
+        if not isinstance(completed, list):
+            return 0
+        targets = adef.get('condition_quests') or []
+        return 1 if any(qid in completed for qid in targets) else 0
+
+    @classmethod
     def _normalize_category(cls, adef):
         category = adef.get('category')
         if category in ALIGNED_CATEGORIES:
@@ -408,6 +424,6 @@ class AchievementService:
             return '活动'
         if condition_type in ('dungeon_clear', 'dungeon_tower'):
             return '副本'
-        if condition_type == 'quest':
+        if condition_type in ('quest', 'quest_done'):
             return '任务'
         return '其他'

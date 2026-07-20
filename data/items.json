@@ -3482,12 +3482,12 @@
   "peace_token": {
     "name": "免战符",
     "type": "other",
-    "description": "120分钟内未主动攻击他人可使用，使用后将进入300分免战状态，可叠加但无法提前结束；免战状态期间除特定活动外将无法攻击与被其他玩家攻击。",
+    "description": "在背包使用，使用后30分钟内其他玩家无法对你发起PK",
     "price": 0,
     "sell_price": 110,
     "is_usable": true,
     "usage_effect": {
-      "peace_status": 300
+      "special": "pk_truce"
     },
     "capacity": 0.1
   },
@@ -3536,10 +3536,7 @@
     "description": "记录昆仑山脉风物的珍贵图鉴，击败昆仑稀有精怪可获得",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_title": "prefix昆仑"
-    },
+    "is_usable": false,
     "capacity": 0.1
   },
   "shennong_illustration": {
@@ -3548,10 +3545,7 @@
     "description": "记录神农架风物的珍贵图鉴，击败神农稀有精怪可获得",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_title": "prefix神农"
-    },
+    "is_usable": false,
     "capacity": 0.1
   },
   "wokou_illustration": {
@@ -3560,10 +3554,7 @@
     "description": "记录倭寇岛风物的珍贵图鉴，击败倭寇稀有精怪可获得",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_title": "prefix倭寇"
-    },
+    "is_usable": false,
     "capacity": 0.1
   },
   "ice_tower_pass": {

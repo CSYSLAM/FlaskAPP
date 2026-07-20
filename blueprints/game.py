@@ -139,7 +139,8 @@ def scene():
         next_c1 = ChatMessage.query.filter(
             ChatMessage.message_type.in_(['public', 'system']),
             ChatMessage.id > last_c1_id,
-            ChatMessage.created_at >= cutoff
+            ChatMessage.created_at >= cutoff,
+            db.or_(ChatMessage.receiver_id == None, ChatMessage.receiver_id == player.id)
         ).order_by(ChatMessage.id.asc()).first()
         channel1_msg = next_c1
         if next_c1:
@@ -182,7 +183,16 @@ def scene():
             except (ValueError, TypeError):
                 pass
 
-        # Clear all shown notifications so they disappear on next refresh
+        # Save friend notifications to system message history, then clear all shown
+        if friend_notifications:
+            for n in friend_notifications:
+                msg = ChatMessage(
+                    sender_id=None,
+                    receiver_id=player.id,
+                    content=n.get('message', ''),
+                    message_type='system'
+                )
+                db.session.add(msg)
         if friend_notifications or filtered_notifications:
             player.notifications = []
             db.session.commit()

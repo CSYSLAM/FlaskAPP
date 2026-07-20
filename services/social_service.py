@@ -160,9 +160,16 @@ class SocialService:
         ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
 
     @classmethod
-    def get_system_messages(cls, limit=20):
+    def get_system_messages(cls, player_id=None, limit=20):
+        """Get system messages: global broadcasts + personal system messages for player_id."""
+        if player_id:
+            return ChatMessage.query.filter(
+                ChatMessage.message_type == 'system',
+                db.or_(ChatMessage.receiver_id == None, ChatMessage.receiver_id == player_id)
+            ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
         return ChatMessage.query.filter_by(
-            message_type='system'
+            message_type='system',
+            receiver_id=None
         ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
 
     @classmethod
@@ -685,7 +692,7 @@ class SocialService:
         })
         target.relation_requests = requests
 
-        cls.add_notification(target, f"{player.nickname}向你求婚！佩戴{ring_info or '婚戒'}")
+        cls.add_notification(target, f"{player.nickname}向你求婚！佩戴{ring_info or '婚戒'}", ntype='friend')
 
         db.session.commit()
         return True, f"已向{target.nickname}发送求婚"
@@ -744,7 +751,7 @@ class SocialService:
         else:
             PublicChat.broadcast(f"不羡鸳鸯不羡仙，{requester.nickname}与{player.nickname}佩戴{ring_info}，结为夫妻让我们祝福新人吧！")
 
-        cls.add_notification(requester, f"{player.nickname}同意了你的求婚！你们已结为夫妻")
+        cls.add_notification(requester, f"{player.nickname}同意了你的求婚！你们已结为夫妻", ntype='friend')
 
         db.session.commit()
         return True, f"已和{requester.nickname}结为夫妻"
@@ -767,7 +774,7 @@ class SocialService:
 
         requester = DataService.get_player_by_username(requester_username)
         if requester:
-            cls.add_notification(requester, f"{player.nickname}拒绝了你的求婚，你就是个大冤种，555~")
+            cls.add_notification(requester, f"{player.nickname}拒绝了你的求婚，你就是个大冤种，555~", ntype='friend')
 
         db.session.commit()
         return True, "已拒绝求婚"
@@ -835,16 +842,23 @@ class SocialService:
         return 0.0
 
     @classmethod
-    def notify_spouse_login(cls, player):
-        """Send private message to spouse on first login after being offline."""
+    def notify_relations_login(cls, player):
+        """Notify spouse/hongyan/zhiji on login via system notification."""
         spouse = cls.get_spouse(player)
-        if not spouse:
-            return
-        label = '夫君' if spouse.gender == '女' else '妻子'
-        cls.send_private_message(
-            player, spouse,
-            f"你的{label}{player.nickname}已经上线！"
-        )
+        if spouse:
+            label = '夫君' if spouse.gender == '女' else '妻子'
+            cls.add_notification(spouse, f"你的{label}{player.nickname}已经上线！", ntype='friend')
+
+        # Notify online hongyan/zhiji on login
+        rels = Relationship.get_relationships(player.id)
+        for rel in rels:
+            if rel.rel_type not in ('hongyan', 'zhiji'):
+                continue
+            other_id = rel.get_other_player_id(player.id)
+            other = PlayerModel.query.get(other_id)
+            if other:
+                label = '红颜' if rel.rel_type == 'hongyan' else '知己'
+                cls.add_notification(other, f"你的{label}{player.nickname}已经上线！", ntype='friend')
 
     # --- Helpers ---
 

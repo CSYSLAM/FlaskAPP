@@ -274,7 +274,7 @@ def chat():
     if tab == 'country':
         messages = SocialService.get_country_messages(player.country, 20)
     elif tab == 'system':
-        messages = SocialService.get_system_messages(20)
+        messages = SocialService.get_system_messages(player.id, 20)
     elif tab == 'private':
         messages = SocialService.get_private_messages(player.id, None, 20)
     else:

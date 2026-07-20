@@ -285,7 +285,7 @@ class VipService:
         if config.get('free_stage_teleport'):
             privileges.append("驿站免费传送")
         if config.get('pk_drop_reduction', 0) > 0:
-            privileges.append("PK战败掉落几率减半")
+            privileges.append(f"PK战败荣誉少扣{int(config.get('pk_drop_reduction', 0) * 100)}%")
         if config.get('non_pk_loss_exempt'):
             privileges.append("非PK战败损失免除")
         if config.get('title'):

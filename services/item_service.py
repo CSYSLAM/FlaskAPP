@@ -1,4 +1,5 @@
 import random
+import time
 from services import db
 from services.data_service import DataService
 from models.player import PlayerModel
@@ -50,6 +51,15 @@ class ItemService:
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
             db.session.commit()
             return True, "RENAME_CARD_USED"
+
+        # Special: pk_truce — 免战符，使用后30分钟内其他玩家无法对你发起PK
+        if usage_effect.get("special") == "pk_truce":
+            data = player.activity_data or {}
+            data['pk_immunity_until'] = time.time() + 1800
+            player.activity_data = data
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, "使用免战符，30分钟内其他玩家无法对你发起PK"
 
         # VIP items use their own service
         if item_data.get("type") == "vip":

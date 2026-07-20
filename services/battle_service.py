@@ -492,7 +492,10 @@ class BattleService:
         if player.health <= 0:
             player.health = 0
             player.in_battle = False
+            exp_loss, gold_loss = cls._apply_pve_death_penalty(player, monster)
             player.last_battle_result = "你被击败了..."
+            if exp_loss or gold_loss:
+                player.last_battle_result += f"（损失{exp_loss}经验、{gold_loss}银两）"
             player.current_encounter = None
             player.need_revive = True
             if lt and lt.is_alive:
@@ -598,7 +601,10 @@ class BattleService:
             if player.health <= 0:
                 player.health = 0
                 player.in_battle = False
+                exp_loss, gold_loss = cls._apply_pve_death_penalty(player, monster)
                 player.last_battle_result = "你被击败了..."
+                if exp_loss or gold_loss:
+                    player.last_battle_result += f"（损失{exp_loss}经验、{gold_loss}银两）"
                 player.current_encounter = None
                 player.need_revive = True
                 db.session.commit()
@@ -676,7 +682,10 @@ class BattleService:
         if player.health <= 0:
             player.health = 0
             player.in_battle = False
+            exp_loss, gold_loss = cls._apply_pve_death_penalty(player, monster)
             player.last_battle_result = "你被击败了..."
+            if exp_loss or gold_loss:
+                player.last_battle_result += f"（损失{exp_loss}经验、{gold_loss}银两）"
             player.current_encounter = None
             player.need_revive = True
             # Lieutenant loses loyalty/lifespan when owner dies
@@ -876,7 +885,10 @@ class BattleService:
         if player.health <= 0:
             player.health = 0
             player.in_battle = False
+            exp_loss, gold_loss = cls._apply_pve_death_penalty(player, monster)
             player.last_battle_result = "你被击败了..."
+            if exp_loss or gold_loss:
+                player.last_battle_result += f"（损失{exp_loss}经验、{gold_loss}银两）"
             player.current_encounter = None
             player.need_revive = True
             if lt and lt.is_alive:
@@ -989,7 +1001,10 @@ class BattleService:
         if player.health <= 0:
             player.health = 0
             player.in_battle = False
+            exp_loss, gold_loss = cls._apply_pve_death_penalty(player, monster)
             player.last_battle_result = "你被击败了..."
+            if exp_loss or gold_loss:
+                player.last_battle_result += f"（损失{exp_loss}经验、{gold_loss}银两）"
             player.current_encounter = None
             player.need_revive = True
             if lt and lt.is_alive:
@@ -1251,7 +1266,10 @@ class BattleService:
             if player.health <= 0:
                 player.health = 0
                 player.in_battle = False
+                exp_loss, gold_loss = cls._apply_pve_death_penalty(player, monster)
                 player.last_battle_result = "逃跑失败，被击败了"
+                if exp_loss or gold_loss:
+                    player.last_battle_result += f"（损失{exp_loss}经验、{gold_loss}银两）"
                 player.current_encounter = None
                 player.need_revive = True
                 db.session.commit()
@@ -1259,12 +1277,38 @@ class BattleService:
             db.session.commit()
             return False, "逃跑失败"
 
+    # 60秒内对同一目标最多发起PK的次数
+    PK_ATTEMPT_LIMIT = 3
+
     @classmethod
     def start_pk(cls, player, target):
         if player.in_battle or player.in_pk:
             return False, "你已在战斗中"
         if target.in_battle or target.in_pk:
             return False, "对方已在战斗中"
+        if player.level < 25:
+            return False, "25级后开启PK"
+        if player.current_location != target.current_location:
+            return False, "需要同一场景才能PK"
+        loc = DataService.get_locations().get(player.current_location)
+        if not (loc and loc.get('can_pk')):
+            return False, "安全区禁止PK"
+        if target.need_revive or target.health <= 0:
+            return False, "对方已死亡，无法PK"
+        # 免战符免疫：对方使用免战符后30分钟内无法被发起PK
+        if (target.activity_data or {}).get('pk_immunity_until', 0) > time.time():
+            return False, "对方处于免战状态"
+        # 频率限制：60秒内对同一目标最多发起 PK_ATTEMPT_LIMIT 次
+        now = time.time()
+        pdata = player.activity_data or {}
+        attempts = pdata.get('pk_attempts', {})
+        recent = [t for t in attempts.get(target.username, []) if now - t < 60]
+        if len(recent) >= cls.PK_ATTEMPT_LIMIT:
+            return False, "PK发起过于频繁，请稍后再试"
+        recent.append(now)
+        attempts[target.username] = recent
+        pdata['pk_attempts'] = attempts
+        player.activity_data = pdata
 
         player.in_pk = True
         player.pk_opponent = target.username
@@ -1422,58 +1466,98 @@ class BattleService:
         db.session.commit()
         return None, None
 
+    # ==================== PK 奖惩规则 ====================
+
+    @classmethod
+    def _pk_honor_tier(cls, attacker_level, defender_level):
+        """PK击杀胜方获得的荣誉档位（等级差 = 胜方 - 败方）。"""
+        diff = attacker_level - defender_level
+        if diff < 0:
+            return 15   # 战胜等级更高的对手
+        if diff <= 10:
+            return 10   # 战胜低10级以内
+        if diff < 20:
+            return 5    # 战胜低11-20级
+        return 0        # 战胜低20级以上
+
+    @classmethod
+    def _pk_silver_tier(cls, attacker_level, defender_level):
+        """PK击杀胜方获得银两的系数（×败方等级，等级差 = 胜方 - 败方）。"""
+        diff = attacker_level - defender_level
+        if diff < 0:
+            return 10   # 战胜等级更高的对手
+        if diff <= 10:
+            return 6    # 战胜低10级以内
+        if diff < 20:
+            return 3    # 战胜低11-20级
+        return 0        # 战胜低20级以上
+
+    @classmethod
+    def _pk_honor_reduction(cls, defender):
+        """PK败方荣誉减免率（取高不叠加）：VIP减免 与 死亡替身符30% 取较大者。
+        仅当替身符减免高于VIP时消耗1张死亡替身符。返回 (减免率, 来源'vip'/'talisman'/None)。"""
+        from services.vip_service import VipService
+        vip_red = VipService.get_pk_drop_reduction(defender) or 0
+        token = DataService.get_inventory_item(defender.id, 'death_substitute')
+        if token and token.quantity > 0 and 0.30 > vip_red:
+            DataService.remove_item_from_inventory(defender.id, 'death_substitute', 1)
+            return 0.30, 'talisman'
+        if vip_red > 0:
+            return vip_red, 'vip'
+        return 0, None
+
+    @classmethod
+    def _apply_pve_death_penalty(cls, player, monster):
+        """被怪击杀惩罚：经验-10%、银两-(怪物等级×1)、荣誉不变；VIP(非PK损失免除)全免。
+        返回 (exp_loss, gold_loss)。"""
+        from services.vip_service import VipService
+        if VipService.is_non_pk_loss_exempt(player):
+            return 0, 0
+        exp_loss = int((player.experience or 0) * 0.1)
+        gold_loss = min(player.gold or 0, (monster.level if monster else 0) * 1)
+        if exp_loss:
+            player.experience = (player.experience or 0) - exp_loss
+        if gold_loss:
+            player.gold = (player.gold or 0) - gold_loss
+        return exp_loss, gold_loss
+
     @classmethod
     def _handle_pk_defeat(cls, attacker, defender):
-        """Handle PK defeat: drops, enemy list, revive state."""
+        """PK战败结算：同国无任何损失（仅生命变化）；异国零和转移荣誉/银两。"""
         same_country = attacker.country == defender.country
 
-        # Attacker gains honor, defender loses (only if different country)
         honor_gained = 0
-        if not same_country and defender.honor > 0:
-            honor_gained = min(10, defender.honor)
-            attacker.honor += honor_gained
-            defender.honor = max(0, defender.honor - random.randint(3, 8))
+        silver_gained = 0
+        honor_protected = None
+        if not same_country:
+            # 荣誉：分档 + 减免（取高不叠加），零和、受败方余额上限，向下取整
+            tier = cls._pk_honor_tier(attacker.level, defender.level)
+            if tier > 0 and defender.honor > 0:
+                reduction, honor_protected = cls._pk_honor_reduction(defender)
+                loss = int(tier * (1 - reduction))
+                honor_gained = min(loss, defender.honor)
+                if honor_gained > 0:
+                    attacker.honor += honor_gained
+                    defender.honor -= honor_gained
+            # 银两：分档（×败方等级），零和、受败方余额上限
+            coeff = cls._pk_silver_tier(attacker.level, defender.level)
+            if coeff > 0 and defender.gold > 0:
+                silver_gained = min(defender.level * coeff, defender.gold)
+                if silver_gained > 0:
+                    attacker.gold += silver_gained
+                    defender.gold -= silver_gained
 
         attacker.pk_win_count = (attacker.pk_win_count or 0) + 1
         PlayerService.update_military_rank(attacker)
         PlayerService.update_military_rank(defender)
 
-        # Calculate drops
-        drop_gold = random.randint(defender.level * 10, defender.level * 50)
-        drop_gold = min(drop_gold, defender.gold)
+        # 败方出战副将掉忠诚（随主死亡）
+        from services.lieutenant_service import LieutenantService
+        defender_lt = cls._get_deployed_lt(defender)
+        if defender_lt and defender_lt.is_alive:
+            LieutenantService.handle_death(defender_lt, owner_died=True)
 
-        drop_honor = 0
-        if not same_country:
-            drop_honor = random.randint(1, 5)
-            drop_honor = min(drop_honor, defender.honor)
-
-        # Find non-bound equipment to drop
-        drop_equipment = None
-        from models.player import InventoryItem
-        equip_items = InventoryItem.query.filter_by(
-            player_id=defender.id, is_bound=False).all()
-        equip_items = [e for e in equip_items if e.equipment_instance_id]
-        if equip_items and random.random() < 0.3:  # 30% chance to drop equipment
-            drop_item = random.choice(equip_items)
-            from models.player import EquipmentInstance
-            drop_equipment = EquipmentInstance.query.get(drop_item.equipment_instance_id)
-
-        # Apply drops
-        drop_msg = ""
-        if drop_gold > 0:
-            defender.gold -= drop_gold
-            attacker.gold += drop_gold
-            drop_msg += f"{drop_gold}银两 "
-        if drop_honor > 0:
-            defender.honor -= drop_honor
-            attacker.honor += drop_honor
-            drop_msg += f"{drop_honor}荣誉 "
-        if drop_equipment:
-            DataService.remove_item_from_inventory(defender.id, drop_equipment.instance_id, 1, is_bound=False)
-            DataService.add_item_to_inventory(attacker.id, drop_equipment.instance_id)
-            drop_msg += f"{drop_equipment.name} "
-
-        # Add to enemy list (only if different country)
+        # 记仇敌（仅异国）
         if not same_country:
             defender.add_enemy(attacker.username)
 
@@ -1481,23 +1565,42 @@ class BattleService:
         defender.need_revive = True
         defender.killed_by = attacker.username
 
-        # Set attacker's last battle result
+        # 胜方结算消息
         result_msg = f"你击杀了{defender.nickname}！"
+        gains = []
         if honor_gained > 0:
-            result_msg += f"获得{honor_gained}荣誉"
-        if drop_msg:
-            result_msg += f"，掉落:{drop_msg}"
+            gains.append(f"{honor_gained}荣誉")
+        if silver_gained > 0:
+            gains.append(f"{silver_gained}银两")
+        if gains:
+            result_msg += "获得" + "、".join(gains)
         attacker.last_battle_result = result_msg
 
-        defender.last_battle_result = f"你被{attacker.nickname}击杀了！"
+        # 败方结算消息
+        defender_msg = f"你被{attacker.nickname}击杀了！"
+        if not same_country:
+            losses = []
+            if honor_gained > 0:
+                losses.append(f"{honor_gained}荣誉")
+            if silver_gained > 0:
+                losses.append(f"{silver_gained}银两")
+            if losses:
+                defender_msg += "损失" + "、".join(losses)
+                if honor_protected == 'vip':
+                    defender_msg += "（VIP特权生效，荣誉少扣）"
+                elif honor_protected == 'talisman':
+                    defender_msg += "（死亡替身符生效，荣誉少扣）"
+        defender.last_battle_result = defender_msg
 
         cls._end_pk(attacker, defender)
         db.session.commit()
 
+        # 成就：同国不记录
         from services.achievement_service import AchievementService
-        AchievementService.check(attacker, 'pk_win', attacker.pk_win_count)
         defender.pk_loss_count = (defender.pk_loss_count or 0) + 1
-        AchievementService.check(defender, 'pk_loss', defender.pk_loss_count)
+        if not same_country:
+            AchievementService.check(attacker, 'pk_win', attacker.pk_win_count)
+            AchievementService.check(defender, 'pk_loss', defender.pk_loss_count)
 
         return attacker.last_battle_result
 

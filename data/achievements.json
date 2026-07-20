@@ -921,60 +921,6 @@
         "defense": 300
       }
     },
-    "visit_5": {
-      "name": "初探四方",
-      "category": "其他",
-      "description": "探索5个场景",
-      "condition_type": "visit",
-      "condition_value": 5,
-      "reward": {
-        "dodge_rate": 0.02
-      }
-    },
-    "visit_15": {
-      "name": "行走江湖",
-      "category": "其他",
-      "description": "探索15个场景",
-      "condition_type": "visit",
-      "condition_value": 15,
-      "reward": {
-        "dodge_rate": 0.04
-      }
-    },
-    "visit_30": {
-      "name": "踏遍天下",
-      "category": "其他",
-      "description": "探索30个场景",
-      "condition_type": "visit",
-      "condition_value": 30,
-      "reward": {
-        "dodge_rate": 0.06
-      }
-    },
-    "quest_10": {
-      "name": "初涉任务",
-      "category": "任务",
-      "description": "完成10个任务",
-      "condition_type": "quest",
-      "condition_value": 10,
-      "points": 10,
-      "reward": {
-        "max_health": 20,
-        "max_mana": 10
-      }
-    },
-    "quest_50": {
-      "name": "任务达人",
-      "category": "任务",
-      "description": "完成50个任务",
-      "condition_type": "quest",
-      "condition_value": 50,
-      "points": 30,
-      "reward": {
-        "max_health": 50,
-        "max_mana": 30
-      }
-    },
     "quest_100": {
       "name": "任务大师",
       "category": "任务",
@@ -1000,6 +946,73 @@
         "max_mana": 100,
         "attack": 20,
         "defense": 20
+      }
+    },
+    "main_quest_30": {
+      "name": "主·面见主公",
+      "category": "任务",
+      "description": "完成30级主线任务：面见本国主公（曹公/孙权/皇叔）",
+      "condition_type": "quest_done",
+      "condition_value": 1,
+      "condition_quests": [
+        "main_wei_52",
+        "main_wu_52",
+        "main_shu_52"
+      ],
+      "points": 20,
+      "reward": {
+        "max_health": 100,
+        "max_mana": 50
+      }
+    },
+    "main_quest_40": {
+      "name": "主·夜巷妖影",
+      "category": "任务",
+      "description": "完成40级主线任务：主·夜巷妖影",
+      "condition_type": "quest_done",
+      "condition_value": 1,
+      "condition_quests": [
+        "main_all_40b"
+      ],
+      "points": 30,
+      "reward": {
+        "max_health": 150,
+        "max_mana": 80,
+        "attack": 10
+      }
+    },
+    "main_quest_50": {
+      "name": "主·江陵余烬",
+      "category": "任务",
+      "description": "完成50级主线任务：主·江陵余烬",
+      "condition_type": "quest_done",
+      "condition_value": 1,
+      "condition_quests": [
+        "main_all_50b"
+      ],
+      "points": 50,
+      "reward": {
+        "max_health": 250,
+        "max_mana": 120,
+        "attack": 20,
+        "defense": 15
+      }
+    },
+    "main_quest_60": {
+      "name": "主·烽火终章",
+      "category": "任务",
+      "description": "完成60级主线任务：主·烽火终章（主线终章）",
+      "condition_type": "quest_done",
+      "condition_value": 1,
+      "condition_quests": [
+        "main_all_60b"
+      ],
+      "points": 80,
+      "reward": {
+        "max_health": 400,
+        "max_mana": 200,
+        "attack": 35,
+        "defense": 30
       }
     },
     "gift_1": {
@@ -1117,26 +1130,6 @@
       "points": 80,
       "reward": {
         "attack": 9
-      }
-    },
-    "title_newbie": {
-      "name": "迷茫新手",
-      "category": "其他",
-      "description": "达到5级",
-      "condition_type": "level",
-      "condition_value": 5,
-      "reward": {
-        "title": "prefix迷茫"
-      }
-    },
-    "title_suffix_newbie": {
-      "name": "小白成长",
-      "category": "其他",
-      "description": "达到5级",
-      "condition_type": "level",
-      "condition_value": 5,
-      "reward": {
-        "title": "suffix小白"
       }
     },
     "vip1": {

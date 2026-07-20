@@ -84,7 +84,7 @@ a:link { color: #136ec2; text-decoration: none; }
 </div>
 {% endif %}
 {% for n in friend_notifications %}
-<font color="red">！</font>{{ n.message|safe }}<br/>
+【系统】{{ n.message|safe }}<br/>
 {% endfor %}
 {% if channel2 or notifications %}
 {% for msg in channel2 %}
