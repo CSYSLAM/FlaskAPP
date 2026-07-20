@@ -30,7 +30,7 @@
     <a href="{{ url_for('social.blacklist') }}">黑名单</a>
     <a href="{{ url_for('social.enemies') }}">仇人</a><br/>
     知己列表({{ rel_list|length }}/{{ max_relations }})<br/>
-    每位在线知己+20点攻击<br/>
+    每对知己+1%生命/魔法/攻击/防御<br/>
     ----------------<br/>
 
     {% for rel in rel_list %}
@@ -46,9 +46,15 @@
     {% if pending_requests %}
     【待处理的结交邀请】<br/>
     {% for req in pending_requests %}
+    {% if req.type == 'marriage' %}
+    {{ req.from_name }}佩戴{{ req.ring_info }}向你求婚
+    <a href="{{ url_for('social.accept_marriage', username=req.from) }}">同意</a>
+    <a href="{{ url_for('social.reject_marriage', username=req.from) }}">拒绝</a><br/>
+    {% else %}
     {{ req.from_name }}想和你结为知己
     <a href="{{ url_for('social.accept_relation', username=req.from) }}">同意</a>
     <a href="{{ url_for('social.reject_relation', username=req.from) }}">拒绝</a><br/>
+    {% endif %}
     {% endfor %}
     <br/>
     {% endif %}

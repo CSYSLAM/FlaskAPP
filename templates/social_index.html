@@ -34,13 +34,15 @@
     ----------------<br/>
 
     {% set pending_count = player.relation_requests|length %}
+    {% set marriage_pending = player.relation_requests|selectattr('type', 'equalto', 'marriage')|list|length %}
     {% if pending_count > 0 %}
-    <font color="red">你有{{ pending_count }}条待处理的结交邀请</font><br/>
+    <font color="red">你有{{ pending_count }}条待处理的邀请{% if marriage_pending > 0 %}（含{{ marriage_pending }}条求婚）{% endif %}</font><br/>
     {% endif %}
 
     <a href="{{ url_for('social.friends') }}">好友</a>
     <a href="{{ url_for('social.hongyan') }}">红颜</a>
     <a href="{{ url_for('social.zhiji') }}">知己</a>
+    <a href="{{ url_for('player.marriage') }}">婚姻</a>
     <a href="{{ url_for('social.blacklist') }}">黑名单</a>
     <a href="{{ url_for('social.enemies') }}">仇人</a><br/>
     <br/>

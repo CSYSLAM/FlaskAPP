@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>荣誉军衔测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        label { display: inline-block; min-width: 100px; }
+        .result { border: 1px solid #ddd; padding: 8px; margin: 8px 0; background: #f9f9f9; }
+        .rank-name { font-size: 20px; font-weight: bold; color: #c00; }
+        .avatar-box { text-align: center; margin: 8px 0; }
+        .avatar-box img { border: 2px solid #8b4513; }
+        table.rank-table { border-collapse: collapse; margin: 6px 0; font-size: 14px; }
+        table.rank-table th, table.rank-table td { border: 1px solid #ccc; padding: 3px 6px; text-align: center; }
+        table.rank-table th { background: #eee; }
+        tr.current-rank { background: #ffe6e6; font-weight: bold; }
+        tr.unreachable { color: #999; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>荣誉军衔测试</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/><br/>
+
+    <form method="post">
+        <b>角色配置</b><br/>
+        <label>职业</label>
+        <select name="player_class">
+            {% for c in classes %}<option value="{{ c }}" {% if form.player_class==c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+        </select><br/>
+        <label>性别</label>
+        <select name="gender">
+            <option value="男" {% if form.gender=='男' %}selected{% endif %}>男</option>
+            <option value="女" {% if form.gender=='女' %}selected{% endif %}>女</option>
+        </select><br/>
+        <label>等级</label><input type="number" name="level" value="{{ form.level }}" min="1" max="60"><br/>
+        <label>荣誉</label><input type="number" name="honor" value="{{ form.honor }}" min="0"><br/>
+        <br/>
+        <button type="submit">查询军衔</button>
+    </form>
+
+    {% if results %}
+    <div class="result">
+        <b>查询结果</b><br/>
+        职业:{{ form.player_class }} | 性别:{{ form.gender }} | 等级:{{ form.level }} | 荣誉:{{ form.honor }}<br/><br/>
+
+        <span class="rank-name">{{ results.rank_name }}</span>
+        <span style="color:#666;">(攻击+{{ results.rank_attack }})</span><br/>
+
+        <div class="avatar-box">
+            <img src="{{ url_for('static', filename=results.avatar_path) }}" width="56" height="64"/><br/>
+            <span style="font-size:12px;color:#888;">{{ results.avatar_path }}</span>
+        </div>
+
+        {% if results.next_rank %}
+        <span style="color:#666;">下一军衔: <b>{{ results.next_rank.name }}</b>
+        {% if results.next_rank.level_gap > 0 %}(需等级{{ results.next_rank.level }}{% if results.next_rank.level_gap > 0 %}, 差{{ results.next_rank.level_gap }}级{% endif %}){% endif %}
+        {% if results.next_rank.honor_gap > 0 %}(需荣誉{{ results.next_rank.honor }}{% if results.next_rank.honor_gap > 0 %}, 差{{ results.next_rank.honor_gap }}{% endif %}){% endif %}
+        </span><br/>
+        {% else %}
+        <span style="color:#c00;">已达最高军衔！</span><br/>
+        {% endif %}
+    </div>
+
+    <b>军衔一览</b>
+    <table class="rank-table">
+        <tr><th>军衔</th><th>等级</th><th>荣誉</th><th>攻击加成</th><th>状态</th></tr>
+        {% for r in results.all_ranks %}
+        <tr class="{% if r.is_current %}current-rank{% elif not r.reachable %}unreachable{% endif %}">
+            <td>{{ r.name }}</td>
+            <td>{{ r.level }}</td>
+            <td>{{ r.honor }}</td>
+            <td>+{{ r.attack }}</td>
+            <td>{% if r.is_current %}✓ 当前{% elif r.reachable %}可达{% else %}未达{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+</body>
+</html>

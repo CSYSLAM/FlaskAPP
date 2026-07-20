@@ -4,7 +4,7 @@ import json
 import os
 from services import db
 from services.data_service import DataService
-from models.lieutenant import Lieutenant, QUALITY_NAMES, QUALITY_MULTIPLIER, CLASS_NAMES, GENDER_NAMES, TIER_NAMES, TIER_FRAGMENTS
+from models.lieutenant import Lieutenant, QUALITY_NAMES, CLASS_NAMES, GENDER_NAMES, TIER_NAMES, TIER_FRAGMENTS
 
 
 # 副将技能定义持久化文件：工作台修改技能倍率/魔法消耗时写入此文件，启动时加载覆盖默认值
@@ -25,48 +25,64 @@ NORMAL_LIEUTENANT_NAMES = {
 # Tier-based lieutenant data: {tier: {pinyin_id: {'name': '中文名', 'gender': 'male'/'female', 'class_type': 'warrior'/'mage'/'assassin'}}}
 LIEUTENANT_DATA = {
     1: {
-        'dianwei': {'name': '典韦', 'gender': 'male', 'class_type': 'warrior'},
-        'huangzhong': {'name': '黄忠', 'gender': 'male', 'class_type': 'assassin'},
-        'pangtong': {'name': '庞统', 'gender': 'male', 'class_type': 'mage'},
-        'xunyu': {'name': '荀彧', 'gender': 'male', 'class_type': 'mage'},
-        'zhouyu': {'name': '周瑜', 'gender': 'male', 'class_type': 'mage'},
-        'diaochan': {'name': '貂蝉', 'gender': 'female', 'class_type': 'assassin'},
-        'guojia': {'name': '郭嘉', 'gender': 'male', 'class_type': 'mage'},
-        'machao': {'name': '马超', 'gender': 'male', 'class_type': 'assassin'},
-        'liru': {'name': '李儒', 'gender': 'male', 'class_type': 'mage'},
-        'xuchu': {'name': '许褚', 'gender': 'male', 'class_type': 'warrior'},
-        'dengai': {'name': '邓艾', 'gender': 'male', 'class_type': 'assassin'},
-        'taishici': {'name': '太史慈', 'gender': 'male', 'class_type': 'assassin'},
+        'taishici': {'name': '太史慈', 'gender': 'male', 'class_type': 'mage',
+                     'base_max_health': 105, 'base_max_mana': 112, 'base_attack': 22, 'base_defense': 57,
+                     'base_crit_rate': 0.00128, 'base_dodge_rate': 0.00090},
+        'xuchu': {'name': '许褚', 'gender': 'male', 'class_type': 'warrior',
+                  'base_max_health': 126, 'base_max_mana': 37, 'base_attack': 19, 'base_defense': 71,
+                  'base_crit_rate': 0.00124, 'base_dodge_rate': 0.00086},
+        'zhouyu': {'name': '周瑜', 'gender': 'male', 'class_type': 'assassin',
+                   'base_max_health': 117, 'base_max_mana': 60, 'base_attack': 21, 'base_defense': 62,
+                   'base_crit_rate': 0.00160, 'base_dodge_rate': 0.00112},
     },
     2: {
-        'xiaoqiao': {'name': '小乔', 'gender': 'female', 'class_type': 'mage'},
-        'zhugejin': {'name': '诸葛瑾', 'gender': 'male', 'class_type': 'mage'},
-        'sunliang': {'name': '孙亮', 'gender': 'male', 'class_type': 'warrior'},
-        'liufeng': {'name': '刘封', 'gender': 'male', 'class_type': 'warrior'},
-        'jiangwan': {'name': '蒋琬', 'gender': 'male', 'class_type': 'mage'},
-        'manchong': {'name': '满宠', 'gender': 'male', 'class_type': 'mage'},
-        'daqiao': {'name': '大乔', 'gender': 'female', 'class_type': 'mage'},
-        'guanping': {'name': '关平', 'gender': 'male', 'class_type': 'warrior'},
-        'caozhen': {'name': '曹真', 'gender': 'male', 'class_type': 'warrior'},
-        'pangde': {'name': '庞德', 'gender': 'male', 'class_type': 'warrior'},
-        'caiwenji': {'name': '蔡文姬', 'gender': 'female', 'class_type': 'mage'},
-        'mayunlu': {'name': '马云禄', 'gender': 'female', 'class_type': 'warrior'},
-        'dengzhong': {'name': '邓忠', 'gender': 'male', 'class_type': 'warrior'},
+        'guanping': {'name': '关平', 'gender': 'male', 'class_type': 'mage',
+                     'base_max_health': 78, 'base_max_mana': 150, 'base_attack': 17, 'base_defense': 42,
+                     'base_crit_rate': 0.00110, 'base_dodge_rate': 0.00085},
+        'caozhen': {'name': '曹真', 'gender': 'male', 'class_type': 'warrior',
+                    'base_max_health': 94, 'base_max_mana': 50, 'base_attack': 14, 'base_defense': 53,
+                    'base_crit_rate': 0.00110, 'base_dodge_rate': 0.00085},
+        'xiaoqiao': {'name': '小乔', 'gender': 'female', 'class_type': 'assassin',
+                     'base_max_health': 87, 'base_max_mana': 80, 'base_attack': 16, 'base_defense': 46,
+                     'base_crit_rate': 0.00135, 'base_dodge_rate': 0.00105},
+        'daqiao': {'name': '大乔', 'gender': 'female', 'class_type': 'mage',
+                   'base_max_health': 78, 'base_max_mana': 150, 'base_attack': 17, 'base_defense': 42,
+                   'base_crit_rate': 0.00110, 'base_dodge_rate': 0.00085},
+        'pangde': {'name': '庞德', 'gender': 'male', 'class_type': 'warrior',
+                   'base_max_health': 94, 'base_max_mana': 50, 'base_attack': 14, 'base_defense': 53,
+                   'base_crit_rate': 0.00110, 'base_dodge_rate': 0.00085},
+        'liufeng': {'name': '刘封', 'gender': 'male', 'class_type': 'assassin',
+                    'base_max_health': 87, 'base_max_mana': 80, 'base_attack': 16, 'base_defense': 48,
+                    'base_crit_rate': 0.00135, 'base_dodge_rate': 0.00105},
     },
     3: {
-        'adou': {'name': '阿斗', 'gender': 'male', 'class_type': 'warrior'},
-        'liaohua': {'name': '廖化', 'gender': 'male', 'class_type': 'warrior'},
-        'lvkuang': {'name': '吕旷', 'gender': 'male', 'class_type': 'warrior'},
-        'zhaoguang': {'name': '赵广', 'gender': 'male', 'class_type': 'assassin'},
-        'xuyou': {'name': '许攸', 'gender': 'male', 'class_type': 'mage'},
-        'wuguotai': {'name': '吴国太', 'gender': 'female', 'class_type': 'mage'},
-        'zhenji': {'name': '甄姬', 'gender': 'female', 'class_type': 'mage'},
-        'zhangxiu': {'name': '张绣', 'gender': 'male', 'class_type': 'warrior'},
-        'wangmeiren': {'name': '王美人', 'gender': 'female', 'class_type': 'mage'},
-        'yuejin': {'name': '乐进', 'gender': 'male', 'class_type': 'warrior'},
-        'matie': {'name': '马铁', 'gender': 'male', 'class_type': 'warrior'},
-        'xiahouba': {'name': '夏侯霸', 'gender': 'male', 'class_type': 'warrior'},
-        'dongbai': {'name': '董白', 'gender': 'female', 'class_type': 'assassin'},
+        'adou': {'name': '阿斗', 'gender': 'male', 'class_type': 'mage',
+                 'base_max_health': 39, 'base_max_mana': 150, 'base_attack': 9, 'base_defense': 21,
+                 'base_crit_rate': 0.00070, 'base_dodge_rate': 0.00055},
+        'liaohua': {'name': '廖化', 'gender': 'male', 'class_type': 'warrior',
+                    'base_max_health': 47, 'base_max_mana': 50, 'base_attack': 7, 'base_defense': 26,
+                    'base_crit_rate': 0.00075, 'base_dodge_rate': 0.00060},
+        'xiahouba': {'name': '夏侯霸', 'gender': 'male', 'class_type': 'assassin',
+                     'base_max_health': 43, 'base_max_mana': 80, 'base_attack': 8, 'base_defense': 23,
+                     'base_crit_rate': 0.00090, 'base_dodge_rate': 0.00072},
+        'zhaoguang': {'name': '赵广', 'gender': 'male', 'class_type': 'warrior',
+                      'base_max_health': 39, 'base_max_mana': 50, 'base_attack': 9, 'base_defense': 21,
+                      'base_crit_rate': 0.00070, 'base_dodge_rate': 0.00055},
+        'wuguotai': {'name': '吴国太', 'gender': 'female', 'class_type': 'warrior',
+                     'base_max_health': 47, 'base_max_mana': 50, 'base_attack': 7, 'base_defense': 26,
+                     'base_crit_rate': 0.00075, 'base_dodge_rate': 0.00060},
+        'zhenji': {'name': '甄姬', 'gender': 'female', 'class_type': 'assassin',
+                   'base_max_health': 43, 'base_max_mana': 80, 'base_attack': 8, 'base_defense': 23,
+                   'base_crit_rate': 0.00090, 'base_dodge_rate': 0.00072},
+        'wangmeiren': {'name': '王美人', 'gender': 'female', 'class_type': 'mage',
+                       'base_max_health': 39, 'base_max_mana': 150, 'base_attack': 9, 'base_defense': 21,
+                       'base_crit_rate': 0.00070, 'base_dodge_rate': 0.00055},
+        'xuyou': {'name': '许攸', 'gender': 'male', 'class_type': 'warrior',
+                  'base_max_health': 47, 'base_max_mana': 50, 'base_attack': 7, 'base_defense': 26,
+                  'base_crit_rate': 0.00075, 'base_dodge_rate': 0.00060},
+        'yuejin': {'name': '乐进', 'gender': 'male', 'class_type': 'assassin',
+                   'base_max_health': 43, 'base_max_mana': 80, 'base_attack': 8, 'base_defense': 23,
+                   'base_crit_rate': 0.00090, 'base_dodge_rate': 0.00072},
     },
 }
 
@@ -446,7 +462,7 @@ class LieutenantService:
             name=lt_info['name'],
             gender=lt_info['gender'],
             class_type=lt_info['class_type'],
-            quality=0,
+            quality=random.randint(0, 9),  # 普通档0-9随机
             enlightenment=0,
             reinforce=0,
             loyalty=80,
@@ -457,6 +473,13 @@ class LieutenantService:
             skills_raw='[]',
             skill_slots=3,
             tier=tier,
+            # 从LIEUTENANT_DATA取基础属性(自定义值优先于CLASS_BASE_STATS)
+            base_max_health=lt_info.get('base_max_health'),
+            base_max_mana=lt_info.get('base_max_mana'),
+            base_attack=lt_info.get('base_attack'),
+            base_defense=lt_info.get('base_defense'),
+            base_crit_rate=lt_info.get('base_crit_rate'),
+            base_dodge_rate=lt_info.get('base_dodge_rate'),
         )
         lt.current_health = lt.get_max_health()
         lt.current_mana = lt.get_max_mana()
@@ -491,7 +514,11 @@ class LieutenantService:
         DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_aptitude', 1)
 
         old_quality = lieutenant.quality
-        new_quality = random.randint(0, 20)
+        # 洗资质：完美(20)概率1%，其余0-19均匀分配99%
+        if random.random() < 0.01:
+            new_quality = 20
+        else:
+            new_quality = random.randint(0, 19)
         lieutenant.quality = new_quality
 
         max_hp = lieutenant.get_max_health()
@@ -500,6 +527,11 @@ class LieutenantService:
         lieutenant.current_mana = min(lieutenant.current_mana, max_mp)
 
         db.session.commit()
+        # 洗资质播报
+        from models.player import PlayerModel
+        owner = PlayerModel.query.get(lieutenant.owner_id)
+        if owner:
+            DataService.broadcast_system(f"{owner.nickname}给副将【{lieutenant.name}】洗资质成功，变为{lieutenant.quality_name}，恭喜恭喜！")
         return True, f"资质从{QUALITY_NAMES.get(old_quality, '普通')}变为{lieutenant.quality_name}"
 
     @classmethod
@@ -513,7 +545,11 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_wuxing', 1)
 
-        success_rate = max(0.3, 1.0 - lieutenant.enlightenment * 0.07)
+        # 悟性提升概率：每次6%，最后两次(8→9、9→10)为3%
+        if lieutenant.enlightenment >= 8:
+            success_rate = 0.03
+        else:
+            success_rate = 0.06
         if random.random() < success_rate:
             lieutenant.enlightenment += 1
             max_hp = lieutenant.get_max_health()
@@ -521,6 +557,11 @@ class LieutenantService:
             lieutenant.current_health = min(lieutenant.current_health, max_hp)
             lieutenant.current_mana = min(lieutenant.current_mana, max_mp)
             db.session.commit()
+            # 悟性提升成功播报
+            from models.player import PlayerModel
+            owner = PlayerModel.query.get(lieutenant.owner_id)
+            if owner:
+                DataService.broadcast_system(f"{owner.nickname}给副将【{lieutenant.name}】提升悟性成功，悟性达到{lieutenant.enlightenment}，恭喜恭喜！")
             return True, f"悟性提升至{lieutenant.enlightenment}"
         else:
             db.session.commit()
@@ -537,7 +578,11 @@ class LieutenantService:
 
         DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_enhance', 1)
 
-        success_rate = max(0.3, 0.95 - lieutenant.reinforce * 0.03)
+        # 强化成功概率：每次8%，最后两次(18→19、19→20)为4%
+        if lieutenant.reinforce >= 18:
+            success_rate = 0.04
+        else:
+            success_rate = 0.08
         if random.random() < success_rate:
             lieutenant.reinforce += 1
             max_hp = lieutenant.get_max_health()
@@ -545,6 +590,11 @@ class LieutenantService:
             lieutenant.current_health = min(lieutenant.current_health, max_hp)
             lieutenant.current_mana = min(lieutenant.current_mana, max_mp)
             db.session.commit()
+            # 强化成功播报
+            from models.player import PlayerModel
+            owner = PlayerModel.query.get(lieutenant.owner_id)
+            if owner:
+                DataService.broadcast_system(f"{owner.nickname}给副将【{lieutenant.name}】强化成功，强化达到+{lieutenant.reinforce}，恭喜恭喜！")
             return True, f"强化成功，+{lieutenant.reinforce}"
         else:
             db.session.commit()
@@ -758,33 +808,66 @@ class LieutenantService:
 
     @classmethod
     def gain_experience(cls, lieutenant, exp):
-        lieutenant.experience += exp
-        while lieutenant.level < 60 and lieutenant.experience >= cls._exp_to_next(lieutenant.level):
-            lieutenant.experience -= cls._exp_to_next(lieutenant.level)
-            lieutenant.level += 1
-            lieutenant.current_health = lieutenant.get_max_health()
-            lieutenant.current_mana = lieutenant.get_max_mana()
+        """增加经验，不自动升级。经验满后需手动升级。"""
         if lieutenant.level >= 60:
-            lieutenant.experience = 0  # 满级后不再累计经验
+            return  # 满级不再累计经验
+        lieutenant.experience += exp
         db.session.commit()
+
+    @classmethod
+    def level_up(cls, lieutenant):
+        """手动升级：经验满则升1级，多余经验保留。"""
+        if lieutenant.level >= 60:
+            return False, "副将已达最高等级"
+        need = cls._exp_to_next(lieutenant.level)
+        if lieutenant.experience < need:
+            return False, f"经验不足，需要{need}，当前{lieutenant.experience}"
+        lieutenant.experience -= need
+        lieutenant.level += 1
+        lieutenant.current_health = lieutenant.get_max_health()
+        lieutenant.current_mana = lieutenant.get_max_mana()
+        db.session.commit()
+        return True, f"升级到{lieutenant.level}级，剩余经验{lieutenant.experience}"
 
     @classmethod
     def _exp_to_next(cls, level):
         return 50 + level * 30
 
     @classmethod
-    def level_up_with_pill(cls, lieutenant):
-        """消耗1个副将高级经验丹(lt_exp_high)，补满当前级到下级所需经验，升1级。"""
-        inv = DataService.get_inventory_item(lieutenant.owner_id, 'lt_exp_high')
+    def use_exp_pill(cls, lieutenant, item_id):
+        """在副将界面使用经验丹，给指定副将加经验。"""
+        PILL_EXP = {
+            'lt_exp_low': 100,
+            'lt_exp_mid': 250,
+            'lt_exp_high': 500,
+        }
+        PILL_NAMES = {
+            'lt_exp_low': '副将低级经验丹',
+            'lt_exp_mid': '副将中级经验丹',
+            'lt_exp_high': '副将高级经验丹',
+        }
+        exp_amount = PILL_EXP.get(item_id, 0)
+        if exp_amount == 0:
+            return False, "无效的经验丹"
+        inv = DataService.get_inventory_item(lieutenant.owner_id, item_id)
         if not inv or inv.quantity <= 0:
-            return False, "没有副将高级经验丹"
+            return False, f"没有{PILL_NAMES.get(item_id, '经验丹')}"
         if lieutenant.level >= 60:
             return False, "副将已达最高等级"
-        DataService.remove_item_from_inventory(lieutenant.owner_id, 'lt_exp_high', 1)
-        # 补满到下级所需经验，走 gain_experience 触发升级(并回满血蓝)
-        need = cls._exp_to_next(lieutenant.level) - lieutenant.experience
-        cls.gain_experience(lieutenant, need)
-        return True, f"消耗1颗副将高级经验丹，升级到{lieutenant.level}级"
+        DataService.remove_item_from_inventory(lieutenant.owner_id, item_id, 1)
+        cls.gain_experience(lieutenant, exp_amount)
+        # Track item usage for achievements
+        from models.player import PlayerModel
+        owner = PlayerModel.query.get(lieutenant.owner_id)
+        if owner:
+            usage = owner.item_usage
+            usage[item_id] = usage.get(item_id, 0) + 1
+            name_key = f"name:{PILL_NAMES[item_id]}"
+            usage[name_key] = usage.get(name_key, 0) + 1
+            owner.item_usage = usage
+            from services.achievement_service import AchievementService
+            AchievementService.check(owner, 'item_use')
+        return True, f"消耗1颗{PILL_NAMES[item_id]}，经验+{exp_amount}"
 
     @classmethod
     def get_available_skills(cls, lieutenant):

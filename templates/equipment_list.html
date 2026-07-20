@@ -15,14 +15,23 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     {% set equipped = DataService.get_equipped(player.id) %}
     {% for slot_name in EquipmentInstance.SLOTS %}
     {% set eq = equipped.get(slot_name) %}
-    [{{ EquipmentInstance.SLOT_NAMES[slot_name] }}]{% if eq %}<a href="{{ url_for('player.view_equipped', slot=slot_name) }}">{{ eq.name }}{% if eq.enhance_level > 0 %}+{{ eq.enhance_level }}{% endif %}</a> <a href="{{ url_for('player.unequip', slot=slot_name) }}">卸下</a>{% else %}未装备{% endif %}<br/>
+    [{{ EquipmentInstance.SLOT_NAMES[slot_name] }}]{% if eq %}<a href="{{ url_for('player.view_equipped', slot=slot_name) }}">{{ eq.name }}</a> <a href="{{ url_for('player.unequip', slot=slot_name) }}">卸下</a>{% else %}未装备{% endif %}<br/>
     {% endfor %}
 
     <br/>
-    <a href="{{ url_for('player.inventory') }}">背包</a> <a href="{{ url_for('player.character') }}">返回角色</a><br/>
+    <a href="{{ url_for('player.character') }}">返回角色</a><br/>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
 <script>
 var aLinks=document.getElementsByTagName("a");

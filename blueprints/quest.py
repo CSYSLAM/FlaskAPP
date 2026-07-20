@@ -47,8 +47,14 @@ def available_quests():
 
     available = []
     for qid, q in all_quests.items():
-        if qid in completed or qid in active:
-            continue
+        # 可重复任务：已完成后仍可接取，跳过已在进行中的
+        if q.get('is_repeatable'):
+            if qid in active:
+                continue
+            # 已完成但可重复 → 仍展示
+        else:
+            if qid in completed or qid in active:
+                continue
         ok, _ = QuestService.can_accept_quest(player, qid)
         if ok:
             available.append(q)
@@ -91,6 +97,10 @@ def quest_detail(quest_id):
 
     active = QuestService.get_active_quests(player)
     is_active = quest_id in active
+    # deliver_item 类型任务：刷新进度（背包数量可能已变化）
+    if is_active and q.get('objective', {}).get('type') == 'deliver_item':
+        QuestService.refresh_deliver_progress(player, quest_id)
+        active = QuestService.get_active_quests(player)
     progress = active.get(quest_id, {})
     is_ready = progress.get('progress', 0) >= progress.get('target', 1) if progress else False
     q_copy = dict(q)
@@ -100,13 +110,15 @@ def quest_detail(quest_id):
         q_copy['is_ready'] = is_ready
     can_accept, reason = QuestService.can_accept_quest(player, quest_id)
     completed = QuestService.get_completed_quests(player)
-    is_completed = quest_id in completed
+    # 可重复任务不显示"已完成"
+    is_completed = quest_id in completed and not q.get('is_repeatable')
 
     from_npc = request.args.get('from_npc') == '1'
     return render_template("quest_detail.html", player=player, quest=q_copy,
                          is_active=is_active, is_ready=is_ready,
                          can_accept=can_accept, reason=reason,
-                         is_completed=is_completed, from_npc=from_npc)
+                         is_completed=is_completed, from_npc=from_npc,
+                         DataService=DataService)
 
 
 @quest_bp.route("/accept/<quest_id>")
@@ -210,6 +222,20 @@ def complete_quest(quest_id):
         rewards = q.get('rewards', {})
         dialogs = q.get('dialogs', {}).get('complete', [])
         next_hint = q.get('next_hint', '')
+        # reward_equipment: 在对话中追加获得的装备信息
+        reward_equip = q.get('reward_equipment')
+        if reward_equip:
+            from models.player import EquipmentInstance
+            template = DataService.get_equipment_template(reward_equip.get('template_id', ''))
+            if template:
+                equip_name = template.get('name', '装备')
+                # 找到玩家最新获得的该模板装备
+                latest_equip = EquipmentInstance.query.filter_by(
+                    player_id=player.id,
+                    template_id=reward_equip.get('template_id', '')
+                ).order_by(EquipmentInstance.id.desc()).first()
+                if latest_equip:
+                    dialogs = list(dialogs) + [{'speaker': '', 'text': f'获得装备：{latest_equip.name}'}]
         return render_template("quest_complete.html", player=player,
                              quest=q, rewards=rewards, dialogs=dialogs,
                              next_hint=next_hint)

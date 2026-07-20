@@ -49,7 +49,6 @@
     {% set equip = entry.equipment %}
     <a href="{{ url_for('player.view_item', item_id=entry.item_id, from='inventory') }}" class="rarity-{{ equip.rarity }}">{{ equip.name }}</a>{% if entry.is_bound %}(绑定){% endif %}
     <a href="{{ url_for('player.equip_item', equipment_instance_id=entry.item_id, category=category, page=page, per_page=per_page) }}">装备</a>
-    <a href="{{ url_for('player.enhance_page', equipment_instance_id=entry.item_id) }}">强化</a>
     <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, category=category, page=page, per_page=per_page) }}">销毁</a><br/>
     {% endif %}
     {% endfor %}

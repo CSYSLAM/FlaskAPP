@@ -403,6 +403,12 @@ class DataService:
             is_bound=template.get("is_bound", False),
             enhance_level=0,
         )
+        # 记录创建者
+        if player_id:
+            from models.player import PlayerModel
+            creator = PlayerModel.query.get(player_id)
+            if creator:
+                equip.created_by = creator.nickname
         equip.set_base_stats(base_stats)
         equip.set_extra_stats(extra_stats)
         equip.set_initial_stats(initial_stats)

@@ -1,4 +1,5 @@
 import random
+import time
 from services import db
 from services.data_service import DataService
 from models.player import PlayerModel
@@ -27,20 +28,38 @@ class ItemService:
         if item_id.startswith('lt_') and item_id not in ('lt_potion_heal', 'lt_potion_mana', 'lt_double_exp'):
             return False, "该物品需在副将界面使用"
 
-        # Special: enhance_lucky — set enhance bonus, prevent stacking
+        # Special: enhance_lucky — small lucky charm (+5%)
         if usage_effect.get("special") == "enhance_lucky":
-            if player.enhance_bonus_rate and player.enhance_bonus_rate > 0:
-                return False, "强化幸运符效果已存在，不可叠加使用"
-            player.enhance_bonus_rate = 0.05
+            if player.enhance_luck_small:
+                return False, "强化小幸运符效果已存在，不可叠加使用"
+            player.enhance_luck_small = True
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
             db.session.commit()
             return True, "下一次强化成功率+5%"
+
+        # Special: enhance_lucky_medium — medium lucky charm (+15%)
+        if usage_effect.get("special") == "enhance_lucky_medium":
+            if player.enhance_luck_medium:
+                return False, "强化中幸运符效果已存在，不可叠加使用"
+            player.enhance_luck_medium = True
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, "下一次强化成功率+10%"
 
         # Special: rename_card — redirect to rename flow
         if usage_effect.get("special") == "rename":
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
             db.session.commit()
             return True, "RENAME_CARD_USED"
+
+        # Special: pk_truce — 免战符，使用后30分钟内其他玩家无法对你发起PK
+        if usage_effect.get("special") == "pk_truce":
+            data = player.activity_data or {}
+            data['pk_immunity_until'] = time.time() + 1800
+            player.activity_data = data
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, "使用免战符，30分钟内其他玩家无法对你发起PK"
 
         # VIP items use their own service
         if item_data.get("type") == "vip":

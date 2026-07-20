@@ -287,9 +287,11 @@ def view_player():
         title_atk = title_bonuses.get('attack', 0)
         lt_atk_rate = PlayerService._get_lt_passive_bonus(target, 'attack')
         relation_atk = SocialService.get_online_relation_attack_bonus(target)
+        social_rate = SocialService.get_social_bonus_rate(target)
+        spouse_rate = SocialService.get_spouse_bonus_rate(target)
         vip_rate = VipService.get_stat_bonus_rate(target)
         atk_flat = base_atk + equip_atk + pill_atk + flat_atk + rank_atk + title_atk + relation_atk + passive_atk_flat
-        atk_rate = 1 + rate_atk + lt_atk_rate + vip_rate
+        atk_rate = 1 + rate_atk + social_rate + spouse_rate + lt_atk_rate + vip_rate
         atk_result = int(atk_flat * atk_rate)
 
         details['attack'] = {
@@ -301,11 +303,13 @@ def view_player():
                 ('临时BUFF(flat)', flat_atk),
                 ('军衔加成', rank_atk),
                 ('称号加成', title_atk),
-                ('红颜/知己/结婚', relation_atk),
+                ('配偶在线', relation_atk),
                 ('被动技能', passive_atk_flat),
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_atk),
+                ('红颜/知己加成(1%)', social_rate),
+                ('结婚加成(5%)', spouse_rate),
                 ('副将加成', lt_atk_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -323,7 +327,7 @@ def view_player():
         title_def = title_bonuses.get('defense', 0)
         lt_def_rate = PlayerService._get_lt_passive_bonus(target, 'defense')
         def_flat = base_def + equip_def + pill_def + flat_def + title_def + passive_def_flat
-        def_rate = 1 + rate_def + lt_def_rate + vip_rate
+        def_rate = 1 + rate_def + social_rate + spouse_rate + lt_def_rate + vip_rate
         def_result = int(def_flat * def_rate)
 
         details['defense'] = {
@@ -338,6 +342,8 @@ def view_player():
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_def),
+                ('红颜/知己加成(1%)', social_rate),
+                ('结婚加成(5%)', spouse_rate),
                 ('副将加成', lt_def_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -355,7 +361,7 @@ def view_player():
         title_hp = title_bonuses.get('max_health', 0)
         lt_hp_rate = PlayerService._get_lt_passive_bonus(target, 'health')
         hp_flat = base_hp + equip_hp + pill_hp + flat_hp + title_hp + passive_hp_flat
-        hp_rate = 1 + rate_hp + lt_hp_rate + vip_rate
+        hp_rate = 1 + rate_hp + social_rate + spouse_rate + lt_hp_rate + vip_rate
         hp_result = int(hp_flat * hp_rate)
 
         details['max_health'] = {
@@ -370,6 +376,8 @@ def view_player():
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_hp),
+                ('红颜/知己加成(1%)', social_rate),
+                ('结婚加成(5%)', spouse_rate),
                 ('副将加成', lt_hp_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -387,7 +395,7 @@ def view_player():
         title_mp = title_bonuses.get('max_mana', 0)
         lt_mp_rate = PlayerService._get_lt_passive_bonus(target, 'mana')
         mp_flat = base_mp + equip_mp + pill_mp + flat_mp + title_mp + passive_mp_flat
-        mp_rate = 1 + rate_mp + lt_mp_rate + vip_rate
+        mp_rate = 1 + rate_mp + social_rate + spouse_rate + lt_mp_rate + vip_rate
         mp_result = int(mp_flat * mp_rate)
 
         details['max_mana'] = {
@@ -402,6 +410,7 @@ def view_player():
             ],
             'rate_parts': [
                 ('临时BUFF(rate)', rate_mp),
+                ('红颜/知己加成(1%)', social_rate),
                 ('副将加成', lt_mp_rate),
                 ('VIP加成', vip_rate),
             ],
@@ -2869,8 +2878,8 @@ LT_EDIT_FIELDS = [
     ('base_max_health', '自定义生命(留空=公式)', None, 'opt_int'),
     ('base_attack', '自定义攻击(留空=公式)', None, 'opt_int'),
     ('base_defense', '自定义防御(留空=公式)', None, 'opt_int'),
-    ('base_crit_rate', '自定义暴击(0-1,留空=被动)', None, 'opt_float'),
-    ('base_dodge_rate', '自定义闪避(0-1,留空=被动)', None, 'opt_float'),
+    ('base_crit_rate', '自定义暴击(每级成长值,留空=职业默认)', None, 'opt_float'),
+    ('base_dodge_rate', '自定义闪避(每级成长值,留空=职业默认)', None, 'opt_float'),
 ]
 
 
@@ -3536,3 +3545,106 @@ def _simulate_lt_battle(form):
         'player': {'final_hp': max(0, player['health'])},
         'monster': {'name': monster['name'], 'final_hp': max(0, monster['health'])},
     }
+
+
+@workbench_bp.route("/honor_test", methods=["GET", "POST"])
+@login_required
+def honor_test():
+    """荣誉军衔测试：选择职业/性别/等级/荣誉 → 显示对应军衔与头像。"""
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    from models.player import PlayerModel
+    from services.player_service import PlayerService
+
+    CLASS_CHOICES = ['战士', '术士', '刺客']
+
+    form = {
+        'player_class': '战士',
+        'gender': '男',
+        'level': 30,
+        'honor': 5000,
+    }
+    results = None
+
+    if request.method == "POST":
+        form['player_class'] = request.form.get('player_class', '战士')
+        form['gender'] = request.form.get('gender', '男')
+        try:
+            form['level'] = max(1, min(60, int(request.form.get('level', 30))))
+        except (ValueError, TypeError):
+            form['level'] = 30
+        try:
+            form['honor'] = max(0, int(request.form.get('honor', 5000)))
+        except (ValueError, TypeError):
+            form['honor'] = 5000
+
+        level = form['level']
+        honor = form['honor']
+
+        # Compute rank (same logic as PlayerService.update_military_rank)
+        rank_name = "士兵"
+        rank_attack = 0
+        for rn, rd in sorted(PlayerModel.MILITARY_RANKS.items(),
+                              key=lambda x: x[1]["level"], reverse=True):
+            if level >= rd["level"] and honor >= rd["honor"]:
+                rank_name = rn
+                rank_attack = rd["attack"]
+                break
+
+        # Compute avatar path (same logic as PlayerService.get_avatar_path)
+        prefix_map = {
+            ("男", "刺客"): "a", ("女", "刺客"): "b",
+            ("男", "战士"): "c", ("女", "战士"): "q",
+            ("男", "术士"): "f", ("女", "术士"): "s",
+        }
+        prefix = prefix_map.get((form['gender'], form['player_class']), "a")
+        rank_tiers = [
+            "列兵", "十夫长", "百夫长", "校尉", "都尉",
+            "裨将", "偏将", "中郎将", "车骑将军", "骠骑将军",
+            "大司马", "大都督",
+        ]
+        # 士兵 maps to same tier as 列兵
+        display_rank = "列兵" if rank_name == "士兵" else rank_name
+        idx = rank_tiers.index(display_rank) if display_rank in rank_tiers else 0
+        tier = min(idx + 1, 11)
+        avatar_path = f"rongyu/{prefix}{tier:02d}.png"
+
+        # Next rank info
+        next_rank = None
+        sorted_ranks = sorted(PlayerModel.MILITARY_RANKS.items(),
+                              key=lambda x: x[1]["level"])
+        for rn, rd in sorted_ranks:
+            if (rd["level"] > level or rd["honor"] > honor) and rn != rank_name:
+                level_gap = max(0, rd["level"] - level)
+                honor_gap = max(0, rd["honor"] - honor)
+                next_rank = {
+                    "name": rn,
+                    "level": rd["level"],
+                    "honor": rd["honor"],
+                    "level_gap": level_gap,
+                    "honor_gap": honor_gap,
+                }
+                break
+
+        # All ranks table
+        all_ranks = []
+        for rn, rd in sorted_ranks:
+            is_current = (rn == rank_name)
+            reachable = (level >= rd["level"] and honor >= rd["honor"])
+            all_ranks.append({
+                "name": rn, "level": rd["level"], "honor": rd["honor"],
+                "attack": rd["attack"], "is_current": is_current, "reachable": reachable,
+            })
+
+        results = {
+            "rank_name": rank_name,
+            "rank_attack": rank_attack,
+            "avatar_path": avatar_path,
+            "next_rank": next_rank,
+            "all_ranks": all_ranks,
+        }
+
+    return render_template("workbench/honor_test.html",
+                           form=form, results=results,
+                           classes=CLASS_CHOICES)

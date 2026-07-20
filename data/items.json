@@ -164,8 +164,9 @@
   "shenyou_guo": {
     "name": "神游果",
     "type": "other",
-    "description": "进入副本需要消耗1个",
-    "price": 50,
+    "description": "进入副本的门票消耗品",
+    "price": 0,
+    "sell_price": 100,
     "is_usable": false,
     "capacity": 0
   },
@@ -430,9 +431,10 @@
   },
   "potion_package": {
     "name": "秘药礼包",
-    "type": "other",
-    "description": "使用后随机获得一种秘药",
-    "price": 150,
+    "type": "consumable",
+    "description": "打开随机获得一种属性秘药",
+    "price": 0,
+    "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
       "random_one_of": [
@@ -444,7 +446,7 @@
         "potion_dodge_buff"
       ]
     },
-    "capacity": 0
+    "capacity": 0.1
   },
   "honor_scroll": {
     "name": "荣誉卷轴",
@@ -467,7 +469,8 @@
     "name": "强化宝玉",
     "type": "material",
     "description": "用于强化装备的宝玉",
-    "price": 1000,
+    "price": 500,
+    "currency": "jinzu",
     "is_usable": false,
     "capacity": 0.1
   },
@@ -507,13 +510,18 @@
   },
   "money_small": {
     "name": "小银两包",
-    "type": "consumable",
-    "description": "使用后可获100000银两",
-    "price": 0,
-    "sell_price": 0,
+    "type": "material",
+    "description": "使用后获得100000银两",
+    "price": 1000,
+    "currency": "yuanbao",
     "is_usable": true,
     "usage_effect": {
-      "grant_gold": 100000
+      "stat_changes": {
+        "gold": 100000
+      },
+      "effect_descriptions": {
+        "gold": "获得{value}银两"
+      }
     },
     "capacity": 0.1
   },
@@ -628,20 +636,12 @@
   },
   "blood_stone_small": {
     "name": "小血石",
-    "type": "consumable",
-    "description": "使用可获生命储备5000点",
-    "price": 200,
-    "sell_price": 50,
+    "type": "material",
+    "description": "增加生命值",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "blood_reserve": 5000
-      },
-      "effect_descriptions": {
-        "blood_reserve": "生命储备+5000"
-      }
-    },
-    "capacity": 0.1
+    "capacity": 0
   },
   "blood_stone_medium": {
     "name": "中血石",
@@ -663,36 +663,28 @@
   "blood_stone_large": {
     "name": "大血石",
     "type": "consumable",
-    "description": "使用后增加20000点生命储备，战斗中可自动回复",
-    "price": 3000,
-    "sell_price": 750,
+    "description": "使用可获生命储备25000点",
+    "price": 0,
+    "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "blood_reserve": 20000
+        "blood_reserve": 25000
       },
       "effect_descriptions": {
-        "blood_reserve": "生命储备+20000"
+        "blood_reserve": "生命储备+25000"
       }
     },
     "capacity": 0.1
   },
   "mana_stone_small": {
     "name": "小魔石",
-    "type": "consumable",
-    "description": "使用可获魔法储备5000点",
-    "price": 200,
-    "sell_price": 50,
+    "type": "material",
+    "description": "增加魔法值",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "mana_reserve": 5000
-      },
-      "effect_descriptions": {
-        "mana_reserve": "魔法储备+5000"
-      }
-    },
-    "capacity": 0.1
+    "capacity": 0
   },
   "mana_stone_medium": {
     "name": "中魔石",
@@ -714,16 +706,16 @@
   "mana_stone_large": {
     "name": "大魔石",
     "type": "consumable",
-    "description": "使用后增加20000点魔法储备，战斗中可自动回复",
-    "price": 3000,
-    "sell_price": 750,
+    "description": "使用可获魔法储备25000点",
+    "price": 0,
+    "sell_price": 300,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
-        "mana_reserve": 20000
+        "mana_reserve": 25000
       },
       "effect_descriptions": {
-        "mana_reserve": "魔法储备+20000"
+        "mana_reserve": "魔法储备+25000"
       }
     },
     "capacity": 0.1
@@ -1278,93 +1270,35 @@
     },
     "capacity": 0
   },
-  "yb_enhance_gem": {
-    "name": "强化宝玉",
-    "type": "material",
-    "description": "用于强化装备的宝玉",
-    "price": 50,
-    "currency": "yuanbao",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "yb_exp_double": {
+  "double_exp_card": {
     "name": "双倍经验卡",
     "type": "other",
-    "description": "使用后60分钟内打怪经验翻倍",
-    "price": 50,
-    "currency": "yuanbao",
+    "description": "使用后1小时内打怪经验增加1倍",
+    "price": 0,
+    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "temp_effects": [
         {
-          "stat": "experience",
+          "stat": "exp_rate",
           "rate": 1.0,
           "duration": 3600,
           "effect_name": "双倍经验卡"
         }
       ]
     },
-    "capacity": 0
+    "capacity": 0.1
   },
-  "yb_big_money": {
+  "money_large": {
     "name": "大银两包",
-    "type": "material",
-    "description": "使用后获得500000银两",
-    "price": 5000,
-    "currency": "yuanbao",
+    "type": "consumable",
+    "description": "使用后可获500000银两",
+    "price": 0,
+    "sell_price": 0,
     "is_usable": true,
     "usage_effect": {
-      "stat_changes": {
-        "gold": 500000
-      },
-      "effect_descriptions": {
-        "gold": "获得{value}银两"
-      }
+      "grant_gold": 500000
     },
-    "capacity": 0.1
-  },
-  "yb_small_money": {
-    "name": "小银两包",
-    "type": "material",
-    "description": "使用后获得100000银两",
-    "price": 1000,
-    "currency": "yuanbao",
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "gold": 100000
-      },
-      "effect_descriptions": {
-        "gold": "获得{value}银两"
-      }
-    },
-    "capacity": 0.1
-  },
-  "yb_revive": {
-    "name": "续命灯",
-    "type": "other",
-    "description": "可以满血复活",
-    "price": 20,
-    "currency": "yuanbao",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "jz_enhance_gem": {
-    "name": "强化宝玉",
-    "type": "material",
-    "description": "用于强化装备的宝玉",
-    "price": 500,
-    "currency": "jinzu",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "jz_revive": {
-    "name": "续命灯",
-    "type": "other",
-    "description": "可以满血复活",
-    "price": 200,
-    "currency": "jinzu",
-    "is_usable": false,
     "capacity": 0.1
   },
   "jz_honor_scroll": {
@@ -1450,7 +1384,7 @@
   },
   "lt_skill_expand": {
     "name": "副将技能扩展符",
-    "type": "material",
+    "type": "other",
     "description": "扩充副将技能位+1(最多8)",
     "price": 1000,
     "currency": "yuanbao",
@@ -1480,7 +1414,7 @@
   },
   "lt_skill_combo_1": {
     "name": "连击入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习连击1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1489,7 +1423,7 @@
   },
   "lt_skill_combo_2": {
     "name": "连击进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习连击2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1498,7 +1432,7 @@
   },
   "lt_skill_combo_3": {
     "name": "连击精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习连击3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1507,7 +1441,7 @@
   },
   "lt_skill_smash_1": {
     "name": "猛击入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习猛击1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1516,7 +1450,7 @@
   },
   "lt_skill_smash_2": {
     "name": "猛击进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习猛击2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1525,7 +1459,7 @@
   },
   "lt_skill_smash_3": {
     "name": "猛击精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习猛击3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1534,7 +1468,7 @@
   },
   "lt_skill_thunder_1": {
     "name": "天雷入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习天雷1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1543,7 +1477,7 @@
   },
   "lt_skill_thunder_2": {
     "name": "天雷进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习天雷2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1552,7 +1486,7 @@
   },
   "lt_skill_thunder_3": {
     "name": "天雷精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习天雷3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1561,7 +1495,7 @@
   },
   "lt_skill_absorb_1": {
     "name": "吸收入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习吸收1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1570,7 +1504,7 @@
   },
   "lt_skill_absorb_2": {
     "name": "吸收进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习吸收2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1579,7 +1513,7 @@
   },
   "lt_skill_absorb_3": {
     "name": "吸收精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习吸收3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1588,7 +1522,7 @@
   },
   "lt_skill_heal_trigger_1": {
     "name": "回春入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习回春1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1597,7 +1531,7 @@
   },
   "lt_skill_heal_trigger_2": {
     "name": "回春进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习回春2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1606,7 +1540,7 @@
   },
   "lt_skill_heal_trigger_3": {
     "name": "回春精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习回春3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1615,7 +1549,7 @@
   },
   "lt_skill_sharp_1": {
     "name": "锐利入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习锐利1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1624,7 +1558,7 @@
   },
   "lt_skill_sharp_2": {
     "name": "锐利进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习锐利2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1633,7 +1567,7 @@
   },
   "lt_skill_sharp_3": {
     "name": "锐利精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习锐利3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1642,7 +1576,7 @@
   },
   "lt_skill_tough_1": {
     "name": "坚韧入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习坚韧1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1651,7 +1585,7 @@
   },
   "lt_skill_tough_2": {
     "name": "坚韧进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习坚韧2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1660,7 +1594,7 @@
   },
   "lt_skill_tough_3": {
     "name": "坚韧精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习坚韧3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1669,7 +1603,7 @@
   },
   "lt_skill_protect_1": {
     "name": "护佑入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习护佑1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1678,7 +1612,7 @@
   },
   "lt_skill_protect_2": {
     "name": "护佑进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习护佑2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1687,7 +1621,7 @@
   },
   "lt_skill_protect_3": {
     "name": "护佑精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习护佑3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1696,7 +1630,7 @@
   },
   "lt_skill_magic_1": {
     "name": "法能入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习法能1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1705,7 +1639,7 @@
   },
   "lt_skill_magic_2": {
     "name": "法能进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习法能2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1714,7 +1648,7 @@
   },
   "lt_skill_magic_3": {
     "name": "法能精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习法能3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1723,7 +1657,7 @@
   },
   "lt_skill_brave_1": {
     "name": "勇猛入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习勇猛1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1732,7 +1666,7 @@
   },
   "lt_skill_brave_2": {
     "name": "勇猛进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习勇猛2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1741,7 +1675,7 @@
   },
   "lt_skill_brave_3": {
     "name": "勇猛精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习勇猛3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1750,7 +1684,7 @@
   },
   "lt_skill_calm_1": {
     "name": "冷静入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习冷静1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -1759,7 +1693,7 @@
   },
   "lt_skill_calm_2": {
     "name": "冷静进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习冷静2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -1768,7 +1702,7 @@
   },
   "lt_skill_calm_3": {
     "name": "冷静精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习冷静3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -1796,20 +1730,13 @@
     "price": 500,
     "capacity": 0.1
   },
-  "seed_dragon": {
-    "name": "龙血参种子",
-    "type": "material",
-    "description": "百草园种植用，8小时成熟",
-    "price": 1000,
-    "capacity": 0.1
-  },
   "flower_rose": {
     "name": "玫瑰花",
-    "type": "material",
-    "description": "送给异性增加魅力和缘分",
+    "type": "consumable",
+    "description": "送给他人增加好感度",
+    "price": 0,
     "sell_price": 50,
-    "price": 100,
-    "is_usable": false,
+    "is_usable": true,
     "capacity": 0.1
   },
   "ginseng": {
@@ -1817,13 +1744,6 @@
     "type": "material",
     "description": "珍贵的人参",
     "sell_price": 200,
-    "capacity": 0.1
-  },
-  "dragon_herb": {
-    "name": "龙血参",
-    "type": "material",
-    "description": "传说中的龙血参",
-    "sell_price": 500,
     "capacity": 0.1
   },
   "bond_wine": {
@@ -1916,30 +1836,11 @@
   },
   "horn_small": {
     "name": "小喇叭",
-    "type": "other",
-    "description": "在公共频道发言一次",
-    "is_usable": false,
-    "capacity": 0
-  },
-  "box_key": {
-    "name": "宝匣钥匙",
-    "type": "material",
-    "description": "用于打开宝匣",
-    "capacity": 0.1
-  },
-  "revive_lamp": {
-    "name": "续命灯",
-    "type": "other",
-    "description": "可以满血复活",
-    "price": 20,
-    "currency": "yuanbao",
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "reinforce_gem": {
-    "name": "强化宝玉",
-    "type": "material",
-    "description": "用于强化装备的宝玉",
+    "type": "consumable",
+    "description": "使用后发送全服公告",
+    "price": 0,
+    "sell_price": 100,
+    "is_usable": true,
     "capacity": 0.1
   },
   "craft_suipi": {
@@ -2497,7 +2398,7 @@
   },
   "soul_adou": {
     "name": "阿斗魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将阿斗。",
     "price": 1000,
     "is_usable": true,
@@ -2508,7 +2409,7 @@
   },
   "soul_liaohua": {
     "name": "廖化魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将廖化。",
     "price": 1000,
     "is_usable": true,
@@ -2517,20 +2418,9 @@
     },
     "capacity": 0.1
   },
-  "soul_lvkuang": {
-    "name": "吕旷魂魄",
-    "type": "material",
-    "description": "使用后获得三级副将吕旷。",
-    "price": 1000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "lvkuang"
-    },
-    "capacity": 0.1
-  },
   "soul_zhaoguang": {
     "name": "赵广魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将赵广。",
     "price": 1000,
     "is_usable": true,
@@ -2541,7 +2431,7 @@
   },
   "soul_xuyou": {
     "name": "许攸魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将许攸。",
     "price": 1000,
     "is_usable": true,
@@ -2552,7 +2442,7 @@
   },
   "soul_wuguotai": {
     "name": "吴国太魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将吴国太。",
     "price": 1000,
     "is_usable": true,
@@ -2563,7 +2453,7 @@
   },
   "soul_zhenji": {
     "name": "甄姬魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将甄姬。",
     "price": 1000,
     "is_usable": true,
@@ -2572,20 +2462,9 @@
     },
     "capacity": 0.1
   },
-  "soul_zhangxiu": {
-    "name": "张绣魂魄",
-    "type": "material",
-    "description": "使用后获得三级副将张绣。",
-    "price": 1000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "zhangxiu"
-    },
-    "capacity": 0.1
-  },
   "soul_wangmeiren": {
     "name": "王美人魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将王美人。",
     "price": 1000,
     "is_usable": true,
@@ -2596,7 +2475,7 @@
   },
   "soul_yuejin": {
     "name": "乐进魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将乐进。",
     "price": 1000,
     "is_usable": true,
@@ -2605,20 +2484,9 @@
     },
     "capacity": 0.1
   },
-  "soul_matie": {
-    "name": "马铁魂魄",
-    "type": "material",
-    "description": "使用后获得三级副将马铁。",
-    "price": 1000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "matie"
-    },
-    "capacity": 0.1
-  },
   "soul_xiahouba": {
     "name": "夏侯霸魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得三级副将夏侯霸。",
     "price": 1000,
     "is_usable": true,
@@ -2627,20 +2495,9 @@
     },
     "capacity": 0.1
   },
-  "soul_dongbai": {
-    "name": "董白魂魄",
-    "type": "material",
-    "description": "使用后获得三级副将董白。",
-    "price": 1000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "dongbai"
-    },
-    "capacity": 0.1
-  },
   "soul_xiaoqiao": {
     "name": "小乔魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得二级副将小乔。",
     "price": 3000,
     "is_usable": true,
@@ -2649,31 +2506,9 @@
     },
     "capacity": 0.1
   },
-  "soul_zhugejin": {
-    "name": "诸葛瑾魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将诸葛瑾。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "zhugejin"
-    },
-    "capacity": 0.1
-  },
-  "soul_sunliang": {
-    "name": "孙亮魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将孙亮。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "sunliang"
-    },
-    "capacity": 0.1
-  },
   "soul_liufeng": {
     "name": "刘封魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得二级副将刘封。",
     "price": 3000,
     "is_usable": true,
@@ -2682,31 +2517,9 @@
     },
     "capacity": 0.1
   },
-  "soul_jiangwan": {
-    "name": "蒋琬魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将蒋琬。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "jiangwan"
-    },
-    "capacity": 0.1
-  },
-  "soul_manchong": {
-    "name": "满宠魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将满宠。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "manchong"
-    },
-    "capacity": 0.1
-  },
   "soul_daqiao": {
     "name": "大乔魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得二级副将大乔。",
     "price": 3000,
     "is_usable": true,
@@ -2717,7 +2530,7 @@
   },
   "soul_guanping": {
     "name": "关平魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得二级副将关平。",
     "price": 3000,
     "is_usable": true,
@@ -2728,7 +2541,7 @@
   },
   "soul_caozhen": {
     "name": "曹真魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得二级副将曹真。",
     "price": 3000,
     "is_usable": true,
@@ -2739,7 +2552,7 @@
   },
   "soul_pangde": {
     "name": "庞德魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得二级副将庞德。",
     "price": 3000,
     "is_usable": true,
@@ -2748,86 +2561,9 @@
     },
     "capacity": 0.1
   },
-  "soul_caiwenji": {
-    "name": "蔡文姬魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将蔡文姬。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "caiwenji"
-    },
-    "capacity": 0.1
-  },
-  "soul_mayunlu": {
-    "name": "马云禄魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将马云禄。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "mayunlu"
-    },
-    "capacity": 0.1
-  },
-  "soul_dengzhong": {
-    "name": "邓忠魂魄",
-    "type": "material",
-    "description": "使用后获得二级副将邓忠。",
-    "price": 3000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "dengzhong"
-    },
-    "capacity": 0.1
-  },
-  "soul_dianwei": {
-    "name": "典韦魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将典韦。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "dianwei"
-    },
-    "capacity": 0.1
-  },
-  "soul_huangzhong": {
-    "name": "黄忠魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将黄忠。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "huangzhong"
-    },
-    "capacity": 0.1
-  },
-  "soul_pangtong": {
-    "name": "庞统魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将庞统。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "pangtong"
-    },
-    "capacity": 0.1
-  },
-  "soul_xunyu": {
-    "name": "荀彧魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将荀彧。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "xunyu"
-    },
-    "capacity": 0.1
-  },
   "soul_zhouyu": {
     "name": "周瑜魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得一级副将周瑜。",
     "price": 10000,
     "is_usable": true,
@@ -2836,53 +2572,9 @@
     },
     "capacity": 0.1
   },
-  "soul_diaochan": {
-    "name": "貂蝉魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将貂蝉。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "diaochan"
-    },
-    "capacity": 0.1
-  },
-  "soul_guojia": {
-    "name": "郭嘉魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将郭嘉。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "guojia"
-    },
-    "capacity": 0.1
-  },
-  "soul_machao": {
-    "name": "马超魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将马超。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "machao"
-    },
-    "capacity": 0.1
-  },
-  "soul_liru": {
-    "name": "李儒魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将李儒。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "liru"
-    },
-    "capacity": 0.1
-  },
   "soul_xuchu": {
     "name": "许褚魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得一级副将许褚。",
     "price": 10000,
     "is_usable": true,
@@ -2891,20 +2583,9 @@
     },
     "capacity": 0.1
   },
-  "soul_dengai": {
-    "name": "邓艾魂魄",
-    "type": "material",
-    "description": "使用后获得一级副将邓艾。",
-    "price": 10000,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_lieutenant": "dengai"
-    },
-    "capacity": 0.1
-  },
   "soul_taishici": {
     "name": "太史慈魂魄",
-    "type": "material",
+    "type": "other",
     "description": "使用后获得一级副将太史慈。",
     "price": 10000,
     "is_usable": true,
@@ -2958,17 +2639,17 @@
     "is_usable": false,
     "capacity": 0
   },
-  "bag_expand_scroll": {
+  "bag_expand": {
     "name": "背包扩容卷",
-    "type": "item",
-    "description": "使用后增加背包容量5格",
+    "type": "consumable",
+    "description": "使用后背包容量+5",
     "price": 0,
+    "sell_price": 300,
     "is_usable": true,
-    "capacity": 0.0,
-    "sell_price": 0,
     "usage_effect": {
       "expand_backpack": 5
-    }
+    },
+    "capacity": 0.1
   },
   "battle_challenge_token": {
     "name": "战场请战符",
@@ -3031,24 +2712,6 @@
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
-    "capacity": 0
-  },
-  "small_blood_stone": {
-    "name": "小血石",
-    "type": "material",
-    "description": "增加生命值",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": true,
-    "capacity": 0
-  },
-  "small_mana_stone": {
-    "name": "小魔石",
-    "type": "material",
-    "description": "增加魔法值",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": true,
     "capacity": 0
   },
   "strong_hp_potion": {
@@ -3244,18 +2907,6 @@
     "price": 0,
     "sell_price": 500,
     "is_usable": true,
-    "capacity": 0.1
-  },
-  "money_large": {
-    "name": "大银两包",
-    "type": "consumable",
-    "description": "使用后可获500000银两",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_gold": 500000
-    },
     "capacity": 0.1
   },
   "death_substitute": {
@@ -3465,83 +3116,6 @@
       ]
     }
   },
-  "mi_yao_pack": {
-    "name": "秘药礼包",
-    "type": "consumable",
-    "description": "打开随机获得一种属性秘药",
-    "price": 0,
-    "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "random_one_of": [
-        "potion_health_buff",
-        "potion_mana_buff",
-        "potion_attack_buff",
-        "potion_defense_buff",
-        "potion_crit_buff",
-        "potion_dodge_buff"
-      ]
-    },
-    "capacity": 0.1
-  },
-  "double_exp_card": {
-    "name": "双倍经验卡",
-    "type": "other",
-    "description": "使用后1小时内打怪经验增加1倍",
-    "price": 0,
-    "sell_price": 200,
-    "is_usable": true,
-    "usage_effect": {
-      "temp_effects": [
-        {
-          "stat": "exp_rate",
-          "rate": 1.0,
-          "duration": 3600,
-          "effect_name": "双倍经验卡"
-        }
-      ]
-    },
-    "capacity": 0.1
-  },
-  "shen_you_guo": {
-    "name": "神游果",
-    "type": "other",
-    "description": "进入副本的门票消耗品",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": false,
-    "capacity": 0
-  },
-  "bag_expand": {
-    "name": "背包扩容卷",
-    "type": "consumable",
-    "description": "使用后背包容量+5",
-    "price": 0,
-    "sell_price": 300,
-    "is_usable": true,
-    "usage_effect": {
-      "expand_backpack": 5
-    },
-    "capacity": 0.1
-  },
-  "rose": {
-    "name": "玫瑰花",
-    "type": "consumable",
-    "description": "送给他人增加好感度",
-    "price": 0,
-    "sell_price": 50,
-    "is_usable": true,
-    "capacity": 0.1
-  },
-  "small_horn": {
-    "name": "小喇叭",
-    "type": "consumable",
-    "description": "使用后发送全服公告",
-    "price": 0,
-    "sell_price": 100,
-    "is_usable": true,
-    "capacity": 0.1
-  },
   "hunt_order": {
     "name": "追杀令",
     "type": "other",
@@ -3587,15 +3161,6 @@
     },
     "capacity": 0.1
   },
-  "rose_seed": {
-    "name": "玫瑰花种子",
-    "type": "material",
-    "description": "种植可获得玫瑰花",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
   "exp_seed": {
     "name": "经验丹种子",
     "type": "material",
@@ -3603,40 +3168,6 @@
     "price": 0,
     "sell_price": 40,
     "is_usable": false,
-    "capacity": 0.1
-  },
-  "big_hp_stone": {
-    "name": "大血石",
-    "type": "consumable",
-    "description": "使用可获生命储备25000点",
-    "price": 0,
-    "sell_price": 300,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "blood_reserve": 25000
-      },
-      "effect_descriptions": {
-        "blood_reserve": "生命储备+25000"
-      }
-    },
-    "capacity": 0.1
-  },
-  "big_mp_stone": {
-    "name": "大魔石",
-    "type": "consumable",
-    "description": "使用可获魔法储备25000点",
-    "price": 0,
-    "sell_price": 300,
-    "is_usable": true,
-    "usage_effect": {
-      "stat_changes": {
-        "mana_reserve": 25000
-      },
-      "effect_descriptions": {
-        "mana_reserve": "魔法储备+25000"
-      }
-    },
     "capacity": 0.1
   },
   "big_hp_stone_pack": {
@@ -3649,7 +3180,7 @@
     "usage_effect": {
       "random_items": [
         {
-          "item_id": "big_hp_stone",
+          "item_id": "blood_stone_large",
           "guaranteed_count": 15,
           "max_count": 15,
           "chance": 1.0
@@ -3668,7 +3199,7 @@
     "usage_effect": {
       "random_items": [
         {
-          "item_id": "big_mp_stone",
+          "item_id": "mana_stone_large",
           "guaranteed_count": 15,
           "max_count": 15,
           "chance": 1.0
@@ -3687,7 +3218,7 @@
     "usage_effect": {
       "random_items": [
         {
-          "item_id": "small_horn",
+          "item_id": "horn_small",
           "guaranteed_count": 15,
           "max_count": 15,
           "chance": 1.0
@@ -3698,7 +3229,7 @@
   },
   "soul_flag_shard": {
     "name": "聚魂幡碎片",
-    "type": "material",
+    "type": "other",
     "description": "集齐可合成聚魂幡",
     "price": 0,
     "sell_price": 100,
@@ -3715,35 +3246,35 @@
     "capacity": 0.1
   },
   "lt_exp_low": {
-    "name": "副将经验丹(低)",
-    "type": "consumable",
-    "description": "副将使用获得少量经验",
+    "name": "副将低级经验丹",
+    "type": "other",
+    "description": "使用后副将经验+100，需在副将界面使用",
     "price": 0,
     "sell_price": 50,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "lt_exp_mid": {
-    "name": "副将经验丹(中)",
-    "type": "consumable",
-    "description": "副将使用获得中量经验",
+    "name": "副将中级经验丹",
+    "type": "other",
+    "description": "使用后副将经验+250，需在副将界面使用",
     "price": 0,
     "sell_price": 150,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "lt_exp_high": {
-    "name": "副将经验丹(高)",
-    "type": "consumable",
-    "description": "副将使用获得大量经验",
+    "name": "副将高级经验丹",
+    "type": "other",
+    "description": "使用后副将经验+500，需在副将界面使用",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
+    "is_usable": false,
     "capacity": 0.1
   },
   "lt_aptitude": {
     "name": "副将资质丹",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后提升副将资质",
     "price": 0,
     "sell_price": 300,
@@ -3752,7 +3283,7 @@
   },
   "lt_life": {
     "name": "副将增寿丹",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后延长副将寿命",
     "price": 0,
     "sell_price": 200,
@@ -3761,7 +3292,7 @@
   },
   "lt_loyalty": {
     "name": "副将忠诚丹",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后提升副将忠诚度",
     "price": 0,
     "sell_price": 200,
@@ -3770,7 +3301,7 @@
   },
   "lt_enhance": {
     "name": "副将强化丹",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后强化副将属性",
     "price": 0,
     "sell_price": 400,
@@ -3779,101 +3310,11 @@
   },
   "lt_wuxing": {
     "name": "副将悟性丹",
-    "type": "consumable",
+    "type": "other",
     "description": "使用后提升副将悟性",
     "price": 0,
     "sell_price": 300,
     "is_usable": true,
-    "capacity": 0.1
-  },
-  "sui_pi": {
-    "name": "碎皮",
-    "type": "material",
-    "description": "制作材料-碎皮",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "huangyang_mu": {
-    "name": "黄杨木",
-    "type": "material",
-    "description": "制作材料-黄杨木",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "ma_bu": {
-    "name": "麻布",
-    "type": "material",
-    "description": "制作材料-麻布",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "huangtong_kuang": {
-    "name": "黄铜矿",
-    "type": "material",
-    "description": "制作材料-黄铜矿",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "ying_pi": {
-    "name": "硬皮",
-    "type": "material",
-    "description": "制作材料-硬皮",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "chenxiang_mu": {
-    "name": "沉香木",
-    "type": "material",
-    "description": "制作材料-沉香木",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "mian_bu": {
-    "name": "棉布",
-    "type": "material",
-    "description": "制作材料-棉布",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "heitie_kuang": {
-    "name": "黑铁矿",
-    "type": "material",
-    "description": "制作材料-黑铁矿",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "zitan_mu": {
-    "name": "紫檀木",
-    "type": "material",
-    "description": "制作材料-紫檀木",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "jingjin_kuang": {
-    "name": "精金矿",
-    "type": "material",
-    "description": "制作材料-精金矿",
-    "price": 0,
-    "sell_price": 30,
-    "is_usable": false,
     "capacity": 0.1
   },
   "skill_page": {
@@ -3885,19 +3326,10 @@
     "is_usable": false,
     "capacity": 0.1
   },
-  "chest_changan": {
-    "name": "长安宝匣",
-    "type": "chest",
-    "description": "开启后随机获得物品",
-    "price": 0,
-    "sell_price": 500,
-    "is_usable": true,
-    "capacity": 0.1
-  },
   "craft_bailiangang": {
     "name": "百炼钢",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "百炼钢，51-60级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 250,
     "capacity": 0.1
@@ -3905,7 +3337,7 @@
   "craft_hantieding": {
     "name": "寒铁锭",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "寒铁锭，36-40级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 160,
     "capacity": 0.1
@@ -3913,7 +3345,7 @@
   "craft_shengtieding": {
     "name": "生铁锭",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "生铁锭，26-35级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 130,
     "capacity": 0.1
@@ -3921,7 +3353,7 @@
   "craft_xitiesha": {
     "name": "细铁砂",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "细铁砂，10-25级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 100,
     "capacity": 0.1
@@ -3929,7 +3361,7 @@
   "craft_xuantieding": {
     "name": "玄铁锭",
     "type": "material",
-    "description": "打造装备的材料",
+    "description": "玄铁锭，46-50级精英怪物掉落，铁匠铸剑所需材料",
     "price": 0,
     "sell_price": 200,
     "capacity": 0.1
@@ -3961,15 +3393,6 @@
     "description": "已下架物品，无法使用",
     "price": 0,
     "sell_price": 100,
-    "is_usable": false,
-    "capacity": 0.1
-  },
-  "friend_wine": {
-    "name": "结交酒",
-    "type": "material",
-    "description": "用于红颜、知己结交的道具",
-    "price": 0,
-    "sell_price": 200,
     "is_usable": false,
     "capacity": 0.1
   },
@@ -4049,31 +3472,22 @@
   },
   "lt_forget_page": {
     "name": "遗忘之章残页",
-    "type": "material",
+    "type": "other",
     "description": "用于副将遗忘技能",
     "price": 0,
     "sell_price": 1000,
     "capacity": 0.1,
     "is_usable": false
   },
-  "lt_soul_pack_1": {
-    "name": "一级名将魂魄包",
-    "type": "consumable",
-    "description": "打开后随机获得一级名将魂魄",
-    "price": 0,
-    "sell_price": 100000,
-    "is_usable": true,
-    "capacity": 0.1
-  },
   "peace_token": {
     "name": "免战符",
     "type": "other",
-    "description": "120分钟内未主动攻击他人可使用，使用后将进入300分免战状态，可叠加但无法提前结束；免战状态期间除特定活动外将无法攻击与被其他玩家攻击。",
+    "description": "在背包使用，使用后30分钟内其他玩家无法对你发起PK",
     "price": 0,
     "sell_price": 110,
     "is_usable": true,
     "usage_effect": {
-      "peace_status": 300
+      "special": "pk_truce"
     },
     "capacity": 0.1
   },
@@ -4122,10 +3536,7 @@
     "description": "记录昆仑山脉风物的珍贵图鉴，击败昆仑稀有精怪可获得",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_title": "prefix昆仑"
-    },
+    "is_usable": false,
     "capacity": 0.1
   },
   "shennong_illustration": {
@@ -4134,10 +3545,7 @@
     "description": "记录神农架风物的珍贵图鉴，击败神农稀有精怪可获得",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_title": "prefix神农"
-    },
+    "is_usable": false,
     "capacity": 0.1
   },
   "wokou_illustration": {
@@ -4146,10 +3554,7 @@
     "description": "记录倭寇岛风物的珍贵图鉴，击败倭寇稀有精怪可获得",
     "price": 0,
     "sell_price": 500,
-    "is_usable": true,
-    "usage_effect": {
-      "grant_title": "prefix倭寇"
-    },
+    "is_usable": false,
     "capacity": 0.1
   },
   "ice_tower_pass": {
@@ -4163,7 +3568,7 @@
   },
   "lt_skill_magic_shield_1": {
     "name": "法相入门",
-    "type": "material",
+    "type": "other",
     "description": "副将学习法相1级所需",
     "price": 200,
     "currency": "yuanbao",
@@ -4172,7 +3577,7 @@
   },
   "lt_skill_magic_shield_2": {
     "name": "法相进阶",
-    "type": "material",
+    "type": "other",
     "description": "副将学习法相2级所需",
     "price": 400,
     "currency": "yuanbao",
@@ -4181,7 +3586,7 @@
   },
   "lt_skill_magic_shield_3": {
     "name": "法相精通",
-    "type": "material",
+    "type": "other",
     "description": "副将学习法相3级所需",
     "price": 800,
     "currency": "yuanbao",
@@ -4190,7 +3595,7 @@
   },
   "lt_forget_tome": {
     "name": "遗忘之章",
-    "type": "material",
+    "type": "other",
     "description": "副将遗忘技能所需，可由50个遗忘之章残页合成。",
     "price": 0,
     "sell_price": 5000,
@@ -4551,5 +3956,17 @@
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0
+  },
+  "enhance_lucky_medium": {
+    "name": "强化中幸运符",
+    "type": "other",
+    "description": "使用后下一次强化成功率+10%，不可叠加",
+    "price": 0,
+    "sell_price": 12000,
+    "is_usable": true,
+    "usage_effect": {
+      "special": "enhance_lucky_medium"
+    },
+    "capacity": 0.1
   }
 }

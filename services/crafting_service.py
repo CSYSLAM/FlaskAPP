@@ -329,6 +329,11 @@ class CraftingService:
         if not all_unbound:
             equip.is_bound = True
 
+        # Track forge count
+        player.forge_count = (player.forge_count or 0) + 1
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'forge', player.forge_count)
+
         db.session.commit()
         return True, equip
 

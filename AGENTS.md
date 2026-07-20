@@ -19,9 +19,9 @@ No test suite is configured.
 
 Three-layer pattern: **Blueprints → Services → Models**
 
-- **Blueprints** (`blueprints/`): Route handlers. Six domains: `auth`, `game`, `player`, `battle`, `shop`, `social`. All routes render HTML templates via form POST — no JSON API endpoints.
+- **Blueprints** (`blueprints/`): Route handlers. ~24 domains registered in `app.py` `create_app()` — including `auth`, `game`, `player`, `battle`, `shop`, `social`, `activity`, `lieutenant`, `villa`, `vip`, `rank`, `guide`, `map`, `workbench`, `medicine`, `warehouse`, `dungeon`, `lost_found`, `legion`, `battlefield`, `party`, `quest`, `crafting`, `lieutenant_commander`. All routes render HTML templates via form POST — no JSON API endpoints. See the full prefix table in `CLAUDE.md`.
 - **Services** (`services/`): Business logic. Blueprints call service functions rather than implementing logic directly.
-- **Models** (`models/`): SQLAlchemy ORM models mapping to SQLite. Schema created via `db.create_all()` in the app factory — no Alembic/Flask-Migrate.
+- **Models** (`models/`): SQLAlchemy ORM models mapping to SQLite. Schema created via `db.create_all()` in the app factory — no Alembic/Flask-Migrate. Some "models" (e.g. `Location`, `Skill`, `Equipment`, `Item`, `Monster`) are plain in-memory classes loaded from `data/*.json`, not ORM tables.
 
 **App Factory**: `create_app()` in `app.py` loads config, initializes `db` and `login_manager`, registers all blueprints with URL prefixes, and creates tables.
 
@@ -29,12 +29,14 @@ Three-layer pattern: **Blueprints → Services → Models**
 
 **Static Game Data**: `data/*.json` files define monsters, items, skills, locations, shops, equipment templates, and level-exp tables. Loaded and cached by `services/data_service.py`.
 
+**Mobile Console (separate service)**: `mobile_console/run.py` is a standalone Flask app on port 8765, fully decoupled from the game code. It manages Claude Code/CodeBuddy sessions and can start/stop/restart the game app and stream logs. It is NOT part of the game's blueprint/service/model layers.
+
 ## Key Design Decisions
 
 - **Denormalized storage**: Player `inventory` and `equipment` are JSON blobs on the Player model, not relational foreign keys. Same for monster drops and location monster lists.
-- **No database migrations**: Schema changes require either manual SQL or recreating the DB. `db.create_all()` only creates tables that don't exist — it won't alter existing tables.
-- **In-memory chat**: `services/public_chat.py` stores messages in a Python list capped at 100 entries. Messages are lost on server restart.
-- **Equipment generation**: Procedural system in `services/equipment_generator.py` with 5 rarity tiers (common 40%, uncommon 30%, rare 20%, epic 8%, legendary 2%). See `docs/equipment_generation.md` for full design spec.
+- **No database migrations**: Schema changes require either manual SQL or recreating the DB. `db.create_all()` only creates tables that don't exist — it won't alter existing tables. New columns are backfilled with manual `ALTER TABLE` statements in `app.py`.
+- **Persistent chat**: Public/country/private/system chat is stored in the `chat_messages` table via the `ChatMessage` model (`models/player.py`), read through `services/data_service.py` (`broadcast_system`, `list_latest_messages`). `services/public_chat.py` is only a thin in-memory recent-message cache, not the source of truth.
+- **Equipment generation**: Procedural system in `services/equipment_generator.py` with 5 rarity tiers (common 40%, uncommon 30%, rare 20%, epic 8%, legendary 2%). See `.claude/skills/equipment_generation.md` for full design spec.
 
 ## Interface Style
 
@@ -49,14 +51,7 @@ Key rules:
 
 ## Blueprint URL Prefixes
 
-| Blueprint | Prefix | Purpose |
-|-----------|--------|---------|
-| auth | `/auth` | Login, register, logout |
-| game | `/game` | Main view, movement, exploration, rest |
-| player | `/player` | Character, inventory, equipment |
-| battle | `/battle` | Combat start, attack, skills, flee, result |
-| shop | `/shop` | Buy/sell items and equipment |
-| social | `/social` | Public chat |
+The full, current blueprint→prefix table (all ~24 domains) lives in `CLAUDE.md` under "Blueprint URL Prefixes". The six original core domains are: `auth` (`/auth`), `game` (`/game`), `player` (`/player`), `battle` (`/battle`), `shop` (`/shop`), `social` (`/social`).
 
 ## Authentication
 

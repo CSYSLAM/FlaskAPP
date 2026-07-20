@@ -8038,7 +8038,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "朱褒",
-      "count": 8
+      "count": 1
     },
     "rewards": {
       "experience": 5200,
@@ -8124,7 +8124,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "吕建",
-      "count": 10
+      "count": 1
     },
     "rewards": {
       "experience": 6500,
@@ -8164,7 +8164,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "雍凯",
-      "count": 8
+      "count": 1
     },
     "rewards": {
       "experience": 7500,
@@ -8440,7 +8440,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "韦康",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 9000,
@@ -8634,7 +8634,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "赵昂",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 13500,
@@ -8670,7 +8670,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "刘进",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 15000,
@@ -8787,7 +8787,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "刘安",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 18000,
@@ -10979,6 +10979,721 @@
       "item_id": "quest_chuanguo_yuxi",
       "item_name": "传国玉玺",
       "count": 1
+    }
+  },
+  "side_bs_xitiesha_wei": {
+    "id": "side_bs_xitiesha_wei",
+    "name": "支·细铁铸剑",
+    "type": "side",
+    "country": "魏",
+    "is_repeatable": true,
+    "npc_id": "npc_beiping_center_北平铁匠",
+    "npc_name": "北平铁匠",
+    "npc_location": "beiping_center.铁匠铺_南",
+    "npc_location_name": "铁匠铺(北平中区)",
+    "level_required": 15,
+    "description": "收集细铁砂×60交给铁匠，可获铸细铁剑一把。细铁砂可从10-25级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_xitiesha",
+      "item_name": "细铁砂",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 200
+    },
+    "reward_equipment": {
+      "template_id": "xitiesha_jian_15",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "北平铁匠",
+          "text": "细铁砂是铸剑的好材料，若你能取来60份，老夫便为你铸一把细铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "细铁砂可从10-25级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "北平铁匠",
+          "text": "好料！这细铁砂品质上乘，老夫这就为你开炉铸剑！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将细铁砂投入炉中，锤声叮当，一把崭新的细铁剑出炉了！"
+        }
+      ]
+    }
+  },
+  "side_bs_xitiesha_shu": {
+    "id": "side_bs_xitiesha_shu",
+    "name": "支·细铁铸剑",
+    "type": "side",
+    "country": "蜀",
+    "is_repeatable": true,
+    "npc_id": "npc_jianing_center_建宁铁匠",
+    "npc_name": "建宁铁匠",
+    "npc_location": "jianing_center.铁匠铺_南",
+    "npc_location_name": "铁匠铺(建宁中区)",
+    "level_required": 15,
+    "description": "收集细铁砂×60交给铁匠，可获铸细铁剑一把。细铁砂可从10-25级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_xitiesha",
+      "item_name": "细铁砂",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 200
+    },
+    "reward_equipment": {
+      "template_id": "xitiesha_jian_15",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "建宁铁匠",
+          "text": "细铁砂是铸剑的好材料，若你能取来60份，老夫便为你铸一把细铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "细铁砂可从10-25级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "建宁铁匠",
+          "text": "好料！这细铁砂品质上乘，老夫这就为你开炉铸剑！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将细铁砂投入炉中，锤声叮当，一把崭新的细铁剑出炉了！"
+        }
+      ]
+    }
+  },
+  "side_bs_xitiesha_wu": {
+    "id": "side_bs_xitiesha_wu",
+    "name": "支·细铁铸剑",
+    "type": "side",
+    "country": "吴",
+    "is_repeatable": true,
+    "npc_id": "npc_wujun_center_吴郡铁匠",
+    "npc_name": "吴郡铁匠",
+    "npc_location": "wujun_center.铁匠铺_南",
+    "npc_location_name": "铁匠铺(吴郡中区)",
+    "level_required": 15,
+    "description": "收集细铁砂×60交给铁匠，可获铸细铁剑一把。细铁砂可从10-25级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_xitiesha",
+      "item_name": "细铁砂",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 500,
+      "gold": 200
+    },
+    "reward_equipment": {
+      "template_id": "xitiesha_jian_15",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "吴郡铁匠",
+          "text": "细铁砂是铸剑的好材料，若你能取来60份，老夫便为你铸一把细铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "细铁砂可从10-25级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "吴郡铁匠",
+          "text": "好料！这细铁砂品质上乘，老夫这就为你开炉铸剑！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将细铁砂投入炉中，锤声叮当，一把崭新的细铁剑出炉了！"
+        }
+      ]
+    }
+  },
+  "side_bs_shengtie_wei": {
+    "id": "side_bs_shengtie_wei",
+    "name": "支·生铁铸剑",
+    "type": "side",
+    "country": "魏",
+    "is_repeatable": true,
+    "npc_id": "npc_jinyang_center_晋阳铁匠",
+    "npc_name": "晋阳铁匠",
+    "npc_location": "jinyang_center.铁匠铺",
+    "npc_location_name": "铁匠铺(晋阳中区)",
+    "level_required": 25,
+    "description": "收集生铁锭×60交给铁匠，可获铸生铁剑一把。生铁锭可从26-35级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_shengtieding",
+      "item_name": "生铁锭",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 1200,
+      "gold": 500
+    },
+    "reward_equipment": {
+      "template_id": "shengtie_jian_25",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "晋阳铁匠",
+          "text": "生铁锭质地坚韧，铸出的剑刚猛有力。取来60块，老夫便为你铸一把生铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "生铁锭可从26-35级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "晋阳铁匠",
+          "text": "好铁！生铁锭分量十足，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将生铁锭投入炉中，烈焰翻腾，一把生铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_shengtie_shu": {
+    "id": "side_bs_shengtie_shu",
+    "name": "支·生铁铸剑",
+    "type": "side",
+    "country": "蜀",
+    "is_repeatable": true,
+    "npc_id": "npc_chengdu_center_成都铁匠",
+    "npc_name": "成都铁匠",
+    "npc_location": "chengdu_center.铁匠铺",
+    "npc_location_name": "铁匠铺(成都中区)",
+    "level_required": 25,
+    "description": "收集生铁锭×60交给铁匠，可获铸生铁剑一把。生铁锭可从26-35级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_shengtieding",
+      "item_name": "生铁锭",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 1200,
+      "gold": 500
+    },
+    "reward_equipment": {
+      "template_id": "shengtie_jian_25",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "成都铁匠",
+          "text": "生铁锭质地坚韧，铸出的剑刚猛有力。取来60块，老夫便为你铸一把生铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "生铁锭可从26-35级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "成都铁匠",
+          "text": "好铁！生铁锭分量十足，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将生铁锭投入炉中，烈焰翻腾，一把生铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_shengtie_wu": {
+    "id": "side_bs_shengtie_wu",
+    "name": "支·生铁铸剑",
+    "type": "side",
+    "country": "吴",
+    "is_repeatable": true,
+    "npc_id": "npc_jianye_center_建邺铁匠",
+    "npc_name": "建邺铁匠",
+    "npc_location": "jianye_center.铁匠铺",
+    "npc_location_name": "铁匠铺(建邺中区)",
+    "level_required": 25,
+    "description": "收集生铁锭×60交给铁匠，可获铸生铁剑一把。生铁锭可从26-35级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_shengtieding",
+      "item_name": "生铁锭",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 1200,
+      "gold": 500
+    },
+    "reward_equipment": {
+      "template_id": "shengtie_jian_25",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "建邺铁匠",
+          "text": "生铁锭质地坚韧，铸出的剑刚猛有力。取来60块，老夫便为你铸一把生铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "生铁锭可从26-35级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "建邺铁匠",
+          "text": "好铁！生铁锭分量十足，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将生铁锭投入炉中，烈焰翻腾，一把生铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_hantie_wei": {
+    "id": "side_bs_hantie_wei",
+    "name": "支·寒铁铸剑",
+    "type": "side",
+    "country": "魏",
+    "is_repeatable": true,
+    "npc_id": "npc_xuchang_center_许昌铁匠",
+    "npc_name": "许昌铁匠",
+    "npc_location": "xuchang_center.铁匠铺",
+    "npc_location_name": "铁匠铺(许昌中区)",
+    "level_required": 35,
+    "description": "收集寒铁锭×60交给铁匠，可获铸寒铁剑一把。寒铁锭可从36-40级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_hantieding",
+      "item_name": "寒铁锭",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 2500,
+      "gold": 1000
+    },
+    "reward_equipment": {
+      "template_id": "hantie_jian_35",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "许昌铁匠",
+          "text": "寒铁锭冰寒刺骨，铸出的剑寒光凛凛。取来60块，老夫便为你铸一把寒铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "寒铁锭可从36-40级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "许昌铁匠",
+          "text": "好寒铁！触之冰凉，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将寒铁锭投入炉中，寒气与烈焰交织，一把寒铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_hantie_shu": {
+    "id": "side_bs_hantie_shu",
+    "name": "支·寒铁铸剑",
+    "type": "side",
+    "country": "蜀",
+    "is_repeatable": true,
+    "npc_id": "npc_yong_an_center_永安铁匠",
+    "npc_name": "永安铁匠",
+    "npc_location": "yong_an_center.铁匠铺",
+    "npc_location_name": "铁匠铺(永安中区)",
+    "level_required": 35,
+    "description": "收集寒铁锭×60交给铁匠，可获铸寒铁剑一把。寒铁锭可从36-40级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_hantieding",
+      "item_name": "寒铁锭",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 2500,
+      "gold": 1000
+    },
+    "reward_equipment": {
+      "template_id": "hantie_jian_35",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "永安铁匠",
+          "text": "寒铁锭冰寒刺骨，铸出的剑寒光凛凛。取来60块，老夫便为你铸一把寒铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "寒铁锭可从36-40级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "永安铁匠",
+          "text": "好寒铁！触之冰凉，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将寒铁锭投入炉中，寒气与烈焰交织，一把寒铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_hantie_wu": {
+    "id": "side_bs_hantie_wu",
+    "name": "支·寒铁铸剑",
+    "type": "side",
+    "country": "吴",
+    "is_repeatable": true,
+    "npc_id": "npc_chaisang_center_柴桑铁匠",
+    "npc_name": "柴桑铁匠",
+    "npc_location": "chaisang_center.铁匠铺",
+    "npc_location_name": "铁匠铺(柴桑中区)",
+    "level_required": 35,
+    "description": "收集寒铁锭×60交给铁匠，可获铸寒铁剑一把。寒铁锭可从36-40级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_hantieding",
+      "item_name": "寒铁锭",
+      "count": 60
+    },
+    "rewards": {
+      "experience": 2500,
+      "gold": 1000
+    },
+    "reward_equipment": {
+      "template_id": "hantie_jian_35",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "柴桑铁匠",
+          "text": "寒铁锭冰寒刺骨，铸出的剑寒光凛凛。取来60块，老夫便为你铸一把寒铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "寒铁锭可从36-40级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "柴桑铁匠",
+          "text": "好寒铁！触之冰凉，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将寒铁锭投入炉中，寒气与烈焰交织，一把寒铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_xuantie_xiapi": {
+    "id": "side_bs_xuantie_xiapi",
+    "name": "支·玄铁铸剑",
+    "type": "side",
+    "country": "魏",
+    "is_repeatable": true,
+    "npc_id": "npc_xiapi_center_下邳铁匠",
+    "npc_name": "下邳铁匠",
+    "npc_location": "xiapi_center.铁匠铺",
+    "npc_location_name": "铁匠铺(下邳中区)",
+    "level_required": 45,
+    "description": "收集玄铁锭×80交给铁匠，可获铸玄铁剑一把。玄铁锭可从46-50级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_xuantieding",
+      "item_name": "玄铁锭",
+      "count": 80
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 2000
+    },
+    "reward_equipment": {
+      "template_id": "xuantie_jian_45",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "下邳铁匠",
+          "text": "玄铁锭千锤百炼方成，铸出的剑沉重刚猛。取来80块，老夫便为你铸一把玄铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "玄铁锭可从46-50级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "下邳铁匠",
+          "text": "好玄铁！沉甸甸的，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将玄铁锭投入炉中，锤声如雷，一把玄铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_xuantie_jiangling": {
+    "id": "side_bs_xuantie_jiangling",
+    "name": "支·玄铁铸剑",
+    "type": "side",
+    "country": "蜀",
+    "is_repeatable": true,
+    "npc_id": "npc_jiangling_center_江陵铁匠",
+    "npc_name": "江陵铁匠",
+    "npc_location": "jiangling_center.铁匠铺",
+    "npc_location_name": "铁匠铺(江陵中区)",
+    "level_required": 45,
+    "description": "收集玄铁锭×80交给铁匠，可获铸玄铁剑一把。玄铁锭可从46-50级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_xuantieding",
+      "item_name": "玄铁锭",
+      "count": 80
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 2000
+    },
+    "reward_equipment": {
+      "template_id": "xuantie_jian_45",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "江陵铁匠",
+          "text": "玄铁锭千锤百炼方成，铸出的剑沉重刚猛。取来80块，老夫便为你铸一把玄铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "玄铁锭可从46-50级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "江陵铁匠",
+          "text": "好玄铁！沉甸甸的，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将玄铁锭投入炉中，锤声如雷，一把玄铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_xuantie_hanzhong": {
+    "id": "side_bs_xuantie_hanzhong",
+    "name": "支·玄铁铸剑",
+    "type": "side",
+    "country": "吴",
+    "is_repeatable": true,
+    "npc_id": "npc_hanzhong_center_汉中铁匠",
+    "npc_name": "汉中铁匠",
+    "npc_location": "hanzhong_center.铁匠铺",
+    "npc_location_name": "铁匠铺(汉中中区)",
+    "level_required": 45,
+    "description": "收集玄铁锭×80交给铁匠，可获铸玄铁剑一把。玄铁锭可从46-50级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_xuantieding",
+      "item_name": "玄铁锭",
+      "count": 80
+    },
+    "rewards": {
+      "experience": 5000,
+      "gold": 2000
+    },
+    "reward_equipment": {
+      "template_id": "xuantie_jian_45",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "汉中铁匠",
+          "text": "玄铁锭千锤百炼方成，铸出的剑沉重刚猛。取来80块，老夫便为你铸一把玄铁剑！"
+        },
+        {
+          "speaker": "",
+          "text": "玄铁锭可从46-50级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "汉中铁匠",
+          "text": "好玄铁！沉甸甸的，老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将玄铁锭投入炉中，锤声如雷，一把玄铁剑铸成！"
+        }
+      ]
+    }
+  },
+  "side_bs_wangyue_luoyang": {
+    "id": "side_bs_wangyue_luoyang",
+    "name": "支·百炼铸枪",
+    "type": "side",
+    "country": "",
+    "is_repeatable": true,
+    "npc_id": "npc_luoyang_center_洛阳铁匠",
+    "npc_name": "洛阳铁匠",
+    "npc_location": "luoyang_center.铁匠铺",
+    "npc_location_name": "铁匠铺(洛阳中区)",
+    "level_required": 55,
+    "description": "收集百炼钢×100交给铁匠，可获铸望月枪一把。百炼钢可从51-60级精英怪物处获得。",
+    "objective": {
+      "type": "deliver_item",
+      "item_id": "craft_bailiangang",
+      "item_name": "百炼钢",
+      "count": 100
+    },
+    "rewards": {
+      "experience": 10000,
+      "gold": 5000
+    },
+    "reward_equipment": {
+      "template_id": "wangyue_qiang_55",
+      "rarity_weights": {
+        "common": 0.2,
+        "uncommon": 0.3,
+        "rare": 0.35,
+        "epic": 0.15,
+        "legendary": 0
+      }
+    },
+    "dialogs": {
+      "accept": [
+        {
+          "speaker": "洛阳铁匠",
+          "text": "百炼钢乃天下至坚之材，铸出的兵器锋锐无匹。取来100块，老夫便为你铸一把望月枪！"
+        },
+        {
+          "speaker": "",
+          "text": "百炼钢可从51-60级精英怪物处获得。"
+        }
+      ],
+      "complete": [
+        {
+          "speaker": "洛阳铁匠",
+          "text": "好钢！百炼成钢，名不虚传！老夫这就开炉！"
+        },
+        {
+          "speaker": "",
+          "text": "铁匠将百炼钢投入炉中，锤声震天，一把望月枪铸成！枪锋如月，寒光逼人。"
+        }
+      ]
     }
   }
 }

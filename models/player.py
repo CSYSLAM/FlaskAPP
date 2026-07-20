@@ -24,6 +24,8 @@ class PlayerModel(db.Model, UserMixin):
     gold = db.Column(db.Integer, default=0)
     yuanbao = db.Column(db.Integer, default=0)
     jinzu = db.Column(db.Integer, default=0)
+    yuanbao_spent = db.Column(db.Integer, default=0)  # 累计消费元宝
+    jinzu_spent = db.Column(db.Integer, default=0)    # 累计消费金珠
 
     # Warehouse silver (stored in warehouse)
     warehouse_gold = db.Column(db.Integer, default=0)
@@ -62,7 +64,9 @@ class PlayerModel(db.Model, UserMixin):
     battlefield_death_time = db.Column(db.Float, default=0.0)
     party_id = db.Column(db.Integer, nullable=True)
     last_attack_time = db.Column(db.Float, default=0.0)
-    enhance_bonus_rate = db.Column(db.Float, default=0.0)
+    enhance_bonus_rate = db.Column(db.Float, default=0.0)  # 强化失败累积成功率加成(每失败+5%)
+    enhance_luck_small = db.Column(db.Boolean, default=False)  # 强化小幸运符(+5%)
+    enhance_luck_medium = db.Column(db.Boolean, default=False)  # 强化中幸运符(+15%)
 
     last_damage_taken = db.Column(db.Integer, default=0)
     last_damage_dealt = db.Column(db.String(32), default='')
@@ -105,6 +109,13 @@ class PlayerModel(db.Model, UserMixin):
     item_usage_raw = db.Column(db.Text, default='{}')  # JSON: {item_id: count}
     dungeon_clears_raw = db.Column(db.Text, default='{}')  # JSON: {dungeon_id: clear_count}
     boss_kills_raw = db.Column(db.Text, default='{}')  # JSON: {boss_name: kill_count}
+    elite_kills_by_area_raw = db.Column(db.Text, default='{}')  # JSON: {area: kill_count} (kunlun/shennong/wokou)
+    monster_kills_raw = db.Column(db.Text, default='{}')  # JSON: {monster_id: kill_count}
+    divine_beast_kills = db.Column(db.Integer, default=0)  # 神兽累计击杀数
+    forge_count = db.Column(db.Integer, default=0)  # 累计打造装备次数
+    enhance_success_count = db.Column(db.Integer, default=0)  # 累计强化成功次数
+    enhance_fail_count = db.Column(db.Integer, default=0)  # 累计强化失败次数
+    enhance_50_count = db.Column(db.Integer, default=0)  # 累计强化到+50的装备件数
     tower_max_floor = db.Column(db.Integer, default=0)
     visited_locations_raw = db.Column('visited_locations', db.Text, default='[]')
 
@@ -269,6 +280,28 @@ class PlayerModel(db.Model, UserMixin):
     @boss_kills.setter
     def boss_kills(self, value):
         self.boss_kills_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def elite_kills_by_area(self):
+        try:
+            return json.loads(self.elite_kills_by_area_raw) if self.elite_kills_by_area_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @elite_kills_by_area.setter
+    def elite_kills_by_area(self, value):
+        self.elite_kills_by_area_raw = json.dumps(value, ensure_ascii=False)
+
+    @property
+    def monster_kills(self):
+        try:
+            return json.loads(self.monster_kills_raw) if self.monster_kills_raw else {}
+        except (json.JSONDecodeError, TypeError):
+            return {}
+
+    @monster_kills.setter
+    def monster_kills(self, value):
+        self.monster_kills_raw = json.dumps(value, ensure_ascii=False)
 
     @property
     def owned_titles(self):
@@ -743,6 +776,8 @@ class EquipmentInstance(db.Model):
     extra_stats = db.Column(db.Text, default='{}')
     initial_stats = db.Column(db.Text, default='{}')
     enhance_level = db.Column(db.Integer, default=0)
+    created_by = db.Column(db.String(64), nullable=True)   # 创建者昵称
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)  # 创建时间
 
     STAT_NAMES = {
         "max_health": "生命上限",
@@ -790,7 +825,7 @@ class EquipmentInstance(db.Model):
         base = f"【{self.rarity}】{_get_template_name(self.template_id)}({self.stars}星)({self.level_required}级)"
         self.name = f"{base}+{self.enhance_level}" if self.enhance_level > 0 else base
 
-    def get_enhance_success_rate(self, player_bonus_rate=0):
+    def get_enhance_success_rate(self, fail_bonus=0, luck_small=False, luck_medium=False):
         el = self.enhance_level
         if el < 1: base = 1.0
         elif el < 10: base = 0.95
@@ -803,7 +838,12 @@ class EquipmentInstance(db.Model):
         elif el < 45: base = 0.40
         elif el < 48: base = 0.35
         else: base = 0.30
-        return min(1.0, base + player_bonus_rate)
+        total = base + fail_bonus
+        if luck_small:
+            total += 0.05
+        if luck_medium:
+            total += 0.10
+        return min(1.0, total)
 
     def get_sell_price(self):
         from services.data_service import DataService

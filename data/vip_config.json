@@ -6,14 +6,20 @@
       "stat_bonus_rate": 0.01,
       "exp_bonus_rate": 0.05,
       "storage_bonus": 100,
-      "pk_drop_reduction": 0.5,
+      "pk_drop_reduction": 0.1,
       "non_pk_loss_exempt": true,
       "free_teleport": true,
       "free_rest": true,
       "free_stage_teleport": true,
       "daily_gift": [
-        {"item_id": "revive_lamp", "quantity": 1},
-        {"item_id": "horn_small", "quantity": 1}
+        {
+          "item_id": "potion_revive",
+          "quantity": 1
+        },
+        {
+          "item_id": "horn_small",
+          "quantity": 1
+        }
       ],
       "achievement": "vip1",
       "title": null,
@@ -24,16 +30,22 @@
       "name": "VIP2",
       "required_exp": 100,
       "stat_bonus_rate": 0.02,
-      "exp_bonus_rate": 0.10,
+      "exp_bonus_rate": 0.1,
       "storage_bonus": 200,
-      "pk_drop_reduction": 0.5,
+      "pk_drop_reduction": 0.2,
       "non_pk_loss_exempt": true,
       "free_teleport": true,
       "free_rest": true,
       "free_stage_teleport": true,
       "daily_gift": [
-        {"item_id": "revive_lamp", "quantity": 2},
-        {"item_id": "horn_small", "quantity": 2}
+        {
+          "item_id": "potion_revive",
+          "quantity": 2
+        },
+        {
+          "item_id": "horn_small",
+          "quantity": 2
+        }
       ],
       "achievement": "vip2",
       "title": "suffixVIP用户",
@@ -46,15 +58,24 @@
       "stat_bonus_rate": 0.03,
       "exp_bonus_rate": 0.15,
       "storage_bonus": 300,
-      "pk_drop_reduction": 0.5,
+      "pk_drop_reduction": 0.3,
       "non_pk_loss_exempt": true,
       "free_teleport": true,
       "free_rest": true,
       "free_stage_teleport": true,
       "daily_gift": [
-        {"item_id": "revive_lamp", "quantity": 3},
-        {"item_id": "horn_small", "quantity": 3},
-        {"item_id": "box_key", "quantity": 1}
+        {
+          "item_id": "potion_revive",
+          "quantity": 3
+        },
+        {
+          "item_id": "horn_small",
+          "quantity": 3
+        },
+        {
+          "item_id": "chest_key",
+          "quantity": 1
+        }
       ],
       "achievement": "vip3",
       "title": null,
@@ -65,17 +86,26 @@
       "name": "VIP4",
       "required_exp": 300,
       "stat_bonus_rate": 0.04,
-      "exp_bonus_rate": 0.20,
+      "exp_bonus_rate": 0.2,
       "storage_bonus": 400,
-      "pk_drop_reduction": 0.5,
+      "pk_drop_reduction": 0.4,
       "non_pk_loss_exempt": true,
       "free_teleport": true,
       "free_rest": true,
       "free_stage_teleport": true,
       "daily_gift": [
-        {"item_id": "revive_lamp", "quantity": 4},
-        {"item_id": "horn_small", "quantity": 4},
-        {"item_id": "box_key", "quantity": 1}
+        {
+          "item_id": "potion_revive",
+          "quantity": 4
+        },
+        {
+          "item_id": "horn_small",
+          "quantity": 4
+        },
+        {
+          "item_id": "chest_key",
+          "quantity": 1
+        }
       ],
       "achievement": "vip4",
       "title": null,
@@ -94,10 +124,22 @@
       "free_rest": true,
       "free_stage_teleport": true,
       "daily_gift": [
-        {"item_id": "revive_lamp", "quantity": 5},
-        {"item_id": "horn_small", "quantity": 5},
-        {"item_id": "box_key", "quantity": 1},
-        {"item_id": "reinforce_gem", "quantity": 1}
+        {
+          "item_id": "potion_revive",
+          "quantity": 5
+        },
+        {
+          "item_id": "horn_small",
+          "quantity": 5
+        },
+        {
+          "item_id": "chest_key",
+          "quantity": 1
+        },
+        {
+          "item_id": "enhance_gem",
+          "quantity": 1
+        }
       ],
       "achievement": "vip5",
       "title": null,

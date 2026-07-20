@@ -24,7 +24,7 @@
     {% endif %}
     {% endwith %}
 
-{{ equipment.name }}{% if equipment.enhance_level > 0 %}+{{ equipment.enhance_level }}{% endif %}<br/>
+{{ equipment.name }}<br/>
 {% if not equipment.is_bound %}非绑装备{% else %}绑定装备{% endif %}<br/>
 等级:{{ equipment.level_required }}<br/>
 物品级别:{{ equipment.rarity }}<br/>
@@ -35,11 +35,17 @@
 {% endfor %}
 <br/>
 强化等级:+{{ equipment.enhance_level }}<br/>
-成功率:{{ "%.1f"|format(equipment.get_enhance_success_rate(player.enhance_bonus_rate) * 100) }}%<br/>
+成功率:{{ "%.1f"|format(equipment.get_enhance_success_rate(fail_bonus=player.enhance_bonus_rate, luck_small=player.enhance_luck_small or False, luck_medium=player.enhance_luck_medium or False) * 100) }}%<br/>
 强化费用:{{ enhance_cost }}银两<br/>
 当前银两:{{ player.gold }}<br/>
+{% if player.enhance_luck_small %}
+🍀 强化小幸运符生效中(+5%)<br/>
+{% endif %}
+{% if player.enhance_luck_medium %}
+🍀 强化中幸运符生效中(+10%)<br/>
+{% endif %}
 {% if player.enhance_bonus_rate > 0 %}
-额外成功率:+{{ "%.1f"|format(player.enhance_bonus_rate * 100) }}%<br/>
+失败累积加成:+{{ "%.1f"|format(player.enhance_bonus_rate * 100) }}%<br/>
 {% endif %}
 <br/>
 {% if can_enhance %}

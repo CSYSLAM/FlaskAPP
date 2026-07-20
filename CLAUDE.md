@@ -59,23 +59,31 @@ Key rules:
 | shop | `/shop` | Buy/sell items and equipment |
 | social | `/social` | Public chat |
 | crafting | `/crafting` | Blacksmith: epic forging (weapons/accessories/armor sets), sell equipment, sell items |
-| activity | `/` | Activities, events |
+| activity | `/activity` | Activities, events, daily tasks, finance/stock market |
 | lieutenant | `/lieutenant` | Lieutenant companion system |
-| villa | `/villa` | Player villa/homestead |
+| villa | `/villa` | Player villa/homestead: training, garden (百草园), blessing, defender |
 | vip | `/vip` | VIP privileges |
 | rank | `/rank` | Player rankings |
 | guide | `/guide` | Game guides |
-| map | `/map` | Map navigation, teleport |
+| map | `/map` | Map navigation, teleport, 神行 |
 | workbench | `/workbench` | Designer workbench: 玩家属性/公告/装备·怪物·物品·副将设计系统(增删改查) + 伤害/战斗/副将测试 |
 | medicine | `/medicine` | Medicine shop (healer NPC) |
 | warehouse | `/warehouse` | Item storage warehouse |
 | dungeon | `/dungeon` | Copy dungeons |
-| lost_found | `/lost_found` | Lost & found items |
+| lost_found | `/lost_found` | Lost & found items + auction house |
 | lieutenant_commander | `/commander` | Lieutenant commander NPC |
+| legion | `/legion` | Legion/guild: create/join, skills, donate, territory war |
+| battlefield | `/battlefield` | Territory-war PvP (city capture) |
+| party | `/party` | Party/team system |
+| quest | `/quest` | Main/country quest system |
 
 ## Authentication
 
 Flask-Login with `Player` model implementing `UserMixin`. Passwords hashed via werkzeug. `login_manager.login_view = 'auth.login'`. `@login_required` from Flask-Login protects routes. No role-based access control.
+
+## Detailed Subsystem Docs (Skills)
+
+Per-subsystem design docs (combat formulas, lieutenant, PK, equipment, dungeon, warehouse, social, legion, party, villa, quest, finance, VIP, achievement, title, rank, map, medicine, lost&found, crafting, auth, UI style, etc.) live in `.claude/skills/`. Start from **`.claude/skills/SKILLS_INDEX.md`** for the full module map and one-line descriptions. Design records / ops notes live in `agent_context/`.
 
 ## Item Usage Rules
 
@@ -99,35 +107,31 @@ Certain items have restricted usage contexts — they **cannot be used from the 
 
 **Key principle**: Items with `is_usable: false` must NOT be used from the backpack (player inventory). They are consumed by specific game mechanics or UI interactions. When adding new items, set `is_usable: false` if the item should only work in a specific context.
 
-## Lieutenant (副将) Skill System
+## Lieutenant (副将) System
 
-Skills defined in `services/lieutenant_service.py` `LIEUTENANT_SKILLS` (12 skills, 3 levels each: 入门/进阶/精通). Three categories:
+详见 `.claude/skills/lieutenant_design.md`，包含属性公式、倍率表、名将base值、技能系统、被动加成、系统播报、工作台设计等完整规则。
 
-- **主动 active** (3, class-locked): 战斗中按 `trigger_rate` 概率释放，消耗 `mana_cost` 副将魔法；蓝量不足则**降级为普攻**。伤害一律走 `BattleService._compute_damage` 统一公式(`damage = atk × (1 + atk/max(1,def)) × coefficient`)。
-  - `combo` 连击(刺客): 打两次，每次独立计算伤害
-  - `smash` 猛击(战士): 本回合攻+50%造成 `damage_rate` 倍伤害，自身下2回合防御减半(状态存 `encounter.lt_status`)
-  - `thunder` 天雷(术士): 消耗大量魔法造成 `damage_rate` 倍巨额伤害
-- **触发 triggered** (3, class-locked): 主人受击时按 `trigger_rate` 触发，**前后置副将都可触发**(只有挡刀才限 front)。
-  - `absorb` 吸收(刺客): 主人受击吸收 `absorb_rate`% 伤害
-  - `heal_trigger` 回春(战士): 回复主人生命上限 `heal_rate`%
-  - `magic_shield` 法相(术士): 主人受击前生成护盾(主人当前魔法×`shield_rate`)抵消伤害，少了主人扣血多了不扣且护盾消失(护盾存 `encounter.lt_status.shield`)
-- **被动 passive** (6, 通用): 出战即给主人加成(攻/防/血/蓝/暴击/闪避)，见 `Lieutenant.get_passive_bonus()`。
+关键要点速查：
+- **属性公式**：六项统一 `base × level × 悟性(1+e×0.02) × 品质(1+q×0.005) × 强化(1+r×0.015)`，暴击/闪避同公式
+- **被动加成bug**：`bonus_value` 在 learn/upgrade 时已按等级取好（如3级存11），`get_passive_bonus()` 直接使用不再乘level
+- **18名将**：一级3个(base×0.75,暴击×0.8)、二级6个、三级9个，梯度 一级>二级>三级>普通
+- **聚魂幡**：80%三级/19%二级/1%一级，创建时品质0-9随机
+- **系统播报**：洗资质/悟性成功/强化成功时播报，失败不播
 
-Battle integration (`services/battle_service.py`):
-- `_lt_attack_monster(lt, monster, player)` 返回 `(damage, skill_name|None)`，调用方按技能名显示 `使出[连击]`/`使出[普攻]`
-- 副将战斗状态(猛击 buff/debuff、法相护盾)存于 `player.current_encounter` JSON 的 `lt_status`，回合末由 `_tick_lt_status` 递减
-- 副将进场时补满生命/魔法(`start_pve`)
-- `class_required` 限定：主动/触发技能只能被对应职业副将学习(`get_available_skills` 过滤)
+## PK & Combat Loss (PK与战斗损失) System
 
-Skill books: `SKILL_BOOK_IDS` auto-generated from `LIEUTENANT_SKILLS` → 36 books `lt_skill_<id>_<level>`. Forgetting a skill consumes 1 `lt_forget_tome` (遗忘之章), synthesized from 50 `lt_forget_page` (遗忘之章残页) via the残页 detail page.
+详见 `.claude/skills/pk_combat_design.md`，包含PK发起条件、荣誉/银两分档、减免、被怪死亡惩罚、复活、免战符、仇敌追杀等完整规则。
 
-Skill definitions persistence: `LIEUTENANT_SKILLS` loads from `data/lieutenant_skills.json` on import (falling back to `_DEFAULT_LIEUTENANT_SKILLS` in code). The workbench `/workbench/lieutenant_skill_edit` page edits trigger_rate/mana_cost/damage_rate etc. and persists via `save_lieutenant_skills()`; `reset_lieutenant_skills()` deletes the file to restore defaults. After saving, the module global `services.lieutenant_service.LIEUTENANT_SKILLS` is reassigned so changes take effect without restart.
-
-Workbench lieutenant design (`blueprints/workbench.py`, designer-only via `_require_designer()`):
-- `lieutenant_design` list all lieutenants by owner; `lieutenant_view/edit/delete` CRUD on lieutenant fields (quality/enlightenment/reinforce/level/class/skill_slots/tier/position etc.)
-- `lieutenant_skill_edit` / `lieutenant_skill_reset` manage skill definitions
-- `lieutenant_damage_test` single-strike damage breakdown (pure memory, reuses `_lt_attack_monster`)
-- `lieutenant_battle_test` round-by-round simulation: custom lieutenant (as主人's deployed lt) vs custom monster, simulating active/triggered skills/blocking/mana cost
+关键要点速查：
+- **PK发起**：25级开启、同场景、场景`can_pk`(安全区=*前缀地图禁止)、对方未死/未免战、60秒内对同一目标最多3次
+- **荣誉分档**（胜级−败级）：败方更高+15 / 低10级内+10 / 低11-20级+5 / 低20级以上+0；**零和**(胜方得=败方扣，受败方余额上限)
+- **荣誉减免**（取高不叠加,向下取整）：VIP1-5少扣10-50%(`vip_config.pk_drop_reduction`)、死亡替身符少扣30%(仅当高于VIP才消耗)
+- **银两分档**：×败方等级(败方更高×10/低10级内×6/低11-20级×3/低20级以上×0)，零和
+- **PK战败**：不掉装备、不扣经验、副将掉忠诚、异国记仇敌、同国无任何损失；成就仅异国记录
+- **被怪击杀**：扣经验10%+银两(怪级×1)，**死亡时扣**、VIP(`non_pk_loss_exempt`)全免、荣誉不变
+- **复活**：续命灯满血无损/虚弱复活10%血蓝(不扣经验)/回城疗伤(300银两→虚弱复活+本城客栈)
+- **免战符**(`peace_token`)：背包使用→30分钟免疫被发起PK(`activity_data.pk_immunity_until`)
+- **战场**(`battlefield_service`)是独立系统(段位`TIER_HONOR`)，不适用以上规则
 
 ## Garden (百草园) System
 

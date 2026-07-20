@@ -627,7 +627,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 38,
@@ -1064,7 +1065,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 38,
@@ -1838,7 +1840,8 @@
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 30,
@@ -1903,7 +1906,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 40,
@@ -2296,7 +2300,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 45,
@@ -2357,7 +2362,8 @@
       },
       "items": {
         "potion_heal": 0.2,
-        "potion_mana": 0.1
+        "potion_mana": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 35,
@@ -2703,7 +2709,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 55,
@@ -2888,7 +2895,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 65,
@@ -3013,7 +3021,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 70,
@@ -3198,7 +3207,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 60,
@@ -5409,7 +5419,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 45,
@@ -5696,7 +5707,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 24,
@@ -5822,7 +5834,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 30,
@@ -5945,7 +5958,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 23,
@@ -6128,7 +6142,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 24,
@@ -6191,7 +6206,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 26,
@@ -6315,7 +6331,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 28,
@@ -7657,7 +7674,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 38,
@@ -8029,7 +8047,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -8222,7 +8241,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -8350,7 +8370,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -8533,74 +8554,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_luoyang_center_风云使者": {
-    "name": "风云使者",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "传递江湖风云的使节，消息最为灵通。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
-  "npc_luoyang_center_英雄使者": {
-    "name": "英雄使者",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "承办英雄聚会的使节，广纳天下豪杰。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "npc_wa_island_south_医师": {
     "name": "医师",
     "level": 50,
@@ -8746,7 +8699,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -8809,7 +8763,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -8872,7 +8827,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -8935,7 +8891,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -9059,7 +9016,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -9183,7 +9141,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -9246,7 +9205,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -9309,7 +9269,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -9372,7 +9333,8 @@
         "craft_houpi": 0.1,
         "craft_nirong": 0.1,
         "craft_zitanmu": 0.1,
-        "craft_jingjinkuang": 0.1
+        "craft_jingjinkuang": 0.1,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 42,
@@ -9709,7 +9671,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 26,
@@ -9892,7 +9855,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 23,
@@ -10202,7 +10166,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 24,
@@ -10385,7 +10350,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 22,
@@ -10568,7 +10534,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 28,
@@ -10631,7 +10598,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 28,
@@ -11034,7 +11002,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 14,
@@ -11217,7 +11186,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 13,
@@ -11444,7 +11414,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 15,
@@ -11567,7 +11538,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 16,
@@ -12343,7 +12315,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 9,
         "max": 22
@@ -12670,7 +12644,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 8,
         "max": 18
@@ -12732,7 +12708,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 10,
@@ -12956,7 +12933,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 11,
@@ -13871,7 +13849,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 23,
@@ -14115,7 +14094,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 24,
@@ -14303,7 +14283,8 @@
         "craft_suipi": 0.15,
         "craft_mabu": 0.15,
         "craft_huangyangmu": 0.15,
-        "craft_huangtongkuang": 0.15
+        "craft_huangtongkuang": 0.15,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 22,
@@ -14366,7 +14347,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 26,
@@ -14489,7 +14471,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 28,
@@ -14613,7 +14596,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 28,
@@ -15230,7 +15214,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 13,
@@ -15353,7 +15338,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 15,
@@ -15572,7 +15558,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 14,
@@ -15695,7 +15682,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 16,
@@ -16348,7 +16336,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 11,
@@ -16407,7 +16396,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 8,
         "max": 18
@@ -16849,7 +16840,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 10,
@@ -17069,7 +17061,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 9,
         "max": 22
@@ -18691,7 +18685,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -18757,7 +18752,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -18823,7 +18819,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -18889,7 +18886,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -18955,7 +18953,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19021,7 +19020,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19087,7 +19087,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19153,7 +19154,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19170,7 +19172,7 @@
     "max_health": 100
   },
   "monster_kunlun_九色神鹿": {
-    "name": "【稀有神兽】九色神鹿",
+    "name": "九色神鹿",
     "level": 62,
     "is_elite": true,
     "killable": true,
@@ -19562,7 +19564,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19615,7 +19618,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19709,7 +19713,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19842,7 +19847,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -19934,7 +19940,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -20028,7 +20035,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -20272,7 +20280,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -20325,7 +20334,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -20428,7 +20438,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 40,
@@ -20581,7 +20592,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 42,
@@ -20684,7 +20696,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 45,
@@ -20737,7 +20750,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 48,
@@ -20840,7 +20854,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 50,
@@ -20943,7 +20958,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 52,
@@ -21046,7 +21062,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 55,
@@ -21299,7 +21316,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 58,
@@ -21357,7 +21375,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -21414,7 +21434,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -21471,7 +21493,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -21528,7 +21552,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -21585,7 +21611,9 @@
           "legendary": 0
         }
       },
-      "items": {},
+      "items": {
+        "craft_xitiesha": 0.5
+      },
       "money": {
         "min": 20,
         "max": 50
@@ -21650,7 +21678,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 30,
@@ -21717,7 +21746,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 30,
@@ -21784,7 +21814,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 30,
@@ -21851,7 +21882,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 30,
@@ -21918,7 +21950,8 @@
         "craft_suipi": 0.1,
         "craft_mabu": 0.1,
         "craft_huangyangmu": 0.1,
-        "craft_huangtongkuang": 0.1
+        "craft_huangtongkuang": 0.1,
+        "craft_xitiesha": 0.5
       },
       "money": {
         "min": 30,
@@ -21980,7 +22013,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 40,
@@ -22043,7 +22077,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 40,
@@ -22106,7 +22141,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 40,
@@ -22169,7 +22205,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 40,
@@ -22232,7 +22269,8 @@
         "craft_suipi": 0.12,
         "craft_mabu": 0.12,
         "craft_huangyangmu": 0.12,
-        "craft_huangtongkuang": 0.12
+        "craft_huangtongkuang": 0.12,
+        "craft_shengtieding": 0.5
       },
       "money": {
         "min": 40,
@@ -22300,7 +22338,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 50,
@@ -22369,7 +22408,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 50,
@@ -22438,7 +22478,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 50,
@@ -22507,7 +22548,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 50,
@@ -22576,7 +22618,8 @@
         "craft_yingpi": 0.1,
         "craft_mianbu": 0.1,
         "craft_chenxiangmu": 0.1,
-        "craft_heitiekuang": 0.1
+        "craft_heitiekuang": 0.1,
+        "craft_hantieding": 0.5
       },
       "money": {
         "min": 50,
@@ -22640,7 +22683,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 55,
@@ -22705,7 +22749,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 55,
@@ -22770,7 +22815,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 55,
@@ -22835,7 +22881,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 55,
@@ -22900,7 +22947,8 @@
         "craft_yingpi": 0.15,
         "craft_mianbu": 0.15,
         "craft_chenxiangmu": 0.15,
-        "craft_heitiekuang": 0.15
+        "craft_heitiekuang": 0.15,
+        "craft_xuantieding": 0.5
       },
       "money": {
         "min": 55,
@@ -22970,7 +23018,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 60,
@@ -25113,7 +25162,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -25176,7 +25226,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -25241,7 +25292,8 @@
         "craft_houpi": 0.15,
         "craft_nirong": 0.15,
         "craft_zitanmu": 0.15,
-        "craft_jingjinkuang": 0.15
+        "craft_jingjinkuang": 0.15,
+        "craft_bailiangang": 0.5
       },
       "money": {
         "min": 45,
@@ -25255,5 +25307,38 @@
     "max_health": 100,
     "is_one_time_elite": true,
     "quest_gate": "main_all_60b"
+  },
+  "npc_xuchang_center_许昌铁匠": {
+    "name": "许昌铁匠",
+    "level": 50,
+    "is_elite": false,
+    "killable": false,
+    "immortal": true,
+    "description": "抡锤打铁的老师傅，可为你锤炼兵刃。",
+    "base_stats": {
+      "health": 99999,
+      "mana": 9999,
+      "attack": 999,
+      "defense": 999,
+      "crit_rate": 0,
+      "dodge_rate": 0
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0,
+        "templates": []
+      },
+      "items": {},
+      "money": {
+        "min": 0,
+        "max": 0
+      },
+      "experience": 0
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 100
   }
 }

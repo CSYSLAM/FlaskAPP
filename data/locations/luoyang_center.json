@@ -80,9 +80,7 @@
         "east": "luoyang_center.皇宫"
       },
       "npcs": [
-        "npc_luoyang_center_军团使者",
-        "npc_luoyang_center_风云使者",
-        "npc_luoyang_center_英雄使者"
+        "npc_luoyang_center_军团使者"
       ]
     },
     "北城楼": {

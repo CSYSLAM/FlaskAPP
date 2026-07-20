@@ -44,7 +44,11 @@
 
     <!-- 社交操作 -->
     {% if target_player.username in player.friends %}
-    <a href="{{ url_for('social.remove_friend', username=target_player.username) }}">删好友</a>
+    <form action="{{ url_for('social.send_flower', username=target_player.username) }}" method="post" style="display:inline;">
+    赠送玫瑰{% set rose_inv = DataService.get_inventory_item(player.id, 'flower_rose') %}{% set rose_count = rose_inv.quantity if rose_inv else 0 %}(拥有{{ rose_count }}朵)
+    <input type="number" name="quantity" value="1" min="1" max="{{ rose_count }}" style="width:40px;"/>朵
+    <input type="submit" value="赠送"/>
+    </form>
     {% else %}
     <a href="{{ url_for('social.add_friend', username=target_player.username) }}">加好友</a>
     {% endif %}
@@ -62,10 +66,15 @@
     {% else %}
     加入队伍
     {% endif %}
+    {% set fate_val = SocialService.get_fate_value(player.id, target_player.id) %}
+    {% if fate_val >= 100 %}
     {% if target_player.gender != player.gender %}
     <a href="{{ url_for('social.request_relation', username=target_player.username, rel_type='hongyan') }}">结交</a>
     {% else %}
     <a href="{{ url_for('social.request_relation', username=target_player.username, rel_type='zhiji') }}">结交</a>
+    {% endif %}
+    {% else %}
+    结交(缘分需100)
     {% endif %}
     婚姻<br/>
 
@@ -141,7 +150,7 @@
     ----------------<br/>
     {% for slot_name in EquipmentInstance.SLOTS %}
         {% set equip = target_equipped.get(slot_name) %}
-        {{ EquipmentInstance.SLOT_NAMES[slot_name] }}:{% if equip %}<a href="#">{{ equip.name }}</a>{% else %}未装备{% endif %}<br/>
+        {{ EquipmentInstance.SLOT_NAMES[slot_name] }}:{% if equip %}<a href="{{ url_for('player.view_equipment_public', equipment_instance_id=equip.instance_id) }}">{{ equip.name }}</a>{% else %}未装备{% endif %}<br/>
     {% endfor %}
     <a href="{{ url_for('player.view_player', username=target_player.username) }}">返回</a><br/>
 
