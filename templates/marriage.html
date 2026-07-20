@@ -15,20 +15,55 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
-    {% if spouse_name %}
-    您已与<a href="{{ url_for('player.view_player', username=spouse_name) }}">{{ spouse_name }}</a>喜结连理！<br/>
-    结婚对象在线+100点攻击<br/>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    <br/>
+    {% endif %}
+    {% endwith %}
+
+    {% if spouse_info %}
+    您已与<a href="{{ url_for('player.view_player', username=spouse_info.username) }}">{{ spouse_info.nickname }}</a>喜结连理！<br/>
+    对方佩戴:{{ spouse_info.ring_info or '无婚戒' }}<br/>
+    {% if spouse_info.online %}<font color="green">在线</font>{% else %}<font color="gray">离线</font>{% endif %}<br/>
+    <a href="{{ url_for('social.spouse_teleport') }}">传送到配偶身边</a><br/>
+    结婚加成:生命+5% 魔法+5% 攻击+5% 防御+5%<br/>
+    配偶在线+100点攻击<br/>
+    <a href="{{ url_for('social.divorce') }}" data-confirm="确定离婚？需要消耗1个断肠草">离婚</a><br/>
     {% else %}
     您还尚未结婚，遇到合适的玩家可以向对方求婚哦！<br/>
-    结婚对象在线+100点攻击<br/>
+    结婚条件:<br/>
+    1.双方缘分值达到1000<br/>
+    2.双方佩戴新婚草戒或新婚钻戒<br/>
+    3.发起方消耗2杯结交酒<br/>
+    结婚加成:生命+5% 魔法+5% 攻击+5% 防御+5%<br/>
+    配偶在线+100点攻击<br/>
     {% endif %}
+
+    {% if marriage_proposals %}
+    <br/>【待处理的求婚】<br/>
+    {% for req in marriage_proposals %}
+    {{ req.from_name }}佩戴{{ req.ring_info }}向你求婚
+    <a href="{{ url_for('social.accept_marriage', username=req.from) }}">同意</a>
+    <a href="{{ url_for('social.reject_marriage', username=req.from) }}">拒绝</a><br/>
+    {% endfor %}
+    {% endif %}
+
+    <br/>
     <a href="{{ url_for('player.character') }}">返回上级</a><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
-    <script>
-    var aLinks=document.getElementsByTagName("a");
-    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
-    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
-    </script>
+<script>
+var aLinks=document.getElementsByTagName("a");
+for(var i=0;i<aLinks.length;i++){
+    aLinks[i].onclick=function(e){
+        if(this.getAttribute('data-confirm') && !confirm(this.getAttribute('data-confirm'))){e.preventDefault();return;}
+        document.getElementById('loading').style.display='block';
+    };
+}
+setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+</script>
 </body>
 </html>

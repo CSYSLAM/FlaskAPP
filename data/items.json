@@ -3965,5 +3965,17 @@
     "sell_price": 0,
     "is_usable": false,
     "capacity": 0
+  },
+  "enhance_lucky_medium": {
+    "name": "强化中幸运符",
+    "type": "other",
+    "description": "使用后下一次强化成功率+10%，不可叠加",
+    "price": 0,
+    "sell_price": 12000,
+    "is_usable": true,
+    "usage_effect": {
+      "special": "enhance_lucky_medium"
+    },
+    "capacity": 0.1
   }
 }

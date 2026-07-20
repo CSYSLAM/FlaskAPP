@@ -131,6 +131,8 @@ class PlayerService:
         title_atk = title_bonuses.get('attack', 0)
         lt_bonus_flat = cls._get_lt_passive_bonus(player, 'attack')
         relation_atk = SocialService.get_online_relation_attack_bonus(player)
+        spouse_bonus = SocialService.get_spouse_bonus(player)
+        spouse_atk = spouse_bonus.get('attack', 0)
         vip_rate = VipService.get_stat_bonus_rate(player)
         legion_skills = LegionService.get_legion_skill_bonuses(player)
         legion_atk = legion_skills.get('attack', 0)
@@ -141,11 +143,12 @@ class PlayerService:
         territory_atk = territory.get('attack', 0)
         from services.party_service import PartyService
         party_rate = PartyService.get_party_bonus_rate(player)
-        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + legion_atk + aura_atk + territory_atk + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate + party_rate))
+        return int((base + equip_atk + pill + flat + rank_atk + title_atk + relation_atk + spouse_atk + legion_atk + aura_atk + territory_atk + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate + party_rate))
 
     @classmethod
     def get_defense(cls, player):
         from services.title_service import TitleService
+        from services.social_service import SocialService
         from services.vip_service import VipService
         from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
@@ -158,6 +161,8 @@ class PlayerService:
         title_bonuses = TitleService.get_title_bonuses(player)
         title_def = title_bonuses.get('defense', 0)
         lt_bonus_flat = cls._get_lt_passive_bonus(player, 'defense')
+        spouse_bonus = SocialService.get_spouse_bonus(player)
+        spouse_def = spouse_bonus.get('defense', 0)
         vip_rate = VipService.get_stat_bonus_rate(player)
         legion_skills = LegionService.get_legion_skill_bonuses(player)
         legion_def = legion_skills.get('defense', 0)
@@ -168,11 +173,12 @@ class PlayerService:
         territory_def = territory.get('defense', 0)
         from services.party_service import PartyService
         party_rate = PartyService.get_party_bonus_rate(player)
-        return int((base + equip_def + pill + flat + title_def + legion_def + aura_def + territory_def + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate + party_rate))
+        return int((base + equip_def + pill + flat + title_def + spouse_def + legion_def + aura_def + territory_def + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate + party_rate))
 
     @classmethod
     def get_max_health(cls, player):
         from services.title_service import TitleService
+        from services.social_service import SocialService
         from services.vip_service import VipService
         from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
@@ -185,6 +191,8 @@ class PlayerService:
         title_bonuses = TitleService.get_title_bonuses(player)
         title_hp = title_bonuses.get('max_health', 0)
         lt_bonus_flat = cls._get_lt_passive_bonus(player, 'health')
+        spouse_bonus = SocialService.get_spouse_bonus(player)
+        spouse_hp = spouse_bonus.get('max_health', 0)
         vip_rate = VipService.get_stat_bonus_rate(player)
         legion_skills = LegionService.get_legion_skill_bonuses(player)
         legion_hp = legion_skills.get('max_health', 0)
@@ -193,11 +201,12 @@ class PlayerService:
         from services.battlefield_service import BattlefieldService
         territory = BattlefieldService.get_territory_bonuses(player)
         territory_hp = territory.get('max_health', 0)
-        return int((base + equip_hp + pill + flat + title_hp + legion_hp + aura_hp + territory_hp + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate))
+        return int((base + equip_hp + pill + flat + title_hp + spouse_hp + legion_hp + aura_hp + territory_hp + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate))
 
     @classmethod
     def get_max_mana(cls, player):
         from services.title_service import TitleService
+        from services.social_service import SocialService
         from services.vip_service import VipService
         from services.legion_service import LegionService
         from models.lieutenant import Lieutenant
@@ -210,13 +219,15 @@ class PlayerService:
         title_bonuses = TitleService.get_title_bonuses(player)
         title_mp = title_bonuses.get('max_mana', 0)
         lt_bonus_flat = cls._get_lt_passive_bonus(player, 'mana')
+        spouse_bonus = SocialService.get_spouse_bonus(player)
+        spouse_mp = spouse_bonus.get('max_mana', 0)
         vip_rate = VipService.get_stat_bonus_rate(player)
         legion_skills = LegionService.get_legion_skill_bonuses(player)
         legion_mp = legion_skills.get('max_mana', 0)
         from services.battlefield_service import BattlefieldService
         territory = BattlefieldService.get_territory_bonuses(player)
         territory_mp = territory.get('max_mana', 0)
-        return int((base + equip_mp + pill + flat + title_mp + legion_mp + territory_mp + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate))
+        return int((base + equip_mp + pill + flat + title_mp + spouse_mp + legion_mp + territory_mp + passive_flat + lt_bonus_flat) * (1 + rate + vip_rate))
 
     @classmethod
     def _get_equipment_stat_sum(cls, player, stat_name):

@@ -35,7 +35,11 @@
 
     {% for rel in rel_list %}
     {{ rel.nickname }}(缘分值:{{ rel.fate }}){% if rel.online %}<font color="green">在线</font>{% endif %}
-    <a href="{{ url_for('social.break_relation', username=rel.username) }}">断交</a><br/>
+    <a href="{{ url_for('social.break_relation', username=rel.username) }}">断交</a>
+    {% if rel.fate >= 1000 %}
+    <a href="{{ url_for('social.propose_marriage', username=rel.username) }}">求婚</a>
+    {% endif %}
+    <br/>
     {% endfor %}
 
     {% if not rel_list %}
@@ -46,9 +50,15 @@
     {% if pending_requests %}
     【待处理的结交邀请】<br/>
     {% for req in pending_requests %}
+    {% if req.type == 'marriage' %}
+    {{ req.from_name }}佩戴{{ req.ring_info }}向你求婚
+    <a href="{{ url_for('social.accept_marriage', username=req.from) }}">同意</a>
+    <a href="{{ url_for('social.reject_marriage', username=req.from) }}">拒绝</a><br/>
+    {% else %}
     {{ req.from_name }}想和你结为红颜
     <a href="{{ url_for('social.accept_relation', username=req.from) }}">同意</a>
     <a href="{{ url_for('social.reject_relation', username=req.from) }}">拒绝</a><br/>
+    {% endif %}
     {% endfor %}
     <br/>
     {% endif %}

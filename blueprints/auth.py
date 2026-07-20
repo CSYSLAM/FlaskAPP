@@ -49,6 +49,9 @@ def login_page():
         from services.vip_service import VipService
         if VipService.has_broadcast(player):
             DataService.broadcast_system(f"尊贵的VIP{VipService.get_active_vip_level(player)}玩家【{player.nickname}】上线了！")
+        # Notify spouse on login
+        from services.social_service import SocialService
+        SocialService.notify_spouse_login(player)
         return redirect(url_for("auth.select_server"))
     return render_template("login.html", register_msg=register_msg, message=kicked_msg)
 

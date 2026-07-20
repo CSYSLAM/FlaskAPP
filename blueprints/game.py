@@ -166,18 +166,26 @@ def scene():
             ChatMessage.created_at >= cutoff
         ).order_by(ChatMessage.created_at.desc()).limit(10).all()
 
-        # Player notifications (JSON field)
+        # Player notifications (JSON field) - shown once then cleared
         notifications = player.notifications or []
         recent_notifications = [n for n in notifications[:5]]
-        # Check notification time
         filtered_notifications = []
+        friend_notifications = []
         for n in recent_notifications:
             try:
                 n_time = datetime.strptime(n.get('time', ''), '%Y-%m-%d %H:%M')
                 if n_time >= cutoff:
-                    filtered_notifications.append(n)
+                    if n.get('type') == 'friend':
+                        friend_notifications.append(n)
+                    else:
+                        filtered_notifications.append(n)
             except (ValueError, TypeError):
                 pass
+
+        # Clear all shown notifications so they disappear on next refresh
+        if friend_notifications or filtered_notifications:
+            player.notifications = []
+            db.session.commit()
 
         # Get ground items
         ground_items = DataService.get_ground_items(location_id)
@@ -203,6 +211,13 @@ def scene():
                     npc.has_completable = True
                     break
 
+        # Check for pending marriage proposal
+        marriage_proposal = None
+        for r in player.relation_requests:
+            if r.get('type') == 'marriage':
+                marriage_proposal = r
+                break
+
         return render_template("scene.html",
                              player=player,
                              location=location,
@@ -213,9 +228,11 @@ def scene():
                              channel1_msg=channel1_msg,
                              channel2=channel2,
                              notifications=filtered_notifications,
+                             friend_notifications=friend_notifications,
                              ground_items=ground_items,
                              active_quest_count=active_quest_count,
                              current_main=current_main,
+                             marriage_proposal=marriage_proposal,
                              DataService=DataService,
                              now=datetime.now())
     except Exception as e:

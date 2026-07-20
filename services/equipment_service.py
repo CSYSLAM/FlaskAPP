@@ -82,13 +82,34 @@ class EquipmentService:
             return False, "该槽位没有装备"
 
         equip = EquipmentInstance.query.get(slot.equipment_instance_id)
+
+        # 计算属性差
+        diff_parts = []
+        if equip:
+            old_stats = equip.get_total_stats()
+            STAT_NAMES = EquipmentInstance.STAT_NAMES
+            for stat in old_stats:
+                delta = -old_stats[stat]
+                if delta == 0:
+                    continue
+                display = STAT_NAMES.get(stat, stat)
+                if stat in ['crit_rate', 'dodge_rate']:
+                    sign = "+" if delta > 0 else ""
+                    diff_parts.append(f"{display}{sign}{delta*100:.1f}%")
+                else:
+                    sign = "+" if delta > 0 else ""
+                    diff_parts.append(f"{display}{sign}{int(delta)}")
+
         slot.equipment_instance_id = None
 
         if equip:
             DataService.add_item_to_inventory(player.id, equip.instance_id)
 
         db.session.commit()
-        return True, f"卸下了 {equip.name if equip else slot_name}"
+        msg = f"卸下了 {equip.name if equip else slot_name}"
+        if diff_parts:
+            msg += " " + " ".join(diff_parts)
+        return True, msg
 
     @classmethod
     def enhance(cls, player, equipment_instance_id):
@@ -113,10 +134,15 @@ class EquipmentService:
         player.gold -= enhance_cost
         DataService.remove_item_from_inventory(player.id, "enhance_gem", 1)
 
-        success_rate = equip.get_enhance_success_rate(player.enhance_bonus_rate)
+        success_rate = equip.get_enhance_success_rate(
+            fail_bonus=player.enhance_bonus_rate,
+            luck_small=player.enhance_luck_small or False,
+            luck_medium=player.enhance_luck_medium or False)
         if random.random() < success_rate:
             equip.enhance_level += 1
             player.enhance_bonus_rate = 0
+            player.enhance_luck_small = False
+            player.enhance_luck_medium = False
 
             initial = equip.get_initial_stats()
             new_base = {}
@@ -127,7 +153,7 @@ class EquipmentService:
             equip.update_name()
 
             DataService.broadcast_system(
-                f"{player.nickname}成功将{equip.name}强化至+{equip.enhance_level}")
+                f"恭喜{player.nickname}强化{equip.name}成功！！")
 
             from services.achievement_service import AchievementService
 

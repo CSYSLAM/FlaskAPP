@@ -52,16 +52,10 @@ def character():
     # Spouse
     spouse_name = None
     try:
-        from models.relationship import Relationship
-        spouse_rel = Relationship.query.filter(
-            ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
-            Relationship.rel_type == 'spouse'
-        ).first()
-        if spouse_rel:
-            other_id = spouse_rel.get_other_player_id(player.id)
-            spouse_p = PlayerModel.query.get(other_id)
-            if spouse_p:
-                spouse_name = spouse_p.name
+        from services.social_service import SocialService
+        spouse = SocialService.get_spouse(player)
+        if spouse:
+            spouse_name = spouse.name
     except Exception:
         pass
 
@@ -138,21 +132,10 @@ def edit_signature():
 @login_required
 def marriage():
     player = current_user
-    spouse_name = None
-    try:
-        from models.relationship import Relationship
-        spouse_rel = Relationship.query.filter(
-            ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
-            Relationship.rel_type == 'spouse'
-        ).first()
-        if spouse_rel:
-            other_id = spouse_rel.get_other_player_id(player.id)
-            spouse_p = PlayerModel.query.get(other_id)
-            if spouse_p:
-                spouse_name = spouse_p.name
-    except Exception:
-        pass
-    return render_template("marriage.html", player=player, spouse_name=spouse_name)
+    from services.social_service import SocialService
+    spouse_info = SocialService.get_spouse_info(player)
+    marriage_proposals = [r for r in player.relation_requests if r.get('type') == 'marriage']
+    return render_template("marriage.html", player=player, spouse_info=spouse_info, marriage_proposals=marriage_proposals)
 
 
 @player_bp.route("/status")
@@ -305,13 +288,7 @@ def view_player(username):
     target_achievements, achievement_categories = AchievementService.get_all(target)
     from services.social_service import SocialService
     from models.relationship import Relationship
-    target_spouse = None
-    spouse_rel = Relationship.query.filter(
-        ((Relationship.player1_id == target.id) | (Relationship.player2_id == target.id))
-    ).first()
-    if spouse_rel:
-        spouse_id = spouse_rel.get_other_player_id(target.id)
-        target_spouse = PlayerModel.query.get(spouse_id)
+    target_spouse = SocialService.get_spouse(target)
     hongyan_count = Relationship.count_relationships(target.id, 'hongyan')
     zhiji_count = Relationship.count_relationships(target.id, 'zhiji')
     from models.legion import Legion
@@ -487,7 +464,10 @@ def view_equipped(slot):
                              old_equip=None,
                              EquipmentInstance=EquipmentInstance,
                              DataService=DataService,
-                             equipment_image=equipment_image)
+                             equipment_image=equipment_image,
+                             owner_name=None,
+                             creator_info=None,
+                             from_page='equipment')
     return redirect(url_for('player.equipment_list'))
 
 
@@ -503,15 +483,21 @@ def equip_item(equipment_instance_id):
         real_id = real_id[len('equipment_'):]
     success, msg = EquipmentService.equip(player, real_id)
     flash(msg)
-    return redirect(url_for('player.inventory', category=cat, page=page, per_page=per_page))
+    if success:
+        return redirect(url_for('player.inventory', category=cat, page=page, per_page=per_page))
+    else:
+        # 装备失败(职业不符/等级不够等),返回装备详情页显示错误
+        return redirect(url_for('player.view_item', item_id=equipment_instance_id))
 
 
 @player_bp.route("/unequip/<slot>")
 @login_required
 def unequip(slot):
     player = current_user
-    EquipmentService.unequip(player, slot)
-    return redirect(url_for('player.character'))
+    success, msg = EquipmentService.unequip(player, slot)
+    if success:
+        flash(msg)
+    return redirect(url_for('player.equipment_list'))
 
 
 @player_bp.route("/enhance/<equipment_instance_id>")
@@ -766,7 +752,12 @@ def view_item(item_id):
                                  EquipmentInstance=EquipmentInstance,
                                  DataService=DataService,
                                  from_page=from_page,
-                                 equipment_image=equipment_image)
+                                 equipment_image=equipment_image,
+                                 owner_name=None,
+                                 creator_info=None,
+                                 inv_category=cat,
+                                 inv_page=pg,
+                                 inv_per_page=perpg)
     else:
         item_data = DataService.get_item(item_id)
         inv = DataService.get_inventory_item(player.id, item_id, is_bound=bound_val)
@@ -1336,11 +1327,11 @@ def show_equipment(equipment_instance_id):
         flash('装备不存在')
         return redirect(url_for('player.inventory'))
 
-    if player.gold < 500:
-        flash('银两不足500，无法展示')
-        return redirect(url_for('player.view_item', item_id=equipment_instance_id))
+    if player.gold < 1000:
+        flash('银两不足1000，无法展示')
+        return redirect(url_for('player.view_item', item_id='equipment_' + real_id))
 
-    player.gold -= 500
+    player.gold -= 1000
     db.session.commit()
 
     # 广播系统消息（链接不带tic/sid，避免其他玩家点击时被限流）
@@ -1352,7 +1343,13 @@ def show_equipment(equipment_instance_id):
     PublicChat.broadcast(f'玩家【{player.nickname}】正在展示 {equip.name}，<a href="{view_url}">点击查看</a>')
 
     flash('展示成功！已发送系统消息')
-    return redirect(url_for('player.view_item', item_id=equipment_instance_id))
+    # 判断装备是否已装备，跳回正确的详情页
+    slot = EquipmentSlot.query.filter_by(
+        player_id=player.id, equipment_instance_id=equip.id).first()
+    if slot:
+        return redirect(url_for('player.view_equipped', slot=slot.slot_name))
+    else:
+        return redirect(url_for('player.view_item', item_id='equipment_' + real_id))
 
 
 @player_bp.route("/view_equipment_public/<equipment_instance_id>")
@@ -1368,6 +1365,22 @@ def view_equipment_public(equipment_instance_id):
 
     equipment_image = _get_equipment_image(equip)
     tpl = DataService.get_equipment_template(equip.template_id)
+
+    # 拥有者信息
+    owner_name = None
+    if equip.player_id:
+        owner = PlayerModel.query.get(equip.player_id)
+        if owner:
+            owner_name = owner.nickname
+
+    # 创建者信息
+    creator_info = None
+    if equip.created_by:
+        creator_info = equip.created_by
+    if equip.created_at:
+        time_str = equip.created_at.strftime('%Y年%m月%d日 %H:%M')
+        creator_info = f"{creator_info} 时间:{time_str}" if creator_info else f"时间:{time_str}"
+
     return render_template('equipment_view.html',
                          player=player,
                          equipment=equip,
@@ -1378,7 +1391,9 @@ def view_equipment_public(equipment_instance_id):
                          DataService=DataService,
                          equipment_image=equipment_image,
                          from_page='equipment',
-                         readonly=True)
+                         readonly=True,
+                         owner_name=owner_name,
+                         creator_info=creator_info)
 
 
 from services import db

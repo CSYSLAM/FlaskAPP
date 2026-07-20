@@ -624,26 +624,35 @@ PROCS = {"claude": claude_proc, "codebuddy": codebuddy_proc, "flask": flask_proc
 
 
 def _kill_port_occupant(port=5000):
-    """杀掉占用指定端口的进程（无论谁启动的）。
+    """杀掉占用指定端口的进程 + 所有 gunicorn/flask 进程（无论谁启动的）。
     防止手动启动的 gunicorn 占着端口，导致手机控制台启动失败。"""
     if os.name == "nt":
         return  # Windows 暂不处理
+    import subprocess as sp
     try:
-        import subprocess as sp
-        # fuser 返回占用端口的 PID 列表
-        result = sp.run(["fuser", f"{port}/tcp"],
-                        capture_output=True, text=True, timeout=5)
-        pids = result.stdout.split()
-        for pid_str in pids:
+        # 第1步：杀掉所有 gunicorn 和 flask 进程
+        for proc_name in ("gunicorn", "flask"):
             try:
-                pid = int(pid_str.strip())
-                if pid != os.getpid():  # 不杀自己
-                    os.kill(pid, signal.SIGTERM)
-            except (ValueError, ProcessLookupError, PermissionError):
+                result = sp.run(["pkill", "-9", "-f", proc_name],
+                                capture_output=True, text=True, timeout=5)
+            except Exception:
                 pass
-        if pids:
-            import time
-            time.sleep(1)  # 等端口释放
+        # 第2步：杀掉占用 5000 端口的残留进程
+        try:
+            result = sp.run(["fuser", f"{port}/tcp"],
+                            capture_output=True, text=True, timeout=5)
+            pids = result.stdout.split()
+            for pid_str in pids:
+                try:
+                    pid = int(pid_str.strip())
+                    if pid != os.getpid():  # 不杀自己
+                        os.kill(pid, signal.SIGKILL)
+                except (ValueError, ProcessLookupError, PermissionError):
+                    pass
+        except Exception:
+            pass
+        import time
+        time.sleep(1.5)  # 等端口释放
     except Exception:
         pass
 

@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{{ equipment.name }}</title>
+    <title>强化装备</title>
     <style>
     body { font-size: 16px; margin: 0; line-height: 1.6; }
     a:link { color: #136ec2; text-decoration: none; }
-    .bound { color: #999; font-size: 14px; }
     .rarity-史诗 { color: #a335ee; }
     .rarity-神器 { color: #ff8000; }
     #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
@@ -32,39 +31,19 @@
     {% set initial = equipment.get_initial_stats() %}
     {% set extra = equipment.get_extra_stats() %}
 
-    {# === 顶部操作按钮 === #}
-    {% if not readonly %}
-    {% if is_equipped.val %}
-    <a href="{{ url_for('player.unequip', slot=equipment.slot) }}">卸下</a> <a href="{{ url_for('player.show_equipment', equipment_instance_id=equipment.instance_id) }}">展示(1000银两)</a><br/>
-    {% else %}
-    <a href="{{ url_for('player.equip_item', equipment_instance_id=item_id, category=inv_category|default('全部'), page=inv_page|default('1'), per_page=inv_per_page|default('10')) }}">装备</a>{% if old_equip %}(替换:{{ old_equip.name }}){% endif %} <a href="{{ url_for('player.show_equipment', equipment_instance_id=equipment.instance_id) }}">展示(1000银两)</a><br/>
-    {% endif %}
-    {% elif owner_name %}
-    拥有者：{{ owner_name }}<br/>
-    {% endif %}
-
-    {# === 装备名称（史诗/神器有颜色） === #}
     {% if equipment.rarity == '史诗' or equipment.rarity == '神器' %}
     <span class="rarity-{{ equipment.rarity }}">{{ equipment.name }}</span>
     {% else %}
     {{ equipment.name }}
     {% endif %}
-    {% if equipment.is_bound %}<span class="bound">(绑定)</span>{% else %}<span class="bound">(非绑定)</span>{% endif %}<br/>
-
-    {# === 装备说明 === #}
+    {% if equipment.is_bound %}<span style="color:#999">(绑定)</span>{% else %}<span style="color:#999">(非绑定)</span>{% endif %}<br/>
     {% if tpl and tpl.get('description') %}
     {{ tpl.description }}<br/>
     {% endif %}
-
-    {# === 装备图片 === #}
-    {% if equipment_image %}<img src="{{ url_for('static', filename=equipment_image) }}" style="max-width:120px;"><br/>{% endif %}
-
     装备等级：{{ equipment.level_required }}级<br/>
     物品级别：{{ equipment.rarity }}<br/>
     职业要求：{{ equipment.class_required or '全职业' }}<br/>
     装备类型：{{ slot_name }}<br/>
-
-    {# === 基础属性（只显示attack和defense，拆分原始+强化加成） === #}
     基础属性:<br/>
     {% if base.get('attack') %}
     {% set init_atk = (initial.get('attack') or 0)|round|int %}
@@ -76,8 +55,6 @@
     {% set enhance_def = (base['defense'] - init_def)|round|int %}
     &nbsp;&nbsp;防御力 {{ base['defense']|round|int }}{% if enhance_def > 0 %}（{{ init_def }}+{{ enhance_def }}）{% endif %}<br/>
     {% endif %}
-
-    {# === 附加属性（六种，为0不显示） === #}
     {% if extra %}
     附加属性:<br/>
     {% if extra.get('attack') and extra['attack'][0] %}
@@ -99,31 +76,57 @@
     &nbsp;&nbsp;闪避率 +{{ "%.2f"|format(extra['dodge_rate'][0] * 100) }}%({{ extra['dodge_rate'][1]|int }}星)<br/>
     {% endif %}
     {% endif %}
-
-    卖出价：{{ equipment.get_sell_price() }}银两<br/>
-
-    {# === 底部操作按钮 === #}
-    {% if not readonly %}
-    {% if not is_equipped.val %}
-    <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a><br/>
+    强化等级：+{{ equipment.enhance_level }}→+{{ equipment.enhance_level + 1 }}<br/>
+    消耗：强化宝玉x1 银两x{{ enhance_cost }}<br/>
+    成功几率：{{ "%.1f"|format(equipment.get_enhance_success_rate(fail_bonus=player.enhance_bonus_rate, luck_small=player.enhance_luck_small or False, luck_medium=player.enhance_luck_medium or False) * 100) }}%<br/>
+    {% if enhance_changes %}
+    成功后{% for stat, diff in enhance_changes.items() %}{{ stat }}+{{ diff }}{% if not loop.last %}，{% endif %}{% endfor %}<br/>
     {% endif %}
-    {% if from_page == 'equipment' %}
-    <a href="{{ url_for('player.equipment_list') }}">返回上级</a><br/>
+    本次强化失败强化等级-1，强化几率+5%<br/>
+    {% if not equipment.is_bound %}强化后装备将绑定<br/>{% endif %}
+    <br/>
+    强化符：<br/>
+    {% if player.enhance_luck_small %}
+    &nbsp;&nbsp;🍀 强化小幸运符生效中(+5%)<br/>
+    {% elif luck_small_count > 0 %}
+    &nbsp;&nbsp;强化小幸运符x{{ luck_small_count }} <a href="#" onclick="document.getElementById('luckSmallForm').submit();return false;">使用</a>(+5%)<br/>
     {% else %}
-    <a href="{{ url_for('player.inventory', category=inv_category|default('全部'), page=inv_page|default('1'), per_page=inv_per_page|default('10')) }}">返回上级</a><br/>
+    &nbsp;&nbsp;强化小幸运符x0(+5%)<br/>
     {% endif %}
+    {% if player.enhance_luck_medium %}
+    &nbsp;&nbsp;🍀 强化中幸运符生效中(+10%)<br/>
+    {% elif luck_medium_count > 0 %}
+    &nbsp;&nbsp;强化中幸运符x{{ luck_medium_count }} <a href="#" onclick="document.getElementById('luckMediumForm').submit();return false;">使用</a>(+10%)<br/>
     {% else %}
-    {% if creator_info %}
-    创建者:{{ creator_info }}<br/>
+    &nbsp;&nbsp;强化中幸运符x0(+10%)<br/>
     {% endif %}
-    <a href="{{ url_for('game.scene') }}">返回上级</a><br/>
+    {% if player.enhance_bonus_rate and player.enhance_bonus_rate > 0 %}
+    &nbsp;&nbsp;失败累积加成：+{{ "%.1f"|format(player.enhance_bonus_rate * 100) }}%<br/>
     {% endif %}
-    <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+    <br/>
+    <form id="luckSmallForm" action="{{ url_for('crafting.use_luck', luck_type='small', equipment_instance_id=item_id) }}" method="post" style="display:none;"></form>
+    <form id="luckMediumForm" action="{{ url_for('crafting.use_luck', luck_type='medium', equipment_instance_id=item_id) }}" method="post" style="display:none;"></form>
+    {% if can_enhance %}
+    <a href="#" onclick="document.getElementById('enhanceForm').submit();return false;">强化</a>
+    <form id="enhanceForm" action="{{ url_for('crafting.enhance_do', equipment_instance_id=item_id) }}" method="post" style="display:none;"></form>
+    {% else %}
+    {% if equipment.enhance_level >= 50 %}已达最大强化等级{% else %}银两不足或缺少强化宝玉{% endif %}
+    {% endif %}
+    <br/>
+    <a href="{{ url_for('crafting.enhance_list') }}">返回</a>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a>
 
     <script>
+    document.getElementById('loading').style.display='none';
     var aLinks=document.getElementsByTagName("a");
-    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
-    setTimeout(function(){document.getElementById('loading').style.display='none'},350);
+    for(var i=0;i<aLinks.length;i++){aLinks[i].addEventListener('click',function(e){
+        if(this.getAttribute('href')==='#'){e.preventDefault();return;}
+        document.getElementById('loading').style.display='block';
+    });}
+    // 绑定 href=# 的链接触发表单提交时也显示loading
+    document.querySelectorAll('a[onclick]').forEach(function(a){
+        a.addEventListener('click',function(){document.getElementById('loading').style.display='block';});
+    });
     </script>
 </body>
 </html>

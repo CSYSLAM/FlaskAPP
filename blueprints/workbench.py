@@ -287,8 +287,10 @@ def view_player():
         title_atk = title_bonuses.get('attack', 0)
         lt_atk_rate = PlayerService._get_lt_passive_bonus(target, 'attack')
         relation_atk = SocialService.get_online_relation_attack_bonus(target)
+        spouse_bonus = SocialService.get_spouse_bonus(target)
+        spouse_atk = spouse_bonus.get('attack', 0)
         vip_rate = VipService.get_stat_bonus_rate(target)
-        atk_flat = base_atk + equip_atk + pill_atk + flat_atk + rank_atk + title_atk + relation_atk + passive_atk_flat
+        atk_flat = base_atk + equip_atk + pill_atk + flat_atk + rank_atk + title_atk + relation_atk + spouse_atk + passive_atk_flat
         atk_rate = 1 + rate_atk + lt_atk_rate + vip_rate
         atk_result = int(atk_flat * atk_rate)
 
@@ -301,7 +303,8 @@ def view_player():
                 ('临时BUFF(flat)', flat_atk),
                 ('军衔加成', rank_atk),
                 ('称号加成', title_atk),
-                ('红颜/知己/结婚', relation_atk),
+                ('红颜/知己在线', relation_atk),
+                ('结婚加成(5%)', spouse_atk),
                 ('被动技能', passive_atk_flat),
             ],
             'rate_parts': [
@@ -322,7 +325,8 @@ def view_player():
         passive_def_flat = passive.get('defense', 0)
         title_def = title_bonuses.get('defense', 0)
         lt_def_rate = PlayerService._get_lt_passive_bonus(target, 'defense')
-        def_flat = base_def + equip_def + pill_def + flat_def + title_def + passive_def_flat
+        spouse_def = spouse_bonus.get('defense', 0)
+        def_flat = base_def + equip_def + pill_def + flat_def + title_def + spouse_def + passive_def_flat
         def_rate = 1 + rate_def + lt_def_rate + vip_rate
         def_result = int(def_flat * def_rate)
 
@@ -334,6 +338,7 @@ def view_player():
                 ('丹药加成', pill_def),
                 ('临时BUFF(flat)', flat_def),
                 ('称号加成', title_def),
+                ('结婚加成(5%)', spouse_def),
                 ('被动技能', passive_def_flat),
             ],
             'rate_parts': [
@@ -354,7 +359,8 @@ def view_player():
         passive_hp_flat = passive.get('max_health', 0)
         title_hp = title_bonuses.get('max_health', 0)
         lt_hp_rate = PlayerService._get_lt_passive_bonus(target, 'health')
-        hp_flat = base_hp + equip_hp + pill_hp + flat_hp + title_hp + passive_hp_flat
+        spouse_hp = spouse_bonus.get('max_health', 0)
+        hp_flat = base_hp + equip_hp + pill_hp + flat_hp + title_hp + spouse_hp + passive_hp_flat
         hp_rate = 1 + rate_hp + lt_hp_rate + vip_rate
         hp_result = int(hp_flat * hp_rate)
 
@@ -366,6 +372,7 @@ def view_player():
                 ('丹药加成', pill_hp),
                 ('临时BUFF(flat)', flat_hp),
                 ('称号加成', title_hp),
+                ('结婚加成(5%)', spouse_hp),
                 ('被动技能', passive_hp_flat),
             ],
             'rate_parts': [
@@ -386,7 +393,8 @@ def view_player():
         passive_mp_flat = passive.get('max_mana', 0)
         title_mp = title_bonuses.get('max_mana', 0)
         lt_mp_rate = PlayerService._get_lt_passive_bonus(target, 'mana')
-        mp_flat = base_mp + equip_mp + pill_mp + flat_mp + title_mp + passive_mp_flat
+        spouse_mp = spouse_bonus.get('max_mana', 0)
+        mp_flat = base_mp + equip_mp + pill_mp + flat_mp + title_mp + spouse_mp + passive_mp_flat
         mp_rate = 1 + rate_mp + lt_mp_rate + vip_rate
         mp_result = int(mp_flat * mp_rate)
 
@@ -398,6 +406,7 @@ def view_player():
                 ('丹药加成', pill_mp),
                 ('临时BUFF(flat)', flat_mp),
                 ('称号加成', title_mp),
+                ('结婚加成(5%)', spouse_mp),
                 ('被动技能', passive_mp_flat),
             ],
             'rate_parts': [

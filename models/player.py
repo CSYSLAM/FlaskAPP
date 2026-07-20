@@ -62,7 +62,9 @@ class PlayerModel(db.Model, UserMixin):
     battlefield_death_time = db.Column(db.Float, default=0.0)
     party_id = db.Column(db.Integer, nullable=True)
     last_attack_time = db.Column(db.Float, default=0.0)
-    enhance_bonus_rate = db.Column(db.Float, default=0.0)
+    enhance_bonus_rate = db.Column(db.Float, default=0.0)  # 强化失败累积成功率加成(每失败+5%)
+    enhance_luck_small = db.Column(db.Boolean, default=False)  # 强化小幸运符(+5%)
+    enhance_luck_medium = db.Column(db.Boolean, default=False)  # 强化中幸运符(+15%)
 
     last_damage_taken = db.Column(db.Integer, default=0)
     last_damage_dealt = db.Column(db.String(32), default='')
@@ -772,6 +774,8 @@ class EquipmentInstance(db.Model):
     extra_stats = db.Column(db.Text, default='{}')
     initial_stats = db.Column(db.Text, default='{}')
     enhance_level = db.Column(db.Integer, default=0)
+    created_by = db.Column(db.String(64), nullable=True)   # 创建者昵称
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)  # 创建时间
 
     STAT_NAMES = {
         "max_health": "生命上限",
@@ -819,7 +823,7 @@ class EquipmentInstance(db.Model):
         base = f"【{self.rarity}】{_get_template_name(self.template_id)}({self.stars}星)({self.level_required}级)"
         self.name = f"{base}+{self.enhance_level}" if self.enhance_level > 0 else base
 
-    def get_enhance_success_rate(self, player_bonus_rate=0):
+    def get_enhance_success_rate(self, fail_bonus=0, luck_small=False, luck_medium=False):
         el = self.enhance_level
         if el < 1: base = 1.0
         elif el < 10: base = 0.95
@@ -832,7 +836,12 @@ class EquipmentInstance(db.Model):
         elif el < 45: base = 0.40
         elif el < 48: base = 0.35
         else: base = 0.30
-        return min(1.0, base + player_bonus_rate)
+        total = base + fail_bonus
+        if luck_small:
+            total += 0.05
+        if luck_medium:
+            total += 0.10
+        return min(1.0, total)
 
     def get_sell_price(self):
         from services.data_service import DataService
