@@ -404,6 +404,9 @@ class ActivityService:
         from services.achievement_service import AchievementService
         AchievementService.check(player, 'yuanbao_spent', player.yuanbao_spent)
         return True, reward_msg
+
+    @classmethod
+    def get_egg_free_remaining(cls, player):
         return 1 - cls.get_today_value(player, 'smash_egg_free')
 
     # --- Rock Paper Scissors ---
@@ -603,6 +606,7 @@ class ActivityService:
         else:
             player.jinzu -= 50
             player.jinzu_spent = (player.jinzu_spent or 0) + 50
+        prize = cls._weighted_random(cls.CARD_PRIZES)
         reward_msg = cls._grant_prize(player, prize)
         cls.set_today_value(player, 'card_flip_done', done + 1)
 

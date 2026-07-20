@@ -329,6 +329,8 @@ class LegionService:
         player.yuanbao -= 10
         player.yuanbao_spent = (player.yuanbao_spent or 0) + 10
         member.contribution += 10
+
+        legion = Legion.query.get(member.legion_id)
         legion.total_contribution += 10
         db.session.commit()
         from services.achievement_service import AchievementService
