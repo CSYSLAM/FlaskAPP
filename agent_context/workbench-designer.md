@@ -12,7 +12,7 @@
 
 **方式2：通过Python脚本（命令行）**
 ```bash
-cd "C:/csy_work/fysg/1008/FlaskAPP" && python -c "
+cd /mnt/FlaskAPP && python -c "
 from app import create_app
 app = create_app()
 with app.app_context():
@@ -42,7 +42,7 @@ UPDATE players SET is_designer = 1 WHERE player_uid = '目标UID';
 ## 关键：等级变更自动重算属性
 当设计师修改玩家等级时，基础属性（attack/defense/max_health/max_mana/crit_rate/dodge_rate）必须按职业公式重新计算，否则属性与等级不匹配。
 
-`blueprints/workbench.py:145-161`，在 save 块中检测 level 字段变更，使用 `CLASSES[player_class]` 的 `base_stats + level_up_stats * (level - 1)` 公式覆盖6项基础属性。
+`blueprints/workbench.py` 的玩家属性编辑保存逻辑（`edit_player` / `_simulate_generate` 相关保存块），在保存时检测 level 字段变更，使用 `CLASSES[player_class]` 的 `base_stats + level_up_stats * (level - 1)` 公式覆盖6项基础属性。（注：用函数名引用而非行号，避免代码变动后行号失效。）
 
 公式优先级：如果同时修改等级和基础属性，公式覆盖手动输入的基础属性值。
 

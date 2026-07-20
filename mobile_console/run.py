@@ -733,8 +733,8 @@ app = Flask(__name__)
 # ---------------------------------------------------------------------------
 # 登录鉴权:session cookie + 登录页(替代 Basic Auth)
 # 密码来源优先级:环境变量 MOBILE_CONSOLE_PASSWORD > .passwd 文件 > 启动时随机生成
-# 单窗口登录:同一账号只允许一个有效 session,新登录会踢掉旧 session,
-# 旧窗口下次请求/SSE 心跳时检测到被踢 → 前端弹全屏遮罩跳回登录页。
+# 多窗口登录:同一账号允许多个有效 session 并存(不挤号),
+# 仅在 /api/status 等接口暴露当前在线登录窗口数。
 # ---------------------------------------------------------------------------
 def _load_or_gen_password():
     p = os.environ.get("MOBILE_CONSOLE_PASSWORD")
@@ -819,6 +819,12 @@ CLAUDE_CONFIGS = {
         "model": "glm-5.2",
         "base": "maas-api.unisound.com",
     },
+    "qwen": {
+        "file": ".claude.env.qwen",
+        "label": "阿里云(qwen)",
+        "model": "qwen3.8-max-preview",
+        "base": "token-plan.cn-beijing.maas.aliyuncs.com",
+    },
 }
 CLAUDE_ENV_ACTIVE = ".claude.env.active"   # 记录当前激活的配置名
 CLAUDE_ENV_LIVE = ".claude.env"            # claude 实际 source 的文件
@@ -863,30 +869,44 @@ def _claude_switch_config(name):
     return True, f"已切换到 {info['label']}({info['model']})。下条指令生效。"
 
 
-# 单窗口登录状态:token -> 当前有效 session_id
-# 登录时生成新 token 并把 _ACTIVE_TOKEN 指向它;旧 session 的 token 不再匹配即视为被踢
+# 多窗口登录状态:保存所有有效 session token 的集合(不挤号)。
+# 登录时生成新 token 加入集合;退出时移除。当前在线窗口数 = 集合大小。
 import threading as _t
 _session_lock = _t.Lock()
-_ACTIVE_TOKEN = None   # 当前有效的登录 token,只有持有它的 session 才算在线
+_ACTIVE_TOKENS = set()   # 当前所有有效登录 token,持有其中之一的 session 即算在线
 
 
 def _new_login():
-    """登录成功:生成新 token,设到 session,并令其成为唯一有效 token(踢掉旧窗口)。"""
-    global _ACTIVE_TOKEN
+    """登录成功:生成新 token 加入有效集合(不影响其它已登录窗口)。"""
     token = secrets.token_urlsafe(24)
     with _session_lock:
-        _ACTIVE_TOKEN = token
+        _ACTIVE_TOKENS.add(token)
     session.permanent = True
     session["token"] = token
 
 
 def _is_current_session():
-    """当前请求的 session 是否仍是有效登录(没被新窗口踢掉)。"""
+    """当前请求的 session 是否仍持有有效 token。"""
     tok = session.get("token")
     if not tok:
         return False
     with _session_lock:
-        return tok == _ACTIVE_TOKEN
+        return tok in _ACTIVE_TOKENS
+
+
+def _logout_current():
+    """退出:从有效集合移除当前 token。"""
+    tok = session.get("token")
+    if tok:
+        with _session_lock:
+            _ACTIVE_TOKENS.discard(tok)
+    session.clear()
+
+
+def _active_login_count():
+    """当前在线登录窗口数。"""
+    with _session_lock:
+        return len(_ACTIVE_TOKENS)
 
 
 @app.before_request
@@ -903,8 +923,7 @@ def _require_auth():
         # 浏览器页面请求 → 重定向到登录页;API/SSE → 返回 401 让前端跳转
         if "text/event-stream" in request.headers.get("Accept", "") or \
            request.path.startswith("/api/"):
-            return jsonify({"ok": False, "kicked": not (session.get("token") is None and _ACTIVE_TOKEN is None),
-                            "msg": "未登录或已下线"}), 401
+            return jsonify({"ok": False, "msg": "未登录或已下线"}), 401
         return redirect_to_login()
     return None
 
@@ -936,7 +955,7 @@ def api_login():
 
 @app.route("/api/logout", methods=["POST"])
 def api_logout():
-    session.clear()
+    _logout_current()
     return jsonify({"ok": True, "msg": "已退出"})
 
 
@@ -964,6 +983,7 @@ def api_status():
         "lan_ip": LAN_IP,
         "game_url": f"http://{LAN_IP}:{GAME_PORT}",
         "claude_config": _claude_active_config(),
+        "login_count": _active_login_count(),
     })
 
 
@@ -1005,6 +1025,7 @@ def api_peek():
             "listening": _port_listening(GAME_PORT),
         },
         "lan_ip": LAN_IP,
+        "login_count": _active_login_count(),
     })
 
 
@@ -1398,6 +1419,7 @@ PAGE_HTML = r"""
 <header>
   <h1>🎮 FlaskAPP 手机控制台</h1>
   <div class="ip">电脑IP: {{ lan_ip }} · 控制台:{{ console_port }} · 游戏:{{ game_port }}</div>
+  <div class="ip" style="margin-top:2px">当前在线登录: <span id="login-count">-</span> 个窗口</div>
   <button id="startall" class="btn-startall" onclick="startAll()">⚡ 一键启动 Claude + CodeBuddy + Flask</button>
   <div class="tabs">
     <button id="tab-console" class="active" onclick="showTab('console')">控制台</button>
@@ -1548,7 +1570,7 @@ PAGE_HTML = r"""
 
 <script>
 const TAG_LABEL = {claude:"claude", flask:"flask", you:"你", system:"系统", error:"错误"};
-let _kickedShown = false;          // 被踢遮罩只弹一次
+let _unauthShown = false;          // 未登录遮罩只弹一次
 let _fileBlocks = {claude:[], codebuddy:[]};  // 已载入的文件上下文块(按 agent 隔离,发送时拼在指令前)
 
 function showTab(t){
@@ -1559,22 +1581,22 @@ function showTab(t){
 }
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
-// 统一 POST:401 = 未登录/被踢 → 弹遮罩
+// 统一 POST:401 = 未登录/已下线 → 弹遮罩
 async function postJSON(url, body){
   const opt = {method:'POST'};
   if(body!==undefined){ opt.body=body; }
   const r = await fetch(url, opt);
-  if(r.status===401){ onKicked(); throw new Error('unauthorized'); }
+  if(r.status===401){ onUnauthorized(); throw new Error('unauthorized'); }
   return r.json();
 }
 
-// 被踢下线:全屏遮罩
-function onKicked(){
-  if(_kickedShown) return;
-  _kickedShown = true;
-  const m=document.createElement('div'); m.className='mask'; m.id='kicked-mask';
-  m.innerHTML='<div class="modal"><h2>⚠️ 已下线</h2>'+
-    '<p>该账号已在其他窗口登录,当前窗口已被强制下线(只支持单窗口登录)。</p>'+
+// 未登录/已下线:全屏遮罩(多窗口并存,不会再被踢,仅当本窗口登出/失效时提示)
+function onUnauthorized(){
+  if(_unauthShown) return;
+  _unauthShown = true;
+  const m=document.createElement('div'); m.className='mask'; m.id='unauth-mask';
+  m.innerHTML='<div class="modal"><h2>🔒 未登录</h2>'+
+    '<p>当前窗口登录已失效,请重新登录。</p>'+
     '<button onclick="location.href=\'/login\'">返回登录</button></div>';
   document.body.appendChild(m);
   try{ if(window._es) window._es.close(); }catch(e){}
@@ -1617,7 +1639,7 @@ async function clearHistory(key){
 async function loadClaudeConfig(){
   try{
     const r = await fetch('/api/claude_config');
-    if(r.status===401){ onKicked(); return; }
+    if(r.status===401){ onUnauthorized(); return; }
     const j = await r.json();
     const sel = document.getElementById('claude-cfg-select');
     const lbl = document.getElementById('claude-cfg-label');
@@ -1698,7 +1720,7 @@ async function onFilesPicked(input, agent){
     fd.append('file', f);
     try{
       const r = await fetch('/api/upload',{method:'POST',body:fd});
-      if(r.status===401){ onKicked(); return; }
+      if(r.status===401){ onUnauthorized(); return; }
       const j = await r.json();
       if(j.ok){
         _fileBlocks[agent].push(j.block);
@@ -1764,7 +1786,7 @@ function flash(msg){ /* 简单提示 */
 
 function refreshStatus(){
   fetch('/api/status').then(r=>{
-    if(r.status===401){ onKicked(); throw new Error('ok'); }
+    if(r.status===401){ onUnauthorized(); throw new Error('ok'); }
     return r.json();
   }).then(j=>{
     const set=(id,p)=>{
@@ -1800,12 +1822,15 @@ function refreshStatus(){
       if(lbl){
         // 优先用下拉框里该项的 label·model 文案,找不到再回退到旧的写死映射
         const opt = document.querySelector('#claude-cfg-select option[value="' + j.claude_config + '"]');
-        const map = {xfyun:'讯飞(xf-yun) · astron-code-latest', unisound:'云知声(unisound) · glm-5.2'};
+        const map = {xfyun:'讯飞(xf-yun) · astron-code-latest', unisound:'云知声(unisound) · glm-5.2', qwen:'阿里云(qwen) · qwen3.8-max-preview'};
         lbl.textContent = (opt ? opt.textContent : (map[j.claude_config] || j.claude_config));
       }
       const sel = document.getElementById('claude-cfg-select');
       if(sel && !sel.matches(':focus')) sel.value = j.claude_config;
     }
+    // 当前在线登录窗口数
+    const lc = document.getElementById('login-count');
+    if(lc && typeof j.login_count === 'number'){ lc.textContent = j.login_count; }
   }).catch(()=>{});
 }
 
@@ -1817,7 +1842,7 @@ async function loadHistory(agent, afterTs){
   try{
     let url = '/api/history/' + agent + '?lines=50';
     const r = await fetch(url);
-    if(r.status===401){ onKicked(); return; }
+    if(r.status===401){ onUnauthorized(); return; }
     const lines = await r.json();
     const termId = agent==='flask' ? 'log-flask' : 'log-'+agent;
     for(const l of lines){
@@ -1878,7 +1903,7 @@ function connectSSE(){
   };
   es.onerror = ()=>{
     try{ es.close(); }catch(e){}
-    if(_kickedShown) return;   // 已被踢就不重连
+    if(_unauthShown) return;   // 未登录就不重连
     setTimeout(()=>{
       connectSSE();
       // 重连后补拉断连期间的历史

@@ -23,7 +23,7 @@
       "condition_value": 10,
       "item_id": "blood_stone_small",
       "reward": {
-        "max_health": 5
+        "max_health": 2
       }
     },
     "item_ningmocao": {
@@ -34,7 +34,7 @@
       "condition_value": 10,
       "item_id": "mana_stone_small",
       "reward": {
-        "max_mana": 5
+        "max_mana": 2
       }
     },
     "item_jinchuangyao": {
@@ -45,7 +45,7 @@
       "condition_value": 10,
       "item_id": "blood_stone_medium",
       "reward": {
-        "max_health": 10
+        "max_health": 5
       }
     },
     "item_jumosan": {
@@ -56,7 +56,7 @@
       "condition_value": 10,
       "item_id": "mana_stone_medium",
       "reward": {
-        "max_mana": 10
+        "max_mana": 5
       }
     },
     "item_yangshengwan": {
@@ -67,7 +67,7 @@
       "condition_value": 10,
       "item_id": "blood_stone_large",
       "reward": {
-        "max_health": 20
+        "max_health": 10
       }
     },
     "item_xingshenshui": {
@@ -78,7 +78,7 @@
       "condition_value": 10,
       "item_id": "mana_stone_large",
       "reward": {
-        "max_mana": 20
+        "max_mana": 10
       }
     },
     "item_huishengwan": {
@@ -89,7 +89,7 @@
       "condition_value": 10,
       "item_id": "strong_hp_potion",
       "reward": {
-        "max_health": 30
+        "max_health": 14
       }
     },
     "item_dabuwan": {
@@ -100,7 +100,7 @@
       "condition_value": 10,
       "item_id": "strong_mp_potion",
       "reward": {
-        "max_mana": 30
+        "max_mana": 15
       }
     },
     "item_xiaohuandan": {
@@ -111,7 +111,7 @@
       "condition_value": 10,
       "item_id": "strong_atk_potion",
       "reward": {
-        "attack": 5
+        "max_health": 5
       }
     },
     "item_dahuandan": {
@@ -122,7 +122,7 @@
       "condition_value": 10,
       "item_id": "strong_def_potion",
       "reward": {
-        "defense": 5
+        "max_mana": 5
       }
     },
     "item_yeshanshen": {
@@ -133,7 +133,7 @@
       "condition_value": 10,
       "item_id": "strong_crit_potion",
       "reward": {
-        "crit_rate": 0.01
+        "max_health": 5
       }
     },
     "item_xuelianlu": {
@@ -144,7 +144,7 @@
       "condition_value": 10,
       "item_id": "strong_dodge_potion",
       "reward": {
-        "dodge_rate": 0.01
+        "max_mana": 5
       }
     },
     "level_10": {
@@ -154,8 +154,8 @@
       "condition_type": "level",
       "condition_value": 10,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "level_20": {
@@ -166,8 +166,8 @@
       "condition_value": 20,
       "points": 5,
       "reward": {
-        "max_health": 5,
-        "defense": 5
+        "max_health": 2,
+        "defense": 4
       }
     },
     "level_30": {
@@ -178,8 +178,8 @@
       "condition_value": 30,
       "points": 10,
       "reward": {
-        "max_health": 10,
-        "defense": 10
+        "max_health": 5,
+        "defense": 7
       }
     },
     "level_40": {
@@ -190,8 +190,8 @@
       "condition_value": 40,
       "points": 20,
       "reward": {
-        "max_health": 15,
-        "defense": 15
+        "max_health": 7,
+        "defense": 10
       }
     },
     "level_50": {
@@ -202,8 +202,8 @@
       "condition_value": 50,
       "points": 50,
       "reward": {
-        "max_health": 30,
-        "defense": 30
+        "max_health": 14,
+        "defense": 17
       }
     },
     "level_60": {
@@ -214,8 +214,8 @@
       "condition_value": 60,
       "points": 80,
       "reward": {
-        "max_health": 60,
-        "defense": 60
+        "max_health": 29,
+        "defense": 28
       }
     },
     "dungeon_huangjin_100": {
@@ -227,8 +227,8 @@
       "dungeon_id": "huangjin_trial",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_huoshao_bowang_100": {
@@ -240,8 +240,8 @@
       "dungeon_id": "huoshao_bowang",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_baiyi_dujiang_100": {
@@ -253,8 +253,8 @@
       "dungeon_id": "baiyi_dujiang",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_liaodong_100": {
@@ -266,8 +266,8 @@
       "dungeon_id": "jiding_liaodong",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_xiaoyaojin_100": {
@@ -279,8 +279,8 @@
       "dungeon_id": "weizhen_xiaoyaojin",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_qianli_danqi_100": {
@@ -292,8 +292,8 @@
       "dungeon_id": "qianli_danqi",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_huoshao_lianying_100": {
@@ -305,8 +305,8 @@
       "dungeon_id": "huoshao_lianying",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_taoyuan_jieyi_100": {
@@ -318,8 +318,8 @@
       "dungeon_id": "taoyuan_jieyi",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_caopi_xuanfei_100": {
@@ -331,8 +331,8 @@
       "dungeon_id": "caopi_xuanfei",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_jiangdong_bawang_100": {
@@ -344,8 +344,8 @@
       "dungeon_id": "jiangdong_bawang",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_dazhan_changban_100": {
@@ -357,8 +357,8 @@
       "dungeon_id": "dazhan_changban",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_shiting_zhizhan_100": {
@@ -370,8 +370,8 @@
       "dungeon_id": "shiting_zhizhan",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_zhidou_machao_100": {
@@ -383,8 +383,8 @@
       "dungeon_id": "zhidou_machao",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_qiqinmenghuo_hi_100": {
@@ -396,8 +396,8 @@
       "dungeon_id": "qiqinmenghuo_hi",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "dungeon_chibi_aobing_100": {
@@ -409,8 +409,8 @@
       "dungeon_id": "chibi_aobing",
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 20
+        "max_health": 24,
+        "max_mana": 10
       }
     },
     "kill_50": {
@@ -420,7 +420,7 @@
       "condition_type": "kill",
       "condition_value": 200,
       "reward": {
-        "attack": 5
+        "attack": 1
       }
     },
     "kill_1000": {
@@ -431,7 +431,7 @@
       "condition_value": 4000,
       "points": 20,
       "reward": {
-        "attack": 10
+        "attack": 2
       }
     },
     "kill_5000": {
@@ -442,7 +442,7 @@
       "condition_value": 20000,
       "points": 50,
       "reward": {
-        "attack": 25
+        "attack": 5
       }
     },
     "kill_10000": {
@@ -453,7 +453,7 @@
       "condition_value": 40000,
       "points": 100,
       "reward": {
-        "attack": 50
+        "attack": 9
       }
     },
     "kill_50000": {
@@ -464,7 +464,7 @@
       "condition_value": 200000,
       "points": 200,
       "reward": {
-        "attack": 100
+        "attack": 21
       }
     },
     "elite_1": {
@@ -474,7 +474,7 @@
       "condition_type": "elite_kill",
       "condition_value": 1,
       "reward": {
-        "crit_rate": 0.02
+        "max_health": 5
       }
     },
     "elite_100": {
@@ -485,8 +485,7 @@
       "condition_value": 200,
       "points": 30,
       "reward": {
-        "crit_rate": 0.02,
-        "attack": 5
+        "attack": 1
       }
     },
     "elite_500": {
@@ -497,8 +496,7 @@
       "condition_value": 1000,
       "points": 60,
       "reward": {
-        "crit_rate": 0.03,
-        "attack": 10
+        "attack": 2
       }
     },
     "elite_1000": {
@@ -509,8 +507,7 @@
       "condition_value": 2000,
       "points": 120,
       "reward": {
-        "crit_rate": 0.05,
-        "attack": 20
+        "attack": 4
       }
     },
     "elite_5000": {
@@ -521,8 +518,7 @@
       "condition_value": 10000,
       "points": 250,
       "reward": {
-        "crit_rate": 0.08,
-        "attack": 40
+        "attack": 9
       }
     },
     "boss_qiuniu": {
@@ -534,8 +530,8 @@
       "boss_name": "囚牛",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_qingshe": {
@@ -547,8 +543,8 @@
       "boss_name": "青蛇",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_yihu": {
@@ -560,8 +556,8 @@
       "boss_name": "翼虎",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_yinglong": {
@@ -573,8 +569,8 @@
       "boss_name": "应龙",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_qingluan": {
@@ -586,8 +582,8 @@
       "boss_name": "青鸾",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_jiaolong": {
@@ -599,8 +595,8 @@
       "boss_name": "蛟龙",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_bixie": {
@@ -612,8 +608,8 @@
       "boss_name": "辟邪",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_jiuseshenlu": {
@@ -625,8 +621,8 @@
       "boss_name": "九色神鹿",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_huofenghuang": {
@@ -638,8 +634,8 @@
       "boss_name": "火凤凰",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_jingwei": {
@@ -651,8 +647,8 @@
       "boss_name": "精卫",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_zhuque": {
@@ -664,8 +660,8 @@
       "boss_name": "朱雀",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_xuanwu": {
@@ -677,8 +673,8 @@
       "boss_name": "玄武",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_baihu": {
@@ -690,8 +686,8 @@
       "boss_name": "白虎",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_qinglong": {
@@ -703,8 +699,8 @@
       "boss_name": "青龙",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_xingtian": {
@@ -716,8 +712,8 @@
       "boss_name": "刑天之影",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_yandi": {
@@ -729,8 +725,8 @@
       "boss_name": "炎帝之影",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_qiongqi": {
@@ -742,8 +738,8 @@
       "boss_name": "穷奇",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_tianzhao": {
@@ -755,8 +751,8 @@
       "boss_name": "天照",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_yuedu": {
@@ -768,8 +764,8 @@
       "boss_name": "月读",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "boss_bifang": {
@@ -781,8 +777,8 @@
       "boss_name": "毕方",
       "points": 30,
       "reward": {
-        "attack": 10,
-        "defense": 10
+        "attack": 2,
+        "defense": 4
       }
     },
     "elite_kunlun_1000": {
@@ -794,8 +790,8 @@
       "area": "kunlun",
       "points": 80,
       "reward": {
-        "attack": 15,
-        "defense": 10
+        "attack": 3,
+        "defense": 7
       }
     },
     "elite_shennong_1000": {
@@ -807,8 +803,8 @@
       "area": "shennong",
       "points": 80,
       "reward": {
-        "attack": 15,
-        "defense": 10
+        "attack": 3,
+        "defense": 7
       }
     },
     "elite_wokou_1000": {
@@ -820,8 +816,8 @@
       "area": "wokou",
       "points": 80,
       "reward": {
-        "attack": 15,
-        "defense": 10
+        "attack": 3,
+        "defense": 7
       }
     },
     "pk_1": {
@@ -832,8 +828,8 @@
       "condition_value": 10,
       "points": 5,
       "reward": {
-        "max_health": 10,
-        "defense": 10
+        "max_health": 5,
+        "defense": 4
       }
     },
     "pk_2": {
@@ -844,8 +840,8 @@
       "condition_value": 100,
       "points": 20,
       "reward": {
-        "max_health": 20,
-        "defense": 20
+        "max_health": 10,
+        "defense": 10
       }
     },
     "pk_3": {
@@ -856,8 +852,8 @@
       "condition_value": 300,
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "defense": 50
+        "max_health": 24,
+        "defense": 28
       }
     },
     "pk_4": {
@@ -868,9 +864,9 @@
       "condition_value": 500,
       "points": 100,
       "reward": {
-        "max_health": 200,
-        "attack": 80,
-        "defense": 200
+        "max_health": 95,
+        "attack": 19,
+        "defense": 56
       }
     },
     "pk_loss_1": {
@@ -881,8 +877,8 @@
       "condition_value": 10,
       "points": 5,
       "reward": {
-        "max_health": 10,
-        "defense": 10
+        "max_health": 5,
+        "defense": 7
       }
     },
     "pk_loss_2": {
@@ -893,8 +889,8 @@
       "condition_value": 100,
       "points": 20,
       "reward": {
-        "max_health": 20,
-        "defense": 20
+        "max_health": 10,
+        "defense": 17
       }
     },
     "pk_loss_3": {
@@ -905,8 +901,8 @@
       "condition_value": 300,
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "defense": 50
+        "max_health": 24,
+        "defense": 42
       }
     },
     "pk_loss_4": {
@@ -917,8 +913,8 @@
       "condition_value": 500,
       "points": 100,
       "reward": {
-        "max_health": 200,
-        "defense": 300
+        "max_health": 95,
+        "defense": 97
       }
     },
     "quest_100": {
@@ -929,9 +925,9 @@
       "condition_value": 100,
       "points": 50,
       "reward": {
-        "max_health": 100,
-        "max_mana": 50,
-        "attack": 10
+        "max_health": 48,
+        "max_mana": 25,
+        "attack": 2
       }
     },
     "quest_500": {
@@ -942,10 +938,10 @@
       "condition_value": 500,
       "points": 100,
       "reward": {
-        "max_health": 200,
-        "max_mana": 100,
-        "attack": 20,
-        "defense": 20
+        "max_health": 95,
+        "max_mana": 50,
+        "attack": 5,
+        "defense": 10
       }
     },
     "main_quest_30": {
@@ -961,8 +957,8 @@
       ],
       "points": 20,
       "reward": {
-        "max_health": 100,
-        "max_mana": 50
+        "max_health": 48,
+        "max_mana": 25
       }
     },
     "main_quest_40": {
@@ -976,9 +972,9 @@
       ],
       "points": 30,
       "reward": {
-        "max_health": 150,
-        "max_mana": 80,
-        "attack": 10
+        "max_health": 72,
+        "max_mana": 40,
+        "attack": 2
       }
     },
     "main_quest_50": {
@@ -992,10 +988,10 @@
       ],
       "points": 50,
       "reward": {
-        "max_health": 250,
-        "max_mana": 120,
-        "attack": 20,
-        "defense": 15
+        "max_health": 119,
+        "max_mana": 59,
+        "attack": 4,
+        "defense": 10
       }
     },
     "main_quest_60": {
@@ -1009,10 +1005,10 @@
       ],
       "points": 80,
       "reward": {
-        "max_health": 400,
-        "max_mana": 200,
-        "attack": 35,
-        "defense": 30
+        "max_health": 191,
+        "max_mana": 99,
+        "attack": 7,
+        "defense": 21
       }
     },
     "gift_1": {
@@ -1023,7 +1019,7 @@
       "condition_value": 99,
       "points": 10,
       "reward": {
-        "max_health": 10
+        "max_health": 5
       }
     },
     "gift_2": {
@@ -1034,7 +1030,7 @@
       "condition_value": 999,
       "points": 30,
       "reward": {
-        "max_health": 30
+        "max_health": 14
       }
     },
     "gift_3": {
@@ -1045,9 +1041,9 @@
       "condition_value": 9999,
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "max_mana": 50,
-        "attack": 10
+        "max_health": 24,
+        "max_mana": 25,
+        "attack": 2
       }
     },
     "gift_4": {
@@ -1058,12 +1054,10 @@
       "condition_value": 19999,
       "points": 100,
       "reward": {
-        "max_health": 100,
-        "max_mana": 100,
-        "attack": 20,
-        "defense": 40,
-        "crit_rate": 0.01,
-        "dodge_rate": 0.01
+        "max_health": 48,
+        "max_mana": 50,
+        "attack": 5,
+        "defense": 10
       }
     },
     "gift_5": {
@@ -1074,7 +1068,7 @@
       "condition_value": 10,
       "points": 10,
       "reward": {
-        "max_health": 10
+        "max_health": 5
       }
     },
     "gift_6": {
@@ -1085,7 +1079,7 @@
       "condition_value": 50,
       "points": 30,
       "reward": {
-        "max_health": 50
+        "max_health": 24
       }
     },
     "gift_7": {
@@ -1096,7 +1090,7 @@
       "condition_value": 100,
       "points": 50,
       "reward": {
-        "max_health": 100
+        "max_health": 48
       }
     },
     "gift_8": {
@@ -1107,7 +1101,7 @@
       "condition_value": 99,
       "points": 20,
       "reward": {
-        "attack": 3
+        "attack": 1
       }
     },
     "gift_9": {
@@ -1118,7 +1112,7 @@
       "condition_value": 299,
       "points": 50,
       "reward": {
-        "attack": 6
+        "attack": 1
       }
     },
     "gift_10": {
@@ -1129,7 +1123,7 @@
       "condition_value": 999,
       "points": 80,
       "reward": {
-        "attack": 9
+        "attack": 2
       }
     },
     "vip1": {
@@ -1139,8 +1133,8 @@
       "condition_type": "vip_level",
       "condition_value": 1,
       "reward": {
-        "attack": 5,
-        "defense": 5
+        "attack": 1,
+        "defense": 4
       }
     },
     "vip2": {
@@ -1150,8 +1144,8 @@
       "condition_type": "vip_level",
       "condition_value": 2,
       "reward": {
-        "attack": 10,
-        "defense": 10,
+        "attack": 2,
+        "defense": 7,
         "title": "suffixVIP用户"
       }
     },
@@ -1162,9 +1156,9 @@
       "condition_type": "vip_level",
       "condition_value": 3,
       "reward": {
-        "attack": 20,
-        "defense": 20,
-        "max_health": 100
+        "max_health": 48,
+        "attack": 4,
+        "defense": 14
       }
     },
     "vip4": {
@@ -1174,9 +1168,9 @@
       "condition_type": "vip_level",
       "condition_value": 4,
       "reward": {
-        "attack": 30,
-        "defense": 30,
-        "max_health": 200
+        "max_health": 95,
+        "attack": 7,
+        "defense": 24
       }
     },
     "vip5": {
@@ -1186,9 +1180,9 @@
       "condition_type": "vip_level",
       "condition_value": 5,
       "reward": {
-        "attack": 50,
-        "defense": 50,
-        "max_health": 500
+        "max_health": 239,
+        "attack": 11,
+        "defense": 38
       }
     },
     "lt_zhouyu": {
@@ -1199,8 +1193,8 @@
       "condition_value": 1,
       "lt_name": "周瑜",
       "reward": {
-        "max_mana": 200,
-        "attack": 10
+        "max_mana": 99,
+        "attack": 1
       }
     },
     "lt_xuchu": {
@@ -1211,8 +1205,8 @@
       "condition_value": 1,
       "lt_name": "许褚",
       "reward": {
-        "attack": 15,
-        "defense": 15
+        "attack": 1,
+        "defense": 4
       }
     },
     "lt_taishici": {
@@ -1223,8 +1217,7 @@
       "condition_value": 1,
       "lt_name": "太史慈",
       "reward": {
-        "attack": 15,
-        "dodge_rate": 0.02
+        "attack": 1
       }
     },
     "lt_xiaoqiao": {
@@ -1235,8 +1228,7 @@
       "condition_value": 1,
       "lt_name": "小乔",
       "reward": {
-        "max_mana": 80,
-        "dodge_rate": 0.01
+        "max_mana": 40
       }
     },
     "lt_liufeng": {
@@ -1247,8 +1239,8 @@
       "condition_value": 1,
       "lt_name": "刘封",
       "reward": {
-        "attack": 8,
-        "max_health": 50
+        "max_health": 24,
+        "attack": 1
       }
     },
     "lt_daqiao": {
@@ -1259,8 +1251,7 @@
       "condition_value": 1,
       "lt_name": "大乔",
       "reward": {
-        "max_mana": 100,
-        "dodge_rate": 0.01
+        "max_mana": 50
       }
     },
     "lt_guanping": {
@@ -1271,8 +1262,8 @@
       "condition_value": 1,
       "lt_name": "关平",
       "reward": {
-        "attack": 10,
-        "max_health": 50
+        "max_health": 24,
+        "attack": 1
       }
     },
     "lt_caozhen": {
@@ -1283,8 +1274,8 @@
       "condition_value": 1,
       "lt_name": "曹真",
       "reward": {
-        "attack": 8,
-        "defense": 8
+        "attack": 1,
+        "defense": 4
       }
     },
     "lt_pangde": {
@@ -1295,8 +1286,8 @@
       "condition_value": 1,
       "lt_name": "庞德",
       "reward": {
-        "attack": 10,
-        "defense": 5
+        "attack": 1,
+        "defense": 4
       }
     },
     "lt_adou": {
@@ -1307,7 +1298,7 @@
       "condition_value": 1,
       "lt_name": "阿斗",
       "reward": {
-        "max_health": 30
+        "max_health": 14
       }
     },
     "lt_liaohua": {
@@ -1318,8 +1309,8 @@
       "condition_value": 1,
       "lt_name": "廖化",
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "lt_zhaoguang": {
@@ -1330,8 +1321,7 @@
       "condition_value": 1,
       "lt_name": "赵广",
       "reward": {
-        "attack": 3,
-        "crit_rate": 0.01
+        "attack": 1
       }
     },
     "lt_xuyou": {
@@ -1342,8 +1332,8 @@
       "condition_value": 1,
       "lt_name": "许攸",
       "reward": {
-        "max_mana": 30,
-        "attack": 2
+        "max_mana": 15,
+        "attack": 1
       }
     },
     "lt_wuguotai": {
@@ -1354,8 +1344,8 @@
       "condition_value": 1,
       "lt_name": "吴国太",
       "reward": {
-        "max_mana": 30,
-        "defense": 3
+        "max_mana": 15,
+        "defense": 4
       }
     },
     "lt_zhenji": {
@@ -1366,8 +1356,7 @@
       "condition_value": 1,
       "lt_name": "甄姬",
       "reward": {
-        "max_mana": 40,
-        "dodge_rate": 0.01
+        "max_mana": 20
       }
     },
     "lt_wangmeiren": {
@@ -1378,8 +1367,8 @@
       "condition_value": 1,
       "lt_name": "王美人",
       "reward": {
-        "max_mana": 30,
-        "max_health": 20
+        "max_health": 10,
+        "max_mana": 15
       }
     },
     "lt_yuejin": {
@@ -1390,8 +1379,8 @@
       "condition_value": 1,
       "lt_name": "乐进",
       "reward": {
-        "attack": 5,
-        "defense": 2
+        "attack": 1,
+        "defense": 4
       }
     },
     "lt_xiahouba": {
@@ -1402,8 +1391,8 @@
       "condition_value": 1,
       "lt_name": "夏侯霸",
       "reward": {
-        "attack": 4,
-        "defense": 3
+        "attack": 1,
+        "defense": 4
       }
     },
     "divine_beast_50": {
@@ -1414,8 +1403,8 @@
       "condition_value": 50,
       "points": 50,
       "reward": {
-        "attack": 20,
-        "defense": 20
+        "attack": 4,
+        "defense": 10
       }
     },
     "divine_beast_400": {
@@ -1426,9 +1415,8 @@
       "condition_value": 400,
       "points": 120,
       "reward": {
-        "attack": 50,
-        "defense": 50,
-        "crit_rate": 0.02
+        "attack": 10,
+        "defense": 28
       }
     },
     "divine_beast_800": {
@@ -1439,10 +1427,8 @@
       "condition_value": 800,
       "points": 250,
       "reward": {
-        "attack": 100,
-        "defense": 100,
-        "crit_rate": 0.03,
-        "dodge_rate": 0.03
+        "attack": 23,
+        "defense": 63
       }
     },
     "elite_kill_monster_kunlun_大白兔": {
@@ -1454,7 +1440,7 @@
       "monster_id": "monster_kunlun_大白兔",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1467,7 +1453,7 @@
       "monster_id": "monster_kunlun_妖女树",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1480,7 +1466,7 @@
       "monster_id": "monster_kunlun_幻影狼",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1493,7 +1479,7 @@
       "monster_id": "monster_kunlun_昆仑仙道",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1506,7 +1492,7 @@
       "monster_id": "monster_kunlun_海霆蛇",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1519,7 +1505,7 @@
       "monster_id": "monster_kunlun_白梦蝶",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1532,7 +1518,7 @@
       "monster_id": "monster_kunlun_赢鱼",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1545,7 +1531,7 @@
       "monster_id": "monster_kunlun_金倪兽",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1558,7 +1544,7 @@
       "monster_id": "monster_shennong_九尾狐",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1571,7 +1557,7 @@
       "monster_id": "monster_shennong_潮水龟",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1584,7 +1570,7 @@
       "monster_id": "monster_shennong_盘岩龙",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1597,7 +1583,7 @@
       "monster_id": "monster_shennong_红狐_稀有",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1610,7 +1596,7 @@
       "monster_id": "monster_shennong_遮光巨树",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1623,7 +1609,7 @@
       "monster_id": "monster_shennong_野人头目",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1636,7 +1622,7 @@
       "monster_id": "monster_shennong_雪狼王",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1649,7 +1635,7 @@
       "monster_id": "monster_shennong_龙蛇",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1662,7 +1648,7 @@
       "monster_id": "monster_wokou_九变妖媸",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1675,7 +1661,7 @@
       "monster_id": "monster_wokou_倭国武剑士",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1688,7 +1674,7 @@
       "monster_id": "monster_wokou_八岐邪神",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1701,7 +1687,7 @@
       "monster_id": "monster_wokou_天象火魔",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1714,7 +1700,7 @@
       "monster_id": "monster_wokou_无极忍者",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1727,7 +1713,7 @@
       "monster_id": "monster_wokou_缺颅蛮妖",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1740,7 +1726,7 @@
       "monster_id": "monster_wokou_邪马狼将",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1753,7 +1739,7 @@
       "monster_id": "monster_wokou_鬼蛛夜魔海",
       "points": 20,
       "reward": {
-        "attack": 5,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -1766,8 +1752,8 @@
       "monster_id": "monster_kunlun_五毒蟾蜍",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_小山精": {
@@ -1779,8 +1765,8 @@
       "monster_id": "monster_kunlun_小山精",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_小白兔": {
@@ -1792,8 +1778,8 @@
       "monster_id": "monster_kunlun_小白兔",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_枯萎之藤": {
@@ -1805,8 +1791,8 @@
       "monster_id": "monster_kunlun_枯萎之藤",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_灰岩巨蟒": {
@@ -1818,8 +1804,8 @@
       "monster_id": "monster_kunlun_灰岩巨蟒",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_灰毛熊": {
@@ -1831,8 +1817,8 @@
       "monster_id": "monster_kunlun_灰毛熊",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_迷幻草": {
@@ -1844,8 +1830,8 @@
       "monster_id": "monster_kunlun_迷幻草",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_kunlun_雪鹞": {
@@ -1857,8 +1843,8 @@
       "monster_id": "monster_kunlun_雪鹞",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_坡脚狼": {
@@ -1870,8 +1856,8 @@
       "monster_id": "monster_shennong_坡脚狼",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_大脚怪": {
@@ -1883,8 +1869,8 @@
       "monster_id": "monster_shennong_大脚怪",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_巨蟒": {
@@ -1896,8 +1882,8 @@
       "monster_id": "monster_shennong_巨蟒",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_松针鼠": {
@@ -1909,8 +1895,8 @@
       "monster_id": "monster_shennong_松针鼠",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_森林巨龟": {
@@ -1922,8 +1908,8 @@
       "monster_id": "monster_shennong_森林巨龟",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_红狐": {
@@ -1935,8 +1921,8 @@
       "monster_id": "monster_shennong_红狐",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_野人": {
@@ -1948,8 +1934,8 @@
       "monster_id": "monster_shennong_野人",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_shennong_黑风野猪": {
@@ -1961,8 +1947,8 @@
       "monster_id": "monster_shennong_黑风野猪",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_wokou_亡命囚徒": {
@@ -1974,8 +1960,8 @@
       "monster_id": "monster_wokou_亡命囚徒",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_wokou_倭国探子": {
@@ -1987,8 +1973,8 @@
       "monster_id": "monster_wokou_倭国探子",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_wokou_发疯的海盗": {
@@ -2000,8 +1986,8 @@
       "monster_id": "monster_wokou_发疯的海盗",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_wokou_扶桑武士": {
@@ -2013,8 +1999,8 @@
       "monster_id": "monster_wokou_扶桑武士",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 10,
+        "attack": 1
       }
     },
     "kill_monster_wokou_无间杀手": {
@@ -2026,8 +2012,8 @@
       "monster_id": "monster_wokou_无间杀手",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 9,
+        "attack": 1
       }
     },
     "kill_monster_wokou_滨山护卫": {
@@ -2039,8 +2025,8 @@
       "monster_id": "monster_wokou_滨山护卫",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 9,
+        "attack": 1
       }
     },
     "kill_monster_wokou_滨山流匪": {
@@ -2052,8 +2038,8 @@
       "monster_id": "monster_wokou_滨山流匪",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 9,
+        "attack": 1
       }
     },
     "kill_monster_wokou_落魄浪人": {
@@ -2065,8 +2051,8 @@
       "monster_id": "monster_wokou_落魄浪人",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 9,
+        "attack": 1
       }
     },
     "kill_monster_wokou_金环蛇王": {
@@ -2078,8 +2064,8 @@
       "monster_id": "monster_wokou_金环蛇王",
       "points": 10,
       "reward": {
-        "attack": 3,
-        "max_health": 20
+        "max_health": 9,
+        "attack": 1
       }
     },
     "forge_50": {
@@ -2090,7 +2076,7 @@
       "condition_value": 50,
       "points": 10,
       "reward": {
-        "attack": 5
+        "attack": 1
       }
     },
     "forge_100": {
@@ -2101,7 +2087,7 @@
       "condition_value": 100,
       "points": 20,
       "reward": {
-        "attack": 10
+        "attack": 2
       }
     },
     "forge_300": {
@@ -2112,7 +2098,7 @@
       "condition_value": 300,
       "points": 100,
       "reward": {
-        "attack": 50
+        "attack": 8
       }
     },
     "forge_500": {
@@ -2123,8 +2109,8 @@
       "condition_value": 500,
       "points": 200,
       "reward": {
-        "attack": 100,
-        "defense": 50
+        "attack": 21,
+        "defense": 49
       }
     },
     "enhance_success_100": {
@@ -2135,7 +2121,7 @@
       "condition_value": 100,
       "points": 10,
       "reward": {
-        "attack": 10
+        "attack": 2
       }
     },
     "enhance_success_300": {
@@ -2146,8 +2132,8 @@
       "condition_value": 300,
       "points": 50,
       "reward": {
-        "max_mana": 25,
-        "attack": 25
+        "max_mana": 12,
+        "attack": 5
       }
     },
     "enhance_success_600": {
@@ -2158,8 +2144,8 @@
       "condition_value": 600,
       "points": 80,
       "reward": {
-        "max_mana": 40,
-        "attack": 40
+        "max_mana": 20,
+        "attack": 9
       }
     },
     "enhance_success_1000": {
@@ -2170,8 +2156,8 @@
       "condition_value": 1000,
       "points": 120,
       "reward": {
-        "max_mana": 60,
-        "attack": 60
+        "max_mana": 30,
+        "attack": 15
       }
     },
     "enhance_fail_100": {
@@ -2182,9 +2168,9 @@
       "condition_value": 100,
       "points": 20,
       "reward": {
-        "max_health": 20,
-        "attack": 10,
-        "defense": 20
+        "max_health": 9,
+        "attack": 1,
+        "defense": 14
       }
     },
     "enhance_fail_300": {
@@ -2195,9 +2181,9 @@
       "condition_value": 300,
       "points": 50,
       "reward": {
-        "max_health": 50,
-        "attack": 10,
-        "defense": 50
+        "max_health": 24,
+        "attack": 2,
+        "defense": 28
       }
     },
     "enhance_fail_600": {
@@ -2208,9 +2194,9 @@
       "condition_value": 600,
       "points": 80,
       "reward": {
-        "max_health": 80,
-        "attack": 10,
-        "defense": 80
+        "max_health": 38,
+        "attack": 3,
+        "defense": 45
       }
     },
     "enhance_fail_1000": {
@@ -2221,10 +2207,9 @@
       "condition_value": 1000,
       "points": 120,
       "reward": {
-        "max_health": 120,
-        "attack": 10,
-        "defense": 120,
-        "crit_rate": 0.005
+        "max_health": 57,
+        "attack": 4,
+        "defense": 70
       }
     },
     "enhance_50_1": {
@@ -2235,10 +2220,10 @@
       "condition_value": 1,
       "points": 10,
       "reward": {
-        "max_health": 20,
-        "max_mana": 10,
-        "attack": 2,
-        "defense": 2
+        "max_health": 9,
+        "max_mana": 5,
+        "attack": 1,
+        "defense": 3
       }
     },
     "enhance_50_3": {
@@ -2249,9 +2234,9 @@
       "condition_value": 3,
       "points": 20,
       "reward": {
-        "max_health": 30,
-        "max_mana": 20,
-        "attack": 3,
+        "max_health": 14,
+        "max_mana": 10,
+        "attack": 1,
         "defense": 3
       }
     },
@@ -2263,10 +2248,10 @@
       "condition_value": 5,
       "points": 30,
       "reward": {
-        "max_health": 50,
-        "max_mana": 30,
-        "attack": 5,
-        "defense": 5
+        "max_health": 24,
+        "max_mana": 15,
+        "attack": 2,
+        "defense": 7
       }
     },
     "artifact_paoding_caidao": {
@@ -2278,8 +2263,8 @@
       "template_id": "paoding_caidao",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_wuhu_duanhun_dao": {
@@ -2291,8 +2276,8 @@
       "template_id": "wuhu_duanhun_dao",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_qisheng_dao": {
@@ -2304,8 +2289,8 @@
       "template_id": "qisheng_dao",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_chixiao_jian": {
@@ -2317,8 +2302,8 @@
       "template_id": "chixiao_jian",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_qinghong_jian": {
@@ -2330,8 +2315,8 @@
       "template_id": "qinghong_jian",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_chengying_jian": {
@@ -2343,8 +2328,8 @@
       "template_id": "chengying_jian",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_longlin": {
@@ -2356,8 +2341,8 @@
       "template_id": "longlin",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_yuchang_jian": {
@@ -2369,8 +2354,8 @@
       "template_id": "yuchang_jian",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_juque_jian": {
@@ -2382,8 +2367,8 @@
       "template_id": "juque_jian",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_longhun_zhu": {
@@ -2395,8 +2380,8 @@
       "template_id": "longhun_zhu",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_yu_lingzhi": {
@@ -2408,8 +2393,8 @@
       "template_id": "yu_lingzhi",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "artifact_heshi_bi": {
@@ -2421,8 +2406,8 @@
       "template_id": "heshi_bi",
       "points": 30,
       "reward": {
-        "max_health": 20,
-        "attack": 10
+        "max_health": 9,
+        "attack": 1
       }
     },
     "enhance_50_7": {
@@ -2433,10 +2418,10 @@
       "condition_value": 7,
       "points": 50,
       "reward": {
-        "max_health": 80,
-        "max_mana": 50,
-        "attack": 8,
-        "defense": 8
+        "max_health": 38,
+        "max_mana": 25,
+        "attack": 3,
+        "defense": 10
       }
     },
     "gold_10wan": {
@@ -2447,8 +2432,8 @@
       "condition_value": 100000,
       "points": 10,
       "reward": {
-        "max_health": 5,
-        "max_mana": 5
+        "max_health": 2,
+        "max_mana": 2
       }
     },
     "gold_100wan": {
@@ -2459,8 +2444,8 @@
       "condition_value": 1000000,
       "points": 20,
       "reward": {
-        "max_health": 10,
-        "max_mana": 10
+        "max_health": 5,
+        "max_mana": 5
       }
     },
     "gold_500wan": {
@@ -2471,8 +2456,8 @@
       "condition_value": 5000000,
       "points": 40,
       "reward": {
-        "max_health": 20,
-        "max_mana": 20
+        "max_health": 9,
+        "max_mana": 10
       }
     },
     "gold_1000wan": {
@@ -2483,8 +2468,8 @@
       "condition_value": 10000000,
       "points": 80,
       "reward": {
-        "max_health": 40,
-        "max_mana": 40
+        "max_health": 19,
+        "max_mana": 20
       }
     },
     "gold_5000wan": {
@@ -2495,8 +2480,8 @@
       "condition_value": 50000000,
       "points": 100,
       "reward": {
-        "max_health": 100,
-        "max_mana": 100
+        "max_health": 48,
+        "max_mana": 50
       }
     },
     "gold_1yi": {
@@ -2507,8 +2492,8 @@
       "condition_value": 100000000,
       "points": 150,
       "reward": {
-        "max_health": 150,
-        "max_mana": 150
+        "max_health": 72,
+        "max_mana": 74
       }
     },
     "gold_10yi": {
@@ -2519,10 +2504,10 @@
       "condition_value": 1000000000,
       "points": 300,
       "reward": {
-        "max_health": 250,
-        "max_mana": 250,
-        "attack": 150,
-        "defense": 150
+        "max_health": 119,
+        "max_mana": 124,
+        "attack": 36,
+        "defense": 122
       }
     },
     "yuanbao_spend_500": {
@@ -2533,8 +2518,8 @@
       "condition_value": 500,
       "points": 20,
       "reward": {
-        "max_health": 10,
-        "max_mana": 10
+        "max_health": 5,
+        "max_mana": 5
       }
     },
     "yuanbao_spend_1000": {
@@ -2545,8 +2530,8 @@
       "condition_value": 1000,
       "points": 30,
       "reward": {
-        "max_health": 15,
-        "max_mana": 15
+        "max_health": 7,
+        "max_mana": 7
       }
     },
     "yuanbao_spend_3000": {
@@ -2557,8 +2542,8 @@
       "condition_value": 3000,
       "points": 40,
       "reward": {
-        "max_health": 20,
-        "max_mana": 20
+        "max_health": 9,
+        "max_mana": 10
       }
     },
     "yuanbao_spend_5000": {
@@ -2569,9 +2554,9 @@
       "condition_value": 5000,
       "points": 80,
       "reward": {
-        "max_health": 40,
-        "max_mana": 40,
-        "attack": 5
+        "max_health": 19,
+        "max_mana": 20,
+        "attack": 6
       }
     },
     "yuanbao_spend_1wan": {
@@ -2582,10 +2567,10 @@
       "condition_value": 10000,
       "points": 100,
       "reward": {
-        "max_health": 50,
-        "max_mana": 50,
-        "attack": 10,
-        "defense": 10
+        "max_health": 24,
+        "max_mana": 25,
+        "attack": 9,
+        "defense": 31
       }
     },
     "yuanbao_spend_3wan": {
@@ -2596,10 +2581,10 @@
       "condition_value": 30000,
       "points": 150,
       "reward": {
-        "max_health": 100,
-        "max_mana": 100,
-        "attack": 20,
-        "defense": 20
+        "max_health": 48,
+        "max_mana": 50,
+        "attack": 14,
+        "defense": 45
       }
     },
     "yuanbao_spend_5wan": {
@@ -2610,10 +2595,10 @@
       "condition_value": 50000,
       "points": 200,
       "reward": {
-        "max_health": 150,
-        "max_mana": 150,
-        "attack": 30,
-        "defense": 30
+        "max_health": 72,
+        "max_mana": 74,
+        "attack": 18,
+        "defense": 59
       }
     },
     "yuanbao_spend_10wan": {
@@ -2624,10 +2609,10 @@
       "condition_value": 100000,
       "points": 300,
       "reward": {
-        "max_health": 200,
-        "max_mana": 200,
-        "attack": 50,
-        "defense": 50
+        "max_health": 95,
+        "max_mana": 99,
+        "attack": 24,
+        "defense": 80
       }
     },
     "yuanbao_spend_20wan": {
@@ -2638,10 +2623,10 @@
       "condition_value": 200000,
       "points": 200,
       "reward": {
-        "max_health": 300,
-        "max_mana": 300,
-        "attack": 100,
-        "defense": 100
+        "max_health": 143,
+        "max_mana": 149,
+        "attack": 32,
+        "defense": 108
       }
     },
     "yuanbao_spend_30wan": {
@@ -2652,10 +2637,10 @@
       "condition_value": 300000,
       "points": 300,
       "reward": {
-        "max_health": 500,
-        "max_mana": 500,
-        "attack": 200,
-        "defense": 200
+        "max_health": 239,
+        "max_mana": 248,
+        "attack": 41,
+        "defense": 139
       }
     },
     "jinzu_spend_500": {
@@ -2666,8 +2651,8 @@
       "condition_value": 500,
       "points": 20,
       "reward": {
-        "max_health": 10,
-        "max_mana": 10
+        "max_health": 5,
+        "max_mana": 5
       }
     },
     "jinzu_spend_1000": {
@@ -2678,8 +2663,8 @@
       "condition_value": 1000,
       "points": 30,
       "reward": {
-        "max_health": 15,
-        "max_mana": 15
+        "max_health": 7,
+        "max_mana": 7
       }
     },
     "jinzu_spend_3000": {
@@ -2690,8 +2675,8 @@
       "condition_value": 3000,
       "points": 40,
       "reward": {
-        "max_health": 20,
-        "max_mana": 20
+        "max_health": 9,
+        "max_mana": 10
       }
     },
     "jinzu_spend_5000": {
@@ -2702,9 +2687,9 @@
       "condition_value": 5000,
       "points": 80,
       "reward": {
-        "max_health": 40,
-        "max_mana": 40,
-        "attack": 5
+        "max_health": 19,
+        "max_mana": 20,
+        "attack": 6
       }
     },
     "jinzu_spend_1wan": {
@@ -2715,10 +2700,10 @@
       "condition_value": 10000,
       "points": 100,
       "reward": {
-        "max_health": 50,
-        "max_mana": 50,
-        "attack": 10,
-        "defense": 10
+        "max_health": 24,
+        "max_mana": 25,
+        "attack": 9,
+        "defense": 31
       }
     },
     "jinzu_spend_3wan": {
@@ -2729,10 +2714,10 @@
       "condition_value": 30000,
       "points": 150,
       "reward": {
-        "max_health": 100,
-        "max_mana": 100,
-        "attack": 20,
-        "defense": 20
+        "max_health": 48,
+        "max_mana": 49,
+        "attack": 14,
+        "defense": 45
       }
     },
     "jinzu_spend_5wan": {
@@ -2743,10 +2728,10 @@
       "condition_value": 50000,
       "points": 200,
       "reward": {
-        "max_health": 150,
-        "max_mana": 150,
-        "attack": 30,
-        "defense": 30
+        "max_health": 72,
+        "max_mana": 74,
+        "attack": 18,
+        "defense": 59
       }
     },
     "jinzu_spend_10wan": {
@@ -2757,10 +2742,10 @@
       "condition_value": 100000,
       "points": 300,
       "reward": {
-        "max_health": 200,
-        "max_mana": 200,
-        "attack": 50,
-        "defense": 50
+        "max_health": 95,
+        "max_mana": 99,
+        "attack": 24,
+        "defense": 80
       }
     },
     "jinzu_spend_20wan": {
@@ -2771,10 +2756,10 @@
       "condition_value": 200000,
       "points": 200,
       "reward": {
-        "max_health": 300,
-        "max_mana": 300,
-        "attack": 100,
-        "defense": 100
+        "max_health": 143,
+        "max_mana": 149,
+        "attack": 32,
+        "defense": 108
       }
     },
     "jinzu_spend_30wan": {
@@ -2785,10 +2770,10 @@
       "condition_value": 300000,
       "points": 300,
       "reward": {
-        "max_health": 500,
-        "max_mana": 500,
-        "attack": 200,
-        "defense": 200
+        "max_health": 239,
+        "max_mana": 248,
+        "attack": 41,
+        "defense": 139
       }
     },
     "yuanbao_spend_50wan": {
@@ -2799,10 +2784,10 @@
       "condition_value": 500000,
       "points": 300,
       "reward": {
-        "max_health": 500,
-        "max_mana": 500,
-        "attack": 200,
-        "defense": 200
+        "max_health": 239,
+        "max_mana": 248,
+        "attack": 54,
+        "defense": 181
       }
     },
     "jinzu_spend_50wan": {
@@ -2813,10 +2798,10 @@
       "condition_value": 500000,
       "points": 300,
       "reward": {
-        "max_health": 500,
-        "max_mana": 500,
-        "attack": 200,
-        "defense": 200
+        "max_health": 239,
+        "max_mana": 248,
+        "attack": 54,
+        "defense": 181
       }
     }
   }

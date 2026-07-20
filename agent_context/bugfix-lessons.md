@@ -10,8 +10,9 @@
 
 教训: Monster对象的新属性必须同时添加到 `_save_encounter()` 中，否则encounter序列化/反序列化链路会丢失。
 
-## Bug: 军衔页面 KeyError: '列兵'
+## Bug: 军衔页面 KeyError: '列兵'（已修复）
 原因: `blueprints/player.py` 的 `rank_order` 列表第一项是 `"列兵"`，但 `PlayerModel.MILITARY_RANKS` 的key是 `"士兵"`。
+状态: 已在代码中修复——当前 `rank_order` 首项已为 `"士兵"`，`RANK_CHOICES` 同时包含两者，不再触发 KeyError。本条保留作为经验记录。
 
 ## Bug: 场景怪物链接范围不完整
 原因: 神兽和精英怪的链接标签只包裹了部分文字（如只包裹了等级），而不是整个怪物名称。

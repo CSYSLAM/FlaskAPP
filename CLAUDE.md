@@ -59,23 +59,31 @@ Key rules:
 | shop | `/shop` | Buy/sell items and equipment |
 | social | `/social` | Public chat |
 | crafting | `/crafting` | Blacksmith: epic forging (weapons/accessories/armor sets), sell equipment, sell items |
-| activity | `/` | Activities, events |
+| activity | `/activity` | Activities, events, daily tasks, finance/stock market |
 | lieutenant | `/lieutenant` | Lieutenant companion system |
-| villa | `/villa` | Player villa/homestead |
+| villa | `/villa` | Player villa/homestead: training, garden (百草园), blessing, defender |
 | vip | `/vip` | VIP privileges |
 | rank | `/rank` | Player rankings |
 | guide | `/guide` | Game guides |
-| map | `/map` | Map navigation, teleport |
+| map | `/map` | Map navigation, teleport, 神行 |
 | workbench | `/workbench` | Designer workbench: 玩家属性/公告/装备·怪物·物品·副将设计系统(增删改查) + 伤害/战斗/副将测试 |
 | medicine | `/medicine` | Medicine shop (healer NPC) |
 | warehouse | `/warehouse` | Item storage warehouse |
 | dungeon | `/dungeon` | Copy dungeons |
-| lost_found | `/lost_found` | Lost & found items |
+| lost_found | `/lost_found` | Lost & found items + auction house |
 | lieutenant_commander | `/commander` | Lieutenant commander NPC |
+| legion | `/legion` | Legion/guild: create/join, skills, donate, territory war |
+| battlefield | `/battlefield` | Territory-war PvP (city capture) |
+| party | `/party` | Party/team system |
+| quest | `/quest` | Main/country quest system |
 
 ## Authentication
 
 Flask-Login with `Player` model implementing `UserMixin`. Passwords hashed via werkzeug. `login_manager.login_view = 'auth.login'`. `@login_required` from Flask-Login protects routes. No role-based access control.
+
+## Detailed Subsystem Docs (Skills)
+
+Per-subsystem design docs (combat formulas, lieutenant, PK, equipment, dungeon, warehouse, social, legion, party, villa, quest, finance, VIP, achievement, title, rank, map, medicine, lost&found, crafting, auth, UI style, etc.) live in `.claude/skills/`. Start from **`.claude/skills/SKILLS_INDEX.md`** for the full module map and one-line descriptions. Design records / ops notes live in `agent_context/`.
 
 ## Item Usage Rules
 
