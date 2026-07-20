@@ -1002,53 +1002,6 @@
         "defense": 20
       }
     },
-    "gold_10000": {
-      "name": "小有积蓄",
-      "category": "财富",
-      "description": "累计获得10000金币",
-      "condition_type": "gold_earned",
-      "condition_value": 10000,
-      "points": 10,
-      "reward": {
-        "max_mana": 30
-      }
-    },
-    "gold_50000": {
-      "name": "富甲一方",
-      "category": "财富",
-      "description": "累计获得50000金币",
-      "condition_type": "gold_earned",
-      "condition_value": 50000,
-      "points": 20,
-      "reward": {
-        "max_mana": 60
-      }
-    },
-    "gold_100000": {
-      "name": "腰缠万贯",
-      "category": "财富",
-      "description": "累计获得100000金币",
-      "condition_type": "gold_earned",
-      "condition_value": 100000,
-      "points": 50,
-      "reward": {
-        "max_mana": 100,
-        "max_health": 50
-      }
-    },
-    "gold_500000": {
-      "name": "富可敌国",
-      "category": "财富",
-      "description": "累计获得500000金币",
-      "condition_type": "gold_earned",
-      "condition_value": 500000,
-      "points": 100,
-      "reward": {
-        "max_mana": 200,
-        "max_health": 100,
-        "attack": 20
-      }
-    },
     "gift_1": {
       "name": "魅力达人",
       "category": "社交",
@@ -1174,16 +1127,6 @@
       "condition_value": 5,
       "reward": {
         "title": "prefix迷茫"
-      }
-    },
-    "title_vip": {
-      "name": "尊贵用户",
-      "category": "财富",
-      "description": "累计获得20000金币",
-      "condition_type": "gold_earned",
-      "condition_value": 20000,
-      "reward": {
-        "title": "prefix被厚待"
       }
     },
     "title_suffix_newbie": {
@@ -2501,6 +2444,386 @@
         "max_mana": 50,
         "attack": 8,
         "defense": 8
+      }
+    },
+    "gold_10wan": {
+      "name": "小有积蓄",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到10万",
+      "condition_type": "gold_total",
+      "condition_value": 100000,
+      "points": 10,
+      "reward": {
+        "max_health": 5,
+        "max_mana": 5
+      }
+    },
+    "gold_100wan": {
+      "name": "百万富翁",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到100万",
+      "condition_type": "gold_total",
+      "condition_value": 1000000,
+      "points": 20,
+      "reward": {
+        "max_health": 10,
+        "max_mana": 10
+      }
+    },
+    "gold_500wan": {
+      "name": "五百万身价",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到500万",
+      "condition_type": "gold_total",
+      "condition_value": 5000000,
+      "points": 40,
+      "reward": {
+        "max_health": 20,
+        "max_mana": 20
+      }
+    },
+    "gold_1000wan": {
+      "name": "富可敌国",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到1000万",
+      "condition_type": "gold_total",
+      "condition_value": 10000000,
+      "points": 80,
+      "reward": {
+        "max_health": 40,
+        "max_mana": 40
+      }
+    },
+    "gold_5000wan": {
+      "name": "五千万身价",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到5000万",
+      "condition_type": "gold_total",
+      "condition_value": 50000000,
+      "points": 100,
+      "reward": {
+        "max_health": 100,
+        "max_mana": 100
+      }
+    },
+    "gold_1yi": {
+      "name": "亿万富豪",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到1亿",
+      "condition_type": "gold_total",
+      "condition_value": 100000000,
+      "points": 150,
+      "reward": {
+        "max_health": 150,
+        "max_mana": 150
+      }
+    },
+    "gold_10yi": {
+      "name": "福布斯一定有你",
+      "category": "财富",
+      "description": "银两、绑银数量合计达到10亿",
+      "condition_type": "gold_total",
+      "condition_value": 1000000000,
+      "points": 300,
+      "reward": {
+        "max_health": 250,
+        "max_mana": 250,
+        "attack": 150,
+        "defense": 150
+      }
+    },
+    "yuanbao_spend_500": {
+      "name": "消费500元宝",
+      "category": "财富",
+      "description": "累计消费500元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 500,
+      "points": 20,
+      "reward": {
+        "max_health": 10,
+        "max_mana": 10
+      }
+    },
+    "yuanbao_spend_1000": {
+      "name": "消费1000元宝",
+      "category": "财富",
+      "description": "累计消费1000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 1000,
+      "points": 30,
+      "reward": {
+        "max_health": 15,
+        "max_mana": 15
+      }
+    },
+    "yuanbao_spend_3000": {
+      "name": "消费3000元宝",
+      "category": "财富",
+      "description": "累计消费3000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 3000,
+      "points": 40,
+      "reward": {
+        "max_health": 20,
+        "max_mana": 20
+      }
+    },
+    "yuanbao_spend_5000": {
+      "name": "消费5000元宝",
+      "category": "财富",
+      "description": "累计消费5000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 5000,
+      "points": 80,
+      "reward": {
+        "max_health": 40,
+        "max_mana": 40,
+        "attack": 5
+      }
+    },
+    "yuanbao_spend_1wan": {
+      "name": "消费1万元宝",
+      "category": "财富",
+      "description": "累计消费10000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 10000,
+      "points": 100,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 50,
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "yuanbao_spend_3wan": {
+      "name": "消费3万元宝",
+      "category": "财富",
+      "description": "累计消费30000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 30000,
+      "points": 150,
+      "reward": {
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 20,
+        "defense": 20
+      }
+    },
+    "yuanbao_spend_5wan": {
+      "name": "消费5万元宝",
+      "category": "财富",
+      "description": "累计消费50000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 50000,
+      "points": 200,
+      "reward": {
+        "max_health": 150,
+        "max_mana": 150,
+        "attack": 30,
+        "defense": 30
+      }
+    },
+    "yuanbao_spend_10wan": {
+      "name": "消费10万元宝",
+      "category": "财富",
+      "description": "累计消费100000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 100000,
+      "points": 300,
+      "reward": {
+        "max_health": 200,
+        "max_mana": 200,
+        "attack": 50,
+        "defense": 50
+      }
+    },
+    "yuanbao_spend_20wan": {
+      "name": "消费20万元宝",
+      "category": "财富",
+      "description": "累计消费200000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 200000,
+      "points": 200,
+      "reward": {
+        "max_health": 300,
+        "max_mana": 300,
+        "attack": 100,
+        "defense": 100
+      }
+    },
+    "yuanbao_spend_30wan": {
+      "name": "消费30万元宝",
+      "category": "财富",
+      "description": "累计消费300000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 300000,
+      "points": 300,
+      "reward": {
+        "max_health": 500,
+        "max_mana": 500,
+        "attack": 200,
+        "defense": 200
+      }
+    },
+    "jinzu_spend_500": {
+      "name": "消费500金珠",
+      "category": "财富",
+      "description": "累计消费500金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 500,
+      "points": 20,
+      "reward": {
+        "max_health": 10,
+        "max_mana": 10
+      }
+    },
+    "jinzu_spend_1000": {
+      "name": "消费1000金珠",
+      "category": "财富",
+      "description": "累计消费1000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 1000,
+      "points": 30,
+      "reward": {
+        "max_health": 15,
+        "max_mana": 15
+      }
+    },
+    "jinzu_spend_3000": {
+      "name": "消费3000金珠",
+      "category": "财富",
+      "description": "累计消费3000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 3000,
+      "points": 40,
+      "reward": {
+        "max_health": 20,
+        "max_mana": 20
+      }
+    },
+    "jinzu_spend_5000": {
+      "name": "消费5000金珠",
+      "category": "财富",
+      "description": "累计消费5000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 5000,
+      "points": 80,
+      "reward": {
+        "max_health": 40,
+        "max_mana": 40,
+        "attack": 5
+      }
+    },
+    "jinzu_spend_1wan": {
+      "name": "消费1万金珠",
+      "category": "财富",
+      "description": "累计消费10000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 10000,
+      "points": 100,
+      "reward": {
+        "max_health": 50,
+        "max_mana": 50,
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "jinzu_spend_3wan": {
+      "name": "消费3万金珠",
+      "category": "财富",
+      "description": "累计消费30000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 30000,
+      "points": 150,
+      "reward": {
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 20,
+        "defense": 20
+      }
+    },
+    "jinzu_spend_5wan": {
+      "name": "消费5万金珠",
+      "category": "财富",
+      "description": "累计消费50000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 50000,
+      "points": 200,
+      "reward": {
+        "max_health": 150,
+        "max_mana": 150,
+        "attack": 30,
+        "defense": 30
+      }
+    },
+    "jinzu_spend_10wan": {
+      "name": "消费10万金珠",
+      "category": "财富",
+      "description": "累计消费100000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 100000,
+      "points": 300,
+      "reward": {
+        "max_health": 200,
+        "max_mana": 200,
+        "attack": 50,
+        "defense": 50
+      }
+    },
+    "jinzu_spend_20wan": {
+      "name": "消费20万金珠",
+      "category": "财富",
+      "description": "累计消费200000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 200000,
+      "points": 200,
+      "reward": {
+        "max_health": 300,
+        "max_mana": 300,
+        "attack": 100,
+        "defense": 100
+      }
+    },
+    "jinzu_spend_30wan": {
+      "name": "消费30万金珠",
+      "category": "财富",
+      "description": "累计消费300000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 300000,
+      "points": 300,
+      "reward": {
+        "max_health": 500,
+        "max_mana": 500,
+        "attack": 200,
+        "defense": 200
+      }
+    },
+    "yuanbao_spend_50wan": {
+      "name": "消费50万元宝",
+      "category": "财富",
+      "description": "累计消费500000元宝",
+      "condition_type": "yuanbao_spent",
+      "condition_value": 500000,
+      "points": 300,
+      "reward": {
+        "max_health": 500,
+        "max_mana": 500,
+        "attack": 200,
+        "defense": 200
+      }
+    },
+    "jinzu_spend_50wan": {
+      "name": "消费50万金珠",
+      "category": "财富",
+      "description": "累计消费500000金珠",
+      "condition_type": "jinzu_spent",
+      "condition_value": 500000,
+      "points": 300,
+      "reward": {
+        "max_health": 500,
+        "max_mana": 500,
+        "attack": 200,
+        "defense": 200
       }
     }
   }

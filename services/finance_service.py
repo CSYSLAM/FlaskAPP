@@ -888,7 +888,6 @@ class FinanceService:
 
         player.jinzu -= int(round(total))
         fd = player.finance_data
-        holdings = fd.get('holdings') or {}
         cur = holdings.get(stock_id) or {'shares': 0, 'avg_cost': 0.0}
         old_shares = cur['shares']
         old_avg = cur['avg_cost']
@@ -996,7 +995,6 @@ class FinanceService:
                 return False, f"金珠不足，需{round(total,2)}金珠冻结"
             player.jinzu -= int(round(total))
             fd['frozen'] = round(float(fd.get('frozen', 0)) + total, 2)
-        else:  # sell: 预冻结持仓
             holdings = fd.get('holdings') or {}
             cur = holdings.get(stock_id)
             if not cur or cur.get('shares', 0) < shares:

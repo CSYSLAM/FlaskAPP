@@ -24,6 +24,8 @@ class PlayerModel(db.Model, UserMixin):
     gold = db.Column(db.Integer, default=0)
     yuanbao = db.Column(db.Integer, default=0)
     jinzu = db.Column(db.Integer, default=0)
+    yuanbao_spent = db.Column(db.Integer, default=0)  # 累计消费元宝
+    jinzu_spent = db.Column(db.Integer, default=0)    # 累计消费金珠
 
     # Warehouse silver (stored in warehouse)
     warehouse_gold = db.Column(db.Integer, default=0)

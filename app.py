@@ -479,6 +479,16 @@ def create_app():
             db.session.commit()
         except Exception:
             db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN yuanbao_spent INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN jinzu_spent INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
         # 为没有 player_uid 的旧玩家生成 UID
         import random
         import string

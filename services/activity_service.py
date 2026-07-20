@@ -392,8 +392,7 @@ class ActivityService:
             if player.yuanbao < 50:
                 return False, "元宝不足，需要50元宝"
             player.yuanbao -= 50
-
-        # Pick prize
+            player.yuanbao_spent = (player.yuanbao_spent or 0) + 50
         prize = cls._weighted_random(cls.EGG_PRIZES)
         reward_msg = cls._grant_prize(player, prize)
 
@@ -402,10 +401,9 @@ class ActivityService:
         DataService.broadcast_system(f"{player.nickname}参与砸蛋活动：拿下了{prize_name}，太有实力啦！")
 
         db.session.commit()
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'yuanbao_spent', player.yuanbao_spent)
         return True, reward_msg
-
-    @classmethod
-    def get_egg_free_remaining(cls, player):
         return 1 - cls.get_today_value(player, 'smash_egg_free')
 
     # --- Rock Paper Scissors ---
@@ -604,8 +602,7 @@ class ActivityService:
             return False, "金珠不足，需要50金珠"
         else:
             player.jinzu -= 50
-
-        prize = cls._weighted_random(cls.CARD_PRIZES)
+            player.jinzu_spent = (player.jinzu_spent or 0) + 50
         reward_msg = cls._grant_prize(player, prize)
         cls.set_today_value(player, 'card_flip_done', done + 1)
 
@@ -617,6 +614,8 @@ class ActivityService:
         DataService.broadcast_system(f"{player.nickname}参与翻牌活动：拿下了{prize_name}，太有实力啦！")
 
         db.session.commit()
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'jinzu_spent', player.jinzu_spent)
         return True, reward_msg + "，获得幸运币x1"
 
     # --- Helpers ---

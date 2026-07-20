@@ -11,7 +11,7 @@ class AchievementService:
         for ctype in ['level', 'kill', 'elite_kill', 'elite_kill_area', 'elite_kill_monster', 'kill_monster',
                        'divine_beast_kill', 'pk_win', 'pk_loss', 'enhance', 'enhance_success', 'enhance_fail',
                        'enhance_50', 'forge', 'artifact_owned',
-                       'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level',
+                       'visit', 'equip_full', 'gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
                        'boss_kill', 'quest']:
             cls.check(player, ctype)
@@ -58,6 +58,12 @@ class AchievementService:
             return count >= val
         elif ctype == 'gold_earned':
             return player.gold_earned >= val
+        elif ctype == 'gold_total':
+            return (player.gold + player.warehouse_gold) >= val
+        elif ctype == 'yuanbao_spent':
+            return (player.yuanbao_spent or 0) >= val
+        elif ctype == 'jinzu_spent':
+            return (player.jinzu_spent or 0) >= val
         elif ctype == 'gift':
             return player.gift_count >= val
         elif ctype == 'chat':
@@ -198,6 +204,12 @@ class AchievementService:
             return sum(1 for v in equipped.values() if v is not None)
         elif ctype == 'gold_earned':
             return player.gold_earned or 0
+        elif ctype == 'gold_total':
+            return (player.gold or 0) + (player.warehouse_gold or 0)
+        elif ctype == 'yuanbao_spent':
+            return player.yuanbao_spent or 0
+        elif ctype == 'jinzu_spent':
+            return player.jinzu_spent or 0
         elif ctype == 'gift':
             return player.gift_count or 0
         elif ctype == 'chat':
@@ -386,7 +398,7 @@ class AchievementService:
             return '装备'
         if condition_type in ('forge', 'enhance_success', 'enhance_fail', 'enhance_50', 'artifact_owned'):
             return '装备'
-        if condition_type == 'gold_earned':
+        if condition_type in ('gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent'):
             return '财富'
         if condition_type in ('gift', 'chat'):
             return '社交'

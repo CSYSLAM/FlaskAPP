@@ -306,11 +306,14 @@ class LegionService:
             return False, "金珠不足（需要10金珠）"
 
         player.jinzu -= 10
+        player.jinzu_spent = (player.jinzu_spent or 0) + 10
         member.contribution += 10
 
         legion = Legion.query.get(member.legion_id)
         legion.total_contribution += 10
         db.session.commit()
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'jinzu_spent', player.jinzu_spent)
         return True, "捐献成功，军团军贡+10 个人军贡+10"
 
     @classmethod
@@ -324,11 +327,12 @@ class LegionService:
             return False, "元宝不足（需要10元宝）"
 
         player.yuanbao -= 10
+        player.yuanbao_spent = (player.yuanbao_spent or 0) + 10
         member.contribution += 10
-
-        legion = Legion.query.get(member.legion_id)
         legion.total_contribution += 10
         db.session.commit()
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'yuanbao_spent', player.yuanbao_spent)
         return True, "捐献成功，军团军贡+10 个人军贡+10"
 
     # --- Upgrade ---
