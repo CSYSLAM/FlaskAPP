@@ -15,6 +15,14 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     {% set equipped = DataService.get_equipped(player.id) %}
     {% for slot_name in EquipmentInstance.SLOTS %}
     {% set eq = equipped.get(slot_name) %}

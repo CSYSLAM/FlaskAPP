@@ -11,13 +11,16 @@ MAX_BLACKLIST = 30
 MAX_ENEMIES = 30
 MAX_RELATIONS = 5  # Max 5 hongyan or 5 zhiji
 FATE_REQUIRED = 100  # Min fate value to request relationship
+MARRIAGE_FATE_REQUIRED = 1000  # Min fate value to propose marriage
 
 
 class SocialService:
 
     @classmethod
-    def get_social_bonus(cls, player):
-        """Calculate social bonuses from hongyan/zhiji counts."""
+    def get_social_bonus_rate(cls, player):
+        """Calculate social bonus rate from hongyan/zhiji counts.
+        Each hongyan/zhiji gives +1% to max_health, max_mana, attack, defense.
+        Returns the rate (e.g. 0.01 for 1 pair, 0.02 for 2 pairs)."""
         from sqlalchemy import or_
         hongyan = Relationship.query.filter(
             or_(Relationship.player1_id == player.id, Relationship.player2_id == player.id),
@@ -25,8 +28,8 @@ class SocialService:
         zhiji = Relationship.query.filter(
             or_(Relationship.player1_id == player.id, Relationship.player2_id == player.id),
             Relationship.rel_type == 'zhiji').count()
-        total = hongyan * 2 + zhiji * 3
-        return total * 2, total * 1
+        total = hongyan + zhiji
+        return total * 0.01
 
     @classmethod
     def send_public_message(cls, player, content):
@@ -157,9 +160,16 @@ class SocialService:
         ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
 
     @classmethod
-    def get_system_messages(cls, limit=20):
+    def get_system_messages(cls, player_id=None, limit=20):
+        """Get system messages: global broadcasts + personal system messages for player_id."""
+        if player_id:
+            return ChatMessage.query.filter(
+                ChatMessage.message_type == 'system',
+                db.or_(ChatMessage.receiver_id == None, ChatMessage.receiver_id == player_id)
+            ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
         return ChatMessage.query.filter_by(
-            message_type='system'
+            message_type='system',
+            receiver_id=None
         ).order_by(ChatMessage.created_at.desc()).limit(limit).all()
 
     @classmethod
@@ -217,7 +227,7 @@ class SocialService:
         friends.append(target_username)
         player.friends = friends
 
-        cls.add_notification(target, f"{player.nickname}把你加为好友了")
+        cls.add_notification(target, f"{player.nickname}添加你为好友！", ntype='friend')
 
         db.session.commit()
         return True, f"已添加{target.nickname}为好友"
@@ -342,25 +352,35 @@ class SocialService:
     # --- Charm and Fate ---
 
     @classmethod
-    def send_flower(cls, player, target_username):
-        """Send rose to increase charm and fate."""
+    def send_flower(cls, player, target_username, quantity=1):
+        """Send roses to increase charm and fate. quantity: number of roses."""
         target = DataService.get_player_by_username(target_username)
         if not target:
             return False, "玩家不存在"
 
+        if quantity < 1:
+            return False, "数量无效"
+
         inv = DataService.get_inventory_item(player.id, 'flower_rose')
-        if not inv or inv.quantity <= 0:
-            return False, "没有玫瑰花"
+        if not inv or inv.quantity < quantity:
+            return False, "玫瑰花不足"
 
-        DataService.remove_item_from_inventory(player.id, 'flower_rose', 1)
+        DataService.remove_item_from_inventory(player.id, 'flower_rose', quantity)
 
-        target.charm = (target.charm or 0) + 1
-        cls._increase_fate(player.id, target.id, 1)
+        target.charm = (target.charm or 0) + quantity
+        cls._increase_fate(player.id, target.id, quantity)
 
-        cls.add_notification(target, f"{player.nickname}送了你一朵玫瑰花，魅力+1")
+        cls.add_notification(target, f"{player.nickname}赠送给你{quantity}朵玫瑰花，增加{quantity}点缘分值", ntype='friend')
+
+        # System broadcast for specific flower gift amounts
+        from services.public_chat import PublicChat
+        if quantity == 999:
+            PublicChat.broadcast(f"天啦噜{player.nickname}赠送给{target.nickname}{quantity}朵玫瑰，名动三国啦！")
+        elif quantity == 99:
+            PublicChat.broadcast(f"{player.nickname}赠送给{target.nickname}{quantity}朵玫瑰，予人芬芳，自留温柔。")
 
         db.session.commit()
-        return True, f"送花成功，{target.nickname}魅力+1，双方缘分+1"
+        return True, f"赠送成功，{target.nickname}魅力+{quantity}，双方缘分+{quantity}"
 
     @classmethod
     def _increase_fate(cls, player_id, target_id, amount):
@@ -445,7 +465,7 @@ class SocialService:
         })
         target.relation_requests = requests
 
-        cls.add_notification(target, f"{player.nickname}想和你结为{'红颜' if rel_type=='hongyan' else '知己'}")
+        cls.add_notification(target, f"{player.nickname}向你发起了结交申请，请去社交里面处理吧", ntype='friend')
 
         db.session.commit()
         return True, f"已向{target.nickname}发送{'红颜' if rel_type=='hongyan' else '知己'}结交邀请"
@@ -492,7 +512,7 @@ class SocialService:
             )
             db.session.add(rel)
 
-        cls.add_notification(requester, f"{player.nickname}同意和你结为{'红颜' if rel_type=='hongyan' else '知己'}")
+        cls.add_notification(requester, f"你与{player.nickname}已经成功结交{'红颜' if rel_type=='hongyan' else '知己'}", ntype='friend')
 
         db.session.commit()
         return True, f"已和{requester.nickname}结为{'红颜' if rel_type=='hongyan' else '知己'}"
@@ -516,7 +536,7 @@ class SocialService:
         player.relation_requests = new_requests
 
         if requester:
-            cls.add_notification(requester, f"{player.nickname}拒绝了你的结交邀请")
+            cls.add_notification(requester, f"{player.nickname}拒绝了你的{'红颜' if request.get('type')=='hongyan' else '知己'}申请", ntype='friend')
 
         db.session.commit()
         return True, "已拒绝结交邀请"
@@ -539,16 +559,19 @@ class SocialService:
         DataService.remove_item_from_inventory(player.id, 'break_wine', 1)
 
         rel.rel_type = 'pending'
+        rel.fate_value = max(0, rel.fate_value - 100)
+
+        cls.add_notification(target, f"{player.nickname}对你说:百般迁就换不来珍惜，就此断交，永不回头", ntype='friend')
+
         db.session.commit()
-
-        cls.add_notification(target, f"{player.nickname}和你断交了")
-
         return True, f"已和{target.nickname}断交"
 
     @classmethod
     def get_relation_list(cls, player, rel_type):
         """Get relationship list (hongyan or zhiji)."""
         rels = Relationship.get_relationships(player.id, rel_type)
+        spouse = cls.get_spouse(player)
+        spouse_id = spouse.id if spouse else None
         result = []
         for rel in rels:
             other_id = rel.get_other_player_id(player.id)
@@ -558,23 +581,284 @@ class SocialService:
                     'username': other.username,
                     'nickname': other.nickname,
                     'fate': rel.fate_value,
-                    'online': cls._is_online(other)
+                    'online': cls._is_online(other),
+                    'is_spouse': other.id == spouse_id
                 })
         return result
 
     @classmethod
     def get_online_relation_attack_bonus(cls, player):
-        """Get attack bonus from online relationships."""
-        bonus = 0
+        """Get attack bonus from online relationships (no longer used for spouse)."""
+        return 0
+
+    # --- Marriage (结婚) ---
+
+    @classmethod
+    def get_spouse(cls, player):
+        """Get player's spouse PlayerModel, or None."""
+        rel = Relationship.query.filter(
+            ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
+            Relationship.rel_type == 'spouse'
+        ).first()
+        if rel:
+            other_id = rel.get_other_player_id(player.id)
+            return PlayerModel.query.get(other_id)
+        return None
+
+    @classmethod
+    def get_spouse_info(cls, player):
+        """Get spouse info dict with username, nickname, online, ring info, or None."""
+        spouse = cls.get_spouse(player)
+        if not spouse:
+            return None
+        ring_info = cls._get_wedding_ring_info(player)
+        return {
+            'username': spouse.username,
+            'nickname': spouse.nickname,
+            'online': cls._is_online(spouse),
+            'ring_info': ring_info,
+        }
+
+    @classmethod
+    def _get_wedding_ring_info(cls, player):
+        """Get player's equipped wedding ring info (name + stars)."""
+        equipped = DataService.get_equipped(player.id)
+        accessory = equipped.get('accessory')
+        if accessory and accessory.template_id in ('wedding_grass_ring', 'wedding_diamond_ring'):
+            ring_name = '新婚草戒' if accessory.template_id == 'wedding_grass_ring' else '新婚钻戒'
+            return f"{ring_name}({accessory.stars}星)"
+        return None
+
+    @classmethod
+    def _check_wedding_ring(cls, player):
+        """Check if player has a wedding ring equipped."""
+        equipped = DataService.get_equipped(player.id)
+        accessory = equipped.get('accessory')
+        return accessory and accessory.template_id in ('wedding_grass_ring', 'wedding_diamond_ring')
+
+    @classmethod
+    def propose_marriage(cls, player, target_username):
+        """Propose marriage to target player."""
+        target = DataService.get_player_by_username(target_username)
+        if not target:
+            return False, "玩家不存在"
+
+        if target.id == player.id:
+            return False, "不能和自己结婚"
+
+        # Must be opposite gender
+        if player.gender == target.gender:
+            return False, "结婚需要双方性别互为异性"
+
+        # Check both are not already married
+        if cls.get_spouse(player):
+            return False, "你已经结婚了"
+        if cls.get_spouse(target):
+            return False, f"{target.nickname}已经结婚了"
+
+        # Check fate value
+        fate = cls.get_fate_value(player.id, target.id)
+        if fate < MARRIAGE_FATE_REQUIRED:
+            return False, f"缘分值不足{MARRIAGE_FATE_REQUIRED}，当前{fate}"
+
+        # Both must wear wedding rings
+        if not cls._check_wedding_ring(player):
+            return False, "你需要佩戴新婚草戒或新婚钻戒才能求婚"
+        if not cls._check_wedding_ring(target):
+            return False, f"{target.nickname}未佩戴新婚草戒或新婚钻戒，无法求婚"
+
+        # Proposer consumes 2 bond_wine
+        inv = DataService.get_inventory_item(player.id, 'bond_wine')
+        if not inv or inv.quantity < 2:
+            return False, "需要2杯结交酒才能求婚"
+
+        # Check if already has pending marriage proposal from/to this player
+        existing_requests = target.relation_requests
+        for r in existing_requests:
+            if r.get('from') == player.username and r.get('type') == 'marriage':
+                return False, "已经向对方发送过求婚，等待回应"
+
+        DataService.remove_item_from_inventory(player.id, 'bond_wine', 2)
+
+        # Add proposal to target's relation_requests
+        ring_info = cls._get_wedding_ring_info(player)
+        requests = target.relation_requests
+        requests.append({
+            'from': player.username,
+            'from_name': player.nickname,
+            'type': 'marriage',
+            'ring_info': ring_info or '未佩戴婚戒',
+            'time': datetime.now().strftime('%Y-%m-%d %H:%M')
+        })
+        target.relation_requests = requests
+
+        cls.add_notification(target, f"{player.nickname}向你求婚！佩戴{ring_info or '婚戒'}", ntype='friend')
+
+        db.session.commit()
+        return True, f"已向{target.nickname}发送求婚"
+
+    @classmethod
+    def accept_marriage(cls, player, requester_username):
+        """Accept a marriage proposal."""
+        requests = player.relation_requests
+        request = None
+        for r in requests:
+            if r.get('from') == requester_username and r.get('type') == 'marriage':
+                request = r
+                break
+
+        if not request:
+            return False, "没有该求婚邀请"
+
+        requester = DataService.get_player_by_username(requester_username)
+        if not requester:
+            return False, "求婚者不存在"
+
+        # Double-check conditions
+        if player.gender == requester.gender:
+            return False, "结婚需要双方性别互为异性"
+
+        if cls.get_spouse(player):
+            return False, "你已经结婚了"
+        if cls.get_spouse(requester):
+            return False, f"{requester.nickname}已经结婚了"
+
+        # Both must wear wedding rings
+        if not cls._check_wedding_ring(player):
+            return False, "你需要佩戴新婚草戒或新婚钻戒才能接受求婚"
+        if not cls._check_wedding_ring(requester):
+            return False, f"{requester.nickname}未佩戴婚戒"
+
+        # Remove the pending request
+        new_requests = [r for r in requests if not (r.get('from') == requester_username and r.get('type') == 'marriage')]
+        player.relation_requests = new_requests
+
+        # Create a NEW spouse relationship (keep existing hongyan/zhiji relationship intact)
+        rel = Relationship(
+            player1_id=min(player.id, requester.id),
+            player2_id=max(player.id, requester.id),
+            rel_type='spouse',
+            fate_value=cls.get_fate_value(player.id, requester.id),
+            initiator_id=requester.id
+        )
+        db.session.add(rel)
+
+        # System broadcast
+        ring_info = request.get('ring_info', '婚戒')
+        from services.public_chat import PublicChat
+        if player.gender == '女':
+            PublicChat.broadcast(f"不羡鸳鸯不羡仙，{player.nickname}与{requester.nickname}佩戴{ring_info}，结为夫妻让我们祝福新人吧！")
+        else:
+            PublicChat.broadcast(f"不羡鸳鸯不羡仙，{requester.nickname}与{player.nickname}佩戴{ring_info}，结为夫妻让我们祝福新人吧！")
+
+        cls.add_notification(requester, f"{player.nickname}同意了你的求婚！你们已结为夫妻", ntype='friend')
+
+        db.session.commit()
+        return True, f"已和{requester.nickname}结为夫妻"
+
+    @classmethod
+    def reject_marriage(cls, player, requester_username):
+        """Reject a marriage proposal."""
+        requests = player.relation_requests
+        request = None
+        for r in requests:
+            if r.get('from') == requester_username and r.get('type') == 'marriage':
+                request = r
+                break
+
+        if not request:
+            return False, "没有该求婚邀请"
+
+        new_requests = [r for r in requests if not (r.get('from') == requester_username and r.get('type') == 'marriage')]
+        player.relation_requests = new_requests
+
+        requester = DataService.get_player_by_username(requester_username)
+        if requester:
+            cls.add_notification(requester, f"{player.nickname}拒绝了你的求婚，你就是个大冤种，555~", ntype='friend')
+
+        db.session.commit()
+        return True, "已拒绝求婚"
+
+    @classmethod
+    def divorce(cls, player):
+        """Divorce - consumes 断肠草, deducts 900 fate from both parties."""
+        spouse = cls.get_spouse(player)
+        if not spouse:
+            return False, "你还没有结婚"
+
+        inv = DataService.get_inventory_item(player.id, 'duanchang_cao')
+        if not inv or inv.quantity <= 0:
+            return False, "没有断肠草，离婚需要消耗1个断肠草"
+
+        DataService.remove_item_from_inventory(player.id, 'duanchang_cao', 1)
+
+        rel = Relationship.query.filter(
+            ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
+            Relationship.rel_type == 'spouse'
+        ).first()
+        if rel:
+            # Deduct 900 fate from the hongyan/zhiji relationship between them
+            hongyan_rel = Relationship.query.filter(
+                ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
+                Relationship.rel_type.in_(['hongyan', 'zhiji'])
+            ).first()
+            if hongyan_rel:
+                hongyan_rel.fate_value = max(0, hongyan_rel.fate_value - 900)
+            # Delete the spouse relationship record entirely
+            db.session.delete(rel)
+
+        cls.add_notification(spouse, f"{player.nickname}和你离婚了，双方缘分-900，斩断情丝，忘却因缘！", ntype='friend')
+
+        db.session.commit()
+        return True, f"已和{spouse.nickname}离婚，双方缘分值-900"
+
+    @classmethod
+    def spouse_teleport(cls, player):
+        """Teleport to spouse's location (free, blocked in copy maps)."""
+        spouse = cls.get_spouse(player)
+        if not spouse:
+            return False, "你还没有结婚"
+
+        # Check if player is in copy map
+        from services.map_service import MapService
+        location = DataService.get_location(player.current_location)
+        if location and location.get('is_copy_map'):
+            return False, "副本内无法传送到配偶身边"
+
+        # Check if spouse is in copy map
+        spouse_location = DataService.get_location(spouse.current_location)
+        if spouse_location and spouse_location.get('is_copy_map'):
+            return False, "配偶当前在副本中，无法传送"
+
+        player.current_location = spouse.current_location
+        db.session.commit()
+        return True, f"已传送到{spouse.nickname}身边"
+
+    @classmethod
+    def get_spouse_bonus_rate(cls, player):
+        """Get 5% bonus rate from marriage. Returns 0.05 if married, 0 otherwise."""
+        if cls.get_spouse(player):
+            return 0.05
+        return 0.0
+
+    @classmethod
+    def notify_relations_login(cls, player):
+        """Notify spouse/hongyan/zhiji on login via system notification."""
+        spouse = cls.get_spouse(player)
+        if spouse:
+            label = '夫君' if spouse.gender == '女' else '妻子'
+            cls.add_notification(spouse, f"你的{label}{player.nickname}已经上线！", ntype='friend')
+
+        # Notify online hongyan/zhiji on login
         rels = Relationship.get_relationships(player.id)
         for rel in rels:
             if rel.rel_type not in ('hongyan', 'zhiji'):
                 continue
             other_id = rel.get_other_player_id(player.id)
             other = PlayerModel.query.get(other_id)
-            if other and cls._is_online(other):
-                bonus += 20
-        return bonus
+            if other:
+                label = '红颜' if rel.rel_type == 'hongyan' else '知己'
+                cls.add_notification(other, f"你的{label}{player.nickname}已经上线！", ntype='friend')
 
     # --- Helpers ---
 
@@ -586,11 +870,12 @@ class SocialService:
         return (datetime.utcnow() - player.last_login) < timedelta(minutes=30)
 
     @classmethod
-    def add_notification(cls, player, message):
-        """Add notification to player."""
+    def add_notification(cls, player, message, ntype=None):
+        """Add notification to player. ntype: optional type like 'friend' for styled display."""
         notifications = player.notifications
         notifications.insert(0, {
             'message': message,
-            'time': datetime.now().strftime('%Y-%m-%d %H:%M')
+            'time': datetime.now().strftime('%Y-%m-%d %H:%M'),
+            'type': ntype
         })
         player.notifications = notifications[:20]

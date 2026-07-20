@@ -138,10 +138,12 @@ class ShopService:
             if player.yuanbao < price:
                 return False, f"元宝不足，需要{price}元宝"
             player.yuanbao -= price
+            player.yuanbao_spent = (player.yuanbao_spent or 0) + price
         elif currency == "jinzu":
             if player.jinzu < price:
                 return False, f"金珠不足，需要{price}金珠"
             player.jinzu -= price
+            player.jinzu_spent = (player.jinzu_spent or 0) + price
         elif currency == "points":
             # Points are virtual, not stored on player; skip balance check for now
             pass
@@ -159,5 +161,14 @@ class ShopService:
         QuestService.update_buy_item_progress(player, real_item_id)
 
         db.session.commit()
+
+        # Check currency spend achievements
+        if currency == "yuanbao":
+            from services.achievement_service import AchievementService
+            AchievementService.check(player, 'yuanbao_spent', player.yuanbao_spent)
+        elif currency == "jinzu":
+            from services.achievement_service import AchievementService
+            AchievementService.check(player, 'jinzu_spent', player.jinzu_spent)
+
         cn = currency_names.get(currency, "银两")
         return True, f"购买了{quantity}个{item_entry['name']}，花费{price}{cn}"

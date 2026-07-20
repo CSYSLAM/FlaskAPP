@@ -128,11 +128,27 @@ def revive_action(method):
                 msg += f" 你被{killed_by}击杀了。"
             return render_template("revive_result.html", revive_message=msg)
 
-    # Weak revive - lose 10% experience
-    lost_exp = 0
-    if player.experience > 0:
-        lost_exp = max(0, int(player.experience * 0.1))
-        player.experience -= lost_exp
+    # 回城疗伤：消耗300银两，虚弱复活 + 传送至当前所在城市客栈
+    if method == "city_heal":
+        if player.gold < 300:
+            return render_template("revive_result.html", revive_message="回城疗伤需要300银两，银两不足")
+        player.gold -= 300
+        player.health = max(10, PlayerService.get_max_health(player) // 10)
+        player.mana = max(5, PlayerService.get_max_mana(player) // 10)
+        player.in_battle = False
+        player.current_encounter = None
+        player.need_revive = False
+        player.killed_by = None
+        locations = DataService.get_locations()
+        city = (player.current_location or '').split('.')[0].split('_')[0]
+        for cand in (f"{city}_center.客栈", f"{city}_center.广场"):
+            if cand in locations:
+                player.current_location = cand
+                break
+        db.session.commit()
+        return render_template("revive_result.html", revive_message="回城疗伤成功，生命值恢复到10%，已传送至本城客栈！")
+
+    # Weak revive: 恢复10%血/蓝（经验已在死亡时扣除，此处不再扣）
     player.health = max(10, PlayerService.get_max_health(player) // 10)
     player.mana = max(5, PlayerService.get_max_mana(player) // 10)
     player.in_battle = False
@@ -142,8 +158,6 @@ def revive_action(method):
     player.killed_by = None
     db.session.commit()
     msg = "虚弱复活成功，生命值恢复到10%！"
-    if lost_exp > 0:
-        msg += f" 损失了 {lost_exp} 经验"
     if killed_by:
         msg += f" 你被{killed_by}击杀了。"
     return render_template("revive_result.html", revive_message=msg)
@@ -155,10 +169,6 @@ def battle_result():
     player = current_user
     result = player.last_battle_result
     lost_exp = 0
-
-    if not player.in_pk and player.health <= 1 and player.experience > 0:
-        lost_exp = max(0, int(player.experience * 0.1))
-        player.experience -= lost_exp
 
     is_pk = player.in_pk
     last_action = player.last_action or ""

@@ -8,6 +8,8 @@
     body { font-size: 16px; margin: 0; line-height: 1.6; }
     a:link { color: #136ec2; text-decoration: none; }
     .bound { color: #999; font-size: 14px; }
+    .rarity-史诗 { color: #a335ee; }
+    .rarity-神器 { color: #ff8000; }
     #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
     #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -16,60 +18,112 @@
 <body style='margin-left:10px;margin-right:10px'>
     <div id="loading"><span></span></div>
 
-    {% set slot_name = EquipmentInstance.SLOT_NAMES.get(equipment.slot, equipment.slot) %}
-    {% set rarity_colors = {'普通': '', '精良': '#1a8c1a', '卓越': '#0070dd', '史诗': '#a335ee', '神器': '#ff8000'} %}
-    {% set rc = rarity_colors.get(equipment.rarity, '') %}
-
-    {% if rc %}<font color="{{ rc }}">{% endif %}{{ equipment.name }}{% if rc %}</font>{% endif %}{% if equipment.is_bound %}<span class="bound">(绑定)</span>{% endif %}<br/>
-    [{{ slot_name }}]{% if equipment.rarity != '普通' %}{{ equipment.rarity }}{% endif %} {{ equipment.enhance_level }}级<br/>
-    {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
-    {% if tpl and tpl.get('set_name') %}套装:{{ tpl.set_name }}<br/>{% endif %}
-
-    基础属性:<br/>
-    {% for stat, value in equipment.get_base_stats().items() %}
-    {% if value %}
-    &nbsp;&nbsp;{{ EquipmentInstance.STAT_NAMES.get(stat, stat) }}:{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.2f"|format(value * 100) }}%{% else %}{{ value }}{% endif %}<br/>
-    {% endif %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
     {% endfor %}
+    {% endif %}
+    {% endwith %}
 
+    {% set slot_name = EquipmentInstance.SLOT_NAMES.get(equipment.slot, equipment.slot) %}
+    {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
+    {% set base = equipment.get_base_stats() %}
+    {% set initial = equipment.get_initial_stats() %}
     {% set extra = equipment.get_extra_stats() %}
+
+    {# === 顶部操作按钮 === #}
+    {% if not readonly %}
+    {% if is_equipped.val %}
+    <a href="{{ url_for('player.unequip', slot=equipment.slot) }}">卸下</a> <a href="{{ url_for('player.show_equipment', equipment_instance_id=equipment.instance_id) }}">展示(1000银两)</a><br/>
+    {% else %}
+    <a href="{{ url_for('player.equip_item', equipment_instance_id=item_id, category=inv_category|default('全部'), page=inv_page|default('1'), per_page=inv_per_page|default('10')) }}">装备</a>{% if old_equip %}(替换:{{ old_equip.name }}){% endif %} <a href="{{ url_for('player.show_equipment', equipment_instance_id=equipment.instance_id) }}">展示(1000银两)</a><br/>
+    {% endif %}
+    {% elif owner_name %}
+    拥有者：{{ owner_name }}<br/>
+    {% endif %}
+
+    {# === 装备名称（史诗/神器有颜色） === #}
+    {% if equipment.rarity == '史诗' or equipment.rarity == '神器' %}
+    <span class="rarity-{{ equipment.rarity }}">{{ equipment.name }}</span>
+    {% else %}
+    {{ equipment.name }}
+    {% endif %}
+    {% if equipment.is_bound %}<span class="bound">(绑定)</span>{% else %}<span class="bound">(非绑定)</span>{% endif %}<br/>
+
+    {# === 装备说明 === #}
+    {% if tpl and tpl.get('description') %}
+    {{ tpl.description }}<br/>
+    {% endif %}
+
+    {# === 装备图片 === #}
+    {% if equipment_image %}<img src="{{ url_for('static', filename=equipment_image) }}" style="max-width:120px;"><br/>{% endif %}
+
+    装备等级：{{ equipment.level_required }}级<br/>
+    物品级别：{{ equipment.rarity }}<br/>
+    职业要求：{{ equipment.class_required or '全职业' }}<br/>
+    装备类型：{{ slot_name }}<br/>
+
+    {# === 基础属性（只显示attack和defense，拆分原始+强化加成） === #}
+    基础属性:<br/>
+    {% if base.get('attack') %}
+    {% set init_atk = (initial.get('attack') or 0)|round|int %}
+    {% set enhance_atk = (base['attack'] - init_atk)|round|int %}
+    &nbsp;&nbsp;攻击力 {{ base['attack']|round|int }}{% if enhance_atk > 0 %}（{{ init_atk }}+{{ enhance_atk }}）{% endif %}<br/>
+    {% endif %}
+    {% if base.get('defense') %}
+    {% set init_def = (initial.get('defense') or 0)|round|int %}
+    {% set enhance_def = (base['defense'] - init_def)|round|int %}
+    &nbsp;&nbsp;防御力 {{ base['defense']|round|int }}{% if enhance_def > 0 %}（{{ init_def }}+{{ enhance_def }}）{% endif %}<br/>
+    {% endif %}
+
+    {# === 附加属性（六种，为0不显示） === #}
     {% if extra %}
     附加属性:<br/>
-    {% for stat, val_stars in extra.items() %}
-    {% if val_stars[0] %}
-    &nbsp;&nbsp;{{ EquipmentInstance.STAT_NAMES.get(stat, stat) }}:{% if stat in ('crit_rate', 'dodge_rate') %}{{ "%.2f"|format(val_stars[0] * 100) }}%{% else %}{{ val_stars[0]|round|int }}{% endif %}({{ val_stars[1]|int }}星)<br/>
+    {% if extra.get('attack') and extra['attack'][0] %}
+    &nbsp;&nbsp;攻击力 +{{ extra['attack'][0]|round|int }}({{ extra['attack'][1]|int }}星)<br/>
     {% endif %}
-    {% endfor %}
+    {% if extra.get('defense') and extra['defense'][0] %}
+    &nbsp;&nbsp;防御力 +{{ extra['defense'][0]|round|int }}({{ extra['defense'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('max_health') and extra['max_health'][0] %}
+    &nbsp;&nbsp;生命值 +{{ extra['max_health'][0]|round|int }}({{ extra['max_health'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('max_mana') and extra['max_mana'][0] %}
+    &nbsp;&nbsp;魔法值 +{{ extra['max_mana'][0]|round|int }}({{ extra['max_mana'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('crit_rate') and extra['crit_rate'][0] %}
+    &nbsp;&nbsp;暴击率 +{{ "%.2f"|format(extra['crit_rate'][0] * 100) }}%({{ extra['crit_rate'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('dodge_rate') and extra['dodge_rate'][0] %}
+    &nbsp;&nbsp;闪避率 +{{ "%.2f"|format(extra['dodge_rate'][0] * 100) }}%({{ extra['dodge_rate'][1]|int }}星)<br/>
+    {% endif %}
     {% endif %}
 
-    {% if equipment.level_required > 1 %}
-    需要等级:{{ equipment.level_required }}<br/>
-    {% endif %}
-    {% if equipment.class_required %}
-    需要职业:{{ equipment.class_required }}<br/>
-    {% endif %}
+    卖出价：{{ equipment.get_sell_price() }}银两<br/>
 
-    {% if is_equipped.val %}
-    <a href="{{ url_for('player.unequip', slot=equipment.slot) }}">卸下</a>
-    {% else %}
-    <a href="{{ url_for('player.equip_item', equipment_instance_id=item_id) }}">装备</a>
-    {% if old_equip %}(替换:{{ old_equip.name }}){% endif %}
-    <a href="{{ url_for('player.enhance_page', equipment_instance_id=item_id) }}">强化</a>
-    <a href="{{ url_for('player.sell_item', item_id=item_id) }}">出售</a>
-    <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a>
-    {% endif %}<br/>
-
+    {# === 底部操作按钮 === #}
+    {% if not readonly %}
+    {% if not is_equipped.val %}
+    <a href="{{ url_for('player.destroy_item', item_id=item_id) }}">丢弃</a><br/>
+    {% endif %}
     {% if from_page == 'equipment' %}
     <a href="{{ url_for('player.equipment_list') }}">返回上级</a><br/>
     {% else %}
-    <a href="{{ url_for('player.inventory') }}">返回上级</a><br/>
+    <a href="{{ url_for('player.inventory', category=inv_category|default('全部'), page=inv_page|default('1'), per_page=inv_per_page|default('10')) }}">返回上级</a><br/>
+    {% endif %}
+    {% else %}
+    {% if creator_info %}
+    创建者:{{ creator_info }}<br/>
+    {% endif %}
+    <a href="{{ url_for('game.scene') }}">返回上级</a><br/>
     {% endif %}
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>
     var aLinks=document.getElementsByTagName("a");
     for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
-    setTimeout(function(){document.getElementById('loading').style.display='none';},350);
+    setTimeout(function(){document.getElementById('loading').style.display='none'},350);
     </script>
 </body>
 </html>

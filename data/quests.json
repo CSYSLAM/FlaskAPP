@@ -8038,7 +8038,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "朱褒",
-      "count": 8
+      "count": 1
     },
     "rewards": {
       "experience": 5200,
@@ -8124,7 +8124,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "吕建",
-      "count": 10
+      "count": 1
     },
     "rewards": {
       "experience": 6500,
@@ -8164,7 +8164,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "雍凯",
-      "count": 8
+      "count": 1
     },
     "rewards": {
       "experience": 7500,
@@ -8440,7 +8440,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "韦康",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 9000,
@@ -8634,7 +8634,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "赵昂",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 13500,
@@ -8670,7 +8670,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "刘进",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 15000,
@@ -8787,7 +8787,7 @@
     "objective": {
       "type": "kill_monster",
       "monster_name": "刘安",
-      "count": 6
+      "count": 1
     },
     "rewards": {
       "experience": 18000,

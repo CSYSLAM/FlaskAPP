@@ -128,7 +128,7 @@ ITEM_SERIES = [
     {"slug": "guanyinshui", "name": "观音水", "reward_family": "mana_plus", "tracking_keys": ["potion_mana_1150"]},
     {"slug": "tiancandan", "name": "天蚕丹", "reward_family": "attack", "tracking_keys": ["potion_heal_2000"]},
     {"slug": "huashenshui", "name": "化神水", "reward_family": "mana_plus", "tracking_keys": ["potion_mana_2000"]},
-    {"slug": "jingyandan", "name": "经验丹", "reward_family": "exp"},
+    {"slug": "xiaojingyandan", "name": "小经验丹", "reward_family": "exp", "tracking_keys": ["exp_small"]},
     {"slug": "dajingyandan", "name": "大经验丹", "reward_family": "exp", "tracking_keys": ["exp_large"]},
     {"slug": "xiaoxueshi", "name": "小血石", "reward_family": "health", "tracking_keys": ["blood_stone_small"]},
     {"slug": "zhongxueshi", "name": "中血石", "reward_family": "health_plus", "tracking_keys": ["blood_stone_medium"]},
@@ -136,41 +136,20 @@ ITEM_SERIES = [
     {"slug": "xiaomoshi", "name": "小魔石", "reward_family": "mana", "tracking_keys": ["mana_stone_small"]},
     {"slug": "zhongmoshi", "name": "中魔石", "reward_family": "mana_plus", "tracking_keys": ["mana_stone_medium"]},
     {"slug": "damoshi", "name": "大魔石", "reward_family": "mana_plus", "tracking_keys": ["mana_stone_large"]},
-    {"slug": "double_exp_card", "name": "双倍经验卡", "reward_family": "exp", "tracking_keys": ["yb_exp_double"]},
+    {"slug": "double_exp_card", "name": "双倍经验卡", "reward_family": "exp", "tracking_keys": ["double_exp_card"]},
     {"slug": "miyaolibao", "name": "秘药礼包", "reward_family": "bundle", "tracking_keys": ["potion_package"]},
     {"slug": "shenxuedan", "name": "神血丹", "reward_family": "health_plus", "tracking_keys": ["potion_heal_2250"]},
     {"slug": "qinglinglu", "name": "清灵露", "reward_family": "mana_dodge", "tracking_keys": ["potion_mana_2250"]},
-    {"slug": "longxueshen", "name": "龙血参", "reward_family": "health_crit"},
-    {"slug": "fenglizhi", "name": "凤鳞汁", "reward_family": "attack_crit"},
     {"slug": "lt_double_exp_card", "name": "副将双倍经验卡", "reward_family": "exp"},
-    {
-        "slug": "xuanludan",
-        "name": "玄鹿丹",
-        "tier_rewards": (
-            {"max_health": 5},
-            {"max_health": 5, "attack": 2},
-            {"max_health": 10, "max_mana": 5, "attack": 3},
-        ),
-    },
-    {
-        "slug": "changshengniang",
-        "name": "长生酿",
-        "tier_rewards": (
-            {"max_mana": 5},
-            {"max_mana": 5, "defense": 2},
-            {"max_mana": 10, "max_health": 5, "defense": 3},
-        ),
-    },
+    {"slug": "lt_exp_low", "name": "副将低级经验丹", "reward_family": "exp", "tracking_keys": ["lt_exp_low"]},
+    {"slug": "lt_exp_mid", "name": "副将中级经验丹", "reward_family": "exp", "tracking_keys": ["lt_exp_mid"]},
+    {"slug": "lt_exp_high", "name": "副将高级经验丹", "reward_family": "exp", "tracking_keys": ["lt_exp_high"]},
 ]
 
 CHEST_SERIES = [
     {"slug": "iron", "name": "铁质宝匣", "reward_family": "low", "tracking_keys": ["chest_iron", "chest_iron_bound"]},
     {"slug": "silver", "name": "银质宝匣", "reward_family": "mid", "tracking_keys": ["chest_silver", "chest_silver_bound"]},
     {"slug": "gold", "name": "金质宝匣", "reward_family": "high", "tracking_keys": ["chest_gold", "chest_gold_bound"]},
-    {"slug": "yuanyang", "name": "鸳鸯宝箱", "reward_family": "mid"},
-    {"slug": "changan", "name": "长安宝匣", "reward_family": "high"},
-    {"slug": "platinum", "name": "白金宝匣", "reward_family": "high"},
-    {"slug": "wuyi", "name": "五一宝匣", "reward_family": "mid"},
 ]
 
 

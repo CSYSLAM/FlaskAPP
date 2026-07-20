@@ -39,7 +39,7 @@
     性别:{{ player.gender }} 职业:{{ player.player_class }}<br/>
     <a href="{{ url_for('player.achievements') }}">成就</a>:{{ '★' * star_count }}{% if vip_level > 0 %}<img src="{{ url_for('static', filename='vip/vip_' ~ vip_level ~ '.jpg') }}" border="0" height="18" width="45"/>{% else %}<img src="{{ url_for('static', filename='vip/vip_1_x.jpg') }}" border="0" height="18" width="45"/>{% endif %}<br/>
     山庄:<a href="{{ url_for('villa.index') }}">{{ villa_name }}</a><br/>
-    {% if player.gender == '女' %}夫君:{% else %}夫人:{% endif %}{% if spouse_name %}<a href="{{ url_for('player.view_player', username=spouse_name) }}">{{ spouse_name }}</a>{% else %}无{% endif %}<br/>
+    {% if player.gender == '女' %}夫君:{% else %}夫人:{% endif %}{% if spouse_name %}<a href="{{ url_for('player.view_player', username=spouse_name) }}">{{ spouse_name }}</a>(<a href="{{ url_for('social.spouse_teleport') }}">传送</a>){% else %}无{% endif %}<br/>
     {% set title_display = player.get_title_display() %}
     称号:{% if title_display %}<a href="{{ url_for('player.titles') }}">{{ title_display }}</a>{% else %}无{% endif %}<br/>
     军衔:<a href="{{ url_for('player.military_ranks') }}" class="current-rank">{{ player.military_rank }}</a><br/>

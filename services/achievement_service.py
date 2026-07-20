@@ -8,10 +8,12 @@ class AchievementService:
 
     @classmethod
     def check_all(cls, player):
-        for ctype in ['level', 'kill', 'elite_kill', 'pk_win', 'pk_loss', 'enhance',
-                       'visit', 'equip_full', 'gold_earned', 'gift', 'chat', 'vip_level',
+        for ctype in ['level', 'kill', 'elite_kill', 'elite_kill_area', 'elite_kill_monster', 'kill_monster',
+                       'divine_beast_kill', 'pk_win', 'pk_loss', 'enhance', 'enhance_success', 'enhance_fail',
+                       'enhance_50', 'forge', 'artifact_owned',
+                       'visit', 'equip_full', 'gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
-                       'boss_kill', 'quest']:
+                       'boss_kill', 'quest', 'quest_done']:
             cls.check(player, ctype)
 
     @classmethod
@@ -56,6 +58,12 @@ class AchievementService:
             return count >= val
         elif ctype == 'gold_earned':
             return player.gold_earned >= val
+        elif ctype == 'gold_total':
+            return (player.gold + player.warehouse_gold) >= val
+        elif ctype == 'yuanbao_spent':
+            return (player.yuanbao_spent or 0) >= val
+        elif ctype == 'jinzu_spent':
+            return (player.jinzu_spent or 0) >= val
         elif ctype == 'gift':
             return player.gift_count >= val
         elif ctype == 'chat':
@@ -74,8 +82,28 @@ class AchievementService:
             return cls._get_dungeon_tower_progress(player, adef) >= val
         elif ctype == 'boss_kill':
             return cls._get_boss_kill_progress(player, adef) >= val
+        elif ctype == 'elite_kill_area':
+            return cls._get_elite_kill_area_progress(player, adef) >= val
+        elif ctype == 'elite_kill_monster':
+            return cls._get_elite_kill_monster_progress(player, adef) >= val
+        elif ctype == 'kill_monster':
+            return cls._get_kill_monster_progress(player, adef) >= val
+        elif ctype == 'divine_beast_kill':
+            return cls._get_divine_beast_kill_progress(player, adef) >= val
+        elif ctype == 'forge':
+            return (player.forge_count or 0) >= val
+        elif ctype == 'enhance_success':
+            return (player.enhance_success_count or 0) >= val
+        elif ctype == 'enhance_fail':
+            return (player.enhance_fail_count or 0) >= val
+        elif ctype == 'enhance_50':
+            return (player.enhance_50_count or 0) >= val
+        elif ctype == 'artifact_owned':
+            return cls._get_artifact_owned_progress(player, adef) >= val
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef) >= val
+        elif ctype == 'quest_done':
+            return cls._get_quest_done_progress(player, adef) >= val
         return False
 
     @classmethod
@@ -178,6 +206,12 @@ class AchievementService:
             return sum(1 for v in equipped.values() if v is not None)
         elif ctype == 'gold_earned':
             return player.gold_earned or 0
+        elif ctype == 'gold_total':
+            return (player.gold or 0) + (player.warehouse_gold or 0)
+        elif ctype == 'yuanbao_spent':
+            return player.yuanbao_spent or 0
+        elif ctype == 'jinzu_spent':
+            return player.jinzu_spent or 0
         elif ctype == 'gift':
             return player.gift_count or 0
         elif ctype == 'chat':
@@ -194,8 +228,28 @@ class AchievementService:
             return cls._get_dungeon_tower_progress(player, adef)
         elif ctype == 'boss_kill':
             return cls._get_boss_kill_progress(player, adef)
+        elif ctype == 'elite_kill_area':
+            return cls._get_elite_kill_area_progress(player, adef)
+        elif ctype == 'elite_kill_monster':
+            return cls._get_elite_kill_monster_progress(player, adef)
+        elif ctype == 'kill_monster':
+            return cls._get_kill_monster_progress(player, adef)
+        elif ctype == 'divine_beast_kill':
+            return cls._get_divine_beast_kill_progress(player, adef)
+        elif ctype == 'forge':
+            return player.forge_count or 0
+        elif ctype == 'enhance_success':
+            return player.enhance_success_count or 0
+        elif ctype == 'enhance_fail':
+            return player.enhance_fail_count or 0
+        elif ctype == 'enhance_50':
+            return player.enhance_50_count or 0
+        elif ctype == 'artifact_owned':
+            return cls._get_artifact_owned_progress(player, adef)
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef)
+        elif ctype == 'quest_done':
+            return cls._get_quest_done_progress(player, adef)
         return 0
 
     @classmethod
@@ -271,6 +325,56 @@ class AchievementService:
         return kills.get(boss_name, 0)
 
     @classmethod
+    def _get_elite_kill_area_progress(cls, player, adef):
+        """按区域统计精英击杀数: player.elite_kills_by_area = {'kunlun': 5, ...}"""
+        area = adef.get('area', '')
+        if not area:
+            return 0
+        kills = getattr(player, 'elite_kills_by_area', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(area, 0)
+
+    @classmethod
+    def _get_elite_kill_monster_progress(cls, player, adef):
+        """按monster_id统计精英击杀数: player.monster_kills = {monster_id: count}"""
+        monster_id = adef.get('monster_id', '')
+        if not monster_id:
+            return 0
+        kills = getattr(player, 'monster_kills', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(monster_id, 0)
+
+    @classmethod
+    def _get_kill_monster_progress(cls, player, adef):
+        """按monster_id统计普通怪击杀数: player.monster_kills = {monster_id: count}"""
+        monster_id = adef.get('monster_id', '')
+        if not monster_id:
+            return 0
+        kills = getattr(player, 'monster_kills', {})
+        if not isinstance(kills, dict):
+            return 0
+        return kills.get(monster_id, 0)
+
+    @classmethod
+    def _get_divine_beast_kill_progress(cls, player, adef):
+        """神兽累计击杀数: player.divine_beast_kills (int)"""
+        return getattr(player, 'divine_beast_kills', 0) or 0
+
+    @classmethod
+    def _get_artifact_owned_progress(cls, player, adef):
+        """拥有绑定的神器装备: 查询EquipmentInstance中is_bound=True且rarity=神器且template_id匹配"""
+        template_id = adef.get('template_id', '')
+        if not template_id:
+            return 0
+        from models.player import EquipmentInstance
+        return EquipmentInstance.query.filter_by(
+            player_id=player.id, template_id=template_id,
+            is_bound=True, rarity='神器'
+        ).count()
+
+    @classmethod
     def _get_quest_progress(cls, player, adef):
         import json
         try:
@@ -278,6 +382,18 @@ class AchievementService:
             return len(completed) if isinstance(completed, list) else 0
         except (json.JSONDecodeError, TypeError):
             return 0
+
+    @classmethod
+    def _get_quest_done_progress(cls, player, adef):
+        import json
+        try:
+            completed = json.loads(player.completed_quests) if player.completed_quests else []
+        except (json.JSONDecodeError, TypeError):
+            return 0
+        if not isinstance(completed, list):
+            return 0
+        targets = adef.get('condition_quests') or []
+        return 1 if any(qid in completed for qid in targets) else 0
 
     @classmethod
     def _normalize_category(cls, adef):
@@ -290,13 +406,15 @@ class AchievementService:
             return '道具'
         if condition_type in ('level', 'enhance'):
             return '成长'
-        if condition_type in ('kill', 'elite_kill', 'boss_kill'):
+        if condition_type in ('kill', 'elite_kill', 'boss_kill', 'elite_kill_monster', 'kill_monster', 'divine_beast_kill'):
             return '杀怪'
         if condition_type in ('pk_win', 'pk_loss'):
             return 'P K'
         if condition_type == 'equip_full':
             return '装备'
-        if condition_type == 'gold_earned':
+        if condition_type in ('forge', 'enhance_success', 'enhance_fail', 'enhance_50', 'artifact_owned'):
+            return '装备'
+        if condition_type in ('gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent'):
             return '财富'
         if condition_type in ('gift', 'chat'):
             return '社交'
@@ -306,6 +424,6 @@ class AchievementService:
             return '活动'
         if condition_type in ('dungeon_clear', 'dungeon_tower'):
             return '副本'
-        if condition_type == 'quest':
+        if condition_type in ('quest', 'quest_done'):
             return '任务'
         return '其他'

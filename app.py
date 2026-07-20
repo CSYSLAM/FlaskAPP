@@ -194,9 +194,12 @@ def create_app():
         # tic 从 query string 取（url_value_preprocessor 只能拿路由变量，拿不到 query）
         tic = request.args.get('tic')
         if _rl.check_and_mark(sid, tic):
-            # 限流提示页：返回优先用 Referer（回触发限流的来源页），否则回场景。
+            # 限流提示页：返回链接回场景页（最安全，不会 405）。
             # 给返回链接加 rl=1 豁免，避免旧 tic 再次触发限流死循环。
-            back = request.referrer or url_for('game.scene', sid=sid)
+            # 不用 request.referrer 作返回链接，因为：
+            # 1. referrer 可能是 POST-only URL（如 /crafting/forge/xxx），GET 访问会 405/500
+            # 2. referrer 带旧 tic，即使加 rl=1 豁免，后续导航仍可能因旧 tic 再次限流
+            back = url_for('game.scene', sid=sid)
             sep = '&' if '?' in back else '?'
             back = back + sep + 'rl=1'
             return render_template('rate_limit.html', back_url=back), 429
@@ -418,6 +421,71 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN finance_data TEXT DEFAULT '{}'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN elite_kills_by_area_raw TEXT DEFAULT '{}'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN monster_kills_raw TEXT DEFAULT '{}'"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN divine_beast_kills INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN forge_count INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN enhance_success_count INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN enhance_fail_count INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN enhance_50_count INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE equipment_instances ADD COLUMN created_by VARCHAR(64)"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE equipment_instances ADD COLUMN created_at DATETIME"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN enhance_luck_small BOOLEAN DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN enhance_luck_medium BOOLEAN DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN yuanbao_spent INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN jinzu_spent INTEGER DEFAULT 0"))
             db.session.commit()
         except Exception:
             db.session.rollback()

@@ -2,7 +2,7 @@
 
 本项目所有游戏端页面统一遵循“手机 WAP 文字页”设计 skill。
 
-完整说明见 [docs/wap_text_ui_skill.md](/C:/csy_work/fysg/1008/FlaskAPP/docs/wap_text_ui_skill.md)。
+完整说明见 [docs/wap_text_ui_skill.md](../../docs/wap_text_ui_skill.md)（也可在 `.claude/skills/wap_text_ui_skill.md` 查看副本）。
 
 ## 核心定位
 - 移动端优先
@@ -78,12 +78,24 @@ setTimeout(function(){document.getElementById('loading').style.display='none';},
 - 这页的 CSS/JS 是否足够轻，低端手机也能顺畅打开？
 
 ## 模块页面清单
-认证: `login.html`, `register.html`, `select_server.html`, `create_role.html`, `story.html`
-游戏: `scene.html`
-玩家: `character.html`, `inventory.html`, `skill_list.html`, `equipment_list.html`, `titles.html`
-战斗: `battle.html`, `battle_result.html`, `revive.html`, `revive_result.html`
-商店: `shop.html`
-社交: `chat.html`, `social_index.html`, `social_friends.html`, `social_hongyan.html`, `social_zhiji.html`, `social_enemies.html`, `social_blacklist.html`
-地图: `map_index.html`, `map_teleport.html`, `map_town.html`, `map_shenxing.html`, `map_world.html`, `map_area.html`
-其他: `guide_index.html`, `guide_detail.html`, `activities.html`, `military_ranks.html`, `vip.html`, `rank_index.html`, `rank_show.html`
-工作台: `workbench/index.html`, `workbench/edit_player.html`, `workbench/view_player.html`, `workbench/announce.html`, `workbench/set_designer.html`
+认证(auth): `login.html`, `register.html`, `select_server.html`, `create_role.html`, `story.html`
+游戏(game): `scene.html`
+玩家(player): `character.html`, `inventory.html`, `skill_list.html`, `equipment_list.html`, `titles.html`, `achievements.html`, `marriage.html`
+战斗(battle): `battle.html`, `battle_result.html`, `revive.html`, `revive_result.html`, `pk.html`
+商店(shop): `shop.html`
+社交(social): `chat.html`, `social_index.html`, `social_friends.html`, `social_hongyan.html`, `social_zhiji.html`, `social_enemies.html`, `social_blacklist.html`, `private_chat.html`, `gift.html`
+地图(map): `map_index.html`, `map_teleport.html`, `map_town.html`, `map_shenxing.html`, `map_world.html`, `map_area.html`
+山庄(villa): `villa.html`, `villa_garden.html`, `villa_training.html`
+副将(lieutenant): `lieutenant.html`, `lieutenant_detail.html`, `lieutenant_skills.html`
+军团(legion): `legion.html`, `legion_detail.html`, `legion_hall.html`, `legion_members.html`, `legion_exchange.html`, `legion_territory.html`
+组队(party): `party.html`
+战场(battlefield): `battlefield.html`, `battlefield_city.html`
+任务(quest): `quest.html`, `quest_detail.html`
+副本(dungeon): `dungeon.html`, `dungeon_scene.html`
+仓库(warehouse): `warehouse.html`, `warehouse_silver.html`
+失物/拍卖(lost_found): `lost_found.html`
+药铺(medicine): `medicine.html`
+铁匠(crafting): `crafting.html`, `epic_forge.html`, `sell_equipment.html`, `sell_item.html`, `enhance.html`
+活动(activity): `activities.html`, `finance.html`, `daily_tasks.html`, `sign_in.html`
+其他: `guide_index.html`, `guide_detail.html`, `military_ranks.html`, `vip.html`, `rank_index.html`, `rank_show.html`
+工作台(workbench): `workbench/index.html`, `workbench/edit_player.html`, `workbench/view_player.html`, `workbench/announce.html`, `workbench/set_designer.html`, `workbench/equip_design.html`, `workbench/monster_design.html`, `workbench/item_design.html`, `workbench/lieutenant_design.html`

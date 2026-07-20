@@ -27,7 +27,7 @@
 
 {{ lieutenant.name }}({{ lieutenant.quality_name }}{{ lieutenant.class_name }})<br/>
 <br/>
-等级:{{ lieutenant.level }} 经验:{{ lieutenant.experience }}/{{ LieutenantService._exp_to_next(lieutenant.level) }}{% if lieutenant.level < 60 %} <a href="{{ url_for('lieutenant.level_up', lt_id=lieutenant.id) }}">升级</a>(消耗1颗副将高级经验丹){% endif %}<br/>
+等级:{{ lieutenant.level }} 经验:{{ lieutenant.experience }}/{{ LieutenantService._exp_to_next(lieutenant.level) }}{% if lieutenant.level < 60 and lieutenant.experience >= LieutenantService._exp_to_next(lieutenant.level) %} <a href="{{ url_for('lieutenant.level_up', lt_id=lieutenant.id) }}">升级</a>{% endif %}{% if lieutenant.level < 60 %}<br/>使用经验丹:{% if lt_exp_low_count > 0 %} <a href="{{ url_for('lieutenant.use_exp_pill', lt_id=lieutenant.id, item_id='lt_exp_low') }}">低级({{ lt_exp_low_count }})</a>{% endif %}{% if lt_exp_mid_count > 0 %} <a href="{{ url_for('lieutenant.use_exp_pill', lt_id=lieutenant.id, item_id='lt_exp_mid') }}">中级({{ lt_exp_mid_count }})</a>{% endif %}{% if lt_exp_high_count > 0 %} <a href="{{ url_for('lieutenant.use_exp_pill', lt_id=lieutenant.id, item_id='lt_exp_high') }}">高级({{ lt_exp_high_count }})</a>{% endif %}{% if lt_exp_low_count == 0 and lt_exp_mid_count == 0 and lt_exp_high_count == 0 %} 无{% endif %}{% endif %}<br/>
 性别:{{ lieutenant.gender_name }} 职业:{{ lieutenant.class_name }}<br/>
 品质:{{ lieutenant.quality }}({{ lieutenant.quality_name }}){% if lieutenant.quality < 20 %} <a href="{{ url_for('lieutenant.wash_quality', lt_id=lieutenant.id) }}">洗资质</a>{% endif %}<br/>
 悟性:{{ lieutenant.enlightenment }} <a href="{{ url_for('lieutenant.enlighten', lt_id=lieutenant.id) }}">提升悟性</a><br/>
@@ -40,6 +40,8 @@
 魔法:{{ lieutenant.current_mana }}/{{ lieutenant.get_max_mana() }}<br/>
 攻击:{{ lieutenant.get_attack() }}<br/>
 防御:{{ lieutenant.get_defense() }}<br/>
+暴击:{{ "%.2f%%"|format(lieutenant.get_crit_rate() * 100) }}<br/>
+闪避:{{ "%.2f%%"|format(lieutenant.get_dodge_rate() * 100) }}<br/>
 <br/>
 <b>出战状态</b><br/>
 {% if lieutenant.is_deployed %}

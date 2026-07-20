@@ -160,11 +160,15 @@ def zhiji():
                          max_relations=5)
 
 
-@social_bp.route("/send_flower/<username>")
+@social_bp.route("/send_flower/<username>", methods=["GET", "POST"])
 @login_required
 def send_flower(username):
     player = current_user
-    success, msg = SocialService.send_flower(player, username)
+    if request.method == "POST":
+        quantity = int(request.form.get("quantity", 1))
+    else:
+        quantity = 1
+    success, msg = SocialService.send_flower(player, username, quantity)
     flash(msg)
     return redirect(url_for('player.view_player', username=username))
 
@@ -210,6 +214,55 @@ def break_relation(username):
     return redirect(url_for('social.social_index'))
 
 
+# --- Marriage (结婚) ---
+
+@social_bp.route("/propose_marriage/<username>")
+@login_required
+def propose_marriage(username):
+    player = current_user
+    success, msg = SocialService.propose_marriage(player, username)
+    flash(msg)
+    return redirect(url_for('player.view_player', username=username))
+
+
+@social_bp.route("/accept_marriage/<username>")
+@login_required
+def accept_marriage(username):
+    player = current_user
+    success, msg = SocialService.accept_marriage(player, username)
+    flash(msg)
+    return redirect(url_for('player.marriage'))
+
+
+@social_bp.route("/reject_marriage/<username>")
+@login_required
+def reject_marriage(username):
+    player = current_user
+    success, msg = SocialService.reject_marriage(player, username)
+    flash(msg)
+    return redirect(url_for('social.social_index'))
+
+
+@social_bp.route("/divorce")
+@login_required
+def divorce():
+    player = current_user
+    success, msg = SocialService.divorce(player)
+    flash(msg)
+    return redirect(url_for('player.marriage'))
+
+
+@social_bp.route("/spouse_teleport")
+@login_required
+def spouse_teleport():
+    player = current_user
+    success, msg = SocialService.spouse_teleport(player)
+    flash(msg)
+    if success:
+        return redirect(url_for('game.scene'))
+    return redirect(url_for('player.character'))
+
+
 # --- Chat ---
 
 @social_bp.route("/chat")
@@ -221,7 +274,7 @@ def chat():
     if tab == 'country':
         messages = SocialService.get_country_messages(player.country, 20)
     elif tab == 'system':
-        messages = SocialService.get_system_messages(20)
+        messages = SocialService.get_system_messages(player.id, 20)
     elif tab == 'private':
         messages = SocialService.get_private_messages(player.id, None, 20)
     else:

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>强化装备</title>
+    <style>
+    body { font-size: 16px; margin: 0; line-height: 1.6; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .rarity-史诗 { color: #a335ee; }
+    .rarity-神器 { color: #ff8000; }
+    #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
+    #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+    <div id="loading"><span></span></div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    {{ msg }}<br/>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% set slot_name = EquipmentInstance.SLOT_NAMES.get(equipment.slot, equipment.slot) %}
+    {% set tpl = DataService.get_equipment_template(equipment.template_id) %}
+    {% set base = equipment.get_base_stats() %}
+    {% set initial = equipment.get_initial_stats() %}
+    {% set extra = equipment.get_extra_stats() %}
+
+    {% if equipment.rarity == '史诗' or equipment.rarity == '神器' %}
+    <span class="rarity-{{ equipment.rarity }}">{{ equipment.name }}</span>
+    {% else %}
+    {{ equipment.name }}
+    {% endif %}
+    {% if equipment.is_bound %}<span style="color:#999">(绑定)</span>{% else %}<span style="color:#999">(非绑定)</span>{% endif %}<br/>
+    {% if tpl and tpl.get('description') %}
+    {{ tpl.description }}<br/>
+    {% endif %}
+    装备等级：{{ equipment.level_required }}级<br/>
+    物品级别：{{ equipment.rarity }}<br/>
+    职业要求：{{ equipment.class_required or '全职业' }}<br/>
+    装备类型：{{ slot_name }}<br/>
+    基础属性:<br/>
+    {% if base.get('attack') %}
+    {% set init_atk = (initial.get('attack') or 0)|round|int %}
+    {% set enhance_atk = (base['attack'] - init_atk)|round|int %}
+    &nbsp;&nbsp;攻击力 {{ base['attack']|round|int }}{% if enhance_atk > 0 %}（{{ init_atk }}+{{ enhance_atk }}）{% endif %}<br/>
+    {% endif %}
+    {% if base.get('defense') %}
+    {% set init_def = (initial.get('defense') or 0)|round|int %}
+    {% set enhance_def = (base['defense'] - init_def)|round|int %}
+    &nbsp;&nbsp;防御力 {{ base['defense']|round|int }}{% if enhance_def > 0 %}（{{ init_def }}+{{ enhance_def }}）{% endif %}<br/>
+    {% endif %}
+    {% if extra %}
+    附加属性:<br/>
+    {% if extra.get('attack') and extra['attack'][0] %}
+    &nbsp;&nbsp;攻击力 +{{ extra['attack'][0]|round|int }}({{ extra['attack'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('defense') and extra['defense'][0] %}
+    &nbsp;&nbsp;防御力 +{{ extra['defense'][0]|round|int }}({{ extra['defense'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('max_health') and extra['max_health'][0] %}
+    &nbsp;&nbsp;生命值 +{{ extra['max_health'][0]|round|int }}({{ extra['max_health'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('max_mana') and extra['max_mana'][0] %}
+    &nbsp;&nbsp;魔法值 +{{ extra['max_mana'][0]|round|int }}({{ extra['max_mana'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('crit_rate') and extra['crit_rate'][0] %}
+    &nbsp;&nbsp;暴击率 +{{ "%.2f"|format(extra['crit_rate'][0] * 100) }}%({{ extra['crit_rate'][1]|int }}星)<br/>
+    {% endif %}
+    {% if extra.get('dodge_rate') and extra['dodge_rate'][0] %}
+    &nbsp;&nbsp;闪避率 +{{ "%.2f"|format(extra['dodge_rate'][0] * 100) }}%({{ extra['dodge_rate'][1]|int }}星)<br/>
+    {% endif %}
+    {% endif %}
+    强化等级：+{{ equipment.enhance_level }}→+{{ equipment.enhance_level + 1 }}<br/>
+    消耗：强化宝玉x1 银两x{{ enhance_cost }}<br/>
+    成功几率：{{ "%.1f"|format(equipment.get_enhance_success_rate(fail_bonus=player.enhance_bonus_rate, luck_small=player.enhance_luck_small or False, luck_medium=player.enhance_luck_medium or False) * 100) }}%<br/>
+    {% if enhance_changes %}
+    成功后{% for stat, diff in enhance_changes.items() %}{{ stat }}+{{ diff }}{% if not loop.last %}，{% endif %}{% endfor %}<br/>
+    {% endif %}
+    本次强化失败强化等级-1，强化几率+5%<br/>
+    {% if not equipment.is_bound %}强化后装备将绑定<br/>{% endif %}
+    <br/>
+    强化符：<br/>
+    {% if player.enhance_luck_small %}
+    &nbsp;&nbsp;🍀 强化小幸运符生效中(+5%)<br/>
+    {% elif luck_small_count > 0 %}
+    &nbsp;&nbsp;强化小幸运符x{{ luck_small_count }} <a href="#" onclick="document.getElementById('luckSmallForm').submit();return false;">使用</a>(+5%)<br/>
+    {% else %}
+    &nbsp;&nbsp;强化小幸运符x0(+5%)<br/>
+    {% endif %}
+    {% if player.enhance_luck_medium %}
+    &nbsp;&nbsp;🍀 强化中幸运符生效中(+10%)<br/>
+    {% elif luck_medium_count > 0 %}
+    &nbsp;&nbsp;强化中幸运符x{{ luck_medium_count }} <a href="#" onclick="document.getElementById('luckMediumForm').submit();return false;">使用</a>(+10%)<br/>
+    {% else %}
+    &nbsp;&nbsp;强化中幸运符x0(+10%)<br/>
+    {% endif %}
+    {% if player.enhance_bonus_rate and player.enhance_bonus_rate > 0 %}
+    &nbsp;&nbsp;失败累积加成：+{{ "%.1f"|format(player.enhance_bonus_rate * 100) }}%<br/>
+    {% endif %}
+    <br/>
+    <form id="luckSmallForm" action="{{ url_for('crafting.use_luck', luck_type='small', equipment_instance_id=item_id) }}" method="post" style="display:none;"></form>
+    <form id="luckMediumForm" action="{{ url_for('crafting.use_luck', luck_type='medium', equipment_instance_id=item_id) }}" method="post" style="display:none;"></form>
+    {% if can_enhance %}
+    <a href="#" onclick="document.getElementById('enhanceForm').submit();return false;">强化</a>
+    <form id="enhanceForm" action="{{ url_for('crafting.enhance_do', equipment_instance_id=item_id) }}" method="post" style="display:none;"></form>
+    {% else %}
+    {% if equipment.enhance_level >= 50 %}已达最大强化等级{% else %}银两不足或缺少强化宝玉{% endif %}
+    {% endif %}
+    <br/>
+    <a href="{{ url_for('crafting.enhance_list') }}">返回</a>
+    <a href="{{ url_for('game.scene') }}">返回游戏</a>
+
+    <script>
+    document.getElementById('loading').style.display='none';
+    var aLinks=document.getElementsByTagName("a");
+    for(var i=0;i<aLinks.length;i++){aLinks[i].addEventListener('click',function(e){
+        if(this.getAttribute('href')==='#'){e.preventDefault();return;}
+        document.getElementById('loading').style.display='block';
+    });}
+    // 绑定 href=# 的链接触发表单提交时也显示loading
+    document.querySelectorAll('a[onclick]').forEach(function(a){
+        a.addEventListener('click',function(){document.getElementById('loading').style.display='block';});
+    });
+    </script>
+</body>
+</html>

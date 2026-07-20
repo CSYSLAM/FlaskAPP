@@ -73,17 +73,25 @@ a:link { color: #136ec2; text-decoration: none; }
 
 <div id="loading"><span></span></div>
 
-<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="{{ url_for('map.index') }}">地图</a> .<a href="{{ url_for('quest.quest_list') }}">任务({{ active_quest_count }})</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
-
 {% if channel1_msg %}
-{% if channel1_msg.message_type == 'system' %}【系统】{{ channel1_msg.content }}{% else %}【公共】{{ channel1_msg.sender.nickname if channel1_msg.sender else '未知' }}：{{ channel1_msg.content }}{% endif %}<br/>
+{% if channel1_msg.message_type == 'system' %}【系统】{{ channel1_msg.content|safe }}{% else %}【公共】{{ channel1_msg.sender.nickname if channel1_msg.sender else '未知' }}：{{ channel1_msg.content }}{% endif %}<br/>
 {% endif %}
+{% if marriage_proposal %}
+<div style="background:#fff0f5;border:1px solid #ff69b4;padding:4px 6px;margin:2px 0;">
+{{ marriage_proposal.from_name }}佩戴{{ marriage_proposal.ring_info }}向你求婚！
+<a href="{{ url_for('social.accept_marriage', username=marriage_proposal.from) }}">同意</a>
+<a href="{{ url_for('social.reject_marriage', username=marriage_proposal.from) }}">拒绝</a>
+</div>
+{% endif %}
+{% for n in friend_notifications %}
+【系统】{{ n.message|safe }}<br/>
+{% endfor %}
 {% if channel2 or notifications %}
 {% for msg in channel2 %}
 {% if msg.message_type == 'country' %}【{{ player.country }}】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}{% elif msg.message_type == 'private' %}【私聊】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}{% endif %}<br/>
 {% endfor %}
 {% for n in notifications %}
-【通知】{{ n.message }}<br/>
+【通知】{{ n.content|safe }}<br/>
 {% endfor %}
 {% endif %}
 
@@ -94,6 +102,8 @@ a:link { color: #136ec2; text-decoration: none; }
     {% endfor %}
     {% endif %}
     {% endwith %}
+
+<a href="{{ url_for('game.scene') }}">刷新</a> .<a href="{{ url_for('map.index') }}">地图</a> .<a href="{{ url_for('quest.quest_list') }}">任务({{ active_quest_count }})</a> .<a href="{{ url_for('shop.shop') }}">商城</a><br/>
 
 {% if current_main %}
 【当前主线】<a href="{{ url_for('quest.quest_detail', quest_id=current_main.id) }}">{{ current_main.name }}</a><br/>

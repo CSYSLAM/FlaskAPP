@@ -13,7 +13,6 @@ _BASE_SEEDS = {
     'seed_herb': {'name': '草药种子', 'grow_time': 3600, 'harvest': 'herb', 'harvest_name': '草药', 'count': 3, 'ap_cost': 2},
     'seed_flower': {'name': '玫瑰花种子', 'grow_time': 7200, 'harvest': 'flower', 'harvest_name': '玫瑰花', 'count': 2, 'ap_cost': 2},
     'seed_ginseng': {'name': '人参种子', 'grow_time': 14400, 'harvest': 'ginseng', 'harvest_name': '人参', 'count': 2, 'ap_cost': 2},
-    'seed_dragon': {'name': '龙血参种子', 'grow_time': 28800, 'harvest': 'dragon_herb', 'harvest_name': '龙血参', 'count': 1, 'ap_cost': 2},
     # 药品种子
     'seed_jinchuangyao': {'name': '金疮药种子', 'grow_time': 3600, 'harvest': 'potion_heal_100', 'harvest_name': '金疮药', 'count': 1, 'ap_cost': 2, 'min_level': 1},
     'seed_jumosan': {'name': '凝魔散种子', 'grow_time': 3600, 'harvest': 'potion_mana_100', 'harvest_name': '聚魔散', 'count': 1, 'ap_cost': 2, 'min_level': 1},
@@ -41,7 +40,6 @@ HARVEST_ITEMS = {
     'herb': 'potion_heal',
     'flower': 'flower_rose',
     'ginseng': 'ginseng',
-    'dragon_herb': 'dragon_herb',
 }
 
 

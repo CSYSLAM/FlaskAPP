@@ -8,8 +8,7 @@
     "is_artifact": false,
     "is_bound": false,
     "base_stats": {
-      "defense": 32,
-      "max_health": 150
+      "defense": 32
     },
     "max_extra_stats": {
       "attack": 0,

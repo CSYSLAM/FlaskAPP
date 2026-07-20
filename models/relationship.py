@@ -20,7 +20,8 @@ class Relationship(db.Model):
 
     @property
     def type_name(self):
-        return '红颜' if self.rel_type == 'hongyan' else '知己'
+        names = {'hongyan': '红颜', 'zhiji': '知己', 'spouse': '夫妻', 'pending': '待定'}
+        return names.get(self.rel_type, self.rel_type)
 
     @classmethod
     def get_relationship(cls, player1_id, player2_id):
