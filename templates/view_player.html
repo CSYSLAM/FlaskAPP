@@ -66,10 +66,15 @@
     {% else %}
     加入队伍
     {% endif %}
+    {% set fate_val = SocialService.get_fate_value(player.id, target_player.id) %}
+    {% if fate_val >= 100 %}
     {% if target_player.gender != player.gender %}
     <a href="{{ url_for('social.request_relation', username=target_player.username, rel_type='hongyan') }}">结交</a>
     {% else %}
     <a href="{{ url_for('social.request_relation', username=target_player.username, rel_type='zhiji') }}">结交</a>
+    {% endif %}
+    {% else %}
+    结交(缘分需100)
     {% endif %}
     婚姻<br/>
 

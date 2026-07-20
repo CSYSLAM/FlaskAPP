@@ -145,7 +145,6 @@ def character_status():
     jingguai_activity = "低" if player.elite_kill_count < 10 else (
         "中" if player.elite_kill_count < 50 else "高")
     from services.social_service import SocialService
-    social_attack_bonus, social_defense_bonus = SocialService.get_social_bonus(player)
 
     # Lieutenant passives with detailed stat bonuses
     # 出战副将的被动技能给主人的属性加成(技能定义在 LIEUTENANT_SKILLS，存在副将 skills_raw 里)
@@ -198,8 +197,6 @@ def character_status():
     return render_template("character_status.html",
                          player=player,
                          jingguai_activity=jingguai_activity,
-                         social_attack_bonus=social_attack_bonus,
-                         social_defense_bonus=social_defense_bonus,
                          lt_passives=lt_passives,
                          lt_bonuses=lt_bonuses,
                          legion_bonuses=legion_bonuses,

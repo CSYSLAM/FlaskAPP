@@ -1069,6 +1069,14 @@ class BattleService:
         if monster.is_divine_beast:
             player.divine_beast_kills = (player.divine_beast_kills or 0) + 1
 
+        # Track world boss kills (for boss_kill achievements)
+        if monster.is_elite and not getattr(monster, 'is_copy', False) and not getattr(monster, 'is_one_time_elite', False):
+            bk = player.boss_kills
+            if not isinstance(bk, dict):
+                bk = {}
+            bk[monster.name] = bk.get(monster.name, 0) + 1
+            player.boss_kills = bk
+
         # Update quest kill progress and drop quest items
         from services.quest_service import QuestService
         quest_drops = []

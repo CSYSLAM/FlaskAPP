@@ -19172,7 +19172,7 @@
     "max_health": 100
   },
   "monster_kunlun_九色神鹿": {
-    "name": "【稀有神兽】九色神鹿",
+    "name": "九色神鹿",
     "level": 62,
     "is_elite": true,
     "killable": true,

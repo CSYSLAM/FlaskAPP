@@ -17,8 +17,10 @@ MARRIAGE_FATE_REQUIRED = 1000  # Min fate value to propose marriage
 class SocialService:
 
     @classmethod
-    def get_social_bonus(cls, player):
-        """Calculate social bonuses from hongyan/zhiji counts."""
+    def get_social_bonus_rate(cls, player):
+        """Calculate social bonus rate from hongyan/zhiji counts.
+        Each hongyan/zhiji gives +1% to max_health, max_mana, attack, defense.
+        Returns the rate (e.g. 0.01 for 1 pair, 0.02 for 2 pairs)."""
         from sqlalchemy import or_
         hongyan = Relationship.query.filter(
             or_(Relationship.player1_id == player.id, Relationship.player2_id == player.id),
@@ -26,8 +28,8 @@ class SocialService:
         zhiji = Relationship.query.filter(
             or_(Relationship.player1_id == player.id, Relationship.player2_id == player.id),
             Relationship.rel_type == 'zhiji').count()
-        total = hongyan * 2 + zhiji * 3
-        return total * 2, total * 1
+        total = hongyan + zhiji
+        return total * 0.01
 
     @classmethod
     def send_public_message(cls, player, content):
@@ -354,8 +356,7 @@ class SocialService:
 
         inv = DataService.get_inventory_item(player.id, 'flower_rose')
         if not inv or inv.quantity < quantity:
-            have = inv.quantity if inv else 0
-            return False, f"玫瑰花不足，当前{have}朵"
+            return False, "玫瑰花不足"
 
         DataService.remove_item_from_inventory(player.id, 'flower_rose', quantity)
 
@@ -363,6 +364,13 @@ class SocialService:
         cls._increase_fate(player.id, target.id, quantity)
 
         cls.add_notification(target, f"{player.nickname}赠送给你{quantity}朵玫瑰花，增加{quantity}点缘分值", ntype='friend')
+
+        # System broadcast for specific flower gift amounts
+        from services.public_chat import PublicChat
+        if quantity == 999:
+            PublicChat.broadcast(f"天啦噜{player.nickname}赠送给{target.nickname}{quantity}朵玫瑰，名动三国啦！")
+        elif quantity == 99:
+            PublicChat.broadcast(f"{player.nickname}赠送给{target.nickname}{quantity}朵玫瑰，予人芬芳，自留温柔。")
 
         db.session.commit()
         return True, f"赠送成功，{target.nickname}魅力+{quantity}，双方缘分+{quantity}"
@@ -450,7 +458,7 @@ class SocialService:
         })
         target.relation_requests = requests
 
-        cls.add_notification(target, f"{player.nickname}想和你结为{'红颜' if rel_type=='hongyan' else '知己'}")
+        cls.add_notification(target, f"{player.nickname}向你发起了结交申请，请去社交里面处理吧", ntype='friend')
 
         db.session.commit()
         return True, f"已向{target.nickname}发送{'红颜' if rel_type=='hongyan' else '知己'}结交邀请"
@@ -497,7 +505,7 @@ class SocialService:
             )
             db.session.add(rel)
 
-        cls.add_notification(requester, f"{player.nickname}同意和你结为{'红颜' if rel_type=='hongyan' else '知己'}")
+        cls.add_notification(requester, f"你与{player.nickname}已经成功结交{'红颜' if rel_type=='hongyan' else '知己'}", ntype='friend')
 
         db.session.commit()
         return True, f"已和{requester.nickname}结为{'红颜' if rel_type=='hongyan' else '知己'}"
@@ -521,7 +529,7 @@ class SocialService:
         player.relation_requests = new_requests
 
         if requester:
-            cls.add_notification(requester, f"{player.nickname}拒绝了你的结交邀请")
+            cls.add_notification(requester, f"{player.nickname}拒绝了你的{'红颜' if request.get('type')=='hongyan' else '知己'}申请", ntype='friend')
 
         db.session.commit()
         return True, "已拒绝结交邀请"
@@ -544,16 +552,19 @@ class SocialService:
         DataService.remove_item_from_inventory(player.id, 'break_wine', 1)
 
         rel.rel_type = 'pending'
+        rel.fate_value = max(0, rel.fate_value - 100)
+
+        cls.add_notification(target, f"{player.nickname}对你说:百般迁就换不来珍惜，就此断交，永不回头", ntype='friend')
+
         db.session.commit()
-
-        cls.add_notification(target, f"{player.nickname}和你断交了")
-
         return True, f"已和{target.nickname}断交"
 
     @classmethod
     def get_relation_list(cls, player, rel_type):
         """Get relationship list (hongyan or zhiji)."""
         rels = Relationship.get_relationships(player.id, rel_type)
+        spouse = cls.get_spouse(player)
+        spouse_id = spouse.id if spouse else None
         result = []
         for rel in rels:
             other_id = rel.get_other_player_id(player.id)
@@ -563,27 +574,15 @@ class SocialService:
                     'username': other.username,
                     'nickname': other.nickname,
                     'fate': rel.fate_value,
-                    'online': cls._is_online(other)
+                    'online': cls._is_online(other),
+                    'is_spouse': other.id == spouse_id
                 })
         return result
 
     @classmethod
     def get_online_relation_attack_bonus(cls, player):
-        """Get attack bonus from online relationships + spouse online bonus."""
-        bonus = 0
-        rels = Relationship.get_relationships(player.id)
-        for rel in rels:
-            if rel.rel_type not in ('hongyan', 'zhiji'):
-                continue
-            other_id = rel.get_other_player_id(player.id)
-            other = PlayerModel.query.get(other_id)
-            if other and cls._is_online(other):
-                bonus += 20
-        # Spouse online bonus
-        spouse = cls.get_spouse(player)
-        if spouse and cls._is_online(spouse):
-            bonus += 100
-        return bonus
+        """Get attack bonus from online relationships (no longer used for spouse)."""
+        return 0
 
     # --- Marriage (结婚) ---
 
@@ -727,20 +726,15 @@ class SocialService:
         new_requests = [r for r in requests if not (r.get('from') == requester_username and r.get('type') == 'marriage')]
         player.relation_requests = new_requests
 
-        # Create or update relationship to 'spouse'
-        existing = Relationship.get_relationship(player.id, requester.id)
-        if existing:
-            existing.rel_type = 'spouse'
-            existing.initiator_id = requester.id
-        else:
-            rel = Relationship(
-                player1_id=min(player.id, requester.id),
-                player2_id=max(player.id, requester.id),
-                rel_type='spouse',
-                fate_value=cls.get_fate_value(player.id, requester.id),
-                initiator_id=requester.id
-            )
-            db.session.add(rel)
+        # Create a NEW spouse relationship (keep existing hongyan/zhiji relationship intact)
+        rel = Relationship(
+            player1_id=min(player.id, requester.id),
+            player2_id=max(player.id, requester.id),
+            rel_type='spouse',
+            fate_value=cls.get_fate_value(player.id, requester.id),
+            initiator_id=requester.id
+        )
+        db.session.add(rel)
 
         # System broadcast
         ring_info = request.get('ring_info', '婚戒')
@@ -780,7 +774,7 @@ class SocialService:
 
     @classmethod
     def divorce(cls, player):
-        """Divorce - consumes 断肠草."""
+        """Divorce - consumes 断肠草, deducts 900 fate from both parties."""
         spouse = cls.get_spouse(player)
         if not spouse:
             return False, "你还没有结婚"
@@ -796,12 +790,20 @@ class SocialService:
             Relationship.rel_type == 'spouse'
         ).first()
         if rel:
-            rel.rel_type = 'pending'
+            # Deduct 900 fate from the hongyan/zhiji relationship between them
+            hongyan_rel = Relationship.query.filter(
+                ((Relationship.player1_id == player.id) | (Relationship.player2_id == player.id)),
+                Relationship.rel_type.in_(['hongyan', 'zhiji'])
+            ).first()
+            if hongyan_rel:
+                hongyan_rel.fate_value = max(0, hongyan_rel.fate_value - 900)
+            # Delete the spouse relationship record entirely
+            db.session.delete(rel)
 
-        cls.add_notification(spouse, f"{player.nickname}和你离婚了，斩断情丝，忘却因缘！")
+        cls.add_notification(spouse, f"{player.nickname}和你离婚了，双方缘分-900，斩断情丝，忘却因缘！", ntype='friend')
 
         db.session.commit()
-        return True, f"已和{spouse.nickname}离婚"
+        return True, f"已和{spouse.nickname}离婚，双方缘分值-900"
 
     @classmethod
     def spouse_teleport(cls, player):
@@ -826,16 +828,11 @@ class SocialService:
         return True, f"已传送到{spouse.nickname}身边"
 
     @classmethod
-    def get_spouse_bonus(cls, player):
-        """Get 5% bonus to max_health, max_mana, attack, defense from marriage."""
-        if not cls.get_spouse(player):
-            return {'max_health': 0, 'max_mana': 0, 'attack': 0, 'defense': 0}
-        return {
-            'max_health': int(player.max_health * 0.05),
-            'max_mana': int(player.max_mana * 0.05),
-            'attack': int(player.attack * 0.05),
-            'defense': int(player.defense * 0.05),
-        }
+    def get_spouse_bonus_rate(cls, player):
+        """Get 5% bonus rate from marriage. Returns 0.05 if married, 0 otherwise."""
+        if cls.get_spouse(player):
+            return 0.05
+        return 0.0
 
     @classmethod
     def notify_spouse_login(cls, player):

@@ -30,13 +30,13 @@
     <a href="{{ url_for('social.blacklist') }}">黑名单</a>
     <a href="{{ url_for('social.enemies') }}">仇人</a><br/>
     红颜列表({{ rel_list|length }}/{{ max_relations }})<br/>
-    每位在线红颜+20点攻击<br/>
+    每对红颜+1%生命/魔法/攻击/防御<br/>
     ----------------<br/>
 
     {% for rel in rel_list %}
-    {{ rel.nickname }}(缘分值:{{ rel.fate }}){% if rel.online %}<font color="green">在线</font>{% endif %}
-    <a href="{{ url_for('social.break_relation', username=rel.username) }}">断交</a>
-    {% if rel.fate >= 1000 %}
+    {{ rel.nickname }}{% if rel.is_spouse %}{% if player.gender == '男' %}(夫人){% else %}(夫君){% endif %}{% endif %}(缘分值:{{ rel.fate }}){% if rel.online %}<font color="green">在线</font>{% endif %}
+    {% if not rel.is_spouse %}<a href="{{ url_for('social.break_relation', username=rel.username) }}">断交</a>{% endif %}
+    {% if rel.fate >= 1000 and not rel.is_spouse %}
     <a href="{{ url_for('social.propose_marriage', username=rel.username) }}">求婚</a>
     {% endif %}
     <br/>
