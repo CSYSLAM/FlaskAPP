@@ -22,15 +22,34 @@ class BattleService:
     #   - PK 双方：PlayerModel 同上（PK 期间也走玩家状态列）
 
     # 伤害公式（统一）：
-    #   damage = atk × (1 + atk / max(1, def)) × coefficient
+    #   damage = atk × (1 + min(1, atk / max(1, def))) × coefficient × variance
+    # atk/def ≥ 1 时攻防比按 1 计（加成上限 1.0，即倍率封顶 2×）。
+    # variance 为随机浮动系数 uniform(0.975, 1.035)，保证每次伤害不固定。
     # 暴击 ×1.5，闪避归零。def 用 max(1, def) 防除零。
     # min_damage 为保底（仅怪物打玩家保留等级保底）。
     @classmethod
     def _compute_damage(cls, atk, defense, coefficient=1.0, min_damage=0):
         def_eff = max(1, defense)
-        raw = atk * (1.0 + atk / def_eff) * coefficient
+        ratio = min(1.0, atk / def_eff)  # atk/def≥1 时取1，倍率封顶2×
+        variance = random.uniform(0.975, 1.035)  # ±3% 随机浮动
+        raw = atk * (1.0 + ratio) * coefficient * variance
         damage = max(min_damage, int(raw))
         return max(1, damage) if min_damage == 0 else max(min_damage, damage)
+
+    # 多段技能(如刺客二连击)逐段拆分展示：
+    #   [1000，1020] / [1500(暴击)，980] / [1023，0(闪避)]
+    # 每段伤害/暴击/浮动系数均独立结算，hit_results 每项为 (damage, crit, dodged)。
+    @staticmethod
+    def _format_hit_list(hit_results):
+        parts = []
+        for dmg, crit, dodged in hit_results:
+            if dodged:
+                parts.append("0(闪避)")
+            elif crit:
+                parts.append(f"{dmg}(暴击)")
+            else:
+                parts.append(str(dmg))
+        return "[" + "，".join(parts) + "]"
 
     # ---- 玩家状态效果 helpers ----
     @classmethod
@@ -800,26 +819,31 @@ class BattleService:
         dodge_all = True
         is_crit_hit = False
         hit_any = False
+        hit_results = []  # 逐段(damage, crit, dodged)，多段技能拆分展示
         for _ in range(hits):
             if random.random() >= monster.dodge_rate:
                 dodge_all = False
                 hit_any = True
                 player_atk = PlayerService.get_attack(player)
                 damage = cls._compute_damage(player_atk, effective_def, coefficient=damage_rate)
+                crit = False
                 if monster_confused:
                     damage = int(damage * 0.5)
                 if random.random() <= player.crit_rate:
                     damage = int(damage * 1.5)
                     is_crit_hit = True
+                    crit = True
                 total_damage += damage
+                hit_results.append((damage, crit, False))
             else:
                 total_damage += 0
+                hit_results.append((0, False, True))
 
         # Build battle log in reference format
         if dodge_all:
             dmg_text = "0(闪避)"
         elif hits > 1:
-            dmg_text = f"{total_damage}({hits}连击)"
+            dmg_text = cls._format_hit_list(hit_results)
         elif is_crit_hit:
             dmg_text = f"{total_damage}(暴击)"
         else:
@@ -1422,6 +1446,7 @@ class BattleService:
         hits = skill_data.get("hits", 1)
         total_damage = 0
         hit_any = False
+        hit_results = []  # 逐段(damage, crit, dodged)，多段技能拆分展示
 
         for _ in range(hits):
             atk_power = PlayerService.get_attack(attacker)
@@ -1431,16 +1456,20 @@ class BattleService:
             if random.random() >= defender.dodge_rate:
                 hit_any = True
                 damage = cls._compute_damage(atk_power, def_power, coefficient=damage_rate)
+                crit = False
                 if defender_confused:
                     damage = int(damage * 0.5)
                 if random.random() <= attacker.crit_rate:
                     damage = int(damage * 1.5)
+                    crit = True
                 total_damage += damage
+                hit_results.append((damage, crit, False))
             else:
                 total_damage += 0
+                hit_results.append((0, False, True))
 
         if hits > 1:
-            attacker.last_damage_dealt = f"{total_damage}({hits}连击)"
+            attacker.last_damage_dealt = cls._format_hit_list(hit_results)
         else:
             attacker.last_damage_dealt = str(total_damage)
 

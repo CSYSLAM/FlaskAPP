@@ -22,7 +22,7 @@
     {% set dmg_rate = skill_def['base_damage_rate'] + skill_def.get('damage_rate_per_level', 0) * (slvl - 1) %}
     {% set mana_cost = skill_def['base_mana_cost'] + skill_def.get('mana_cost_per_level', 0) * (slvl - 1) %}
     伤害:{{ "%.0f"|format(dmg_rate * 100) }}%<br/>
-    耗魔:{{ mana_cost }}<br/>
+    耗魔:{{ "%.0f"|format(mana_cost) }}<br/>
     {% if skill_def.get('effect_description') %}
     效果:{{ skill_def['effect_description'] }}<br/>
     {% endif %}

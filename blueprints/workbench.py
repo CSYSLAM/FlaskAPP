@@ -2665,7 +2665,8 @@ def _simulate_battle(form):
     """自定义人物 vs 自定义怪物的回合制战斗模拟（纯内存，不落库）。
 
     复用 BattleService._compute_damage 伤害公式，保证数值与真实战斗一致：
-        damage = atk × (1 + atk / max(1, def)) × coefficient
+        damage = atk × (1 + min(1, atk / max(1, def))) × coefficient × variance
+        （atk/def ≥ 1 时攻防比按 1 计，倍率封顶 2×；variance 为 0.975~1.035 随机浮动）
     - 人物侧：可带技能（系数/破甲/多段/耗魔），玩家先手。
     - 怪物侧：普攻，等级保底 min_damage = level*2(精英) else level（同 Monster.attack_player）。
     - 暴击 ×1.5，闪避归零。逐回合扣血，直到一方血量 ≤0 或达到回合上限。
