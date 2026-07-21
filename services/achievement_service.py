@@ -13,7 +13,9 @@ class AchievementService:
                        'enhance_50', 'forge', 'artifact_owned',
                        'visit', 'equip_full', 'gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
-                       'boss_kill', 'quest', 'quest_done']:
+                       'boss_kill', 'quest', 'quest_done',
+                       'flower_received', 'friend_count', 'bless_count',
+                       'steal_skill_success', 'steal_medicine_success', 'steal_caught']:
             cls.check(player, ctype)
 
     @classmethod
@@ -68,6 +70,18 @@ class AchievementService:
             return player.gift_count >= val
         elif ctype == 'chat':
             return player.chat_count >= val
+        elif ctype == 'flower_received':
+            return (player.charm or 0) >= val
+        elif ctype == 'friend_count':
+            return cls._get_friend_count(player) >= val
+        elif ctype == 'bless_count':
+            return cls._get_social_stat(player, 'ach_bless_count') >= val
+        elif ctype == 'steal_skill_success':
+            return cls._get_social_stat(player, 'ach_steal_skill') >= val
+        elif ctype == 'steal_medicine_success':
+            return cls._get_social_stat(player, 'ach_steal_medicine') >= val
+        elif ctype == 'steal_caught':
+            return cls._get_social_stat(player, 'ach_steal_caught') >= val
         elif ctype == 'vip_level':
             return player.vip_level >= val
         elif ctype == 'lieutenant_owned':
@@ -216,6 +230,18 @@ class AchievementService:
             return player.gift_count or 0
         elif ctype == 'chat':
             return player.chat_count or 0
+        elif ctype == 'flower_received':
+            return player.charm or 0
+        elif ctype == 'friend_count':
+            return cls._get_friend_count(player)
+        elif ctype == 'bless_count':
+            return cls._get_social_stat(player, 'ach_bless_count')
+        elif ctype == 'steal_skill_success':
+            return cls._get_social_stat(player, 'ach_steal_skill')
+        elif ctype == 'steal_medicine_success':
+            return cls._get_social_stat(player, 'ach_steal_medicine')
+        elif ctype == 'steal_caught':
+            return cls._get_social_stat(player, 'ach_steal_caught')
         elif ctype == 'lieutenant_owned':
             from models.lieutenant import Lieutenant
             name = adef.get('lt_name', '')
@@ -280,6 +306,31 @@ class AchievementService:
             return points
         except Exception:
             return 0
+
+    @classmethod
+    def _get_friend_count(cls, player):
+        """当前结交的好友数(红颜 + 知己)。"""
+        from models.relationship import Relationship
+        return (Relationship.count_relationships(player.id, 'hongyan')
+                + Relationship.count_relationships(player.id, 'zhiji'))
+
+    @classmethod
+    def _get_social_stat(cls, player, key):
+        """读取社交类成就累计计数(存于 activity_data JSON)。"""
+        data = player.activity_data or {}
+        value = data.get(key, 0)
+        return value if isinstance(value, (int, float)) else 0
+
+    @classmethod
+    def incr_social_stat(cls, player, key, amount=1):
+        """累加社交类成就计数并返回新值。调用方负责 commit。"""
+        data = player.activity_data or {}
+        current = data.get(key, 0)
+        if not isinstance(current, (int, float)):
+            current = 0
+        data[key] = int(current) + amount
+        player.activity_data = data
+        return data[key]
 
     @classmethod
     def _get_item_use_progress(cls, player, adef):
@@ -416,7 +467,8 @@ class AchievementService:
             return '装备'
         if condition_type in ('gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent'):
             return '财富'
-        if condition_type in ('gift', 'chat'):
+        if condition_type in ('gift', 'chat', 'flower_received', 'friend_count', 'bless_count',
+                              'steal_skill_success', 'steal_medicine_success', 'steal_caught'):
             return '社交'
         if condition_type == 'lieutenant_owned':
             return '副将'

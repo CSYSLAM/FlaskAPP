@@ -150,6 +150,11 @@ class VillaService:
         else:
             exp_reward = villa.get_training_exp(8)
 
+        # 扣除被其他玩家偷师偷走的经验(最多被偷30%)
+        stolen = int(training.get('stolen_exp') or 0)
+        if stolen > 0:
+            exp_reward = max(0, exp_reward - stolen)
+
         player.experience += exp_reward
 
         # Add villa experience
@@ -159,7 +164,8 @@ class VillaService:
 
         villa.training_data = {}
         db.session.commit()
-        return True, f"演武完成！获得{exp_reward}经验，山庄经验+{villa_exp}"
+        stolen_tip = f"，其中{stolen}经验被人偷师偷走" if stolen > 0 else ""
+        return True, f"演武完成！获得{exp_reward}经验{stolen_tip}，山庄经验+{villa_exp}"
 
     @classmethod
     def get_training_status(cls, villa):
@@ -276,8 +282,10 @@ class VillaService:
         # New seeds store item_id directly; old seeds use HARVEST_ITEMS mapping
         harvest_id = HARVEST_ITEMS.get(harvest_key, harvest_key)
         count = seed_info.get('count', 1)
+        if plot.get('stolen'):
+            count = max(0, count - 1)  # 被偷走过1个
 
-        if harvest_id:
+        if harvest_id and count > 0:
             DataService.add_item_to_inventory(player.id, harvest_id, count)
 
         # Add villa experience
@@ -339,18 +347,36 @@ class VillaService:
 
     @classmethod
     def steal_plant(cls, player, target_villa, plot_index):
-        """Steal a plant from target villa's garden."""
+        """Steal a plant from target villa's garden (偷药)."""
         from models.player import PlayerModel
-        target_player = PlayerModel.query.get(target_villa.owner_id)
+        from services.achievement_service import AchievementService
 
-        if player.action_points < 5:
+        if target_villa.owner_id == player.id:
+            return False, "不能偷自己山庄的作物"
+
+        # 确保目标山庄计数(祈福/行动力)为当日最新值
+        cls._check_daily_reset(target_villa)
+
+        # 行动力在玩家自己的山庄上
+        my_villa = cls.get_or_create_villa(player)
+        if my_villa.action_points < 5:
             return False, "行动力不足，需要5点行动力"
+
+        target_player = PlayerModel.query.get(target_villa.owner_id)
 
         garden = target_villa.garden_data
         plot = garden.get(str(plot_index), {})
 
         if plot.get('status') != 'ready':
             return False, "该土地没有可偷取的作物"
+
+        # 只出一个果实的作物不给偷；每块地最多被偷一次
+        seed_id = plot.get('seed_id')
+        seed_info = SEEDS.get(seed_id, {})
+        if seed_info.get('count', 1) <= 1:
+            return False, "这作物只结一个果实，不给偷"
+        if plot.get('stolen'):
+            return False, "给主人留一点吧"
 
         # Check if caught by defender
         defense_power = target_villa.get_defense_power()
@@ -360,46 +386,72 @@ class VillaService:
             # Caught! Pay penalty
             penalty = player.level * 100 + 500
             player.gold = max(0, player.gold - penalty)
-            target_player.gold += penalty
+            if target_player:
+                target_player.gold += penalty
 
+            defender = Lieutenant.query.get(target_villa.defender_id) if target_villa.defender_id else None
+            defender_name = defender.name if defender else '守卫'
             target_villa.add_visitor_log(player.nickname, '偷取被抓', f'罚款{penalty}银两')
+            caught_count = AchievementService.incr_social_stat(player, 'ach_steal_caught')
+            AchievementService.check(player, 'steal_caught', caught_count)
             db.session.commit()
-            return False, f"被{target_villa.defender.name if target_villa.defender_id else '守卫'}抓住了！损失{penalty}银两"
+            return False, f"被{defender_name}抓住了！损失{penalty}银两"
 
-        # Success! Steal the plant
-        seed_id = plot.get('seed_id')
-        seed_info = SEEDS.get(seed_id, {})
-        harvest_id = HARVEST_ITEMS.get(seed_info.get('harvest', ''))
-        count = min(1, seed_info.get('count', 1))  # Can only steal 1
+        # Success! Steal 1 fruit, plot stays for the owner (每块地最多偷1个)
+        harvest_key = seed_info.get('harvest', '')
+        # 新种子的 harvest 直接是 item_id，旧种子走 HARVEST_ITEMS 映射
+        harvest_id = HARVEST_ITEMS.get(harvest_key, harvest_key)
 
         if harvest_id:
-            DataService.add_item_to_inventory(player.id, harvest_id, count)
+            DataService.add_item_to_inventory(player.id, harvest_id, 1)
 
-        # Remove from target's plot
-        garden[str(plot_index)] = {'status': 'empty'}
+        plot['stolen'] = True
+        if plot.get('ready_count'):
+            plot['ready_count'] = max(0, plot['ready_count'] - 1)
+        garden[str(plot_index)] = plot
         target_villa.garden_data = garden
-        target_villa.add_visitor_log(player.nickname, '偷摘', f'{seed_info.get("harvest_name", "作物")}x{count}')
+        target_villa.add_visitor_log(player.nickname, '偷摘', f'{seed_info.get("harvest_name", "作物")}x1')
 
-        player.action_points -= 5
+        my_villa.action_points -= 5
+        steal_count = AchievementService.incr_social_stat(player, 'ach_steal_medicine')
+        AchievementService.check(player, 'steal_medicine_success', steal_count)
         db.session.commit()
-        return True, f"成功偷取了{count}个{seed_info.get('harvest_name', '作物')}"
+        return True, f"成功偷取了1个{seed_info.get('harvest_name', '作物')}"
 
     @classmethod
     def steal_training(cls, player, target_villa):
-        """Steal training exp from target villa."""
+        """Steal training exp from target villa (偷师)."""
         from models.player import PlayerModel
-        target_player = PlayerModel.query.get(target_villa.owner_id)
+        from services.achievement_service import AchievementService
 
-        if player.action_points < 5:
+        if target_villa.owner_id == player.id:
+            return False, "不能偷自己山庄的演武"
+
+        # 确保目标山庄计数(祈福/行动力)为当日最新值
+        cls._check_daily_reset(target_villa)
+
+        # 行动力在玩家自己的山庄上
+        my_villa = cls.get_or_create_villa(player)
+        if my_villa.action_points < 5:
             return False, "行动力不足，需要5点行动力"
+
+        target_player = PlayerModel.query.get(target_villa.owner_id)
 
         training = target_villa.training_data
         if not training.get('start_time'):
             return False, "目标未在演武"
 
+        # 只有演武完成(8小时)才能被偷师，演武过程中无法偷师
         elapsed = time.time() - training['start_time']
-        if elapsed < 2 * 3600:
-            return False, "目标演武不足2小时，无法偷取"
+        if elapsed < cls.TRAINING_DURATION:
+            return False, "目标演武尚未完成，无法偷师"
+
+        # 每场演武最多被偷30%经验，主人至少能领70%
+        full_exp = target_villa.get_training_exp(8)
+        stolen_so_far = int(training.get('stolen_exp') or 0)
+        max_stealable = int(full_exp * 0.3)
+        if stolen_so_far >= max_stealable:
+            return False, "演武经验已经被偷光了，给主人留一点吧"
 
         # Check if caught by defender
         defense_power = target_villa.get_defense_power()
@@ -408,21 +460,33 @@ class VillaService:
         if random.random() < catch_rate:
             penalty = player.level * 100 + 500
             player.gold = max(0, player.gold - penalty)
-            target_player.gold += penalty
+            if target_player:
+                target_player.gold += penalty
 
+            defender = Lieutenant.query.get(target_villa.defender_id) if target_villa.defender_id else None
+            defender_name = defender.name if defender else '守卫'
             target_villa.add_visitor_log(player.nickname, '偷演武被抓', f'罚款{penalty}银两')
+            caught_count = AchievementService.incr_social_stat(player, 'ach_steal_caught')
+            AchievementService.check(player, 'steal_caught', caught_count)
             db.session.commit()
-            return False, f"被{target_villa.defender.name if target_villa.defender_id else '守卫'}抓住了！损失{penalty}银两"
+            return False, f"被{defender_name}抓住了！损失{penalty}银两"
 
-        # Success! Steal some exp
-        hours = min(8, elapsed / 3600)
-        full_exp = target_villa.get_training_exp(hours)
-        stolen_exp = int(full_exp * 0.2)  # Steal 20%
+        # Success! 每次偷当前演武经验的1%~5%，累计不超过30%
+        pct = random.uniform(0.01, 0.05)
+        stolen_exp = min(int(full_exp * pct), max_stealable - stolen_so_far)
+        if stolen_exp < 1:
+            stolen_exp = 1
 
         player.experience += stolen_exp
-        player.action_points -= 5
+        my_villa.action_points -= 5
+
+        # 从目标演武扣除被偷经验，主人领取时相应减少
+        training['stolen_exp'] = stolen_so_far + stolen_exp
+        target_villa.training_data = training
 
         target_villa.add_visitor_log(player.nickname, '偷演武', f'偷取{stolen_exp}经验')
+        steal_count = AchievementService.incr_social_stat(player, 'ach_steal_skill')
+        AchievementService.check(player, 'steal_skill_success', steal_count)
         db.session.commit()
         return True, f"成功偷取了{stolen_exp}经验"
 
@@ -431,6 +495,14 @@ class VillaService:
     @classmethod
     def bless_villa(cls, player, target_villa):
         """Bless a villa (祈福)."""
+        from services.achievement_service import AchievementService
+
+        if target_villa.owner_id == player.id:
+            return False, "不能给自己的山庄祈福，去好友的山庄祈福吧"
+
+        # 确保目标山庄祈福计数为当日最新值(跨天清零)
+        cls._check_daily_reset(target_villa)
+
         if player.gold < 100:
             return False, "银两不足，需要100银两"
 
@@ -443,25 +515,55 @@ class VillaService:
         # Give player some exp for blessing
         player.experience += 50
 
+        bless_count = AchievementService.incr_social_stat(player, 'ach_bless_count')
+        AchievementService.check(player, 'bless_count', bless_count)
+
         db.session.commit()
         return True, "祈福成功，获得50经验"
 
+    # 祈福礼包抽奖池: 打造材料50% / 孔明灯30% / 强化宝玉10% / 宝匣钥匙5% / 神游果5%
+    BLESS_CRAFT_MATERIALS = {
+        'craft_suipi': '碎皮', 'craft_mabu': '麻布', 'craft_huangyangmu': '黄杨木', 'craft_huangtongkuang': '黄铜矿',
+        'craft_yingpi': '硬皮', 'craft_mianbu': '棉布', 'craft_chenxiangmu': '沉香木', 'craft_heitiekuang': '黑铁矿',
+        'craft_houpi': '厚皮', 'craft_nirong': '呢绒', 'craft_zitanmu': '紫檀木', 'craft_jingjinkuang': '精金矿',
+    }
+
     @classmethod
     def claim_blessing_reward(cls, player):
-        """Claim blessing reward when count reaches 10."""
+        """Claim blessing gift pack when count reaches 10. 每日限领一次，祈福次数次日重置。"""
         villa = cls.get_or_create_villa(player)
 
         if villa.blessing_count < 10:
             return False, "祈福次数不足10次"
 
-        # Give reward
-        player.gold += 1000
-        player.yuanbao += 1
-        DataService.add_item_to_inventory(player.id, 'enhance_gem', 1)
+        data = player.activity_data or {}
+        today = str(date.today())
+        if data.get('bless_claim_date') == today:
+            return False, "今日已领取过祈福礼包，祈福次数次日更新"
 
-        villa.blessing_count = 0
+        roll = random.random()
+        if roll < 0.50:
+            mat_id = random.choice(list(cls.BLESS_CRAFT_MATERIALS.keys()))
+            DataService.add_item_to_inventory(player.id, mat_id, 3)
+            reward_name = f"{cls.BLESS_CRAFT_MATERIALS[mat_id]}×3"
+        elif roll < 0.80:
+            DataService.add_item_to_inventory(player.id, 'kongming_lantern', 1)
+            reward_name = "孔明灯×1"
+        elif roll < 0.90:
+            DataService.add_item_to_inventory(player.id, 'enhance_gem', 1)
+            reward_name = "强化宝玉×1"
+        elif roll < 0.95:
+            DataService.add_item_to_inventory(player.id, 'chest_key', 1)
+            reward_name = "宝匣钥匙×1"
+        else:
+            DataService.add_item_to_inventory(player.id, 'shenyou_guo', 1)
+            reward_name = "神游果×1"
+
+        data['bless_claim_date'] = today
+        player.activity_data = data
+        # 当天领完不清零，次日由 _check_daily_reset 重置祈福次数
         db.session.commit()
-        return True, "领取祈福礼包：1000银两、1元宝、1个强化宝玉"
+        return True, f"领取祈福礼包：{reward_name}"
 
     # --- Level up ---
 

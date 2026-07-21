@@ -26,8 +26,13 @@ def index():
     vitality_inv = DataService.get_inventory_item(player.id, 'vitality_card')
     vitality_count = vitality_inv.quantity if vitality_inv else 0
 
+    # 今日是否已领取祈福礼包
+    from datetime import date
+    bless_claimed_today = (player.activity_data or {}).get('bless_claim_date') == str(date.today())
+
     return render_template("villa_index.html",
                          player=player,
+                         bless_claimed_today=bless_claimed_today,
                          villa=villa,
                          training_status=training_status,
                          garden_plots=garden_plots,

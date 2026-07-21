@@ -381,14 +381,16 @@ def achievement_detail(achievement_id):
     is_claimed = AchievementService.is_claimed(player.id, achievement_id)
     completed_record = Achievement.query.filter_by(
         player_id=player.id, achievement_id=achievement_id).first()
-    # Determine difficulty based on condition_value
+    # Determine difficulty: 优先使用成就定义中的显式难度，否则按 condition_value 推导
     val = adef['condition_value']
-    if val <= 20:
-        difficulty = '简单'
-    elif val <= 100:
-        difficulty = '普通'
-    else:
-        difficulty = '困难'
+    difficulty = adef.get('difficulty')
+    if not difficulty:
+        if val <= 20:
+            difficulty = '简单'
+        elif val <= 100:
+            difficulty = '普通'
+        else:
+            difficulty = '困难'
     achievement = {
         'id': achievement_id,
         'name': adef['name'],
