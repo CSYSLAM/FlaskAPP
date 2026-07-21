@@ -22,13 +22,19 @@
 
 驿站管理员<br/>
 <br/>
+赎金券：持有{{ ticket_count }}个
+<form action="{{ url_for('lost_found.buy_ticket') }}" method="post" style="display:inline;">
+    <input type="submit" value="购买赎金券(5银两)">
+</form>
+<br/>
+<br/>
 {% if holding %}
     你的遗失物品：<br/>
     {% for item in holding %}
         {{ item.name }}{% if item.is_bound %}(绑定){% endif %} x{{ item.quantity }}
         剩余{{ item.days_left }}天
         <form action="{{ url_for('lost_found.redeem', item_id=item.id) }}" method="post" style="display:inline;">
-            <input type="submit" value="赎回(赎金券x1)">
+            <input type="submit" value="赎回(赎金券x1+{{ item.redeem_price }}银两)">
         </form>
         <br/>
     {% endfor %}

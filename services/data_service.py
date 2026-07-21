@@ -51,6 +51,7 @@ class DataService:
             'achievements': 'achievements.json',
             'titles': 'titles.json',
             'guides': 'guides.json',
+            'guides_content': 'guides_content.json',
         }
         for key, filename in files.items():
             filepath = data_dir / filename
@@ -700,3 +701,16 @@ class DataService:
     @classmethod
     def get_guides(cls):
         return cls._cache.get('guides', {})
+
+    @classmethod
+    def get_guide(cls, guide_id):
+        """返回单条攻略,并把 guides_content.json 的详文合并为 `detail` 字段。
+        guides_content.json 与 guides.json 以同一 guide_id 为键;缺失时 detail 为 None,
+        原 content 列表照常渲染,不影响无详文的攻略。"""
+        guide = cls._cache.get('guides', {}).get(guide_id)
+        if not guide:
+            return None
+        enriched = dict(guide)
+        detail = cls._cache.get('guides_content', {}).get(guide_id)
+        enriched['detail'] = detail  # 可能为 None(str 或缺失)
+        return enriched

@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
 from services.data_service import DataService
 from services import db
+from services.lost_found_service import (
+    LostItemLifecycle, grant_lost_item, _resolve_item_name, get_redeem_price)
 from models.player import LostItem
 from datetime import datetime, timedelta
 
@@ -14,6 +16,9 @@ def lost_found():
     player = current_user
     now = datetime.now()
 
+    # 惰性推进失物状态机（持有->拍卖->结算），无需独立定时任务
+    LostItemLifecycle.run()
+
     # Get player's lost items in holding stage
     holding_items = LostItem.query.filter_by(
         player_id=player.id, stage='holding').all()
@@ -24,40 +29,43 @@ def lost_found():
     # Format holding items
     holding = []
     for item in holding_items:
-        item_def = DataService.get_item(item.item_id)
         days_left = 30 - (now - item.lost_at).days
         if days_left > 0:
             holding.append({
                 'id': item.id,
                 'item_id': item.item_id,
-                'name': item_def.get('name', item.item_id) if item_def else item.item_id,
+                'name': _resolve_item_name(item.item_id),
                 'quantity': item.quantity,
                 'is_bound': item.is_bound,
                 'days_left': days_left,
-                'lost_at': item.lost_at
+                'lost_at': item.lost_at,
+                'redeem_price': get_redeem_price(item)
             })
 
     # Format auction items
     auctions = []
     for item in auction_items:
-        item_def = DataService.get_item(item.item_id)
         if item.auction_started_at:
             days_left = 7 - (now - item.auction_started_at).days
             if days_left > 0:
                 auctions.append({
                     'id': item.id,
                     'item_id': item.item_id,
-                    'name': item_def.get('name', item.item_id) if item_def else item.item_id,
+                    'name': _resolve_item_name(item.item_id),
                     'quantity': item.quantity,
                     'is_bound': item.is_bound,
                     'current_bid': item.current_bid,
                     'days_left': days_left
                 })
 
+    ticket = DataService.get_inventory_item(player.id, 'redemption_ticket')
+    ticket_count = ticket.quantity if ticket else 0
+
     return render_template("lost_found.html",
                          player=player,
                          holding=holding,
-                         auctions=auctions)
+                         auctions=auctions,
+                         ticket_count=ticket_count)
 
 
 @lost_found_bp.route("/redeem/<int:item_id>", methods=["POST"])
@@ -92,18 +100,38 @@ def redeem(item_id):
         flash("背包容量不足")
         return redirect(url_for('lost_found.lost_found'))
 
-    # Consume redemption ticket
-    DataService.remove_item_from_inventory(player.id, 'redemption_ticket', 1)
+    # 赎回价：物品卖出价 1:1
+    redeem_price = get_redeem_price(lost_item)
+    if player.gold < redeem_price:
+        flash(f"银两不足，赎回需{redeem_price}银两")
+        return redirect(url_for('lost_found.lost_found'))
 
-    # Add item to inventory
-    DataService.add_item_to_inventory(
-        player.id, lost_item.item_id, lost_item.quantity, is_bound=lost_item.is_bound)
+    # Consume redemption ticket + 扣银两
+    DataService.remove_item_from_inventory(player.id, 'redemption_ticket', 1)
+    player.gold -= redeem_price
+
+    # Add item to inventory (装备同步转移实例归属)
+    grant_lost_item(player.id, lost_item)
 
     # Delete lost item record
     db.session.delete(lost_item)
     db.session.commit()
 
-    flash(f"成功取回{item_def.get('name', lost_item.item_id)}")
+    flash(f"成功取回{_resolve_item_name(lost_item.item_id)}（花费{redeem_price}银两）")
+    return redirect(url_for('lost_found.lost_found'))
+
+
+@lost_found_bp.route("/buy_ticket", methods=["POST"])
+@login_required
+def buy_ticket():
+    player = current_user
+    if player.gold < 5:
+        flash("银两不足，赎金券需5银两")
+        return redirect(url_for('lost_found.lost_found'))
+    player.gold -= 5
+    DataService.add_item_to_inventory(player.id, 'redemption_ticket', 1)
+    db.session.commit()
+    flash("购买赎金券x1（花费5银两）")
     return redirect(url_for('lost_found.lost_found'))
 
 

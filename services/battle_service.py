@@ -1033,6 +1033,11 @@ class BattleService:
         for te in exp_effects:
             if te.expire_time > _time.time() and te.rate > 0:
                 exp = int(exp * (1 + te.rate))
+        # Party exp bonus (每在线成员 +1%, 由 PartyService 计算)
+        from services.party_service import PartyService
+        party_rate = PartyService.get_party_bonus_rate(player)
+        if party_rate > 0:
+            exp = int(exp * (1 + party_rate))
         player.gold += money
         player.gold_earned = (player.gold_earned or 0) + money
         PlayerService.gain_experience(player, exp)
@@ -1529,6 +1534,7 @@ class BattleService:
         honor_gained = 0
         silver_gained = 0
         honor_protected = None
+        dropped_items = []
         if not same_country:
             # 荣誉：分档 + 减免（取高不叠加），零和、受败方余额上限，向下取整
             tier = cls._pk_honor_tier(attacker.level, defender.level)
@@ -1543,9 +1549,13 @@ class BattleService:
             coeff = cls._pk_silver_tier(attacker.level, defender.level)
             if coeff > 0 and defender.gold > 0:
                 silver_gained = min(defender.level * coeff, defender.gold)
-                if silver_gained > 0:
-                    attacker.gold += silver_gained
-                    defender.gold -= silver_gained
+            if silver_gained > 0:
+                attacker.gold += silver_gained
+                defender.gold -= silver_gained
+            # 败方未绑定背包物品掉落，转入失物招领（可赎回/拍卖）
+            from services.lost_found_service import (
+                create_lost_items_for_defeat, _format_dropped)
+            dropped_items = create_lost_items_for_defeat(defender)
 
         attacker.pk_win_count = (attacker.pk_win_count or 0) + 1
         PlayerService.update_military_rank(attacker)
@@ -1590,6 +1600,8 @@ class BattleService:
                     defender_msg += "（VIP特权生效，荣誉少扣）"
                 elif honor_protected == 'talisman':
                     defender_msg += "（死亡替身符生效，荣誉少扣）"
+        if dropped_items:
+            defender_msg += "掉落" + _format_dropped(dropped_items)
         defender.last_battle_result = defender_msg
 
         cls._end_pk(attacker, defender)

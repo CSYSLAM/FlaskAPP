@@ -51,12 +51,24 @@
 | 低20级以上 | ×0 |
 
 **其它规则**：
-- 不掉装备（胜方不得装备，败方不失装备）。
+- 装备不直接掉落给胜方（胜方不能直接捡走败方装备）；但败方**未绑定药品/未绑定装备**可能掉入失物招领（见下）。
 - 败方记胜方为仇敌（`add_enemy`，仅异国）。
 - 败方出战副将掉忠诚（`LieutenantService.handle_death(owner_died=True)`）。
 - **PK战败不扣经验**。
 - 成就 `pk_win`/`pk_loss` 仅异国记录（同国不记）。
 - 败方进入复活态（`need_revive=True`、`killed_by`）。
+
+**失物招领掉落**（`lost_found_service.create_lost_items_for_defeat`，仅异国）：
+- 败方背包里每一堆**未绑定药品**（`type=='potion'` 的回血/回蓝药剂）或**未绑定装备**，各自独立 **20% 概率掉落 1 个**（`DROP_CHANCE=0.2`、`DROP_QTY=1`）。
+- 掉落物转为 `LostItem`，走生命周期：
+  - `holding` 持有期（30天）：原主可凭赎金券 `redemption_ticket` 赎回；
+  - `auction` 拍卖期（7天）：全员可出价，最高价者得；
+  - 结算：有最高出价者则发放给中标人，否则物品消失。
+- **赎回**：消耗赎金券1张 + 银两=物品卖出价×数量（1:1，`get_redeem_price`：装备用 `get_sell_price()`、药品用 `sell_price`）。赎金券在**驿站管理员**处 5 银两购买（`lost_found.buy_ticket`）。
+- 失物招领入口：与**驿站管理员**NPC对话。
+- 掉落的装备实例归属置空（中立），赎回/拍卖发放时经 `grant_lost_item` 转移归属（同步 `EquipmentInstance.player_id`），保证新主人可穿戴/强化。
+- 赎金券 `redemption_ticket` 不参与掉落（防循环）。
+- 状态机惰性推进（`LostItemLifecycle.run()`，访问失物招领页时触发），无后台定时任务。
 
 > **战场**（`battlefield_service`）是独立系统：按段位 `TIER_HONOR` 零和转荣誉 + 战斗积分，不适用本规则。
 
@@ -104,6 +116,8 @@
 | `services/item_service.py` | 免战符 `pk_truce` 分支 |
 | `services/vip_service.py` | `get_pk_drop_reduction`、`is_non_pk_loss_exempt`、权益文案 |
 | `services/social_service.py` | `get_enemy_list`、`hunt_enemy`、`remove_enemy` |
+| `services/lost_found_service.py` | `create_lost_items_for_defeat`、`grant_lost_item`、`LostItemLifecycle`（失物招领生命周期） |
+| `blueprints/lost_found.py` | 失物招领页、赎回、竞拍 |
 | `data/vip_config.json` | `pk_drop_reduction`（0.1~0.5） |
 | `data/items.json` | `peace_token`、`hunt_order`、`death_substitute` |
 | `data/guides_content.json` | 游戏内指南「PK玩法」 |
@@ -114,3 +128,4 @@
 | 日期 | 变更 |
 |------|------|
 | 2026-07-20 | PK系统重做：荣誉/银两按等级差分档（零和、向下取整）；荣誉减免VIP10-50%+替身符30%取高不叠加；PK不掉装备、不扣经验、副将掉忠诚、同国无损失；免战符30分钟；PK频率60秒3次；被怪击杀扣经验10%+银两(怪级×1)（死亡时扣、VIP免）；虚弱复活不再扣经验；新增回城疗伤(300银两)；删除濒死获胜经验扣除 |
+| 2026-07-21 | PK战败失物招领掉落：败方每堆未绑定药品(`type=='potion'`)/未绑定装备各20%概率掉1个→LostItem(持有30天可赎/拍卖7天)；掉落装备归属置空，赎回/拍卖经`grant_lost_item`转移`EquipmentInstance.player_id` |

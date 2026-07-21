@@ -395,14 +395,19 @@ class BattlefieldService:
     # --- War settlement & Territory ---
 
     @classmethod
+    def _settle_city(cls, city_key):
+        """根据已累积的军团积分结算该城市当前胜者(写入 winner_legion_id)。
+        领土战没有独立的结束触发器,占领/领取时按需惰性结算,使 /legion/occupy 可用。"""
+        cls._ensure_city(city_key)
+        state = cls._cities[city_key]
+        if state.legion_scores:
+            state.winner_legion_id = max(state.legion_scores, key=state.legion_scores.get)
+        return state
+
+    @classmethod
     def settle_war(cls):
         for city_key in BATTLEFIELD_CITIES:
-            cls._ensure_city(city_key)
-            state = cls._cities[city_key]
-            if not state.legion_scores:
-                continue
-            winner_id = max(state.legion_scores, key=state.legion_scores.get)
-            state.winner_legion_id = winner_id
+            cls._settle_city(city_key)
 
     @classmethod
     def occupy_city(cls, player, city_key):
@@ -413,8 +418,8 @@ class BattlefieldService:
         if city_key not in BATTLEFIELD_CITIES:
             return False, "城市不存在"
 
-        cls._ensure_city(city_key)
-        state = cls._cities[city_key]
+        # 占领时按当前积分惰性结算胜者,无需等待独立结束事件
+        state = cls._settle_city(city_key)
         winner_id = getattr(state, 'winner_legion_id', None)
         if winner_id != member.legion_id:
             return False, "你的军团未赢得该城市"
@@ -432,8 +437,8 @@ class BattlefieldService:
     def get_claimable_cities(cls, legion_id):
         claimable = []
         for city_key in BATTLEFIELD_CITIES:
-            cls._ensure_city(city_key)
-            state = cls._cities[city_key]
+            # 同样惰性结算,保证领取列表能正确填充
+            state = cls._settle_city(city_key)
             if getattr(state, 'winner_legion_id', None) == legion_id:
                 legion = Legion.query.get(legion_id)
                 if legion and city_key not in legion.occupied_cities:

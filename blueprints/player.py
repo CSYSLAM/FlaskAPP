@@ -8,6 +8,7 @@ from services.data_service import DataService
 from services.player_service import PlayerService
 from services.battle_service import BattleService
 from services.equipment_service import EquipmentService
+from services.party_service import PartyService
 
 player_bp = Blueprint('player', __name__)
 
@@ -86,15 +87,13 @@ def character():
 
     # Party
     party_info = None
-    try:
-        if player.party_id:
-            from models.party import Party
-            party = Party.query.get(player.party_id)
-            if party:
-                pcount = PlayerModel.query.filter_by(party_id=party.id).count()
-                party_info = {'name': party.name, 'count': pcount}
-    except Exception:
-        pass
+    party = PartyService.get_player_party(player)
+    if party:
+        leader = PlayerModel.query.get(party.leader_id)
+        party_info = {
+            'name': leader.username if leader else '队伍',
+            'count': len(party.members),
+        }
 
     return render_template("character.html",
                          player=player,
@@ -183,16 +182,8 @@ def character_status():
     except Exception:
         pass
 
-    # Team bonus
-    team_exp_bonus = 0
-    try:
-        if player.party_id:
-            from models.party import Party
-            party = Party.query.get(player.party_id)
-            if party and party.member_count > 1:
-                team_exp_bonus = 5
-    except Exception:
-        pass
+    # Team bonus (组队经验加成:每在线成员 +1%)
+    team_exp_bonus = int(PartyService.get_party_bonus_rate(player) * 100)
 
     return render_template("character_status.html",
                          player=player,
