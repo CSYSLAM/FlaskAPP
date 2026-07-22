@@ -33,8 +33,16 @@
     {% set next_level = player_skill.skill_level + 1 %}
     {% set exp_base = skill_def.get('upgrade_exp_base', 100) %}
     {% set gold_base = skill_def.get('upgrade_gold_base', 1000) %}
-    {% set exp_cost = (exp_base * next_level * (1 + next_level * 0.1))|int %}
-    {% set gold_cost = (gold_base * next_level * (1 + next_level * 0.1))|int %}
+    {% set exp_step = skill_def.get('upgrade_exp_step') %}
+    {% set gold_step = skill_def.get('upgrade_gold_step') %}
+    {% if exp_step is not none and gold_step is not none %}
+    {% set exp_cost = exp_base + exp_step * (next_level - 1) %}
+    {% set gold_cost = gold_base + gold_step * (next_level - 1) %}
+    {% else %}
+    {% set mult = skill_def.get('upgrade_cost_multiplier', 2.2) %}
+    {% set exp_cost = (exp_base * (mult ** (next_level - 1)))|int %}
+    {% set gold_cost = (gold_base * (mult ** (next_level - 1)))|int %}
+    {% endif %}
     升级需要:{{ exp_cost }}经验 {{ gold_cost }}银两<br/>
     {% endif %}
     {% endif %}

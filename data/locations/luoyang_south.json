@@ -1,5 +1,6 @@
 {
   "name": "洛阳南区",
+  "can_pk": true,
   "scenes": {
     "南门": {
       "name": "南门",

@@ -12,6 +12,16 @@ from models.player import (
 
 
 class PlayerService:
+    MAX_LEVEL = 60  # 人物等级上限：达到后不再提示/执行升级
+
+    @classmethod
+    def get_max_level_exp_cap(cls):
+        """经验储存上限 = 60级升级所需经验；达到后经验不再往上增加。"""
+        exp_table = DataService.get_game_config().get("level_exp_table", [])
+        if not exp_table:
+            return 0
+        idx = cls.MAX_LEVEL - 1
+        return exp_table[idx] if idx < len(exp_table) else exp_table[-1]
 
     @classmethod
     def register(cls, username, password, nickname, player_class, gender='男', country='魏'):
@@ -257,6 +267,8 @@ class PlayerService:
 
     @classmethod
     def level_up(cls, player):
+        if player.level >= cls.MAX_LEVEL:
+            return False  # 满级：不再升级(经验保留,由 gain_experience 封顶)
         if player.experience < player.exp_to_next_level:
             return False
 
@@ -309,11 +321,17 @@ class PlayerService:
     def gain_experience(cls, player, amount):
         # 手动升级：经验够时不再自动升级，由玩家在界面手动点击升级
         # （升级时 HP/MP 恢复满，见 level_up / level_up_now）
-        player.experience += amount
+        player.experience = (player.experience or 0) + amount
+        # 经验储存上限 = 60级升级所需经验，达到后不再往上增加(满级同样适用)
+        cap = cls.get_max_level_exp_cap()
+        if cap > 0 and player.experience > cap:
+            player.experience = cap
 
     @classmethod
     def can_level_up(cls, player):
         """是否可手动升级(经验达升级线)。"""
+        if player.level >= cls.MAX_LEVEL:
+            return False
         return player.experience >= player.exp_to_next_level
 
     @classmethod

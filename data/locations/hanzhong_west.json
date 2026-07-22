@@ -1,5 +1,6 @@
 {
   "name": "汉中西区",
+  "can_pk": true,
   "scenes": {
     "汉中西界": {
       "name": "汉中西界",

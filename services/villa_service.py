@@ -4,6 +4,7 @@ import random
 from datetime import date, datetime
 from services import db
 from services.data_service import DataService
+from services.player_service import PlayerService
 from models.villa import Villa
 from models.lieutenant import Lieutenant
 
@@ -155,7 +156,7 @@ class VillaService:
         if stolen > 0:
             exp_reward = max(0, exp_reward - stolen)
 
-        player.experience += exp_reward
+        PlayerService.gain_experience(player, exp_reward)
 
         # Add villa experience
         villa_exp = int(hours * 10)
@@ -477,7 +478,7 @@ class VillaService:
         if stolen_exp < 1:
             stolen_exp = 1
 
-        player.experience += stolen_exp
+        PlayerService.gain_experience(player, stolen_exp)
         my_villa.action_points -= 5
 
         # 从目标演武扣除被偷经验，主人领取时相应减少
@@ -513,7 +514,7 @@ class VillaService:
         target_villa.blessing_count += 1
 
         # Give player some exp for blessing
-        player.experience += 50
+        PlayerService.gain_experience(player, 50)
 
         bless_count = AchievementService.incr_social_stat(player, 'ach_bless_count')
         AchievementService.check(player, 'bless_count', bless_count)

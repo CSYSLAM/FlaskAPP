@@ -29,7 +29,6 @@ BATTLEFIELD_CITIES = {
     'luoyang':   {'name': '洛阳', 'tier': 'high', 'country': None},
 }
 
-TIER_HONOR = {'basic': 1, 'mid': 2, 'high': 3}
 TIER_POINTS = {'basic': 1, 'mid': 2, 'high': 3}
 TIER_BONUS = {'basic': 1, 'mid': 2, 'high': 3}
 TIER_TOKEN = {
@@ -62,22 +61,36 @@ class BattlefieldService:
 
     # --- Time control ---
 
+    # --- Test war (workbench-triggered, non-Saturday) ---
+    TEST_WAR_ACTIVE = False
+    TEST_WAR_START = 0.0
+    TEST_WAR_DURATION = 600  # 10 minutes
+
     @classmethod
-    def is_war_time(cls):
-        if cls.TESTING_MODE:
-            return True
+    def _in_saturday_window(cls):
         now = datetime.now()
         return now.weekday() == 5 and now.hour == 20 and now.minute < 30
+
+    @classmethod
+    def is_war_time(cls):
+        if cls.TEST_WAR_ACTIVE:
+            return time.time() - cls.TEST_WAR_START < cls.TEST_WAR_DURATION
+        if cls.TESTING_MODE:
+            return True
+        return cls._in_saturday_window()
 
     @classmethod
     def is_entry_allowed(cls):
+        if cls.TEST_WAR_ACTIVE:
+            return time.time() - cls.TEST_WAR_START < cls.TEST_WAR_DURATION
         if cls.TESTING_MODE:
             return True
-        now = datetime.now()
-        return now.weekday() == 5 and now.hour == 20 and now.minute < 30
+        return cls._in_saturday_window()
 
     @classmethod
     def should_force_exit(cls):
+        if cls.TEST_WAR_ACTIVE:
+            return time.time() - cls.TEST_WAR_START >= cls.TEST_WAR_DURATION
         if cls.TESTING_MODE:
             return False
         now = datetime.now()
@@ -86,6 +99,59 @@ class BattlefieldService:
         if now.hour > 20 or (now.hour == 20 and now.minute >= 30):
             return True
         return False
+
+    @classmethod
+    def get_test_war_status(cls):
+        if not cls.TEST_WAR_ACTIVE:
+            return {'active': False, 'remaining': 0}
+        remaining = max(0, int(cls.TEST_WAR_DURATION - (time.time() - cls.TEST_WAR_START)))
+        return {'active': True, 'remaining': remaining}
+
+    # --- Weekly territory reset & war tick ---
+    _last_reset_date = ''
+
+    @classmethod
+    def ensure_weekly_territory_reset(cls):
+        """周六0点清空所有城池属性加成(占领)与军团/个人积分状态，待本周团战后再占领。"""
+        today = date.today()
+        if today.weekday() == 5:  # Saturday
+            if cls._last_reset_date != today.isoformat():
+                cls._last_reset_date = today.isoformat()
+                cls.reset_territories()
+                cls.reset_weekly_points()
+
+    @classmethod
+    def _end_test_war(cls):
+        """测试战结束：关闭入口、强制清场、按积分自动占领。"""
+        cls.TEST_WAR_ACTIVE = False
+        for p in PlayerModel.query.filter_by(in_battlefield=True).all():
+            cls.exit_battlefield(p)
+        cls._auto_settle_territories()
+
+    @classmethod
+    def tick(cls):
+        """战场相关页面加载时调用：处理周重置、测试战结束、强制清场。"""
+        cls.ensure_weekly_territory_reset()
+        if cls.TEST_WAR_ACTIVE and cls.should_force_exit():
+            cls._end_test_war()
+        # 死亡超时清扫：续命窗口(15秒)已过的阵亡玩家强制传出战场，
+        # 避免有灯不复活/离线玩家永久滞留 in_battlefield=True。
+        now = time.time()
+        for state in cls._cities.values():
+            for pid in list(state.players):
+                p = PlayerModel.query.get(pid)
+                if p and p.in_battlefield and p.battlefield_death_time > 0 \
+                        and now - p.battlefield_death_time > 15:
+                    cls.force_death_exit(p)
+
+    @classmethod
+    def _auto_settle_territories(cls):
+        """测试战结束后，按各城当日积分榜最高军团自动占领。"""
+        for city_key in BATTLEFIELD_CITIES:
+            state = cls._settle_city(city_key)
+            winner = getattr(state, 'winner_legion_id', None)
+            if winner:
+                cls._set_city_owner(winner, city_key)
 
     # --- City state management ---
 
@@ -109,6 +175,8 @@ class BattlefieldService:
             return False, f"{city['name']}仅限{city['country']}国玩家进入"
         if player.in_battle or player.in_pk:
             return False, "你正在战斗中"
+        if player.in_battlefield:
+            return False, "需先离开当前战场才能进入其它城市"
         if not cls.is_entry_allowed():
             return False, "战场未开放或已结束"
         token_id = TIER_TOKEN[city['tier']]
@@ -168,12 +236,16 @@ class BattlefieldService:
             return False, "不在战场中"
         if attacker.battlefield_city != defender.battlefield_city:
             return False, "不在同一战场"
+        if attacker.health <= 0 or attacker.battlefield_death_time > 0:
+            return False, "你已阵亡，无法攻击"
         if attacker.country == defender.country:
             return False, "不能攻击本国玩家"
         atk_member = LegionMember.query.filter_by(player_id=attacker.id).first()
         def_member = LegionMember.query.filter_by(player_id=defender.id).first()
         if atk_member and def_member and atk_member.legion_id == def_member.legion_id:
             return False, "不能攻击同军团成员"
+        if defender.in_pk or defender.in_battle:
+            return False, '对方正在战斗中，无法攻击'
         if defender.health <= 0:
             return False, "对方已阵亡"
         if defender.battlefield_death_time > 0:
@@ -287,14 +359,10 @@ class BattlefieldService:
         if attacker_member:
             attacker_member.personal_battle_points += TIER_POINTS[tier]
 
-        # 2. Honor transfer
-        honor_gained = 0
-        if defender.honor > 0:
-            honor_gained = min(TIER_HONOR[tier], defender.honor)
-            attacker.honor += honor_gained
-            defender.honor -= honor_gained
+        # 2. 荣誉不转移（有意设计）：战场击杀仅结算积分，不转移荣誉/银两/经验，
+        #    与野外 PK 的荣誉零和分档无关。
 
-        # Update military ranks
+        # Update military ranks (honor 未变化，通常不触发军衔变动)
         from services.player_service import PlayerService
         PlayerService.update_military_rank(attacker)
         PlayerService.update_military_rank(defender)
@@ -326,12 +394,14 @@ class BattlefieldService:
         attacker.in_pk = False
         attacker.pk_opponent = None
 
-        result_msg = f"你在{city['name']}战场击杀了{defender.nickname}！"
-        if honor_gained > 0:
-            result_msg += f" 荣誉+{honor_gained}"
-        result_msg += f" 个人团战积分+{TIER_POINTS[tier]} 军团积分+{TIER_POINTS[tier]}"
+        result_msg = f"{city['name']}战场：你击杀了{defender.nickname} 个人军团积分+{TIER_POINTS[tier]} 军团积分+{TIER_POINTS[tier]}"
         attacker.last_battle_result = result_msg
-        defender.last_battle_result = f"你在{city['name']}战场被{attacker.nickname}击杀！荣誉-{honor_gained}" if honor_gained > 0 else f"你在{city['name']}战场被{attacker.nickname}击杀！"
+        defender.last_battle_result = f"{city['name']}战场：你被{attacker.nickname}击杀"
+
+        # 被击杀立即传出战场：无续命灯则直接传送出战场；有灯可原地复活
+        lamp = DataService.get_inventory_item(defender.id, "battle_revive_lamp")
+        if not lamp or lamp.quantity < 1:
+            cls.force_death_exit(defender)
 
         db.session.commit()
         return result_msg
@@ -397,11 +467,17 @@ class BattlefieldService:
     @classmethod
     def _settle_city(cls, city_key):
         """根据已累积的军团积分结算该城市当前胜者(写入 winner_legion_id)。
-        领土战没有独立的结束触发器,占领/领取时按需惰性结算,使 /legion/occupy 可用。"""
+        领土战没有独立的结束触发器,占领/领取时按需惰性结算,使 /legion/occupy 可用。
+        内存态 legion_scores 为空(跨天/重启清零)时,回退到持久化的 Legion.battle_points 取首,
+        使占领不依赖易失内存。"""
         cls._ensure_city(city_key)
         state = cls._cities[city_key]
         if state.legion_scores:
             state.winner_legion_id = max(state.legion_scores, key=state.legion_scores.get)
+        else:
+            top = Legion.query.filter(Legion.battle_points > 0) \
+                .order_by(Legion.battle_points.desc()).first()
+            state.winner_legion_id = top.id if top else None
         return state
 
     @classmethod
@@ -424,13 +500,10 @@ class BattlefieldService:
         if winner_id != member.legion_id:
             return False, "你的军团未赢得该城市"
 
-        legion = Legion.query.get(member.legion_id)
-        occupied = legion.occupied_cities
-        if city_key in occupied:
-            return False, "该城市已被占领"
-        occupied.append(city_key)
-        legion.occupied_cities = occupied
-        db.session.commit()
+        # 同城仅允许积分最高的军团占领（清除其它军团的同名占领）
+        if city_key in Legion.query.get(member.legion_id).occupied_cities:
+            return False, "该城市已被你的军团占领"
+        cls._set_city_owner(member.legion_id, city_key)  # 内部已 commit
         return True, f"成功占领{BATTLEFIELD_CITIES[city_key]['name']}！"
 
     @classmethod
@@ -445,10 +518,36 @@ class BattlefieldService:
                     claimable.append(city_key)
         return claimable
 
+    @classmethod
+    def _set_city_owner(cls, legion_id, city_key):
+        """同城仅允许一个军团占领（积分最高者）。清除其它军团的同名占领。"""
+        for legion in Legion.query.all():
+            occ = legion.occupied_cities
+            if city_key in occ:
+                if legion.id == legion_id:
+                    continue
+                occ.remove(city_key)
+                legion.occupied_cities = occ
+        owner = Legion.query.get(legion_id)
+        if owner:
+            occ = owner.occupied_cities
+            if city_key not in occ:
+                occ.append(city_key)
+                owner.occupied_cities = occ
+        db.session.commit()
+
+    @classmethod
+    def get_city_owner(cls, city_key):
+        for legion in Legion.query.all():
+            if city_key in legion.occupied_cities:
+                return legion.id
+        return None
+
     # --- Territory bonuses ---
 
     @classmethod
     def get_territory_bonuses(cls, player):
+        cls.ensure_weekly_territory_reset()
         member = LegionMember.query.filter_by(player_id=player.id).first()
         if not member:
             return {}
@@ -472,6 +571,18 @@ class BattlefieldService:
         for legion in legions:
             legion.occupied_cities = []
         db.session.commit()
+
+    @classmethod
+    def reset_weekly_points(cls):
+        """清空军团战场积分与个人积分，并重置内存中各城积分状态。"""
+        for legion in Legion.query.all():
+            legion.battle_points = 0
+        for m in LegionMember.query.all():
+            m.personal_battle_points = 0
+        db.session.commit()
+        # 重置内存中 CityState 积分（下次访问会按当天重建空状态）
+        for city_key in BATTLEFIELD_CITIES:
+            cls._cities.pop(city_key, None)
 
     # --- Get battlefield players ---
 

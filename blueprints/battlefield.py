@@ -12,6 +12,7 @@ battlefield_bp = Blueprint('battlefield', __name__)
 @login_required
 def index():
     player = current_user
+    BattlefieldService.tick()
     if player.in_battlefield:
         return redirect(url_for('battlefield.city_view'))
     return render_template("battlefield_index.html",
@@ -20,7 +21,8 @@ def index():
                          tier_token=TIER_TOKEN,
                          tier_name=TIER_NAME,
                          is_war_time=BattlefieldService.is_war_time(),
-                         is_entry_allowed=BattlefieldService.is_entry_allowed())
+                         is_entry_allowed=BattlefieldService.is_entry_allowed(),
+                         test_war=BattlefieldService.get_test_war_status())
 
 
 @battlefield_bp.route("/enter/<city_key>")
@@ -41,6 +43,7 @@ def city_view():
     if not player.in_battlefield:
         return redirect(url_for('battlefield.index'))
 
+    BattlefieldService.tick()
     if BattlefieldService.should_force_exit():
         BattlefieldService.exit_battlefield(player)
         flash("战场已结束，你被传送出战场")

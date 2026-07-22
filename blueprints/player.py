@@ -33,7 +33,7 @@ def character():
     player = current_user
     PlayerService.update_military_rank(player)
     db.session.commit()
-    can_level_up = player.experience >= player.exp_to_next_level
+    can_level_up = PlayerService.can_level_up(player)  # 满级(60)不提示升级
     from services.vip_service import VipService
     from services.achievement_service import AchievementService
     vip_level = VipService.get_active_vip_level(player)
@@ -919,11 +919,19 @@ def learn_skill(npc_id, skill_id):
         flash("已经学习过该技能")
         return redirect(url_for('player.skill_list', npc_id=npc_id, skill_type=skill_type))
 
-    # Learning cost: 1级消耗 = base（与升级公式 cost = base * mult^(level-1) 在 level=1 时一致）
+    # Learning cost: 1级消耗 = base（与升级公式 cost = base + step*(level-1) 在 level=1 时一致）
     exp_base = skill_data.get('upgrade_exp_base', 100)
     gold_base = skill_data.get('upgrade_gold_base', 1000)
-    exp_cost = exp_base
-    gold_cost = gold_base
+    exp_step = skill_data.get('upgrade_exp_step')
+    gold_step = skill_data.get('upgrade_gold_step')
+    if exp_step is not None and gold_step is not None:
+        # 等差递增: 1级 = base
+        exp_cost = exp_base
+        gold_cost = gold_base
+    else:
+        # 几何递增: 1级 = base
+        exp_cost = exp_base
+        gold_cost = gold_base
 
     if player.experience < exp_cost:
         flash(f"经验不足，学习需要{exp_cost}点经验")
@@ -939,7 +947,7 @@ def learn_skill(npc_id, skill_id):
     db.session.commit()
     from services.quest_service import QuestService
     QuestService.update_learn_skill_progress(player)
-    flash(f"成功学习技能【{skill_data['name']}】")
+    flash(f"成功学习技能【{skill_data['name']}】，扣除经验{exp_cost}，扣除银两{gold_cost}")
     return redirect(url_for('player.skill_list', npc_id=npc_id, skill_type=skill_type))
 
 
@@ -968,10 +976,17 @@ def upgrade_skill(npc_id, skill_id):
     next_level = ps.skill_level + 1
     exp_base = skill_data.get('upgrade_exp_base', 100)
     gold_base = skill_data.get('upgrade_gold_base', 1000)
-    mult = skill_data.get('upgrade_cost_multiplier', 2.2)
-    # 几何递增: 1级=base, 2级=base*mult, 3级=base*mult^2 ... next_level 级 = base*mult^(next_level-1)
-    exp_cost = int(exp_base * (mult ** (next_level - 1)))
-    gold_cost = int(gold_base * (mult ** (next_level - 1)))
+    exp_step = skill_data.get('upgrade_exp_step')
+    gold_step = skill_data.get('upgrade_gold_step')
+    if exp_step is not None and gold_step is not None:
+        # 等差递增: next_level级 = base + step*(next_level-1)
+        exp_cost = exp_base + exp_step * (next_level - 1)
+        gold_cost = gold_base + gold_step * (next_level - 1)
+    else:
+        mult = skill_data.get('upgrade_cost_multiplier', 2.2)
+        # 几何递增: 1级=base, 2级=base*mult, 3级=base*mult^2 ... next_level 级 = base*mult^(next_level-1)
+        exp_cost = int(exp_base * (mult ** (next_level - 1)))
+        gold_cost = int(gold_base * (mult ** (next_level - 1)))
 
     if player.experience < exp_cost:
         flash(f"经验不足，需要{exp_cost}点经验")
@@ -985,7 +1000,7 @@ def upgrade_skill(npc_id, skill_id):
     player.gold -= gold_cost
     ps.skill_level += 1
     db.session.commit()
-    flash(f"成功将【{skill_data['name']}】升级到{ps.skill_level}级")
+    flash(f"成功将【{skill_data['name']}】升级到{ps.skill_level}级，扣除经验{exp_cost}，扣除银两{gold_cost}")
     return redirect(url_for('player.skill_list', npc_id=npc_id, skill_type=skill_type))
 
 

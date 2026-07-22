@@ -6,6 +6,8 @@ from models.relationship import Relationship
 from services import db
 from services.data_service import DataService
 from services.social_service import SocialService
+from services.legion_service import LegionService
+from services.party_service import PartyService
 
 social_bp = Blueprint('social', __name__)
 
@@ -265,29 +267,74 @@ def spouse_teleport():
 
 # --- Chat ---
 
+def _fmt_notif_time(t):
+    """把通知存储的时间字符串 'YYYY-MM-DD HH:MM' 格式化为 'H:MM'(去前导零)。"""
+    try:
+        dt = datetime.strptime(t, '%Y-%m-%d %H:%M')
+        return f"{dt.hour}:{dt.minute}"
+    except (ValueError, TypeError):
+        return ''
+
+
 @social_bp.route("/chat")
 @login_required
 def chat():
     player = current_user
     tab = request.args.get('tab', 'public')
+    page = request.args.get('page', 1, type=int)
+    per_page = 20
+
+    messages = []
+    total = 0
+    context = {}
 
     if tab == 'country':
-        messages = SocialService.get_country_messages(player.country, 20)
+        messages = SocialService.get_country_messages(player.country, per_page)
+        total = len(messages)
     elif tab == 'system':
-        messages = SocialService.get_system_messages(player.id, 20)
+        # 仅全局系统播报(receiver_id 为 NULL)，个人通知不再混入系统频道
+        messages = SocialService.get_system_messages(None, per_page)
+        total = len(messages)
     elif tab == 'private':
-        messages = SocialService.get_private_messages(player.id, None, 20)
+        messages = SocialService.get_private_messages(player.id, None, per_page)
+        total = len(messages)
+    elif tab == 'legion':
+        context['in_legion'] = LegionService.get_player_member(player) is not None
+        messages, total = LegionService.get_messages(player, page=page, per_page=per_page)
+    elif tab == 'team':
+        context['in_party'] = PartyService.get_player_party(player) is not None
+        messages, total = PartyService.get_party_messages(player, page=page, per_page=per_page)
+    elif tab == 'notification':
+        # 通知频道：展示后刷新即清空
+        all_notifs = player.notifications
+        total = len(all_notifs)
+        start = (page - 1) * per_page
+        paged = all_notifs[start:start + per_page]
+        messages = [{
+            'content': n.get('message', ''),
+            'time': _fmt_notif_time(n.get('time', '')),
+        } for n in paged]
+        # 刷新即取消：第1页读取后清空通知（翻页时已清空则跳过）
+        if page == 1 and all_notifs:
+            player.notifications = []
+            db.session.commit()
     else:
-        messages = SocialService.get_public_messages(20)
+        messages = SocialService.get_public_messages(per_page)
+        total = len(messages)
 
-    notifications = player.notifications[:5]
+    total_pages = (total + per_page - 1) // per_page if total else 1
+
     return render_template("chat.html",
                          player=player,
                          messages=messages,
-                         notifications=notifications,
                          tab=tab,
+                         page=page,
+                         per_page=per_page,
+                         total=total,
+                         total_pages=total_pages,
                          now=datetime.now(),
-                         timedelta=timedelta)
+                         timedelta=timedelta,
+                         **context)
 
 
 @social_bp.route("/send_message", methods=["POST"])
@@ -309,6 +356,18 @@ def send_message():
     elif tab == 'country':
         SocialService.send_country_message(player, content)
         flash("发言成功")
+    elif tab == 'legion':
+        success, err = LegionService.send_message(player, content)
+        if not success:
+            flash(err)
+        else:
+            flash("发言成功")
+    elif tab == 'team':
+        success, err = PartyService.send_party_message(player, content)
+        if not success:
+            flash(err)
+        else:
+            flash("发言成功")
     return redirect(url_for("social.chat", tab=tab))
 
 

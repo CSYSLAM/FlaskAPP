@@ -3,9 +3,11 @@ from flask_login import login_required, current_user
 from services import db
 from services.data_service import DataService
 from services.player_service import PlayerService
+from services.battlefield_service import BattlefieldService
 from models.player import PlayerModel
 import json
 import os
+import time
 import random as _random
 
 workbench_bp = Blueprint('workbench', __name__)
@@ -522,6 +524,39 @@ def announce():
             flash("公告内容不能为空")
 
     return render_template("workbench/announce.html")
+
+
+# ═══════════════════════════════════════════════════════════
+# Battlefield Test System (军团战测试系统)
+# ═══════════════════════════════════════════════════════════
+
+@workbench_bp.route("/battlefield_test", methods=["GET", "POST"])
+@login_required
+def battlefield_test():
+    if not _require_designer():
+        return redirect(url_for('game.scene'))
+
+    msg = None
+    if request.method == "POST":
+        action = request.form.get("action")
+        if action == "start":
+            # 清除各军团团战加成，开启10分钟测试战，结束后自动按积分占领
+            BattlefieldService.reset_territories()
+            BattlefieldService.TEST_WAR_ACTIVE = True
+            BattlefieldService.TEST_WAR_START = time.time()
+            msg = "军团战测试已开启：已清除各军团团战加成，战场入口开放10分钟，结束后自动按积分占领城市。"
+        elif action == "reset":
+            # 测试期间重置领地（团战加成失效）
+            BattlefieldService.reset_territories()
+            BattlefieldService.TEST_WAR_ACTIVE = False
+            msg = "已重置所有领地占领（团战加成失效）。"
+        elif action == "stop":
+            BattlefieldService.TEST_WAR_ACTIVE = False
+            BattlefieldService._end_test_war()
+            msg = "已结束测试战并强制清场（存活玩家被传出战场）。"
+
+    status = BattlefieldService.get_test_war_status()
+    return render_template("workbench/battlefield_test.html", msg=msg, status=status)
 
 
 # ═══════════════════════════════════════════════════════════

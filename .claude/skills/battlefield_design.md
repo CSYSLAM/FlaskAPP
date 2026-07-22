@@ -4,7 +4,7 @@
 
 ## 一、概述
 
-前缀 `/battlefield`（blueprint `battlefield`，注册名 `'battlefield'`）。玩家消耗对应段位的**战场令旗**进入某城，与**异国、非同军团**玩家战斗，击杀获得：个人段位荣誉、个人团战积分（`personal_battle_points`）、军团积分（`battle_points`）。占领城市由军团长操作，给全军团成员提供固定属性加成。
+前缀 `/battlefield`（blueprint `battlefield`，注册名 `'battlefield'`）。玩家消耗对应段位的**战场令旗**进入某城，与**异国、非同军团**玩家战斗，击杀获得：个人团战积分（`personal_battle_points`）、军团积分（`battle_points`）。**战场击杀不转移荣誉/银两/经验**（有意设计，与野外 PK 的荣誉分档无关）。占领城市由军团长操作，给全军团成员提供固定属性加成。
 城市与段位**硬编码**于 `services/battlefield_service.py:13`（`BATTLEFIELD_CITIES`、`TIER_*`），不在 data/ 或 game_config.json。
 
 ## 二、关键文件
@@ -12,11 +12,11 @@
 | 文件 | 内容 |
 |------|------|
 | `blueprints/battlefield.py` | 全部战场路由 |
-| `services/battlefield_service.py` | `BattlefieldService` + `CityState`（内存态）；`BATTLEFIELD_CITIES`、`TIER_HONOR/POINTS/BONUS/TOKEN/NAME`；进入/攻击/击杀/复活/排行/结算/占领/领土加成 |
+| `services/battlefield_service.py` | `BattlefieldService` + `CityState`（内存态）；`BATTLEFIELD_CITIES`、`TIER_POINTS/BONUS/TOKEN/NAME`；进入/攻击/击杀/复活/排行/结算/占领/领土加成 |
 | `models/legion.py` | `Legion.occupied_cities`（占领城市，JSON）、`Legion.battle_points`、`LegionMember.personal_battle_points` |
 | `models/player.py` | `in_battlefield`、`battlefield_city`、`battlefield_death_time`、`in_pk`、`pk_opponent`、`honor`、`last_attack_time` 等 |
 | `services/legion_service.py` | 军团侧 `occupy_city`/`get_claimable_cities` 转发、兑换（见 legion_design.md） |
-| `services/player_service.py` | 领土加成 `get_territory_bonuses` 叠加于属性 flat 段（line 142、172、202、228） |
+| `services/player_service.py` | 领土加成 `get_territory_bonuses` 叠加于属性 flat 段（line 152、182、212、238） |
 
 ## 三、路由（前缀 `/battlefield`）
 
@@ -40,7 +40,6 @@
 ### 1. 城市与段位（`battlefield_service.py:13`）
 - 低级 `basic`（蜀/魏/吴各 3 城，限本国进入）、中级 `mid`（江陵/下邳/汉中，中立）、高级 `high`（洛阳，中立）。
 - 段位映射（同一城市三套数值，均随段位 1/2/3）：
-  - `TIER_HONOR`：击杀转移荣誉数（basic1/mid2/high3）。
   - `TIER_POINTS`：个人/军团积分（basic1/mid2/high3）。
   - `TIER_BONUS`：占领后给成员的固定加成（basic1/mid2/high3）。
   - `TIER_TOKEN`：进入所需令旗（basic→`battle_flag_1`、mid→`battle_flag_2`、high→`battle_flag_3`）。
@@ -66,10 +65,10 @@
 
 ### 5. 击杀结算（`_handle_battlefield_kill`，battlefield_service.py:280）
 - **个人团战积分**：`personal_battle_points += TIER_POINTS[tier]`。
-- **荣誉零和转移**：`honor_gained = min(TIER_HONOR[tier], defender.honor)`；攻方 `+honor_gained`、守方 `-honor_gained`（受守方荣誉余额上限）。随后双方 `update_military_rank`。
+- **荣誉不转移**（有意设计）：战场击杀仅结算积分，不转移荣誉/银两/经验，与野外 PK 的荣誉分档无关。仍调双方 `update_military_rank`（荣誉未变通常不触发军衔变动）。
 - **军团积分**：该城 `legion_scores[legion_id] += TIER_POINTS[tier]`（内存）+ `Legion.battle_points += TIER_POINTS[tier]`（持久化）。
 - 写入 `player_scores`、`kill_log`（保留最近 20 条）。
-- 守方进入死亡态：`battlefield_death_time = time.time()`，清 PK 态。
+- 守方进入死亡态：`battlefield_death_time = time.time()`，清 PK 态。无续命灯立即 `force_death_exit` 传出战场；有灯留 15 秒原地复活窗口，超时由 `tick` 清扫强退（见 §六）。
 
 ### 6. 死亡与复活（`can_revive_in_battlefield`/`revive_in_battlefield`，battlefield_service.py:342/349）
 - 死亡后 **15 秒**内可复活（`can_revive_in_battlefield`：距死亡时间 ≤15 秒）。
@@ -82,25 +81,32 @@
 ### 8. 排行（`get_city_rankings`，battlefield_service.py:371）
 - 玩家榜前 10（按 `player_scores`）、军团榜前 5（按 `legion_scores`），均只列分数 >0。当前 `rankings` 路由汇总所有城市。
 
-### 9. 占领与结算（`settle_war`/`occupy_city`/`get_claimable_cities`，battlefield_service.py:398/408/432）
-- 城内积分最高军团写入 `state.winner_legion_id`（由 `settle_war` 计算）。
-- `occupy_city`：仅**军团长**；须 `winner_legion_id == 本军团`；写入 `Legion.occupied_cities`（去重）。
-- `get_territory_bonuses`（battlefield_service.py:446）：每座已占城给成员 attack/defense/max_health/max_mana 各 +`TIER_BONUS`（固定值，flat 段叠加）。
-- `reset_territories`：清空所有军团占领（未接路由）。
+### 9. 占领与结算（`_settle_city`/`occupy_city`/`get_claimable_cities`，battlefield_service.py:398/413/437）
+- **惰性结算**（2e97abf 后）：`_settle_city`（:398）按城内 `legion_scores` 实时取最高分军团写入 `state.winner_legion_id`；领土战**没有独立的结束触发器**，改由占领/领取操作按需调用 `_settle_city`，因此占领链路实际可用。
+- `occupy_city`（:413）：仅**军团长**；调用 `_settle_city` 后校验 `winner_legion_id == 本军团`，写入 `Legion.occupied_cities`（**仅对本军团自己的占领列表去重，无全局归属表**，见 §六）。
+- `get_claimable_cities`（:437）：遍历全部城市惰性结算，返回"本军团是当日榜首且尚未被自己占领"的城市。
+- `settle_war`（:408，全城市遍历结算）与 `reset_territories`（:470，清空所有占领）均为**死代码**，全仓库无调用方。
+- `get_territory_bonuses`（:451）：每座已占城给成员 attack/defense/max_health/max_mana 各 +`TIER_BONUS`（固定值，flat 段叠加）。
 
 ## 五、数据文件/配置
 
 - 城市/段位完全硬编码于 `services/battlefield_service.py:13-40`，**不在 data/ 或 game_config.json**。
 - 消耗物：`battle_flag_1/2/3`（战场令旗，按段位）、`battle_revive_lamp`（战场续命灯）。
 - 积分兑换的产出物品（令旗、强效秘药、鸳鸯剑图纸等）见 `legion_service.py` 的 `BATTLE_EXCHANGE` 与 `data/items.json`。
-- 占领结果持久化于 `Legion.occupied_cities_raw`（JSON），积分持久化于 `Legion.battle_points` / `LegionMember.personal_battle_points`；但**内存态 `CityState`（含 `winner_legion_id`、`legion_scores`）随服务器重启清空**。
+- 占领结果持久化于 `Legion.occupied_cities_raw`（JSON），积分持久化于 `Legion.battle_points` / `LegionMember.personal_battle_points`；但**内存态 `CityState`（含 `winner_legion_id`、`legion_scores`、`kill_log`）既随服务器重启清空，也按自然日重置**（`_ensure_city` :93 发现 `war_date != today` 即重建该城状态）。
 
 ## 六、注意事项/坑
 
-- **占领链路未闭合**：`settle_war()` 全代码**从未被调用**（`should_force_exit` 仅退出不结算），故 `state.winner_legion_id` 永远为空，`get_claimable_cities` 恒空、`/legion/occupy` 恒报“未赢得该城市”。当前仅能在战斗中累积 `personal_battle_points`/`battle_points`，但**无法实际占领城市**。若启用领土，须接入 `settle_war` 调用（建议在战争结束时触发）。
-- 战场属性加成（领土）是**固定值**叠加在 flat 段；而个人攻击里 `party_rate`/`social_rate`/`spouse_rate`/`vip_rate` 是乘区比率——叠加位置不同（player_service.py:146）。
-- `in_battlefield` 与 `in_pk` 互相排斥：进战场会清 PK 态；战场攻击不受野外 PK 的 25 级/安全区/频率限制约束——**战场是独立 PvP 系统，不适用 `pk_combat_design.md` 的荣誉分档/银两转移/免战/仇敌规则**。
-- 测试模式 `TESTING_MODE=True` 下全天开放且无强制退出；生产逻辑（周六 20:00-20:30）已写好但未启用。
+- **占领链路已闭合（惰性结算）**：早期版本 `settle_war()` 从未被调用导致无法占领；后 `occupy_city`/`get_claimable_cities` 内部调用 `_settle_city` 按需结算，**只要本军团是某城积分榜第一，团长即可在 `/legion/territory` 页面占领**。
+- **同城唯一归属（已修）**：`occupy_city` 调 `_set_city_owner` 遍历所有军团，清除其它军团的同名占领后再写入本军团，全局唯一归属成立；`get_claimable_cities` 的漏判由 `_set_city_owner` 兜底剥夺。
+- **胜者持久化回退（已修）**：`_settle_city` 内存 `legion_scores` 为空（跨天/重启清零）时回退到持久化 `Legion.battle_points` 降序取首，占领不再依赖易失内存。
+- **赛季周重置（已修）**：`ensure_weekly_territory_reset` 周六 0 点清空所有占领 + `reset_weekly_points` 清 `battle_points`/`personal_battle_points`/内存 CityState，待本周团战后再占领；`tick()`/`get_territory_bonuses` 触发。
+- **攻方阵亡检查（已修）**：`can_attack_in_battlefield` 开头加 `attacker.health<=0 or attacker.battlefield_death_time>0` 守卫，阵亡攻方无法再 POST 攻击。2 秒攻击冷却仍在路由层（`last_attack_time`，与 PvE 共用）。
+- **换城白嫖满血满蓝（已修）**：`can_enter_city` 加 `player.in_battlefield` 检查，已在 A 城须先离开才能进 B 城。
+- **死亡清场（已修）**：被击杀无续命灯立即 `force_death_exit`；有灯留 15 秒复活窗口，`tick()` 对超 15 秒的死亡态玩家被动 `force_death_exit` 清扫，避免离线/不复活玩家永久滞留 `in_battlefield`。
+- 战场属性加成（领土）是**固定值**叠加在 flat 段；而个人攻击里 `party_rate`/`social_rate`/`spouse_rate`/`vip_rate` 是乘区比率——叠加位置不同（player_service.py:156）。数值上领土加成（7 城全占约 +12 四维）远小于军团技能（20 级 +300 攻/+3000 血），更多是荣誉象征。
+- `in_battlefield` 与 `in_pk` 互相排斥：进战场会清 PK 态；战场攻击不受野外 PK 的 25 级/安全区/频率限制约束——**战场是独立 PvP 系统，战败不转移荣誉/银两/经验，不适用 `pk_combat_design.md` 的荣誉分档/银两转移/免战/仇敌规则**。
+- 测试模式 `TESTING_MODE=True` 下全天开放且无强制退出；生产逻辑（周六 20:00-20:30）已写好但未启用。工作台 `/workbench/battlefield_test` 可由设计师开启 10 分钟测试战（清加成→开放→结束自动按积分占领），模板 `battlefield_index.html` 展示周六文案。
 
 ## 七、相关文档
 

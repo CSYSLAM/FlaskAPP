@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>军团战测试</title>
+    <style>
+        body { font-size: 16px; margin: 0; line-height: 1.8; }
+        a:link { color: #136ec2; text-decoration: none; }
+        .container { margin: 10px; }
+        h3 { margin: 10px 0 5px 0; }
+        .warn { color: #b00; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>军团战测试</h3>
+    <a href="{{ url_for('workbench.index') }}">返回工作台</a><br/><br/>
+
+    {% if msg %}
+    {{ msg }}<br/><br/>
+    {% endif %}
+
+    当前状态：
+    {% if status.active %}
+        <span class="warn">测试战进行中（剩余约 {{ status.remaining }} 秒）</span>
+    {% else %}
+        未开启测试战
+    {% endif %}
+    <br/><br/>
+
+    <form method="post">
+        <button type="submit" name="action" value="start">开启军团战测试（清除加成+开放10分钟）</button><br/><br/>
+        <button type="submit" name="action" value="reset">重置领地（团战加成失效）</button><br/><br/>
+        <button type="submit" name="action" value="stop">结束测试战并强制清场</button>
+    </form>
+    <br/>
+
+    说明：<br/>
+    - 开启测试：立即清除各军团的团战加成（领地占领），战场入口开放 10 分钟，结束后按各城积分最高军团自动占领。<br/>
+    - 重置领地：测试期间可随时清除所有领地占领（团战加成失效）。<br/>
+    - 结束测试战：关闭入口、把仍停留在战场的玩家强制传出、并按积分自动占领城市。
+</div>
+</body>
+</html>

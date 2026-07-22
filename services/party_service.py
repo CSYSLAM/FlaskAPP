@@ -1,5 +1,6 @@
 import time
 from services import db
+from models.player import PartyChat
 
 
 MAX_PARTY_SIZE = 5
@@ -80,6 +81,42 @@ class PartyService:
             player.party_id = None
             db.session.commit()
         return None
+
+    # --- Party chat (队伍聊天) ---
+
+    @classmethod
+    def send_party_message(cls, player, content):
+        """Send a message in the player's current party chat."""
+        party = cls.get_player_party(player)
+        if not party:
+            return False, "你不在任何队伍中"
+
+        content = content.strip()[:30]
+        if not content:
+            return False, "消息不能为空"
+
+        msg = PartyChat(
+            party_id=party.party_id,
+            sender_id=player.id,
+            sender_name=player.nickname,
+            content=content,
+        )
+        db.session.add(msg)
+        db.session.commit()
+        return True, "发送成功"
+
+    @classmethod
+    def get_party_messages(cls, player, page=1, per_page=20):
+        """Get party chat messages for the player's current party."""
+        party = cls.get_player_party(player)
+        if not party:
+            return [], 0
+
+        query = PartyChat.query.filter_by(party_id=party.party_id)
+        total = query.count()
+        messages = query.order_by(PartyChat.created_at.desc()).offset(
+            (page - 1) * per_page).limit(per_page).all()
+        return messages, total
 
     @classmethod
     def leave_party(cls, player):

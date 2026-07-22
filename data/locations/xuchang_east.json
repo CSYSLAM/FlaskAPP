@@ -1,5 +1,6 @@
 {
   "name": "许昌东区",
+  "can_pk": true,
   "scenes": {
     "东城楼": {
       "name": "东城楼",

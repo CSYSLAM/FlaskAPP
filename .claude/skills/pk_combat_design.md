@@ -70,7 +70,7 @@
 - 赎金券 `redemption_ticket` 不参与掉落（防循环）。
 - 状态机惰性推进（`LostItemLifecycle.run()`，访问失物招领页时触发），无后台定时任务。
 
-> **战场**（`battlefield_service`）是独立系统：按段位 `TIER_HONOR` 零和转荣誉 + 战斗积分，不适用本规则。
+> **战场**（`battlefield_service`）是独立系统：击杀仅结算战斗积分，**不转移荣誉/银两/经验**（有意设计），不适用本规则。
 
 ## 三、被怪击杀惩罚（`_apply_pve_death_penalty`）
 

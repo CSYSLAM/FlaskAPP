@@ -1,5 +1,6 @@
 {
   "name": "晋阳北区",
+  "can_pk": true,
   "scenes": {
     "北门": {
       "name": "北门",

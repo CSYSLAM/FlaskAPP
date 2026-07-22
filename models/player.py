@@ -1003,6 +1003,20 @@ class ChatMessage(db.Model):
     receiver = db.relationship('PlayerModel', foreign_keys=[receiver_id])
 
 
+class PartyChat(db.Model):
+    """队伍聊天消息（持久化，按 party_id 存储）。"""
+    __tablename__ = 'party_chats'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    party_id = db.Column(db.Integer, nullable=False, index=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    sender_name = db.Column(db.String(64), nullable=False)
+    content = db.Column(db.String(256), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    sender = db.relationship('PlayerModel')
+
+
 class Achievement(db.Model):
     __tablename__ = 'achievements'
 

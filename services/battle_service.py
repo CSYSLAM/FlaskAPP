@@ -1347,6 +1347,52 @@ class BattleService:
         return True, None
 
     @classmethod
+    def pk_use_potion(cls, player, item_id):
+        """PK中使用药品：仅对自己生效(回血/回蓝/增益)，不触发对手反击。"""
+        from services.item_service import ItemService
+        item_data = DataService.get_item(item_id)
+        if not item_data:
+            return None, "物品数据异常"
+        if not item_data.get("is_usable", True):
+            return None, "该物品不可使用"
+
+        # 生命/魔法已满时用药纯属浪费，提前拦截(不消耗药品)
+        _ue = item_data.get("usage_effect", {}) or {}
+        _sc = list(_ue.get("stat_changes", {}).keys()) + list(_ue.get("stat_changes_rng", {}).keys())
+        _restores = [s for s in _sc if s in ("health", "mana")]
+        _has_other = any(s not in ("health", "mana") for s in _sc)
+        if _restores and not _has_other:
+            _full = True
+            _mh = player.effective_max_health
+            if "health" in _restores and _mh and player.health < _mh:
+                _full = False
+            _mm = player.effective_max_mana
+            if "mana" in _restores and _mm and player.mana < _mm:
+                _full = False
+            if _full:
+                return None, "生命/魔法已满，无需使用药品"
+
+        hp_before = player.health
+        mp_before = player.mana
+        success, msg = ItemService.use_item(player, item_id)
+        potion_name = item_data.get("name", item_id)
+        if not success:
+            player.last_action = f"*使用[{potion_name}]失败:{msg}"
+            db.session.commit()
+            return None, msg
+
+        heal = player.health - hp_before
+        mana_restore = player.mana - mp_before
+        log = f"*你使用[{potion_name}]"
+        if heal > 0:
+            log += f",回复{heal}生命"
+        if mana_restore > 0:
+            log += f",回复{mana_restore}魔法"
+        player.last_action = log
+        db.session.commit()
+        return None, None
+
+    @classmethod
     def pk_attack(cls, attacker, defender):
         if not attacker.in_pk or attacker.pk_opponent != defender.username:
             return None, "PK状态异常"
@@ -1550,7 +1596,7 @@ class BattleService:
         exp_loss = int((player.experience or 0) * 0.1)
         gold_loss = min(player.gold or 0, (monster.level if monster else 0) * 1)
         if exp_loss:
-            player.experience = (player.experience or 0) - exp_loss
+            player.experience = max(0, (player.experience or 0) - exp_loss)  # 经验不为负(储存上限=60级升级所需经验)
         if gold_loss:
             player.gold = (player.gold or 0) - gold_loss
         return exp_loss, gold_loss

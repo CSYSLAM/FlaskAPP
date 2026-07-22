@@ -249,6 +249,17 @@ def use_potion(item_id):
 @login_required
 def flee():
     player = current_user
+    # PK 中撤退：直接结束 PK（双方解除状态）
+    if player.in_pk and player.pk_opponent:
+        opponent = DataService.get_player_by_username(player.pk_opponent)
+        if opponent:
+            BattleService._end_pk(player, opponent)
+        else:
+            player.in_pk = False
+            player.pk_opponent = None
+        db.session.commit()
+        flash("你退出了PK")
+        return redirect(url_for("game.scene"))
     success, msg = BattleService.flee(player)
     if not success and "被击败" in msg:
         return redirect(url_for("battle.revive"))
@@ -263,9 +274,13 @@ def flee():
 @battle_bp.route("/shortcuts/")
 @login_required
 def shortcuts():
+    player = current_user
+    is_pk = bool(player.in_pk and player.pk_opponent)
     return render_template("shortcuts.html",
-                         player=current_user,
-                         DataService=DataService)
+                         player=player,
+                         DataService=DataService,
+                         is_pk=is_pk,
+                         opponent=player.pk_opponent if is_pk else None)
 
 
 @battle_bp.route("/set_shortcut", methods=["POST"])
@@ -300,12 +315,14 @@ def set_shortcut():
 
     player.set_shortcuts(shortcuts)
     db.session.commit()
+    if player.in_pk and player.pk_opponent:
+        return redirect(url_for('battle.pk_battle', opponent=player.pk_opponent))
     return redirect(url_for('battle.battle'))
 
 
 # --- PK ---
 
-@battle_bp.route("/start_pk/<username>", methods=["POST"])
+@battle_bp.route("/start_pk/<username>", methods=["GET", "POST"])
 @login_required
 def start_pk(username):
     player = current_user
@@ -353,6 +370,8 @@ def pk_battle(opponent):
                          monster=opponent_player,
                          is_pk=True,
                          remaining=remaining,
+                         lieutenant=None,
+                         DataService=DataService,
                          participants=0,
                          now=datetime.now())
 
@@ -448,6 +467,40 @@ def pk_use_skill(opponent, skill_id):
         result, error = BattleService.pk_attack(player, target)
     else:
         result, error = BattleService.pk_use_skill(player, target, skill_id)
+
+    if result:
+        player.last_battle_result = result
+        return redirect(url_for('battle.battle_result'))
+
+    if error:
+        flash(error)
+    return redirect(url_for('battle.pk_battle', opponent=opponent))
+
+
+@battle_bp.route("/pk_use_potion/<opponent>/<item_id>")
+@login_required
+def pk_use_potion(opponent, item_id):
+    """GET 版 PK 使用药品（供战斗界面药键链接调用）。"""
+    player = current_user
+    if not player.in_pk or player.pk_opponent != opponent:
+        return redirect(url_for('game.scene'))
+
+    target = DataService.get_player_by_username(opponent)
+    if not target:
+        player.in_pk = False
+        player.pk_opponent = None
+        db.session.commit()
+        flash("对方玩家数据未找到")
+        return redirect(url_for('game.scene'))
+
+    current_time = time.time()
+    if current_time - player.last_attack_time < 2:
+        remaining = 2 - (current_time - player.last_attack_time)
+        return redirect(url_for('battle.pk_battle',
+                               opponent=opponent, remaining=remaining))
+
+    player.last_attack_time = current_time
+    result, error = BattleService.pk_use_potion(player, item_id)
 
     if result:
         player.last_battle_result = result

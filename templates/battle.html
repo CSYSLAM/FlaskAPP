@@ -19,6 +19,14 @@
     需等待{{ remaining }}秒才能再次攻击<br/>
     {% endif %}
 
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <font color="red">{{ msg }}</font><br/>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     {% for slot in ['skill1', 'skill2', 'skill3', 'skill4'] %}
     {% set sid = player.shortcuts[slot] %}
     {% set sname = '普攻' if sid == 'attack' else (DataService.get_skill(sid)['name'] if DataService.get_skill(sid) else sid) %}
@@ -31,15 +39,17 @@
     <a href="{{ url_for('battle.shortcuts') }}">技键</a>
     <br/>
 
-    {% if not is_pk %}
     {% for pslot in ['potion1', 'potion2'] %}
     {% set pid = player.shortcuts[pslot] %}
     {% if pid and pid in player.inventory %}
+    {% if is_pk %}
+    <a href="{{ url_for('battle.pk_use_potion', opponent=monster.username, item_id=pid) }}">{{ player.inventory[pid].item.name }}</a>
+    {% else %}
     <a href="{{ url_for('battle.use_potion', item_id=pid) }}">{{ player.inventory[pid].item.name }}</a>
+    {% endif %}
     {% endif %}
     {% endfor %}
     <a href="{{ url_for('battle.shortcuts') }}">药键</a>
-    {% endif %}
     <a href="{{ url_for('battle.flee') }}">撤退</a>
     <br/>
 

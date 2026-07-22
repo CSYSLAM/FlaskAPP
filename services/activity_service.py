@@ -4,6 +4,7 @@ import time
 from datetime import datetime, date
 from services import db
 from services.data_service import DataService
+from services.player_service import PlayerService
 
 
 class ActivityService:
@@ -434,19 +435,19 @@ class ActivityService:
         if result == 'win':
             exp_reward = player.level * 100 + 500
             gold_reward = player.level * 50 + 200
-            player.experience += exp_reward
+            PlayerService.gain_experience(player, exp_reward)
             player.gold += gold_reward
             msg = f"你出{choice_map[choice]}，对方出{choice_map[npc_choice]}，你赢了！经验+{exp_reward} 银两+{gold_reward}"
         elif result == 'lose':
             exp_reward = player.level * 50 + 100
             gold_reward = player.level * 10 + 50
-            player.experience += exp_reward
+            PlayerService.gain_experience(player, exp_reward)
             player.gold += gold_reward
             msg = f"你出{choice_map[choice]}，对方出{choice_map[npc_choice]}，你输了！经验+{exp_reward} 银两+{gold_reward}"
         else:
             exp_reward = player.level * 80 + 300
             gold_reward = player.level * 30 + 100
-            player.experience += exp_reward
+            PlayerService.gain_experience(player, exp_reward)
             player.gold += gold_reward
             msg = f"你出{choice_map[choice]}，对方出{choice_map[npc_choice]}，平局！经验+{exp_reward} 银两+{gold_reward}"
 
@@ -485,13 +486,13 @@ class ActivityService:
         if is_correct:
             exp_reward = player.level * 200 + 1000
             gold_reward = player.level * 100 + 500
-            player.experience += exp_reward
+            PlayerService.gain_experience(player, exp_reward)
             player.gold += gold_reward
             msg = f"回答正确！经验+{exp_reward} 银两+{gold_reward}"
         else:
             exp_reward = player.level * 50 + 100
             gold_reward = player.level * 10 + 50
-            player.experience += exp_reward
+            PlayerService.gain_experience(player, exp_reward)
             player.gold += gold_reward
             correct_text = question['options'][ord(question['a']) - ord('A')]
             msg = f"回答错误，正确答案是{correct_text}。经验+{exp_reward} 银两+{gold_reward}"
@@ -548,7 +549,7 @@ class ActivityService:
 
         # Give rewards
         exp_reward = player.level * 500 + 1000
-        player.experience += exp_reward
+        PlayerService.gain_experience(player, exp_reward)
 
         # Add activity points
         activity_points = 2
@@ -644,7 +645,7 @@ class ActivityService:
             player.gold += prize['value']
             return f"获得{prize['value']}银两"
         elif prize.get('type') == 'exp':
-            player.experience += prize['value']
+            PlayerService.gain_experience(player, prize['value'])
             return f"获得{prize['value']}经验"
         elif prize.get('type') == 'yuanbao':
             player.yuanbao += prize['value']
@@ -796,7 +797,7 @@ class ActivityService:
         if task_def['reward_type'] == 'gold':
             player.gold += task_def['reward_amount']
         elif task_def['reward_type'] == 'exp':
-            player.experience += task_def['reward_amount']
+            PlayerService.gain_experience(player, task_def['reward_amount'])
 
         # Mark claimed
         data = player.activity_data

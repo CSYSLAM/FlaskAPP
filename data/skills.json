@@ -13,8 +13,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "瞬间造成巨额伤害",
-      "upgrade_exp_base": 200,
-      "upgrade_gold_base": 3000
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000
     },
     "earth_fire": {
       "name": "地火术",
@@ -29,8 +31,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "造成大量灼烧伤害",
-      "upgrade_exp_base": 150,
-      "upgrade_gold_base": 2000
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000
     },
     "seal_magic": {
       "name": "封魔术",
@@ -45,8 +49,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "30%几率封印敌人法力3回合",
-      "upgrade_exp_base": 180,
-      "upgrade_gold_base": 2500,
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000,
       "effect_type": "silence",
       "effect_chance": 0.3,
       "effect_rounds": 3
@@ -64,8 +70,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "有几率使目标混乱3回合(受击伤害减半)",
-      "upgrade_exp_base": 150,
-      "upgrade_gold_base": 2000,
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000,
       "effect_type": "confuse",
       "effect_chance": 0.3,
       "effect_rounds": 3
@@ -83,8 +91,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "吸取造成伤害的15%转化为生命值",
-      "upgrade_exp_base": 160,
-      "upgrade_gold_base": 2200,
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000,
       "effect_type": "lifesteal",
       "effect_chance": 1.0,
       "effect_value": 0.15
@@ -102,8 +112,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "造成大量伤害",
-      "upgrade_exp_base": 140,
-      "upgrade_gold_base": 1800
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000
     },
     "poison_strike": {
       "name": "毒刃击",
@@ -118,8 +130,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "20%几率使目标流血3回合(每回合atk×20%)",
-      "upgrade_exp_base": 160,
-      "upgrade_gold_base": 2200,
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000,
       "effect_type": "bleed",
       "effect_chance": 0.2,
       "effect_rounds": 3,
@@ -138,8 +152,10 @@
       "hits": 2,
       "max_level": 10,
       "effect_description": "进行两次攻击判定",
-      "upgrade_exp_base": 150,
-      "upgrade_gold_base": 2000
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000
     },
     "pierce": {
       "name": "破甲刺",
@@ -154,8 +170,10 @@
       "hits": 1,
       "max_level": 10,
       "effect_description": "无视目标10%防御",
-      "upgrade_exp_base": 140,
-      "upgrade_gold_base": 1800,
+      "upgrade_exp_base": 3600,
+      "upgrade_gold_base": 16000,
+      "upgrade_exp_step": 3600,
+      "upgrade_gold_step": 16000,
       "pierce_defense_pct": 0.1
     },
     "chaos": {

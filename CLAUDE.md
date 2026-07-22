@@ -131,7 +131,7 @@ Certain items have restricted usage contexts — they **cannot be used from the 
 - **被怪击杀**：扣经验10%+银两(怪级×1)，**死亡时扣**、VIP(`non_pk_loss_exempt`)全免、荣誉不变
 - **复活**：续命灯满血无损/虚弱复活10%血蓝(不扣经验)/回城疗伤(300银两→虚弱复活+本城客栈)
 - **免战符**(`peace_token`)：背包使用→30分钟免疫被发起PK(`activity_data.pk_immunity_until`)
-- **战场**(`battlefield_service`)是独立系统(段位`TIER_HONOR`)，不适用以上规则
+- **战场**(`battlefield_service`)是独立系统(战败不转移荣誉/银两/经验)，不适用以上规则
 
 ## Garden (百草园) System
 

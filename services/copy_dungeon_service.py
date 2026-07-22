@@ -1,5 +1,6 @@
 from services import db
 from services.data_service import DataService
+from services.player_service import PlayerService
 
 
 class CopyDungeonService:
@@ -56,7 +57,7 @@ class CopyDungeonService:
             return
 
         player.gold += reward.get('gold', 0)
-        player.experience += reward.get('experience', 0)
+        PlayerService.gain_experience(player, reward.get('experience', 0))
         for reward_item in reward.get('items', []):
             item_id = reward_item.get('item_id')
             count = reward_item.get('count', 1)

@@ -56,7 +56,11 @@
 
         <button type="submit">保存设置</button>
     </form>
+    {% if is_pk %}
+    <a href="{{ url_for('battle.pk_battle', opponent=opponent) }}">返回战斗</a>
+    {% else %}
     <a href="{{ url_for('battle.battle') }}">返回战斗</a>
+    {% endif %}
 
 <script>
 var aLinks=document.getElementsByTagName("a");

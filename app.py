@@ -513,6 +513,10 @@ def create_app():
 
     @app.errorhandler(Exception)
     def _log_server_error(e):
+        # HTTP 路由错误(404/405 等)按原状态码正常返回，不算服务端 500
+        from werkzeug.exceptions import HTTPException as _HTTPException
+        if isinstance(e, _HTTPException):
+            return e
         try:
             from pathlib import Path as _Path
             import sys as _sys
