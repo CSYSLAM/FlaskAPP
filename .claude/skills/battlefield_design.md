@@ -1,6 +1,6 @@
 # 战场（Battlefield / 领土战）系统设计规则
 
-战场是**军团领土争夺 PvP** 系统：进入城市、攻击/技能攻击、阵亡/复活、退出、排行榜、城市占领与结算、段位积分。与野外 PK（`pk_combat_design.md`）相互独立。
+战场是**军团领土争夺 PvP** 系统：进入城市、攻击/技能攻击、阵亡/复活、退出、排行榜、城市占领与结算、段位积分。**战斗机制（伤害公式/技能/状态效果）与野外 PK 一致**（见 §4），但**奖惩与复活规则独立**——战败不转移荣誉/银两/经验，使用战场续命灯，不受 `pk_combat_design.md` 的荣誉分档/免战/仇敌规则约束。
 
 ## 一、概述
 
@@ -58,10 +58,18 @@
 
 ### 4. 攻击（`can_attack_in_battlefield`/`battlefield_strike`/`battlefield_skill_strike`）
 - 条件：双方都在同一战场、异国（`attacker.country != defender.country`）、非同军团、对方未死亡。
-- 路由层额外有 **2 秒攻击冷却**（`last_attack_time`，blueprints/battlefield.py:94、122）。
-- 普通攻击 `battlefield_strike`（battlefield_service.py:184）：伤害 `max(1, 攻-防)`，暴击 ×1.5（按 `crit_rate`）；闪避按 `dodge_rate`。
-- 技能攻击 `battlefield_skill_strike`（battlefield_service.py:222）：按技能 `damage_rate`/`hits`/`mana_cost` 计算，消耗魔法；伤害公式 `int(攻×damage_rate) - 防` 逐段。
-- 致死时调用 `_handle_battlefield_kill`。
+- 路由层额外有 **2 秒攻击冷却**（`last_attack_time`，blueprints/battlefield.py）。
+- **战斗机制与外部 PK 一致**（复用 `BattleService` 的共享 helper，运行时懒加载避免循环导入）：
+  - 普通攻击 `battlefield_strike`：统一乘法伤害公式 `BattleService._compute_damage(攻, 防, coefficient=1.0)`，暴击 ×1.5（按 `crit_rate`），闪避按 `dodge_rate`；攻方被混乱无法行动，守方被混乱受击伤害减半；每次攻击结算双方流血 `_tick_pk_bleed` + 状态递减 `_tick_player_status`。
+  - 技能攻击 `battlefield_skill_strike`：技能数值按等级成长（`base_damage_rate + damage_rate_per_level×(level-1)`、耗魔 `base_mana_cost + mana_cost_per_level×...`）；支持破甲 `pierce_defense_pct`、多段 `hits` 逐段展示 `_format_hit_list`、技能特效 `_apply_skill_effect`（吸血/混乱/封魔/流血）；攻方被混乱/封魔无法用技。
+  - 状态效果存于玩家列（`status_confuse_rounds`/`status_silence_rounds`/`status_bleed_rounds`/`status_bleed_value`），与外部 PK 共用。
+- 致死时调用 `_handle_battlefield_kill`（仍只结算积分，不转移荣誉/银两/经验，见 §5）。
+
+### 4.1 战场药品（与外部不同）
+- **普通药品在战场无效**：`ItemService.use_item` 拦截——`player.in_battlefield` 且物品无 `battlefield_item` 标记时返回"战场中无法使用该药品，请使用战场专用药品"。
+- **战场专用药品**：`battle_potion_health`(战场金创药,回血)、`battle_potion_mana`(战场凝魔药,回蓝)，items.json 中带 `battlefield_item: true`，金珠/元宝商城"其他"页可购买。
+- 使用入口：路由 `/battlefield/use_potion/<item_id>`（GET，2 秒冷却，满血/满蓝拦截），`battlefield_city.html` 顶部"战场药品"链接。
+
 
 ### 5. 击杀结算（`_handle_battlefield_kill`，battlefield_service.py:280）
 - **个人团战积分**：`personal_battle_points += TIER_POINTS[tier]`。
@@ -105,7 +113,7 @@
 - **换城白嫖满血满蓝（已修）**：`can_enter_city` 加 `player.in_battlefield` 检查，已在 A 城须先离开才能进 B 城。
 - **死亡清场（已修）**：被击杀无续命灯立即 `force_death_exit`；有灯留 15 秒复活窗口，`tick()` 对超 15 秒的死亡态玩家被动 `force_death_exit` 清扫，避免离线/不复活玩家永久滞留 `in_battlefield`。
 - 战场属性加成（领土）是**固定值**叠加在 flat 段；而个人攻击里 `party_rate`/`social_rate`/`spouse_rate`/`vip_rate` 是乘区比率——叠加位置不同（player_service.py:156）。数值上领土加成（7 城全占约 +12 四维）远小于军团技能（20 级 +300 攻/+3000 血），更多是荣誉象征。
-- `in_battlefield` 与 `in_pk` 互相排斥：进战场会清 PK 态；战场攻击不受野外 PK 的 25 级/安全区/频率限制约束——**战场是独立 PvP 系统，战败不转移荣誉/银两/经验，不适用 `pk_combat_design.md` 的荣誉分档/银两转移/免战/仇敌规则**。
+- `in_battlefield` 与 `in_pk` 互相排斥：进战场会清 PK 态；战场攻击不受野外 PK 的 25 级/安全区/频率限制约束——**战斗机制（伤害/技能/状态）与野外 PK 一致（见 §4），但奖惩独立：战败不转移荣誉/银两/经验，不适用 `pk_combat_design.md` 的荣誉分档/银两转移/免战/仇敌规则**。
 - 测试模式 `TESTING_MODE=True` 下全天开放且无强制退出；生产逻辑（周六 20:00-20:30）已写好但未启用。工作台 `/workbench/battlefield_test` 可由设计师开启 10 分钟测试战（清加成→开放→结束自动按积分占领），模板 `battlefield_index.html` 展示周六文案。
 
 ## 七、相关文档

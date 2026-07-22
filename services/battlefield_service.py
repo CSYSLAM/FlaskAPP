@@ -259,34 +259,59 @@ class BattlefieldService:
             return None, error
 
         from services.player_service import PlayerService
+        from services.battle_service import BattleService
+
+        # 攻击方被混乱：无法行动（与外部PK一致）
+        if BattleService._player_is_confused(attacker):
+            attacker.last_action = "混乱中，无法行动"
+            attacker.last_skill = "混乱"
+            attacker.last_damage_dealt = "0(混乱)"
+            defender.last_damage_taken = 0
+            BattleService._tick_pk_bleed(attacker, defender)
+            BattleService._tick_player_status(attacker)
+            BattleService._tick_player_status(defender)
+            if defender.health <= 0:
+                defender.health = 0
+                result = cls._handle_battlefield_kill(attacker, defender)
+                return result, None
+            db.session.commit()
+            return None, "混乱中，无法行动"
+
         atk_power = PlayerService.get_attack(attacker)
         def_power = PlayerService.get_defense(defender)
 
-        if random.random() < defender.dodge_rate:
+        if random.random() >= defender.dodge_rate:
+            # 统一乘法伤害公式（与外部PK一致）
+            damage = BattleService._compute_damage(atk_power, def_power, coefficient=1.0)
+            # 防守方被混乱：受击伤害减半
+            if BattleService._player_is_confused(defender):
+                damage = int(damage * 0.5)
+            is_crit = random.random() <= attacker.crit_rate
+            if is_crit:
+                damage = int(damage * 1.5)
+                attacker.last_damage_dealt = f"{damage}(暴击!)"
+            else:
+                attacker.last_damage_dealt = str(damage)
+            defender.health -= damage
+            defender.last_damage_taken = damage
+        else:
+            damage = 0
             attacker.last_damage_dealt = "闪避"
-            attacker.last_action = f"在战场攻击了{defender.nickname}(闪避)"
-            attacker.last_skill = "普通攻击"
-            db.session.commit()
-            return None, None
+            defender.last_damage_taken = 0
 
-        damage = max(1, atk_power - def_power)
-        is_crit = random.random() <= attacker.crit_rate
-        if is_crit:
-            damage = int(damage * 1.5)
-
-        defender.health -= damage
-        defender.last_damage_taken = damage
-
-        dmg_str = f"{damage}" + ("(暴击!)" if is_crit else "")
-        attacker.last_damage_dealt = dmg_str
         attacker.last_action = f"在战场攻击了{defender.nickname}"
         attacker.last_skill = "普通攻击"
+
+        # 回合结算：双方流血扣血 + 状态递减
+        BattleService._tick_pk_bleed(attacker, defender)
 
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_battlefield_kill(attacker, defender)
             return result, None
 
+        BattleService._tick_player_status(attacker)
+        BattleService._tick_player_status(defender)
         db.session.commit()
         return None, None
 
@@ -297,52 +322,95 @@ class BattlefieldService:
             return None, error
 
         from services.player_service import PlayerService
-        from services.data_service import DataService as DS
-        skills = DS.get_skills()
-        skill = skills.get(skill_id)
-        if not skill:
+        from services.battle_service import BattleService
+        from models.player import PlayerSkill
+
+        # 攻击方被混乱/封魔：无法使用技能（与外部PK一致）
+        if BattleService._player_is_confused(attacker):
+            return None, "混乱中，无法使用技能"
+        if BattleService._player_is_silenced(attacker):
+            return None, "被封印法力，无法使用技能"
+
+        skill_data = DataService.get_skill(skill_id)
+        if not skill_data:
             return None, "技能不存在"
-        player_skills = DS.get_player_skills(attacker.id)
-        if skill_id not in player_skills:
+        if skill_data.get('skill_type') != 'active':
+            return None, "被动技能无法使用"
+
+        ps = PlayerSkill.query.filter_by(
+            player_id=attacker.id, skill_id=skill_id).first()
+        if not ps:
             return None, "未学习该技能"
-        mana_cost = skill.get('mana_cost', 0)
+
+        # 技能数值按等级成长（与外部PK一致）
+        mana_cost = int(round(skill_data["base_mana_cost"] + skill_data.get("mana_cost_per_level", 0) * (ps.skill_level - 1)))
         if attacker.mana < mana_cost:
             return None, "魔法不足"
         attacker.mana -= mana_cost
         attacker.last_mana_cost = mana_cost
+        attacker.last_action = f"在战场对{defender.nickname}使用{skill_data['name']}"
+        attacker.last_skill = skill_data["name"]
 
-        atk_power = PlayerService.get_attack(attacker)
-        def_power = PlayerService.get_defense(defender)
-        damage_rate = skill.get('damage_rate', 1.0)
-        hits = skill.get('hits', 1)
+        damage_rate = skill_data["base_damage_rate"] + skill_data.get("damage_rate_per_level", 0) * (ps.skill_level - 1)
+        # 破甲刺：无视目标部分防御
+        pierce_pct = skill_data.get('pierce_defense_pct', 0)
+        # 防守方被混乱：受击伤害减半
+        defender_confused = BattleService._player_is_confused(defender)
 
+        hits = skill_data.get("hits", 1)
         total_damage = 0
-        for _ in range(hits):
-            if random.random() < defender.dodge_rate:
-                continue
-            d = max(1, int(atk_power * damage_rate) - def_power)
-            if random.random() <= attacker.crit_rate:
-                d = int(d * 1.5)
-            total_damage += d
+        hit_any = False
+        hit_results = []  # 逐段(damage, crit, dodged)，多段技能拆分展示
 
-        if total_damage == 0:
-            attacker.last_damage_dealt = "闪避"
-            attacker.last_action = f"在战场对{defender.nickname}使用{skill.get('name', '')}"
-            attacker.last_skill = skill_id
-            db.session.commit()
-            return None, None
+        for _ in range(hits):
+            atk_power = PlayerService.get_attack(attacker)
+            def_power = PlayerService.get_defense(defender)
+            if pierce_pct > 0:
+                def_power = int(def_power * (1 - pierce_pct))
+            if random.random() >= defender.dodge_rate:
+                hit_any = True
+                damage = BattleService._compute_damage(atk_power, def_power, coefficient=damage_rate)
+                crit = False
+                if defender_confused:
+                    damage = int(damage * 0.5)
+                if random.random() <= attacker.crit_rate:
+                    damage = int(damage * 1.5)
+                    crit = True
+                total_damage += damage
+                hit_results.append((damage, crit, False))
+            else:
+                total_damage += 0
+                hit_results.append((0, False, True))
+
+        if hits > 1:
+            attacker.last_damage_dealt = BattleService._format_hit_list(hit_results)
+        else:
+            attacker.last_damage_dealt = str(total_damage)
 
         defender.health -= total_damage
         defender.last_damage_taken = total_damage
-        attacker.last_damage_dealt = str(total_damage)
-        attacker.last_action = f"在战场对{defender.nickname}使用{skill.get('name', '')}"
-        attacker.last_skill = skill_id
+
+        # 技能特殊效果（命中后才触发：吸血/混乱/封魔/流血等，与外部PK一致）
+        if hit_any and total_damage > 0:
+            atk_for_effect = PlayerService.get_attack(attacker)
+            effect_msg, heal_amount = BattleService._apply_skill_effect(
+                skill_data, atk_for_effect, total_damage, target_player=defender)
+            if heal_amount > 0:
+                max_hp = attacker.effective_max_health
+                attacker.health = min(max_hp, attacker.health + heal_amount)
+            if effect_msg:
+                attacker.last_action += f"[{effect_msg}]"
+
+        # 回合结算：双方流血扣血 + 状态递减
+        BattleService._tick_pk_bleed(attacker, defender)
 
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_battlefield_kill(attacker, defender)
             return result, None
 
+        BattleService._tick_player_status(attacker)
+        BattleService._tick_player_status(defender)
         db.session.commit()
         return None, None
 

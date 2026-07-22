@@ -91,7 +91,7 @@ a:link { color: #136ec2; text-decoration: none; }
 {% if msg.message_type == 'country' %}【{{ player.country }}】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}{% elif msg.message_type == 'private' %}【私聊】{{ msg.sender.nickname if msg.sender else '未知' }}：{{ msg.content }}{% endif %}<br/>
 {% endfor %}
 {% for n in notifications %}
-【通知】{{ n.content|safe }}<br/>
+【通知】{{ n.message|safe }}<br/>
 {% endfor %}
 {% endif %}
 
@@ -255,7 +255,7 @@ a:link { color: #136ec2; text-decoration: none; }
         <a href="{{ url_for('party.index') }}">队伍</a> .<a href="{{ url_for('villa.index') }}">山庄</a> .<a href="{{ url_for('social.social_index') }}">社交</a> .<a href="{{ url_for('social.chat') }}">聊天</a>
     </div>
     <div class="quick-actions-row">
-        <a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a>{% if player.is_designer %} .<a href="{{ url_for('workbench.index') }}">工作台</a>{% endif %}
+        <a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a> .<a href="{{ url_for('market.index') }}">集市</a>{% if player.is_designer %} .<a href="{{ url_for('workbench.index') }}">工作台</a>{% endif %}
     </div>
 </div>
 当前时间：{{ now.strftime('%H:%M') }}<br/>

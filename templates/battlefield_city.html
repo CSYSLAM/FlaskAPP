@@ -30,6 +30,7 @@
     ----------------<br/>
     生命:{{ player.health }}/{{ player.max_health + player.pill_max_health }}<br/>
     魔法:{{ player.mana }}/{{ player.max_mana + player.pill_max_mana }}<br/>
+    战场药品:{% if battle_potions %}{% for bp in battle_potions %}<a href="{{ url_for('battlefield.use_potion', item_id=bp.item_id) }}">{{ bp.name }}({{ bp.quantity }})</a> {% endfor %}{% else %}无(可在金珠商城-其他购买){% endif %}<br/>
     ---<br/>
 
     其他玩家:<br/>
@@ -41,7 +42,7 @@
     </form>
     {% if player_skills %}
     {% for sid, ps in player_skills.items() %}
-    {% if skills.get(sid) %}
+    {% if skills.get(sid) and skills[sid].get('skill_type') == 'active' %}
     <form method="post" action="{{ url_for('battlefield.skill_attack', target_id=p.id, skill_id=sid) }}" style="display:inline">
         <input type="submit" value="{{ skills[sid].get('name', sid) }}"/>
     </form>

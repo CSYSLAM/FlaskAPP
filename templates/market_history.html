@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>交易记录</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .muted { color: #888; font-size: 14px; }
+    .row { padding: 4px 0; border-bottom: 1px dashed #eee; }
+    .tab-active { color: #d00; font-weight: bold; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+交易记录<br/>
+<a href="{{ url_for('market.history', tab='buy') }}" {% if tab=='buy' %}class="tab-active"{% endif %}>我的购买</a>
+.<a href="{{ url_for('market.history', tab='sell') }}" {% if tab=='sell' %}class="tab-active"{% endif %}>我的出售</a><br/>
+<br/>
+
+{% if tab == 'buy' %}
+{% if purchases %}
+{% for t in purchases %}
+<div class="row">
+    {{ t.item_name }}
+    {% if t.is_equipment and t.rarity %}<span class="muted">[{{ t.rarity }}]</span>{% endif %}
+    {% if t.quantity > 1 %}×{{ t.quantity }}{% endif %}
+    单价{{ t.unit_price }} 总额{{ t.total_price }}(含手续费{{ t.buyer_fee }})
+    <span class="muted">卖家：{{ names.get(t.seller_id, '?') }} {{ t.created_at.strftime('%m-%d %H:%M') }}</span>
+</div>
+{% endfor %}
+{% else %}
+暂无购买记录<br/>
+{% endif %}
+
+{% else %}
+{% if sales %}
+{% for t in sales %}
+<div class="row">
+    {{ t.item_name }}
+    {% if t.is_equipment and t.rarity %}<span class="muted">[{{ t.rarity }}]</span>{% endif %}
+    {% if t.quantity > 1 %}×{{ t.quantity }}{% endif %}
+    单价{{ t.unit_price }} 实收{{ t.seller_receive }}
+    <span class="muted">买家：{{ names.get(t.buyer_id, '?') }} {{ t.created_at.strftime('%m-%d %H:%M') }}</span>
+</div>
+{% endfor %}
+{% else %}
+暂无出售记录<br/>
+{% endif %}
+{% endif %}
+<br/>
+
+<a href="{{ url_for('market.history', tab='buy') }}">交易记录</a>
+.<a href="{{ url_for('market.my') }}">我的挂单</a>
+.<a href="{{ url_for('market.index') }}">集市</a>
+.<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

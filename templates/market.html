@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>集市</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .pin-name {
+        background: linear-gradient(90deg, #d4a017, #e64539);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: bold;
+    }
+    .legendary {
+        background: linear-gradient(90deg, #b8860b, #ff8c00);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: bold;
+    }
+    .row { padding: 2px 0; border-bottom: 1px dashed #eee; }
+    .muted { color: #888; font-size: 14px; }
+    input.t { width: 60px; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+集市 银两:{{ player.gold }}<br/>
+<br/>
+分类：
+<a href="{{ url_for('market.index', category='全部', sort=sort, search=search) }}">全部</a>
+.<a href="{{ url_for('market.index', category='材料', sort=sort, search=search) }}">材料</a>
+.<a href="{{ url_for('market.index', category='药品', sort=sort, search=search) }}">药品</a>
+.<a href="{{ url_for('market.index', category='消耗品', sort=sort, search=search) }}">消耗品</a>
+.<a href="{{ url_for('market.index', category='装备', sort=sort, search=search) }}">装备</a>
+.<a href="{{ url_for('market.index', category='宝箱', sort=sort, search=search) }}">宝箱</a>
+.<a href="{{ url_for('market.index', category='其他', sort=sort, search=search) }}">其他</a>
+<br/>
+排序：
+<a href="{{ url_for('market.index', category=category, sort='new', search=search) }}">最新</a>
+.<a href="{{ url_for('market.index', category=category, sort='price_asc', search=search) }}">价格↑</a>
+.<a href="{{ url_for('market.index', category=category, sort='price_desc', search=search) }}">价格↓</a>
+.<a href="{{ url_for('market.index', category=category, sort='rarity', search=search) }}">稀有度</a>
+<br/>
+<form action="{{ url_for('market.index') }}" method="get" style="display:inline;">
+    <input type="hidden" name="category" value="{{ category }}">
+    <input type="hidden" name="sort" value="{{ sort }}">
+    <input type="text" name="search" value="{{ search }}" placeholder="搜索物品名" style="width:140px;">
+    <input type="submit" value="搜索">
+</form>
+<br/>
+<br/>
+
+{% if pinned %}
+--- 置顶 ---<br/>
+{% for l in pinned %}
+<div class="row">
+    <span class="pin-name">{{ l.item_name }}</span>
+    {% if l.is_equipment and l.rarity %}<span class="muted">[{{ l.rarity }}]</span>{% endif %}
+    单价{{ l.unit_price }}
+    {% if not l.is_equipment and l.quantity > 1 %}×{{ l.quantity }}{% endif %}
+    <a href="{{ url_for('market.view', listing_id=l.id) }}">查看</a>
+    <span class="muted">卖家:{{ l.seller_name }}</span>
+</div>
+{% endfor %}
+<br/>
+{% endif %}
+
+{% if listings %}
+--- 挂单(共{{ total }}) ---<br/>
+{% for l in listings %}
+<div class="row">
+    {{ l.item_name }}
+    {% if l.is_equipment and l.rarity %}<span class="muted">[{{ l.rarity }}]</span>{% endif %}
+    单价{{ l.unit_price }}
+    {% if not l.is_equipment and l.quantity > 1 %}×{{ l.quantity }}{% endif %}
+    <a href="{{ url_for('market.view', listing_id=l.id) }}">查看/购买</a>
+    <span class="muted">卖家:{{ l.seller_name }}</span>
+</div>
+{% endfor %}
+<br/>
+{% if total_pages > 1 %}
+{% if page > 1 %}<a href="{{ url_for('market.index', category=category, sort=sort, search=search, page=page-1) }}">上一页</a>{% else %}上一页{% endif %}
+第{{ page }}/{{ total_pages }}页
+{% if page < total_pages %}<a href="{{ url_for('market.index', category=category, sort=sort, search=search, page=page+1) }}">下一页</a>{% else %}下一页{% endif %}
+{% endif %}
+{% else %}
+暂无挂单<br/>
+{% endif %}
+<br/>
+<a href="{{ url_for('market.list_form') }}">我要上架</a>
+.<a href="{{ url_for('market.my') }}">我的挂单</a>
+.<a href="{{ url_for('market.history') }}">交易记录</a>
+.<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+当前时间：<span id="time"></span>
+<script>
+var d = new Date();
+document.getElementById('time').textContent =
+    ('0'+d.getHours()).slice(-2) + ':' + ('0'+d.getMinutes()).slice(-2);
+</script>
+</body>
+</html>

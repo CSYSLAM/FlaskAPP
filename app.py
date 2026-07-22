@@ -233,6 +233,7 @@ def create_app():
     from blueprints.legion import legion_bp
     from blueprints.battlefield import battlefield_bp
     from blueprints.party import party_bp
+    from blueprints.market import market_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -256,6 +257,7 @@ def create_app():
     app.register_blueprint(legion_bp, url_prefix='/legion')
     app.register_blueprint(battlefield_bp, url_prefix='/battlefield')
     app.register_blueprint(party_bp, url_prefix='/party')
+    app.register_blueprint(market_bp, url_prefix='/market')
 
     from blueprints.crafting import crafting_bp
     from blueprints.quest import quest_bp

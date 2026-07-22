@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>上架物品</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .muted { color: #888; font-size: 14px; }
+    .row { padding: 4px 0; border-bottom: 1px dashed #eee; }
+    input.t { width: 60px; }
+    input.n { width: 80px; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+上架物品 当前挂单{{ active_count }}/{{ cap }}<br/>
+<span class="muted">手续费=最大(100,单价×数量÷100)+广告费，上架时扣除不退</span><br/>
+<br/>
+
+{% if active_count >= cap %}
+<span class="muted">挂单已满，请先取消或售罄现有挂单</span><br/><br/>
+{% endif %}
+
+--- 装备(未绑定) ---<br/>
+{% for e in equipment %}
+<div class="row">
+    {{ e[1] }} <span class="muted">[{{ e[2] }}/{{ e[3] }}/{{ e[4] }}星]</span> 参考卖出价{{ e[5] }}
+    <form action="{{ url_for('market.create') }}" method="post" style="display:inline;">
+        <input type="hidden" name="equipment_instance_id" value="{{ e[0] }}">
+        单价<input type="number" name="unit_price" value="{{ e[5] }}" min="1" class="t">
+        <label><input type="radio" name="ad_tier" value="0" checked>无广告</label>
+        <label><input type="radio" name="ad_tier" value="1">通知1000</label>
+        <label><input type="radio" name="ad_tier" value="2">置顶3000</label>
+        <input type="submit" value="上架">
+    </form>
+</div>
+{% else %}
+暂无可上架装备<br/>
+{% endfor %}
+<br/>
+
+--- 物品(未绑定) ---<br/>
+{% for it in items %}
+<div class="row">
+    {{ it[1] }}({{ it[4] }}) 持有{{ it[2] }}
+    <form action="{{ url_for('market.create') }}" method="post" style="display:inline;">
+        <input type="hidden" name="item_id" value="{{ it[0] }}">
+        数量<input type="number" name="quantity" value="1" min="1" max="{{ it[2] }}" class="t">
+        单价<input type="number" name="unit_price" value="100" min="1" class="t">
+        <label><input type="radio" name="ad_tier" value="0" checked>无广告</label>
+        <label><input type="radio" name="ad_tier" value="1">通知1000</label>
+        <label><input type="radio" name="ad_tier" value="2">置顶3000</label>
+        <input type="submit" value="上架">
+    </form>
+</div>
+{% else %}
+暂无可上架物品<br/>
+{% endfor %}
+<br/>
+<a href="{{ url_for('market.index') }}">返回集市</a>
+.<a href="{{ url_for('market.my') }}">我的挂单</a>
+.<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

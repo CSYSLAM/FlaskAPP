@@ -964,6 +964,79 @@ class LostItem(db.Model):
     auction_started_at = db.Column(db.DateTime, nullable=True)
 
 
+class MarketListing(db.Model):
+    """集市挂单：玩家将非绑物品/装备挂到集市售卖。
+
+    物品与装备二选一：
+    - 可堆叠物品：item_id 指向 items.json 的物品 id，quantity 可 >1（支持部分购买）；
+    - 装备实例：equipment_instance_id 指向 EquipmentInstance.instance_id(UUID)，quantity 恒为 1。
+    挂单期间装备实例归属置空(player_id=None)锁定，卖家无法穿戴/赠送/重复上架，
+    买入/取消/过期时再转移归属（参考 lost_found grant_lost_item 模式）。
+    """
+    __tablename__ = 'market_listings'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    seller_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    # 二选一：可堆叠物品用 item_id，装备用 equipment_instance_id，另一个为 NULL
+    item_id = db.Column(db.String(64), nullable=True)
+    equipment_instance_id = db.Column(db.String(36), nullable=True)
+    # 反范式快照（列表页无需 join 装备表/重读 items.json）
+    item_name = db.Column(db.String(128), nullable=False)
+    item_type = db.Column(db.String(20), nullable=False)   # material/potion/consumable/equipment/chest/...
+    category = db.Column(db.String(10), nullable=False)    # 材料/药品/消耗品/装备/宝箱/其他（tab UI）
+    rarity = db.Column(db.String(10), nullable=True)       # 仅装备：普通/精良/卓越/史诗/神器
+    quantity = db.Column(db.Integer, default=1)            # 剩余数量（可堆叠物品支持部分购买）；装备恒为 1
+    unit_price = db.Column(db.Integer, nullable=False)
+    is_bound = db.Column(db.Boolean, default=False)        # 恒 False（绑定物不可上架）
+    status = db.Column(db.String(20), default='active')    # active/partial/sold/cancelled/expired
+    ad_tier = db.Column(db.Integer, default=0)             # 0无/1基础(1000,全服通知)/2置顶(3000,通知+置顶3h)
+    pin_until = db.Column(db.DateTime, nullable=True)      # ad_tier==2 时 = created_at+3h
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, nullable=False)    # created_at+7d
+    sold_at = db.Column(db.DateTime, nullable=True)
+    buyer_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)  # 最近买者（审计）
+
+    __table_args__ = (
+        db.Index('ix_market_status', 'status'),
+        db.Index('ix_market_seller', 'seller_id'),
+        db.Index('ix_market_category', 'category'),
+        db.Index('ix_market_expires', 'expires_at'),
+    )
+
+
+class MarketTransaction(db.Model):
+    """集市成交流水：每次购买成功落一笔（同时是买家的购买、卖家的出售）。
+
+    与 MarketListing 不同，这里按「每笔成交」记录，能完整覆盖部分购买
+    （status=partial 的挂单可能被多个买家分次买走，每笔都独立成记录）。
+    """
+
+    __tablename__ = 'market_transactions'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    listing_id = db.Column(db.Integer, db.ForeignKey('market_listings.id'), nullable=True)
+    buyer_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    seller_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    # 反范式快照，列表/详情无需 join 装备表或重读 items.json
+    item_name = db.Column(db.String(128), nullable=False)
+    item_type = db.Column(db.String(20), nullable=False)
+    category = db.Column(db.String(10), nullable=False)
+    rarity = db.Column(db.String(10), nullable=True)        # 仅装备：普通/精良/卓越/史诗/神器
+    quantity = db.Column(db.Integer, default=1)            # 本笔成交数量（可堆叠物品可 >1）
+    unit_price = db.Column(db.Integer, nullable=False)
+    total_price = db.Column(db.Integer, nullable=False)    # = unit_price * quantity
+    buyer_fee = db.Column(db.Integer, default=0)           # 买家手续费
+    seller_receive = db.Column(db.Integer, default=0)      # 卖家实收
+    is_equipment = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    __table_args__ = (
+        db.Index('ix_mt_buyer', 'buyer_id'),
+        db.Index('ix_mt_seller', 'seller_id'),
+        db.Index('ix_mt_created', 'created_at'),
+    )
+
+
 class PlayerSkill(db.Model):
     __tablename__ = 'player_skills'
 

@@ -16,7 +16,7 @@
     <div id="loading"><span></span></div>
 
     {% if remaining %}
-    需等待{{ remaining }}秒才能再次攻击<br/>
+    需等待{{ remaining|float|round(1) }}秒才能再次攻击<br/>
     {% endif %}
 
     {% with messages = get_flashed_messages() %}

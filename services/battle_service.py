@@ -37,7 +37,7 @@ class BattleService:
         return max(1, damage) if min_damage == 0 else max(min_damage, damage)
 
     # 多段技能(如刺客二连击)逐段拆分展示：
-    #   [1000，1020] / [1500(暴击)，980] / [1023，0(闪避)]
+    #   1000，1020 / 1500(暴击)，980 / 1023，0(闪避)
     # 每段伤害/暴击/浮动系数均独立结算，hit_results 每项为 (damage, crit, dodged)。
     @staticmethod
     def _format_hit_list(hit_results):
@@ -49,7 +49,7 @@ class BattleService:
                 parts.append(f"{dmg}(暴击)")
             else:
                 parts.append(str(dmg))
-        return "[" + "，".join(parts) + "]"
+        return "，".join(parts)
 
     # ---- 玩家状态效果 helpers ----
     @classmethod

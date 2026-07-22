@@ -2679,6 +2679,42 @@
     "is_usable": false,
     "capacity": 0
   },
+  "battle_potion_health": {
+    "name": "战场金创药",
+    "type": "potion",
+    "description": "战场专用药品，恢复1500点生命值。普通药品在战场无法使用",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "battlefield_item": true,
+    "usage_effect": {
+      "stat_changes": {
+        "health": 1500
+      },
+      "effect_descriptions": {
+        "health": "恢复{value}点生命值"
+      }
+    },
+    "capacity": 0
+  },
+  "battle_potion_mana": {
+    "name": "战场凝魔药",
+    "type": "potion",
+    "description": "战场专用药品，恢复800点魔法值。普通药品在战场无法使用",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "battlefield_item": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana": 800
+      },
+      "effect_descriptions": {
+        "mana": "恢复{value}点魔法值"
+      }
+    },
+    "capacity": 0
+  },
   "epic_ring_1": {
     "name": "【史诗】至尊一戒",
     "type": "equipment",
