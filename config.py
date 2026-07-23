@@ -34,4 +34,6 @@ class Config:
         'pool_pre_ping': True,
         'pool_recycle': 1800,
     }
-    TEMPLATES_AUTO_RELOAD = True
+    # 关闭部署态下的模板逐请求重编译（性能优化）。需要本地热改模板时把 DEBUG 设为 True。
+    DEBUG = False
+    TEMPLATES_AUTO_RELOAD = DEBUG

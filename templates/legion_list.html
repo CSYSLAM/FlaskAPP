@@ -18,9 +18,9 @@
     #排行依据实时数据：<br/>
     军团排行<br/>
     根据军团实力的排行<br/>
-    军团名称 军团排名 军团人数<br/>
+    军团名称 军团排名 军团人数 领地<br/>
     {% for l in legions %}
-    <a href="{{ url_for('legion.detail', legion_id=l.id) }}">{{ l.name }}({{ l.country }})</a> {{ loop.index + (page-1)*12 }} {{ l.members.count() }}/{{ l.get_max_slots() }}<br/>
+    <a href="{{ url_for('legion.detail', legion_id=l.id) }}">{{ l.name }}({{ l.country }})</a> {{ loop.index + (page-1)*12 }} {{ l.members.count() }}/{{ l.get_max_slots() }} {{ l.territory_names|join('、') if l.territory_names else '无' }}<br/>
     {% endfor %}
     {% if page > 1 %}
     <a href="{{ url_for('legion.list_legions', page=page-1) }}">上.页</a>

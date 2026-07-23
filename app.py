@@ -22,7 +22,7 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    # TEMPLATES_AUTO_RELOAD now controlled by config.py (follows DEBUG); not hardcoded True.
 
     config_name = os.environ.get('FLASK_ENV', 'development')
     if config_name == 'development':

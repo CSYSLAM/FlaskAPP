@@ -687,19 +687,29 @@ class BattlefieldService:
 
         sorted_players = sorted(state.player_scores.items(), key=lambda x: x[1], reverse=True)[:10]
         player_ranking = []
+        player_ids = [pid for pid, score in sorted_players if score > 0]
+        player_map = {}
+        if player_ids:
+            for p in PlayerModel.query.filter(PlayerModel.id.in_(player_ids)).all():
+                player_map[p.id] = p
         for pid, score in sorted_players:
             if score <= 0:
                 continue
-            p = PlayerModel.query.get(pid)
+            p = player_map.get(pid)
             if p:
                 player_ranking.append({'name': p.nickname, 'country': p.country, 'score': score})
 
         sorted_legions = sorted(state.legion_scores.items(), key=lambda x: x[1], reverse=True)[:5]
         legion_ranking = []
+        legion_ids = [lid for lid, score in sorted_legions if score > 0]
+        legion_map = {}
+        if legion_ids:
+            for lg in Legion.query.filter(Legion.id.in_(legion_ids)).all():
+                legion_map[lg.id] = lg
         for lid, score in sorted_legions:
             if score <= 0:
                 continue
-            legion = Legion.query.get(lid)
+            legion = legion_map.get(lid)
             if legion:
                 legion_ranking.append({'name': legion.name, 'country': legion.country, 'score': score})
 

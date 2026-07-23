@@ -26,6 +26,10 @@ def list_legions():
     player = current_user
     page = request.args.get('page', 1, type=int)
     legions, total = LegionService.get_all_legions(page=page, per_page=12)
+    for lg in legions:
+        lg.territory_names = [BATTLEFIELD_CITIES[c]['name']
+                              for c in lg.occupied_cities
+                              if c in BATTLEFIELD_CITIES]
     total_pages = (total + 11) // 12
     return render_template("legion_list.html",
                          player=player,
