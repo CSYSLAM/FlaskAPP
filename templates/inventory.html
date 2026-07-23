@@ -41,13 +41,13 @@
 
     {% for entry in page_items %}
     {% if entry.type == 'item' %}
-    <a href="{{ url_for('player.view_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">{{ entry.item_data.name }}{% if entry.is_bound %}(绑定){% endif %}</a> x{{ entry.quantity }}
+    <a href="{{ url_for('player.view_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">{{ entry.item_data.name }}{% if entry.is_bound %}（绑定）{% endif %}</a> x{{ entry.quantity }}
     {% if entry.effect_hint %}<font color="#888" style="font-size:12px;">{{ entry.effect_hint }}</font>{% endif %}
     {% if entry.item_data.is_usable %}<a href="{{ url_for('player.use_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">使用</a>{% endif %}
     <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, is_bound='1' if entry.is_bound else '0', category=category, page=page, per_page=per_page) }}">销毁</a><br/>
     {% elif entry.type == 'equipment' %}
     {% set equip = entry.equipment %}
-    <a href="{{ url_for('player.view_item', item_id=entry.item_id, from='inventory') }}" class="rarity-{{ equip.rarity }}">{{ equip.name }}</a>{% if entry.is_bound %}(绑定){% endif %}
+    <a href="{{ url_for('player.view_item', item_id=entry.item_id, from='inventory') }}" class="rarity-{{ equip.rarity }}">{{ equip.name }}</a>{% if entry.is_bound %}（绑定）{% endif %}
     <a href="{{ url_for('player.equip_item', equipment_instance_id=entry.item_id, category=category, page=page, per_page=per_page) }}">装备</a>
     <a href="{{ url_for('player.destroy_item', item_id=entry.item_id, category=category, page=page, per_page=per_page) }}">销毁</a><br/>
     {% endif %}

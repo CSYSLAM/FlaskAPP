@@ -62,6 +62,7 @@ class PlayerModel(db.Model, UserMixin):
     in_battlefield = db.Column(db.Boolean, default=False)
     battlefield_city = db.Column(db.String(32), nullable=True)
     battlefield_death_time = db.Column(db.Float, default=0.0)
+    battlefield_target_id = db.Column(db.Integer, nullable=True)  # 1v1锁定对手player.id
     party_id = db.Column(db.Integer, nullable=True)
     last_attack_time = db.Column(db.Float, default=0.0)
     enhance_bonus_rate = db.Column(db.Float, default=0.0)  # 强化失败累积成功率加成(每失败+5%)

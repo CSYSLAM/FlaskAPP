@@ -20,7 +20,7 @@
 
     {% for inv in giftable_items %}
     {% if inv.is_bound %}
-    {{ inv.item_data.get('name', inv.item_id) if inv.item_data else inv.item_id }}<span class="bound">(绑定)</span>x{{ inv.quantity }} 不可赠送<br/>
+    {{ inv.item_data.get('name', inv.item_id) if inv.item_data else inv.item_id }}<span class="bound">（绑定）</span>x{{ inv.quantity }} 不可赠送<br/>
     {% else %}
     <form action="{{ url_for('social.send_gift') }}" method="post" style="display:inline;">
         <input type="hidden" name="target" value="{{ target_player.username }}">
@@ -35,7 +35,7 @@
 
     {% for equip in giftable_equipment %}
     {% if equip.is_bound %}
-    {{ equip.name }}<span class="bound">(绑定)</span> 不可赠送<br/>
+    {{ equip.name }}<span class="bound">（绑定）</span> 不可赠送<br/>
     {% else %}
     <form action="{{ url_for('social.send_gift') }}" method="post" style="display:inline;">
         <input type="hidden" name="target" value="{{ target_player.username }}">

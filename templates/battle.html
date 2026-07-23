@@ -27,14 +27,27 @@
     {% endif %}
     {% endwith %}
 
+{% if is_pk %}
+    {# ===== PK模式（与战场1v1统一布局） ===== #}
+    {% for slot in ['skill1', 'skill2', 'skill3', 'skill4'] %}{% set sid = player.shortcuts[slot] %}{% set sname = '普攻' if sid == 'attack' else (DataService.get_skill(sid)['name'] if DataService.get_skill(sid) else sid) %}<a href="{{ url_for('battle.pk_use_skill', opponent=monster.username, skill_id=sid) }}">{{ sname }}</a> {% endfor %}<a href="{{ url_for('battle.flee') }}">撤退</a><br/>
+    {% for bp in pk_potions %}<a href="{{ url_for('battle.pk_use_potion', opponent=monster.username, item_id=bp.item_id) }}">{{ bp.name }}({{ bp.quantity }})</a> {% endfor %}<br/>
+    生命:{{ player.health }}/{{ player.effective_max_health }}{% if player.last_hp_delta %}({% if player.last_hp_delta > 0 %}-{{ player.last_hp_delta }}{% else %}+{{ player.last_hp_delta * -1 }}{% endif %}){% endif %}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}{% if player.last_mp_delta %}({% if player.last_mp_delta > 0 %}-{{ player.last_mp_delta }}{% else %}+{{ player.last_mp_delta * -1 }}{% endif %}){% endif %}<br/>
+    {% if lieutenant and lieutenant.is_alive %}副将:『{{ lieutenant.name }}』HP:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>{% endif %}
+    『{{ monster.nickname }}』({{ monster.country }}·{{ monster.level }}级)<br/>
+    生命:{{ monster.health }}/{{ monster.effective_max_health }}{% if monster.last_damage_taken %}(-{{ monster.last_damage_taken }}){% endif %}<br/>
+    <font size="1">{% set mhp = monster.effective_max_health or 1 %}{% set health_percent = ([0, (monster.health / mhp * 10)|round|int, 10]|sort)[1] %}{% for i in range(10) %}{% if i < health_percent %}●{% else %}○{% endif %}{% endfor %}</font><br/>
+    {% if target_lieutenant and target_lieutenant.is_alive %}副将:『{{ target_lieutenant.name }}』HP:{{ target_lieutenant.current_health }}/{{ target_lieutenant.get_max_health() }}<br/>{% endif %}
+    {% if player.last_action %}{{ player.last_action }}<br/>{% endif %}
+    {% if monster.last_action %}{{ monster.last_action }}<br/>{% endif %}
+    {% if player.item_effect %}{{ player.item_effect }}<br/>{% endif %}
+
+{% else %}
+    {# ===== PvE模式：保持原有布局 ===== #}
     {% for slot in ['skill1', 'skill2', 'skill3', 'skill4'] %}
     {% set sid = player.shortcuts[slot] %}
     {% set sname = '普攻' if sid == 'attack' else (DataService.get_skill(sid)['name'] if DataService.get_skill(sid) else sid) %}
-    {% if is_pk %}
-    <a href="{{ url_for('battle.pk_use_skill', opponent=monster.username, skill_id=sid) }}">{{ sname }}</a>
-    {% else %}
     <a href="{{ url_for('battle.use_skill', skill_id=sid) }}">{{ sname }}</a>
-    {% endif %}
     {% endfor %}
     <a href="{{ url_for('battle.shortcuts') }}">技键</a>
     <br/>
@@ -42,11 +55,7 @@
     {% for pslot in ['potion1', 'potion2'] %}
     {% set pid = player.shortcuts[pslot] %}
     {% if pid and pid in player.inventory %}
-    {% if is_pk %}
-    <a href="{{ url_for('battle.pk_use_potion', opponent=monster.username, item_id=pid) }}">{{ player.inventory[pid].item.name }}</a>
-    {% else %}
-    <a href="{{ url_for('battle.use_potion', item_id=pid) }}">{{ player.inventory[pid].item.name }}</a>
-    {% endif %}
+    <a href="{{ url_for('battle.use_potion', item_id=pid) }}">{{ player.inventory[pid].item.name }}({{ player.inventory[pid].quantity }})</a>
     {% endif %}
     {% endfor %}
     <a href="{{ url_for('battle.shortcuts') }}">药键</a>
@@ -84,6 +93,8 @@
     {% if player.item_effect %}
     {{ player.item_effect }}<br/>
     {% endif %}
+
+{% endif %}
 
     当前时间：{{ now.strftime('%H:%M:%S') }}<br/>
 

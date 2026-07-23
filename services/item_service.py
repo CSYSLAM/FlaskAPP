@@ -244,6 +244,10 @@ class ItemService:
         from services.item_reward_registry import handle_reward
         for ri in random_items:
             reward_id = ri.get("item_id")
+            if reward_id is None:
+                ids = ri.get("item_ids")
+                if ids:
+                    reward_id = random.choice(ids)
             max_count = ri.get("max_count", 1)
             chance = ri.get("chance", 1.0)
             guaranteed = ri.get("guaranteed_count", 0)

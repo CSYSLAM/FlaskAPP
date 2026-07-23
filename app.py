@@ -387,6 +387,11 @@ def create_app():
         except Exception:
             db.session.rollback()
         try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN battlefield_target_id INTEGER"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        try:
             db.session.execute(db.text("ALTER TABLE legions ADD COLUMN occupied_cities_raw TEXT DEFAULT '[]'"))
             db.session.commit()
         except Exception:

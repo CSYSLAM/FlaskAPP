@@ -31,7 +31,7 @@
 {% if holding %}
     你的遗失物品：<br/>
     {% for item in holding %}
-        {{ item.name }}{% if item.is_bound %}(绑定){% endif %} x{{ item.quantity }}
+        {{ item.name }}{% if item.is_bound %}（绑定）{% endif %} x{{ item.quantity }}
         剩余{{ item.days_left }}天
         <form action="{{ url_for('lost_found.redeem', item_id=item.id) }}" method="post" style="display:inline;">
             <input type="submit" value="赎回(赎金券x1+{{ item.redeem_price }}银两)">
@@ -45,7 +45,7 @@
 {% if auctions %}
     拍卖物品：<br/>
     {% for item in auctions %}
-        {{ item.name }}{% if item.is_bound %}(绑定){% endif %} x{{ item.quantity }}
+        {{ item.name }}{% if item.is_bound %}（绑定）{% endif %} x{{ item.quantity }}
         当前出价:{{ item.current_bid }} 剩余{{ item.days_left }}天
         <form action="{{ url_for('lost_found.bid', item_id=item.id) }}" method="post" style="display:inline;">
             <input type="text" name="bid" value="{{ item.current_bid + 1 }}" maxlength="10" style="width:80px;">

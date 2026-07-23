@@ -406,6 +406,205 @@ class BattleService:
                         player.health = min(max_hp, player.health + heal_amount)
                         player.item_effect = (player.item_effect or "") + f"|{lt.name}{sk['name']}回复{heal_amount}"
 
+    # ----- PvP副将参战 + 被动反击 -----
+
+    @classmethod
+    def _lt_attack_player(cls, lt, target_player, owner_player):
+        """副将攻击对方玩家（PvP中）。返回 (damage, skill_name|None)。
+        复用 _lt_attack_monster 的技能选择逻辑，但闪避/防御用对方玩家属性。"""
+        if not lt.is_alive or not lt.is_deployed:
+            return 0, None
+        if lt.current_mana <= 0:
+            lt.current_mana = 0
+        lt_atk = lt.get_attack()
+        lt_status = cls._get_lt_status(owner_player) if owner_player else {}
+
+        # 猛击buff
+        if lt_status.get('atk_buff_rounds', 0) > 0:
+            lt_atk = int(lt_atk * 1.5)
+
+        # 选主动技能
+        active_skill = None
+        for sk in lt.skills:
+            if sk.get('type') != 'active':
+                continue
+            trigger_rate = sk.get('trigger_rate', 0) / 100.0
+            if random.random() < trigger_rate:
+                if lt.current_mana >= sk.get('mana_cost', 0):
+                    active_skill = sk
+                    break
+
+        # 闪避判定（对方玩家dodge_rate）
+        if random.random() < target_player.dodge_rate:
+            return 0, None
+
+        target_def = PlayerService.get_defense(target_player)
+
+        if not active_skill:
+            damage = cls._compute_damage(lt_atk, target_def, coefficient=1.0)
+            return damage, None
+
+        # 释放技能：扣蓝
+        lt.current_mana = max(0, lt.current_mana - active_skill.get('mana_cost', 0))
+        skill_name = active_skill.get('name')
+        sid = active_skill.get('id')
+
+        if sid == 'combo':
+            coef = active_skill.get('damage_rate', 1.0)
+            d1 = cls._compute_damage(lt_atk, target_def, coefficient=coef)
+            d2 = cls._compute_damage(lt_atk, target_def, coefficient=coef)
+            return d1 + d2, skill_name
+        elif sid == 'smash':
+            coef = active_skill.get('damage_rate', 1.2)
+            damage = cls._compute_damage(lt_atk, target_def, coefficient=coef)
+            if owner_player:
+                lt_status['atk_buff_rounds'] = 0
+                lt_status['def_debuff_rounds'] = active_skill.get('def_debuff_rounds', 2)
+                cls._set_lt_status(owner_player, lt_status)
+            return damage, skill_name
+        elif sid == 'thunder':
+            coef = active_skill.get('damage_rate', 2.0)
+            damage = cls._compute_damage(lt_atk, target_def, coefficient=coef)
+            return damage, skill_name
+        else:
+            coef = active_skill.get('damage_rate', 1.0)
+            damage = cls._compute_damage(lt_atk, target_def, coefficient=coef)
+            return damage, skill_name
+
+    @classmethod
+    def _player_defend_with_lt(cls, raw_damage, defender, attacker, lt):
+        """防守方承受伤害，副将挡刀/触发技能处理（PvP版）。
+        返回 defender 实际扣血量。raw_damage 为闪避/暴击处理后的伤害值。"""
+        if raw_damage <= 0:
+            return 0
+
+        # 法相护盾（术士触发技能）
+        lt_status = cls._get_lt_status(defender) if lt else {}
+        if lt and lt.is_alive and lt.is_deployed:
+            for sk in lt.skills:
+                if sk.get('type') != 'triggered' or not sk.get('shield_rate'):
+                    continue
+                if random.random() < sk.get('trigger_rate', 0) / 100.0:
+                    shield = int(defender.mana * sk.get('shield_rate', 0))
+                    if shield > 0:
+                        lt_status['shield'] = shield
+                        defender.item_effect = (defender.item_effect or "") + f"|{lt.name}{sk['name']}生成护盾{shield}"
+                    break
+            if lt_status:
+                cls._set_lt_status(defender, lt_status)
+
+        # 护盾抵消
+        shield = lt_status.get('shield', 0)
+        if shield > 0:
+            absorbed = min(shield, raw_damage)
+            raw_damage -= absorbed
+            lt_status['shield'] = shield - absorbed
+            if lt_status['shield'] <= 0:
+                lt_status.pop('shield', None)
+            cls._set_lt_status(defender, lt_status)
+            if raw_damage <= 0:
+                defender.item_effect = (defender.item_effect or "") + "|护盾抵消全部伤害"
+                return 0
+            else:
+                defender.item_effect = (defender.item_effect or "") + f"|护盾抵消{absorbed}"
+
+        # 前卫副将挡刀
+        if lt and lt.is_alive and lt.is_deployed and lt.position == 'front':
+            lt.current_health -= raw_damage
+            defender.last_damage_taken = 0
+            if lt.current_health <= 0:
+                from services.lieutenant_service import LieutenantService
+                LieutenantService.handle_death(lt, owner_died=False)
+                remaining = abs(lt.current_health)
+                if remaining > 0:
+                    defender.health -= remaining
+                    defender.item_effect = (defender.item_effect or "") + f"|副将{lt.name}阵亡！溢出{remaining}伤害"
+                    return remaining
+            else:
+                if not defender.item_effect:
+                    defender.item_effect = ""
+            return 0  # 副将全挡
+        else:
+            defender.health -= raw_damage
+            defender.last_damage_taken = raw_damage
+            return raw_damage
+
+        # 副将触发技能（吸收/回春）—— 前后置都触发
+        # 注：此段在 return 前无法到达，放到调用方处理
+
+    @classmethod
+    def _lt_trigger_after_hit(cls, lt, defender, damage_taken):
+        """副将受击后触发技能（吸收/回春），PvP/PvE通用。"""
+        if not lt or not lt.is_alive or not lt.is_deployed:
+            return
+        for sk in lt.skills:
+            if sk.get('type') != 'triggered':
+                continue
+            if sk.get('shield_rate'):
+                continue  # 法相已在上游处理
+            trigger_rate = sk.get('trigger_rate', 0) / 100.0
+            if random.random() < trigger_rate:
+                if sk.get('absorb_rate'):
+                    absorb_pct = sk.get('absorb_rate', 0) / 100.0
+                    absorbed = int(damage_taken * absorb_pct)
+                    if absorbed > 0:
+                        max_hp = PlayerService.get_max_health(defender)
+                        defender.health = min(max_hp, defender.health + absorbed)
+                        defender.item_effect = (defender.item_effect or "") + f"|{lt.name}{sk['name']}吸收{absorbed}"
+                elif sk.get('heal_rate'):
+                    heal_pct = sk.get('heal_rate', 0) / 100.0
+                    max_hp = PlayerService.get_max_health(defender)
+                    heal_amount = int(max_hp * heal_pct)
+                    if heal_amount > 0:
+                        defender.health = min(max_hp, defender.health + heal_amount)
+                        defender.item_effect = (defender.item_effect or "") + f"|{lt.name}{sk['name']}回复{heal_amount}"
+
+    @classmethod
+    def _pvp_counter_attack(cls, attacker, defender, defender_lt):
+        """防守方自动反击攻方一次普攻（PvP被动参战）。
+        检查defender存活/未混乱/未阵亡，反击后检查attacker是否被击杀。
+        返回反击伤害(0=未反击)。
+        """
+        # 不反击的条件：已死、混乱、已阵亡(战场)
+        if defender.health <= 0:
+            return 0
+        if cls._player_is_confused(defender):
+            return 0
+        if getattr(defender, 'battlefield_death_time', 0) > 0:
+            return 0
+
+        atk_power = PlayerService.get_attack(defender)
+        def_power = PlayerService.get_defense(attacker)
+
+        # 闪避判定（attacker闪避）
+        if random.random() < attacker.dodge_rate:
+            defender.last_action = (defender.last_action or "") + "|反击被闪避"
+            return 0
+
+        counter_damage = cls._compute_damage(atk_power, def_power, coefficient=1.0)
+
+        # 暴击
+        is_crit = random.random() <= defender.crit_rate
+        if is_crit:
+            counter_damage = int(counter_damage * 1.5)
+
+        # 攻方副将挡刀
+        attacker_lt = Lieutenant.query.filter_by(owner_id=attacker.id, is_deployed=True, is_alive=True).first()
+        actual_damage = cls._player_defend_with_lt(counter_damage, attacker, defender, attacker_lt)
+
+        # 攻方副将触发技能
+        if attacker_lt and actual_damage > 0:
+            cls._lt_trigger_after_hit(attacker_lt, attacker, actual_damage)
+
+        # 设置攻方血量变化量（供战斗页面显示 -N）
+        attacker.last_hp_delta = actual_damage
+
+        # 反击日志
+        crit_text = "(暴击)" if is_crit else ""
+        defender.last_action = (defender.last_action or "") + f"|反击{attacker.nickname}{counter_damage}{crit_text}"
+
+        return actual_damage
+
     @classmethod
     def start_pve(cls, player, monster_id=None):
         if player.in_battle:
@@ -1154,7 +1353,7 @@ class BattleService:
                 DataService.add_item_to_inventory(player.id, item_id, is_bound=is_bound)
                 item_data = DataService.get_item(item_id)
                 item_name = item_data.get("name", item_id) if item_data else item_id
-                bind_text = "(绑定)" if is_bound else ""
+                bind_text = "（绑定）" if is_bound else ""
                 loot_text = f"获得了 {item_name}{bind_text}"
             elif isinstance(loot, dict) and 'template_id' in loot:
                 from services.equipment_service import EquipmentService
@@ -1163,7 +1362,7 @@ class BattleService:
                 if equip:
                     equip.is_bound = is_bound
                     DataService.add_item_to_inventory(player.id, equip.instance_id)
-                    bind_text = "(绑定)" if is_bound else ""
+                    bind_text = "（绑定）" if is_bound else ""
                     loot_text = f"获得了装备 {equip.name}{bind_text}"
 
         # Guaranteed item drops (always drop, independent of random loot)
@@ -1417,6 +1616,10 @@ class BattleService:
         atk_power = PlayerService.get_attack(attacker)
         def_power = PlayerService.get_defense(defender)
 
+        # 回合开始清0变化量（与PvE一致）
+        attacker.last_hp_delta = 0
+        attacker.last_mp_delta = 0
+
         if random.random() >= defender.dodge_rate:
             damage = cls._compute_damage(atk_power, def_power, coefficient=1.0)
             # 防守方被混乱：受击伤害减半
@@ -1428,8 +1631,13 @@ class BattleService:
                 attacker.last_damage_dealt = f"{damage}(暴击!)"
             else:
                 attacker.last_damage_dealt = str(damage)
-            defender.health -= damage
-            defender.last_damage_taken = damage
+            # 副将挡刀（PvP副将参战）
+            defender_lt = Lieutenant.query.filter_by(
+                owner_id=defender.id, is_deployed=True, is_alive=True).first()
+            actual = cls._player_defend_with_lt(damage, defender, attacker, defender_lt)
+            defender.last_damage_taken = actual
+            if defender_lt and actual > 0:
+                cls._lt_trigger_after_hit(defender_lt, defender, actual)
         else:
             damage = 0
             attacker.last_damage_dealt = "闪避"
@@ -1438,12 +1646,34 @@ class BattleService:
         attacker.last_action = "使用了普通攻击"
         attacker.last_skill = "普通攻击"
 
+        # 攻方副将主动攻击（PvP副将参战）
+        attacker_lt = Lieutenant.query.filter_by(
+            owner_id=attacker.id, is_deployed=True, is_alive=True).first()
+        if attacker_lt and defender.health > 0:
+            lt_dmg, lt_sk = cls._lt_attack_player(attacker_lt, defender, attacker)
+            if lt_dmg > 0:
+                defender_lt2 = Lieutenant.query.filter_by(
+                    owner_id=defender.id, is_deployed=True, is_alive=True).first()
+                def_actual = cls._player_defend_with_lt(lt_dmg, defender, attacker, defender_lt2)
+                if defender_lt2 and def_actual > 0:
+                    cls._lt_trigger_after_hit(defender_lt2, defender, def_actual)
+                attacker.item_effect = (attacker.item_effect or "") + f"|副将{attacker_lt.name}{'['+lt_sk+']' if lt_sk else ''}造成{lt_dmg}"
+
         # 回合结算：双方流血扣血 + 状态递减
         cls._tick_pk_bleed(attacker, defender)
 
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_pk_defeat(attacker, defender)
+            return result, None
+
+        # 防守方自动反击（PvP被动参战）
+        defender_lt3 = Lieutenant.query.filter_by(
+            owner_id=defender.id, is_deployed=True, is_alive=True).first()
+        cls._pvp_counter_attack(attacker, defender, defender_lt3)
+        if attacker.health <= 0:
+            attacker.health = 0
+            result = cls._handle_pk_defeat(defender, attacker)
             return result, None
 
         cls._tick_player_status(attacker)
@@ -1480,6 +1710,8 @@ class BattleService:
 
         attacker.mana -= mana_cost
         attacker.last_mana_cost = mana_cost
+        attacker.last_mp_delta = mana_cost  # 技能耗蓝变化量（供战斗页面显示）
+        attacker.last_hp_delta = 0  # 回合开始清0
         attacker.last_action = f"使用了{skill_data['name']}"
         attacker.last_skill = skill_data["name"]
 
@@ -1519,8 +1751,13 @@ class BattleService:
         else:
             attacker.last_damage_dealt = str(total_damage)
 
-        defender.health -= total_damage
-        defender.last_damage_taken = total_damage
+        # 副将挡刀（PvP副将参战）
+        defender_lt = Lieutenant.query.filter_by(
+            owner_id=defender.id, is_deployed=True, is_alive=True).first()
+        actual = cls._player_defend_with_lt(total_damage, defender, attacker, defender_lt)
+        defender.last_damage_taken = actual
+        if defender_lt and actual > 0:
+            cls._lt_trigger_after_hit(defender_lt, defender, actual)
 
         # 技能特殊效果（命中后才触发）
         if hit_any and total_damage > 0:
@@ -1533,12 +1770,34 @@ class BattleService:
             if effect_msg:
                 attacker.last_action += f"[{effect_msg}]"
 
+        # 攻方副将主动攻击（PvP副将参战）
+        attacker_lt = Lieutenant.query.filter_by(
+            owner_id=attacker.id, is_deployed=True, is_alive=True).first()
+        if attacker_lt and defender.health > 0:
+            lt_dmg, lt_sk = cls._lt_attack_player(attacker_lt, defender, attacker)
+            if lt_dmg > 0:
+                defender_lt2 = Lieutenant.query.filter_by(
+                    owner_id=defender.id, is_deployed=True, is_alive=True).first()
+                def_actual = cls._player_defend_with_lt(lt_dmg, defender, attacker, defender_lt2)
+                if defender_lt2 and def_actual > 0:
+                    cls._lt_trigger_after_hit(defender_lt2, defender, def_actual)
+                attacker.item_effect = (attacker.item_effect or "") + f"|副将{attacker_lt.name}{'['+lt_sk+']' if lt_sk else ''}造成{lt_dmg}"
+
         # 回合结算：双方流血扣血 + 状态递减
         cls._tick_pk_bleed(attacker, defender)
 
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_pk_defeat(attacker, defender)
+            return result, None
+
+        # 防守方自动反击（PvP被动参战）
+        defender_lt3 = Lieutenant.query.filter_by(
+            owner_id=defender.id, is_deployed=True, is_alive=True).first()
+        cls._pvp_counter_attack(attacker, defender, defender_lt3)
+        if attacker.health <= 0:
+            attacker.health = 0
+            result = cls._handle_pk_defeat(defender, attacker)
             return result, None
 
         cls._tick_player_status(attacker)

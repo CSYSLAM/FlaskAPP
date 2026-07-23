@@ -2,6 +2,7 @@ import random
 import time
 import json
 from models.legion import Legion, LegionMember
+from models.lieutenant import Lieutenant
 from models.player import PlayerModel
 from services import db
 from services.data_service import DataService
@@ -136,13 +137,15 @@ class BattlefieldService:
             cls._end_test_war()
         # 死亡超时清扫：续命窗口(15秒)已过的阵亡玩家强制传出战场，
         # 避免有灯不复活/离线玩家永久滞留 in_battlefield=True。
+        # 以数据库为准（而非内存 state.players），重启后也能正确清扫。
         now = time.time()
-        for state in cls._cities.values():
-            for pid in list(state.players):
-                p = PlayerModel.query.get(pid)
-                if p and p.in_battlefield and p.battlefield_death_time > 0 \
-                        and now - p.battlefield_death_time > 15:
-                    cls.force_death_exit(p)
+        dead = PlayerModel.query.filter(
+            PlayerModel.in_battlefield == True,
+            PlayerModel.battlefield_death_time > 0,
+            PlayerModel.battlefield_death_time < now - 15,
+        ).all()
+        for p in dead:
+            cls.force_death_exit(p)
 
     @classmethod
     def _auto_settle_territories(cls):
@@ -201,6 +204,7 @@ class BattlefieldService:
         player.in_battlefield = True
         player.battlefield_city = city_key
         player.battlefield_death_time = 0.0
+        player.battlefield_target_id = None
         player.in_pk = False
         player.pk_opponent = None
 
@@ -221,9 +225,17 @@ class BattlefieldService:
         city_key = player.battlefield_city
         if city_key and city_key in cls._cities:
             cls._cities[city_key].players.discard(player.id)
+        # 解除仍被本玩家锁定的对手的“战斗中”状态（互锁时双方都要解，避免对手卡在决斗中）
+        locked_id = player.battlefield_target_id
+        if locked_id:
+            locked = PlayerModel.query.get(locked_id)
+            if locked:
+                locked.in_pk = False
+                locked.battlefield_target_id = None
         player.in_battlefield = False
         player.battlefield_city = None
         player.battlefield_death_time = 0.0
+        player.battlefield_target_id = None
         player.in_pk = False
         player.pk_opponent = None
         db.session.commit()
@@ -238,13 +250,10 @@ class BattlefieldService:
             return False, "不在同一战场"
         if attacker.health <= 0 or attacker.battlefield_death_time > 0:
             return False, "你已阵亡，无法攻击"
-        if attacker.country == defender.country:
-            return False, "不能攻击本国玩家"
-        atk_member = LegionMember.query.filter_by(player_id=attacker.id).first()
-        def_member = LegionMember.query.filter_by(player_id=defender.id).first()
-        if atk_member and def_member and atk_member.legion_id == def_member.legion_id:
-            return False, "不能攻击同军团成员"
-        if defender.in_pk or defender.in_battle:
+        # 本国玩家可攻击；同军团玩家也可攻击（友好切磋），但同军团胜负不结算积分
+        # （积分豁免在 _handle_battlefield_kill / resolve_flee 中处理）。
+        # 点对点决斗：对方正与他人战斗则不可介入，但攻击方锁定之目标除外
+        if (defender.in_pk or defender.in_battle) and attacker.battlefield_target_id != defender.id:
             return False, '对方正在战斗中，无法攻击'
         if defender.health <= 0:
             return False, "对方已阵亡"
@@ -266,6 +275,8 @@ class BattlefieldService:
             attacker.last_action = "混乱中，无法行动"
             attacker.last_skill = "混乱"
             attacker.last_damage_dealt = "0(混乱)"
+            attacker.item_effect = ""
+            defender.last_action = ""
             defender.last_damage_taken = 0
             BattleService._tick_pk_bleed(attacker, defender)
             BattleService._tick_player_status(attacker)
@@ -280,6 +291,21 @@ class BattlefieldService:
         atk_power = PlayerService.get_attack(attacker)
         def_power = PlayerService.get_defense(defender)
 
+        # 回合开始清0一次性战斗记录（与PvE一致），避免跨回合累积/残留：
+        # 攻击方的变化量/动作/副将效果，防守方的动作与受击记录。
+        attacker.last_hp_delta = 0
+        attacker.last_mp_delta = 0
+        attacker.last_action = ""
+        attacker.last_skill = ""
+        attacker.item_effect = ""
+        defender.last_action = ""
+        defender.last_damage_taken = 0
+
+        # 防守方前卫副将（PvP副将参战）：在命中/闪避两个分支外统一查询，
+        # 避免被闪避(走 else 分支)时 defender_lt 未赋值导致 UnboundLocalError。
+        defender_lt = Lieutenant.query.filter_by(
+            owner_id=defender.id, is_deployed=True, is_alive=True).first()
+
         if random.random() >= defender.dodge_rate:
             # 统一乘法伤害公式（与外部PK一致）
             damage = BattleService._compute_damage(atk_power, def_power, coefficient=1.0)
@@ -292,8 +318,11 @@ class BattlefieldService:
                 attacker.last_damage_dealt = f"{damage}(暴击!)"
             else:
                 attacker.last_damage_dealt = str(damage)
-            defender.health -= damage
-            defender.last_damage_taken = damage
+            # 副将挡刀：防守方前卫副将承受伤害（PvP副将参战）
+            actual = BattleService._player_defend_with_lt(damage, defender, attacker, defender_lt)
+            defender.last_damage_taken = actual
+            if defender_lt and actual > 0:
+                BattleService._lt_trigger_after_hit(defender_lt, defender, actual)
         else:
             damage = 0
             attacker.last_damage_dealt = "闪避"
@@ -302,12 +331,30 @@ class BattlefieldService:
         attacker.last_action = f"在战场攻击了{defender.nickname}"
         attacker.last_skill = "普通攻击"
 
+        # 攻方副将主动攻击（PvP副将参战）
+        attacker_lt = Lieutenant.query.filter_by(
+            owner_id=attacker.id, is_deployed=True, is_alive=True).first()
+        if attacker_lt and defender.health > 0:
+            lt_dmg, lt_sk = BattleService._lt_attack_player(attacker_lt, defender, attacker)
+            if lt_dmg > 0:
+                def_actual = BattleService._player_defend_with_lt(lt_dmg, defender, attacker, defender_lt)
+                if defender_lt and def_actual > 0:
+                    BattleService._lt_trigger_after_hit(defender_lt, defender, def_actual)
+                attacker.item_effect = (attacker.item_effect or "") + f"|副将{attacker_lt.name}{'['+lt_sk+']' if lt_sk else ''}造成{lt_dmg}"
+
         # 回合结算：双方流血扣血 + 状态递减
         BattleService._tick_pk_bleed(attacker, defender)
 
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_battlefield_kill(attacker, defender)
+            return result, None
+
+        # 防守方自动反击（PvP被动参战）
+        BattleService._pvp_counter_attack(attacker, defender, defender_lt)
+        if attacker.health <= 0:
+            attacker.health = 0
+            result = cls._handle_battlefield_kill(defender, attacker)
             return result, None
 
         BattleService._tick_player_status(attacker)
@@ -348,6 +395,14 @@ class BattlefieldService:
             return None, "魔法不足"
         attacker.mana -= mana_cost
         attacker.last_mana_cost = mana_cost
+        attacker.last_mp_delta = mana_cost  # 技能耗蓝变化量（供战斗页面显示）
+        attacker.last_hp_delta = 0  # 回合开始清0
+        # 回合开始清0一次性战斗记录（与PvE一致），避免跨回合累积/残留
+        attacker.last_action = ""
+        attacker.last_skill = ""
+        attacker.item_effect = ""
+        defender.last_action = ""
+        defender.last_damage_taken = 0
         attacker.last_action = f"在战场对{defender.nickname}使用{skill_data['name']}"
         attacker.last_skill = skill_data["name"]
 
@@ -387,8 +442,13 @@ class BattlefieldService:
         else:
             attacker.last_damage_dealt = str(total_damage)
 
-        defender.health -= total_damage
-        defender.last_damage_taken = total_damage
+        # 副将挡刀：防守方前卫副将承受伤害（PvP副将参战）
+        defender_lt = Lieutenant.query.filter_by(
+            owner_id=defender.id, is_deployed=True, is_alive=True).first()
+        actual = BattleService._player_defend_with_lt(total_damage, defender, attacker, defender_lt)
+        defender.last_damage_taken = actual
+        if defender_lt and actual > 0:
+            BattleService._lt_trigger_after_hit(defender_lt, defender, actual)
 
         # 技能特殊效果（命中后才触发：吸血/混乱/封魔/流血等，与外部PK一致）
         if hit_any and total_damage > 0:
@@ -401,12 +461,30 @@ class BattlefieldService:
             if effect_msg:
                 attacker.last_action += f"[{effect_msg}]"
 
+        # 攻方副将主动攻击（PvP副将参战）
+        attacker_lt = Lieutenant.query.filter_by(
+            owner_id=attacker.id, is_deployed=True, is_alive=True).first()
+        if attacker_lt and defender.health > 0:
+            lt_dmg, lt_sk = BattleService._lt_attack_player(attacker_lt, defender, attacker)
+            if lt_dmg > 0:
+                def_actual = BattleService._player_defend_with_lt(lt_dmg, defender, attacker, defender_lt)
+                if defender_lt and def_actual > 0:
+                    BattleService._lt_trigger_after_hit(defender_lt, defender, def_actual)
+                attacker.item_effect = (attacker.item_effect or "") + f"|副将{attacker_lt.name}{'['+lt_sk+']' if lt_sk else ''}造成{lt_dmg}"
+
         # 回合结算：双方流血扣血 + 状态递减
         BattleService._tick_pk_bleed(attacker, defender)
 
         if defender.health <= 0:
             defender.health = 0
             result = cls._handle_battlefield_kill(attacker, defender)
+            return result, None
+
+        # 防守方自动反击（PvP被动参战）
+        BattleService._pvp_counter_attack(attacker, defender, defender_lt)
+        if attacker.health <= 0:
+            attacker.health = 0
+            result = cls._handle_battlefield_kill(defender, attacker)
             return result, None
 
         BattleService._tick_player_status(attacker)
@@ -422,47 +500,60 @@ class BattlefieldService:
         city = BATTLEFIELD_CITIES.get(city_key)
         tier = city['tier']
 
-        # 1. Personal battle points
+        # 同军团击杀为友好切磋，不结算任何积分
         attacker_member = LegionMember.query.filter_by(player_id=attacker.id).first()
-        if attacker_member:
-            attacker_member.personal_battle_points += TIER_POINTS[tier]
+        defender_member = LegionMember.query.filter_by(player_id=defender.id).first()
+        same_legion = bool(
+            attacker_member and defender_member
+            and attacker_member.legion_id == defender_member.legion_id
+        )
 
-        # 2. 荣誉不转移（有意设计）：战场击杀仅结算积分，不转移荣誉/银两/经验，
-        #    与野外 PK 的荣誉零和分档无关。
+        if not same_legion:
+            # 1. Personal battle points
+            if attacker_member:
+                attacker_member.personal_battle_points += TIER_POINTS[tier]
+
+            # 2. 荣誉不转移（有意设计）：战场击杀仅结算积分，不转移荣誉/银两/经验，
+            #    与野外 PK 的荣誉零和分档无关。
+
+            # 3. Legion battle points (in-memory + persistent)
+            cls._ensure_city(city_key)
+            if attacker_member:
+                lid = attacker_member.legion_id
+                cls._cities[city_key].legion_scores[lid] = \
+                    cls._cities[city_key].legion_scores.get(lid, 0) + TIER_POINTS[tier]
+                legion = Legion.query.get(lid)
+                if legion:
+                    legion.battle_points += TIER_POINTS[tier]
+
+            cls._cities[city_key].player_scores[attacker.id] = \
+                cls._cities[city_key].player_scores.get(attacker.id, 0) + TIER_POINTS[tier]
 
         # Update military ranks (honor 未变化，通常不触发军衔变动)
         from services.player_service import PlayerService
         PlayerService.update_military_rank(attacker)
         PlayerService.update_military_rank(defender)
 
-        # 3. Legion battle points (in-memory + persistent)
-        cls._ensure_city(city_key)
-        if attacker_member:
-            lid = attacker_member.legion_id
-            cls._cities[city_key].legion_scores[lid] = \
-                cls._cities[city_key].legion_scores.get(lid, 0) + TIER_POINTS[tier]
-            legion = Legion.query.get(lid)
-            if legion:
-                legion.battle_points += TIER_POINTS[tier]
-
-        cls._cities[city_key].player_scores[attacker.id] = \
-            cls._cities[city_key].player_scores.get(attacker.id, 0) + TIER_POINTS[tier]
-
         # Kill log
         log_entry = f"{attacker.nickname}击杀了{defender.nickname}"
         city_state = cls._cities[city_key]
         city_state.kill_log.append(log_entry)
-        if len(city_state.kill_log) > 20:
-            city_state.kill_log = city_state.kill_log[-20:]
+        if len(city_state.kill_log) > 8:
+            city_state.kill_log = city_state.kill_log[-8:]
 
         # Set defender death state
         defender.battlefield_death_time = time.time()
+        defender.battlefield_target_id = None
         defender.in_pk = False
         defender.pk_opponent = None
+        attacker.battlefield_target_id = None
         attacker.in_pk = False
         attacker.pk_opponent = None
 
-        result_msg = f"{city['name']}战场：你击杀了{defender.nickname} 个人军团积分+{TIER_POINTS[tier]} 军团积分+{TIER_POINTS[tier]}"
+        if same_legion:
+            result_msg = f"{city['name']}战场：你击杀了同军团的{defender.nickname}（友好切磋，无积分）"
+        else:
+            result_msg = f"{city['name']}战场：你击杀了{defender.nickname} 个人军团积分+{TIER_POINTS[tier]} 军团积分+{TIER_POINTS[tier]}"
         attacker.last_battle_result = result_msg
         defender.last_battle_result = f"{city['name']}战场：你被{attacker.nickname}击杀"
 
@@ -473,6 +564,86 @@ class BattlefieldService:
 
         db.session.commit()
         return result_msg
+
+    @classmethod
+    def resolve_flee(cls, loser, winner=None):
+        """决斗中一方主动离开（逃跑）：逃跑方判负，对手直接获胜并获得对应积分，双方决斗结束。
+
+        loser 为逃跑方；winner 为对手（被锁定方无需自己存储对手，可由调用方查出后传入）。
+        若未传入 winner，则按 loser.battlefield_target_id 反查攻击方。
+        """
+        if winner is None:
+            winner_id = loser.battlefield_target_id
+            winner = PlayerModel.query.get(winner_id) if winner_id else None
+        # 对手已不在同一战场：仅清理逃跑方自身状态，不结算积分
+        if not winner or not winner.in_battlefield or winner.battlefield_city != loser.battlefield_city:
+            loser.battlefield_target_id = None
+            loser.in_pk = False
+            db.session.commit()
+            return
+
+        city_key = loser.battlefield_city
+        city = BATTLEFIELD_CITIES.get(city_key)
+        tier = city['tier']
+
+        # 同军团逃跑判负为友好切磋，不结算任何积分
+        winner_member = LegionMember.query.filter_by(player_id=winner.id).first()
+        loser_member = LegionMember.query.filter_by(player_id=loser.id).first()
+        same_legion = bool(
+            winner_member and loser_member
+            and winner_member.legion_id == loser_member.legion_id
+        )
+
+        if not same_legion:
+            # 1. 个人战场积分
+            if winner_member:
+                winner_member.personal_battle_points += TIER_POINTS[tier]
+
+            # 2. 荣誉不转移（与正常击杀一致）
+
+            # 3. 军团积分（内存态 + 持久化）
+            cls._ensure_city(city_key)
+            if winner_member:
+                lid = winner_member.legion_id
+                cls._cities[city_key].legion_scores[lid] = \
+                    cls._cities[city_key].legion_scores.get(lid, 0) + TIER_POINTS[tier]
+                legion = Legion.query.get(lid)
+                if legion:
+                    legion.battle_points += TIER_POINTS[tier]
+
+            cls._cities[city_key].player_scores[winner.id] = \
+                cls._cities[city_key].player_scores.get(winner.id, 0) + TIER_POINTS[tier]
+
+        # 军衔更新
+        from services.player_service import PlayerService
+        PlayerService.update_military_rank(winner)
+        PlayerService.update_military_rank(loser)
+
+        # 战报
+        log_entry = f"{winner.nickname}击败了逃跑的{loser.nickname}"
+        city_state = cls._cities[city_key]
+        city_state.kill_log.append(log_entry)
+        if len(city_state.kill_log) > 8:
+            city_state.kill_log = city_state.kill_log[-8:]
+
+        # 结算结果
+        if same_legion:
+            winner.last_battle_result = (
+                f"{city['name']}战场：{loser.nickname}逃跑，你直接获胜（友好切磋，无积分）"
+            )
+        else:
+            winner.last_battle_result = (
+                f"{city['name']}战场：{loser.nickname}逃跑，你直接获胜 "
+                f"个人军团积分+{TIER_POINTS[tier]} 军团积分+{TIER_POINTS[tier]}"
+            )
+        loser.last_battle_result = f"{city['name']}战场：你逃离战场，判负"
+
+        # 双方决斗结束
+        winner.battlefield_target_id = None
+        winner.in_pk = False
+        loser.battlefield_target_id = None
+        loser.in_pk = False
+        db.session.commit()
 
     # --- Death & Revive ---
 
@@ -500,6 +671,10 @@ class BattlefieldService:
 
     @classmethod
     def force_death_exit(cls, player):
+        city_key = player.battlefield_city
+        if city_key and city_key in cls._cities:
+            # 阵亡即没收该玩家已累积的个人战场积分（死亡后不再获得/保留积分）
+            cls._cities[city_key].player_scores.pop(player.id, None)
         cls.exit_battlefield(player)
         return True, "你被传送出战场"
 
@@ -657,15 +832,15 @@ class BattlefieldService:
     @classmethod
     def get_city_players(cls, city_key):
         cls._ensure_city(city_key)
-        state = cls._cities[city_key]
-        players = []
-        for pid in state.players:
-            p = PlayerModel.query.get(pid)
-            if p and p.in_battlefield and p.battlefield_city == city_key and p.battlefield_death_time == 0:
-                players.append(p)
+        # 以数据库为准：玩家进入战场即写入 in_battlefield/battlefield_city，
+        # 不再依赖易失的内存 state.players 集合，避免服务重启/每周重置后
+        # 已在内场的玩家彼此“看不见”。
+        players = PlayerModel.query.filter_by(
+            in_battlefield=True, battlefield_city=city_key
+        ).filter(PlayerModel.battlefield_death_time <= 0).all()
         return players
 
     @classmethod
     def get_kill_log(cls, city_key):
         cls._ensure_city(city_key)
-        return cls._cities[city_key].kill_log[-10:]
+        return cls._cities[city_key].kill_log[-8:]

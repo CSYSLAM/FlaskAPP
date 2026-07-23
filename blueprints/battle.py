@@ -315,6 +315,8 @@ def set_shortcut():
 
     player.set_shortcuts(shortcuts)
     db.session.commit()
+    if player.in_battlefield:
+        return redirect(url_for('battlefield.city_view'))
     if player.in_pk and player.pk_opponent:
         return redirect(url_for('battle.pk_battle', opponent=player.pk_opponent))
     return redirect(url_for('battle.battle'))
@@ -364,16 +366,40 @@ def pk_battle(opponent):
         flash("PK已结束")
         return redirect(url_for('game.scene'))
 
+    # PK可用药品：背包中可使用的回血/回蓝药品（非战场专用）
+    pk_potions = []
+    for inv in DataService.get_inventory(player.id):
+        it = DataService.get_item(inv.item_id)
+        if (it and it.get('is_usable', True) and not it.get('battlefield_item')
+                and it.get('type') == 'potion' and inv.quantity > 0):
+            pk_potions.append({'item_id': inv.item_id,
+                               'name': it.get('name', inv.item_id),
+                               'quantity': inv.quantity})
+
+    # 技能数据（供技能按钮使用）
+    from models.player import PlayerSkill
+    skills = DataService.get_skills()
+    player_skills = {ps.skill_id: ps for ps in PlayerSkill.query.filter_by(player_id=player.id).all()}
+
+    # 副将
+    from models.lieutenant import Lieutenant
+    lieutenant = Lieutenant.query.filter_by(owner_id=player.id, is_deployed=True).first()
+    target_lieutenant = Lieutenant.query.filter_by(owner_id=opponent_player.id, is_deployed=True, is_alive=True).first()
+
     remaining = request.args.get('remaining', None)
     return render_template("battle.html",
                          player=player,
                          monster=opponent_player,
                          is_pk=True,
                          remaining=remaining,
-                         lieutenant=None,
+                         lieutenant=lieutenant,
                          DataService=DataService,
                          participants=0,
-                         now=datetime.now())
+                         now=datetime.now(),
+                         pk_potions=pk_potions,
+                         skills=skills,
+                         player_skills=player_skills,
+                         target_lieutenant=target_lieutenant)
 
 
 @battle_bp.route("/pk_fight", methods=["POST"])
