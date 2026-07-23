@@ -1,5 +1,6 @@
 {
   "name": "倭寇南区",
+  "can_pk": true,
   "scenes": {
     "倭岛码头": {
       "name": "倭岛码头",

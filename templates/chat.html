@@ -7,7 +7,7 @@
     <style>
     body { font-size: 16px; }
     a:link { color: #136ec2; text-decoration: none; }
-    .tab-active { font-weight: bold; color: #000; }
+    a.tab-active { font-weight: bold; color: #000; }
     #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
     #loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -18,10 +18,16 @@
 
     {% if tab == 'country' %}
     国家频道-{{ player.country }}
+    {% elif tab == 'legion' %}
+    军团频道
+    {% elif tab == 'team' %}
+    队伍频道
     {% elif tab == 'system' %}
     系统频道
     {% elif tab == 'private' %}
     私聊频道
+    {% elif tab == 'notification' %}
+    通知频道
     {% else %}
     公共频道
     {% endif %}
@@ -29,11 +35,15 @@
 
     <a href="{{ url_for('social.chat', tab='public') }}"{% if tab == 'public' %} class="tab-active"{% endif %}>公共</a>
     <a href="{{ url_for('social.chat', tab='country') }}"{% if tab == 'country' %} class="tab-active"{% endif %}>国家</a>
+    <a href="{{ url_for('social.chat', tab='legion') }}"{% if tab == 'legion' %} class="tab-active"{% endif %}>军团</a>
+    <a href="{{ url_for('social.chat', tab='team') }}"{% if tab == 'team' %} class="tab-active"{% endif %}>队伍</a>
+    <br/>
     <a href="{{ url_for('social.chat', tab='private') }}"{% if tab == 'private' %} class="tab-active"{% endif %}>私聊</a>
+    <a href="{{ url_for('social.chat', tab='notification') }}"{% if tab == 'notification' %} class="tab-active"{% endif %}>通知</a>
     <a href="{{ url_for('social.chat', tab='system') }}"{% if tab == 'system' %} class="tab-active"{% endif %}>系统</a>
     <br/>
 
-    {% if tab != 'system' %}
+    {% if tab in ('public', 'country', 'legion', 'team') %}
     <form action="{{ url_for('social.send_message') }}" method="post" style="display:inline;">
         <input type="hidden" name="tab" value="{{ tab }}">
         <input type="text" name="content" placeholder="请输入聊天信息(30字以内):" maxlength="30" style="width:60%">
@@ -53,21 +63,30 @@
     {% endif %}
     {% endwith %}
 
-    {% if messages %}
+    {% if tab == 'legion' and not in_legion %}
+    你不在任何军团中<br/>
+    {% elif tab == 'team' and not in_party %}
+    你不在任何队伍中<br/>
+    {% elif messages %}
     {% for msg in messages %}
-        {% set msg_time = msg.created_at + timedelta(hours=8) %}
-        {% if msg.message_type == 'system' %}
-            【系统】{{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
-        {% elif msg.message_type == 'public' %}
-            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
-        {% elif msg.message_type == 'country' %}
-            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
-        {% elif msg.message_type == 'private' %}
+        {% if tab == 'notification' %}
+        通知: {{ msg.content }}({{ msg.time }})<br/>
+        {% elif tab == 'system' %}
+            {% set msg_time = msg.created_at + timedelta(hours=8) %}
+            【系统】{{ msg.content }}({{ msg_time.hour }}:{{ msg_time.minute }})<br/>
+        {% elif tab == 'private' %}
+            {% set msg_time = msg.created_at + timedelta(hours=8) %}
             {% if msg.sender_id == player.id %}
-            你对 <a href="{{ url_for('player.view_player', username=msg.receiver.username) if msg.receiver else '#' }}">{{ msg.receiver.nickname if msg.receiver else '未知' }}</a>: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
+            你对 <a href="{{ url_for('player.view_player', username=msg.receiver.username) if msg.receiver else '#' }}">{{ msg.receiver.nickname if msg.receiver else '未知' }}</a>: {{ msg.content }}({{ msg_time.hour }}:{{ msg_time.minute }})<br/>
             {% else %}
-            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a> 对你说: {{ msg.content }}({{ msg_time.strftime('%H:%M') }})<br/>
+            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a> 对你说: {{ msg.content }}({{ msg_time.hour }}:{{ msg_time.minute }})<br/>
             {% endif %}
+        {% elif tab == 'legion' or tab == 'team' %}
+            {% set msg_time = msg.created_at + timedelta(hours=8) %}
+            {{ msg.sender_name }}: {{ msg.content }}({{ msg_time.hour }}:{{ msg_time.minute }})<br/>
+        {% else %}
+            {% set msg_time = msg.created_at + timedelta(hours=8) %}
+            <a href="{{ url_for('player.view_player', username=msg.sender.username) if msg.sender else '#' }}">{{ msg.sender.nickname if msg.sender else '未知' }}</a>: {{ msg.content }}({{ msg_time.hour }}:{{ msg_time.minute }})<br/>
         {% endif %}
     {% endfor %}
     {% else %}
@@ -75,6 +94,13 @@
     {% endif %}
 
     <br/>
+    {% if total_pages > 1 %}
+    {% if page > 1 %}<a href="{{ url_for('social.chat', tab=tab, page=page-1) }}">上页</a>{% endif %}
+    {% if page < total_pages %}<a href="{{ url_for('social.chat', tab=tab, page=page+1) }}">下页</a>{% endif %}
+    {% if total_pages > 1 %}<a href="{{ url_for('social.chat', tab=tab, page=total_pages) }}">末页</a>{% endif %}
+    <br/>
+    {% endif %}
+
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
     当前时间：{{ now.strftime('%H:%M') }}<br/>
 

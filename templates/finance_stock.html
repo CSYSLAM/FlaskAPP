@@ -77,7 +77,7 @@
     {% endif %}
     ----------------<br/>
     委托单（限价单，任何时段可挂）<br/>
-    <span class="flat">买单：委托价≥当前价×95%即成交（按委托价买）；卖单：委托价≤当前价即成交（按委托价卖）。流通量不足时部分成交，剩余继续挂单</span><br/>
+    <span class="flat">买单：委托价≥当前价即按当前价成交；卖单：委托价≤当前价即按当前价成交。流通量不足时部分成交，剩余继续挂单</span><br/>
     <form action="{{ url_for('activity.finance_place_order') }}" method="post">
         <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
         方向<select name="side"><option value="buy">买入</option><option value="sell">卖出</option></select>

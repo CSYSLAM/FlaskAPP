@@ -530,6 +530,7 @@
     "type": "potion",
     "description": "恢复50点生命值",
     "price": 50,
+    "sell_price": 12,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -546,6 +547,7 @@
     "type": "potion",
     "description": "恢复30点魔法值",
     "price": 50,
+    "sell_price": 12,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -749,25 +751,25 @@
       "random_items": [
         {
           "item_id": "craft_huangyangmu",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_huangtongkuang",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_suipi",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.5,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_mabu",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.5,
           "guaranteed_count": 1
         }
@@ -786,7 +788,7 @@
             "weapon"
           ],
           "exclude_artifact": true,
-          "chance": 0.6,
+          "chance": 0.48,
           "count": 1,
           "rarity_weights": {
             "精良": 45,
@@ -906,25 +908,25 @@
       "random_items": [
         {
           "item_id": "craft_chenxiangmu",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_heitiekuang",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_yingpi",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.5,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_mianbu",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.5,
           "guaranteed_count": 1
         }
@@ -943,7 +945,7 @@
             "weapon"
           ],
           "exclude_artifact": true,
-          "chance": 0.65,
+          "chance": 0.52,
           "count": 1,
           "rarity_weights": {
             "精良": 45,
@@ -1037,7 +1039,7 @@
   "chest_gold": {
     "name": "金质宝匣",
     "type": "chest",
-    "description": "需要3个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
+    "description": "需要3个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备，有概率获得60史诗打造图纸",
     "price": 500,
     "sell_price": 125,
     "is_usable": true,
@@ -1064,27 +1066,49 @@
       "random_items": [
         {
           "item_id": "craft_zitanmu",
-          "max_count": 4,
+          "max_count": 3,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_jingjinkuang",
-          "max_count": 4,
+          "max_count": 3,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_chenxiangmu",
-          "max_count": 5,
+          "max_count": 3,
           "chance": 0.5,
-          "guaranteed_count": 2
+          "guaranteed_count": 1
         },
         {
           "item_id": "craft_heitiekuang",
-          "max_count": 5,
+          "max_count": 3,
           "chance": 0.5,
-          "guaranteed_count": 2
+          "guaranteed_count": 1
+        },
+        {
+          "item_ids": [
+            "bp_tiangang_helmet",
+            "bp_tiangang_armor",
+            "bp_tiangang_pants",
+            "bp_tiangang_gloves",
+            "bp_tiangang_shoes",
+            "bp_ziyun_helmet",
+            "bp_ziyun_armor",
+            "bp_ziyun_pants",
+            "bp_ziyun_gloves",
+            "bp_ziyun_shoes",
+            "bp_lieyan_helmet",
+            "bp_lieyan_armor",
+            "bp_lieyan_pants",
+            "bp_lieyan_gloves",
+            "bp_lieyan_shoes"
+          ],
+          "chance": 0.1,
+          "guaranteed_count": 0,
+          "max_count": 1
         }
       ],
       "equipment_generators": [
@@ -1101,7 +1125,7 @@
             "weapon"
           ],
           "exclude_artifact": true,
-          "chance": 0.7,
+          "chance": 0.4,
           "count": 1,
           "rarity_weights": {
             "精良": 45,
@@ -1976,6 +2000,7 @@
     "type": "potion",
     "description": "恢复100点生命值",
     "price": 100,
+    "sell_price": 25,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -1992,6 +2017,7 @@
     "type": "potion",
     "description": "恢复60点魔法值",
     "price": 100,
+    "sell_price": 25,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2008,6 +2034,7 @@
     "type": "potion",
     "description": "恢复200点生命值",
     "price": 200,
+    "sell_price": 50,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2024,6 +2051,7 @@
     "type": "potion",
     "description": "恢复100点魔法值",
     "price": 200,
+    "sell_price": 50,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2040,6 +2068,7 @@
     "type": "potion",
     "description": "恢复300点生命值",
     "price": 300,
+    "sell_price": 75,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2056,6 +2085,7 @@
     "type": "potion",
     "description": "恢复400点生命值",
     "price": 400,
+    "sell_price": 100,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2072,6 +2102,7 @@
     "type": "potion",
     "description": "恢复500点生命值",
     "price": 500,
+    "sell_price": 125,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2088,6 +2119,7 @@
     "type": "potion",
     "description": "恢复700点生命值",
     "price": 625,
+    "sell_price": 156,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2104,6 +2136,7 @@
     "type": "potion",
     "description": "恢复800点生命值",
     "price": 800,
+    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2120,6 +2153,7 @@
     "type": "potion",
     "description": "恢复400点魔法值",
     "price": 800,
+    "sell_price": 200,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2136,6 +2170,7 @@
     "type": "potion",
     "description": "恢复1000点生命值",
     "price": 950,
+    "sell_price": 237,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2152,6 +2187,7 @@
     "type": "potion",
     "description": "恢复1500点生命值",
     "price": 1150,
+    "sell_price": 287,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2168,6 +2204,7 @@
     "type": "potion",
     "description": "恢复600点魔法值",
     "price": 1150,
+    "sell_price": 287,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2184,6 +2221,7 @@
     "type": "potion",
     "description": "恢复2500点生命值",
     "price": 2000,
+    "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2200,6 +2238,7 @@
     "type": "potion",
     "description": "恢复1000点魔法值",
     "price": 2000,
+    "sell_price": 500,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2216,6 +2255,7 @@
     "type": "potion",
     "description": "恢复3000点生命值",
     "price": 2250,
+    "sell_price": 562,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2232,6 +2272,7 @@
     "type": "potion",
     "description": "恢复1500点魔法值",
     "price": 2250,
+    "sell_price": 562,
     "is_usable": true,
     "usage_effect": {
       "stat_changes": {
@@ -2651,15 +2692,6 @@
     },
     "capacity": 0.1
   },
-  "battle_challenge_token": {
-    "name": "战场请战符",
-    "type": "material",
-    "description": "可在战场中使用",
-    "price": 0,
-    "sell_price": 0,
-    "is_usable": false,
-    "capacity": 0
-  },
   "battle_revive_lamp": {
     "name": "战场续命灯",
     "type": "other",
@@ -2667,6 +2699,42 @@
     "price": 0,
     "sell_price": 0,
     "is_usable": false,
+    "capacity": 0
+  },
+  "battle_potion_health": {
+    "name": "战场金创药",
+    "type": "potion",
+    "description": "战场专用药品，恢复1500点生命值。普通药品在战场无法使用",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "battlefield_item": true,
+    "usage_effect": {
+      "stat_changes": {
+        "health": 1500
+      },
+      "effect_descriptions": {
+        "health": "恢复{value}点生命值"
+      }
+    },
+    "capacity": 0
+  },
+  "battle_potion_mana": {
+    "name": "战场凝魔药",
+    "type": "potion",
+    "description": "战场专用药品，恢复800点魔法值。普通药品在战场无法使用",
+    "price": 0,
+    "sell_price": 0,
+    "is_usable": true,
+    "battlefield_item": true,
+    "usage_effect": {
+      "stat_changes": {
+        "mana": 800
+      },
+      "effect_descriptions": {
+        "mana": "恢复{value}点魔法值"
+      }
+    },
     "capacity": 0
   },
   "epic_ring_1": {

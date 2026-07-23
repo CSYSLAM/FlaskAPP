@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>论坛管理</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+.muted { color:#888; font-size:14px; }
+.row { padding:2px 0; border-bottom:1px dashed #eee; }
+form.inline { display:inline; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+{% with messages = get_flashed_messages() %}{% if messages %}{% for msg in messages %}{{ msg }}<br/>{% endfor %}<br/>{% endif %}{% endwith %}
+论坛管理<br/>
+----------------<br/>
+搜索玩家禁言<br/>
+<form method="get" action="{{ url_for('forum.admin') }}">
+<input type="text" name="q" value="{{ q }}" placeholder="昵称/账号" style="width:120px;">
+<input type="submit" value="搜索">
+</form>
+{% for p in players %}
+{{ p.nickname }}({{ p.username }})
+<form class="inline" method="post" action="{{ url_for('forum.mute_player', player_id=p.id) }}">
+<select name="duration"><option value="1h">1小时</option><option value="1d">1天</option><option value="7d">7天</option><option value="forever">永久</option></select>
+<input type="text" name="reason" placeholder="原因" style="width:80px;">
+<input type="submit" value="禁言">
+</form><br/>
+{% endfor %}
+----------------<br/>
+禁言中<br/>
+{% for m in mutes %}
+{{ m.player.nickname if m.player else m.player_id }} {% if m.muted_until %}至{{ m.muted_until.strftime('%m-%d %H:%M') }}{% else %}永久{% endif %} {{ m.reason }}
+<form class="inline" method="post" action="{{ url_for('forum.unmute', mute_id=m.id) }}"><input type="submit" value="解禁"></form><br/>
+{% endfor %}
+{% if not mutes %}暂无禁言<br/>{% endif %}
+----------------<br/>
+已删帖<br/>
+{% for p in deleted %}
+<div class="row"><a href="{{ url_for('forum.view_post', post_id=p.id) }}">{{ p.title }}</a> <span class="muted">{{ p.deleted_at.strftime('%m-%d') if p.deleted_at else '' }}</span>
+<form class="inline" method="post" action="{{ url_for('forum.restore_post', post_id=p.id) }}"><input type="submit" value="恢复"></form></div>
+{% endfor %}
+{% if not deleted %}暂无删帖<br/>{% endif %}
+<br/>
+<a href="{{ url_for('forum.index') }}">返回论坛</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

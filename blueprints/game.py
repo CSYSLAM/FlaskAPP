@@ -183,18 +183,9 @@ def scene():
             except (ValueError, TypeError):
                 pass
 
-        # Save friend notifications to system message history, then clear all shown
-        if friend_notifications:
-            for n in friend_notifications:
-                msg = ChatMessage(
-                    sender_id=None,
-                    receiver_id=player.id,
-                    content=n.get('message', ''),
-                    message_type='system'
-                )
-                db.session.add(msg)
+        # 通知不再写入系统频道历史，也不再自动清空：
+        # 个人通知(含玫瑰赠送等)改为常驻「通知」频道展示，系统频道仅保留全局播报。
         if friend_notifications or filtered_notifications:
-            player.notifications = []
             db.session.commit()
 
         # Get ground items

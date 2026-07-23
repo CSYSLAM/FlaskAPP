@@ -49,7 +49,7 @@
     {% else %}
     {{ equipment.name }}
     {% endif %}
-    {% if equipment.is_bound %}<span class="bound">(绑定)</span>{% else %}<span class="bound">(非绑定)</span>{% endif %}<br/>
+    {% if equipment.is_bound %}<span class="bound">（绑定）</span>{% else %}<span class="bound">（非绑定）</span>{% endif %}<br/>
 
     {# === 装备说明 === #}
     {% if tpl and tpl.get('description') %}

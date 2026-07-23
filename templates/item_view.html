@@ -20,7 +20,7 @@
     {% if messages %}{% for msg in messages %}{{ msg }}<br/>{% endfor %}{% endif %}
     {% endwith %}
 
-    <b>{{ item.name }}</b>{% if is_bound %}<span class="bound">(绑定)</span>{% endif %}x{{ quantity }}<br/>
+    <b>{{ item.name }}</b>{% if is_bound %}<span class="bound">（绑定）</span>{% endif %}x{{ quantity }}<br/>
 
     {% if item.get('description') %}
     {{ item.description }}<br/>

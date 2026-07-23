@@ -93,11 +93,11 @@ Certain items have restricted usage contexts — they **cannot be used from the 
 |------|---------|---------------|------|
 | 回城符 | `return_scroll` | 地图→回城→【点击回城】 | Only consumed when clicking 回城 in map interface; `is_usable: false` in backpack |
 | 神行符 | `speed_scroll` | 地图→神行→选择传送点 | Only consumed when executing 神行 teleport; `is_usable: false` in backpack |
-| 活力卡 | `vitality_card` | 山庄→行动力旁【补充】按钮 | Only consumed via "补充(+10)" link when AP not full; `is_usable: false` in backpack. Each card restores 10 AP, max 120 |
+| 活力卡 | `vitality_card` | 山庄→行动力旁【补充】按钮 | Only consumed via "补充(+10)" link when AP not full; `is_usable: false` in backpack. Each card restores 10 AP; cap = `120 + (villa.level-1)*2` (随山庄等级提升) |
 | 催熟剂 | `ripening_agent` | 百草园→生长中作物旁【催熟】链接 | Only consumed via "催熟" link on growing plots; `is_usable: false` in backpack |
 | 死亡替身符 | `death_substitute` | PK死亡时自动消耗 | Auto-consumed on PK death, not manually usable; `is_usable: false` |
 | 断肠草 | `duanchang_cao` | 离婚专用道具 | Used in marriage/divorce flow, not from backpack; `is_usable: false` |
-| 结交酒 | `friend_wine` / `bond_wine` | 红颜/知己结交流程 | Used in social interaction flow; `is_usable: false` |
+| 结交酒 | `bond_wine` | 红颜/知己结交流程 | Used in social interaction flow; `is_usable: false` |
 | 断交酒 | `break_wine` | 红颜/知己断交流程 | Used in social interaction flow; `is_usable: false` |
 | 副将技能书 | `lt_skill_<id>_<1-3>` | 副将→技能→学习/升级 | 36 本(12技能×3级:入门/进阶/精通)，在副将技能界面消耗，不从背包使用; `is_usable: false`。学1级需50本入门、升2级需20本进阶、升3级需10本精通 |
 | 遗忘之章残页 | `lt_forget_page` | 背包→点开残页详情→【合成遗忘之章】 | 50 个残页合成 1 个遗忘之章; `is_usable: false`。合成入口仅在残页详情页显示，合成后残页仍够则留详情页，不够回背包 |
@@ -131,7 +131,7 @@ Certain items have restricted usage contexts — they **cannot be used from the 
 - **被怪击杀**：扣经验10%+银两(怪级×1)，**死亡时扣**、VIP(`non_pk_loss_exempt`)全免、荣誉不变
 - **复活**：续命灯满血无损/虚弱复活10%血蓝(不扣经验)/回城疗伤(300银两→虚弱复活+本城客栈)
 - **免战符**(`peace_token`)：背包使用→30分钟免疫被发起PK(`activity_data.pk_immunity_until`)
-- **战场**(`battlefield_service`)是独立系统(段位`TIER_HONOR`)，不适用以上规则
+- **战场**(`battlefield_service`)是独立系统(战败不转移荣誉/银两/经验)，不适用以上规则
 
 ## Garden (百草园) System
 

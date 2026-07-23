@@ -22,7 +22,7 @@
 
     打造成功！<br/>
     获得 <span class="rarity-{{ equipment.rarity }}">{{ equipment.name }}</span><br/>
-    {% if equipment.is_bound %}(绑定){% else %}(非绑定){% endif %}<br/>
+    {% if equipment.is_bound %}（绑定）{% else %}（非绑定）{% endif %}<br/>
     {% if cost_info %}
     消耗: 银两x{{ cost_info.silver }}{% for m in cost_info.materials %}、{{ m.name }}x{{ m.quantity }}{% endfor %}<br/>
     {% endif %}

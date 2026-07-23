@@ -152,8 +152,7 @@
       "exits": {
         "west": "jinyang_west.西门",
         "east": "jinyang_center.杂货铺"
-      },
-      "can_pk": true
+      }
     }
   }
 }

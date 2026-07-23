@@ -1,5 +1,6 @@
 {
   "name": "下邳南区",
+  "can_pk": true,
   "scenes": {
     "南门": {
       "name": "南门",

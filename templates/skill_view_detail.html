@@ -32,7 +32,7 @@
     {% set dmg_rate = skill_def['base_damage_rate'] + skill_def.get('damage_rate_per_level', 0) * (slvl - 1) %}
     {% set mana_cost = skill_def['base_mana_cost'] + skill_def.get('mana_cost_per_level', 0) * (slvl - 1) %}
     伤害:{{ "%.0f"|format(dmg_rate * 100) }}%{% if skill_def.get('damage_rate_per_level') %}(+{{ "%.0f"|format(skill_def['damage_rate_per_level'] * 100) }}%/级){% endif %}<br/>
-    耗魔:{{ mana_cost }}{% if skill_def.get('mana_cost_per_level') %}(+{{ skill_def['mana_cost_per_level'] }}/级){% endif %}<br/>
+    耗魔:{{ "%.0f"|format(mana_cost) }}{% if skill_def.get('mana_cost_per_level') %}(+{{ "%.0f"|format(skill_def['mana_cost_per_level']) }}/级){% endif %}<br/>
     {% if skill_def.get('hits', 1) > 1 %}
     连击:{{ skill_def['hits'] }}次<br/>
     {% endif %}

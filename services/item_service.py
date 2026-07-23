@@ -22,6 +22,10 @@ class ItemService:
         if not item_data.get("is_usable", True):
             return False, "该物品不可使用"
 
+        # 战场中只能使用战场专用药品（普通药品恢复在战场无效）
+        if getattr(player, 'in_battlefield', False) and not item_data.get('battlefield_item'):
+            return False, "战场中无法使用该药品，请使用战场专用药品"
+
         usage_effect = item_data.get("usage_effect", {})
 
         # Block lieutenant-specific items from inventory use (must use from lieutenant interface)
@@ -240,6 +244,10 @@ class ItemService:
         from services.item_reward_registry import handle_reward
         for ri in random_items:
             reward_id = ri.get("item_id")
+            if reward_id is None:
+                ids = ri.get("item_ids")
+                if ids:
+                    reward_id = random.choice(ids)
             max_count = ri.get("max_count", 1)
             chance = ri.get("chance", 1.0)
             guaranteed = ri.get("guaranteed_count", 0)

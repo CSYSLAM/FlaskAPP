@@ -5,9 +5,9 @@
 ## 一、概述
 
 - **URL 前缀**：`/activity/finance`（路由写在 `blueprints/activity.py`，蓝图前缀 `/activity`，服务 `services/finance_service.py`）。
-- **服务类**：`FinanceService`（`finance_service.py:491`），**全部类级内存状态**（非数据库）——存量、股价、委托单、劫匪、当日统计均为进程内 dict，惰性时间戳刷新（仿 `WorldBossService`）。
+- **服务类**：`FinanceService`（`finance_service.py:491`），行情/统计/劫匪以类级缓存运行，并通过 `finance_state` 表持久化；启动后台维护线程每 60 秒推进跨天、tick、委托撮合和落库。
 - **关键性质**：
-  - 股价/流通量/委托单/劫匪 **不落库**，服务器重启即重置（启动时 `_rebuild_outstanding` 从所有玩家持仓聚合恢复流通量 `:548`）。
+  - 股价/当日统计/劫匪状态落库到 `finance_state`，后台维护线程每 60 秒推进跨天、tick 和委托撮合。
   - 玩家持仓存于 `player.finance_data`（JSON Blob）的 `holdings`/`realized_profit`/`frozen` 等字段（**持久化**）。
 - **货币**：全部用 **金珠 `jinzu`**（非元宝）。
 
@@ -77,7 +77,7 @@
 
 ### 4. 委托单系统（`place_order` `:970` / `_match_orders` `:1029` / `_fill_order` `:1054` / `cancel_order` `:1173`）
 
-- **限价单语义**：任何时段可挂（`can_place_order` `:594` 恒 True）。买单 `委托价 ≥ 市价*ORDER_BUY_TOLERANCE(0.95)` 成交；卖单 `委托价 ≤ 市价` 成交；**统一按委托价结算**（`_match_orders` `:1029`）。
+- **限价单语义**：任何时段可挂（`can_place_order` 恒 True）。买单 `委托价 ≥ 市价` 成交；卖单 `委托价 ≤ 市价` 成交；**按当前撮合价成交，委托价只作为保护价**。买单不得低于市价成交，避免低买高卖套利。
 - **预冻结**：买单冻结 `金珠=shares*limit_price*(1+FEE_RATE)`（记 `finance_data['frozen']`）；卖单冻结持仓（`holdings[stock]['shares']` 减、`locked` 加）。
 - **撮合触发**：竞价段（按开盘价）+ 每个连续 tick（`_maybe_tick`）。
 - **部分成交**：买单受流通量限制，`fill = min(order_shares, available)`，剩余继续挂单，按比例解冻金珠（`_fill_order` `:1054`）。
@@ -128,7 +128,7 @@
 
 ## 六、注意事项/坑
 
-- **内存状态，重启即丢**：股价/委托单/劫匪/当日统计均为类级内存；只有玩家 `finance_data`（持仓/盈亏）入库。重启后 `outstanding` 由持仓聚合恢复，但当日 `A/B/C` 涨跌、委托单、劫匪位置全部重置，且 `_settle_day_change` 在 `_initialized` 时重算一次。
+- **行情状态已持久化**：股价/当日统计/劫匪位置写入 `finance_state`；pending 委托同步保存在玩家 `finance_data.finance_orders`。重启后恢复行情和委托，后台线程每 60 秒推进跨天和 tick。
 - **交易日程固定**：纯按服务器本地时钟判断时段，无周末休市。
 - **盘前/竞价不显示股价**：玩家此时看不到实时价，只能挂委托单；竞价段委托单按开盘价撮合。
 - **当日涨跌幅 ±10% 硬上限**：`A+B+C` 会被 clamp。

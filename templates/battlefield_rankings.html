@@ -18,7 +18,7 @@
     战场排名<br/>
     ----------------<br/>
     {% for city_key, data in all_rankings.items() %}
-    {{ data.city.name }}({{ data.city.tier }})<br/>
+    {{ data.city.name }}({{ tier_name[data.city.tier] }})<br/>
     {% if data.player_ranking %}
     玩家:<br/>
     {% for r in data.player_ranking %}

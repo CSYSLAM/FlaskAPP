@@ -61,6 +61,12 @@ a:link { color: #136ec2; text-decoration: none; }
 <br/>
 {% endif %}
 {% endfor %}
+{% if guide.detail %}
+<hr/>
+{% for para in guide.detail.split('\n\n') %}
+{% if para %}{{ para|safe }}<br/>{% else %}<br/>{% endif %}
+{% endfor %}
+{% endif %}
 <br/>
 <a href="{{ url_for('guide.index') }}">返回</a><br/>
 <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>

@@ -1011,119 +1011,259 @@
         "defense": 21
       }
     },
-    "gift_1": {
+    "flower_1": {
       "name": "魅力达人",
       "category": "社交",
-      "description": "赠送99次礼物",
-      "condition_type": "gift",
+      "description": "收到99朵玫瑰",
+      "condition_type": "flower_received",
       "condition_value": 99,
       "points": 10,
+      "difficulty": "简单",
       "reward": {
-        "max_health": 5
+        "max_health": 10
       }
     },
-    "gift_2": {
+    "flower_2": {
       "name": "魅力四射",
       "category": "社交",
-      "description": "赠送999次礼物",
-      "condition_type": "gift",
+      "description": "收到999朵玫瑰",
+      "condition_type": "flower_received",
       "condition_value": 999,
       "points": 30,
+      "difficulty": "简单",
       "reward": {
-        "max_health": 14
+        "max_health": 30
       }
     },
-    "gift_3": {
+    "flower_3": {
       "name": "魅力无限",
       "category": "社交",
-      "description": "赠送9999次礼物",
-      "condition_type": "gift",
+      "description": "收到9999朵玫瑰",
+      "condition_type": "flower_received",
       "condition_value": 9999,
       "points": 50,
+      "difficulty": "简单",
       "reward": {
-        "max_health": 24,
-        "max_mana": 25,
-        "attack": 2
+        "max_health": 50,
+        "max_mana": 50,
+        "attack": 10
       }
     },
-    "gift_4": {
+    "flower_4": {
       "name": "名动三国",
       "category": "社交",
-      "description": "赠送19999次礼物",
-      "condition_type": "gift",
+      "description": "收到19999朵玫瑰",
+      "condition_type": "flower_received",
       "condition_value": 19999,
       "points": 100,
+      "difficulty": "普通",
       "reward": {
-        "max_health": 48,
-        "max_mana": 50,
-        "attack": 5,
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 20,
+        "defense": 40,
+        "crit_rate": 0.001
+      }
+    },
+    "friend_1": {
+      "name": "红颜知己",
+      "category": "社交",
+      "description": "跟一名好友结交",
+      "condition_type": "friend_count",
+      "condition_value": 1,
+      "points": 10,
+      "difficulty": "简单",
+      "reward": {
+        "max_health": 10
+      }
+    },
+    "friend_2": {
+      "name": "海内存知己",
+      "category": "社交",
+      "description": "跟五名好友结交",
+      "condition_type": "friend_count",
+      "condition_value": 5,
+      "points": 30,
+      "difficulty": "简单",
+      "reward": {
+        "max_health": 50
+      }
+    },
+    "friend_3": {
+      "name": "天下何人不识君！",
+      "category": "社交",
+      "description": "跟十名好友结交",
+      "condition_type": "friend_count",
+      "condition_value": 10,
+      "points": 50,
+      "difficulty": "简单",
+      "reward": {
+        "max_health": 100
+      }
+    },
+    "bless_1": {
+      "name": "祈福宏愿",
+      "category": "社交",
+      "description": "累计为好友祈福99次",
+      "condition_type": "bless_count",
+      "condition_value": 99,
+      "points": 20,
+      "difficulty": "简单",
+      "reward": {
+        "attack": 3
+      }
+    },
+    "bless_2": {
+      "name": "诚心诚意",
+      "category": "社交",
+      "description": "累计为好友祈福299次",
+      "condition_type": "bless_count",
+      "condition_value": 299,
+      "points": 50,
+      "difficulty": "简单",
+      "reward": {
+        "attack": 6
+      }
+    },
+    "bless_3": {
+      "name": "至诚至善",
+      "category": "社交",
+      "description": "累计为好友祈福999次",
+      "condition_type": "bless_count",
+      "condition_value": 999,
+      "points": 80,
+      "difficulty": "普通",
+      "reward": {
+        "attack": 9
+      }
+    },
+    "steal_skill_1": {
+      "name": "偷师学艺",
+      "category": "社交",
+      "description": "偷师成功10次",
+      "condition_type": "steal_skill_success",
+      "condition_value": 10,
+      "points": 10,
+      "difficulty": "简单",
+      "reward": {
+        "max_health": 10,
+        "max_mana": 10
+      }
+    },
+    "steal_skill_2": {
+      "name": "初入师门",
+      "category": "社交",
+      "description": "偷师成功100次",
+      "condition_type": "steal_skill_success",
+      "condition_value": 100,
+      "points": 30,
+      "difficulty": "简单",
+      "reward": {
+        "max_health": 30,
+        "max_mana": 30,
+        "attack": 10,
         "defense": 10
       }
     },
-    "gift_5": {
-      "name": "红颜知己",
+    "steal_skill_3": {
+      "name": "青出于蓝",
       "category": "社交",
-      "description": "聊天10次",
-      "condition_type": "chat",
+      "description": "偷师成功300次",
+      "condition_type": "steal_skill_success",
+      "condition_value": 300,
+      "points": 100,
+      "difficulty": "普通",
+      "reward": {
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 30,
+        "defense": 50
+      }
+    },
+    "steal_medicine_1": {
+      "name": "身手敏捷",
+      "category": "社交",
+      "description": "偷药成功10次",
+      "condition_type": "steal_medicine_success",
       "condition_value": 10,
       "points": 10,
+      "difficulty": "简单",
       "reward": {
-        "max_health": 5
+        "max_health": 10,
+        "max_mana": 10
       }
     },
-    "gift_6": {
-      "name": "海内存知己",
+    "steal_medicine_2": {
+      "name": "无影飞贼",
       "category": "社交",
-      "description": "聊天50次",
-      "condition_type": "chat",
-      "condition_value": 50,
-      "points": 30,
-      "reward": {
-        "max_health": 24
-      }
-    },
-    "gift_7": {
-      "name": "天下何人不识君！",
-      "category": "社交",
-      "description": "聊天100次",
-      "condition_type": "chat",
+      "description": "偷药成功100次",
+      "condition_type": "steal_medicine_success",
       "condition_value": 100,
-      "points": 50,
+      "points": 30,
+      "difficulty": "简单",
       "reward": {
-        "max_health": 48
+        "max_health": 30,
+        "max_mana": 30,
+        "attack": 10,
+        "defense": 10
       }
     },
-    "gift_8": {
-      "name": "祈福宏愿",
+    "steal_medicine_3": {
+      "name": "神偷再世",
       "category": "社交",
-      "description": "赠送99次礼物",
-      "condition_type": "gift",
-      "condition_value": 99,
-      "points": 20,
+      "description": "偷药成功300次",
+      "condition_type": "steal_medicine_success",
+      "condition_value": 300,
+      "points": 100,
+      "difficulty": "普通",
       "reward": {
-        "attack": 1
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 30,
+        "defense": 50
       }
     },
-    "gift_9": {
-      "name": "诚心诚意",
+    "steal_caught_1": {
+      "name": "技艺不精",
       "category": "社交",
-      "description": "赠送299次礼物",
-      "condition_type": "gift",
-      "condition_value": 299,
-      "points": 50,
+      "description": "偷药、偷师被抓10次",
+      "condition_type": "steal_caught",
+      "condition_value": 10,
+      "points": 10,
+      "difficulty": "简单",
       "reward": {
-        "attack": 1
+        "max_health": 10,
+        "max_mana": 10
       }
     },
-    "gift_10": {
-      "name": "至诚至善",
+    "steal_caught_2": {
+      "name": "身手渐长",
       "category": "社交",
-      "description": "赠送999次礼物",
-      "condition_type": "gift",
-      "condition_value": 999,
-      "points": 80,
+      "description": "偷药、偷师被抓100次",
+      "condition_type": "steal_caught",
+      "condition_value": 100,
+      "points": 30,
+      "difficulty": "简单",
       "reward": {
-        "attack": 2
+        "max_health": 30,
+        "max_mana": 30,
+        "attack": 10,
+        "defense": 10
+      }
+    },
+    "steal_caught_3": {
+      "name": "盗贼传说",
+      "category": "社交",
+      "description": "偷药、偷师被抓300次",
+      "condition_type": "steal_caught",
+      "condition_value": 300,
+      "points": 100,
+      "difficulty": "普通",
+      "reward": {
+        "max_health": 100,
+        "max_mana": 100,
+        "attack": 30,
+        "defense": 50
       }
     },
     "vip1": {

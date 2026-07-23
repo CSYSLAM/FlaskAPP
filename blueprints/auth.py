@@ -220,4 +220,10 @@ def logout():
     logout_user()
     session.pop("username", None)
     session.pop("player_id", None)
+    # 退出后从组队在线集合中移除,避免组队加成误判离线成员为在线
+    try:
+        from services.party_service import mark_offline
+        mark_offline(pid)
+    except Exception:
+        pass
     return redirect(url_for("auth.login_page"))

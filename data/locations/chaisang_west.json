@@ -1,5 +1,6 @@
 {
   "name": "柴桑西区",
+  "can_pk": true,
   "scenes": {
     "西门": {
       "name": "西门",

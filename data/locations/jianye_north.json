@@ -1,5 +1,6 @@
 {
   "name": "建邺北区",
+  "can_pk": true,
   "scenes": {
     "北门": {
       "name": "北门",

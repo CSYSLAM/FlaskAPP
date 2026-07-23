@@ -25,10 +25,12 @@
     {% endwith %}
 
     军团战<br/>
-    {% if is_war_time %}
+    {% if test_war and test_war.active %}
+    测试战进行中（剩余约 {{ test_war.remaining }} 秒）<br/>
+    {% elif is_war_time %}
     战场开放中<br/>
     {% else %}
-    战场未开放(每周六20:00-20:30)<br/>
+    战场未开放(每周六20:00-20:30，或由工作台开启测试战)<br/>
     {% endif %}
     <a href="{{ url_for('battlefield.rankings') }}">战况排行</a><br/>
     ----------------<br/>

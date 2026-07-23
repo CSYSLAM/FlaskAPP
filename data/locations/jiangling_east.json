@@ -1,5 +1,6 @@
 {
   "name": "江陵东区",
+  "can_pk": true,
   "scenes": {
     "东门": {
       "name": "东门",

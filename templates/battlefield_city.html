@@ -26,34 +26,62 @@
 
     {{ city.name }}战场({{ city.tier }})<br/>
     <a href="{{ url_for('battlefield.city_view') }}">刷新</a>
-    <a href="{{ url_for('battlefield.exit_battlefield') }}">离开</a><br/>
+    <a href="{{ url_for('battlefield.exit_battlefield') }}" class="confirm-exit">离开</a><br/>
     ----------------<br/>
-    生命:{{ player.health }}/{{ player.max_health + player.pill_max_health }}<br/>
-    魔法:{{ player.mana }}/{{ player.max_mana + player.pill_max_mana }}<br/>
+
+{% if target %}
+    {# ===== 1v1锁定对手模式 ===== #}
+    {% for slot in ['skill1', 'skill2', 'skill3', 'skill4'] %}{% set sid = player.shortcuts[slot] %}{% set sname = '普攻' if sid == 'attack' else (skills.get(sid, {}).get('name') if skills.get(sid) else sid) %}<a href="{{ url_for('battlefield.attack', target_id=target.id) if sid == 'attack' else url_for('battlefield.skill_attack', target_id=target.id, skill_id=sid) }}">{{ sname }}</a> {% endfor %}<a href="{{ url_for('battlefield.unlock_target') }}">撤退</a><br/>
+    {% for bp in battle_potions %}<a href="{{ url_for('battlefield.use_potion', item_id=bp.item_id) }}">{{ bp.name }}({{ bp.quantity }})</a> {% endfor %}<a href="{{ url_for('battle.shortcuts') }}">技键</a><br/>
+    生命:{{ player.health }}/{{ player.effective_max_health }}{% if player.last_hp_delta %}({% if player.last_hp_delta > 0 %}-{{ player.last_hp_delta }}{% else %}+{{ player.last_hp_delta * -1 }}{% endif %}){% endif %}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}{% if player.last_mp_delta %}({% if player.last_mp_delta > 0 %}-{{ player.last_mp_delta }}{% else %}+{{ player.last_mp_delta * -1 }}{% endif %}){% endif %}<br/>
+    {% if lieutenant and lieutenant.is_alive %}副将:『{{ lieutenant.name }}』<br/>生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>{% endif %}
+    『{{ target.nickname }}』({{ target.country }}·{{ target.level }}级){% if target.in_pk %}(战斗中){% endif %}<br/>
+    生命:{{ target.health }}/{{ target.effective_max_health }}{% if target.last_damage_taken %}(-{{ target.last_damage_taken }}){% endif %}<br/>
+    <font size="1">{% set tmhp = target.effective_max_health or 1 %}{% set thp_pct = ([0, (target.health / tmhp * 10)|round|int, 10]|sort)[1] %}{% for i in range(10) %}{% if i < thp_pct %}●{% else %}○{% endif %}{% endfor %}</font><br/>
+    {% if target_lieutenant and target_lieutenant.is_alive %}副将:『{{ target_lieutenant.name }}』<br/>生命:{{ target_lieutenant.current_health }}/{{ target_lieutenant.get_max_health() }}<br/>{% endif %}
+    {% if player.last_action %}{{ player.last_action }}<br/>{% endif %}
+    {% if target.last_action %}{{ target.last_action }}<br/>{% endif %}
+    {% if player.item_effect %}{{ player.item_effect }}<br/>{% endif %}
     ---<br/>
+    <a href="{{ url_for('battlefield.unlock_target') }}">返回游戏</a><br/>
+
+{% else %}
+    {# ===== 未锁定：选择对手 ===== #}
+    生命:{{ player.health }}/{{ player.effective_max_health }}<br/>
+    魔法:{{ player.mana }}/{{ player.effective_max_mana }}<br/>
+    {% for bp in battle_potions %}<a href="{{ url_for('battlefield.use_potion', item_id=bp.item_id) }}">{{ bp.name }}({{ bp.quantity }})</a> {% endfor %}<br/>
+    ---<br/>
+
+    {% if lieutenant %}
+    『{{ lieutenant.name }}』({{ '后卫' if lieutenant.position == 'back' else '前卫' }})<br/>生命:{{ lieutenant.current_health }}/{{ lieutenant.get_max_health() }}<br/>
+    ---<br/>
+    {% endif %}
 
     其他玩家:<br/>
     {% if other_players %}
     {% for p in other_players %}
-    {{ p.nickname }}({{ p.country }}) HP:{{ p.health }}
-    <form method="post" action="{{ url_for('battlefield.attack', target_id=p.id) }}" style="display:inline">
-        <input type="submit" value="攻击"/>
-    </form>
-    {% if player_skills %}
-    {% for sid, ps in player_skills.items() %}
-    {% if skills.get(sid) %}
-    <form method="post" action="{{ url_for('battlefield.skill_attack', target_id=p.id, skill_id=sid) }}" style="display:inline">
-        <input type="submit" value="{{ skills[sid].get('name', sid) }}"/>
-    </form>
+    {% if p.battlefield_death_time <= 0 %}
+    {% if p.in_pk %}
+    『{{ p.nickname }}』({{ p.country }}){{ p.level }}级 <font color="#888">战斗中</font><br/>
+    {% else %}
+    <a href="{{ url_for('battlefield.lock_target', target_id=p.id) }}">『{{ p.nickname }}』</a>({{ p.country }}){{ p.level }}级 HP:{{ p.health }}/{{ p.effective_max_health }}<br/>
     {% endif %}
-    {% endfor %}
+    {% else %}
+    『{{ p.nickname }}』({{ p.country }}) <font color="#888">已阵亡</font><br/>
     {% endif %}
-    <br/>
     {% endfor %}
     {% else %}
     战场中没有其他玩家<br/>
     {% endif %}
     ---<br/>
+
+    {% if player.last_action %}
+    {{ player.last_action }}<br/>
+    {% endif %}
+    {% if player.item_effect %}
+    {{ player.item_effect }}<br/>
+    {% endif %}
 
     排名:<br/>
     {% if player_ranking %}
@@ -76,11 +104,21 @@
     {% endfor %}
     <br/>
     <a href="{{ url_for('battlefield.rankings') }}">全部排名</a><br/>
+{% endif %}
+
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 
     <script>
     var aLinks=document.getElementsByTagName("a");
-    for(var i=0;i<aLinks.length;i++){aLinks[i].onclick=function(){document.getElementById('loading').style.display='block';};}
+    for(var i=0;i<aLinks.length;i++){
+        if(aLinks[i].classList.contains('confirm-exit')){
+            aLinks[i].addEventListener('click',function(e){
+                if(!confirm('确定离开战场吗？')){e.preventDefault();}
+            });
+        }else{
+            aLinks[i].addEventListener('click',function(){document.getElementById('loading').style.display='block';});
+        }
+    }
     setTimeout(function(){document.getElementById('loading').style.display='none';},350);
     </script>
 </body>

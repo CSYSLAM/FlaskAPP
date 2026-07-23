@@ -1,5 +1,6 @@
 {
   "name": "成都北区",
+  "can_pk": true,
   "scenes": {
     "成都北界": {
       "name": "成都北界",

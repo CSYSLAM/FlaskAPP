@@ -451,15 +451,16 @@ def finance_rank_finance():
         if abs(profit) > 0.001 or (p.finance_data or {}).get('holdings'):
             entries.append((p, round(profit, 2)))
     entries.sort(key=lambda x: x[1], reverse=True)
-    entries = entries[:30]
+    all_entries = entries
+    entries = all_entries[:30]
     my_val = round(FinanceService.get_player_profit(player), 2)
     my_rank = None
-    for i, (p, v) in enumerate(entries):
+    for i, (p, v) in enumerate(all_entries):
         if p.id == player.id:
             my_rank = i + 1
             break
     if my_rank is None and my_val > 0:
-        my_rank = sum(1 for p, v in entries if v > my_val) + 1
+        my_rank = sum(1 for p, v in all_entries if v > my_val) + 1
     from services.social_service import SocialService
     return render_template("finance_rank.html",
                          player=player,

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>挂单详情</title>
+    <style>
+    body { font-size: 16px; }
+    a:link { color: #136ec2; text-decoration: none; }
+    .muted { color: #888; font-size: 14px; }
+    input.t { width: 60px; }
+    </style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}<br/>
+{% endfor %}
+<br/>
+{% endif %}
+{% endwith %}
+
+挂单详情 银两:{{ player.gold }}<br/>
+<br/>
+物品：{{ listing.item_name }}<br/>
+类别：{{ listing.category }}
+{% if listing.is_equipment and listing.rarity %} [{{ listing.rarity }}]{% endif %}<br/>
+数量：{{ listing.quantity }}<br/>
+单价：{{ listing.unit_price }}银两<br/>
+总价：{{ listing.total_price }}银两<br/>
+卖家：{{ listing.seller_name }}<br/>
+上架：{{ listing.created_at.strftime('%m-%d %H:%M') }}<br/>
+到期：{{ listing.expires_at.strftime('%m-%d %H:%M') }}<br/>
+<br/>
+
+{% if listing.seller_id == player.id %}
+<span class="muted">这是你的挂单</span><br/>
+<form action="{{ url_for('market.cancel', listing_id=listing.id) }}" method="post">
+    <input type="submit" value="取消挂单(退回物品,不退费)">
+</form>
+{% else %}
+{% if listing.status in ['active', 'partial'] %}
+购买将扣除总价+5%手续费，卖家实收95%<br/>
+<form action="{{ url_for('market.buy', listing_id=listing.id) }}" method="post">
+    {% if not listing.is_equipment %}
+    数量<input type="number" name="quantity" value="{{ listing.quantity }}" min="1" max="{{ listing.quantity }}" class="t">
+    {% else %}
+    <input type="hidden" name="quantity" value="1">
+    {% endif %}
+    <input type="submit" value="购买">
+</form>
+{% else %}
+<span class="muted">该挂单已结束</span><br/>
+{% endif %}
+{% endif %}
+<br/>
+<a href="{{ url_for('market.index') }}">返回集市</a>
+.<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

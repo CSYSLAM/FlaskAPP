@@ -62,6 +62,7 @@ class PlayerModel(db.Model, UserMixin):
     in_battlefield = db.Column(db.Boolean, default=False)
     battlefield_city = db.Column(db.String(32), nullable=True)
     battlefield_death_time = db.Column(db.Float, default=0.0)
+    battlefield_target_id = db.Column(db.Integer, nullable=True)  # 1v1锁定对手player.id
     party_id = db.Column(db.Integer, nullable=True)
     last_attack_time = db.Column(db.Float, default=0.0)
     enhance_bonus_rate = db.Column(db.Float, default=0.0)  # 强化失败累积成功率加成(每失败+5%)
@@ -964,6 +965,187 @@ class LostItem(db.Model):
     auction_started_at = db.Column(db.DateTime, nullable=True)
 
 
+class MarketListing(db.Model):
+    """集市挂单：玩家将非绑物品/装备挂到集市售卖。
+
+    物品与装备二选一：
+    - 可堆叠物品：item_id 指向 items.json 的物品 id，quantity 可 >1（支持部分购买）；
+    - 装备实例：equipment_instance_id 指向 EquipmentInstance.instance_id(UUID)，quantity 恒为 1。
+    挂单期间装备实例归属置空(player_id=None)锁定，卖家无法穿戴/赠送/重复上架，
+    买入/取消/过期时再转移归属（参考 lost_found grant_lost_item 模式）。
+    """
+    __tablename__ = 'market_listings'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    seller_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    # 二选一：可堆叠物品用 item_id，装备用 equipment_instance_id，另一个为 NULL
+    item_id = db.Column(db.String(64), nullable=True)
+    equipment_instance_id = db.Column(db.String(36), nullable=True)
+    # 反范式快照（列表页无需 join 装备表/重读 items.json）
+    item_name = db.Column(db.String(128), nullable=False)
+    item_type = db.Column(db.String(20), nullable=False)   # material/potion/consumable/equipment/chest/...
+    category = db.Column(db.String(10), nullable=False)    # 材料/药品/消耗品/装备/宝箱/其他（tab UI）
+    rarity = db.Column(db.String(10), nullable=True)       # 仅装备：普通/精良/卓越/史诗/神器
+    quantity = db.Column(db.Integer, default=1)            # 剩余数量（可堆叠物品支持部分购买）；装备恒为 1
+    unit_price = db.Column(db.Integer, nullable=False)
+    is_bound = db.Column(db.Boolean, default=False)        # 恒 False（绑定物不可上架）
+    status = db.Column(db.String(20), default='active')    # active/partial/sold/cancelled/expired
+    ad_tier = db.Column(db.Integer, default=0)             # 0无/1基础(1000,全服通知)/2置顶(3000,通知+置顶3h)
+    pin_until = db.Column(db.DateTime, nullable=True)      # ad_tier==2 时 = created_at+3h
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    expires_at = db.Column(db.DateTime, nullable=False)    # created_at+7d
+    sold_at = db.Column(db.DateTime, nullable=True)
+    buyer_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)  # 最近买者（审计）
+
+    __table_args__ = (
+        db.Index('ix_market_status', 'status'),
+        db.Index('ix_market_seller', 'seller_id'),
+        db.Index('ix_market_category', 'category'),
+        db.Index('ix_market_expires', 'expires_at'),
+    )
+
+
+class MarketTransaction(db.Model):
+    """集市成交流水：每次购买成功落一笔（同时是买家的购买、卖家的出售）。
+
+    与 MarketListing 不同，这里按「每笔成交」记录，能完整覆盖部分购买
+    （status=partial 的挂单可能被多个买家分次买走，每笔都独立成记录）。
+    """
+
+    __tablename__ = 'market_transactions'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    listing_id = db.Column(db.Integer, db.ForeignKey('market_listings.id'), nullable=True)
+    buyer_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    seller_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    # 反范式快照，列表/详情无需 join 装备表或重读 items.json
+    item_name = db.Column(db.String(128), nullable=False)
+    item_type = db.Column(db.String(20), nullable=False)
+    category = db.Column(db.String(10), nullable=False)
+    rarity = db.Column(db.String(10), nullable=True)        # 仅装备：普通/精良/卓越/史诗/神器
+    quantity = db.Column(db.Integer, default=1)            # 本笔成交数量（可堆叠物品可 >1）
+    unit_price = db.Column(db.Integer, nullable=False)
+    total_price = db.Column(db.Integer, nullable=False)    # = unit_price * quantity
+    buyer_fee = db.Column(db.Integer, default=0)           # 买家手续费
+    seller_receive = db.Column(db.Integer, default=0)      # 卖家实收
+    is_equipment = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    __table_args__ = (
+        db.Index('ix_mt_buyer', 'buyer_id'),
+        db.Index('ix_mt_seller', 'seller_id'),
+        db.Index('ix_mt_created', 'created_at'),
+    )
+
+
+class ForumPost(db.Model):
+    """论坛帖子。"""
+    __tablename__ = 'forum_posts'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(20), default='active')  # active/deleted
+    is_pinned = db.Column(db.Boolean, default=False)
+    pinned_at = db.Column(db.DateTime, nullable=True)
+    pinned_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+    view_count = db.Column(db.Integer, default=0)
+    like_count = db.Column(db.Integer, default=0)
+    dislike_count = db.Column(db.Integer, default=0)
+    comment_count = db.Column(db.Integer, default=0)
+    favorite_count = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True)
+    deleted_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+
+    author = db.relationship('PlayerModel', foreign_keys=[author_id])
+    pinned_by_player = db.relationship('PlayerModel', foreign_keys=[pinned_by])
+    deleted_by_player = db.relationship('PlayerModel', foreign_keys=[deleted_by])
+
+    __table_args__ = (
+        db.Index('ix_forum_posts_status_created', 'status', 'created_at'),
+        db.Index('ix_forum_posts_pinned', 'is_pinned', 'pinned_at'),
+        db.Index('ix_forum_posts_author', 'author_id'),
+    )
+
+
+class ForumComment(db.Model):
+    """论坛评论。"""
+    __tablename__ = 'forum_comments'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    content = db.Column(db.String(600), nullable=False)
+    status = db.Column(db.String(20), default='active')  # active/deleted
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True)
+    deleted_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+
+    post = db.relationship('ForumPost', backref='comments')
+    author = db.relationship('PlayerModel', foreign_keys=[author_id])
+
+    __table_args__ = (
+        db.Index('ix_forum_comments_post', 'post_id', 'created_at'),
+        db.Index('ix_forum_comments_author', 'author_id'),
+    )
+
+
+class ForumReaction(db.Model):
+    """论坛点赞/点踩，一人一帖仅保留一种态度。"""
+    __tablename__ = 'forum_reactions'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    reaction = db.Column(db.String(10), nullable=False)  # like/dislike
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    __table_args__ = (
+        db.UniqueConstraint('post_id', 'player_id'),
+        db.Index('ix_forum_reactions_player', 'player_id'),
+    )
+
+
+class ForumFavorite(db.Model):
+    """论坛收藏。"""
+    __tablename__ = 'forum_favorites'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    post = db.relationship('ForumPost')
+
+    __table_args__ = (
+        db.UniqueConstraint('post_id', 'player_id'),
+        db.Index('ix_forum_favorites_player', 'player_id'),
+    )
+
+
+class ForumMute(db.Model):
+    """论坛禁言。"""
+    __tablename__ = 'forum_mutes'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    muted_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    reason = db.Column(db.String(200), default='')
+    muted_until = db.Column(db.DateTime, nullable=True)  # null=永久
+    is_active = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    player = db.relationship('PlayerModel', foreign_keys=[player_id])
+    admin = db.relationship('PlayerModel', foreign_keys=[muted_by])
+
+    __table_args__ = (
+        db.Index('ix_forum_mutes_player', 'player_id', 'is_active'),
+    )
+
+
 class PlayerSkill(db.Model):
     __tablename__ = 'player_skills'
 
@@ -1001,6 +1183,20 @@ class ChatMessage(db.Model):
 
     sender = db.relationship('PlayerModel', foreign_keys=[sender_id])
     receiver = db.relationship('PlayerModel', foreign_keys=[receiver_id])
+
+
+class PartyChat(db.Model):
+    """队伍聊天消息（持久化，按 party_id 存储）。"""
+    __tablename__ = 'party_chats'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    party_id = db.Column(db.Integer, nullable=False, index=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    sender_name = db.Column(db.String(64), nullable=False)
+    content = db.Column(db.String(256), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    sender = db.relationship('PlayerModel')
 
 
 class Achievement(db.Model):

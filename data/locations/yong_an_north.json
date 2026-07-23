@@ -1,5 +1,6 @@
 {
   "name": "永安北区",
+  "can_pk": true,
   "scenes": {
     "永安北界": {
       "name": "永安北界",

@@ -38,13 +38,15 @@ class LegionService:
 
     @classmethod
     def _refresh_vip_aura(cls, legion):
-        """Reset VIP aura if the date has changed and recalculate from today's sign-ins."""
+        """刷新军团 VIP 光环：仅统计「签到日期为今天」的 VIP 成员，避免跨天残留。"""
         today = date.today().isoformat()
         if legion.vip_aura_date != today:
-            # Recount VIP members who signed in today
+            # 只统计今天签到(sign_date 为今天)的 VIP 成员，忽略昨天遗留的 signed_today
             signed_vip_count = 0
             members = LegionMember.query.filter_by(legion_id=legion.id, signed_today=True).all()
             for m in members:
+                if m.sign_date != today:
+                    continue
                 p = PlayerModel.query.get(m.player_id)
                 if p and p.is_vip:
                     signed_vip_count += 1
@@ -256,12 +258,10 @@ class LegionService:
         legion = Legion.query.get(member.legion_id)
         legion.total_contribution += 10
 
-        # If VIP, update aura
+        # VIP 签到：清空光环日期缓存并基于今日签到人数重算，避免跨天累加残留
         if player.is_vip:
-            legion.vip_aura_hp += 30
-            legion.vip_aura_atk += 6
-            legion.vip_aura_def += 30
-            legion.vip_aura_date = today
+            legion.vip_aura_date = ''
+            cls._refresh_vip_aura(legion)
 
         db.session.commit()
         return True, "签到成功，为军团增加军贡10点"
@@ -475,7 +475,6 @@ class LegionService:
             'name': '其他',
             'items': {
                 'bag_expand': {'name': '秘背包扩容卷', 'cost': 50, 'item_id': 'bag_expand'},
-                'battle_challenge_token': {'name': '战场请战符', 'cost': 100, 'item_id': 'battle_challenge_token'},
                 'battle_revive_lamp': {'name': '战场续命灯', 'cost': 150, 'item_id': 'battle_revive_lamp'},
             }
         },
@@ -630,6 +629,28 @@ class LegionService:
         if member.gold_donate_date != today:
             member.gold_donate_count = 0
             member.gold_donate_date = today
+
+    @classmethod
+    def reset_all_daily_counters(cls):
+        """后台批量重置所有军团成员每日签到/捐献/任务次数。"""
+        today = date.today().isoformat()
+        changed = False
+        for member in LegionMember.query.all():
+            if member.sign_date != today:
+                member.signed_today = False
+                member.sign_date = today
+                changed = True
+            if member.gold_donate_date != today:
+                member.gold_donate_count = 0
+                member.gold_donate_date = today
+                changed = True
+            if member.quest_date != today:
+                member.quest_count = 0
+                member.quest_date = today
+                changed = True
+        if changed:
+            db.session.commit()
+        return changed
 
     # --- Legion queries ---
 

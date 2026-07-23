@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{{ post.title }}</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+.muted { color:#888; font-size:14px; }
+.pin { color:#ff6600; font-weight:bold; }
+.deleted { color:#999; text-decoration:line-through; }
+textarea { width:96%; height:70px; font-size:16px; }
+form.inline { display:inline; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+{% with messages = get_flashed_messages() %}{% if messages %}{% for msg in messages %}{{ msg }}<br/>{% endfor %}<br/>{% endif %}{% endwith %}
+{% if post.is_pinned %}<span class="pin">[置顶]</span>{% endif %}{% if post.status == 'deleted' %}<span class="deleted">[已删除]</span>{% endif %}{{ post.title }}<br/>
+<span class="muted">提示：禁止发送敏感词汇、侮辱性词汇、国家政治、黄色暴力词汇；被发现将永久封号。管理员可无条件禁言，如介意请勿使用本论坛。</span><br/>
+<span class="muted">作者:{{ post.author.nickname if post.author else '未知' }} {{ post.created_at.strftime('%Y-%m-%d %H:%M') }} 阅{{ post.view_count }}</span><br/>
+----------------<br/>
+{{ post.content|replace('\n','<br/>')|safe }}<br/>
+----------------<br/>
+赞{{ post.like_count }} 踩{{ post.dislike_count }} 评{{ post.comment_count }} 藏{{ post.favorite_count }}<br/>
+{% if mute %}
+<span class="muted">你当前被禁言，只能浏览，不能点赞、点踩、收藏、评论或发帖</span><br/>
+{% else %}
+<form class="inline" method="post" action="{{ url_for('forum.like', post_id=post.id) }}"><input type="submit" value="{{ '取消赞' if state.reaction == 'like' else '赞' }}"></form>
+<form class="inline" method="post" action="{{ url_for('forum.dislike', post_id=post.id) }}"><input type="submit" value="{{ '取消踩' if state.reaction == 'dislike' else '踩' }}"></form>
+<form class="inline" method="post" action="{{ url_for('forum.favorite', post_id=post.id) }}"><input type="submit" value="{{ '取消收藏' if state.favorited else '收藏' }}"></form><br/>
+{% endif %}
+{% if post.author_id == player.id or is_admin %}<a href="{{ url_for('forum.edit_post', post_id=post.id) }}">编辑</a>{% endif %}
+{% if post.status == 'active' and (post.author_id == player.id or is_admin) %}
+<form class="inline" method="post" action="{{ url_for('forum.delete_post', post_id=post.id) }}"><input type="submit" value="删帖"></form>
+{% endif %}
+{% if is_admin %}
+<form class="inline" method="post" action="{{ url_for('forum.pin_post', post_id=post.id) }}"><input type="submit" value="{{ '取消置顶' if post.is_pinned else '置顶' }}"></form>
+{% if post.status == 'deleted' %}<form class="inline" method="post" action="{{ url_for('forum.restore_post', post_id=post.id) }}"><input type="submit" value="恢复"></form>{% endif %}
+{% endif %}<br/>
+----------------<br/>
+评论<br/>
+{% for c in comments %}
+{% if c.status == 'deleted' %}<span class="deleted">[已删除]</span>{% endif %}{{ c.author.nickname if c.author else '未知' }}：{{ c.content }} <span class="muted">{{ c.created_at.strftime('%m-%d %H:%M') }}</span>
+{% if c.status == 'active' and (c.author_id == player.id or is_admin) %}<form class="inline" method="post" action="{{ url_for('forum.delete_comment', comment_id=c.id) }}"><input type="submit" value="删"></form>{% endif %}<br/>
+{% endfor %}
+{% if not comments %}暂无评论<br/>{% endif %}
+{% if post.status == 'active' %}
+{% if mute %}
+<span class="muted">你当前被禁言，只能浏览，不能点赞、点踩、收藏、评论或发帖</span><br/>
+{% else %}
+<form method="post" action="{{ url_for('forum.comment', post_id=post.id) }}">
+<textarea name="content" placeholder="说点什么"></textarea><br/>
+<input type="submit" value="发表评论">
+</form>
+{% endif %}
+{% endif %}
+<br/>
+<a href="{{ url_for('forum.index') }}">返回论坛</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

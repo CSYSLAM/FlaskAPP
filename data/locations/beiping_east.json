@@ -1,5 +1,6 @@
 {
   "name": "北平东区",
+  "can_pk": true,
   "scenes": {
     "东门": {
       "name": "东门",

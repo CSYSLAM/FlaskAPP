@@ -1,5 +1,6 @@
 {
   "name": "建宁东区",
+  "can_pk": true,
   "scenes": {
     "建宁东界": {
       "name": "建宁东界",

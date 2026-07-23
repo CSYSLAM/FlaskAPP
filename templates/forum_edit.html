@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{{ '编辑帖子' if post else '发帖' }}</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+textarea { width:96%; height:180px; font-size:16px; }
+input.t { width:90%; font-size:16px; }
+.muted { color:#888; font-size:14px; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+{% with messages = get_flashed_messages() %}{% if messages %}{% for msg in messages %}{{ msg }}<br/>{% endfor %}<br/>{% endif %}{% endwith %}
+{{ '编辑帖子' if post else '发表新帖' }}<br/>
+<span class="muted">提示：禁止发送敏感词汇、侮辱性词汇、国家政治、黄色暴力词汇；被发现将永久封号。管理员可无条件禁言，如介意请勿使用本论坛。</span><br/>
+----------------<br/>
+{% if mute %}
+你已被禁言，只能浏览论坛，不能发帖、评论、点赞、点踩或收藏。<br/>
+{% else %}
+<form method="post" action="{{ url_for('forum.update_post', post_id=post.id) if post else url_for('forum.create_post') }}">
+标题(2-40字)<br/>
+<input class="t" type="text" name="title" value="{{ post.title if post else '' }}"><br/>
+正文(5-2000字)<br/>
+<textarea name="content">{{ post.content if post else '' }}</textarea><br/>
+<input type="submit" value="提交">
+</form>
+{% endif %}
+<br/>
+<a href="{{ url_for('forum.index') }}">返回论坛</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

@@ -14,8 +14,7 @@ def index():
 @guide_bp.route("/<guide_id>")
 def detail(guide_id):
     """攻略详情"""
-    guides = DataService.get_guides()
-    guide = guides.get(guide_id)
+    guide = DataService.get_guide(guide_id)
     if not guide:
         return "攻略不存在", 404
     return render_template("guide_detail.html", guide=guide, guide_id=guide_id)

@@ -372,6 +372,10 @@ class SocialService:
 
         cls.add_notification(target, f"{player.nickname}赠送给你{quantity}朵玫瑰花，增加{quantity}点缘分值", ntype='friend')
 
+        # 收玫瑰成就(魅力值累计)
+        from services.achievement_service import AchievementService
+        AchievementService.check(target, 'flower_received', target.charm)
+
         # System broadcast for specific flower gift amounts
         from services.public_chat import PublicChat
         if quantity == 999:
@@ -513,6 +517,12 @@ class SocialService:
             db.session.add(rel)
 
         cls.add_notification(requester, f"你与{player.nickname}已经成功结交{'红颜' if rel_type=='hongyan' else '知己'}", ntype='friend')
+
+        # 结交好友成就(双方都检查，好友数实时统计)
+        from services.achievement_service import AchievementService
+        db.session.flush()  # 让新关系对 count 查询可见
+        AchievementService.check(player, 'friend_count')
+        AchievementService.check(requester, 'friend_count')
 
         db.session.commit()
         return True, f"已和{requester.nickname}结为{'红颜' if rel_type=='hongyan' else '知己'}"

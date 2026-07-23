@@ -6,6 +6,7 @@ from models.equipment import Equipment
 from models.item import Item
 from services.data_service import DataService
 from services.public_chat import broadcast_system
+from services.player_service import PlayerService
 
 class GameService:
     current_monster = None
@@ -47,7 +48,7 @@ class GameService:
                 loot_name = items[loot].name
         
         player.money += money
-        player.experience += 20
+        PlayerService.gain_experience(player, 20)
         player.last_battle_result = (
             f"你击败了{cls.current_monster.name}！" +
             (f"获得了{loot_name}，" if loot_name else "这次什么也没掉落，") +

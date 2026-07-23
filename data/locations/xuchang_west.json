@@ -1,5 +1,6 @@
 {
   "name": "许昌西区",
+  "can_pk": true,
   "scenes": {
     "许昌西界": {
       "name": "许昌西界",

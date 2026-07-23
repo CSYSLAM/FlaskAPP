@@ -1,5 +1,6 @@
 from services import db
 from services.data_service import DataService
+from services.player_service import PlayerService
 
 
 class CopyDungeonService:
@@ -56,7 +57,7 @@ class CopyDungeonService:
             return
 
         player.gold += reward.get('gold', 0)
-        player.experience += reward.get('experience', 0)
+        PlayerService.gain_experience(player, reward.get('experience', 0))
         for reward_item in reward.get('items', []):
             item_id = reward_item.get('item_id')
             count = reward_item.get('count', 1)
@@ -510,6 +511,26 @@ class CopyDungeonService:
             player.activity_data = data
             db.session.commit()
         return daily
+
+    @classmethod
+    def reset_all_daily_free_entries(cls):
+        """后台批量刷新所有玩家每日副本免费次数。"""
+        from datetime import date
+        from models.player import PlayerModel
+        today = date.today().isoformat()
+        changed = False
+        for player in PlayerModel.query.all():
+            data = player.activity_data
+            if not isinstance(data, dict):
+                data = {}
+            daily = data.get('copy_dungeon_daily', {})
+            if not isinstance(daily, dict) or daily.get('date') != today:
+                data['copy_dungeon_daily'] = {'date': today, 'free_used': False}
+                player.activity_data = data
+                changed = True
+        if changed:
+            db.session.commit()
+        return changed
 
     @classmethod
     def _use_daily_free(cls, player):
