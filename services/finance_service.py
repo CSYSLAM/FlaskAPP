@@ -1,7 +1,19 @@
 import time
 import random
+import json
+import threading
 from datetime import date, datetime
 from services.data_service import DataService
+from services import db
+
+
+class FinanceStateModel(db.Model):
+    """持久化金珠股市行情/统计/劫匪内存态。"""
+    __tablename__ = 'finance_state'
+
+    key = db.Column(db.String(32), primary_key=True)
+    value = db.Column(db.Text, default='{}')
+    updated_at = db.Column(db.Float, default=0.0)
 
 
 # ---- 交易时段 ----
@@ -20,7 +32,7 @@ TICK_INTERVAL = 300          # 实时股价刷新间隔（秒），5分钟
 DAILY_MAX_CHANGE = 0.10      # 每日累计涨跌幅上限 ±10%
 TICK_DRIFT = 0.01            # 单次实时tick波动上限 ±1%
 FEE_RATE = 0.0005            # 万五手续费
-ORDER_BUY_TOLERANCE = 0.95   # 委托买单成交容忍度：委托价≥当前价*95%即成交
+ORDER_BUY_TOLERANCE = 1.0    # 委托买单成交条件：委托价≥当前价才成交，避免低价买入套利
 POP_THRESHOLD = 20           # 人气满档所需当日NPC访问次数
 BANDIT_THRESHOLD = 10        # 劫匪满档所需当日击杀次数
 BANDIT_RESPAWN = 300         # 劫匪击杀后5分钟复活
@@ -489,15 +501,17 @@ class BanditState:
 
 
 class FinanceService:
-    """理财·股市服务。股价、劫匪状态、委托单均为类级内存（惰性时间戳刷新，仿 WorldBossService）。"""
+    """理财·股市服务。股价、劫匪、当日统计使用类级缓存运行，并落库到 finance_state。"""
 
     _stocks = {}          # {stock_id: {...}}
     _bandits = {}         # {city: BanditState}
     _daily_stats = {}     # {stock_id: {"npc_visits": int, "bandit_kills": int, "npc_visitors": set}}
-    _orders = {}          # 委托单 {order_id: {...}}，类级内存
+    _orders = {}          # 委托单 {order_id: {...}}，类级内存；pending 委托同步保存在玩家 finance_data.finance_orders
     _day_key = None
     _last_tick = 0.0
     _initialized = False
+    _outstanding_rebuilt = False
+    _maintenance_started = False
 
     # ===================================================================
     #  初始化
@@ -505,6 +519,9 @@ class FinanceService:
     @classmethod
     def _ensure_init(cls):
         if cls._initialized:
+            if not cls._outstanding_rebuilt:
+                cls._rebuild_outstanding()
+                cls._load_persisted_orders()
             cls._ensure_day()
             cls._maybe_tick()
             return
@@ -517,6 +534,7 @@ class FinanceService:
                 'city': sd.get('city', ''),
                 'npc_keyword': sd.get('npc_keyword', ''),
                 'area_id': sd.get('area_id', ''),
+                'npc_ids': set(sd.get('npc_ids') or []),
                 'base_price': base,
                 'open_price': base,     # 当日开盘价（=昨收）
                 'price': base,          # 当前实时价
@@ -538,26 +556,320 @@ class FinanceService:
                 b = BanditState(city)
                 cls._randomize_bandit_location(b)
                 cls._bandits[city] = b
+        cls._resolve_stock_npc_ids()
         cls._orders = {}
         cls._day_key = str(date.today())
         cls._last_tick = time.time()
+        restored = cls._load_market_state()
         cls._rebuild_outstanding()
-        cls._settle_day_change()   # 开盘随机A+排名B/C+选路径
+        cls._load_persisted_orders()
+        if not restored:
+            cls._settle_day_change()   # 开盘随机A+排名B/C+选路径
+            cls._save_market_state()
         cls._initialized = True
 
     @classmethod
+    def start_maintenance(cls, app):
+        """启动后台维护线程，定时推进跨天、tick、委托撮合和状态落库。"""
+        if cls._maintenance_started:
+            return
+        cls._maintenance_started = True
+
+        def _loop():
+            while True:
+                try:
+                    with app.app_context():
+                        cls._ensure_init()
+                except Exception:
+                    pass
+                time.sleep(60)
+
+        t = threading.Thread(target=_loop, name='finance-maintenance', daemon=True)
+        t.start()
+
+    @staticmethod
+    def _wallet_amount(amount):
+        """把小数金珠交易额折算为玩家整数钱包变动。"""
+        amount = float(amount or 0)
+        if amount <= 0:
+            return 0
+        return max(1, int(amount + 0.5))
+
+    @classmethod
+    def _empty_stats(cls):
+        return {'npc_visits': 0, 'bandit_kills': 0, 'npc_visitors': set()}
+
+    @classmethod
+    def _finance_orders(cls, fd):
+        """返回 finance_data 中的持久化委托 dict，兼容早期 list 形态。"""
+        raw = (fd or {}).get('finance_orders') or {}
+        if isinstance(raw, dict):
+            return raw
+        if isinstance(raw, list):
+            return {o.get('order_id'): o for o in raw if isinstance(o, dict) and o.get('order_id')}
+        return {}
+
+    @classmethod
+    def _sync_order_to_player(cls, player, order):
+        """把内存委托状态同步回玩家 JSON，供重启/跨天恢复。"""
+        fd = player.finance_data or {}
+        orders = cls._finance_orders(fd)
+        orders[order['order_id']] = dict(order)
+        keep = sorted(orders.values(), key=lambda o: o.get('created_at', 0), reverse=True)[:50]
+        fd['finance_orders'] = {o['order_id']: o for o in keep if o.get('order_id')}
+        player.finance_data = fd
+
+    @classmethod
+    def _serialize_daily_stats(cls):
+        data = {}
+        for sid, stats in cls._daily_stats.items():
+            data[sid] = {
+                'npc_visits': int(stats.get('npc_visits', 0)),
+                'bandit_kills': int(stats.get('bandit_kills', 0)),
+                'npc_visitors': list(stats.get('npc_visitors') or []),
+            }
+        return data
+
+    @classmethod
+    def _restore_daily_stats(cls, raw):
+        for sid in cls._daily_stats:
+            stats = (raw or {}).get(sid, {})
+            cls._daily_stats[sid] = {
+                'npc_visits': int(stats.get('npc_visits', 0) or 0),
+                'bandit_kills': int(stats.get('bandit_kills', 0) or 0),
+                'npc_visitors': set(stats.get('npc_visitors') or []),
+            }
+
+    @classmethod
+    def _serialize_market_state(cls):
+        return {
+            'day_key': cls._day_key,
+            'last_tick': cls._last_tick,
+            'stocks': {
+                sid: {
+                    'open_price': s['open_price'],
+                    'price': s['price'],
+                    'last_price': s['last_price'],
+                    'pre_open_price': s.get('pre_open_price', s['open_price']),
+                    'day_change': s.get('day_change', 0),
+                    'pop_part': s.get('pop_part', 0),
+                    'bandit_part': s.get('bandit_part', 0),
+                    'strategy_idx': s.get('strategy_idx', 0),
+                    'path': s.get('path', [(0.0, 0.0), (1.0, 0.0)]),
+                    'total_shares': s.get('total_shares', 5000),
+                    'history': s.get('history', []),
+                }
+                for sid, s in cls._stocks.items()
+            },
+            'daily_stats': cls._serialize_daily_stats(),
+            'bandits': {
+                city: {
+                    'spawned': b.spawned,
+                    'defeated_at': b.defeated_at,
+                    'killer_today': b.killer_today,
+                    'location_id': b.location_id,
+                }
+                for city, b in cls._bandits.items()
+            },
+        }
+
+    @classmethod
+    def _save_market_state(cls):
+        """把行情/统计/劫匪状态落库，避免重启重置。"""
+        try:
+            row = FinanceStateModel.query.get('market')
+            if not row:
+                row = FinanceStateModel(key='market')
+                db.session.add(row)
+            row.value = json.dumps(cls._serialize_market_state(), ensure_ascii=False)
+            row.updated_at = time.time()
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+
+    @classmethod
+    def _load_market_state(cls):
+        """从数据库恢复行情/统计/劫匪状态；失败则保留默认初始行情。"""
+        try:
+            row = FinanceStateModel.query.get('market')
+            if not row or not row.value:
+                return False
+            state = json.loads(row.value)
+            cls._day_key = state.get('day_key') or cls._day_key
+            cls._last_tick = float(state.get('last_tick') or cls._last_tick or time.time())
+            for sid, saved in (state.get('stocks') or {}).items():
+                if sid not in cls._stocks:
+                    continue
+                s = cls._stocks[sid]
+                for key in ('open_price', 'price', 'last_price', 'pre_open_price',
+                            'day_change', 'pop_part', 'bandit_part', 'strategy_idx',
+                            'total_shares'):
+                    if key in saved:
+                        s[key] = saved[key]
+                s['path'] = [tuple(p) for p in saved.get('path', s.get('path', []))]
+                s['history'] = list(saved.get('history') or [s['price']])[-HISTORY_LEN:]
+            cls._restore_daily_stats(state.get('daily_stats') or {})
+            for city, saved in (state.get('bandits') or {}).items():
+                b = cls._bandits.get(city)
+                if not b:
+                    continue
+                b.spawned = bool(saved.get('spawned', True))
+                b.defeated_at = float(saved.get('defeated_at') or 0)
+                b.killer_today = saved.get('killer_today')
+                b.location_id = saved.get('location_id') or b.location_id
+            return True
+        except Exception:
+            db.session.rollback()
+            return False
+
+    @classmethod
+    def _resolve_stock_npc_ids(cls):
+        """按股票所在区域 + NPC 名称/ID 精确绑定人气 NPC，避免同名 NPC 跨城串票。"""
+        monsters = DataService.get_monsters()
+        locations = DataService.get_locations()
+        for s in cls._stocks.values():
+            ids = set(s.get('npc_ids') or [])
+            area_id = s.get('area_id', '')
+            kw = s.get('npc_keyword', '')
+            if area_id and kw:
+                for loc in locations.values():
+                    if loc.get('area_id') != area_id:
+                        continue
+                    for npc_id in loc.get('npcs', []) or []:
+                        npc_name = monsters.get(npc_id, {}).get('name', '')
+                        if kw in npc_id or kw in npc_name:
+                            ids.add(npc_id)
+            s['npc_ids'] = ids
+
+    @classmethod
     def _rebuild_outstanding(cls):
-        """启动时从所有玩家持仓聚合流通股数（内存重启后恢复）。"""
+        """启动时从所有玩家持仓聚合流通股数（含委托锁定股）。"""
         try:
             from models.player import PlayerModel
-            totals = {}
+            totals = {sid: 0 for sid in cls._stocks}
             for p in PlayerModel.query.all():
                 fd = p.finance_data or {}
                 for sid, h in (fd.get('holdings') or {}).items():
-                    totals[sid] = totals.get(sid, 0) + int(h.get('shares', 0))
-            for sid, cnt in totals.items():
-                if sid in cls._stocks:
-                    cls._stocks[sid]['outstanding'] = cnt
+                    totals[sid] = totals.get(sid, 0) + int(h.get('shares', 0)) + int(h.get('locked', 0))
+            for sid, s in cls._stocks.items():
+                s['outstanding'] = max(0, totals.get(sid, 0))
+            cls._outstanding_rebuilt = True
+        except Exception:
+            # 可能在 app_context/旧库 ALTER 之前初始化；后续请求会再次尝试。
+            cls._outstanding_rebuilt = False
+
+    @classmethod
+    def _expire_order_for_player(cls, player, order, status='expired'):
+        """让一张 pending 委托作废，并原路退回冻结资金/锁定持仓。"""
+        fd = player.finance_data or {}
+        if order.get('status') != 'pending':
+            return False
+        if order.get('side') == 'buy':
+            frozen_total = float(order.get('frozen_total', 0) or 0)
+            fd['frozen'] = max(0, round(float(fd.get('frozen', 0) or 0) - frozen_total, 2))
+            player.jinzu += cls._wallet_amount(frozen_total)
+        else:
+            holdings = fd.get('holdings') or {}
+            cur = holdings.get(order.get('stock_id'))
+            if cur:
+                shares = int(order.get('shares', 0) or 0)
+                release = min(int(cur.get('locked', 0) or 0), shares)
+                cur['locked'] = int(cur.get('locked', 0) or 0) - release
+                cur['shares'] = int(cur.get('shares', 0) or 0) + release
+                if cur.get('locked', 0) <= 0:
+                    cur.pop('locked', None)
+                holdings[order.get('stock_id')] = cur
+                fd['holdings'] = holdings
+        order['status'] = status
+        orders = cls._finance_orders(fd)
+        orders[order['order_id']] = dict(order)
+        fd['finance_orders'] = orders
+        player.finance_data = fd
+        cls._orders.pop(order['order_id'], None)
+        return True
+
+    @classmethod
+    def _expire_pending_orders(cls, status='expired'):
+        """跨天/清理时作废全部 pending 委托，避免冻结资产卡死。"""
+        try:
+            from models.player import PlayerModel
+            from services import db
+            changed = False
+            for p in PlayerModel.query.all():
+                for order in list(cls._finance_orders(p.finance_data or {}).values()):
+                    if isinstance(order, dict) and order.get('status') == 'pending':
+                        changed = cls._expire_order_for_player(p, order, status) or changed
+            cls._orders = {}
+            if changed:
+                db.session.commit()
+            cls._rebuild_outstanding()
+        except Exception:
+            pass
+
+    @classmethod
+    def _load_persisted_orders(cls):
+        """从玩家 JSON 恢复当日 pending 委托，并修复孤儿冻结资金/锁定股。"""
+        try:
+            from models.player import PlayerModel
+            from services import db
+            today = cls._day_key or str(date.today())
+            cls._orders = {}
+            changed = False
+            for p in PlayerModel.query.all():
+                fd = p.finance_data or {}
+                orders = cls._finance_orders(fd)
+                expected_frozen = 0.0
+                expected_locked = {}
+                for oid, order in list(orders.items()):
+                    if not isinstance(order, dict) or order.get('status') != 'pending':
+                        continue
+                    created_day = order.get('created_day')
+                    if not created_day and order.get('created_at'):
+                        try:
+                            created_day = datetime.fromtimestamp(float(order['created_at'])).date().isoformat()
+                        except Exception:
+                            created_day = today
+                    order['created_day'] = created_day or today
+                    if order['created_day'] != today:
+                        changed = cls._expire_order_for_player(p, order, 'expired') or changed
+                        fd = p.finance_data or {}
+                        orders = cls._finance_orders(fd)
+                        continue
+                    if order.get('stock_id') not in cls._stocks:
+                        changed = cls._expire_order_for_player(p, order, 'rejected') or changed
+                        fd = p.finance_data or {}
+                        orders = cls._finance_orders(fd)
+                        continue
+                    cls._orders[oid] = dict(order)
+                    if order.get('side') == 'buy':
+                        expected_frozen += float(order.get('frozen_total', 0) or 0)
+                    else:
+                        sid = order.get('stock_id')
+                        expected_locked[sid] = expected_locked.get(sid, 0) + int(order.get('shares', 0) or 0)
+                fd = p.finance_data or {}
+                current_frozen = float(fd.get('frozen', 0) or 0)
+                if abs(current_frozen - expected_frozen) >= 0.01:
+                    if current_frozen > expected_frozen:
+                        p.jinzu += cls._wallet_amount(current_frozen - expected_frozen)
+                    fd['frozen'] = round(expected_frozen, 2)
+                    changed = True
+                holdings = fd.get('holdings') or {}
+                for sid, h in list(holdings.items()):
+                    locked = int(h.get('locked', 0) or 0)
+                    should = int(expected_locked.get(sid, 0))
+                    if locked > should:
+                        h['locked'] = should
+                        h['shares'] = int(h.get('shares', 0) or 0) + (locked - should)
+                        changed = True
+                    if h.get('locked', 0) <= 0:
+                        h.pop('locked', None)
+                    holdings[sid] = h
+                fd['holdings'] = holdings
+                fd['finance_orders'] = cls._finance_orders(fd)
+                p.finance_data = fd
+            if changed:
+                db.session.commit()
+            cls._rebuild_outstanding()
         except Exception:
             pass
 
@@ -617,25 +929,26 @@ class FinanceService:
         today = str(date.today())
         if today == cls._day_key:
             return
-        # 跨天：昨收为今开，重置统计，重算A/B/C与路径
+        # 跨天：未成交委托隔夜作废，先退款/解锁，再用昨日统计生成今日走势。
+        cls._expire_pending_orders('expired')
         for sid, s in cls._stocks.items():
             s['open_price'] = s['price']
             s['last_price'] = s['price']
             s['pre_open_price'] = s['price']
             s['history'] = [s['price']]
+        cls._day_key = today
+        cls._settle_day_change()  # 注意：此时仍使用上一日统计作为今日 B/C 因子来源
         for sid in cls._daily_stats:
-            cls._daily_stats[sid] = {
-                'npc_visits': 0, 'bandit_kills': 0, 'npc_visitors': set()}
-        # 委托单跨天清空（未成交的隔日作废）
-        cls._orders = {}
+            cls._daily_stats[sid] = cls._empty_stats()
         # 劫匪跨天重新生成（随机刷新到新场景）
         for city, b in cls._bandits.items():
             b.spawned = True
             b.defeated_at = 0
             b.killer_today = None
             cls._randomize_bandit_location(b)
-        cls._day_key = today
-        cls._settle_day_change()
+        cls._last_tick = time.time()
+        cls._load_persisted_orders()
+        cls._save_market_state()
 
     @classmethod
     def _randomize_bandit_location(cls, b):
@@ -692,25 +1005,29 @@ class FinanceService:
 
     @classmethod
     def _ranked_change(cls, rng, stat_key, best_lo, best_hi, worst_lo, worst_hi):
-        """按全市场 stat_key(人气或劫匪) 排名，分配当日涨跌区间并随机取值。
-        排名最高者∈[best_lo,best_hi]，最低者∈[worst_lo,worst_hi]，中间线性插值。"""
-        items = []
-        for sid, stats in cls._daily_stats.items():
-            val = stats.get(stat_key, 0)
-            items.append((sid, val))
+        """按全市场 stat_key 排名分配涨跌；全零/全相等时不给 JSON 顺序偏置。"""
+        items = [(sid, stats.get(stat_key, 0)) for sid, stats in cls._daily_stats.items()]
         if not items:
             return {}
+        values = [v for _, v in items]
+        if max(values) == min(values):
+            return {sid: 0.0 for sid, _ in items}
         items.sort(key=lambda x: x[1], reverse=True)  # 高→低
         n = len(items)
         result = {}
-        for rank, (sid, val) in enumerate(items):
-            if n == 1:
-                frac = 0.5
-            else:
-                frac = rank / (n - 1)  # 0=最高, 1=最低
+        rank = 0
+        while rank < n:
+            val = items[rank][1]
+            end = rank + 1
+            while end < n and items[end][1] == val:
+                end += 1
+            avg_rank = (rank + end - 1) / 2
+            frac = 0.5 if n == 1 else avg_rank / (n - 1)
             lo = best_lo + (worst_lo - best_lo) * frac
             hi = best_hi + (worst_hi - best_hi) * frac
-            result[sid] = rng.uniform(lo, hi)
+            for sid, _ in items[rank:end]:
+                result[sid] = rng.uniform(lo, hi)
+            rank = end
         return result
 
     @classmethod
@@ -740,6 +1057,7 @@ class FinanceService:
             # 集合竞价段：用开盘价撮合9点前/盘中的委托单
             if phase == 'auction':
                 cls._match_orders()
+            cls._save_market_state()
             return
         progress = cls._day_progress()
         for sid, s in cls._stocks.items():
@@ -762,6 +1080,7 @@ class FinanceService:
         # 连续交易时段逐tick撮合委托单（按实时价）
         if phase == 'open':
             cls._match_orders()
+        cls._save_market_state()
 
     # ===================================================================
     #  公开查询
@@ -883,10 +1202,11 @@ class FinanceService:
         cost = shares * s['price']
         fee = cost * FEE_RATE
         total = cost + fee
-        if player.jinzu < total:
-            return False, f"金珠不足，需{round(total,2)}金珠（含手续费{round(fee,2)}）"
+        pay = cls._wallet_amount(total)
+        if player.jinzu < pay:
+            return False, f"金珠不足，需{pay}金珠（成交额{round(cost,2)}，手续费{round(fee,2)}）"
 
-        player.jinzu -= int(round(total))
+        player.jinzu -= pay
         fd = player.finance_data
         holdings = fd.get('holdings') or {}
         cur = holdings.get(stock_id) or {'shares': 0, 'avg_cost': 0.0}
@@ -896,14 +1216,14 @@ class FinanceService:
         new_avg = (old_shares * old_avg + cost) / new_shares if new_shares else 0
         holdings[stock_id] = {'shares': new_shares, 'avg_cost': round(new_avg, 4)}
         fd['holdings'] = holdings
-        fd['total_traded'] = round(float(fd.get('total_traded', 0)) + total, 2)
+        fd['total_traded'] = round(float(fd.get('total_traded', 0)) + pay, 2)
         player.finance_data = fd
         s['outstanding'] += shares
 
         from services import db
         db.session.commit()
         return True, (f"买入{s['name']}{shares}股，单价{s['price']}金珠，"
-                      f"手续费{round(fee,2)}，共耗{round(total,2)}金珠")
+                      f"手续费{round(fee,2)}，实扣{pay}金珠")
 
     @classmethod
     def sell(cls, player, stock_id, shares):
@@ -929,7 +1249,8 @@ class FinanceService:
         income = shares * s['price']
         fee = income * FEE_RATE
         net = income - fee
-        player.jinzu += int(round(net))
+        credit = cls._wallet_amount(net)
+        player.jinzu += credit
 
         old_shares = cur['shares']
         old_avg = cur['avg_cost']
@@ -948,7 +1269,7 @@ class FinanceService:
         from services import db
         db.session.commit()
         return True, (f"卖出{s['name']}{shares}股，单价{s['price']}金珠，"
-                      f"手续费{round(fee,2)}，到账{round(net,2)}金珠，本次盈亏{round(realized,2)}")
+                      f"手续费{round(fee,2)}，实到账{credit}金珠，本次盈亏{round(realized,2)}")
 
     @classmethod
     def get_player_profit(cls, player):
@@ -964,12 +1285,12 @@ class FinanceService:
         return round(realized + floating, 2)
 
     # ===================================================================
-    #  委托单系统（限价单，统一按委托价成交）
+    #  委托单系统（限价单，按当前撮合价成交，委托价只作保护价）
     # ===================================================================
     @classmethod
     def place_order(cls, player, stock_id, side, shares, limit_price):
         """提交委托单。side: 'buy'/'sell'。任何时段可挂单。
-        限价单语义：买单委托价≥市价则成交，卖单委托价≤市价则成交；统一按委托价成交。"""
+        限价单语义：买单委托价≥市价则成交，卖单委托价≤市价则成交；按当前撮合价成交。"""
         cls._ensure_init()
         s = cls._stocks.get(stock_id)
         if not s:
@@ -992,10 +1313,11 @@ class FinanceService:
             cost = shares * limit_price
             fee = cost * FEE_RATE
             total = cost + fee
-            if player.jinzu < total:
-                return False, f"金珠不足，需{round(total,2)}金珠冻结"
-            player.jinzu -= int(round(total))
-            fd['frozen'] = round(float(fd.get('frozen', 0)) + total, 2)
+            frozen_total = cls._wallet_amount(total)
+            if player.jinzu < frozen_total:
+                return False, f"金珠不足，需{frozen_total}金珠冻结"
+            player.jinzu -= frozen_total
+            fd['frozen'] = round(float(fd.get('frozen', 0)) + frozen_total, 2)
         else:  # sell: 预冻结持仓
             holdings = fd.get('holdings') or {}
             cur = holdings.get(stock_id)
@@ -1016,10 +1338,14 @@ class FinanceService:
             'side': side,
             'shares': shares,
             'limit_price': round(limit_price, 2),
-            'frozen_total': round(total, 2) if side == 'buy' else 0,
-            'status': 'pending',   # pending / filled / rejected
+            'frozen_total': frozen_total if side == 'buy' else 0,
+            'status': 'pending',   # pending / filled / rejected / expired / cancelled
             'created_at': time.time(),
+            'created_day': cls._day_key or str(date.today()),
         }
+        fd_orders = cls._finance_orders(fd)
+        fd_orders[order_id] = dict(cls._orders[order_id])
+        fd['finance_orders'] = fd_orders
         player.finance_data = fd
         from services import db
         db.session.commit()
@@ -1028,9 +1354,9 @@ class FinanceService:
     @classmethod
     def _match_orders(cls):
         """逐tick撮合待成交委托单。
-        成交判定（限价单，统一按委托价结算）：
-          买单：委托价 >= 当前价*95% → 成交
-          卖单：委托价 <= 当前价 → 成交
+        成交判定（限价单，按当前撮合价成交、限价保护）：
+          买单：委托价 >= 当前价 → 按当前价成交
+          卖单：委托价 <= 当前价 → 按当前价成交
         流通量限制：买单本次成交股数 = min(委托股数, 可流通量)，超额部分继续挂单。"""
         pending = [o for o in cls._orders.values() if o['status'] == 'pending']
         if not pending:
@@ -1049,20 +1375,21 @@ class FinanceService:
                 fill = True
             if not fill:
                 continue
-            cls._fill_order(o, s)
+            cls._fill_order(o, s, market)
 
     @classmethod
-    def _fill_order(cls, o, s):
-        """以委托价成交一单（支持部分成交+流通量限制）。
+    def _fill_order(cls, o, s, market_price=None):
+        """以当前撮合价成交一单（支持部分成交+流通量限制）。
         买单：成交股数 = min(委托股数, 可流通量)，超额部分继续挂单。
         卖单：按委托股数成交（持仓已预冻结）。"""
         from models.player import PlayerModel
         p = PlayerModel.query.get(o['player_id'])
         if not p:
             o['status'] = 'rejected'
+            cls._orders.pop(o['order_id'], None)
             return
         fd = p.finance_data
-        price = o['limit_price']
+        price = round(float(market_price if market_price is not None else cls._match_price(s)), 2)
         order_shares = o['shares']
         if o['side'] == 'buy':
             # 流通量限制：本次最多成交可流通量
@@ -1073,10 +1400,15 @@ class FinanceService:
             actual_cost = fill_shares * price
             fee = actual_cost * FEE_RATE
             total = actual_cost + fee
-            # 按本次成交比例解冻金珠（冻结是按委托股数算的）
+            used_frozen = cls._wallet_amount(total)
+            # 冻结按委托价，本次按实际撮合价使用，多余冻结即时退回钱包。
             ratio = fill_shares / order_shares
-            frozen_release = round(o['frozen_total'] * ratio, 2)
-            fd['frozen'] = round(float(fd.get('frozen', 0)) - frozen_release, 2)
+            allocated_frozen = float(o['frozen_total']) if fill_shares == order_shares else round(o['frozen_total'] * ratio, 2)
+            refund = max(0, cls._wallet_amount(allocated_frozen - used_frozen))
+            frozen_release = allocated_frozen
+            fd['frozen'] = max(0, round(float(fd.get('frozen', 0)) - frozen_release, 2))
+            if refund > 0:
+                p.jinzu += refund
             # 入账持仓
             holdings = fd.get('holdings') or {}
             cur = holdings.get(o['stock_id']) or {'shares': 0, 'avg_cost': 0.0}
@@ -1086,30 +1418,33 @@ class FinanceService:
             new_avg = (old_shares * old_avg + actual_cost) / new_shares if new_shares else 0
             holdings[o['stock_id']] = {'shares': new_shares, 'avg_cost': round(new_avg, 4)}
             fd['holdings'] = holdings
-            fd['total_traded'] = round(float(fd.get('total_traded', 0)) + total, 2)
+            fd['total_traded'] = round(float(fd.get('total_traded', 0)) + used_frozen, 2)
             s['outstanding'] += fill_shares
             if fill_shares < order_shares:
                 # 部分成交：剩余股数继续挂单，减少冻结基数
                 remaining = order_shares - fill_shares
                 o['shares'] = remaining
                 o['frozen_total'] = round(o['frozen_total'] - frozen_release, 2)
-                msg = f"委托买入{s['name']}部分成交{fill_shares}股@{price}（剩{remaining}股挂单中，流通量不足）"
+                msg = f"委托买入{s['name']}部分成交{fill_shares}股@{price}（剩{remaining}股挂单中，退回{refund}金珠）"
             else:
                 o['status'] = 'filled'
-                msg = f"委托买入{s['name']}{fill_shares}股@{price}成交，耗{round(total,2)}金珠"
+                cls._orders.pop(o['order_id'], None)
+                msg = f"委托买入{s['name']}{fill_shares}股@{price}成交，实扣{used_frozen}金珠，退回{refund}金珠"
         else:
             # 卖出：按委托股数成交（持仓已预冻结）
             holdings = fd.get('holdings') or {}
             cur = holdings.get(o['stock_id'])
-            if not cur:
+            if not cur or int(cur.get('locked', 0) or 0) < order_shares:
                 o['status'] = 'rejected'
+                cls._refund_order(o)
                 return
             locked = cur.get('locked', 0)
             fill_shares = order_shares
             income = fill_shares * price
             fee = income * FEE_RATE
             net = income - fee
-            p.jinzu += int(round(net))
+            credit = cls._wallet_amount(net)
+            p.jinzu += credit
             avg = cur.get('avg_cost', 0.0)
             realized = (fill_shares * price) - (fill_shares * avg) - fee
             fd['realized_profit'] = round(float(fd.get('realized_profit', 0)) + realized, 2)
@@ -1120,10 +1455,13 @@ class FinanceService:
             fd['holdings'] = holdings
             s['outstanding'] -= fill_shares
             o['status'] = 'filled'
-            msg = f"委托卖出{s['name']}{fill_shares}股@{price}成交，到账{round(net,2)}金珠，盈亏{round(realized,2)}"
+            cls._orders.pop(o['order_id'], None)
+            msg = f"委托卖出{s['name']}{fill_shares}股@{price}成交，实到账{credit}金珠，盈亏{round(realized,2)}"
         p.finance_data = fd
+        cls._sync_order_to_player(p, o)
         from services import db
         db.session.commit()
+        cls._save_market_state()
         return msg
 
     @classmethod
@@ -1133,40 +1471,37 @@ class FinanceService:
         p = PlayerModel.query.get(o['player_id'])
         if not p:
             return
-        fd = p.finance_data
-        if o['side'] == 'buy':
-            fd['frozen'] = round(float(fd.get('frozen', 0)) - o['frozen_total'], 2)
-            p.jinzu += int(round(o['frozen_total']))
-        else:
-            holdings = fd.get('holdings') or {}
-            cur = holdings.get(o['stock_id'])
-            if cur:
-                cur['locked'] = cur.get('locked', 0) - o['shares']
-                cur['shares'] = cur.get('shares', 0) + o['shares']
-        p.finance_data = fd
+        status = o.get('status') if o.get('status') != 'pending' else 'rejected'
+        o['status'] = 'pending'  # _expire_order_for_player 只对 pending 做一次退款，避免重复退款
+        cls._expire_order_for_player(p, o, status)
         from services import db
         db.session.commit()
+        cls._save_market_state()
 
     @classmethod
     def get_player_orders(cls, player):
-        """玩家委托单列表。"""
+        """玩家委托单列表（从持久化 JSON 读取，重启后仍可见）。"""
         cls._ensure_init()
         rows = []
-        for o in cls._orders.values():
-            if o['player_id'] != player.id:
+        fd_orders = cls._finance_orders(player.finance_data or {})
+        for o in fd_orders.values():
+            if not isinstance(o, dict):
                 continue
-            s = cls._stocks.get(o['stock_id'])
+            if o.get('player_id') != player.id:
+                continue
+            s = cls._stocks.get(o.get('stock_id'))
             rows.append({
-                'order_id': o['order_id'],
-                'stock_id': o['stock_id'],
-                'name': s['name'] if s else o['stock_id'],
-                'side': o['side'],
-                'shares': o['shares'],
-                'limit_price': o['limit_price'],
-                'status': o['status'],
+                'order_id': o.get('order_id'),
+                'stock_id': o.get('stock_id'),
+                'name': s['name'] if s else o.get('stock_id'),
+                'side': o.get('side'),
+                'shares': o.get('shares', 0),
+                'limit_price': o.get('limit_price', 0),
+                'status': o.get('status', 'pending'),
                 'market_price': s['price'] if s else 0,
+                'created_at': o.get('created_at', 0),
             })
-        rows.sort(key=lambda x: x['order_id'], reverse=True)
+        rows.sort(key=lambda x: x.get('created_at', 0), reverse=True)
         return rows
 
     @classmethod
@@ -1178,10 +1513,8 @@ class FinanceService:
             return False, "委托单不存在"
         if o['status'] != 'pending':
             return False, f"委托单已{o['status']=='filled' and '成交' or '作废'}，不可撤销"
+        o['status'] = 'cancelled'
         cls._refund_order(o)
-        o['status'] = 'rejected'
-        from services import db
-        db.session.commit()
         return True, "委托单已撤销，冻结资金/持仓已退回"
 
     # ===================================================================
@@ -1200,6 +1533,7 @@ class FinanceService:
         if amount <= 0:
             return False, "增股数量必须大于0"
         s['total_shares'] += amount
+        cls._save_market_state()
         return True, f"{s['name']}增发{amount}股，新发行总量{s['total_shares']}股"
 
     # ===================================================================
@@ -1207,17 +1541,17 @@ class FinanceService:
     # ===================================================================
     @classmethod
     def record_npc_visit(cls, monster_id, player_id):
-        """玩家点击NPC时调用，按npc_keyword匹配股票累加当日人气。每人每日每股票计1次。"""
+        """玩家点击 NPC 时调用，按精确 NPC ID 归属股票人气；每人每日每股票计 1 次。"""
         cls._ensure_init()
         for sid, s in cls._stocks.items():
-            kw = s['npc_keyword']
-            if kw and kw in monster_id:
-                stats = cls._daily_stats.setdefault(sid, {
-                    'npc_visits': 0, 'bandit_kills': 0, 'npc_visitors': set()})
+            npc_ids = s.get('npc_ids') or set()
+            if monster_id in npc_ids:
+                stats = cls._daily_stats.setdefault(sid, cls._empty_stats())
                 if player_id in stats['npc_visitors']:
                     return
                 stats['npc_visitors'].add(player_id)
                 stats['npc_visits'] += 1
+                cls._save_market_state()
                 return
 
     # ===================================================================
@@ -1296,7 +1630,7 @@ class FinanceService:
             return None
         city = monster_id[len("bandit_"):]
         b = cls._bandits.get(city)
-        if not b:
+        if not b or not b.spawned:
             return None
         # 标记击杀，启动5分钟复活（复活时随机刷新到新场景）
         b.spawned = False
@@ -1306,8 +1640,7 @@ class FinanceService:
         affected = 0
         for sid, s in cls._stocks.items():
             if s['city'] == city:
-                stats = cls._daily_stats.setdefault(sid, {
-                    'npc_visits': 0, 'bandit_kills': 0, 'npc_visitors': set()})
+                stats = cls._daily_stats.setdefault(sid, cls._empty_stats())
                 stats['bandit_kills'] += 1
                 affected += 1
         # 积分制：每次+1点，满100点自动兑换1金珠
@@ -1321,6 +1654,7 @@ class FinanceService:
             player.jinzu += jinzu_gain
         from services import db
         db.session.commit()
+        cls._save_market_state()
         if jinzu_gain > 0:
             DataService.broadcast_system(
                 f"{player.nickname}在{city}多次击杀劫匪，救济富商，获答谢金珠{jinzu_gain}枚！")

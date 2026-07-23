@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>我的论坛</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+.muted { color:#888; font-size:14px; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+我的论坛<br/>
+----------------<br/>
+我的帖子<br/>
+{% for p in posts %}
+<a href="{{ url_for('forum.view_post', post_id=p.id) }}">{{ p.title }}</a> <span class="muted">{{ p.created_at.strftime('%m-%d') }} {{ p.status }}</span><br/>
+{% endfor %}
+{% if not posts %}暂无发帖<br/>{% endif %}
+----------------<br/>
+我的评论<br/>
+{% for c in comments %}
+<a href="{{ url_for('forum.view_post', post_id=c.post_id) }}">{{ c.content[:24] }}</a> <span class="muted">{{ c.created_at.strftime('%m-%d') }} {{ c.status }}</span><br/>
+{% endfor %}
+{% if not comments %}暂无评论<br/>{% endif %}
+----------------<br/>
+我的收藏<br/>
+{% for f in favorites %}
+{% if f.post %}<a href="{{ url_for('forum.view_post', post_id=f.post_id) }}">{{ f.post.title }}</a> <span class="muted">{{ f.created_at.strftime('%m-%d') }}</span><br/>{% endif %}
+{% endfor %}
+{% if not favorites %}暂无收藏<br/>{% endif %}
+<br/>
+<a href="{{ url_for('forum.index') }}">返回论坛</a><br/>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+</body>
+</html>

@@ -207,9 +207,8 @@ def create_app():
     from services.world_boss_service import WorldBossService
     WorldBossService.init_bosses()
 
-    # Inject bandit monsters into monsters cache for finance (理财·股市) feature
+    # Finance bandit monsters are injected after tables are ready inside app_context.
     from services.finance_service import FinanceService
-    FinanceService.register_bandit_monster(DataService.get_monsters())
 
     from blueprints.auth import auth_bp
     from blueprints.game import game_bp
@@ -234,6 +233,7 @@ def create_app():
     from blueprints.battlefield import battlefield_bp
     from blueprints.party import party_bp
     from blueprints.market import market_bp
+    from blueprints.forum import forum_bp
 
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(game_bp, url_prefix='/game')
@@ -258,6 +258,7 @@ def create_app():
     app.register_blueprint(battlefield_bp, url_prefix='/battlefield')
     app.register_blueprint(party_bp, url_prefix='/party')
     app.register_blueprint(market_bp, url_prefix='/market')
+    app.register_blueprint(forum_bp, url_prefix='/forum')
 
     from blueprints.crafting import crafting_bp
     from blueprints.quest import quest_bp
@@ -510,6 +511,11 @@ def create_app():
             p.player_uid = uid
         if players_without_uid:
             db.session.commit()
+        # Inject finance bandit monsters after legacy player columns are ready so finance init can rebuild holdings safely.
+        FinanceService.register_bandit_monster(DataService.get_monsters())
+        FinanceService.start_maintenance(app)
+        from services.maintenance_service import MaintenanceService
+        MaintenanceService.start(app)
 
     # 服务端的 500 错误兜底:把完整 traceback 落盘,便于生产环境排查
     # (gunicorn 的 --error-logfile - 在手机控制台部署下会被丢弃,导致 500 无迹可寻)。

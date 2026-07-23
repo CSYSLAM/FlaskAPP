@@ -1038,6 +1038,114 @@ class MarketTransaction(db.Model):
     )
 
 
+class ForumPost(db.Model):
+    """论坛帖子。"""
+    __tablename__ = 'forum_posts'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(20), default='active')  # active/deleted
+    is_pinned = db.Column(db.Boolean, default=False)
+    pinned_at = db.Column(db.DateTime, nullable=True)
+    pinned_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+    view_count = db.Column(db.Integer, default=0)
+    like_count = db.Column(db.Integer, default=0)
+    dislike_count = db.Column(db.Integer, default=0)
+    comment_count = db.Column(db.Integer, default=0)
+    favorite_count = db.Column(db.Integer, default=0)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True)
+    deleted_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+
+    author = db.relationship('PlayerModel', foreign_keys=[author_id])
+    pinned_by_player = db.relationship('PlayerModel', foreign_keys=[pinned_by])
+    deleted_by_player = db.relationship('PlayerModel', foreign_keys=[deleted_by])
+
+    __table_args__ = (
+        db.Index('ix_forum_posts_status_created', 'status', 'created_at'),
+        db.Index('ix_forum_posts_pinned', 'is_pinned', 'pinned_at'),
+        db.Index('ix_forum_posts_author', 'author_id'),
+    )
+
+
+class ForumComment(db.Model):
+    """论坛评论。"""
+    __tablename__ = 'forum_comments'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    content = db.Column(db.String(600), nullable=False)
+    status = db.Column(db.String(20), default='active')  # active/deleted
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    deleted_at = db.Column(db.DateTime, nullable=True)
+    deleted_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=True)
+
+    post = db.relationship('ForumPost', backref='comments')
+    author = db.relationship('PlayerModel', foreign_keys=[author_id])
+
+    __table_args__ = (
+        db.Index('ix_forum_comments_post', 'post_id', 'created_at'),
+        db.Index('ix_forum_comments_author', 'author_id'),
+    )
+
+
+class ForumReaction(db.Model):
+    """论坛点赞/点踩，一人一帖仅保留一种态度。"""
+    __tablename__ = 'forum_reactions'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    reaction = db.Column(db.String(10), nullable=False)  # like/dislike
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    __table_args__ = (
+        db.UniqueConstraint('post_id', 'player_id'),
+        db.Index('ix_forum_reactions_player', 'player_id'),
+    )
+
+
+class ForumFavorite(db.Model):
+    """论坛收藏。"""
+    __tablename__ = 'forum_favorites'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    post = db.relationship('ForumPost')
+
+    __table_args__ = (
+        db.UniqueConstraint('post_id', 'player_id'),
+        db.Index('ix_forum_favorites_player', 'player_id'),
+    )
+
+
+class ForumMute(db.Model):
+    """论坛禁言。"""
+    __tablename__ = 'forum_mutes'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    muted_by = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    reason = db.Column(db.String(200), default='')
+    muted_until = db.Column(db.DateTime, nullable=True)  # null=永久
+    is_active = db.Column(db.Boolean, default=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    player = db.relationship('PlayerModel', foreign_keys=[player_id])
+    admin = db.relationship('PlayerModel', foreign_keys=[muted_by])
+
+    __table_args__ = (
+        db.Index('ix_forum_mutes_player', 'player_id', 'is_active'),
+    )
+
+
 class PlayerSkill(db.Model):
     __tablename__ = 'player_skills'
 

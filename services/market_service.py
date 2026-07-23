@@ -5,7 +5,7 @@
 - 买方付总价 +5% 手续费，卖家实收 95%；
 - 装备挂单期间归属置空(player_id=None)锁定，买入/取消/过期时转移归属
   （参考 lost_found grant_lost_item 模式，到手/退回均未绑定）；
-- 7 天自动下架退回（惰性状态机，由蓝图查询前调用 expire_listings）；
+- 7 天自动下架退回（后台维护线程定时调用 expire_listings）；
 - 挂单上限 20 + VIP等级×2（VIP0=20 … VIP5=30）。
 """
 
@@ -442,7 +442,7 @@ class MarketService:
         return True, "挂单已取消，物品退回背包（手续费不退）"
 
     # ------------------------------------------------------------------
-    # 过期（惰性状态机，由蓝图查询前调用）
+    # 过期（后台维护线程定时调用；路由调用仅作兜底）
     # ------------------------------------------------------------------
     @classmethod
     def expire_listings(cls):
@@ -453,11 +453,12 @@ class MarketService:
             MarketListing.status.in_(['active', 'partial']),
         ).all()
         if not expired:
-            return
+            return 0
         for listing in expired:
             cls._return_to_seller(listing)
             listing.status = 'expired'
         db.session.commit()
+        return len(expired)
 
     # ------------------------------------------------------------------
     # 内部工具

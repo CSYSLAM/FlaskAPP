@@ -513,6 +513,26 @@ class CopyDungeonService:
         return daily
 
     @classmethod
+    def reset_all_daily_free_entries(cls):
+        """后台批量刷新所有玩家每日副本免费次数。"""
+        from datetime import date
+        from models.player import PlayerModel
+        today = date.today().isoformat()
+        changed = False
+        for player in PlayerModel.query.all():
+            data = player.activity_data
+            if not isinstance(data, dict):
+                data = {}
+            daily = data.get('copy_dungeon_daily', {})
+            if not isinstance(daily, dict) or daily.get('date') != today:
+                data['copy_dungeon_daily'] = {'date': today, 'free_used': False}
+                player.activity_data = data
+                changed = True
+        if changed:
+            db.session.commit()
+        return changed
+
+    @classmethod
     def _use_daily_free(cls, player):
         """消耗本日免费次数。"""
         daily = cls._get_daily_state(player)

@@ -630,6 +630,28 @@ class LegionService:
             member.gold_donate_count = 0
             member.gold_donate_date = today
 
+    @classmethod
+    def reset_all_daily_counters(cls):
+        """后台批量重置所有军团成员每日签到/捐献/任务次数。"""
+        today = date.today().isoformat()
+        changed = False
+        for member in LegionMember.query.all():
+            if member.sign_date != today:
+                member.signed_today = False
+                member.sign_date = today
+                changed = True
+            if member.gold_donate_date != today:
+                member.gold_donate_count = 0
+                member.gold_donate_date = today
+                changed = True
+            if member.quest_date != today:
+                member.quest_count = 0
+                member.quest_date = today
+                changed = True
+        if changed:
+            db.session.commit()
+        return changed
+
     # --- Legion queries ---
 
     @classmethod
