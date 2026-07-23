@@ -31,6 +31,7 @@ form.inline { display:inline; }
 <form class="inline" method="post" action="{{ url_for('forum.favorite', post_id=post.id) }}"><input type="submit" value="{{ '取消收藏' if state.favorited else '收藏' }}"></form><br/>
 {% endif %}
 {% if post.author_id == player.id or is_admin %}<a href="{{ url_for('forum.edit_post', post_id=post.id) }}">编辑</a>{% endif %}
+{% if post.author_id == player.id %}<form class="inline" method="post" action="{{ url_for('forum.notify_toggle') }}"><input type="submit" value="{% if player.forum_interaction_notify %}关闭互动提醒{% else %}开启互动提醒{% endif %}"></form>{% endif %}
 {% if post.status == 'active' and (post.author_id == player.id or is_admin) %}
 <form class="inline" method="post" action="{{ url_for('forum.delete_post', post_id=post.id) }}"><input type="submit" value="删帖"></form>
 {% endif %}

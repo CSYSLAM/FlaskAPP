@@ -77,6 +77,18 @@
       "stars": 5,
       "description": "热血沸腾的传奇",
       "pair_id": "suffix忠义之魂"
+    },
+    "prefix大杀四方": {
+      "name": "大杀四方的",
+      "stars": 2,
+      "description": "大杀四方，威风凛凛",
+      "pair_id": "suffix民族义士"
+    },
+    "prefix大杀四方的": {
+      "name": "大杀四方的",
+      "stars": 3,
+      "description": "所向披靡，大杀四方",
+      "pair_id": "suffix民族义士"
     }
   },
   "suffixes": {
@@ -151,6 +163,12 @@
       "stars": 3,
       "description": "潜伏于暗影之中",
       "pair_id": null
+    },
+    "suffix民族义士": {
+      "name": "民族义士",
+      "stars": 3,
+      "description": "护卫家国的民族义士",
+      "pair_id": "prefix大杀四方的"
     }
   },
   "star_bonuses": {

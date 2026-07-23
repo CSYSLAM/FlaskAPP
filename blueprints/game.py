@@ -101,6 +101,20 @@ def scene():
                         m.respawn_remaining = remaining
                 monsters_list.append(m)
 
+        # 南蛮入侵：在军团领地等级城市注入存活首领（供玩家点击挑战）
+        from services.barbarian_service import BarbarianService
+        leader_ids = BarbarianService.active_leader_monster_ids_at(location_id)
+        if leader_ids:
+            from models.monster import Monster as _Monster
+            _all_monsters = DataService.get_monsters()
+            for _mid in leader_ids:
+                _mdata = _all_monsters.get(_mid)
+                if not _mdata:
+                    continue
+                _lm = _Monster.from_dict(_mid, _mdata)
+                _lm.is_barbarian_leader = True
+                monsters_list.append(_lm)
+
         # Finance bandit: if a bandit is alive at this location, show it as a world boss (理财·劫匪)
         # 击杀后（复活中）不在场景显示，仅在金珠股市劫匪情报中显示复活倒计时
         from services.finance_service import FinanceService
@@ -294,6 +308,13 @@ def move(direction):
         db.session.commit()
     else:
         flash("无法朝该方向移动")
+
+    # 南蛮入侵：非安全区移动按几率遭遇南蛮怪物
+    from services.barbarian_service import BarbarianService
+    moved_loc = locations.get(player.current_location)
+    encounter_mid = BarbarianService.maybe_encounter(player, moved_loc)
+    if encounter_mid:
+        return redirect(url_for("game.encounter", mid=encounter_mid))
 
     return redirect(url_for("game.scene"))
 

@@ -661,7 +661,10 @@ class BattleService:
             bandit_info = FinanceService.get_bandit_at_location(player.current_location)
             is_bandit = bandit_info and bandit_info[0] == monster_id
             if not is_bandit and monster_id not in killable_ids:
-                return None, "该怪物不在此处"
+                # 南蛮/北夷首领可从活动页任意地点挑战
+                from services.barbarian_service import BarbarianService
+                if not BarbarianService.is_barbarian_monster(monster_id):
+                    return None, "该怪物不在此处"
 
         if not monster_id:
             return None, "这里没有怪物"
@@ -1281,6 +1284,15 @@ class BattleService:
 
         # Track kill counts
         mon_id = getattr(monster, 'id', '') or getattr(monster, 'monster_id', '')
+
+        # 南蛮/北夷入侵击杀回调：扣减士卒 / 首领置复苏 + 几率神器（文字稍后并入 loot_text）
+        barbarian_drop_text = ""
+        try:
+            from services.barbarian_service import BarbarianService
+            barbarian_drop_text = BarbarianService.on_kill(player, mon_id) or ""
+        except Exception:
+            barbarian_drop_text = ""
+
         if monster.is_elite:
             player.elite_kill_count = (player.elite_kill_count or 0) + 1
             # Track elite kills by area (kunlun/shennong/wokou)
@@ -1389,6 +1401,10 @@ class BattleService:
                 loot_text += f"；{guaranteed_text}"
             else:
                 loot_text = guaranteed_text
+
+        # 南蛮/北夷入侵额外掉落（首领几率神器）
+        if barbarian_drop_text:
+            loot_text = (loot_text + "；" + barbarian_drop_text) if loot_text else barbarian_drop_text
 
         dungeon_note = CopyDungeonService.record_monster_defeat(player, monster)
         if dungeon_note:

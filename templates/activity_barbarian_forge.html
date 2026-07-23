@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>菊香神炉</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+.muted { color:#888; font-size:14px; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+菊香神炉 <a href="{{ url_for('activity.redeem') }}">返回</a><br/>
+----------------<br/>
+消耗材料打造25级菊香神套（神器），成功率50%。<br/>
+{% for k in ['juxiang_forge_blueprint','juhunfan_suipian','qianghua_baoyu'] %}
+{{ mats[k+'_name'] }}:{{ mats[k] }}<br/>
+{% endfor %}
+----------------<br/>
+<form action="{{ url_for('activity.barbarian_forge') }}" method="post">
+<input type="submit" value="开始打造">
+</form>
+<br/>
+<a href="{{ url_for('activity.redeem') }}">返回凭证兑奖<br/></a>
+<a href="{{ url_for('activity.barbarian_index') }}">返回蛮夷入口<br/></a>
+<a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+</body>
+</html>

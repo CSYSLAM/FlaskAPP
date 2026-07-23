@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>蛮夷入侵</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+.muted { color:#888; font-size:14px; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+蛮夷入侵 <a href="{{ url_for('activity.index') }}">返回</a><br/>
+----------------<br/>
+<a href="{{ url_for('activity.barbarian_invasion', side='南') }}">南蛮入侵</a><br/>
+<a href="{{ url_for('activity.barbarian_invasion', side='北') }}">北夷入侵</a><br/>
+----------------<br/>
+<a href="{{ url_for('activity.redeem') }}">凭证兑奖</a><br/>
+<a href="{{ url_for('activity.barbarian_forge') }}">菊香神炉</a><br/>
+<br/>
+<a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
+</body>
+</html>

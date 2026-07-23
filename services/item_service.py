@@ -50,6 +50,24 @@ class ItemService:
             db.session.commit()
             return True, "下一次强化成功率+10%"
 
+        # Special: open_barbarian_box — 开启[活]蛮夷宝箱（消耗宝箱与钥匙由服务内部处理）
+        if usage_effect.get("open_barbarian_box"):
+            from services.barbarian_service import BarbarianService
+            ok, msg = BarbarianService.open_chest(player)
+            return ok, msg
+
+        # Special: barbarian_tujian — 南北图鉴使用：随机获得20-40来袭凭证，1/200几率获得菊香神套打造图纸
+        if usage_effect.get("special") == "barbarian_tujian":
+            credits = random.randint(20, 40)
+            DataService.add_item_to_inventory(player.id, 'laiqin_pingzheng', credits)
+            msgs = [f"获得来袭凭证×{credits}"]
+            if random.random() < (1.0 / 200):
+                DataService.add_item_to_inventory(player.id, 'juxiang_forge_blueprint', 1)
+                msgs.append("获得菊香神套打造图纸")
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, "；".join(msgs)
+
         # Special: rename_card — redirect to rename flow
         if usage_effect.get("special") == "rename":
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
@@ -64,6 +82,18 @@ class ItemService:
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
             db.session.commit()
             return True, "使用免战符，30分钟内其他玩家无法对你发起PK"
+
+        # Special: barbarian_tujian — 蛮夷图鉴使用：随机获得20-40来袭凭证，1/200概率获得菊香神套图纸
+        if usage_effect.get("special") == "barbarian_tujian":
+            cred = random.randint(20, 40)
+            DataService.add_item_to_inventory(player.id, 'laiqin_pingzheng', cred)
+            msg = f"研读图鉴，获得来袭凭证×{cred}"
+            if random.random() < (1.0 / 200):
+                DataService.add_item_to_inventory(player.id, 'juxiang_forge_blueprint', 1)
+                msg += "，并意外获得【活】菊香神套打造图纸！"
+            DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
+            db.session.commit()
+            return True, msg
 
         # VIP items use their own service
         if item_data.get("type") == "vip":

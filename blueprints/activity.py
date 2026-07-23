@@ -491,3 +491,144 @@ def finance_rank_bandit():
                          is_online=None)
 
 
+# --- 蛮夷入侵活动（南蛮 / 北夷） ---
+
+@activity_bp.route("/barbarian")
+@login_required
+def barbarian_index():
+    """蛮夷活动入口：南蛮 / 北夷 / 凭证兑奖。"""
+    return render_template("activity_barbarian.html", player=current_user)
+
+
+@activity_bp.route("/barbarian/<side>")
+@login_required
+def barbarian_invasion(side):
+    """某方蛮夷入侵主页：士卒剩余（本国）、三名首领状态与掉落、活动说明。"""
+    if side not in ('南', '北'):
+        flash("未知活动")
+        return redirect(url_for("activity.barbarian_index"))
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    state = BarbarianService.get_state(player, side)
+    return render_template("activity_barbarian_side.html",
+                           player=player, side=side, state=state)
+
+
+@activity_bp.route("/redeem")
+@login_required
+def redeem():
+    """凭证兑奖：消耗 [活]来袭凭证 兑换奖励。"""
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    from services.data_service import DataService
+    catalog = BarbarianService.get_redeem_catalog()
+    balance = BarbarianService.get_credit_balance(player)
+    has_box = bool(DataService.get_inventory_item(player.id, 'manyi_baoxia'))
+    has_key = bool(DataService.get_inventory_item(player.id, 'manyi_baoxiang_key'))
+    return render_template("activity_redeem.html",
+                           player=player,
+                           catalog=catalog,
+                           balance=balance,
+                           has_box=has_box,
+                           has_key=has_key)
+
+
+@activity_bp.route("/do_redeem/<item_id>", methods=["POST"])
+@login_required
+def do_redeem(item_id):
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    qty = request.form.get("qty") or request.args.get("qty") or 1
+    try:
+        qty = int(qty)
+    except (TypeError, ValueError):
+        qty = 1
+    ok, msg = BarbarianService.redeem(player, item_id, qty)
+    flash(msg)
+    return redirect(url_for("activity.redeem"))
+
+
+@activity_bp.route("/open_box", methods=["POST"])
+@login_required
+def open_box():
+    """开启 [活]蛮夷宝箱（需宝箱钥匙）。"""
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    ok, msg = BarbarianService.open_chest(player)
+    flash(msg)
+    return redirect(url_for("activity.redeem"))
+
+
+@activity_bp.route("/barbarian/admin_refresh", methods=["POST"])
+@login_required
+def barbarian_admin_refresh():
+    """管理员手动刷新蛮夷入侵（士卒补满、首领复活）。"""
+    player = current_user
+    if not getattr(player, "is_designer", False):
+        flash("无权限")
+        return redirect(url_for("activity.barbarian_index"))
+    from services.barbarian_service import BarbarianService
+    side = request.form.get("side") or request.args.get("side")
+    BarbarianService.admin_refresh(side)
+    if side in ('南', '北'):
+        flash(("北夷" if side == "北" else "南蛮") + "入侵已刷新")
+        return redirect(url_for("activity.barbarian_invasion", side=side))
+    flash("蛮夷入侵已刷新")
+    return redirect(url_for("activity.barbarian_index"))
+
+
+@activity_bp.route("/barbarian/admin_clear", methods=["POST"])
+@login_required
+def barbarian_admin_clear():
+    """管理员手动清零蛮夷入侵（士卒清零、首领复苏中）。"""
+    player = current_user
+    if not getattr(player, "is_designer", False):
+        flash("无权限")
+        return redirect(url_for("activity.barbarian_index"))
+    from services.barbarian_service import BarbarianService
+    side = request.form.get("side") or request.args.get("side")
+    BarbarianService.admin_clear(side)
+    if side in ('南', '北'):
+        flash(("北夷" if side == "北" else "南蛮") + "入侵已清零")
+        return redirect(url_for("activity.barbarian_invasion", side=side))
+    flash("蛮夷入侵已清零")
+    return redirect(url_for("activity.barbarian_index"))
+
+
+@activity_bp.route("/announce")
+@login_required
+def announce():
+    """公告栏：展示活动相关公告。"""
+    player = current_user
+    import json as _json
+    from services.data_service import DataService
+    notices = []
+    try:
+        with open("data/announcements.json", "r", encoding="utf-8") as _f:
+            notices = _json.load(_f)
+    except Exception:
+        notices = []
+    return render_template("activity_announce.html", player=player, notices=notices)
+
+
+@activity_bp.route("/barbarian_forge", methods=["GET", "POST"])
+@login_required
+def barbarian_forge():
+    """铁砧铺·菊香神炉：消耗图纸+聚魂幡碎片+强化宝玉，50% 打造成功。"""
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    from services.data_service import DataService
+    msg = None
+    if request.method == "POST":
+        ok, msg = BarbarianService.forge_juxiang(player)
+        flash(msg)
+        return redirect(url_for("activity.barbarian_forge"))
+    # 展示持有材料
+    mats = {}
+    for item_id in ('juxiang_forge_blueprint', 'juhunfan_suipian', 'qianghua_baoyu'):
+        inv = DataService.get_inventory_item(player.id, item_id)
+        mats[item_id] = inv.quantity if inv else 0
+        mats[item_id + '_name'] = (DataService.get_item(item_id) or {}).get('name', item_id)
+    return render_template("activity_barbarian_forge.html", player=player, mats=mats, msg=msg)
+
+

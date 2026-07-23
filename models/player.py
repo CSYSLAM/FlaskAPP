@@ -69,6 +69,7 @@ class PlayerModel(db.Model, UserMixin):
     enhance_luck_small = db.Column(db.Boolean, default=False)  # 强化小幸运符(+5%)
     enhance_luck_medium = db.Column(db.Boolean, default=False)  # 强化中幸运符(+15%)
 
+    forum_interaction_notify = db.Column(db.Boolean, default=True)  # forum interaction notify switch
     last_damage_taken = db.Column(db.Integer, default=0)
     last_damage_dealt = db.Column(db.String(32), default='')
     last_battle_result = db.Column(db.String(256), default='')
@@ -1143,6 +1144,26 @@ class ForumMute(db.Model):
 
     __table_args__ = (
         db.Index('ix_forum_mutes_player', 'player_id', 'is_active'),
+    )
+
+class ForumNotification(db.Model):
+    __tablename__ = 'forum_notifications'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    recipient_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    actor_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    actor_name = db.Column(db.String(64), nullable=False, default='')
+    post_id = db.Column(db.Integer, db.ForeignKey('forum_posts.id'), nullable=False)
+    post_title = db.Column(db.String(80), nullable=False, default='')
+    action = db.Column(db.String(20), nullable=False)
+    is_read = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    recipient = db.relationship('PlayerModel', foreign_keys=[recipient_id])
+    actor = db.relationship('PlayerModel', foreign_keys=[actor_id])
+
+    __table_args__ = (
+        db.Index('ix_forum_notifications_recipient_read', 'recipient_id', 'is_read'),
     )
 
 

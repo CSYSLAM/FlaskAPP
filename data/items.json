@@ -4036,5 +4036,111 @@
       "special": "enhance_lucky_medium"
     },
     "capacity": 0.1
+  },
+  "laiqin_pingzheng": {
+    "name": "来袭凭证",
+    "type": "material",
+    "description": "南蛮入侵活动道具，可在活动·凭证兑奖中兑换奖励",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "nanman_tujian": {
+    "name": "南蛮图鉴",
+    "type": "material",
+    "description": "记录南蛮风物的图鉴，背包使用可随机获得20-40来袭凭证，极小几率获得菊香神套打造图纸",
+    "price": 1,
+    "is_usable": true,
+    "capacity": 0,
+    "usage_effect": {
+      "special": "barbarian_tujian"
+    }
+  },
+  "manyi_baoxia": {
+    "name": "[活]蛮夷宝箱",
+    "type": "material",
+    "description": "开启需1个[活]宝箱钥匙，开启后获得少量经验银两，必得南/北蛮图鉴，几率获得蛮夷神武、菊香神套。可在活动·凭证兑奖处兑换后于本页开启",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "qianghua_baoyu": {
+    "name": "强化宝玉",
+    "type": "material",
+    "description": "可以用来强化装备的神奇宝玉",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juhunfan_suipian": {
+    "name": "聚魂幡碎片",
+    "type": "material",
+    "description": "聚魂幡的碎片",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "title_prefix_dasha": {
+    "name": "称号卷轴-大杀四方的",
+    "type": "material",
+    "description": "使用后获得前缀称号【大杀四方的】(属性:生命+195、魔+216、攻+54、防+138)",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix大杀四方的"
+    },
+    "capacity": 0.1
+  },
+  "title_prefix_minzu": {
+    "name": "称号卷轴-民族义士",
+    "type": "material",
+    "description": "使用后获得后缀称号【民族义士】",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix民族义士"
+    },
+    "capacity": 0.1
+  },
+  "beiye_tujian": {
+    "name": "北夷图鉴",
+    "type": "material",
+    "description": "记录北夷风物的图鉴，背包使用可随机获得20-40来袭凭证，极小几率获得菊香神套打造图纸",
+    "price": 1,
+    "is_usable": true,
+    "capacity": 0,
+    "usage_effect": {
+      "special": "barbarian_tujian"
+    }
+  },
+  "manyi_baoxiang_key": {
+    "name": "[活]宝箱钥匙",
+    "type": "material",
+    "description": "开启[活]蛮夷宝箱所需的钥匙",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_forge_blueprint": {
+    "name": "[活]菊香神套图纸",
+    "type": "material",
+    "description": "用于铁匠铺·菊香神炉打造25级菊香神套的图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "shenyouguo": {
+    "name": "神游果",
+    "type": "material",
+    "description": "蛮夷怪物掉落的神异果实，食用可获得银两",
+    "price": 1,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_gold": 100,
+      "effect_descriptions": {
+        "gold": "获得100银两"
+      }
+    },
+    "capacity": 0
   }
 }

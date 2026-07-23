@@ -31,7 +31,12 @@ BATTLEFIELD_CITIES = {
 }
 
 TIER_POINTS = {'basic': 1, 'mid': 2, 'high': 3}
-TIER_BONUS = {'basic': 1, 'mid': 2, 'high': 3}
+# 占领属性加成：按城池等级（低级/中级/高级）分别给出 攻/防/血/魔 加成
+TIER_BONUS = {
+    'basic': {'attack': 50, 'defense': 200, 'max_health': 500, 'max_mana': 250},    # 低级
+    'mid':   {'attack': 100, 'defense': 400, 'max_health': 1000, 'max_mana': 500},   # 中级
+    'high':  {'attack': 150, 'defense': 600, 'max_health': 1500, 'max_mana': 750},   # 高级
+}
 TIER_TOKEN = {
     'basic': 'battle_flag_1',
     'mid': 'battle_flag_2',
@@ -726,7 +731,11 @@ class BattlefieldService:
         cls._ensure_city(city_key)
         state = cls._cities[city_key]
         if state.legion_scores:
-            state.winner_legion_id = max(state.legion_scores, key=state.legion_scores.get)
+            winner_id = max(state.legion_scores, key=state.legion_scores.get)
+            # 占领条件：总积分排名第一 且 积分必须 > 0，否则无占领资格
+            if state.legion_scores[winner_id] <= 0:
+                winner_id = None
+            state.winner_legion_id = winner_id
         else:
             top = Legion.query.filter(Legion.battle_points > 0) \
                 .order_by(Legion.battle_points.desc()).first()
@@ -747,6 +756,12 @@ class BattlefieldService:
         if city_key not in BATTLEFIELD_CITIES:
             return False, "城市不存在"
 
+        city = BATTLEFIELD_CITIES[city_key]
+        legion = Legion.query.get(member.legion_id)
+        # 阵营限制：只能占领本国城池；无阵营归属的中立城池任何军团均可占领
+        if city['country'] and legion.country != city['country']:
+            return False, f"仅{city['country']}国军团可占领{city['name']}"
+
         # 占领时按当前积分惰性结算胜者,无需等待独立结束事件
         state = cls._settle_city(city_key)
         winner_id = getattr(state, 'winner_legion_id', None)
@@ -761,12 +776,16 @@ class BattlefieldService:
 
     @classmethod
     def get_claimable_cities(cls, legion_id):
+        legion = Legion.query.get(legion_id)
         claimable = []
         for city_key in BATTLEFIELD_CITIES:
+            city = BATTLEFIELD_CITIES[city_key]
+            # 阵营限制：本国城池才能进入「可占领」列表（中立城池不限阵营）
+            if city['country'] and legion and legion.country != city['country']:
+                continue
             # 同样惰性结算,保证领取列表能正确填充
             state = cls._settle_city(city_key)
             if getattr(state, 'winner_legion_id', None) == legion_id:
-                legion = Legion.query.get(legion_id)
                 if legion and city_key not in legion.occupied_cities:
                     claimable.append(city_key)
         return claimable
@@ -812,10 +831,10 @@ class BattlefieldService:
             city = BATTLEFIELD_CITIES.get(city_key)
             if city:
                 val = TIER_BONUS[city['tier']]
-                bonuses['attack'] += val
-                bonuses['defense'] += val
-                bonuses['max_health'] += val
-                bonuses['max_mana'] += val
+                bonuses['attack'] += val['attack']
+                bonuses['defense'] += val['defense']
+                bonuses['max_health'] += val['max_health']
+                bonuses['max_mana'] += val['max_mana']
         return bonuses
 
     @classmethod

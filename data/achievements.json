@@ -2943,6 +2943,361 @@
         "attack": 54,
         "defense": 181
       }
+    },
+    "manyi_kexing": {
+      "name": "【蛮夷驱逐者】",
+      "category": "活动",
+      "condition_type": "barbarian_soldier_kill",
+      "condition_value": 50,
+      "reward": {
+        "max_health": 10,
+        "max_mana": 5,
+        "attack": 2
+      },
+      "points": 10,
+      "description": "击杀50名蛮夷士卒"
+    },
+    "manyi_shashou": {
+      "name": "【蛮夷杀手】",
+      "category": "活动",
+      "condition_type": "barbarian_soldier_kill",
+      "condition_value": 200,
+      "reward": {
+        "max_health": 15,
+        "max_mana": 10,
+        "attack": 3
+      },
+      "points": 20,
+      "description": "击杀200名蛮夷士卒"
+    },
+    "manyi_ewang": {
+      "name": "【蛮夷噩梦】",
+      "category": "活动",
+      "condition_type": "barbarian_soldier_kill",
+      "condition_value": 500,
+      "reward": {
+        "max_health": 20,
+        "max_mana": 20,
+        "attack": 5,
+        "defense": 10
+      },
+      "points": 30,
+      "description": "击杀500名蛮夷士卒"
+    },
+    "nanman_kexing": {
+      "name": "【南蛮克星】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 5,
+      "reward": {
+        "max_mana": 5,
+        "attack": 2
+      },
+      "points": 10,
+      "side": "南",
+      "description": "击杀5名南蛮首领"
+    },
+    "weizhen_nanman": {
+      "name": "【威震南蛮】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 10,
+      "reward": {
+        "max_health": 5,
+        "max_mana": 10,
+        "attack": 3
+      },
+      "points": 20,
+      "side": "南",
+      "description": "击杀10名南蛮首领"
+    },
+    "mienan_fengyan": {
+      "name": "【灭南烽烟】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 30,
+      "reward": {
+        "max_health": 10,
+        "max_mana": 20,
+        "attack": 5
+      },
+      "points": 30,
+      "side": "南",
+      "description": "击杀30名南蛮首领"
+    },
+    "beiyi_kexing": {
+      "name": "【北夷克星】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 5,
+      "reward": {
+        "max_mana": 5,
+        "attack": 2
+      },
+      "points": 10,
+      "side": "北",
+      "description": "击杀5名北夷首领"
+    },
+    "zhenshe_beiyi": {
+      "name": "【威震北夷】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 10,
+      "reward": {
+        "max_health": 5,
+        "max_mana": 10,
+        "attack": 3
+      },
+      "points": 20,
+      "side": "北",
+      "description": "击杀10名北夷首领"
+    },
+    "miebei_fengyan": {
+      "name": "【灭北烽烟】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 30,
+      "reward": {
+        "max_health": 10,
+        "max_mana": 20,
+        "attack": 5
+      },
+      "points": 30,
+      "side": "北",
+      "description": "击杀30名北夷首领"
+    },
+    "own_lianyuegou": {
+      "name": "【神器】连月钩",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_lianyuegou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有绑定的【神器】【神器】连月钩"
+    },
+    "own_cuiminggou": {
+      "name": "【神器】催命钩",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_cuiminggou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有绑定的【神器】【神器】催命钩"
+    },
+    "own_duanhungou": {
+      "name": "【神器】断魂钩",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_duanhungou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有绑定的【神器】【神器】断魂钩"
+    },
+    "own_shixiegou": {
+      "name": "【神器】嗜血钩",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_shixiegou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有绑定的【神器】【神器】嗜血钩"
+    },
+    "own_libiegou": {
+      "name": "【神器】离别钩",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_libiegou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有绑定的【神器】【神器】离别钩"
+    },
+    "own_juxiang_hue": {
+      "name": "【神器】菊香护额",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "juxiang_hue",
+      "reward": {
+        "max_health": 20,
+        "max_mana": 30,
+        "attack": 5,
+        "defense": 10
+      },
+      "points": 20,
+      "description": "拥有绑定的【神器】菊香护额"
+    },
+    "own_juxiang_changju": {
+      "name": "【神器】菊香长袍",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "juxiang_changju",
+      "reward": {
+        "max_health": 20,
+        "max_mana": 30,
+        "attack": 5,
+        "defense": 10
+      },
+      "points": 20,
+      "description": "拥有绑定的【神器】菊香长袍"
+    },
+    "own_juxiang_changmao": {
+      "name": "【神器】菊香长裤",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "juxiang_changmao",
+      "reward": {
+        "max_health": 20,
+        "max_mana": 30,
+        "attack": 5,
+        "defense": 10
+      },
+      "points": 20,
+      "description": "拥有绑定的【神器】菊香长裤"
+    },
+    "own_juxiang_huwan": {
+      "name": "【神器】菊香护手",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "juxiang_huwan",
+      "reward": {
+        "max_health": 20,
+        "max_mana": 30,
+        "attack": 5,
+        "defense": 10
+      },
+      "points": 20,
+      "description": "拥有绑定的【神器】菊香护手"
+    },
+    "own_juxiang_duanyue": {
+      "name": "【神器】菊香短靴",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "juxiang_duanyue",
+      "reward": {
+        "max_health": 20,
+        "max_mana": 30,
+        "attack": 5,
+        "defense": 10
+      },
+      "points": 20,
+      "description": "拥有绑定的【神器】菊香短靴"
+    },
+    "zhennan_zhushi": {
+      "name": "【镇南柱石】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 30,
+      "side": "南",
+      "reward": {
+        "max_health": 10,
+        "max_mana": 20,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "击杀30名南蛮首领"
+    },
+    "zhenbei_zhushi": {
+      "name": "【镇北柱石】",
+      "category": "活动",
+      "condition_type": "barbarian_leader_kill",
+      "condition_value": 30,
+      "side": "北",
+      "reward": {
+        "max_health": 10,
+        "max_mana": 20,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "击杀30名北夷首领"
+    },
+    "artifact_lianyuegou": {
+      "name": "我最爱的【连月钩】",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_lianyuegou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有一件绑定的【神器】连月钩，神器装备可在背包绑定"
+    },
+    "artifact_cuiminggou": {
+      "name": "我最爱的【催命钩】",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_cuiminggou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有一件绑定的【神器】催命钩，神器装备可在背包绑定"
+    },
+    "artifact_duanhungou": {
+      "name": "我最爱的【断魂钩】",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_duanhungou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有一件绑定的【神器】断魂钩，神器装备可在背包绑定"
+    },
+    "artifact_shixiegou": {
+      "name": "我最爱的【嗜血钩】",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_shixiegou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有一件绑定的【神器】嗜血钩，神器装备可在背包绑定"
+    },
+    "artifact_libiegou": {
+      "name": "我最爱的【离别钩】",
+      "category": "装备",
+      "condition_type": "artifact_owned",
+      "condition_value": 1,
+      "template_id": "shenqi_libiegou",
+      "reward": {
+        "max_health": 25,
+        "attack": 5
+      },
+      "points": 30,
+      "description": "拥有一件绑定的【神器】离别钩，神器装备可在背包绑定"
     }
   }
 }

@@ -58,6 +58,11 @@ def detail(legion_id):
     already_applied = LegionApplication.query.filter_by(
         legion_id=legion_id, player_id=player.id).first() is not None
 
+    # 领地：本军团已占领的城池（按军团战场排名第一获得），无则显示无
+    legion.territory_names = [BATTLEFIELD_CITIES[c]['name']
+                              for c in legion.occupied_cities
+                              if c in BATTLEFIELD_CITIES]
+
     return render_template("legion_detail.html",
                          player=player,
                          legion=legion,
@@ -106,6 +111,11 @@ def hall():
     leader = PlayerModel.query.get(legion.leader_id)
     leader_name = leader.nickname if leader else '未知'
     aura_text = LegionService.get_vip_aura_text(legion)
+
+    # 领地：本军团已占领的城池（按军团战场排名第一获得），无则显示无
+    legion.territory_names = [BATTLEFIELD_CITIES[c]['name']
+                              for c in legion.occupied_cities
+                              if c in BATTLEFIELD_CITIES]
 
     return render_template("legion_hall.html",
                          player=player,
