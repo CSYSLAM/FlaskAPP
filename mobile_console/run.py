@@ -1396,10 +1396,12 @@ PAGE_HTML = r"""
     --txt:#e9edf7; --dim:#8d97ad; --muted:#667085;
     --claude:#8b6cff; --codebuddy:#22b8ff; --flask:#2fce8a;
     --me:#4f74ff; --sys:#8d97ad; --err:#ef5b5b; --accent:#4f74ff; --accent2:#8b5cf6;
-    --chat-bg:#0f121a; --bubble-bg:#222836; --bubble-txt:#e9edf7;
-    --composer-bg:rgba(23,27,37,.92); --sys-pill-bg:rgba(255,255,255,.06); --sys-pill-txt:#9aa6bd;
-    --err-pill-bg:rgba(239,91,91,.12); --err-pill-txt:#ff9b9b;
-    --avatar-bg:#222836; --name-txt:#7d879b; --ts2-txt:#5b6478;
+    --chat-bg:#0e1118; --bubble-bg:#1f2430; --bubble-txt:#e9edf7;
+    --me-bubble:#2b6bff; --me-bubble2:#4f7cff;
+    --composer-bg:rgba(18,22,32,.96); --sys-pill-bg:rgba(255,255,255,.07); --sys-pill-txt:#9aa6bd;
+    --err-pill-bg:rgba(239,91,91,.14); --err-pill-txt:#ff9b9b;
+    --avatar-bg:#252b38; --name-txt:#8b95a8; --ts2-txt:#667085;
+    --chat-pattern:rgba(255,255,255,.018);
     --term-bg:#0c0e14; --term-txt:#d6dae2;
     --tag-claude:#c9b3ff; --tag-flask:#7fe3b0; --tag-codebuddy:#8fdcff;
     --tag-you:#ffd479; --tag-system:#9fc1ff; --tag-error:#ff9b9b; --ts:#5b6478;
@@ -1416,10 +1418,12 @@ PAGE_HTML = r"""
   :root.light{
     --bg:#eef1f6; --panel:#ffffff; --panel2:#f4f6fa; --line:#e4e8f0;
     --txt:#1f2430; --dim:#7b8496; --muted:#9aa3b5;
-    --chat-bg:#f3f5f9; --bubble-bg:#fff; --bubble-txt:#1f2430;
-    --composer-bg:rgba(255,255,255,.94); --sys-pill-bg:rgba(0,0,0,.05); --sys-pill-txt:#7b8496;
+    --chat-bg:#ebeff5; --bubble-bg:#ffffff; --bubble-txt:#1f2430;
+    --me-bubble:#3370ff; --me-bubble2:#4c83ff;
+    --composer-bg:rgba(255,255,255,.98); --sys-pill-bg:rgba(0,0,0,.05); --sys-pill-txt:#7b8496;
     --err-pill-bg:#fde8e8; --err-pill-txt:#d8453b;
-    --avatar-bg:#fff; --name-txt:#8a93a5; --ts2-txt:#b0b6c3;
+    --avatar-bg:#fff; --name-txt:#8a93a5; --ts2-txt:#a0a7b5;
+    --chat-pattern:rgba(0,0,0,.03);
     --term-bg:#1a1d26; --term-txt:#d6dae2;
     --tag-claude:#7c5cff; --tag-flask:#1fa86a; --tag-codebuddy:#0f9ad8;
     --tag-you:#a67c00; --tag-system:#6b7280; --tag-error:#d8453b; --ts:#8a93a5;
@@ -1485,10 +1489,12 @@ PAGE_HTML = r"""
   }
   main{padding:12px;max-width:820px;margin:0 auto}
   .card{
-    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    background:var(--panel);border:1px solid var(--line);border-radius:18px;
     padding:14px;margin-bottom:12px;box-shadow:var(--card-shadow);
     transition:background .25s,border-color .25s;
   }
+  .agent-controls .btn{border-radius:12px}
+  .agent-controls .hint{opacity:.9}
   .card h3{
     margin:0 0 10px;font-size:13px;color:var(--dim);font-weight:700;
     letter-spacing:.3px;display:flex;align-items:center;gap:8px;
@@ -1528,63 +1534,100 @@ PAGE_HTML = r"""
   .ts{color:var(--ts);margin-right:6px}
   .chat{
     background:
-      radial-gradient(420px 180px at 0% 0%, rgba(79,116,255,.08), transparent 60%),
-      radial-gradient(360px 160px at 100% 100%, rgba(139,92,246,.07), transparent 55%),
+      linear-gradient(180deg, rgba(79,116,255,.04), transparent 120px),
+      radial-gradient(1.2px 1.2px at 12px 18px, var(--chat-pattern) 45%, transparent 46%),
+      radial-gradient(1.2px 1.2px at 28px 8px, var(--chat-pattern) 45%, transparent 46%),
       var(--chat-bg);
-    border:1px solid var(--line);border-radius:14px;
-    height:48vh;min-height:280px;overflow-y:auto;padding:12px 10px;
+    background-size:auto, 36px 36px, 36px 36px, auto;
+    border:1px solid var(--line);border-radius:16px;
+    height:52vh;min-height:300px;overflow-y:auto;padding:14px 12px 18px;
     transition:background .25s;
+    -webkit-overflow-scrolling:touch;
   }
-  .bubble-row{display:flex;gap:8px;margin:12px 0;align-items:flex-start}
+  .bubble-row{
+    display:flex;gap:10px;margin:0 0 14px;align-items:flex-start;
+    animation:msgIn .18s ease-out;
+  }
+  @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   .bubble-row.me{flex-direction:row-reverse}
   .avatar{
-    width:36px;height:36px;border-radius:12px;flex:0 0 auto;
-    display:flex;align-items:center;justify-content:center;font-size:16px;
-    background:var(--avatar-bg);box-shadow:0 2px 8px rgba(0,0,0,.12);
+    width:38px;height:38px;border-radius:50%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;
+    background:var(--avatar-bg);box-shadow:0 2px 8px rgba(0,0,0,.14);
+    border:2px solid rgba(255,255,255,.08);
   }
-  .avatar.ai-claude{background:linear-gradient(135deg,#8b6cff,#6d4df5);color:#fff}
-  .avatar.ai-codebuddy{background:linear-gradient(135deg,#22b8ff,#0f9ad8);color:#fff}
-  .avatar.ai-flask{background:linear-gradient(135deg,#2fce8a,#1fa86a);color:#fff}
-  .avatar.me{background:linear-gradient(135deg,#4f74ff,#3f63f0);color:#fff}
-  .bubble-wrap{flex:1;max-width:78%;display:flex;flex-direction:column;min-width:0}
+  .avatar.ai-claude{background:linear-gradient(145deg,#9b7bff,#6d4df5);color:#fff;border-color:transparent}
+  .avatar.ai-codebuddy{background:linear-gradient(145deg,#35c2ff,#0f9ad8);color:#fff;border-color:transparent}
+  .avatar.ai-flask{background:linear-gradient(145deg,#3ddc97,#1fa86a);color:#fff;border-color:transparent}
+  .avatar.me{background:linear-gradient(145deg,#5b86ff,#2b6bff);color:#fff;border-color:transparent}
+  .bubble-wrap{flex:1;max-width:76%;display:flex;flex-direction:column;min-width:0}
   .bubble-row.me .bubble-wrap{align-items:flex-end}
-  .name{font-size:11px;color:var(--name-txt);margin:0 4px 3px}
+  .name{font-size:11px;color:var(--name-txt);margin:0 8px 4px;font-weight:600}
   .bubble{
-    background:var(--bubble-bg);color:var(--bubble-txt);border-radius:14px;border-top-left-radius:5px;
-    padding:10px 12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;
-    word-break:break-word;box-shadow:0 1px 2px rgba(0,0,0,.06);max-width:100%;
-    border:1px solid rgba(0,0,0,.03);transition:background .25s,color .25s;
-  }
-  .bubble-row.me .bubble{
-    background:linear-gradient(135deg,#4f74ff,#3f63f0);color:#fff;
-    border-radius:14px;border-top-right-radius:5px;border:0;
-  }
-  .ts2{font-size:10px;color:var(--ts2-txt);margin:4px 4px 0}
-  .bubble-row.me .ts2{text-align:right}
-  .sys-row{display:flex;justify-content:center;margin:10px 0}
-  .sys-pill{
-    background:var(--sys-pill-bg);color:var(--sys-pill-txt);font-size:12px;padding:5px 11px;
-    border-radius:999px;max-width:94%;text-align:center;white-space:pre-wrap;word-break:break-word;
+    position:relative;
+    background:var(--bubble-bg);color:var(--bubble-txt);
+    border-radius:4px 16px 16px 16px;
+    padding:10px 12px 9px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;
+    word-break:break-word;box-shadow:0 2px 8px rgba(0,0,0,.08);max-width:100%;
     border:1px solid rgba(255,255,255,.04);transition:background .25s,color .25s;
   }
-  .sys-pill .ts2{margin:0 6px 0 0}
+  /* QQ/飞书风格小三角 */
+  .bubble:before{
+    content:"";position:absolute;top:12px;left:-6px;
+    border-width:6px 6px 6px 0;border-style:solid;
+    border-color:transparent var(--bubble-bg) transparent transparent;
+    filter:drop-shadow(-1px 0 0 rgba(0,0,0,.04));
+  }
+  .bubble-row.me .bubble{
+    background:linear-gradient(145deg,var(--me-bubble2),var(--me-bubble));color:#fff;
+    border-radius:16px 4px 16px 16px;border:0;
+    box-shadow:0 4px 12px rgba(43,107,255,.28);
+  }
+  .bubble-row.me .bubble:before{
+    left:auto;right:-6px;
+    border-width:6px 0 6px 6px;
+    border-color:transparent transparent transparent var(--me-bubble);
+    filter:none;
+  }
+  .ts2{font-size:10px;color:var(--ts2-txt);margin:4px 8px 0;letter-spacing:.2px}
+  .bubble-row.me .ts2{text-align:right;color:rgba(102,112,133,.9)}
+  .sys-row{display:flex;justify-content:center;margin:8px 0 12px}
+  .sys-pill{
+    background:var(--sys-pill-bg);color:var(--sys-pill-txt);font-size:11.5px;padding:4px 12px;
+    border-radius:999px;max-width:92%;text-align:center;white-space:pre-wrap;word-break:break-word;
+    border:1px solid rgba(255,255,255,.04);transition:background .25s,color .25s;
+    box-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  .sys-pill .ts2{margin:0 6px 0 0;color:inherit;opacity:.75}
   .sys-pill.error{background:var(--err-pill-bg);color:var(--err-pill-txt);border-color:rgba(239,91,91,.15)}
   .composer{
     position:sticky;bottom:0;z-index:5;background:var(--composer-bg);
-    border-top:1px solid var(--line);border-radius:0 0 14px 14px;
+    border-top:1px solid var(--line);border-radius:0 0 16px 16px;
     padding:10px 10px calc(10px + env(safe-area-inset-bottom));
-    backdrop-filter:blur(12px);transition:background .25s;
+    backdrop-filter:blur(14px);transition:background .25s;
   }
   .inputbar{display:flex;gap:8px;align-items:flex-end}
   .inputbar textarea{
     flex:1;background:var(--panel2);color:var(--txt);
-    border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:14px;
-    resize:none;height:56px;font-family:inherit;transition:background .25s,border-color .15s;
+    border:1px solid var(--line);border-radius:18px;padding:11px 14px;font-size:14px;
+    resize:none;height:48px;min-height:48px;max-height:120px;font-family:inherit;
+    transition:background .25s,border-color .15s,box-shadow .15s;line-height:1.4;
   }
   .inputbar textarea:focus{outline:none;border-color:rgba(79,116,255,.55);box-shadow:0 0 0 3px rgba(79,116,255,.12)}
   .inputbar button{
-    width:68px;background:linear-gradient(135deg,#4f74ff,#3f63f0);color:#fff;border:0;border-radius:12px;
-    font-weight:750;cursor:pointer;height:56px;box-shadow:0 6px 14px rgba(79,116,255,.25);
+    width:52px;height:48px;border:0;border-radius:50%;
+    background:linear-gradient(145deg,var(--me-bubble2),var(--me-bubble));color:#fff;
+    font-weight:750;cursor:pointer;font-size:13px;
+    box-shadow:0 6px 14px rgba(43,107,255,.3);
+  }
+  .inputbar button:active{transform:scale(.96)}
+  .chat-panel{padding-bottom:0;overflow:hidden}
+  .chat-panel .composer{margin:0 -14px -14px;padding-left:12px;padding-right:12px}
+  .chat-card-head{
+    margin:0 0 8px;padding-bottom:8px;border-bottom:1px solid var(--line);
+  }
+  .chat-fs-btn{
+    border-radius:999px;padding:6px 12px;background:var(--panel2);
   }
   .hint{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.45}
   a.lnk{color:#4f74ff}
@@ -1600,10 +1643,10 @@ PAGE_HTML = r"""
   }
   @keyframes bounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-3px);opacity:1}}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
-  .upload-row{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+  .upload-row{display:flex;gap:8px;align-items:center;margin:0 0 8px;flex-wrap:wrap}
   .upload-row label{
-    flex:0 0 auto;padding:9px 12px;border:1px dashed var(--line);
-    border-radius:10px;color:var(--dim);font-size:13px;cursor:pointer;background:var(--upload-label-bg);
+    flex:0 0 auto;padding:7px 12px;border:1px solid var(--line);
+    border-radius:999px;color:var(--dim);font-size:12.5px;cursor:pointer;background:var(--upload-label-bg);
   }
   .upload-row .chip{
     background:var(--chip-bg);color:var(--flask);border:1px solid rgba(47,206,138,.35);
@@ -1643,6 +1686,48 @@ PAGE_HTML = r"""
     .svc-grid{grid-template-columns:1fr 1fr}
     .svc-grid .card.span2{grid-column:1 / -1}
   }
+  /* 对话卡片标题行 + 全屏按钮 */
+  .chat-card-head{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    margin:0 0 10px;
+  }
+  .chat-card-head h3{margin:0;flex:1;min-width:0}
+  .chat-fs-btn{
+    flex:0 0 auto;border:1px solid var(--line);background:var(--panel2);color:var(--txt);
+    border-radius:10px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;
+    line-height:1.2;
+  }
+  .chat-fs-btn:active{transform:scale(.97)}
+  /* 全屏对话：只留消息 + 发送 */
+  body.chat-fs{overflow:hidden;padding-bottom:0;background:var(--bg)}
+  body.chat-fs header,
+  body.chat-fs #sec-console,
+  body.chat-fs .agent-controls,
+  body.chat-fs #flash{display:none!important}
+  body.chat-fs main{padding:0;max-width:none;height:100vh;height:100dvh}
+  body.chat-fs [id^="sec-"]{display:none!important;height:100%;margin:0}
+  body.chat-fs [id^="sec-"].chat-fs-active{display:flex!important;flex-direction:column;height:100%}
+  body.chat-fs .chat-fs-active .chat-panel{
+    flex:1;display:flex;flex-direction:column;min-height:0;height:100%;
+    margin:0;border:0;border-radius:0;box-shadow:none;
+  }
+  body.chat-fs .chat-fs-active .chat-panel .chat-card-head{
+    padding:10px 12px 8px;margin:0;border-bottom:1px solid var(--line);
+    background:var(--panel);position:sticky;top:0;z-index:6;
+  }
+  body.chat-fs .chat-fs-active .chat-panel .chat{
+    flex:1;height:auto;min-height:0;border:0;border-radius:0;padding:14px 12px 20px;
+  }
+  body.chat-fs .chat-fs-active .chat-panel .composer{
+    border-radius:0;box-shadow:0 -6px 20px rgba(0,0,0,.12);
+  }
+  body.chat-fs .chat-fs-active .chat-panel .inputbar button{width:52px}
+  body.chat-fs .chat-fs-active .chat-panel .composer{
+    position:sticky;bottom:0;border-radius:0;
+    border-top:1px solid var(--line);
+    padding-bottom:calc(10px + env(safe-area-inset-bottom));
+  }
+  body.chat-fs .chat-fs-active .chat-panel .composer .hint{display:none}
 </style>
 </head>
 <body>
@@ -1719,7 +1804,7 @@ PAGE_HTML = r"""
 
   <!-- Claude 交互 -->
   <section id="sec-claude" class="hidden">
-    <div class="card">
+    <div class="card agent-controls" id="controls-claude">
       <h3>Claude Code <span id="st-claude2" class="state off" style="font-size:12px">● 已停止</span></h3>
       <div class="row">
         <button class="btn start" onclick="act('start','claude')">启用Claude</button>
@@ -1738,8 +1823,11 @@ PAGE_HTML = r"""
       <div class="hint">切换 API 配置(讯飞/云知声)后,下一条指令即生效;当前正在执行的指令仍用旧配置。</div>
       <div class="hint">启用后,在下方输入框发指令。每条指令以无人值守模式执行(--dangerously-skip-permissions),Claude 会直接读改代码/跑命令,多条指令共享同一会话保持记忆。点"打断"可中止当前指令(等同按 Esc)。</div>
     </div>
-    <div class="card">
-      <h3>对话 / 指令</h3>
+    <div class="card chat-panel" id="chat-panel-claude">
+      <div class="chat-card-head">
+        <h3>对话 / 指令</h3>
+        <button type="button" class="chat-fs-btn" id="fs-btn-claude" onclick="toggleChatFullscreen('claude')" title="全屏对话">⛶ 全屏</button>
+      </div>
       <!-- busy 大字横幅:仅处理中显示 -->
       <div id="busy-banner" class="busy-banner hidden">
         <span class="dot">⚙️</span> 正在处理命令,请稍候…
@@ -1762,7 +1850,7 @@ PAGE_HTML = r"""
 
   <!-- CodeBuddy 交互 -->
   <section id="sec-codebuddy" class="hidden">
-    <div class="card">
+    <div class="card agent-controls" id="controls-codebuddy">
       <h3>CodeBuddy <span id="st-codebuddy2" class="state off" style="font-size:12px">● 已停止</span></h3>
       <div class="row">
         <button class="btn start" onclick="act('start','codebuddy')">启用CodeBuddy</button>
@@ -1775,8 +1863,11 @@ PAGE_HTML = r"""
       </div>
       <div class="hint">启用后,在下方输入框发指令。每条指令以无人值守模式执行(--dangerously-skip-permissions,即无需手动点 yes 授权),CodeBuddy 会直接读改代码/跑命令,多条指令共享同一会话保持记忆。点"打断"可中止当前指令(等同按 Esc)。</div>
     </div>
-    <div class="card">
-      <h3>对话 / 指令</h3>
+    <div class="card chat-panel" id="chat-panel-codebuddy">
+      <div class="chat-card-head">
+        <h3>对话 / 指令</h3>
+        <button type="button" class="chat-fs-btn" id="fs-btn-codebuddy" onclick="toggleChatFullscreen('codebuddy')" title="全屏对话">⛶ 全屏</button>
+      </div>
       <!-- busy 大字横幅:仅处理中显示 -->
       <div id="busy-banner-codebuddy" class="busy-banner hidden">
         <span class="dot">⚙️</span> 正在处理命令,请稍候…
@@ -1839,11 +1930,71 @@ function toggleTheme(){
 })();
 
 function showTab(t){
+  // 切 tab 时退出全屏对话，避免状态错乱
+  if(document.body.classList.contains('chat-fs')){
+    exitChatFullscreen();
+  }
   document.querySelectorAll('[id^="sec-"]').forEach(e=>e.classList.add('hidden'));
   document.getElementById('sec-'+t).classList.remove('hidden');
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+t).classList.add('active');
 }
+let _chatFsAgent = null;
+function updateFsButtons(){
+  ['claude','codebuddy'].forEach(a=>{
+    const b=document.getElementById('fs-btn-'+a);
+    if(!b) return;
+    const on = document.body.classList.contains('chat-fs') && _chatFsAgent===a;
+    b.textContent = on ? '⛶ 退出全屏' : '⛶ 全屏';
+    b.title = on ? '退出全屏对话' : '全屏对话';
+  });
+}
+function exitChatFullscreen(){
+  document.body.classList.remove('chat-fs');
+  document.querySelectorAll('.chat-fs-active').forEach(e=>e.classList.remove('chat-fs-active'));
+  _chatFsAgent = null;
+  updateFsButtons();
+}
+function toggleChatFullscreen(agent){
+  const sec = document.getElementById('sec-'+agent);
+  if(!sec) return;
+  // 已在该 agent 全屏 → 退出
+  if(document.body.classList.contains('chat-fs') && _chatFsAgent===agent){
+    exitChatFullscreen();
+    return;
+  }
+  // 确保当前 tab 在对应 agent
+  if(sec.classList.contains('hidden')){
+    // 先清全屏标记再切 tab，避免 showTab 递归退出
+    document.body.classList.remove('chat-fs');
+    document.querySelectorAll('.chat-fs-active').forEach(e=>e.classList.remove('chat-fs-active'));
+    _chatFsAgent = null;
+    document.querySelectorAll('[id^="sec-"]').forEach(e=>e.classList.add('hidden'));
+    sec.classList.remove('hidden');
+    document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+    const tab = document.getElementById('tab-'+agent);
+    if(tab) tab.classList.add('active');
+  }
+  document.querySelectorAll('.chat-fs-active').forEach(e=>e.classList.remove('chat-fs-active'));
+  sec.classList.add('chat-fs-active');
+  sec.classList.remove('hidden');
+  document.body.classList.add('chat-fs');
+  _chatFsAgent = agent;
+  updateFsButtons();
+  // 滚到底
+  const chat = document.getElementById(agent==='claude'?'log-claude':('log-'+agent));
+  if(chat) chat.scrollTop = chat.scrollHeight;
+  // 聚焦输入
+  const ta = document.getElementById('msg-'+agent);
+  if(ta) try{ ta.focus(); }catch(e){}
+}
+// Esc 退出全屏
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && document.body.classList.contains('chat-fs')){
+    e.preventDefault();
+    exitChatFullscreen();
+  }
+});
 function esc(s){return (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
 // 统一 POST:401 = 未登录/已下线 → 弹遮罩
@@ -2027,10 +2178,10 @@ function removeFile(agent, i){
 
 // 聊天气泡渲染:AI 左(带头像)、我 右、系统/错误 居中提示
 const AGENT_META = {
-  claude:    {name:'Claude',     avatar:'🅒', side:'ai', cls:'ai-claude'},
-  codebuddy: {name:'CodeBuddy',  avatar:'🅑', side:'ai', cls:'ai-codebuddy'},
-  flask:     {name:'Flask',      avatar:'📜', side:'ai', cls:'ai-flask'},
-  you:       {name:'我',         avatar:'🙂', side:'me', cls:'me'},
+  claude:    {name:'Claude',     avatar:'C', side:'ai', cls:'ai-claude'},
+  codebuddy: {name:'CodeBuddy',  avatar:'B', side:'ai', cls:'ai-codebuddy'},
+  flask:     {name:'Flask',      avatar:'F', side:'ai', cls:'ai-flask'},
+  you:       {name:'我',         avatar:'我', side:'me', cls:'me'},
   system:    {name:'系统',       avatar:'',  side:'sys', err:false},
   error:     {name:'错误',       avatar:'',  side:'sys', err:true},
 };
