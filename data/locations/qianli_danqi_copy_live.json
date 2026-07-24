@@ -2,6 +2,7 @@
   "name": "千里单骑副本",
   "is_copy_map": true,
   "copy_dungeon_id": "qianli_danqi",
+  "can_pk": false,
   "scenes": {
     "qianli_danqi_copy_live.东岭关": {
       "name": "东岭关",

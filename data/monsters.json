@@ -8554,40 +8554,6 @@
     "copy_only": false,
     "max_health": 100
   },
-  "npc_wa_island_south_医师": {
-    "name": "医师",
-    "level": 50,
-    "is_elite": false,
-    "killable": false,
-    "immortal": true,
-    "description": "随军或隐世的医师，精于疗伤解毒。",
-    "base_stats": {
-      "health": 99999,
-      "mana": 9999,
-      "attack": 999,
-      "defense": 999,
-      "crit_rate": 0,
-      "dodge_rate": 0
-    },
-    "skills": [],
-    "drops": {
-      "equipment_drop": {
-        "drop_rate": 0,
-        "templates": [],
-        "rarity_weights": {}
-      },
-      "items": {},
-      "money": {
-        "min": 0,
-        "max": 0
-      },
-      "experience": 0
-    },
-    "is_divine_beast": false,
-    "is_copy": false,
-    "copy_only": false,
-    "max_health": 100
-  },
   "monster_luoyang_east_洛阳劫匪": {
     "name": "洛阳劫匪",
     "level": 51,
@@ -25340,5 +25306,411 @@
     "is_copy": false,
     "copy_only": false,
     "max_health": 100
+  },
+  "monster_南蛮士卒": {
+    "name": "南蛮士卒",
+    "level": 15,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "南蛮士卒",
+    "base_stats": {
+      "health": 900,
+      "mana": 200,
+      "attack": 70,
+      "defense": 45,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "laiqin_pingzheng": 0.8,
+        "nanman_tujian": 0.3,
+        "qianghua_baoyu": 0.2,
+        "shenyouguo": 0.1,
+        "manyi_baoxiang": 0.25
+      },
+      "money": {
+        "min": 20,
+        "max": 60
+      },
+      "experience": 80
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 900
+  },
+  "monster_南蛮铁骑": {
+    "name": "南蛮铁骑",
+    "level": 40,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "南蛮铁骑",
+    "base_stats": {
+      "health": 3500,
+      "mana": 600,
+      "attack": 220,
+      "defense": 160,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.08
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "laiqin_pingzheng": 1.0,
+        "nanman_tujian": 0.5,
+        "qianghua_baoyu": 0.4,
+        "shenyouguo": 0.2,
+        "manyi_baoxiang": 0.5
+      },
+      "money": {
+        "min": 80,
+        "max": 200
+      },
+      "experience": 320
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 3500
+  },
+  "monster_南蛮老三": {
+    "name": "【活】南蛮老三",
+    "level": 10,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】南蛮老三",
+    "base_stats": {
+      "health": 2500,
+      "mana": 800,
+      "attack": 130,
+      "defense": 90,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "guaranteed_items": [
+      "laiqin_pingzheng",
+      "manyi_baoxiang",
+      "juhunfan_suipian",
+      "qianghua_baoyu",
+      "nanman_tujian"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 100,
+        "max": 300
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 2500
+  },
+  "monster_南蛮老二": {
+    "name": "【活】南蛮老二",
+    "level": 20,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】南蛮老二",
+    "base_stats": {
+      "health": 4500,
+      "mana": 800,
+      "attack": 200,
+      "defense": 150,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "guaranteed_items": [
+      "laiqin_pingzheng",
+      "manyi_baoxiang",
+      "juhunfan_suipian",
+      "qianghua_baoyu",
+      "nanman_tujian"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 100,
+        "max": 300
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 4500
+  },
+  "monster_南蛮老大": {
+    "name": "【活】南蛮老大",
+    "level": 30,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】南蛮老大",
+    "base_stats": {
+      "health": 7000,
+      "mana": 800,
+      "attack": 300,
+      "defense": 230,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "guaranteed_items": [
+      "laiqin_pingzheng",
+      "manyi_baoxiang",
+      "juhunfan_suipian",
+      "qianghua_baoyu",
+      "nanman_tujian"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 100,
+        "max": 300
+      },
+      "experience": 700
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 7000
+  },
+  "monster_北夷士卒": {
+    "name": "北夷士卒",
+    "level": 15,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "北夷士卒",
+    "base_stats": {
+      "health": 900,
+      "mana": 200,
+      "attack": 70,
+      "defense": 45,
+      "crit_rate": 0.05,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "laiqin_pingzheng": 0.8,
+        "beiye_tujian": 0.3,
+        "qianghua_baoyu": 0.2,
+        "shenyouguo": 0.1,
+        "manyi_baoxiang": 0.25
+      },
+      "money": {
+        "min": 20,
+        "max": 60
+      },
+      "experience": 80
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 900
+  },
+  "monster_北夷铁骑": {
+    "name": "北夷铁骑",
+    "level": 40,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "北夷铁骑",
+    "base_stats": {
+      "health": 3500,
+      "mana": 600,
+      "attack": 220,
+      "defense": 160,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.08
+    },
+    "skills": [],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {
+        "laiqin_pingzheng": 1.0,
+        "beiye_tujian": 0.5,
+        "qianghua_baoyu": 0.4,
+        "shenyouguo": 0.2,
+        "manyi_baoxiang": 0.5
+      },
+      "money": {
+        "min": 80,
+        "max": 200
+      },
+      "experience": 320
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 3500
+  },
+  "monster_北夷老三": {
+    "name": "【活】北夷老三",
+    "level": 10,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】北夷老三",
+    "base_stats": {
+      "health": 2500,
+      "mana": 800,
+      "attack": 130,
+      "defense": 90,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "guaranteed_items": [
+      "laiqin_pingzheng",
+      "manyi_baoxiang",
+      "juhunfan_suipian",
+      "qianghua_baoyu",
+      "beiye_tujian"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 100,
+        "max": 300
+      },
+      "experience": 200
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 2500
+  },
+  "monster_北夷老二": {
+    "name": "【活】北夷老二",
+    "level": 20,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】北夷老二",
+    "base_stats": {
+      "health": 4500,
+      "mana": 800,
+      "attack": 200,
+      "defense": 150,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "guaranteed_items": [
+      "laiqin_pingzheng",
+      "manyi_baoxiang",
+      "juhunfan_suipian",
+      "qianghua_baoyu",
+      "beiye_tujian"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 100,
+        "max": 300
+      },
+      "experience": 400
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 4500
+  },
+  "monster_北夷老大": {
+    "name": "【活】北夷老大",
+    "level": 30,
+    "is_elite": false,
+    "killable": true,
+    "immortal": false,
+    "description": "【活】北夷老大",
+    "base_stats": {
+      "health": 7000,
+      "mana": 800,
+      "attack": 300,
+      "defense": 230,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.05
+    },
+    "skills": [],
+    "guaranteed_items": [
+      "laiqin_pingzheng",
+      "manyi_baoxiang",
+      "juhunfan_suipian",
+      "qianghua_baoyu",
+      "beiye_tujian"
+    ],
+    "drops": {
+      "equipment_drop": {
+        "drop_rate": 0.0,
+        "templates": [],
+        "rarity_weights": {}
+      },
+      "items": {},
+      "money": {
+        "min": 100,
+        "max": 300
+      },
+      "experience": 700
+    },
+    "is_divine_beast": false,
+    "is_copy": false,
+    "copy_only": false,
+    "max_health": 7000
   }
 }

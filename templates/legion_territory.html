@@ -29,7 +29,7 @@
     {% if territory_info %}
     已占领城池:<br/>
     {% for t in territory_info %}
-    {{ t.name }}({{ t.tier_name }}) 攻+{{ t.bonus }} 防+{{ t.bonus }} 血+{{ t.bonus }} 魔+{{ t.bonus }}<br/>
+    {{ t.name }}({{ t.tier_name }}) 攻+{{ t.bonus.attack }} 防+{{ t.bonus.defense }} 血+{{ t.bonus.max_health }} 魔+{{ t.bonus.max_mana }}<br/>
     {% endfor %}
     {% else %}
     尚未占领任何城池<br/>
@@ -49,6 +49,18 @@
     {% if not is_leader and claimable %}
     只有军团长可以占领城池<br/>
     {% endif %}
+    <br/>
+    <details>
+        <summary>领地规则说明（点击展开）</summary>
+        <br/>
+        占领 = 军团荣誉，全团成员都获得攻/防/血/魔加成，多城叠加。<br/>
+        积分只看"军团总分"：在战场击杀敌对方积累积分，城等级越高分值越大（低级+1 / 中级+2 / 高级+3）。<br/>
+        个人榜只是面子，决定归属的是"该城军团积分最高的军团"。<br/>
+        只有军团长能执行占领：需本军团赢得该城且尚未占领时操作。<br/>
+        同军团互殴是友好切磋，不计积分；击杀不掠夺对方荣誉银两。<br/>
+        每周六 0 点重置，所有占领与积分清空，需重新争夺。<br/>
+        战场时间：正式团战周六 20:00-20:30；当前测试态全天开放。<br/>
+    </details>
     <br/>
     <a href="{{ url_for('legion.hall') }}">返回军团大厅</a><br/>
     <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>

@@ -2,6 +2,7 @@
   "name": "桃园结义副本",
   "is_copy_map": true,
   "copy_dungeon_id": "taoyuan_jieyi",
+  "can_pk": false,
   "scenes": {
     "taoyuan_jieyi_copy_live.桃园": {
       "name": "桃园",

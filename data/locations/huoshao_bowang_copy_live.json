@@ -2,6 +2,7 @@
   "name": "火烧博望副本",
   "is_copy_map": true,
   "copy_dungeon_id": "huoshao_bowang",
+  "can_pk": false,
   "scenes": {
     "huoshao_bowang_copy_live.博望坡": {
       "name": "博望坡",

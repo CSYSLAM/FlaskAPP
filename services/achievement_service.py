@@ -10,7 +10,7 @@ class AchievementService:
     def check_all(cls, player):
         for ctype in ['level', 'kill', 'elite_kill', 'elite_kill_area', 'elite_kill_monster', 'kill_monster',
                        'divine_beast_kill', 'pk_win', 'pk_loss', 'enhance', 'enhance_success', 'enhance_fail',
-                       'enhance_50', 'forge', 'artifact_owned',
+                       'enhance_50', 'forge', 'artifact_owned', 'barbarian_soldier_kill', 'barbarian_leader_kill',
                        'visit', 'equip_full', 'gold_earned', 'gold_total', 'yuanbao_spent', 'jinzu_spent', 'gift', 'chat', 'vip_level',
                        'lieutenant_owned', 'item_use', 'dungeon_clear', 'dungeon_tower',
                        'boss_kill', 'quest', 'quest_done',
@@ -114,6 +114,13 @@ class AchievementService:
             return (player.enhance_50_count or 0) >= val
         elif ctype == 'artifact_owned':
             return cls._get_artifact_owned_progress(player, adef) >= val
+        elif ctype == 'barbarian_soldier_kill':
+            data = getattr(player, 'activity_data', {}) or {}
+            return (data.get('barbarian', {}) or {}).get('soldier_total', 0) >= val
+        elif ctype == 'barbarian_leader_kill':
+            side = adef.get('side', '南')
+            data = getattr(player, 'activity_data', {}) or {}
+            return (data.get('barbarian', {}) or {}).get(side + '_leader', 0) >= val
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef) >= val
         elif ctype == 'quest_done':
@@ -272,6 +279,13 @@ class AchievementService:
             return player.enhance_50_count or 0
         elif ctype == 'artifact_owned':
             return cls._get_artifact_owned_progress(player, adef)
+        elif ctype == 'barbarian_soldier_kill':
+            data = getattr(player, 'activity_data', {}) or {}
+            return (data.get('barbarian', {}) or {}).get('soldier_total', 0)
+        elif ctype == 'barbarian_leader_kill':
+            side = adef.get('side', '南')
+            data = getattr(player, 'activity_data', {}) or {}
+            return (data.get('barbarian', {}) or {}).get(side + '_leader', 0)
         elif ctype == 'quest':
             return cls._get_quest_progress(player, adef)
         elif ctype == 'quest_done':

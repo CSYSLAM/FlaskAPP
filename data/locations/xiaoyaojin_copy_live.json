@@ -2,6 +2,7 @@
   "name": "威震逍遥津副本",
   "is_copy_map": true,
   "copy_dungeon_id": "weizhen_xiaoyaojin",
+  "can_pk": false,
   "scenes": {
     "合肥城": {
       "name": "合肥城(副本)",

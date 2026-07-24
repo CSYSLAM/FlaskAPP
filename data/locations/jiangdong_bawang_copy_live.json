@@ -2,6 +2,7 @@
   "name": "江东霸王副本",
   "is_copy_map": true,
   "copy_dungeon_id": "jiangdong_bawang",
+  "can_pk": false,
   "scenes": {
     "jiangdong_bawang_copy_live.曲阿": {
       "name": "曲阿",

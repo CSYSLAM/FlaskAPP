@@ -54,7 +54,7 @@
     },
     "3": {
       "name": "VIP3",
-      "required_exp": 200,
+      "required_exp": 300,
       "stat_bonus_rate": 0.03,
       "exp_bonus_rate": 0.15,
       "storage_bonus": 300,
@@ -84,7 +84,7 @@
     },
     "4": {
       "name": "VIP4",
-      "required_exp": 300,
+      "required_exp": 500,
       "stat_bonus_rate": 0.04,
       "exp_bonus_rate": 0.2,
       "storage_bonus": 400,
@@ -114,7 +114,7 @@
     },
     "5": {
       "name": "VIP5",
-      "required_exp": 500,
+      "required_exp": 900,
       "stat_bonus_rate": 0.05,
       "exp_bonus_rate": 0.25,
       "storage_bonus": 500,

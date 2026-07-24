@@ -2,6 +2,7 @@
   "name": "赤壁鏖兵副本",
   "is_copy_map": true,
   "copy_dungeon_id": "chibi_aobing",
+  "can_pk": false,
   "scenes": {
     "chibi_aobing_copy_live.江东水寨": {
       "name": "江东水寨",

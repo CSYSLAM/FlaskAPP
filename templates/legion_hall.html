@@ -33,6 +33,7 @@
     军团名:{{ legion.name }}<br/>
     等级:{{ legion.level }}<br/>
     军团人数:{{ legion.members.count() }}/{{ legion.get_max_slots() }}<br/>
+    领地:{{ legion.territory_names|join(' ') if legion.territory_names else '无' }}<br/>
     宣言:{{ legion.declaration or '无' }}<br/>
     军团长:{{ leader_name }}<br/>
     军团军贡:{{ legion.total_contribution }}<br/>

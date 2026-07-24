@@ -804,8 +804,8 @@
     "name": "铁质宝匣",
     "type": "chest",
     "description": "[绑定]需要1个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
-    "price": 80,
-    "sell_price": 20,
+    "price": 100,
+    "sell_price": 25,
     "is_usable": true,
     "usage_condition": {
       "required_items": {
@@ -829,25 +829,25 @@
       "random_items": [
         {
           "item_id": "craft_huangyangmu",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_huangtongkuang",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_suipi",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.5,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_mabu",
-          "max_count": 4,
+          "max_count": 1,
           "chance": 0.5,
           "guaranteed_count": 1
         }
@@ -866,7 +866,7 @@
             "weapon"
           ],
           "exclude_artifact": true,
-          "chance": 0.6,
+          "chance": 0.48,
           "count": 1,
           "rarity_weights": {
             "精良": 45,
@@ -961,8 +961,8 @@
     "name": "银质宝匣",
     "type": "chest",
     "description": "[绑定]需要2个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
-    "price": 160,
-    "sell_price": 40,
+    "price": 200,
+    "sell_price": 50,
     "is_usable": true,
     "usage_condition": {
       "required_items": {
@@ -987,25 +987,25 @@
       "random_items": [
         {
           "item_id": "craft_chenxiangmu",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_heitiekuang",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_yingpi",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.5,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_mianbu",
-          "max_count": 4,
+          "max_count": 2,
           "chance": 0.5,
           "guaranteed_count": 1
         }
@@ -1024,7 +1024,7 @@
             "weapon"
           ],
           "exclude_artifact": true,
-          "chance": 0.65,
+          "chance": 0.52,
           "count": 1,
           "rarity_weights": {
             "精良": 45,
@@ -1140,9 +1140,9 @@
   "chest_gold_bound": {
     "name": "金质宝匣",
     "type": "chest",
-    "description": "[绑定]需要3个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备",
-    "price": 400,
-    "sell_price": 100,
+    "description": "[绑定]需要3个宝匣钥匙打开，获得经验银两和打造材料，几率获得装备，有概率获得60史诗打造图纸",
+    "price": 500,
+    "sell_price": 125,
     "is_usable": true,
     "usage_condition": {
       "required_items": {
@@ -1167,27 +1167,49 @@
       "random_items": [
         {
           "item_id": "craft_zitanmu",
-          "max_count": 4,
+          "max_count": 3,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_jingjinkuang",
-          "max_count": 4,
+          "max_count": 3,
           "chance": 0.6,
           "guaranteed_count": 1
         },
         {
           "item_id": "craft_chenxiangmu",
-          "max_count": 5,
+          "max_count": 3,
           "chance": 0.5,
-          "guaranteed_count": 2
+          "guaranteed_count": 1
         },
         {
           "item_id": "craft_heitiekuang",
-          "max_count": 5,
+          "max_count": 3,
           "chance": 0.5,
-          "guaranteed_count": 2
+          "guaranteed_count": 1
+        },
+        {
+          "item_ids": [
+            "bp_tiangang_helmet",
+            "bp_tiangang_armor",
+            "bp_tiangang_pants",
+            "bp_tiangang_gloves",
+            "bp_tiangang_shoes",
+            "bp_ziyun_helmet",
+            "bp_ziyun_armor",
+            "bp_ziyun_pants",
+            "bp_ziyun_gloves",
+            "bp_ziyun_shoes",
+            "bp_lieyan_helmet",
+            "bp_lieyan_armor",
+            "bp_lieyan_pants",
+            "bp_lieyan_gloves",
+            "bp_lieyan_shoes"
+          ],
+          "chance": 0.1,
+          "guaranteed_count": 0,
+          "max_count": 1
         }
       ],
       "equipment_generators": [
@@ -1204,7 +1226,7 @@
             "weapon"
           ],
           "exclude_artifact": true,
-          "chance": 0.7,
+          "chance": 0.4,
           "count": 1,
           "rarity_weights": {
             "精良": 45,
@@ -4036,5 +4058,143 @@
       "special": "enhance_lucky_medium"
     },
     "capacity": 0.1
+  },
+  "laiqin_pingzheng": {
+    "name": "来袭凭证",
+    "type": "material",
+    "description": "南蛮入侵活动道具，可在活动·凭证兑奖中兑换奖励",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "nanman_tujian": {
+    "name": "南蛮图鉴",
+    "type": "material",
+    "description": "记录南蛮风物的图鉴，背包使用可随机获得20-40来袭凭证，极小几率获得菊香神套打造图纸",
+    "price": 1,
+    "is_usable": true,
+    "capacity": 0,
+    "usage_effect": {
+      "special": "barbarian_tujian"
+    }
+  },
+  "manyi_baoxiang": {
+    "name": "蛮夷宝匣",
+    "type": "chest",
+    "description": "蛮夷入侵掉落的宝匣，使用1个宝匣钥匙可开启，获得少量经验银两、必得南/北蛮图鉴，几率获得蛮夷神武、菊香防具神器。",
+    "price": 1,
+    "is_usable": true,
+    "capacity": 0,
+    "usage_condition": {
+      "required_items": {
+        "chest_key": 1
+      }
+    },
+    "usage_effect": {
+      "open_barbarian_box": true
+    }
+  },
+  "qianghua_baoyu": {
+    "name": "强化宝玉",
+    "type": "material",
+    "description": "可以用来强化装备的神奇宝玉",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juhunfan_suipian": {
+    "name": "聚魂幡碎片",
+    "type": "material",
+    "description": "聚魂幡的碎片",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "title_prefix_dasha": {
+    "name": "称号卷轴-大杀四方的",
+    "type": "material",
+    "description": "使用后获得前缀称号【大杀四方的】(属性:生命+195、魔+216、攻+54、防+138)",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "prefix大杀四方的"
+    },
+    "capacity": 0.1
+  },
+  "title_prefix_minzu": {
+    "name": "称号卷轴-民族义士",
+    "type": "material",
+    "description": "使用后获得后缀称号【民族义士】",
+    "price": 800,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_title": "suffix民族义士"
+    },
+    "capacity": 0.1
+  },
+  "beiye_tujian": {
+    "name": "北夷图鉴",
+    "type": "material",
+    "description": "记录北夷风物的图鉴，背包使用可随机获得20-40来袭凭证，极小几率获得菊香神套打造图纸",
+    "price": 1,
+    "is_usable": true,
+    "capacity": 0,
+    "usage_effect": {
+      "special": "barbarian_tujian"
+    }
+  },
+  "juxiang_hue_tuzhi": {
+    "name": "菊香护额图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_changju_tuzhi": {
+    "name": "菊香长袍图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_changmao_tuzhi": {
+    "name": "菊香长裤图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_huwan_tuzhi": {
+    "name": "菊香护手图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_duanyue_tuzhi": {
+    "name": "菊香短靴图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "shenyouguo": {
+    "name": "神游果",
+    "type": "material",
+    "description": "蛮夷怪物掉落的神异果实，食用可获得银两",
+    "price": 1,
+    "is_usable": true,
+    "usage_effect": {
+      "grant_gold": 100,
+      "effect_descriptions": {
+        "gold": "获得100银两"
+      }
+    },
+    "capacity": 0
   }
 }

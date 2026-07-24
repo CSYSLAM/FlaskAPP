@@ -104,5 +104,227 @@
       "crit_rate": 0.05,
       "dodge_rate": 0.05
     }
+  },
+  "shenqi_lianyuegou": {
+    "name": "连月钩",
+    "description": "蛮夷入侵掉落的蛮夷神武（10级）",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 10,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 100,
+      "defense": 25
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 40,
+      "defense": 40,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "shenqi_cuiminggou": {
+    "name": "催命钩",
+    "description": "蛮夷入侵掉落的蛮夷神武（15级）",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 15,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 130,
+      "defense": 32
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 40,
+      "defense": 40,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "shenqi_duanhungou": {
+    "name": "断魂钩",
+    "description": "蛮夷入侵掉落的蛮夷神武（20级）",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 20,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 170,
+      "defense": 42
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 40,
+      "defense": 40,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "shenqi_shixiegou": {
+    "name": "嗜血钩",
+    "description": "蛮夷入侵掉落的蛮夷神武（25级）",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 210,
+      "defense": 52
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 40,
+      "defense": 40,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "shenqi_libiegou": {
+    "name": "离别钩",
+    "description": "蛮夷入侵掉落的蛮夷神武（30级）",
+    "slot": "weapon",
+    "is_bound": false,
+    "level_required": 30,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "attack": 260,
+      "defense": 65
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 40,
+      "defense": 40,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "juxiang_hue": {
+    "name": "菊香护额",
+    "description": "25级菊香防具神器（神器防具·头部）",
+    "slot": "head",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "defense": 40,
+      "max_health": 80
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 25,
+      "defense": 25,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "juxiang_changju": {
+    "name": "菊香长袍",
+    "description": "25级菊香防具神器（神器防具·身体）",
+    "slot": "body",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "defense": 60,
+      "max_health": 150
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 25,
+      "defense": 25,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "juxiang_changmao": {
+    "name": "菊香长裤",
+    "description": "25级菊香防具神器（神器防具·腿部）",
+    "slot": "legs",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "defense": 50,
+      "max_health": 120,
+      "attack": 10
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 25,
+      "defense": 25,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "juxiang_huwan": {
+    "name": "菊香护手",
+    "description": "25级菊香防具神器（神器防具·手部）",
+    "slot": "hands",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "defense": 35,
+      "attack": 20
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 25,
+      "defense": 25,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
+  },
+  "juxiang_duanyue": {
+    "name": "菊香短靴",
+    "description": "25级菊香防具神器（神器防具·足部）",
+    "slot": "boots",
+    "is_bound": false,
+    "level_required": 25,
+    "class_required": null,
+    "base_price": 5000,
+    "is_artifact": true,
+    "base_stats": {
+      "defense": 40,
+      "max_health": 80,
+      "max_mana": 100
+    },
+    "max_extra_stats": {
+      "max_health": 300,
+      "max_mana": 200,
+      "attack": 25,
+      "defense": 25,
+      "crit_rate": 0.1,
+      "dodge_rate": 0.1
+    }
   }
 }

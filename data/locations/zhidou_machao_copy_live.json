@@ -2,6 +2,7 @@
   "name": "智斗马超副本",
   "is_copy_map": true,
   "copy_dungeon_id": "zhidou_machao",
+  "can_pk": false,
   "scenes": {
     "zhidou_machao_copy_live.长安城": {
       "name": "长安城",

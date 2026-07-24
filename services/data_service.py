@@ -117,6 +117,9 @@ class DataService:
                     entry['scene_id'] = scene_key
                     for meta_key, meta_value in area_meta.items():
                         entry.setdefault(meta_key, meta_value)
+                    # 副本地图一律不可 PK（区域/场景即便漏标 can_pk 也强制关闭）
+                    if entry.get('is_copy_map'):
+                        entry['can_pk'] = False
                     if 'monster_type' in entry and 'monsters' not in entry:
                         entry['monsters'] = [entry['monster_type']]
                     # Convert exits dict to directional keys
@@ -543,10 +546,16 @@ class DataService:
     def get_equipped(cls, player_id):
         result = {}
         slots = EquipmentSlot.query.filter_by(player_id=player_id).all()
+        # 批量加载装备实例，避免逐槽 N+1 查询
+        ids = [s.equipment_instance_id for s in slots if s.equipment_instance_id]
+        equip_map = {}
+        if ids:
+            for e in EquipmentInstance.query.filter(
+                    EquipmentInstance.id.in_(ids)).all():
+                equip_map[e.id] = e
         for s in slots:
             if s.equipment_instance_id:
-                equip = EquipmentInstance.query.get(s.equipment_instance_id)
-                result[s.slot_name] = equip
+                result[s.slot_name] = equip_map.get(s.equipment_instance_id)
             else:
                 result[s.slot_name] = None
         return result
@@ -603,6 +612,18 @@ class DataService:
     @classmethod
     def clear_expired_effects(cls, player_id):
         now = time.time()
+        # 同一请求内每个玩家最多清理一次，避免读路径上反复 DELETE+flush 写库
+        try:
+            from flask import g
+            marker = getattr(g, '_cleared_effects', None)
+            if marker is None:
+                marker = set()
+                g._cleared_effects = marker
+            if player_id in marker:
+                return
+            marker.add(player_id)
+        except RuntimeError:
+            pass
         TempEffect.query.filter(
             TempEffect.player_id == player_id,
             TempEffect.expire_time <= now
@@ -612,13 +633,22 @@ class DataService:
     @classmethod
     def get_temp_effects(cls, player_id):
         cls.clear_expired_effects(player_id)
-        return TempEffect.query.filter_by(player_id=player_id).all()
+        now = time.time()
+        # 直接按过期时间过滤，过期效果永不计入（即使清理尚未执行，结果也正确）
+        return TempEffect.query.filter(
+            TempEffect.player_id == player_id,
+            TempEffect.expire_time > now
+        ).all()
 
     @classmethod
     def get_temp_stat_bonus(cls, player_id, stat):
         cls.clear_expired_effects(player_id)
-        effects = TempEffect.query.filter_by(
-            player_id=player_id, stat=stat).all()
+        now = time.time()
+        effects = TempEffect.query.filter(
+            TempEffect.player_id == player_id,
+            TempEffect.stat == stat,
+            TempEffect.expire_time > now
+        ).all()
         flat = sum(e.value for e in effects)
         rate = sum(e.rate for e in effects)
         return flat, rate

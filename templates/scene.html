@@ -258,7 +258,7 @@ a:link { color: #136ec2; text-decoration: none; }
         <a href="{{ url_for('vip.index') }}">VIP</a> .<a href="{{ url_for('rank.index') }}">排行</a> .<a href="{{ url_for('lieutenant.index') }}">副将</a> .<a href="{{ url_for('market.index') }}">集市</a>{% if player.is_designer %} .<a href="{{ url_for('workbench.index') }}">工作台</a>{% endif %}
     </div>
     <div class="quick-actions-row">
-        <a href="{{ url_for('forum.index') }}">论坛</a>
+        {% if forum_unread %}<a href="{{ url_for('forum.notifications') }}" style="color:red;">❗</a>{% endif %}<a href="{{ url_for('forum.index') }}">论坛</a>
     </div>
 </div>
 当前时间：{{ now.strftime('%H:%M') }}<br/>

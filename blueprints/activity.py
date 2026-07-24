@@ -491,3 +491,240 @@ def finance_rank_bandit():
                          is_online=None)
 
 
+# --- 蛮夷入侵活动（南蛮 / 北夷） ---
+
+@activity_bp.route("/barbarian")
+@login_required
+def barbarian_index():
+    """蛮夷活动入口：南蛮 / 北夷 切换，凭证兑奖、公告。"""
+    player = current_user
+    side = request.args.get("side") or '南'
+    if side not in ('南', '北'):
+        side = '南'
+    from services.barbarian_service import BarbarianService
+    state = BarbarianService.get_state(player, side)
+    return render_template("activity_barbarian.html",
+                           player=player, side=side, state=state)
+
+
+@activity_bp.route("/barbarian/<side>")
+@login_required
+def barbarian_invasion(side):
+    """兼容旧链接：转发到入口（带 side 参数）。"""
+    return redirect(url_for("activity.barbarian_index", side=side))
+
+
+@activity_bp.route("/barbarian/guide")
+@login_required
+def barbarian_guide():
+    """蛮夷入侵玩法公告（入口放在蛮夷活动内）。"""
+    player = current_user
+    import json as _json
+    guide = {}
+    try:
+        with open("data/barbarian_guide.json", "r", encoding="utf-8") as _f:
+            guide = _json.load(_f)
+    except Exception:
+        guide = {}
+    return render_template("activity_barbarian_guide.html", player=player, n=guide)
+
+
+@activity_bp.route("/redeem")
+@login_required
+def redeem():
+    """兑奖中心：列出各类兑奖（当前仅凭证兑奖）。"""
+    return render_template("activity_redeem_hub.html", player=current_user)
+
+
+@activity_bp.route("/redeem/credentials")
+@login_required
+def redeem_credentials():
+    """凭证兑奖：消耗 [活]来袭凭证 兑换奖励（其他/装备/辅助 分类切换）。"""
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    from services.data_service import DataService
+    cat = request.args.get("cat") or '其他'
+    full = BarbarianService.get_redeem_catalog()
+    aux_ids = {'juhunfan_suipian'}
+    def cat_of(e):
+        if e.get('kind') == 'equip':
+            return '装备'
+        if e.get('item_id') in aux_ids:
+            return '辅助'
+        return '其他'
+    cats = {'其他': [], '装备': [], '辅助': []}
+    for e in full:
+        cats[cat_of(e)].append(e)
+    catalog = cats.get(cat, [])
+    balance = BarbarianService.get_credit_balance(player)
+    has_box = bool(DataService.get_inventory_item(player.id, 'manyi_baoxiang'))
+    has_key = bool(DataService.get_inventory_item(player.id, 'chest_key'))
+    return render_template("activity_redeem.html",
+                           player=player,
+                           catalog=catalog,
+                           balance=balance,
+                           has_box=has_box,
+                           has_key=has_key,
+                           cat=cat)
+
+
+@activity_bp.route("/do_redeem/<item_id>", methods=["POST"])
+@login_required
+def do_redeem(item_id):
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    qty = request.form.get("qty") or request.args.get("qty") or 1
+    try:
+        qty = int(qty)
+    except (TypeError, ValueError):
+        qty = 1
+    cat = request.form.get("cat") or request.args.get("cat") or '其他'
+    ok, msg = BarbarianService.redeem(player, item_id, qty)
+    flash(msg)
+    return redirect(url_for("activity.redeem_credentials", cat=cat))
+
+
+@activity_bp.route("/open_box", methods=["POST"])
+@login_required
+def open_box():
+    """开启 [活]蛮夷宝箱 / 蛮夷宝匣（需宝匣钥匙）。"""
+    player = current_user
+    from services.barbarian_service import BarbarianService
+    ok, msg = BarbarianService.open_chest(player)
+    flash(msg)
+    return redirect(url_for("activity.redeem_credentials", cat=request.form.get("cat") or request.args.get("cat") or '其他'))
+
+
+@activity_bp.route("/barbarian/admin_refresh", methods=["POST"])
+@login_required
+def barbarian_admin_refresh():
+    """管理员手动刷新蛮夷入侵（士卒补满、首领复活并随机落点）。"""
+    player = current_user
+    if not getattr(player, "is_designer", False):
+        flash("无权限")
+        return redirect(url_for("activity.barbarian_index"))
+    from services.barbarian_service import BarbarianService
+    side = request.form.get("side") or request.args.get("side")
+    BarbarianService.admin_refresh(side)
+    if side in ('南', '北'):
+        flash(("北夷" if side == "北" else "南蛮") + "入侵已刷新")
+        return redirect(url_for("activity.barbarian_index", side=side))
+    flash("蛮夷入侵已刷新")
+    return redirect(url_for("activity.barbarian_index"))
+
+
+@activity_bp.route("/barbarian/admin_clear", methods=["POST"])
+@login_required
+def barbarian_admin_clear():
+    """管理员手动清零蛮夷入侵（士卒清零、首领复苏中）。"""
+    player = current_user
+    if not getattr(player, "is_designer", False):
+        flash("无权限")
+        return redirect(url_for("activity.barbarian_index"))
+    from services.barbarian_service import BarbarianService
+    side = request.form.get("side") or request.args.get("side")
+    BarbarianService.admin_clear(side)
+    if side in ('南', '北'):
+        flash(("北夷" if side == "北" else "南蛮") + "入侵已清零")
+        return redirect(url_for("activity.barbarian_index", side=side))
+    flash("蛮夷入侵已清零")
+    return redirect(url_for("activity.barbarian_index"))
+
+
+@activity_bp.route("/barbarian/admin_view")
+@login_required
+def barbarian_admin_view():
+    """管理员查看：蛮夷首领实时落点。"""
+    player = current_user
+    if not getattr(player, "is_designer", False):
+        flash("无权限")
+        return redirect(url_for("activity.barbarian_index"))
+    from services.barbarian_service import BarbarianService
+    side = request.args.get("side") or None
+    if side not in ('南', '北', None):
+        side = None
+    leaders = BarbarianService.get_admin_leader_overview(side)
+    return render_template(
+        "activity_barbarian_admin.html",
+        player=player,
+        side=side,
+        leaders=leaders,
+    )
+
+
+@activity_bp.route("/announce")
+@login_required
+def announce():
+    """公告栏：列出公告条目，点击查看详情。"""
+    player = current_user
+    import json as _json
+    notices = []
+    try:
+        with open("data/announcements.json", "r", encoding="utf-8") as _f:
+            notices = _json.load(_f)
+    except Exception:
+        notices = []
+    return render_template("activity_announce.html", player=player, notices=notices)
+
+
+@activity_bp.route("/announce/<int:idx>")
+@login_required
+def announce_detail(idx):
+    """公告详情：单条公告。"""
+    player = current_user
+    import json as _json
+    notices = []
+    try:
+        with open("data/announcements.json", "r", encoding="utf-8") as _f:
+            notices = _json.load(_f)
+    except Exception:
+        notices = []
+    if idx < 0 or idx >= len(notices):
+        flash("公告不存在")
+        return redirect(url_for("activity.announce"))
+    return render_template("activity_announce_detail.html",
+                           player=player, n=notices[idx], idx=idx)
+
+
+@activity_bp.route("/barbarian_forge", methods=["GET", "POST"])
+@login_required
+def barbarian_forge():
+    """铁匠铺·菊香神炉：消耗对应部位图纸 + 25级装备材料 + 银两，50% 打造成功。"""
+    player = current_user
+    from services.barbarian_service import BarbarianService, JUXIANG_BLUEPRINT
+    from services.data_service import DataService
+    from services.crafting_service import CraftingService
+    msg = None
+    if request.method == "POST":
+        template_id = request.form.get("template_id") or request.args.get("template_id")
+        ok, msg = BarbarianService.forge_juxiang(player, template_id)
+        flash(msg)
+        return redirect(url_for("activity.barbarian_forge"))
+    # 玩家持有的菊香图纸（按部位）
+    owned = []
+    for tmpl, bp in JUXIANG_BLUEPRINT.items():
+        inv = DataService.get_inventory_item(player.id, bp)
+        qty = inv.quantity if inv else 0
+        if qty > 0:
+            owned.append({
+                'template_id': tmpl,
+                'bp_name': (DataService.get_item(bp) or {}).get('name', bp),
+                'equip_name': (DataService.get_equipment_template(tmpl) or {}).get('name', tmpl),
+                'qty': qty,
+            })
+    # 25 级装备打造材料需求（与任一菊香部件一致）
+    rep = DataService.get_equipment_template('juxiang_hue') or {'level_required': 25, 'slot': 'helmet'}
+    cost = CraftingService.get_material_cost(rep) or {"items": {}, "silver": 0}
+    mats = []
+    for item_id, need in cost.get("items", {}).items():
+        inv = DataService.get_inventory_item(player.id, item_id)
+        mats.append({
+            'name': (DataService.get_item(item_id) or {}).get('name', item_id),
+            'need': need,
+            'have': inv.quantity if inv else 0,
+        })
+    silver_need = cost.get("silver", 0)
+    return render_template("activity_barbarian_forge.html", player=player, owned=owned,
+                           mats=mats, silver_need=silver_need, silver_have=player.gold, msg=msg)
+
+

@@ -1,5 +1,6 @@
 {
   "name": "昆仑山脉",
+  "can_pk": true,
   "scenes": {
     "镇中街": {
       "name": "镇中街",

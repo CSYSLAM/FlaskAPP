@@ -1,5 +1,6 @@
 {
   "name": "建邺西区",
+  "can_pk": true,
   "scenes": {
     "建邺西界": {
       "name": "建邺西界",

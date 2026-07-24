@@ -2,6 +2,7 @@
   "name": "火烧乌巢副本",
   "is_copy_map": true,
   "copy_dungeon_id": "huoshao_wuchao",
+  "can_pk": false,
   "scenes": {
     "huoshao_wuchao_copy_live.乌巢大营": {
       "name": "乌巢大营",

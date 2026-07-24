@@ -7,6 +7,18 @@ from models.player import PlayerModel
 forum_bp = Blueprint('forum', __name__)
 
 
+@forum_bp.app_context_processor
+def inject_forum_unread():
+    """向所有模板注入当前用户未读论坛互动通知数（用于场景论坛入口的感叹号提示）。"""
+    from flask_login import current_user
+    if current_user.is_authenticated:
+        try:
+            return {'forum_unread': ForumService.get_unread_count(current_user.id)}
+        except Exception:
+            return {'forum_unread': 0}
+    return {'forum_unread': 0}
+
+
 def _page():
     try:
         return max(1, int(request.args.get('page') or 1))
@@ -196,3 +208,40 @@ def unmute(mute_id):
     ok, msg = ForumService.unmute(current_user, mute_id)
     flash(msg)
     return redirect(url_for('forum.admin'))
+
+
+@forum_bp.route('/notifications')
+@login_required
+def notifications():
+    notifs = ForumService.get_notifications(current_user.id)
+    unread = ForumService.get_unread_count(current_user.id)
+    return render_template('forum_notifications.html', player=current_user,
+                           notifications=notifs, unread=unread,
+                           is_admin=ForumService.is_admin(current_user))
+
+
+@forum_bp.route('/notification/<int:notif_id>/read')
+@login_required
+def read_notification(notif_id):
+    n = ForumService.get_notification(notif_id, current_user.id)
+    if n:
+        ForumService.mark_read(notif_id, current_user.id)
+        return redirect(url_for('forum.view_post', post_id=n.post_id))
+    return redirect(url_for('forum.notifications'))
+
+
+@forum_bp.route('/notifications/read-all', methods=['POST'])
+@login_required
+def read_all():
+    ForumService.mark_all_read(current_user.id)
+    flash('已全部标记为已读')
+    return redirect(url_for('forum.notifications'))
+
+
+@forum_bp.route('/notify-toggle', methods=['POST'])
+@login_required
+def notify_toggle():
+    current_user.forum_interaction_notify = not bool(current_user.forum_interaction_notify)
+    db.session.commit()
+    flash('已' + ('关闭' if not current_user.forum_interaction_notify else '开启') + '互动消息提示')
+    return redirect(request.referrer or url_for('forum.me'))

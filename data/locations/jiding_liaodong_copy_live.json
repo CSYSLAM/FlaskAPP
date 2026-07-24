@@ -2,6 +2,7 @@
   "name": "计定辽东副本",
   "is_copy_map": true,
   "copy_dungeon_id": "jiding_liaodong",
+  "can_pk": false,
   "scenes": {
     "易州城": {
       "name": "易州城(副本)",

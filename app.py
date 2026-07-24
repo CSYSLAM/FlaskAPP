@@ -15,6 +15,7 @@ from flask_login import LoginManager
 from services import db
 from services.data_service import DataService
 from models.player import PlayerModel
+from models.barbarian import BarbarianInvasion, BarbarianLeader  # noqa: F401  # 南蛮入侵活动
 
 
 login_manager = LoginManager()
@@ -22,7 +23,7 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    # TEMPLATES_AUTO_RELOAD now controlled by config.py (follows DEBUG); not hardcoded True.
 
     config_name = os.environ.get('FLASK_ENV', 'development')
     if config_name == 'development':
@@ -279,6 +280,31 @@ def create_app():
         # 确保 ActiveSession 表被注册后再 create_all（单点登录会话表）
         from models.active_session import ActiveSession  # noqa: F401
         db.create_all()
+        # 蛮夷入侵活动（南蛮/北夷）：确保活动状态表与双方首领存在
+        # 兼容旧版单阵营表结构（无 side/active 列）—— 重建活动表
+        try:
+            from sqlalchemy import inspect as _sa_inspect
+            _insp = _sa_inspect(db.engine)
+            _inv_cols = [c['name'] for c in _insp.get_columns('barbarian_invasion')]
+            _lead_cols = [c['name'] for c in _insp.get_columns('barbarian_leaders')]
+            if ('side' not in _inv_cols) or ('side' not in _lead_cols):
+                db.session.execute(db.text('DROP TABLE IF EXISTS barbarian_leaders'))
+                db.session.execute(db.text('DROP TABLE IF EXISTS barbarian_invasion'))
+                db.session.commit()
+                db.create_all()
+        except Exception:
+            db.session.rollback()
+        from services.barbarian_service import BarbarianService
+        for _side in ('南', '北'):
+            BarbarianService.get_or_create_state(_side)
+            BarbarianService.seed_leaders(_side)
+        # 蛮夷首领落点列（旧库兼容）
+        try:
+            db.session.execute(db.text(
+                "ALTER TABLE barbarian_leaders ADD COLUMN location_id VARCHAR(80)"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
         # 多窗口 SSO：为旧版 active_session 表补齐 active_sid / tokens 列
         # （旧表只有 player_id/token/updated_at，create_all 不会改已存在的表）
         try:
@@ -494,6 +520,12 @@ def create_app():
             db.session.rollback()
         try:
             db.session.execute(db.text("ALTER TABLE players ADD COLUMN jinzu_spent INTEGER DEFAULT 0"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+        # forum interaction notification switch
+        try:
+            db.session.execute(db.text("ALTER TABLE players ADD COLUMN forum_interaction_notify BOOLEAN DEFAULT 1"))
             db.session.commit()
         except Exception:
             db.session.rollback()

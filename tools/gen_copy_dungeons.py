@@ -167,7 +167,7 @@ def build_scene_file(dungeon):
         if s.get('quest_giver_npc_id'):
             out.setdefault("npcs", []).append(s['quest_giver_npc_id'])
         scenes[sc] = out
-    return {"name": sid, "is_copy_map": True, "copy_dungeon_id": sid, "scenes": scenes}
+    return {"name": sid, "is_copy_map": True, "copy_dungeon_id": sid, "can_pk": False, "scenes": scenes}
 
 def build_monsters(d):
     sid = d['id']; out = {}

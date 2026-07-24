@@ -24,7 +24,7 @@
     {% endif %}
     {% endwith %}
 
-    活动<br/>
+    <a href="{{ url_for('activity.index') }}">活动</a>|<a href="{{ url_for('activity.redeem') }}">兑奖</a>|<a href="{{ url_for('activity.announce') }}">公告</a><br/>
     ----------------<br/>
     活跃度:{{ total_points }}<br/>
     {% if reward_tiers %}
@@ -49,6 +49,7 @@
     <a href="{{ url_for('activity.card_flip_page') }}">金珠幸运翻牌</a><br/>
     <a href="{{ url_for('activity.study_page') }}">陪太子读书</a><br/>
     <a href="{{ url_for('activity.quiz_page') }}">每日答题拿奖励</a><br/>
+    <a href="{{ url_for('activity.barbarian_index') }}">蛮夷入侵活动</a><br/>
     ----------------<br/>
     三国理财<br/>
     <a href="{{ url_for('activity.finance_page') }}">金珠股市</a><br/>

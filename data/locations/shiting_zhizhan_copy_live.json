@@ -2,6 +2,7 @@
   "name": "石亭之战副本",
   "is_copy_map": true,
   "copy_dungeon_id": "shiting_zhizhan",
+  "can_pk": false,
   "scenes": {
     "shiting_zhizhan_copy_live.石亭大营": {
       "name": "石亭大营",

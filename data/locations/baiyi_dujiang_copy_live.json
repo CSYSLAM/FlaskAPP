@@ -2,6 +2,7 @@
   "name": "白衣渡江副本",
   "is_copy_map": true,
   "copy_dungeon_id": "baiyi_dujiang",
+  "can_pk": false,
   "scenes": {
     "baiyi_dujiang_copy_live.陆口港": {
       "name": "陆口港",

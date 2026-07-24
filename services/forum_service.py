@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from services import db
 from models.player import (
-    PlayerModel, ForumPost, ForumComment, ForumReaction, ForumFavorite, ForumMute
+    PlayerModel, ForumPost, ForumComment, ForumReaction, ForumFavorite, ForumMute, ForumNotification
 )
 
 PER_PAGE_DEFAULT = 15
@@ -38,6 +38,26 @@ class ForumService:
         if mute:
             return cls._mute_text(mute)
         return None
+
+    @classmethod
+    def notify_interaction(cls, post, actor, action):
+        author = post.author
+        if not author:
+            return
+        if author.id == actor.id:
+            return
+        if not getattr(author, 'forum_interaction_notify', True):
+            return
+        n = ForumNotification(
+            recipient_id=author.id,
+            actor_id=actor.id,
+            actor_name=actor.nickname,
+            post_id=post.id,
+            post_title=post.title,
+            action=action,
+        )
+        db.session.add(n)
+        db.session.commit()
 
     @classmethod
     def _validate_post(cls, title, content):
@@ -173,6 +193,7 @@ class ForumService:
         post.comment_count = (post.comment_count or 0) + 1
         db.session.add(c)
         db.session.commit()
+        cls.notify_interaction(post, player, 'comment')
         return True, "评论成功"
 
     @classmethod
@@ -202,6 +223,7 @@ class ForumService:
         if not post or post.status != 'active':
             return False, "帖子不存在"
         r = ForumReaction.query.filter_by(post_id=post_id, player_id=player.id).first()
+        old_reaction = r.reaction if r else None
         if r and r.reaction == reaction:
             cls._apply_reaction_delta(post, reaction, -1)
             db.session.delete(r)
@@ -216,6 +238,8 @@ class ForumService:
             db.session.add(r)
         cls._apply_reaction_delta(post, reaction, 1)
         db.session.commit()
+        if old_reaction != reaction:
+            cls.notify_interaction(post, player, reaction)
         return True, "操作成功"
 
     @staticmethod
@@ -243,6 +267,7 @@ class ForumService:
         post.favorite_count = (post.favorite_count or 0) + 1
         db.session.add(fav)
         db.session.commit()
+        cls.notify_interaction(post, player, 'favorite')
         return True, "已收藏"
 
     @classmethod
@@ -257,6 +282,35 @@ class ForumService:
         comments = ForumComment.query.filter_by(author_id=player_id).order_by(ForumComment.created_at.desc()).limit(30).all()
         favorites = ForumFavorite.query.filter_by(player_id=player_id).order_by(ForumFavorite.created_at.desc()).limit(30).all()
         return posts, comments, favorites
+
+    @classmethod
+    def get_notifications(cls, player_id, limit=50):
+        return ForumNotification.query.filter_by(recipient_id=player_id).order_by(
+            ForumNotification.created_at.desc(), ForumNotification.id.desc()).limit(limit).all()
+
+    @classmethod
+    def get_unread_count(cls, player_id):
+        return ForumNotification.query.filter_by(recipient_id=player_id, is_read=False).count()
+
+    @classmethod
+    def get_notification(cls, notif_id, player_id):
+        n = ForumNotification.query.get(notif_id)
+        if n and n.recipient_id == player_id:
+            return n
+        return None
+
+    @classmethod
+    def mark_read(cls, notif_id, player_id):
+        n = cls.get_notification(notif_id, player_id)
+        if n:
+            n.is_read = True
+            db.session.commit()
+
+    @classmethod
+    def mark_all_read(cls, player_id):
+        ForumNotification.query.filter_by(recipient_id=player_id, is_read=False).update(
+            {ForumNotification.is_read: True})
+        db.session.commit()
 
     @classmethod
     def mute_player(cls, admin, player_id, duration, reason):
