@@ -1292,47 +1292,86 @@ LOGIN_HTML = r"""
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>登录 - 手机控制台</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>登录 · 手机控制台</title>
 <style>
-  :root{--bg:#0f1115;--panel:#181b22;--line:#2a2f3a;--txt:#e6e8ee;--dim:#8a93a6;--accent:#4a6cf7}
+  :root{
+    --bg0:#0b0d14; --bg1:#151a2a;
+    --panel:rgba(24,28,40,.86); --line:rgba(255,255,255,.08);
+    --txt:#eef1f8; --dim:#93a0b8; --accent:#5b7cfa; --accent2:#8b5cf6;
+    --danger:#ff8b8b;
+  }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);
-       font:16px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px}
-  .box{background:var(--panel);border:1px solid var(--line);border-radius:14px;
-       padding:28px 22px;width:100%;max-width:340px}
-  h1{margin:0 0 6px;font-size:20px;text-align:center}
-  .sub{color:var(--dim);font-size:13px;text-align:center;margin-bottom:22px}
-  input{width:100%;background:#07090d;border:1px solid var(--line);color:var(--txt);
-        border-radius:9px;padding:13px;font-size:16px;font-family:inherit;margin-bottom:12px}
-  input:focus{outline:none;border-color:var(--accent)}
-  button{width:100%;padding:13px;border:0;border-radius:9px;background:var(--accent);
-         color:#fff;font-size:16px;font-weight:600;cursor:pointer}
-  button:active{transform:scale(.98)}
-  .err{color:#ff8b8b;font-size:13px;text-align:center;min-height:18px;margin-top:8px}
+  html,body{height:100%}
+  body{
+    margin:0;color:var(--txt);
+    font:16px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:24px 18px calc(24px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(900px 420px at 12% -10%, rgba(91,124,250,.35), transparent 55%),
+      radial-gradient(700px 360px at 110% 10%, rgba(139,92,246,.28), transparent 50%),
+      radial-gradient(600px 300px at 50% 120%, rgba(54,179,126,.12), transparent 55%),
+      linear-gradient(160deg,var(--bg0),var(--bg1));
+  }
+  .box{
+    width:100%;max-width:360px;padding:28px 22px 22px;
+    background:var(--panel);border:1px solid var(--line);
+    border-radius:18px;backdrop-filter:blur(16px);
+    box-shadow:0 20px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .logo{
+    width:54px;height:54px;border-radius:16px;margin:0 auto 14px;
+    display:grid;place-items:center;font-size:26px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 10px 24px rgba(91,124,250,.35);
+  }
+  h1{margin:0;font-size:20px;text-align:center;letter-spacing:.2px}
+  .sub{color:var(--dim);font-size:13px;text-align:center;margin:6px 0 20px}
+  label{display:block;font-size:12px;color:var(--dim);margin:0 0 6px 2px}
+  input{
+    width:100%;background:rgba(7,9,16,.72);border:1px solid var(--line);
+    color:var(--txt);border-radius:12px;padding:13px 14px;font-size:16px;
+    font-family:inherit;margin-bottom:14px;transition:border-color .15s,box-shadow .15s;
+  }
+  input:focus{outline:none;border-color:rgba(91,124,250,.7);box-shadow:0 0 0 3px rgba(91,124,250,.18)}
+  button{
+    width:100%;padding:13px;border:0;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff;font-size:16px;font-weight:700;cursor:pointer;
+    box-shadow:0 8px 20px rgba(91,124,250,.28);
+  }
+  button:active{transform:scale(.985)}
+  button:disabled{opacity:.65}
+  .err{color:var(--danger);font-size:13px;text-align:center;min-height:18px;margin-top:10px}
+  .foot{margin-top:14px;text-align:center;color:var(--dim);font-size:11px}
 </style>
 </head>
 <body>
   <form class="box" onsubmit="doLogin(event)">
-    <h1>🎮 手机控制台</h1>
-    <div class="sub">请输入访问密码</div>
-    <input id="pw" type="password" autocomplete="current-password" autofocus placeholder="密码">
-    <button type="submit">登录</button>
+    <div class="logo">🎮</div>
+    <h1>手机控制台</h1>
+    <div class="sub">Claude · CodeBuddy · Flask 远程运维</div>
+    <label for="pw">访问密码</label>
+    <input id="pw" type="password" autocomplete="current-password" autofocus placeholder="输入密码后登录">
+    <button type="submit" id="btn">进入控制台</button>
     <div class="err" id="err"></div>
+    <div class="foot">会话仅保存在本浏览器</div>
   </form>
 <script>
 async function doLogin(e){
   e.preventDefault();
   const err=document.getElementById('err');
+  const btn=document.getElementById('btn');
   err.textContent='';
   const pw=document.getElementById('pw').value;
+  btn.disabled=true; btn.textContent='登录中…';
   try{
     const r=await fetch('/api/login',{method:'POST',body:pw});
     const j=await r.json();
     if(j.ok){location.href='/';}
-    else{err.textContent=j.msg||'登录失败';}
-  }catch(ex){err.textContent='网络错误:'+ex;}
+    else{err.textContent=j.msg||'登录失败'; btn.disabled=false; btn.textContent='进入控制台';}
+  }catch(ex){err.textContent='网络错误:'+ex; btn.disabled=false; btn.textContent='进入控制台';}
 }
 document.getElementById('pw').addEventListener('keydown',e=>{
   if(e.key==='Enter'){doLogin(e);}
@@ -1348,176 +1387,280 @@ PAGE_HTML = r"""
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>🎮 手机控制台</title>
+<title>手机控制台 · FlaskAPP</title>
 <style>
-  /* ===== Dark (默认) ===== */
   :root{
-    --bg:#0a0b0e; --panel:#1a1d26; --panel2:#22252e; --line:#2e3340;
-    --txt:#e6e8ee; --dim:#8a93a6;
-    --claude:#7c5cff; --codebuddy:#1fb6ff; --flask:#36b37e;
-    --me:#4a6cf7; --sys:#8a93a6; --err:#d8453b; --accent:#4a6cf7;
-    --chat-bg:#12141a; --bubble-bg:#252830; --bubble-txt:#e6e8ee;
-    --composer-bg:#1a1d26; --sys-pill-bg:rgba(255,255,255,.07); --sys-pill-txt:#8a93a6;
-    --err-pill-bg:#2d1515; --err-pill-txt:#ff8b8b;
-    --avatar-bg:#252830; --name-txt:#6b7280; --ts2-txt:#4b5060;
-    --term-bg:#0d0e12; --term-txt:#d6dae2;
+    --bg:#0a0c12; --panel:#171b25; --panel2:#1e2431; --line:#2a3142;
+    --txt:#e9edf7; --dim:#8d97ad; --muted:#667085;
+    --claude:#8b6cff; --codebuddy:#22b8ff; --flask:#2fce8a;
+    --me:#4f74ff; --sys:#8d97ad; --err:#ef5b5b; --accent:#4f74ff; --accent2:#8b5cf6;
+    --chat-bg:#0f121a; --bubble-bg:#222836; --bubble-txt:#e9edf7;
+    --composer-bg:rgba(23,27,37,.92); --sys-pill-bg:rgba(255,255,255,.06); --sys-pill-txt:#9aa6bd;
+    --err-pill-bg:rgba(239,91,91,.12); --err-pill-txt:#ff9b9b;
+    --avatar-bg:#222836; --name-txt:#7d879b; --ts2-txt:#5b6478;
+    --term-bg:#0c0e14; --term-txt:#d6dae2;
     --tag-claude:#c9b3ff; --tag-flask:#7fe3b0; --tag-codebuddy:#8fdcff;
-    --tag-you:#ffd479; --tag-system:#9fc1ff; --tag-error:#ff9b9b; --ts:#4b5060;
-    --upload-label-bg:#22252e; --chip-bg:rgba(54,179,126,.12);
-    --modal-bg:#1a1d26; --modal-txt:#e6e8ee;
-    --busy-bg:rgba(74,108,247,.15); --busy-txt:#7a9cff;
-    --tab-active-bg:#fff; --tab-active-txt:#4a6cf7;
+    --tag-you:#ffd479; --tag-system:#9fc1ff; --tag-error:#ff9b9b; --ts:#5b6478;
+    --upload-label-bg:#1e2431; --chip-bg:rgba(47,206,138,.12);
+    --modal-bg:#171b25; --modal-txt:#e9edf7;
+    --busy-bg:rgba(79,116,255,.14); --busy-txt:#9bb3ff;
+    --tab-active-bg:#fff; --tab-active-txt:#4f74ff;
     --tab-bg:rgba(255,255,255,.1); --tab-txt:#fff;
-    --card-shadow:0 1px 3px rgba(0,0,0,.3);
+    --card-shadow:0 8px 24px rgba(0,0,0,.22);
+    --ok:#2fce8a; --warn:#f0b429; --danger:#ef5b5b;
+    --header-grad:linear-gradient(135deg,#3f63f0 0%,#6d4df5 55%,#8b5cf6 100%);
+    --glass:rgba(255,255,255,.08);
   }
-  /* ===== Light ===== */
   :root.light{
-    --bg:#eef1f6; --panel:#ffffff; --panel2:#f5f7fa; --line:#e3e7ee;
-    --txt:#1f2329; --dim:#8a8f99;
-    --chat-bg:#f5f6f8; --bubble-bg:#fff; --bubble-txt:#1f2329;
-    --composer-bg:#fff; --sys-pill-bg:rgba(0,0,0,.05); --sys-pill-txt:#8a8f99;
+    --bg:#eef1f6; --panel:#ffffff; --panel2:#f4f6fa; --line:#e4e8f0;
+    --txt:#1f2430; --dim:#7b8496; --muted:#9aa3b5;
+    --chat-bg:#f3f5f9; --bubble-bg:#fff; --bubble-txt:#1f2430;
+    --composer-bg:rgba(255,255,255,.94); --sys-pill-bg:rgba(0,0,0,.05); --sys-pill-txt:#7b8496;
     --err-pill-bg:#fde8e8; --err-pill-txt:#d8453b;
-    --avatar-bg:#fff; --name-txt:#9aa0a6; --ts2-txt:#b5b9bf;
-    --term-bg:#1e1f24; --term-txt:#d6dae2;
-    --tag-claude:#7c5cff; --tag-flask:#36b37e; --tag-codebuddy:#1fb6ff;
-    --tag-you:#b8860b; --tag-system:#6b7280; --tag-error:#d8453b; --ts:#6b7280;
-    --upload-label-bg:#f5f7fa; --chip-bg:rgba(54,179,126,.14);
-    --modal-bg:#fff; --modal-txt:#1f2329;
-    --busy-bg:rgba(74,108,247,.1); --busy-txt:#4a6cf7;
-    --tab-active-bg:#fff; --tab-active-txt:#4a6cf7;
-    --tab-bg:rgba(255,255,255,.12); --tab-txt:#fff;
-    --card-shadow:0 1px 2px rgba(0,0,0,.04);
+    --avatar-bg:#fff; --name-txt:#8a93a5; --ts2-txt:#b0b6c3;
+    --term-bg:#1a1d26; --term-txt:#d6dae2;
+    --tag-claude:#7c5cff; --tag-flask:#1fa86a; --tag-codebuddy:#0f9ad8;
+    --tag-you:#a67c00; --tag-system:#6b7280; --tag-error:#d8453b; --ts:#8a93a5;
+    --upload-label-bg:#f4f6fa; --chip-bg:rgba(47,206,138,.12);
+    --modal-bg:#fff; --modal-txt:#1f2430;
+    --busy-bg:rgba(79,116,255,.1); --busy-txt:#3f63f0;
+    --tab-active-bg:#fff; --tab-active-txt:#3f63f0;
+    --tab-bg:rgba(255,255,255,.14); --tab-txt:#fff;
+    --card-shadow:0 6px 18px rgba(31,36,48,.06);
+    --header-grad:linear-gradient(135deg,#4a6cf7 0%,#6d4df5 55%,#8b5cf6 100%);
+    --glass:rgba(255,255,255,.18);
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);
-       font:15px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       -webkit-text-size-adjust:100%;padding-bottom:env(safe-area-inset-bottom);
-       transition:background .25s,color .25s}
-  header{position:sticky;top:0;z-index:10;color:#fff;
-         background:linear-gradient(135deg,#4a6cf7,#7a3df2);
-         border-bottom:1px solid rgba(0,0,0,.05);padding:10px 12px;
-         box-shadow:0 1px 6px rgba(0,0,0,.12)}
-  header h1{margin:0;font-size:17px;font-weight:700}
-  header .ip{font-size:12px;opacity:.92;margin-top:2px;word-break:break-all}
-  .tabs{display:flex;gap:6px;margin-top:8px}
-  .tabs button{flex:1;padding:8px;border:1px solid rgba(255,255,255,.35);
-               background:var(--tab-bg);color:var(--tab-txt);border-radius:8px;
-               font-size:14px;cursor:pointer}
-  .tabs button.active{background:var(--tab-active-bg);color:var(--tab-active-txt);border-color:var(--tab-active-bg);font-weight:600}
-  main{padding:10px 12px;max-width:780px;margin:0 auto}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-        padding:12px;margin-bottom:10px;box-shadow:var(--card-shadow);
-        transition:background .25s,border-color .25s}
-  .card h3{margin:0 0 8px;font-size:14px;color:var(--dim);font-weight:600}
+  html,body{height:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-text-size-adjust:100%;
+    padding-bottom:calc(8px + env(safe-area-inset-bottom));
+    transition:background .25s,color .25s;
+  }
+  header{
+    position:sticky;top:0;z-index:20;color:#fff;
+    background:var(--header-grad);
+    padding:12px 14px 10px;
+    box-shadow:0 8px 24px rgba(63,99,240,.25);
+  }
+  header .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  header .brand{min-width:0;flex:1}
+  header h1{margin:0;font-size:17px;font-weight:750;letter-spacing:.2px}
+  header .ip{font-size:12px;opacity:.9;margin-top:3px;word-break:break-all}
+  header .meta-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .pill{
+    display:inline-flex;align-items:center;gap:5px;
+    background:var(--glass);border:1px solid rgba(255,255,255,.18);
+    border-radius:999px;padding:3px 9px;font-size:11px;line-height:1.3;
+  }
+  .pill b{font-weight:700}
+  .theme-toggle{
+    flex:0 0 auto;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:999px;
+    padding:7px 11px;font-size:13px;cursor:pointer;backdrop-filter:blur(8px);
+  }
+  .theme-toggle:active{transform:scale(.96)}
+  .btn-startall{
+    width:100%;margin-top:10px;padding:12px 14px;border:0;border-radius:12px;
+    background:rgba(255,255,255,.16);color:#fff;font-size:14.5px;font-weight:750;
+    cursor:pointer;border:1px solid rgba(255,255,255,.22);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  .btn-startall:active{transform:scale(.985)}
+  .btn-startall.busy{opacity:.65;pointer-events:none}
+  .tabs{display:flex;gap:6px;margin-top:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tabs button{
+    flex:1 0 auto;min-width:68px;padding:8px 10px;border:1px solid rgba(255,255,255,.22);
+    background:var(--tab-bg);color:var(--tab-txt);border-radius:999px;
+    font-size:13px;cursor:pointer;white-space:nowrap;
+  }
+  .tabs button.active{
+    background:var(--tab-active-bg);color:var(--tab-active-txt);
+    border-color:var(--tab-active-bg);font-weight:700;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+  }
+  main{padding:12px;max-width:820px;margin:0 auto}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:14px;margin-bottom:12px;box-shadow:var(--card-shadow);
+    transition:background .25s,border-color .25s;
+  }
+  .card h3{
+    margin:0 0 10px;font-size:13px;color:var(--dim);font-weight:700;
+    letter-spacing:.3px;display:flex;align-items:center;gap:8px;
+  }
+  .card h3 .dot-live{
+    width:8px;height:8px;border-radius:50%;background:var(--muted);
+    box-shadow:0 0 0 3px rgba(141,151,173,.12);
+  }
+  .card h3 .dot-live.on{background:var(--ok);box-shadow:0 0 0 3px rgba(47,206,138,.18)}
+  .card h3 .dot-live.busy{background:var(--warn);box-shadow:0 0 0 3px rgba(240,180,41,.18);animation:pulse 1s infinite}
   .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .btn{flex:1;min-width:70px;padding:10px;border:0;border-radius:9px;font-size:14px;
-       font-weight:600;cursor:pointer;color:#fff}
-  .btn.start{background:#2e9e6b}
-  .btn.stop{background:#e05a4f}
-  .btn.restart{background:#3a6fd6}
-  .btn.preview{background:#4a6cf7;text-decoration:none;text-align:center}
-  .btn-startall{width:100%;margin-top:8px;padding:11px;border:0;border-radius:10px;
-       background:linear-gradient(135deg,#4a6cf7,#7a3df2);color:#fff;font-size:15px;
-       font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(74,108,247,.3)}
-  .btn-startall:active{transform:scale(.98)}
-  .btn-startall.busy{opacity:.6;pointer-events:none}
-  .state{font-size:13px;font-weight:600}
-  .state.on{color:#2e9e6b}
+  .btn{
+    flex:1;min-width:72px;padding:10px 12px;border:0;border-radius:11px;
+    font-size:13.5px;font-weight:700;cursor:pointer;color:#fff;
+  }
+  .btn.start{background:linear-gradient(135deg,#22b36b,#1f9d5d)}
+  .btn.stop{background:linear-gradient(135deg,#ef5b5b,#d8453b)}
+  .btn.restart{background:linear-gradient(135deg,#4f74ff,#3f63f0)}
+  .btn.preview{
+    background:linear-gradient(135deg,#4f74ff,#6d4df5);text-decoration:none;text-align:center;
+    display:block;width:100%;padding:12px;border-radius:12px;font-weight:750;
+  }
+  .btn.interrupt{background:linear-gradient(135deg,#ef5b5b,#d8453b);flex:0 0 auto;width:auto;padding:10px 14px}
+  .btn:active{transform:scale(.98)}
+  .state{font-size:13px;font-weight:700}
+  .state.on{color:var(--ok)}
   .state.off{color:var(--dim)}
   .pid{font-size:11px;color:var(--dim);margin-left:6px}
-  /* 终端(raw 服务器日志,保留等宽深色) */
-  .term{background:var(--term-bg);color:var(--term-txt);border:1px solid var(--line);border-radius:12px;
-        height:42vh;min-height:240px;overflow-y:auto;padding:10px 12px;
-        font:12.5px/1.45 "SFMono-Regular",Consolas,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
+  .term{
+    background:var(--term-bg);color:var(--term-txt);border:1px solid var(--line);border-radius:14px;
+    height:46vh;min-height:260px;overflow-y:auto;padding:12px;
+    font:12.5px/1.5 "SFMono-Regular",Consolas,Menlo,monospace;white-space:pre-wrap;word-break:break-word;
+  }
   .term .ln{display:block}
   .tag-claude{color:var(--tag-claude)} .tag-flask{color:var(--tag-flask)} .tag-codebuddy{color:var(--tag-codebuddy)}
   .tag-you{color:var(--tag-you)} .tag-system{color:var(--tag-system)} .tag-error{color:var(--tag-error)}
   .ts{color:var(--ts);margin-right:6px}
-  /* 聊天气泡(类 QQ/飞书) */
-  .chat{background:var(--chat-bg);border:1px solid var(--line);border-radius:12px;
-        height:46vh;min-height:260px;overflow-y:auto;padding:12px 10px;
-        transition:background .25s}
+  .chat{
+    background:
+      radial-gradient(420px 180px at 0% 0%, rgba(79,116,255,.08), transparent 60%),
+      radial-gradient(360px 160px at 100% 100%, rgba(139,92,246,.07), transparent 55%),
+      var(--chat-bg);
+    border:1px solid var(--line);border-radius:14px;
+    height:48vh;min-height:280px;overflow-y:auto;padding:12px 10px;
+    transition:background .25s;
+  }
   .bubble-row{display:flex;gap:8px;margin:12px 0;align-items:flex-start}
   .bubble-row.me{flex-direction:row-reverse}
-  .avatar{width:38px;height:38px;border-radius:50%;flex:0 0 auto;
-          display:flex;align-items:center;justify-content:center;font-size:18px;
-          background:var(--avatar-bg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
-  .avatar.ai-claude{background:var(--claude);color:#fff}
-  .avatar.ai-codebuddy{background:var(--codebuddy);color:#fff}
-  .avatar.ai-flask{background:var(--flask);color:#fff}
-  .avatar.me{background:var(--me);color:#fff}
-  .bubble-wrap{flex:1;max-width:76%;display:flex;flex-direction:column;min-width:0}
+  .avatar{
+    width:36px;height:36px;border-radius:12px;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+    background:var(--avatar-bg);box-shadow:0 2px 8px rgba(0,0,0,.12);
+  }
+  .avatar.ai-claude{background:linear-gradient(135deg,#8b6cff,#6d4df5);color:#fff}
+  .avatar.ai-codebuddy{background:linear-gradient(135deg,#22b8ff,#0f9ad8);color:#fff}
+  .avatar.ai-flask{background:linear-gradient(135deg,#2fce8a,#1fa86a);color:#fff}
+  .avatar.me{background:linear-gradient(135deg,#4f74ff,#3f63f0);color:#fff}
+  .bubble-wrap{flex:1;max-width:78%;display:flex;flex-direction:column;min-width:0}
   .bubble-row.me .bubble-wrap{align-items:flex-end}
-  .name{font-size:11px;color:var(--name-txt);margin:0 4px 2px}
-  .bubble{background:var(--bubble-bg);color:var(--bubble-txt);border-radius:12px;border-top-left-radius:4px;
-          padding:9px 12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;
-          word-break:break-word;box-shadow:0 1px 1.5px rgba(0,0,0,.06);max-width:100%;
-          transition:background .25s,color .25s}
-  .bubble-row.me .bubble{background:var(--me);color:#fff;border-radius:12px;border-top-right-radius:4px}
-  .ts2{font-size:10px;color:var(--ts2-txt);margin:3px 4px 0}
+  .name{font-size:11px;color:var(--name-txt);margin:0 4px 3px}
+  .bubble{
+    background:var(--bubble-bg);color:var(--bubble-txt);border-radius:14px;border-top-left-radius:5px;
+    padding:10px 12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;
+    word-break:break-word;box-shadow:0 1px 2px rgba(0,0,0,.06);max-width:100%;
+    border:1px solid rgba(0,0,0,.03);transition:background .25s,color .25s;
+  }
+  .bubble-row.me .bubble{
+    background:linear-gradient(135deg,#4f74ff,#3f63f0);color:#fff;
+    border-radius:14px;border-top-right-radius:5px;border:0;
+  }
+  .ts2{font-size:10px;color:var(--ts2-txt);margin:4px 4px 0}
   .bubble-row.me .ts2{text-align:right}
-  /* 系统 / 错误 居中提示 */
   .sys-row{display:flex;justify-content:center;margin:10px 0}
-  .sys-pill{background:var(--sys-pill-bg);color:var(--sys-pill-txt);font-size:12px;padding:4px 10px;
-            border-radius:10px;max-width:92%;text-align:center;white-space:pre-wrap;word-break:break-word;
-            transition:background .25s,color .25s}
+  .sys-pill{
+    background:var(--sys-pill-bg);color:var(--sys-pill-txt);font-size:12px;padding:5px 11px;
+    border-radius:999px;max-width:94%;text-align:center;white-space:pre-wrap;word-break:break-word;
+    border:1px solid rgba(255,255,255,.04);transition:background .25s,color .25s;
+  }
   .sys-pill .ts2{margin:0 6px 0 0}
-  .sys-pill.error{background:var(--err-pill-bg);color:var(--err-pill-txt)}
-  /* 输入区(吸底) */
-  .composer{position:sticky;bottom:0;z-index:5;background:var(--composer-bg);border-top:1px solid var(--line);
-            border-radius:0 0 12px 12px;padding:8px 10px;transition:background .25s}
+  .sys-pill.error{background:var(--err-pill-bg);color:var(--err-pill-txt);border-color:rgba(239,91,91,.15)}
+  .composer{
+    position:sticky;bottom:0;z-index:5;background:var(--composer-bg);
+    border-top:1px solid var(--line);border-radius:0 0 14px 14px;
+    padding:10px 10px calc(10px + env(safe-area-inset-bottom));
+    backdrop-filter:blur(12px);transition:background .25s;
+  }
   .inputbar{display:flex;gap:8px;align-items:flex-end}
-  .inputbar textarea{flex:1;background:var(--panel2);color:var(--txt);
-       border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px;
-       resize:none;height:54px;font-family:inherit;transition:background .25s}
-  .inputbar button{width:64px;background:var(--me);color:#fff;border:0;border-radius:10px;
-       font-weight:600;cursor:pointer;height:54px}
-  .hint{font-size:12px;color:var(--dim);margin-top:6px}
-  a.lnk{color:#4a6cf7}
-  .hidden{display:none}
-  /* 正在输入提示 */
-  .busy-banner{display:flex;align-items:center;gap:6px;justify-content:center;
-       background:var(--busy-bg);color:var(--busy-txt);font-size:13px;font-weight:600;
-       padding:6px 12px;border-radius:10px;margin-bottom:8px}
-  .busy-banner .dot{width:6px;height:6px;border-radius:50%;background:var(--busy-txt);
-       display:inline-block;animation:bounce 1s infinite}
+  .inputbar textarea{
+    flex:1;background:var(--panel2);color:var(--txt);
+    border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:14px;
+    resize:none;height:56px;font-family:inherit;transition:background .25s,border-color .15s;
+  }
+  .inputbar textarea:focus{outline:none;border-color:rgba(79,116,255,.55);box-shadow:0 0 0 3px rgba(79,116,255,.12)}
+  .inputbar button{
+    width:68px;background:linear-gradient(135deg,#4f74ff,#3f63f0);color:#fff;border:0;border-radius:12px;
+    font-weight:750;cursor:pointer;height:56px;box-shadow:0 6px 14px rgba(79,116,255,.25);
+  }
+  .hint{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.45}
+  a.lnk{color:#4f74ff}
+  .hidden{display:none!important}
+  .busy-banner{
+    display:flex;align-items:center;gap:8px;justify-content:center;
+    background:var(--busy-bg);color:var(--busy-txt);font-size:13px;font-weight:700;
+    padding:8px 12px;border-radius:12px;margin-bottom:10px;border:1px solid rgba(79,116,255,.12);
+  }
+  .busy-banner .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--busy-txt);
+    display:inline-block;animation:bounce 1s infinite;
+  }
   @keyframes bounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-3px);opacity:1}}
-  .btn.interrupt{background:#e05a4f;flex:0 0 auto;width:auto;padding:10px 14px}
-  .btn.interrupt:active{transform:scale(.97)}
-  /* 文件上传 */
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
   .upload-row{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
-  .upload-row label{flex:0 0 auto;padding:10px 14px;border:1px dashed var(--line);
-       border-radius:8px;color:var(--dim);font-size:13px;cursor:pointer;background:var(--upload-label-bg)}
-  .upload-row .chip{background:var(--chip-bg);color:var(--flask);border:1px solid var(--flask);
-       border-radius:14px;padding:4px 10px;font-size:12px;display:flex;align-items:center;gap:6px}
+  .upload-row label{
+    flex:0 0 auto;padding:9px 12px;border:1px dashed var(--line);
+    border-radius:10px;color:var(--dim);font-size:13px;cursor:pointer;background:var(--upload-label-bg);
+  }
+  .upload-row .chip{
+    background:var(--chip-bg);color:var(--flask);border:1px solid rgba(47,206,138,.35);
+    border-radius:999px;padding:4px 10px;font-size:12px;display:flex;align-items:center;gap:6px;
+  }
   .upload-row .chip .x{cursor:pointer;color:var(--err);font-weight:700}
-  /* 被踢全屏遮罩 */
-  .mask{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;
-       display:flex;align-items:center;justify-content:center;padding:24px}
-  .mask .modal{background:var(--modal-bg);border:1px solid var(--line);border-radius:14px;
-       padding:28px 22px;max-width:340px;text-align:center;width:100%}
+  .mask{
+    position:fixed;inset:0;background:rgba(8,10,16,.62);z-index:200;
+    display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);
+  }
+  .mask .modal{
+    background:var(--modal-bg);border:1px solid var(--line);border-radius:18px;
+    padding:28px 22px;max-width:360px;text-align:center;width:100%;
+    box-shadow:0 20px 50px rgba(0,0,0,.28);
+  }
   .mask h2{margin:0 0 10px;font-size:18px;color:var(--err)}
   .mask p{margin:0 0 18px;color:var(--dim);font-size:14px}
-  .mask button{width:100%;padding:12px;border:0;border-radius:9px;background:var(--accent);
-       color:#fff;font-size:15px;font-weight:600;cursor:pointer}
-  /* 主题切换按钮 */
-  .theme-toggle{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.2);
-       border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;
-       padding:4px 10px;font-size:13px;cursor:pointer;z-index:11}
-  .theme-toggle:active{transform:scale(.95)}
+  .mask button{
+    width:100%;padding:12px;border:0;border-radius:12px;
+    background:linear-gradient(135deg,#4f74ff,#6d4df5);color:#fff;font-size:15px;font-weight:700;cursor:pointer;
+  }
+  select{
+    background:var(--panel2);color:var(--txt);border:1px solid var(--line);
+    border-radius:10px;padding:6px 8px;font-size:13px;max-width:100%;
+  }
+  #flash{
+    position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));
+    transform:translateX(-50%) translateY(12px);
+    background:rgba(20,24,34,.92);color:#fff;text-align:center;
+    padding:10px 16px;font-size:13px;z-index:99;border-radius:999px;
+    border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 30px rgba(0,0,0,.28);
+    opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90vw;
+  }
+  #flash.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .svc-grid{display:grid;gap:10px}
+  @media (min-width:720px){
+    .svc-grid{grid-template-columns:1fr 1fr}
+    .svc-grid .card.span2{grid-column:1 / -1}
+  }
 </style>
 </head>
 <body>
 <header>
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">🌙</button>
-  <h1>🎮 FlaskAPP 手机控制台</h1>
-  <div class="ip">电脑IP: {{ lan_ip }} · 控制台:{{ console_port }} · 游戏:{{ game_port }}</div>
-  <div class="ip" style="margin-top:2px">当前在线登录: <span id="login-count">-</span> 个窗口</div>
+  <div class="topbar">
+    <div class="brand">
+      <h1>🎮 手机控制台</h1>
+      <div class="ip">{{ lan_ip }} · 控制台 {{ console_port }} · 游戏 {{ game_port }}</div>
+      <div class="meta-row">
+        <span class="pill">在线 <b id="login-count">-</b> 窗口</span>
+        <span class="pill">FlaskAPP 运维面板</span>
+      </div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="切换主题">🌙</button>
+  </div>
   <button id="startall" class="btn-startall" onclick="startAll()">⚡ 一键启动 Claude + CodeBuddy + Flask</button>
   <div class="tabs">
-    <button id="tab-console" class="active" onclick="showTab('console')">控制台</button>
+    <button id="tab-console" class="active" onclick="showTab('console')">总览</button>
     <button id="tab-claude" onclick="showTab('claude')">Claude</button>
     <button id="tab-codebuddy" onclick="showTab('codebuddy')">CodeBuddy</button>
     <button id="tab-flask" onclick="showTab('flask')">Flask</button>
@@ -1527,42 +1670,50 @@ PAGE_HTML = r"""
 <main>
   <!-- 控制台总览 -->
   <section id="sec-console">
+    <div class="svc-grid">
     <div class="card">
-      <h3>Claude Code</h3>
+      <h3><span class="dot-live" id="dot-claude"></span>Claude Code</h3>
       <div class="row">
         <span id="st-claude" class="state off">● 已停止</span>
+      </div>
+      <div class="row" style="margin-top:8px">
         <button class="btn start" onclick="act('start','claude')">启动</button>
         <button class="btn stop" onclick="act('stop','claude')">停止</button>
         <button class="btn restart" onclick="act('restart','claude')">重启</button>
       </div>
-      <div class="hint">Claude 工作目录 = 项目根目录 FlaskAPP</div>
+      <div class="hint">工作目录 = FlaskAPP 项目根目录</div>
     </div>
     <div class="card">
-      <h3>CodeBuddy</h3>
+      <h3><span class="dot-live" id="dot-codebuddy"></span>CodeBuddy</h3>
       <div class="row">
         <span id="st-codebuddy" class="state off">● 已停止</span>
+      </div>
+      <div class="row" style="margin-top:8px">
         <button class="btn start" onclick="act('start','codebuddy')">启动</button>
         <button class="btn stop" onclick="act('stop','codebuddy')">停止</button>
         <button class="btn restart" onclick="act('restart','codebuddy')">重启</button>
       </div>
-      <div class="hint">CodeBuddy 工作目录 = 项目根目录 FlaskAPP</div>
+      <div class="hint">工作目录 = FlaskAPP 项目根目录</div>
     </div>
     <div class="card">
-      <h3>FlaskAPP 游戏</h3>
+      <h3><span class="dot-live" id="dot-flask"></span>Flask 游戏</h3>
       <div class="row">
         <span id="st-flask" class="state off">● 已停止</span>
+      </div>
+      <div class="row" style="margin-top:8px">
         <button class="btn start" onclick="act('start','flask')">启动</button>
         <button class="btn stop" onclick="act('stop','flask')">停止</button>
         <button class="btn restart" onclick="act('restart','flask')">重启</button>
       </div>
       <div class="row" style="margin-top:8px">
-        <a class="btn preview" href="http://{{ lan_ip }}:{{ game_port }}" target="_blank">▶ 在新页打开游戏</a>
+        <a class="btn preview" href="http://{{ lan_ip }}:{{ game_port }}" target="_blank">▶ 打开游戏页面</a>
       </div>
-      <div class="hint">手机同 WiFi 下直接访问,需先启动 Flask</div>
+      <div class="hint">手机同网访问；需先启动 Flask</div>
     </div>
-    <div class="card">
-      <h3>实时日志(全部)</h3>
+    <div class="card span2">
+      <h3>实时日志 · 全部</h3>
       <div class="chat" id="log-all"></div>
+    </div>
     </div>
   </section>
 
@@ -1917,11 +2068,11 @@ function renderMsg(termId, ts, tag, line, withMeta){
   box.scrollTop = box.scrollHeight;
 }
 function appendLog(termId, ts, tag, line){ renderMsg(termId, ts, tag, line, false); }
-function flash(msg){ /* 简单提示 */
-  let n=document.getElementById('flash'); if(!n){n=document.createElement('div');n.id='flash';
-    n.style.cssText='position:fixed;left:0;right:0;bottom:0;background:#333;color:#fff;text-align:center;padding:8px;font-size:13px;z-index:99';document.body.appendChild(n);}
-  n.textContent=msg; n.style.opacity='1';
-  clearTimeout(window._ft); window._ft=setTimeout(()=>{n.style.opacity='0';},1800);
+function flash(msg){
+  let n=document.getElementById('flash');
+  if(!n){n=document.createElement('div');n.id='flash';document.body.appendChild(n);}
+  n.textContent=msg; n.classList.add('show');
+  clearTimeout(window._ft); window._ft=setTimeout(()=>{n.classList.remove('show');},1800);
 }
 
 function refreshStatus(){
@@ -1933,13 +2084,17 @@ function refreshStatus(){
       const e=document.getElementById(id); if(!e)return;
       e.className='state '+(p.running?'on':'off');
       let extra='';
-      if(p.key==='claude' && p.running){
+      if((p.key==='claude' || p.key==='codebuddy') && p.running){
         if(p.busy) extra='<span class="pid">处理中…</span>';
         else if(p.queued) extra='<span class="pid">排队 '+p.queued+'</span>';
       } else if(p.pid){
         extra='<span class="pid">pid '+p.pid+'</span>';
       }
       e.innerHTML = p.running?('● 运行中'+extra):'● 已停止';
+      const d=document.getElementById('dot-'+p.key);
+      if(d){
+        d.className='dot-live'+(p.running?(p.busy?' busy':' on'):'');
+      }
     };
     j.procs.forEach(p=>{
       set('st-'+p.key, p);

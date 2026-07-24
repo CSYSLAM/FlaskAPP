@@ -24,84 +24,109 @@ def index():
                          area_id=area_id)
 
 
-@map_bp.route("/teleport", methods=["GET", "POST"])
+@map_bp.route("/teleport")
 @login_required
 def teleport():
-    """传送 - 前往各城市广场"""
-    player = current_user
-    msg = None
+    """传送 - 两模式：分层选择 / 出口拓扑。
 
+    参数:
+      mode=zone|topo  (默认 zone)
+      region=beiping  区域前缀
+      zone=center     分区（仅 zone 模式）
+    """
+    player = current_user
     location = DataService.get_location(player.current_location)
     if location and location.get('is_copy_map'):
         flash("副本内无法使用传送，请先离开副本")
         return redirect(url_for('game.scene'))
 
-    if request.method == "POST":
-        target = request.form.get("target")
-        if not target:
-            msg = "请选择传送目标"
-        else:
-            result = MapService.teleport(player, target)
-            msg = result['msg']
-            if result['success']:
-                flash(msg)
-                return redirect(url_for('game.scene'))
+    mode = request.args.get('mode') or 'zone'
+    if mode not in ('zone', 'topo'):
+        mode = 'zone'
+    region = request.args.get('region') or ''
+    zone = request.args.get('zone') or ''
 
-    # 获取本国副本入口列表
+    regions = MapService.list_accessible_regions(player)
+    region_keys = {r['key'] for r in regions}
+    if region and region not in region_keys:
+        flash("无权访问该区域")
+        region = ''
+
     country_entries = CopyDungeonService.get_country_dungeon_entries(player)
-
-    # 城镇区域（折叠后展开对应区域地图，可传送到区域内任意地点）
     location_id = player.current_location
-    regions = []
-    for key, loc_id in MapService.CITY_SQUARES.items():
-        loc = DataService.get_location(loc_id)
-        if not loc:
-            continue
-        area_id = loc.get('area_id', '')
-        label = loc.get('area_name') or key
-        scenes = MapService.get_area_scenes(area_id)
-        regions.append({
-            'key': key,
-            'label': label,
-            'square_id': loc_id,
-            'scenes': scenes,
-            'is_current': location_id in [s['id'] for s in scenes],
-        })
+    cur_area = (location or {}).get('area_id', '')
+    cur_region = MapService.region_key_of(cur_area)
 
-    # 职业地图
-    prof_list = [
-        {'target': '神农架', 'label': '神农架(战士)'},
-        {'target': '昆仑', 'label': '昆仑山(术士)'},
-        {'target': '倭寇岛', 'label': '倭寇岛(刺客)'},
-    ]
+    zones = []
+    scenes = []
+    topo_scenes = []
+    selected_region = next((r for r in regions if r['key'] == region), None)
+    selected_zone = None
+    selected_area_id = ''
 
-    return render_template("map_teleport.html", player=player, msg=msg,
-                         regions=regions,
-                         prof_list=prof_list,
-                         country_entries=country_entries,
-                         location_id=location_id)
+    if region and selected_region:
+        zones = selected_region.get('zones') or MapService.list_region_zones(region)
+        if mode == 'zone':
+            # 无分区（如昆仑）直接进场景列表
+            if not selected_region.get('has_zones') and zones:
+                selected_zone = zones[0]
+                selected_area_id = selected_zone['area_id']
+                scenes = MapService.get_area_scenes_sorted(selected_area_id, location_id)
+            elif zone:
+                selected_zone = next(
+                    (z for z in zones if z['zone'] == zone or z['area_id'] == zone),
+                    None,
+                )
+                if selected_zone:
+                    selected_area_id = selected_zone['area_id']
+                    scenes = MapService.get_area_scenes_sorted(selected_area_id, location_id)
+                else:
+                    flash("分区不存在")
+                    zone = ''
+        else:
+            topo_scenes = MapService.get_region_topology_scenes(region, location_id)
+
+    return render_template(
+        "map_teleport.html",
+        player=player,
+        mode=mode,
+        regions=regions,
+        region=region,
+        zone=zone,
+        zones=zones,
+        scenes=scenes,
+        topo_scenes=topo_scenes,
+        selected_region=selected_region,
+        selected_zone=selected_zone,
+        selected_area_id=selected_area_id,
+        country_entries=country_entries,
+        location_id=location_id,
+        cur_region=cur_region,
+        cur_area=cur_area,
+        MapService=MapService,
+    )
 
 
 @map_bp.route("/goto_scene/<path:scene_id>")
 @login_required
 def goto_scene(scene_id):
-    """传送到指定场景（用于副本入口传送）"""
+    """传送到指定场景（分层选择 / 拓扑 / 副本入口）"""
     player = current_user
     location = DataService.get_location(player.current_location)
     if location and location.get('is_copy_map'):
         flash("副本内无法使用传送，请先离开副本")
         return redirect(url_for('game.scene'))
-    result = MapService.teleport_to_scene(player, scene_id)
+    result = MapService.teleport_to_scene_checked(player, scene_id)
     flash(result['msg'])
     if result['success']:
         return redirect(url_for('game.scene'))
-    return redirect(url_for('map.teleport'))
+    return redirect(url_for('map.teleport', mode=request.args.get('mode') or 'zone'))
 
 
 @map_bp.route("/teleport_go/<target>")
 @login_required
 def teleport_go(target):
-    """传送链接点击 - 直接传送"""
+    """兼容旧链接：按城市名直传到广场"""
     player = current_user
     location = DataService.get_location(player.current_location)
     if location and location.get('is_copy_map'):
@@ -133,7 +158,6 @@ def town():
         flash(msg)
         return redirect(url_for('game.scene'))
 
-    # 失败时留在回城界面显示消息
     return render_template("map_town.html", player=player, msg=msg, location=location)
 
 

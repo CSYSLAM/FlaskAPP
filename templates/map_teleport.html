@@ -5,68 +5,151 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>传送</title>
 <style>
-body { font-size: 16px; }
-a:link { color: #136ec2; text-decoration: none; }
-details { border: 1px solid #ccc; margin: 4px 0; padding: 2px 6px; }
-summary { cursor: pointer; font-weight: bold; }
-summary .cur { color: #00FFFF; }
-.scene-list { font-size: 14px; line-height: 1.9; }
-.scene-list a.cur { color: #00FFFF; font-weight: bold; }
-#loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 9999; }
-#loading span { display: block; width: 40px; height: 40px; margin: 40vh auto; border: 4px solid #fff; border-top-color: #136ec2; border-radius: 50%; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
+body { font-size:16px; line-height:1.65; }
+a:link { color:#136ec2; text-decoration:none; }
+.top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+.mode-switch a {
+  display:inline-block; padding:3px 10px; border:1px solid #136ec2; border-radius:12px;
+  font-size:13px; margin-left:4px;
+}
+.mode-switch a.on { background:#136ec2; color:#fff; }
+.cur { color:#00a0a0; font-weight:bold; }
+.tag { color:#888; font-size:13px; }
+.muted { color:#888; font-size:13px; }
+.crumb { font-size:14px; color:#555; margin:4px 0 8px; }
+.block { margin:6px 0 10px; }
+.item { margin:2px 0; }
+.scene-list { font-size:15px; line-height:1.9; }
+.scene-list a.cur { color:#00a0a0; font-weight:bold; }
+.exits { color:#555; font-size:13px; }
+#loading { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.3); z-index:9999; }
+#loading span { display:block; width:40px; height:40px; margin:40vh auto; border:4px solid #fff; border-top-color:#136ec2; border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
 </style>
 </head>
 <body style="margin-left:10px;margin-right:10px">
-
 <div id="loading"><span></span></div>
 
-<a href="{{ url_for('map.index') }}">返回地图</a><br/>
-<br/>
-{% if msg %}
-<font color="red">{{ msg }}</font><br/>
-<br/>
-{% endif %}
-{% if player.is_vip %}
-<font color="red">VIP尊享免费传送</font><br/>
-{% else %}
-<font color="red">非VIP每次传送消耗孔明灯1个</font><br/>
-{% endif %}
-<br/>
-点击区域展开对应区域地图，选择地点传送（青色为当前所在）：<br/>
-<br/>
-
-{% for r in regions %}
-<details>
-  <summary>{{ r.label }}{% if r.is_current %} <span class="cur">· 当前</span>{% endif %}</summary>
-  <a href="{{ url_for('map.teleport_go', target=r.key) }}">传送到{{ r.label }}广场</a><br/>
-  <div class="scene-list">
-  {% for s in r.scenes %}
-    <a href="{{ url_for('map.goto_scene', scene_id=s.id) }}"{% if s.id == location_id %} class="cur"{% endif %}>{{ s.name }}</a>{% if not loop.last %}、{% endif %}
-  {% endfor %}
+<div class="top">
+  <div>
+    <a href="{{ url_for('map.index') }}">返回地图</a>
   </div>
-</details>
+  <div class="mode-switch">
+    <a href="{{ url_for('map.teleport', mode='zone', region=region or None) }}" class="{% if mode=='zone' %}on{% endif %}">分层</a>
+    <a href="{{ url_for('map.teleport', mode='topo', region=region or None) }}" class="{% if mode=='topo' %}on{% endif %}">拓扑</a>
+  </div>
+</div>
+
+传送<br/>
+----------------<br/>
+{% if player.is_vip %}
+<span style="color:#c00;">VIP尊享免费传送</span><br/>
+{% else %}
+<span style="color:#c00;">非VIP每次传送消耗孔明灯×1</span><br/>
+{% endif %}
+<span class="muted">仅本国城市 + 中立开放区；副本入口单独列出</span><br/>
+----------------<br/>
+
+{% if mode == 'zone' %}
+{# ========== 模式一：区域 → 分区 → 场景 ========== #}
+{% if not region %}
+<span class="crumb">① 选择区域</span><br/>
+<div class="block">
+{% for r in regions %}
+<div class="item">
+  <a href="{{ url_for('map.teleport', mode='zone', region=r.key) }}">{{ r.name }}</a>
+  <span class="tag">[{{ r.tag }}]</span>
+  {% if r.key == cur_region %}<span class="cur">·当前</span>{% endif %}
+</div>
+{% else %}
+<span class="muted">暂无可传送区域</span><br/>
 {% endfor %}
-
-<details>
-  <summary>职业地图（稀有精怪需对应职业）</summary>
-  {% for p in prof_list %}
-  <a href="{{ url_for('map.teleport_go', target=p.target) }}">{{ p.label }}</a><br/>
-  {% endfor %}
-</details>
-
-<details>
-  <summary>副本入口</summary>
-  {% if country_entries %}
-  {% for did, dname, sid, sname in country_entries %}
-  <a href="{{ url_for('map.goto_scene', scene_id=sid) }}">{{ dname }}</a>({{ sname }})<br/>
-  {% endfor %}
-  {% else %}
-  暂无可用的本国副本入口<br/>
+</div>
+{% elif selected_region and selected_region.has_zones and not selected_zone %}
+<span class="crumb">
+  <a href="{{ url_for('map.teleport', mode='zone') }}">区域</a>
+  › {{ selected_region.name }}
+  · ② 选择分区
+</span><br/>
+<div class="block">
+{% for z in zones %}
+<div class="item">
+  <a href="{{ url_for('map.teleport', mode='zone', region=region, zone=z.zone or z.area_id) }}">{{ z.name }}</a>
+  {% if z.area_id == cur_area %}<span class="cur">·当前</span>{% endif %}
+</div>
+{% endfor %}
+</div>
+{% else %}
+<span class="crumb">
+  <a href="{{ url_for('map.teleport', mode='zone') }}">区域</a>
+  {% if selected_region %}
+  › <a href="{{ url_for('map.teleport', mode='zone', region=region) }}">{{ selected_region.name }}</a>
   {% endif %}
-</details>
+  {% if selected_zone and selected_region and selected_region.has_zones %}
+  › {{ selected_zone.name }}
+  {% endif %}
+  · ③ 选择场景传送
+</span><br/>
+<div class="block scene-list">
+{% for s in scenes %}
+<a href="{{ url_for('map.goto_scene', scene_id=s.id, mode='zone') }}"{% if s.id == location_id %} class="cur"{% endif %}>{{ s.name }}</a>{% if not loop.last %} · {% endif %}
+{% else %}
+<span class="muted">该分区暂无场景</span>
+{% endfor %}
+</div>
+{% endif %}
 
-<br/>
+{% else %}
+{# ========== 模式二：区域 → 按出口拓扑列场景 ========== #}
+{% if not region %}
+<span class="crumb">① 选择区域（按出口关系展开）</span><br/>
+<div class="block">
+{% for r in regions %}
+<div class="item">
+  <a href="{{ url_for('map.teleport', mode='topo', region=r.key) }}">{{ r.name }}</a>
+  <span class="tag">[{{ r.tag }}]</span>
+  {% if r.key == cur_region %}<span class="cur">·当前</span>{% endif %}
+</div>
+{% else %}
+<span class="muted">暂无可传送区域</span><br/>
+{% endfor %}
+</div>
+{% else %}
+<span class="crumb">
+  <a href="{{ url_for('map.teleport', mode='topo') }}">区域</a>
+  › {{ selected_region.name if selected_region else region }}
+  · 按出口连通列出场景，点击传送
+</span><br/>
+<div class="block">
+{% for s in topo_scenes %}
+<div class="item">
+  <a href="{{ url_for('map.goto_scene', scene_id=s.id, mode='topo') }}"{% if s.id == location_id %} class="cur"{% endif %}>{{ s.name }}</a>
+  {% if s.area_name %}<span class="tag">{{ s.area_name }}</span>{% endif %}
+  {% if s.id == location_id %}<span class="cur">·当前</span>{% endif %}
+  {% if s.exits %}
+  <div class="exits">
+    {% for e in s.exits %}{{ e.dir }}→{{ e.name }}{% if not loop.last %} · {% endif %}{% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% else %}
+<span class="muted">该区域暂无场景</span><br/>
+{% endfor %}
+</div>
+{% endif %}
+{% endif %}
+
+----------------<br/>
+副本入口（本国/中立）<br/>
+{% if country_entries %}
+{% for did, dname, sid, sname in country_entries %}
+<a href="{{ url_for('map.goto_scene', scene_id=sid, mode=mode) }}">{{ dname }}</a>
+<span class="tag">({{ sname }})</span><br/>
+{% endfor %}
+{% else %}
+<span class="muted">暂无可用的本国副本入口</span><br/>
+{% endif %}
+----------------<br/>
 <a href="{{ url_for('map.index') }}">返回上级</a><br/>
 <a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
 

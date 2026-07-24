@@ -5,16 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FlaskAPP 运行状态(只读看板)</title>
 <style>
-  :root{--bg:#0f1115;--panel:#181b22;--line:#2a2f3a;--txt:#e6e8ee;--dim:#8a93a6;
-        --on:#7fd1b9;--off:#5a6377;--busy:#ffb454;--danger:#ff8b8b}
+  :root{--bg:#0a0c12;--panel:#171b25;--line:#2a3142;--txt:#e9edf7;--dim:#8d97ad;
+        --on:#2fce8a;--off:#5b6478;--busy:#f0b429;--danger:#ef5b5b}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--txt);
+  body{margin:0;background:
+         radial-gradient(700px 280px at 0% -10%,rgba(79,116,255,.18),transparent 55%),
+         radial-gradient(520px 240px at 100% 0%,rgba(139,92,246,.14),transparent 50%),
+         var(--bg);
+       color:var(--txt);
        font:15px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        padding:20px;max-width:720px;margin:0 auto}
-  h1{font-size:18px;margin:0 0 4px}
+  h1{font-size:18px;margin:0 0 4px;font-weight:750}
   .sub{color:var(--dim);font-size:13px;margin-bottom:18px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
-        padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+        padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;
+        box-shadow:0 8px 24px rgba(0,0,0,.18)}
   .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto;background:var(--off)}
   .dot.on{background:var(--on);box-shadow:0 0 8px var(--on)}
   .dot.busy{background:var(--busy);box-shadow:0 0 8px var(--busy);animation:pulse 1s infinite}
