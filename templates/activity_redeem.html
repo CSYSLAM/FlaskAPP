@@ -8,17 +8,19 @@
 body { font-size:16px; line-height:1.6; }
 a:link { color:#136ec2; text-decoration:none; }
 .muted { color:#888; font-size:14px; }
+.cur { color:#c00; font-weight:bold; }
 </style>
 </head>
 <body style='margin-left:10px;margin-right:10px'>
-凭证兑奖 <a href="{{ url_for('activity.barbarian_index') }}">返回</a><br/>
+凭证兑奖 <a href="{{ url_for('activity.redeem') }}">返回</a><br/>
 ----------------<br/>
 绑定、混合材料兑换绑定，非绑兑换非绑。<br/>
 [活]来袭凭证:{{ balance }}<br/>
-其他|<a href="{{ url_for('player.inventory') }}">背包</a><br/>
+{% for c in ['其他','装备','辅助'] %}{% if c == cat %}<span class="cur">[{{ c }}]</span>{% else %}<a href="{{ url_for('activity.redeem_credentials', cat=c) }}">{{ c }}</a>{% endif %}{% if not loop.last %}|{% endif %}{% endfor %}<br/>
 名称|价格<br/>
 {% for e in catalog %}
 <form action="{{ url_for('activity.do_redeem', item_id=e.item_id) }}" method="post">
+<input type="hidden" name="cat" value="{{ cat }}">
 {{ e.name }}|{{ e.price }}凭证
 <input type="text" name="qty" placeholder="数量" maxlength="5" style="width:50px;" value="1">
 <input type="submit" value="兑换">
@@ -28,15 +30,14 @@ a:link { color:#136ec2; text-decoration:none; }
 ----------------<br/>
 {% if has_key %}
 <form action="{{ url_for('activity.open_box') }}" method="post">
-<input type="submit" value="开启[活]蛮夷宝箱">
+<input type="hidden" name="cat" value="{{ cat }}">
+<input type="submit" value="开启蛮夷宝箱/宝匣">
 </form>
 {% else %}
-<span class="muted">开启[活]蛮夷宝箱需要1个[活]宝箱钥匙（蛮夷怪物掉落）</span><br/>
+<span class="muted">开启蛮夷宝箱/宝匣需要1个宝匣钥匙</span><br/>
 {% endif %}
 {% endif %}
 <br/>
-<a href="{{ url_for('activity.barbarian_forge') }}">菊香神炉打造<br/></a>
-<a href="{{ url_for('activity.barbarian_index') }}">返回蛮夷入口<br/></a>
 <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 </body>
 </html>

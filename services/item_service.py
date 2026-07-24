@@ -56,14 +56,17 @@ class ItemService:
             ok, msg = BarbarianService.open_chest(player)
             return ok, msg
 
-        # Special: barbarian_tujian — 南北图鉴使用：随机获得20-40来袭凭证，1/200几率获得菊香神套打造图纸
+        # Special: barbarian_tujian — 南北图鉴使用：随机获得20-40来袭凭证，1/200几率获得菊香神套（随机部位）图纸
         if usage_effect.get("special") == "barbarian_tujian":
             credits = random.randint(20, 40)
             DataService.add_item_to_inventory(player.id, 'laiqin_pingzheng', credits)
             msgs = [f"获得来袭凭证×{credits}"]
             if random.random() < (1.0 / 200):
-                DataService.add_item_to_inventory(player.id, 'juxiang_forge_blueprint', 1)
-                msgs.append("获得菊香神套打造图纸")
+                from services.barbarian_service import BarbarianService, JUXIANG_BLUEPRINT
+                bp = random.choice(list(JUXIANG_BLUEPRINT.values()))
+                bp_name = (DataService.get_item(bp) or {}).get('name', bp)
+                DataService.add_item_to_inventory(player.id, bp, 1)
+                msgs.append(f"获得{bp_name}")
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
             db.session.commit()
             return True, "；".join(msgs)
@@ -83,14 +86,17 @@ class ItemService:
             db.session.commit()
             return True, "使用免战符，30分钟内其他玩家无法对你发起PK"
 
-        # Special: barbarian_tujian — 蛮夷图鉴使用：随机获得20-40来袭凭证，1/200概率获得菊香神套图纸
+        # Special: barbarian_tujian — 蛮夷图鉴使用：随机获得20-40来袭凭证，1/200概率获得菊香神套（随机部位）图纸
         if usage_effect.get("special") == "barbarian_tujian":
             cred = random.randint(20, 40)
             DataService.add_item_to_inventory(player.id, 'laiqin_pingzheng', cred)
             msg = f"研读图鉴，获得来袭凭证×{cred}"
             if random.random() < (1.0 / 200):
-                DataService.add_item_to_inventory(player.id, 'juxiang_forge_blueprint', 1)
-                msg += "，并意外获得【活】菊香神套打造图纸！"
+                from services.barbarian_service import BarbarianService, JUXIANG_BLUEPRINT
+                bp = random.choice(list(JUXIANG_BLUEPRINT.values()))
+                bp_name = (DataService.get_item(bp) or {}).get('name', bp)
+                DataService.add_item_to_inventory(player.id, bp, 1)
+                msg += f"，并意外获得{bp_name}！"
             DataService.remove_item_from_inventory(player.id, item_id, 1, is_bound=bound)
             db.session.commit()
             return True, msg

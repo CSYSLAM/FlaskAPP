@@ -4056,13 +4056,21 @@
       "special": "barbarian_tujian"
     }
   },
-  "manyi_baoxia": {
-    "name": "[活]蛮夷宝箱",
-    "type": "material",
-    "description": "开启需1个[活]宝箱钥匙，开启后获得少量经验银两，必得南/北蛮图鉴，几率获得蛮夷神武、菊香神套。可在活动·凭证兑奖处兑换后于本页开启",
+  "manyi_baoxiang": {
+    "name": "蛮夷宝匣",
+    "type": "chest",
+    "description": "蛮夷入侵掉落的宝匣，使用1个宝匣钥匙可开启，获得少量经验银两、必得南/北蛮图鉴，几率获得蛮夷神武、菊香防具神器。",
     "price": 1,
-    "is_usable": false,
-    "capacity": 0
+    "is_usable": true,
+    "capacity": 0,
+    "usage_condition": {
+      "required_items": {
+        "chest_key": 1
+      }
+    },
+    "usage_effect": {
+      "open_barbarian_box": true
+    }
   },
   "qianghua_baoyu": {
     "name": "强化宝玉",
@@ -4113,18 +4121,42 @@
       "special": "barbarian_tujian"
     }
   },
-  "manyi_baoxiang_key": {
-    "name": "[活]宝箱钥匙",
+  "juxiang_hue_tuzhi": {
+    "name": "菊香护额图纸",
     "type": "material",
-    "description": "开启[活]蛮夷宝箱所需的钥匙",
+    "description": "菊香防具神器图纸",
     "price": 1,
     "is_usable": false,
     "capacity": 0
   },
-  "juxiang_forge_blueprint": {
-    "name": "[活]菊香神套图纸",
+  "juxiang_changju_tuzhi": {
+    "name": "菊香长袍图纸",
     "type": "material",
-    "description": "用于铁匠铺·菊香神炉打造25级菊香神套的图纸",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_changmao_tuzhi": {
+    "name": "菊香长裤图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_huwan_tuzhi": {
+    "name": "菊香护手图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
+    "price": 1,
+    "is_usable": false,
+    "capacity": 0
+  },
+  "juxiang_duanyue_tuzhi": {
+    "name": "菊香短靴图纸",
+    "type": "material",
+    "description": "菊香防具神器图纸",
     "price": 1,
     "is_usable": false,
     "capacity": 0

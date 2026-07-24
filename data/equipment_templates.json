@@ -107,7 +107,7 @@
   },
   "shenqi_lianyuegou": {
     "name": "连月钩",
-    "description": "南蛮入侵掉落的神器武器（10级）",
+    "description": "蛮夷入侵掉落的蛮夷神武（10级）",
     "slot": "weapon",
     "is_bound": false,
     "level_required": 10,
@@ -129,7 +129,7 @@
   },
   "shenqi_cuiminggou": {
     "name": "催命钩",
-    "description": "南蛮入侵掉落的神器武器（15级）",
+    "description": "蛮夷入侵掉落的蛮夷神武（15级）",
     "slot": "weapon",
     "is_bound": false,
     "level_required": 15,
@@ -151,7 +151,7 @@
   },
   "shenqi_duanhungou": {
     "name": "断魂钩",
-    "description": "南蛮入侵掉落的神器武器（20级）",
+    "description": "蛮夷入侵掉落的蛮夷神武（20级）",
     "slot": "weapon",
     "is_bound": false,
     "level_required": 20,
@@ -173,7 +173,7 @@
   },
   "shenqi_shixiegou": {
     "name": "嗜血钩",
-    "description": "南蛮入侵掉落的神器武器（25级）",
+    "description": "蛮夷入侵掉落的蛮夷神武（25级）",
     "slot": "weapon",
     "is_bound": false,
     "level_required": 25,
@@ -195,7 +195,7 @@
   },
   "shenqi_libiegou": {
     "name": "离别钩",
-    "description": "南蛮入侵掉落的神器武器（30级）",
+    "description": "蛮夷入侵掉落的蛮夷神武（30级）",
     "slot": "weapon",
     "is_bound": false,
     "level_required": 30,
@@ -217,7 +217,7 @@
   },
   "juxiang_hue": {
     "name": "菊香护额",
-    "description": "25级菊香神套部件（神器防具·头部）",
+    "description": "25级菊香防具神器（神器防具·头部）",
     "slot": "head",
     "is_bound": false,
     "level_required": 25,
@@ -239,7 +239,7 @@
   },
   "juxiang_changju": {
     "name": "菊香长袍",
-    "description": "25级菊香神套部件（神器防具·身体）",
+    "description": "25级菊香防具神器（神器防具·身体）",
     "slot": "body",
     "is_bound": false,
     "level_required": 25,
@@ -261,7 +261,7 @@
   },
   "juxiang_changmao": {
     "name": "菊香长裤",
-    "description": "25级菊香神套部件（神器防具·腿部）",
+    "description": "25级菊香防具神器（神器防具·腿部）",
     "slot": "legs",
     "is_bound": false,
     "level_required": 25,
@@ -284,7 +284,7 @@
   },
   "juxiang_huwan": {
     "name": "菊香护手",
-    "description": "25级菊香神套部件（神器防具·手部）",
+    "description": "25级菊香防具神器（神器防具·手部）",
     "slot": "hands",
     "is_bound": false,
     "level_required": 25,
@@ -306,7 +306,7 @@
   },
   "juxiang_duanyue": {
     "name": "菊香短靴",
-    "description": "25级菊香神套部件（神器防具·足部）",
+    "description": "25级菊香防具神器（神器防具·足部）",
     "slot": "boots",
     "is_bound": false,
     "level_required": 25,

@@ -3298,6 +3298,18 @@
       },
       "points": 30,
       "description": "拥有一件绑定的【神器】离别钩，神器装备可在背包绑定"
+    },
+    "item_manyi_baoxiang": {
+      "name": "蛮夷宝箱收藏家",
+      "category": "道具",
+      "condition_type": "item_use",
+      "condition_value": 10,
+      "tracking_keys": ["manyi_baoxiang"],
+      "reward": {
+        "max_health": 10
+      },
+      "points": 20,
+      "description": "开启蛮夷宝匣共10次"
     }
   }
 }

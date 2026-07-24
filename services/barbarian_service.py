@@ -75,7 +75,7 @@ REDEEM_CATALOG = [
     {'item_id': 'title_prefix_minzu', 'name': '称号卷轴-民族义士', 'price': 800, 'kind': 'item'},
     {'item_id': 'qianghua_baoyu',     'name': '强化宝玉',            'price': 100, 'kind': 'item'},
     {'item_id': 'juhunfan_suipian',   'name': '聚魂幡碎片',          'price': 150, 'kind': 'item'},
-    {'item_id': 'manyi_baoxia',       'name': '[活]蛮夷宝箱',        'price': 30,  'kind': 'item'},
+    {'item_id': 'manyi_baoxiang',     'name': '蛮夷宝匣',            'price': 30,  'kind': 'item'},
     {'item_id': 'shenqi_lianyuegou',  'name': '【神器】连月钩', 'price': 1000, 'kind': 'equip', 'template_id': 'shenqi_lianyuegou',  'star_min': 1, 'star_max': 5},
     {'item_id': 'shenqi_cuiminggou',  'name': '【神器】催命钩', 'price': 1200, 'kind': 'equip', 'template_id': 'shenqi_cuiminggou', 'star_min': 1, 'star_max': 5},
     {'item_id': 'shenqi_duanhungou',  'name': '【神器】断魂钩', 'price': 1200, 'kind': 'equip', 'template_id': 'shenqi_duanhungou', 'star_min': 1, 'star_max': 5},
@@ -92,10 +92,18 @@ REDEEM_CATALOG = [
 # 蛮夷宝箱开启：神武 / 菊香神套 池
 SHENQI_POOL = ['shenqi_lianyuegou', 'shenqi_cuiminggou', 'shenqi_duanhungou', 'shenqi_shixiegou', 'shenqi_libiegou']
 JUXIANG_POOL = ['juxiang_hue', 'juxiang_changju', 'juxiang_changmao', 'juxiang_huwan', 'juxiang_duanyue']
-BOX_ITEM_ID = 'manyi_baoxia'            # [活]蛮夷宝箱（由凭证兑奖兑换）
-CHEST_KEY_ITEM = 'manyi_baoxiang_key'  # [活]宝箱钥匙（由蛮夷怪物掉落）
-# 菊香神炉打造消耗
-FORGE_COST = {'juxiang_forge_blueprint': 1, 'juhunfan_suipian': 5, 'qianghua_baoyu': 5}
+# 菊香防具神器模板 -> 对应打造图纸（五个部位各一张，由南北图鉴随机获得）
+JUXIANG_BLUEPRINT = {
+    'juxiang_hue': 'juxiang_hue_tuzhi',        # 护额
+    'juxiang_changju': 'juxiang_changju_tuzhi',  # 长袍
+    'juxiang_changmao': 'juxiang_changmao_tuzhi',  # 长裤
+    'juxiang_huwan': 'juxiang_huwan_tuzhi',      # 护手
+    'juxiang_duanyue': 'juxiang_duanyue_tuzhi',  # 短靴
+}
+BOX_ITEM_ID = 'manyi_baoxiang'         # 蛮夷宝匣（怪物掉落 / 凭证兑奖均可获取）
+CASKET_ITEM_ID = 'manyi_baoxiang'       # 蛮夷宝匣（统一为单一宝箱，避免重复）
+CHEST_KEY_ITEM = 'chest_key'            # 宝匣钥匙（游戏内通用钥匙）
+# 菊香神套打造成功率（消耗图纸 + 对应25级装备材料 + 银两）
 FORGE_SUCCESS_RATE = 0.50
 
 
@@ -366,13 +374,20 @@ class BarbarianService:
     def open_chest(cls, player):
         from services.data_service import DataService
         from services.equipment_service import EquipmentService
-        box = DataService.get_inventory_item(player.id, BOX_ITEM_ID)
+        # 优先开启掉落的蛮夷宝匣，其次凭证兑奖兑换的[活]蛮夷宝箱
+        box_id = CASKET_ITEM_ID
+        box = DataService.get_inventory_item(player.id, box_id)
         if not box or box.quantity < 1:
-            return False, "没有可用的[活]蛮夷宝箱（请到凭证兑奖处兑换）"
+            box_id = BOX_ITEM_ID
+            box = DataService.get_inventory_item(player.id, box_id)
+        if not box or box.quantity < 1:
+            return False, "没有可用的蛮夷宝匣或[活]蛮夷宝箱（可在凭证兑奖处兑换[活]蛮夷宝箱）"
+        box_name = (DataService.get_item(box_id) or {}).get('name', box_id)
         key = DataService.get_inventory_item(player.id, CHEST_KEY_ITEM)
         if not key or key.quantity < 1:
-            return False, "开启[活]蛮夷宝箱需要1个[活]宝箱钥匙（蛮夷怪物掉落）"
-        DataService.remove_item_from_inventory(player.id, BOX_ITEM_ID, 1)
+            key_name = (DataService.get_item(CHEST_KEY_ITEM) or {}).get('name', CHEST_KEY_ITEM)
+            return False, f"开启{box_name}需要1个{key_name}"
+        DataService.remove_item_from_inventory(player.id, box_id, 1)
         DataService.remove_item_from_inventory(player.id, CHEST_KEY_ITEM, 1)
 
         gold = random.randint(500, 3000)
@@ -406,37 +421,67 @@ class BarbarianService:
                 db.session.add(equip)
                 db.session.flush()
                 DataService.add_item_to_inventory(player.id, equip.instance_id)
-                msgs.append("获得菊香神套部件")
+                msgs.append("获得菊香防具神器")
 
+        # 记录使用成就（背包使用与凭证兑奖页开启均走此路径）
+        usage = player.item_usage or {}
+        usage[box_id] = usage.get(box_id, 0) + 1
+        player.item_usage = usage
         db.session.commit()
+        from services.achievement_service import AchievementService
+        AchievementService.check(player, 'item_use')
         cls._trigger_achievements(player)
+        db.session.commit()
         return True, "；".join(msgs)
 
     # 兼容旧路由名
     open_box = open_chest
 
-    # ---------- 菊香神炉打造 ----------
+    # ---------- 菊香神套打造 ----------
     @classmethod
-    def forge_juxiang(cls, player):
-        """铁砧铺·菊香神炉：消耗 图纸×1 + 聚魂幡碎片×5 + 强化宝玉×5，50% 成功。"""
+    def forge_juxiang(cls, player, template_id):
+        """铁匠铺·菊香神套：消耗对应部位图纸×1 + 该部位25级装备打造材料 + 银两，50% 打造成功。
+
+        材料消耗沿用 CraftingService 对 25 级装备的标准配方（碎皮/麻布/黄杨木/黄铜矿×20 + 银两），
+        不再使用聚魂幡碎片与强化宝玉。
+        """
+        if template_id not in JUXIANG_BLUEPRINT:
+            return False, "未知的菊香防具神器部件"
         from services.data_service import DataService
         from services.equipment_service import EquipmentService
-        for item_id, need in FORGE_COST.items():
+        from services.crafting_service import CraftingService
+
+        blueprint = JUXIANG_BLUEPRINT[template_id]
+        template = DataService.get_equipment_template(template_id)
+        if not template:
+            return False, "装备模板不存在"
+        # 标准 25 级装备打造配方（材料 + 银两）
+        cost = CraftingService.get_material_cost(template) or {"items": {}, "silver": 0}
+        need_items = dict(cost.get("items", {}))
+        need_items[blueprint] = need_items.get(blueprint, 0) + 1
+        need_silver = cost.get("silver", 0)
+
+        # 校验材料
+        for item_id, need in need_items.items():
             inv = DataService.get_inventory_item(player.id, item_id)
             have = inv.quantity if inv else 0
             if have < need:
                 item_name = (DataService.get_item(item_id) or {}).get('name', item_id)
                 return False, f"材料不足：{item_name} 需 {need}，现有 {have}"
-        # 扣除材料
-        for item_id, need in FORGE_COST.items():
+        if player.gold < need_silver:
+            return False, f"银两不足，需要 {need_silver} 银两"
+
+        # 扣除材料与银两
+        for item_id, need in need_items.items():
             DataService.remove_item_from_inventory(player.id, item_id, need)
+        if need_silver:
+            player.gold -= need_silver
 
         if random.random() >= FORGE_SUCCESS_RATE:
             db.session.commit()
-            return False, "菊香神炉打造失败，材料已消耗"
+            return False, "菊香神套打造失败，材料已消耗"
 
-        tmpl = random.choice(JUXIANG_POOL)
-        equip = EquipmentService.generate_random_equipment(player.id, tmpl, rarity='神器')
+        equip = EquipmentService.generate_random_equipment(player.id, template_id, rarity='神器')
         if equip:
             equip.is_bound = True
             db.session.add(equip)
@@ -444,9 +489,9 @@ class BarbarianService:
             DataService.add_item_to_inventory(player.id, equip.instance_id)
             db.session.commit()
             cls._trigger_achievements(player)
-            return True, f"菊香神炉打造成功，获得{equip.name}"
+            return True, f"菊香神套打造成功，获得{equip.name}"
         db.session.commit()
-        return False, "菊香神炉打造失败，材料已消耗"
+        return False, "菊香神套打造失败，材料已消耗"
 
     # ---------- 管理：手动刷新 / 清零 ----------
     @classmethod

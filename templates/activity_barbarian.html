@@ -8,16 +8,50 @@
 body { font-size:16px; line-height:1.6; }
 a:link { color:#136ec2; text-decoration:none; }
 .muted { color:#888; font-size:14px; }
+.tip { color:#555; font-size:13px; }
+.cur { color:#c00; font-weight:bold; }
 </style>
 </head>
 <body style='margin-left:10px;margin-right:10px'>
 蛮夷入侵 <a href="{{ url_for('activity.index') }}">返回</a><br/>
 ----------------<br/>
-<a href="{{ url_for('activity.barbarian_invasion', side='南') }}">南蛮入侵</a><br/>
-<a href="{{ url_for('activity.barbarian_invasion', side='北') }}">北夷入侵</a><br/>
+{% if side=='南' %}南蛮活动{% else %}<a href="{{ url_for('activity.barbarian_index', side='南') }}">南蛮活动</a>{% endif %}
+|
+{% if side=='北' %}北夷活动{% else %}<a href="{{ url_for('activity.barbarian_index', side='北') }}">北夷活动</a>{% endif %}
+<br/>
+<a href="{{ url_for('activity.barbarian_guide') }}">玩法公告</a><br/>
 ----------------<br/>
-<a href="{{ url_for('activity.redeem') }}">凭证兑奖</a><br/>
-<a href="{{ url_for('activity.barbarian_forge') }}">菊香神炉</a><br/>
+本国士卒剩余:{{ state.soldiers }} 只<br/>
+{% if state.soldiers <= 0 %}<span class="tip">（士卒已清零，等待刷新或管理员补满）</span><br/>{% endif %}
+----------------<br/>
+首领:<br/>
+{% for l in state.leaders %}
+{{ l.name }}({{ l.level }}级) -
+{% if l.status == 'alive' %}<span style="color:#c00;">可挑战</span>{% else %}<span class="muted">复苏中</span>{% endif %}
+<br/>
+<span class="tip">{{ l.drop_text }}</span><br/>
+{% endfor %}
+----------------<br/>
+<small>
+一、{{ '南蛮' if side=='南' else '北夷' }}活动怪物，无掉落、击杀限制<br/>
+二、{{ '南蛮' if side=='南' else '北夷' }}士卒定时刷新、清零，每次刷新300只；活动界面仅显示本国数量<br/>
+三、10-29级玩家，在非安全区地图移动，有几率遭遇{{ '南蛮' if side=='南' else '北夷' }}士卒<br/>
+四、30级以上玩家，有几率遭遇{{ '南蛮' if side=='南' else '北夷' }}铁骑<br/>
+五、{{ '南蛮' if side=='南' else '北夷' }}首领定时刷新，活动界面仅显示本国首领状态<br/>
+六、同类活动开始时将清理上个活动首领<br/>
+</small>
+----------------<br/>
+{% if player.is_designer %}
+----------------<br/>
+<form action="{{ url_for('activity.barbarian_admin_refresh') }}" method="post">
+<input type="hidden" name="side" value="{{ side }}">
+<input type="submit" value="管理员刷新">
+</form>
+<form action="{{ url_for('activity.barbarian_admin_clear') }}" method="post">
+<input type="hidden" name="side" value="{{ side }}">
+<input type="submit" value="管理员清零">
+</form>
+{% endif %}
 <br/>
 <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 </body>

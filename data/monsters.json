@@ -25366,11 +25366,9 @@
       "items": {
         "laiqin_pingzheng": 0.8,
         "nanman_tujian": 0.3,
-        "manyi_baoxia": 0.25,
         "qianghua_baoyu": 0.2,
-        "juhunfan_suipian": 0.15,
-        "manyi_baoxiang_key": 0.1,
-        "shenyouguo": 0.1
+        "shenyouguo": 0.1,
+        "manyi_baoxiang": 0.25
       },
       "money": {
         "min": 20,
@@ -25408,11 +25406,9 @@
       "items": {
         "laiqin_pingzheng": 1.0,
         "nanman_tujian": 0.5,
-        "manyi_baoxia": 0.5,
         "qianghua_baoyu": 0.4,
-        "juhunfan_suipian": 0.3,
-        "manyi_baoxiang_key": 0.3,
-        "shenyouguo": 0.2
+        "shenyouguo": 0.2,
+        "manyi_baoxiang": 0.5
       },
       "money": {
         "min": 80,
@@ -25443,11 +25439,10 @@
     "skills": [],
     "guaranteed_items": [
       "laiqin_pingzheng",
-      "manyi_baoxia",
+      "manyi_baoxiang",
       "juhunfan_suipian",
       "qianghua_baoyu",
-      "nanman_tujian",
-      "manyi_baoxiang_key"
+      "nanman_tujian"
     ],
     "drops": {
       "equipment_drop": {
@@ -25455,9 +25450,7 @@
         "templates": [],
         "rarity_weights": {}
       },
-      "items": {
-        "manyi_baoxiang_key": 1.0
-      },
+      "items": {},
       "money": {
         "min": 100,
         "max": 300
@@ -25487,11 +25480,10 @@
     "skills": [],
     "guaranteed_items": [
       "laiqin_pingzheng",
-      "manyi_baoxia",
+      "manyi_baoxiang",
       "juhunfan_suipian",
       "qianghua_baoyu",
-      "nanman_tujian",
-      "manyi_baoxiang_key"
+      "nanman_tujian"
     ],
     "drops": {
       "equipment_drop": {
@@ -25499,9 +25491,7 @@
         "templates": [],
         "rarity_weights": {}
       },
-      "items": {
-        "manyi_baoxiang_key": 1.0
-      },
+      "items": {},
       "money": {
         "min": 100,
         "max": 300
@@ -25531,11 +25521,10 @@
     "skills": [],
     "guaranteed_items": [
       "laiqin_pingzheng",
-      "manyi_baoxia",
+      "manyi_baoxiang",
       "juhunfan_suipian",
       "qianghua_baoyu",
-      "nanman_tujian",
-      "manyi_baoxiang_key"
+      "nanman_tujian"
     ],
     "drops": {
       "equipment_drop": {
@@ -25543,9 +25532,7 @@
         "templates": [],
         "rarity_weights": {}
       },
-      "items": {
-        "manyi_baoxiang_key": 1.0
-      },
+      "items": {},
       "money": {
         "min": 100,
         "max": 300
@@ -25582,11 +25569,9 @@
       "items": {
         "laiqin_pingzheng": 0.8,
         "beiye_tujian": 0.3,
-        "manyi_baoxia": 0.25,
         "qianghua_baoyu": 0.2,
-        "juhunfan_suipian": 0.15,
-        "manyi_baoxiang_key": 0.1,
-        "shenyouguo": 0.1
+        "shenyouguo": 0.1,
+        "manyi_baoxiang": 0.25
       },
       "money": {
         "min": 20,
@@ -25624,11 +25609,9 @@
       "items": {
         "laiqin_pingzheng": 1.0,
         "beiye_tujian": 0.5,
-        "manyi_baoxia": 0.5,
         "qianghua_baoyu": 0.4,
-        "juhunfan_suipian": 0.3,
-        "manyi_baoxiang_key": 0.3,
-        "shenyouguo": 0.2
+        "shenyouguo": 0.2,
+        "manyi_baoxiang": 0.5
       },
       "money": {
         "min": 80,
@@ -25659,11 +25642,10 @@
     "skills": [],
     "guaranteed_items": [
       "laiqin_pingzheng",
-      "manyi_baoxia",
+      "manyi_baoxiang",
       "juhunfan_suipian",
       "qianghua_baoyu",
-      "beiye_tujian",
-      "manyi_baoxiang_key"
+      "beiye_tujian"
     ],
     "drops": {
       "equipment_drop": {
@@ -25701,11 +25683,10 @@
     "skills": [],
     "guaranteed_items": [
       "laiqin_pingzheng",
-      "manyi_baoxia",
+      "manyi_baoxiang",
       "juhunfan_suipian",
       "qianghua_baoyu",
-      "beiye_tujian",
-      "manyi_baoxiang_key"
+      "beiye_tujian"
     ],
     "drops": {
       "equipment_drop": {
@@ -25743,11 +25724,10 @@
     "skills": [],
     "guaranteed_items": [
       "laiqin_pingzheng",
-      "manyi_baoxia",
+      "manyi_baoxiang",
       "juhunfan_suipian",
       "qianghua_baoyu",
-      "beiye_tujian",
-      "manyi_baoxiang_key"
+      "beiye_tujian"
     ],
     "drops": {
       "equipment_drop": {

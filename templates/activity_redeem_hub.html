@@ -3,22 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>公告栏</title>
+<title>兑奖</title>
 <style>
 body { font-size:16px; line-height:1.6; }
 a:link { color:#136ec2; text-decoration:none; }
-.muted { color:#888; font-size:13px; }
+.muted { color:#888; font-size:14px; }
 </style>
 </head>
 <body style='margin-left:10px;margin-right:10px'>
-公告栏 <a href="{{ url_for('activity.index') }}">返回</a><br/>
+兑奖 <a href="{{ url_for('activity.index') }}">返回</a><br/>
 ----------------<br/>
-{% for n in notices %}
-<a href="{{ url_for('activity.announce_detail', idx=loop.index0) }}">{{ n.title }}</a> <span class="muted">{{ n.time }}</span><br/>
-{% else %}
-暂无公告<br/>
-{% endfor %}
-----------------<br/>
+<a href="{{ url_for('activity.redeem_credentials') }}">凭证兑奖</a><br/>
+<span class="muted">（更多兑奖类型将陆续开放）</span><br/>
+<br/>
 <a href="{{ url_for('game.scene') }}">返回游戏<br/></a>
 </body>
 </html>
