@@ -20,6 +20,7 @@ import shutil
 import secrets
 import signal
 import base64
+import select
 import threading
 import subprocess
 import queue
@@ -490,13 +491,29 @@ class AgentRunner:
             MAX_LINE = 65536  # stream-json 单行可能很长(含工具调用详情)
             self._text_buf = ""  # 增量文本缓冲区,攒够后合并推送
             while True:
+                # 进程可能已退出,但其启动的子进程(如 flask dev server)继承了 stdout
+                # 管道 → 写端未关闭 → readline 永远读不到 EOF,会卡死在"正在处理命令"。
+                # 因此用 select 兜底:进程退出后若无新数据即主动结束读取;否则按 1s 轮询。
+                if proc.poll() is not None:
+                    readable, _, _ = select.select([proc.stdout], [], [], 0.3)
+                    if not readable:
+                        break  # 进程已结束且无更多输出,直接结束读取
+                else:
+                    readable, _, _ = select.select([proc.stdout], [], [], 1.0)
+                    if not readable:
+                        continue
                 line = proc.stdout.readline()
                 if not line:
-                    break
+                    # readline 返回空:子进程可能仍持有管道,但进程已退出则不再有数据
+                    if proc.poll() is not None:
+                        break
+                    continue
                 line = line.rstrip("\n")
                 if len(line) > MAX_LINE:
                     line = line[:MAX_LINE] + f" …[截断,本行原长{len(line)}字符]"
-                self._handle_stream_line(line)
+                if self._handle_stream_line(line):
+                    # 收到 agent 终态 result,指令已结束,无需再等 EOF
+                    break
             # 读取结束,flush剩余缓冲
             self._flush_text_buf()
             proc.wait()
@@ -520,16 +537,17 @@ class AgentRunner:
     def _handle_stream_line(self, line):
         """解析 claude/codebuddy stream-json 输出的单行,提取关键信息推送。
         增量文本(delta)会攒到 _text_buf,遇到换行/非delta事件/缓冲超量时flush,
-        避免每个碎片单独推送导致前端显示碎片化。"""
+        避免每个碎片单独推送导致前端显示碎片化。
+        返回 True 表示该条指令已结束(收到 agent 终态 result 消息),供读取循环判断是否提前结束。"""
         if not line:
-            return
+            return False
         try:
             obj = json.loads(line)
         except (json.JSONDecodeError, ValueError):
             # 非JSON行(旧版输出或错误信息),flush缓冲后原样推送
             self._flush_text_buf()
             self._push(line, self.key)
-            return
+            return False
 
         msg_type = obj.get("type", "")
 
@@ -585,12 +603,15 @@ class AgentRunner:
                 if cost:
                     info += f" · ${cost:.4f}"
                 self._push(info, "system")
+                return True
             elif subtype == "error":
                 error_msg = obj.get("error", {}) if isinstance(obj.get("error"), dict) else {}
                 err_text = error_msg.get("message", str(obj.get("error", ""))) if error_msg else str(obj.get("error", ""))
                 self._push(f"❌ 错误: {err_text}", "error")
+                return True
             elif subtype == "cancelled":
                 self._push("⚠️ 已取消", "system")
+                return True
             # result里的result_text不再推送(已通过delta推送过)
 
     def status(self):
@@ -1232,7 +1253,7 @@ def api_logs():
             for p in PROCS.values():
                 try:
                     ts, tag, line = p.log_q.get_nowait()
-                    payload = json.dumps({"ts": ts, "tag": tag, "line": line}, ensure_ascii=False)
+                    payload = json.dumps({"ts": ts, "tag": tag, "line": line, "proc": p.key}, ensure_ascii=False)
                     yield f"data: {payload}\n\n"
                     got_any = True
                 except queue.Empty:
@@ -1331,94 +1352,166 @@ PAGE_HTML = r"""
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>🎮 手机控制台</title>
 <style>
+  /* ===== Dark (默认) ===== */
   :root{
-    --bg:#0f1115; --panel:#181b22; --panel2:#20242e; --line:#2a2f3a;
-    --txt:#e6e8ee; --dim:#8a93a6; --claude:#d4a8ff; --flask:#7fd1b9;
-    --codebuddy:#6ad7ff; --you:#ffd479; --sys:#6fb3ff; --err:#ff8b8b; --ok:#7fd1b9;
+    --bg:#0a0b0e; --panel:#1a1d26; --panel2:#22252e; --line:#2e3340;
+    --txt:#e6e8ee; --dim:#8a93a6;
+    --claude:#7c5cff; --codebuddy:#1fb6ff; --flask:#36b37e;
+    --me:#4a6cf7; --sys:#8a93a6; --err:#d8453b; --accent:#4a6cf7;
+    --chat-bg:#12141a; --bubble-bg:#252830; --bubble-txt:#e6e8ee;
+    --composer-bg:#1a1d26; --sys-pill-bg:rgba(255,255,255,.07); --sys-pill-txt:#8a93a6;
+    --err-pill-bg:#2d1515; --err-pill-txt:#ff8b8b;
+    --avatar-bg:#252830; --name-txt:#6b7280; --ts2-txt:#4b5060;
+    --term-bg:#0d0e12; --term-txt:#d6dae2;
+    --tag-claude:#c9b3ff; --tag-flask:#7fe3b0; --tag-codebuddy:#8fdcff;
+    --tag-you:#ffd479; --tag-system:#9fc1ff; --tag-error:#ff9b9b; --ts:#4b5060;
+    --upload-label-bg:#22252e; --chip-bg:rgba(54,179,126,.12);
+    --modal-bg:#1a1d26; --modal-txt:#e6e8ee;
+    --busy-bg:rgba(74,108,247,.15); --busy-txt:#7a9cff;
+    --tab-active-bg:#fff; --tab-active-txt:#4a6cf7;
+    --tab-bg:rgba(255,255,255,.1); --tab-txt:#fff;
+    --card-shadow:0 1px 3px rgba(0,0,0,.3);
+  }
+  /* ===== Light ===== */
+  :root.light{
+    --bg:#eef1f6; --panel:#ffffff; --panel2:#f5f7fa; --line:#e3e7ee;
+    --txt:#1f2329; --dim:#8a8f99;
+    --chat-bg:#f5f6f8; --bubble-bg:#fff; --bubble-txt:#1f2329;
+    --composer-bg:#fff; --sys-pill-bg:rgba(0,0,0,.05); --sys-pill-txt:#8a8f99;
+    --err-pill-bg:#fde8e8; --err-pill-txt:#d8453b;
+    --avatar-bg:#fff; --name-txt:#9aa0a6; --ts2-txt:#b5b9bf;
+    --term-bg:#1e1f24; --term-txt:#d6dae2;
+    --tag-claude:#7c5cff; --tag-flask:#36b37e; --tag-codebuddy:#1fb6ff;
+    --tag-you:#b8860b; --tag-system:#6b7280; --tag-error:#d8453b; --ts:#6b7280;
+    --upload-label-bg:#f5f7fa; --chip-bg:rgba(54,179,126,.14);
+    --modal-bg:#fff; --modal-txt:#1f2329;
+    --busy-bg:rgba(74,108,247,.1); --busy-txt:#4a6cf7;
+    --tab-active-bg:#fff; --tab-active-txt:#4a6cf7;
+    --tab-bg:rgba(255,255,255,.12); --tab-txt:#fff;
+    --card-shadow:0 1px 2px rgba(0,0,0,.04);
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);
        font:15px/1.5 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       -webkit-text-size-adjust:100%;padding-bottom:env(safe-area-inset-bottom)}
-  header{position:sticky;top:0;z-index:10;background:var(--panel);
-         border-bottom:1px solid var(--line);padding:10px 12px}
-  header h1{margin:0;font-size:16px}
-  header .ip{font-size:12px;color:var(--dim);margin-top:2px;word-break:break-all}
+       -webkit-text-size-adjust:100%;padding-bottom:env(safe-area-inset-bottom);
+       transition:background .25s,color .25s}
+  header{position:sticky;top:0;z-index:10;color:#fff;
+         background:linear-gradient(135deg,#4a6cf7,#7a3df2);
+         border-bottom:1px solid rgba(0,0,0,.05);padding:10px 12px;
+         box-shadow:0 1px 6px rgba(0,0,0,.12)}
+  header h1{margin:0;font-size:17px;font-weight:700}
+  header .ip{font-size:12px;opacity:.92;margin-top:2px;word-break:break-all}
   .tabs{display:flex;gap:6px;margin-top:8px}
-  .tabs button{flex:1;padding:8px;border:1px solid var(--line);background:var(--panel2);
-               color:var(--txt);border-radius:8px;font-size:14px;cursor:pointer}
-  .tabs button.active{background:var(--panel2);border-color:#4a6cf7;color:#fff}
-  main{padding:10px 12px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;
-        padding:12px;margin-bottom:10px}
+  .tabs button{flex:1;padding:8px;border:1px solid rgba(255,255,255,.35);
+               background:var(--tab-bg);color:var(--tab-txt);border-radius:8px;
+               font-size:14px;cursor:pointer}
+  .tabs button.active{background:var(--tab-active-bg);color:var(--tab-active-txt);border-color:var(--tab-active-bg);font-weight:600}
+  main{padding:10px 12px;max-width:780px;margin:0 auto}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+        padding:12px;margin-bottom:10px;box-shadow:var(--card-shadow);
+        transition:background .25s,border-color .25s}
   .card h3{margin:0 0 8px;font-size:14px;color:var(--dim);font-weight:600}
   .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .btn{flex:1;min-width:70px;padding:10px;border:0;border-radius:8px;font-size:14px;
+  .btn{flex:1;min-width:70px;padding:10px;border:0;border-radius:9px;font-size:14px;
        font-weight:600;cursor:pointer;color:#fff}
-  .btn.start{background:#2e7d5b}
-  .btn.stop{background:#a3433a}
-  .btn.restart{background:#3a5a9a}
+  .btn.start{background:#2e9e6b}
+  .btn.stop{background:#e05a4f}
+  .btn.restart{background:#3a6fd6}
   .btn.preview{background:#4a6cf7;text-decoration:none;text-align:center}
-  .btn-startall{width:100%;margin-top:8px;padding:11px;border:0;border-radius:9px;
+  .btn-startall{width:100%;margin-top:8px;padding:11px;border:0;border-radius:10px;
        background:linear-gradient(135deg,#4a6cf7,#7a3df2);color:#fff;font-size:15px;
        font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(74,108,247,.3)}
   .btn-startall:active{transform:scale(.98)}
   .btn-startall.busy{opacity:.6;pointer-events:none}
   .state{font-size:13px;font-weight:600}
-  .state.on{color:var(--ok)}
+  .state.on{color:#2e9e6b}
   .state.off{color:var(--dim)}
   .pid{font-size:11px;color:var(--dim);margin-left:6px}
-  /* 终端 */
-  .term{background:#07090d;border:1px solid var(--line);border-radius:10px;
-        height:42vh;min-height:240px;overflow-y:auto;padding:8px 10px;
+  /* 终端(raw 服务器日志,保留等宽深色) */
+  .term{background:var(--term-bg);color:var(--term-txt);border:1px solid var(--line);border-radius:12px;
+        height:42vh;min-height:240px;overflow-y:auto;padding:10px 12px;
         font:12.5px/1.45 "SFMono-Regular",Consolas,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
   .term .ln{display:block}
-  .tag-claude{color:var(--claude)} .tag-flask{color:var(--flask)} .tag-codebuddy{color:var(--codebuddy)}
-  .tag-you{color:var(--you)} .tag-system{color:var(--sys)}
-  .tag-error{color:var(--err)}
-  .ts{color:#5a6377;margin-right:6px}
-  .inputbar{display:flex;gap:8px;margin-top:8px}
+  .tag-claude{color:var(--tag-claude)} .tag-flask{color:var(--tag-flask)} .tag-codebuddy{color:var(--tag-codebuddy)}
+  .tag-you{color:var(--tag-you)} .tag-system{color:var(--tag-system)} .tag-error{color:var(--tag-error)}
+  .ts{color:var(--ts);margin-right:6px}
+  /* 聊天气泡(类 QQ/飞书) */
+  .chat{background:var(--chat-bg);border:1px solid var(--line);border-radius:12px;
+        height:46vh;min-height:260px;overflow-y:auto;padding:12px 10px;
+        transition:background .25s}
+  .bubble-row{display:flex;gap:8px;margin:12px 0;align-items:flex-start}
+  .bubble-row.me{flex-direction:row-reverse}
+  .avatar{width:38px;height:38px;border-radius:50%;flex:0 0 auto;
+          display:flex;align-items:center;justify-content:center;font-size:18px;
+          background:var(--avatar-bg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+  .avatar.ai-claude{background:var(--claude);color:#fff}
+  .avatar.ai-codebuddy{background:var(--codebuddy);color:#fff}
+  .avatar.ai-flask{background:var(--flask);color:#fff}
+  .avatar.me{background:var(--me);color:#fff}
+  .bubble-wrap{flex:1;max-width:76%;display:flex;flex-direction:column;min-width:0}
+  .bubble-row.me .bubble-wrap{align-items:flex-end}
+  .name{font-size:11px;color:var(--name-txt);margin:0 4px 2px}
+  .bubble{background:var(--bubble-bg);color:var(--bubble-txt);border-radius:12px;border-top-left-radius:4px;
+          padding:9px 12px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;
+          word-break:break-word;box-shadow:0 1px 1.5px rgba(0,0,0,.06);max-width:100%;
+          transition:background .25s,color .25s}
+  .bubble-row.me .bubble{background:var(--me);color:#fff;border-radius:12px;border-top-right-radius:4px}
+  .ts2{font-size:10px;color:var(--ts2-txt);margin:3px 4px 0}
+  .bubble-row.me .ts2{text-align:right}
+  /* 系统 / 错误 居中提示 */
+  .sys-row{display:flex;justify-content:center;margin:10px 0}
+  .sys-pill{background:var(--sys-pill-bg);color:var(--sys-pill-txt);font-size:12px;padding:4px 10px;
+            border-radius:10px;max-width:92%;text-align:center;white-space:pre-wrap;word-break:break-word;
+            transition:background .25s,color .25s}
+  .sys-pill .ts2{margin:0 6px 0 0}
+  .sys-pill.error{background:var(--err-pill-bg);color:var(--err-pill-txt)}
+  /* 输入区(吸底) */
+  .composer{position:sticky;bottom:0;z-index:5;background:var(--composer-bg);border-top:1px solid var(--line);
+            border-radius:0 0 12px 12px;padding:8px 10px;transition:background .25s}
+  .inputbar{display:flex;gap:8px;align-items:flex-end}
   .inputbar textarea{flex:1;background:var(--panel2);color:var(--txt);
-       border:1px solid var(--line);border-radius:8px;padding:10px;font-size:14px;
-       resize:none;height:60px;font-family:inherit}
-  .inputbar button{width:64px;background:#4a6cf7;color:#fff;border:0;border-radius:8px;
-       font-weight:600;cursor:pointer}
+       border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px;
+       resize:none;height:54px;font-family:inherit;transition:background .25s}
+  .inputbar button{width:64px;background:var(--me);color:#fff;border:0;border-radius:10px;
+       font-weight:600;cursor:pointer;height:54px}
   .hint{font-size:12px;color:var(--dim);margin-top:6px}
-  a.lnk{color:#6fb3ff}
+  a.lnk{color:#4a6cf7}
   .hidden{display:none}
-  /* 最后一条对话高亮 */
-  .ln.last{background:rgba(74,108,247,.12);border-left:3px solid var(--accent);
-           padding:4px 6px;margin:2px 0;border-radius:4px}
-  /* busy 大字横幅 */
-  .busy-banner{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#4a6cf7,#7a3df2);
-       color:#fff;text-align:center;padding:10px;font-size:18px;font-weight:700;
-       letter-spacing:1px;box-shadow:0 2px 10px rgba(74,108,247,.4);
-       animation:pulse 1.2s ease-in-out infinite}
-  .busy-banner .dot{display:inline-block;animation:bounce 1s infinite}
-  @keyframes pulse{0%,100%{opacity:.85}50%{opacity:1}}
-  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-  .btn.interrupt{background:#c0392b;flex:0 0 auto;width:auto;padding:10px 14px}
+  /* 正在输入提示 */
+  .busy-banner{display:flex;align-items:center;gap:6px;justify-content:center;
+       background:var(--busy-bg);color:var(--busy-txt);font-size:13px;font-weight:600;
+       padding:6px 12px;border-radius:10px;margin-bottom:8px}
+  .busy-banner .dot{width:6px;height:6px;border-radius:50%;background:var(--busy-txt);
+       display:inline-block;animation:bounce 1s infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-3px);opacity:1}}
+  .btn.interrupt{background:#e05a4f;flex:0 0 auto;width:auto;padding:10px 14px}
   .btn.interrupt:active{transform:scale(.97)}
   /* 文件上传 */
   .upload-row{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
   .upload-row label{flex:0 0 auto;padding:10px 14px;border:1px dashed var(--line);
-       border-radius:8px;color:var(--dim);font-size:13px;cursor:pointer;background:var(--panel2)}
-  .upload-row .chip{background:rgba(127,209,185,.15);color:var(--flask);border:1px solid var(--flask);
-       border-radius:12px;padding:4px 10px;font-size:12px;display:flex;align-items:center;gap:6px}
+       border-radius:8px;color:var(--dim);font-size:13px;cursor:pointer;background:var(--upload-label-bg)}
+  .upload-row .chip{background:var(--chip-bg);color:var(--flask);border:1px solid var(--flask);
+       border-radius:14px;padding:4px 10px;font-size:12px;display:flex;align-items:center;gap:6px}
   .upload-row .chip .x{cursor:pointer;color:var(--err);font-weight:700}
   /* 被踢全屏遮罩 */
-  .mask{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;
+  .mask{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;
        display:flex;align-items:center;justify-content:center;padding:24px}
-  .mask .modal{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  .mask .modal{background:var(--modal-bg);border:1px solid var(--line);border-radius:14px;
        padding:28px 22px;max-width:340px;text-align:center;width:100%}
   .mask h2{margin:0 0 10px;font-size:18px;color:var(--err)}
   .mask p{margin:0 0 18px;color:var(--dim);font-size:14px}
   .mask button{width:100%;padding:12px;border:0;border-radius:9px;background:var(--accent);
        color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+  /* 主题切换按钮 */
+  .theme-toggle{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.2);
+       border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:8px;
+       padding:4px 10px;font-size:13px;cursor:pointer;z-index:11}
+  .theme-toggle:active{transform:scale(.95)}
 </style>
 </head>
 <body>
 <header>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">🌙</button>
   <h1>🎮 FlaskAPP 手机控制台</h1>
   <div class="ip">电脑IP: {{ lan_ip }} · 控制台:{{ console_port }} · 游戏:{{ game_port }}</div>
   <div class="ip" style="margin-top:2px">当前在线登录: <span id="login-count">-</span> 个窗口</div>
@@ -1469,7 +1562,7 @@ PAGE_HTML = r"""
     </div>
     <div class="card">
       <h3>实时日志(全部)</h3>
-      <div class="term" id="log-all"></div>
+      <div class="chat" id="log-all"></div>
     </div>
   </section>
 
@@ -1500,7 +1593,8 @@ PAGE_HTML = r"""
       <div id="busy-banner" class="busy-banner hidden">
         <span class="dot">⚙️</span> 正在处理命令,请稍候…
       </div>
-      <div class="term" id="log-claude"></div>
+      <div class="chat" id="log-claude"></div>
+      <div class="composer">
       <!-- 已载入的文件上下文(可多个) -->
       <div class="upload-row" id="upload-row-claude">
         <label>📎 附文件<input type="file" id="file-input" accept=".txt,.md,.markdown" multiple hidden onchange="onFilesPicked(this,'claude')"></label>
@@ -1511,6 +1605,7 @@ PAGE_HTML = r"""
         <button onclick="send('claude')">发送</button>
       </div>
       <div class="hint">回车=换行,需点发送按钮提交(Ctrl+Enter 也可发送)。附带的文件内容会拼在指令前一起发给 Claude。</div>
+      </div>
     </div>
   </section>
 
@@ -1535,7 +1630,8 @@ PAGE_HTML = r"""
       <div id="busy-banner-codebuddy" class="busy-banner hidden">
         <span class="dot">⚙️</span> 正在处理命令,请稍候…
       </div>
-      <div class="term" id="log-codebuddy"></div>
+      <div class="chat" id="log-codebuddy"></div>
+      <div class="composer">
       <!-- 已载入的文件上下文(可多个) -->
       <div class="upload-row" id="upload-row-codebuddy">
         <label>📎 附文件<input type="file" id="file-input-codebuddy" accept=".txt,.md,.markdown" multiple hidden onchange="onFilesPicked(this,'codebuddy')"></label>
@@ -1546,6 +1642,7 @@ PAGE_HTML = r"""
         <button onclick="send('codebuddy')">发送</button>
       </div>
       <div class="hint">回车=换行,需点发送按钮提交(Ctrl+Enter 也可发送)。附带的文件内容会拼在指令前一起发给 CodeBuddy。</div>
+      </div>
     </div>
   </section>
 
@@ -1574,6 +1671,21 @@ PAGE_HTML = r"""
 const TAG_LABEL = {claude:"claude", flask:"flask", you:"你", system:"系统", error:"错误"};
 let _unauthShown = false;          // 未登录遮罩只弹一次
 let _fileBlocks = {claude:[], codebuddy:[]};  // 已载入的文件上下文块(按 agent 隔离,发送时拼在指令前)
+
+// 主题切换:默认 dark,localStorage 记忆
+function toggleTheme(){
+  const root = document.documentElement;
+  const isLight = root.classList.toggle('light');
+  localStorage.setItem('console-theme', isLight ? 'light' : 'dark');
+  document.getElementById('theme-toggle').textContent = isLight ? '☀️' : '🌙';
+}
+(function(){
+  const saved = localStorage.getItem('console-theme');
+  if(saved === 'light'){
+    document.documentElement.classList.add('light');
+    document.getElementById('theme-toggle').textContent = '☀️';
+  }
+})();
 
 function showTab(t){
   document.querySelectorAll('[id^="sec-"]').forEach(e=>e.classList.add('hidden'));
@@ -1762,23 +1874,49 @@ function removeFile(agent, i){
   renderUploadChips(agent);
 }
 
-// 追加日志:last 标记最后一条(下次追加时移除上一条的 last)
-function appendLog(termId, ts, tag, line){
+// 聊天气泡渲染:AI 左(带头像)、我 右、系统/错误 居中提示
+const AGENT_META = {
+  claude:    {name:'Claude',     avatar:'🅒', side:'ai', cls:'ai-claude'},
+  codebuddy: {name:'CodeBuddy',  avatar:'🅑', side:'ai', cls:'ai-codebuddy'},
+  flask:     {name:'Flask',      avatar:'📜', side:'ai', cls:'ai-flask'},
+  you:       {name:'我',         avatar:'🙂', side:'me', cls:'me'},
+  system:    {name:'系统',       avatar:'',  side:'sys', err:false},
+  error:     {name:'错误',       avatar:'',  side:'sys', err:true},
+};
+function renderMsg(termId, ts, tag, line, withMeta){
   const box = document.getElementById(termId);
   if(!box) return;
-  // 移除上一条的高亮(claude / codebuddy 对话区做高亮区分)
-  if(termId==='log-claude' || termId==='log-codebuddy'){
-    const prev = box.querySelector('.ln.last');
-    if(prev) prev.classList.remove('last');
+  const m = AGENT_META[tag] || AGENT_META.system;
+  let row;
+  if(m.side==='sys'){
+    row = document.createElement('div'); row.className='sys-row';
+    const pill = document.createElement('div');
+    pill.className = 'sys-pill' + (m.err?' error':'');
+    const t = document.createElement('span'); t.className='ts2'; t.textContent=ts;
+    pill.appendChild(t);
+    pill.appendChild(document.createTextNode(' ' + line));
+    row.appendChild(pill);
+  } else {
+    row = document.createElement('div');
+    row.className = 'bubble-row ' + (m.side==='me'?'me':'ai');
+    const av = document.createElement('div'); av.className='avatar '+m.cls; av.textContent=m.avatar;
+    const wrap = document.createElement('div'); wrap.className='bubble-wrap';
+    const name = document.createElement('div'); name.className='name'; name.textContent=m.name;
+    const bub = document.createElement('div'); bub.className='bubble'; bub.textContent=line;
+    const t = document.createElement('div'); t.className='ts2'; t.textContent=ts;
+    wrap.appendChild(name); wrap.appendChild(bub); wrap.appendChild(t);
+    row.appendChild(av); row.appendChild(wrap);
   }
-  const div = document.createElement('div');
-  div.className='ln' + ((termId==='log-claude'||termId==='log-codebuddy')?' last':'');
-  div.innerHTML = '<span class="ts">'+esc(ts)+'</span><span class="tag-'+esc(tag)+'">'+esc(line)+'</span>';
-  box.appendChild(div);
+  if(withMeta){
+    row.setAttribute('data-ts', ts);
+    row.setAttribute('data-line', (line||'').substring(0,80));
+  }
+  box.appendChild(row);
   // 限长,防止爆内存
   while(box.children.length>800) box.removeChild(box.firstChild);
   box.scrollTop = box.scrollHeight;
 }
+function appendLog(termId, ts, tag, line){ renderMsg(termId, ts, tag, line, false); }
 function flash(msg){ /* 简单提示 */
   let n=document.getElementById('flash'); if(!n){n=document.createElement('div');n.id='flash';
     n.style.cssText='position:fixed;left:0;right:0;bottom:0;background:#333;color:#fff;text-align:center;padding:8px;font-size:13px;z-index:99';document.body.appendChild(n);}
@@ -1858,24 +1996,7 @@ async function loadHistory(agent, afterTs){
   }catch(e){}
 }
 
-function appendLogWithMeta(termId, ts, tag, line){
-  const box = document.getElementById(termId);
-  if(!box) return;
-  // 移除上一条的高亮(claude / codebuddy 对话区做高亮区分)
-  if(termId==='log-claude' || termId==='log-codebuddy'){
-    const prev = box.querySelector('.ln.last');
-    if(prev) prev.classList.remove('last');
-  }
-  const div = document.createElement('div');
-  div.className='ln' + ((termId==='log-claude'||termId==='log-codebuddy')?' last':'');
-  div.setAttribute('data-ts', ts);
-  div.setAttribute('data-line', (line||'').substring(0,80));
-  div.innerHTML = '<span class="ts">'+esc(ts)+'</span><span class="tag-'+esc(tag)+'">'+esc(line)+'</span>';
-  box.appendChild(div);
-  // 限长,防止爆内存
-  while(box.children.length>800) box.removeChild(box.firstChild);
-  box.scrollTop = box.scrollHeight;
-}
+function appendLogWithMeta(termId, ts, tag, line){ renderMsg(termId, ts, tag, line, true); }
 
 function connectSSE(){
   const es = new EventSource('/api/logs');
@@ -1893,12 +2014,17 @@ function connectSSE(){
     try{
       const d = JSON.parse(ev.data);
       appendLog('log-all', d.ts, d.tag, d.line);
-      if(d.tag==='claude'||d.tag==='you'||d.tag==='system'||d.tag==='error')
+      // 根据 proc 字段分发到对应 agent 日志区
+      // proc: 'claude' / 'codebuddy' / 'flask' (由后端 _push 时写入)
+      const proc = d.proc || d.tag;  // 兼容:无 proc 时用 tag 推断
+      if(proc==='claude' || d.tag==='claude')
         appendLog('log-claude', d.ts, d.tag, d.line);
-      if(d.tag==='codebuddy'||d.tag==='you'||d.tag==='system'||d.tag==='error')
+      if(proc==='codebuddy' || d.tag==='codebuddy')
         appendLog('log-codebuddy', d.ts, d.tag, d.line);
-      if(d.tag==='flask'||d.tag==='system'||d.tag==='error')
+      if(proc==='flask' || d.tag==='flask')
         appendLog('log-flask', d.ts, d.tag, d.line);
+      // you 消息:proc 已由后端标记,直接按 proc 分发
+      // system/error 消息:proc 已由后端标记,直接按 proc 分发
       // 更新最后时间戳
       _lastLogTs[d.tag] = d.ts;
     }catch(e){}

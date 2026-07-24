@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
+from collections import OrderedDict
 from services import db
 from services.data_service import DataService
 from services.map_service import MapService
@@ -48,9 +49,37 @@ def teleport():
 
     # 获取本国副本入口列表
     country_entries = CopyDungeonService.get_country_dungeon_entries(player)
+
+    # 城镇区域（折叠后展开对应区域地图，可传送到区域内任意地点）
+    location_id = player.current_location
+    regions = []
+    for key, loc_id in MapService.CITY_SQUARES.items():
+        loc = DataService.get_location(loc_id)
+        if not loc:
+            continue
+        area_id = loc.get('area_id', '')
+        label = loc.get('area_name') or key
+        scenes = MapService.get_area_scenes(area_id)
+        regions.append({
+            'key': key,
+            'label': label,
+            'square_id': loc_id,
+            'scenes': scenes,
+            'is_current': location_id in [s['id'] for s in scenes],
+        })
+
+    # 职业地图
+    prof_list = [
+        {'target': '神农架', 'label': '神农架(战士)'},
+        {'target': '昆仑', 'label': '昆仑山(术士)'},
+        {'target': '倭寇岛', 'label': '倭寇岛(刺客)'},
+    ]
+
     return render_template("map_teleport.html", player=player, msg=msg,
-                         copy_dungeons=DataService.get_copy_dungeons(),
-                         country_entries=country_entries)
+                         regions=regions,
+                         prof_list=prof_list,
+                         country_entries=country_entries,
+                         location_id=location_id)
 
 
 @map_bp.route("/goto_scene/<path:scene_id>")
@@ -152,17 +181,36 @@ def world():
 @map_bp.route("/area")
 @login_required
 def area():
-    """区域地图"""
+    """区域地图 - 各区域折叠，点击展开后选择进入场景"""
     player = current_user
     location_id = player.current_location
     location = DataService.get_location(location_id)
-    area_id = location.get('area_id', '') if location else ''
+    cur_area = location.get('area_id', '') if location else ''
 
-    scenes = MapService.get_area_scenes(area_id)
+    locations = DataService.get_locations()
+    area_map = OrderedDict()
+    for lid, ldata in locations.items():
+        a = ldata.get('area_id', '') or '(未分类)'
+        if a not in area_map:
+            area_map[a] = {
+                'area_id': a,
+                'area_name': ldata.get('area_name', a),
+                'scenes': [],
+                'is_current': (a == cur_area),
+            }
+        area_map[a]['scenes'].append({
+            'id': lid,
+            'name': ldata.get('name', ''),
+            'north_exit': ldata.get('north_exit', ''),
+            'south_exit': ldata.get('south_exit', ''),
+            'east_exit': ldata.get('east_exit', ''),
+            'west_exit': ldata.get('west_exit', ''),
+        })
 
+    areas = list(area_map.values())
     return render_template("map_area.html",
                          player=player,
                          location=location,
-                         scenes=scenes,
-                         area_id=area_id,
+                         location_id=location_id,
+                         areas=areas,
                          DataService=DataService)
