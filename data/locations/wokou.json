@@ -5,6 +5,7 @@
     "倭岛码头": {
       "name": "倭岛码头",
       "exits": {
+        "west": "luoyang_north.虎牢关",
         "east": "wokou.伊岐"
       },
       "npcs": [

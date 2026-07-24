@@ -107,7 +107,7 @@
       "name": "虎牢关",
       "exits": {
         "north": "luoyang_north.洛阳北界",
-        "east": "wa_island_south.倭岛码头",
+        "east": "wokou.倭岛码头",
         "south": "luoyang_north.白虎殿"
       },
       "monster_type": "monster_luoyang_north_神秘将军",

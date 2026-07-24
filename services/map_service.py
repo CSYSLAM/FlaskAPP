@@ -35,7 +35,7 @@ class MapService:
     NEUTRAL_REGIONS = {
         'luoyang', 'xiapi', 'hanzhong',
         'kunlun', 'shennong', 'wokou',
-        'ice_tower', 'jiuzhai', 'wa_island_south',
+        'ice_tower',
     }
     REGION_NAMES = {
         'beiping': '北平', 'jinyang': '晋阳', 'xuchang': '许昌',
@@ -43,7 +43,7 @@ class MapService:
         'wujun': '吴郡', 'jianye': '建邺', 'chaisang': '柴桑',
         'luoyang': '洛阳', 'xiapi': '下邳', 'hanzhong': '汉中',
         'kunlun': '昆仑山脉', 'shennong': '神农架', 'wokou': '倭寇岛',
-        'ice_tower': '寒冰塔', 'jiuzhai': '九寨沟', 'wa_island_south': '倭寇南区',
+        'ice_tower': '寒冰塔',
     }
     ZONE_ORDER = ('center', 'east', 'west', 'south', 'north')
     ZONE_LABELS = {
@@ -242,7 +242,7 @@ class MapService:
         """area_id（beiping_east / kunlun）→ 区域前缀 beiping / kunlun。
 
         仅当去掉 _center/_east 等后缀后仍是已知区域前缀时才拆分，
-        避免把 wa_island_south 误拆成 wa_island + south。
+        避免把 ice_tower 误拆成 ice + tower。
         """
         if not area_id:
             return ''
