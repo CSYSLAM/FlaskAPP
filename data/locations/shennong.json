@@ -1,5 +1,6 @@
 {
   "name": "神农架",
+  "can_pk": true,
   "scenes": {
     "碎石广场": {
       "name": "碎石广场",

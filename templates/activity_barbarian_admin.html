@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>蛮夷首领实时位置</title>
+<style>
+body { font-size:16px; line-height:1.6; }
+a:link { color:#136ec2; text-decoration:none; }
+.muted { color:#888; font-size:14px; }
+.tip { color:#555; font-size:13px; }
+.alive { color:#c00; font-weight:bold; }
+</style>
+</head>
+<body style='margin-left:10px;margin-right:10px'>
+蛮夷首领实时位置
+<a href="{{ url_for('activity.barbarian_index', side=side or '南') }}">返回</a>
+<a href="{{ url_for('game.scene') }}">返回游戏</a><br/>
+----------------<br/>
+{% if side=='南' %}南蛮{% else %}<a href="{{ url_for('activity.barbarian_admin_view', side='南') }}">南蛮</a>{% endif %}
+|
+{% if side=='北' %}北夷{% else %}<a href="{{ url_for('activity.barbarian_admin_view', side='北') }}">北夷</a>{% endif %}
+|
+{% if not side %}全部{% else %}<a href="{{ url_for('activity.barbarian_admin_view') }}">全部</a>{% endif %}
+<br/>
+----------------<br/>
+{% set ns = namespace(last_side='') %}
+{% for l in leaders %}
+{% if l.side != ns.last_side %}
+{% if ns.last_side %}<br/>{% endif %}
+<span style="font-weight:bold;">{{ l.side_name }}</span><br/>
+{% set ns.last_side = l.side %}
+{% endif %}
+{{ l.name }}({{ l.level }}级)
+{% if l.status == 'alive' %}
+- <span class="alive">可挑战</span><br/>
+位置: {{ l.location_text or '—' }}
+{% if l.location_id %}<br/><span class="tip">{{ l.location_id }}</span>{% endif %}
+{% else %}
+- <span class="muted">复苏中</span>
+{% endif %}
+<br/>
+<span class="tip">刷新城市池: {{ l.cities }}（仅非安全区，不含广场）</span><br/>
+{% endfor %}
+----------------<br/>
+<span class="tip">说明：每个首领在对应三城的非安全区（can_pk）随机落点一只，不刷广场/中区；刷新/定时复活时重roll。</span><br/>
+<br/>
+<form action="{{ url_for('activity.barbarian_admin_refresh') }}" method="post" style="margin:6px 0;">
+{% if side %}<input type="hidden" name="side" value="{{ side }}">{% endif %}
+<input type="submit" value="管理员刷新" style="font-size:18px;padding:8px 18px;min-width:140px;">
+</form>
+<form action="{{ url_for('activity.barbarian_admin_clear') }}" method="post" style="margin:6px 0;">
+{% if side %}<input type="hidden" name="side" value="{{ side }}">{% endif %}
+<input type="submit" value="管理员清零" style="font-size:18px;padding:8px 18px;min-width:140px;">
+</form>
+<br/>
+<a href="{{ url_for('activity.barbarian_index', side=side or '南') }}">返回蛮夷入口<br/></a>
+</body>
+</html>

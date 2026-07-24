@@ -598,7 +598,7 @@ def open_box():
 @activity_bp.route("/barbarian/admin_refresh", methods=["POST"])
 @login_required
 def barbarian_admin_refresh():
-    """管理员手动刷新蛮夷入侵（士卒补满、首领复活）。"""
+    """管理员手动刷新蛮夷入侵（士卒补满、首领复活并随机落点）。"""
     player = current_user
     if not getattr(player, "is_designer", False):
         flash("无权限")
@@ -608,7 +608,7 @@ def barbarian_admin_refresh():
     BarbarianService.admin_refresh(side)
     if side in ('南', '北'):
         flash(("北夷" if side == "北" else "南蛮") + "入侵已刷新")
-        return redirect(url_for("activity.barbarian_invasion", side=side))
+        return redirect(url_for("activity.barbarian_index", side=side))
     flash("蛮夷入侵已刷新")
     return redirect(url_for("activity.barbarian_index"))
 
@@ -626,9 +626,30 @@ def barbarian_admin_clear():
     BarbarianService.admin_clear(side)
     if side in ('南', '北'):
         flash(("北夷" if side == "北" else "南蛮") + "入侵已清零")
-        return redirect(url_for("activity.barbarian_invasion", side=side))
+        return redirect(url_for("activity.barbarian_index", side=side))
     flash("蛮夷入侵已清零")
     return redirect(url_for("activity.barbarian_index"))
+
+
+@activity_bp.route("/barbarian/admin_view")
+@login_required
+def barbarian_admin_view():
+    """管理员查看：蛮夷首领实时落点。"""
+    player = current_user
+    if not getattr(player, "is_designer", False):
+        flash("无权限")
+        return redirect(url_for("activity.barbarian_index"))
+    from services.barbarian_service import BarbarianService
+    side = request.args.get("side") or None
+    if side not in ('南', '北', None):
+        side = None
+    leaders = BarbarianService.get_admin_leader_overview(side)
+    return render_template(
+        "activity_barbarian_admin.html",
+        player=player,
+        side=side,
+        leaders=leaders,
+    )
 
 
 @activity_bp.route("/announce")

@@ -43,11 +43,25 @@ for _s in SIDES:
     for _k, _mid in LEADER_MONSTER[_s].items():
         _MONSTER_INDEX[_mid] = (_s, 'leader', _k)
 
-# 首领按城市刷新（scene id 列表）
-LEADER_CITIES = {
-    '老三': ['beiping_center.广场', 'jianing_center.广场', 'wujun_center.广场'],
-    '老二': ['jinyang_center.广场', 'yong_an_center.广场', 'chaisang_center.广场'],
-    '老大': ['xuchang_center.广场', 'chengdu_center.广场', 'jianye_center.广场'],
+# 首领按城市刷新：每个首领在对应三城中随机一只落点。
+# 城市前缀对应 data/locations 下 {prefix}_center/east/north/south/west 等分区；
+# 仅刷 can_pk=true 的非安全区场景，并排除广场。
+LEADER_CITY_PREFIXES = {
+    '老三': ['beiping', 'jianing', 'wujun'],
+    '老二': ['jinyang', 'yong_an', 'chaisang'],
+    '老大': ['xuchang', 'chengdu', 'jianye'],
+}
+# 城市中文名（管理员查看 / 位置文案用）
+CITY_NAMES = {
+    'beiping': '北平',
+    'jianing': '建宁',
+    'wujun': '吴郡',
+    'jinyang': '晋阳',
+    'yong_an': '永安',
+    'chaisang': '柴桑',
+    'xuchang': '许昌',
+    'chengdu': '成都',
+    'jianye': '建邺',
 }
 LEADERS_CFG = [
     {'key': '老三', 'level': 10, 'tier': 'basic'},
@@ -124,15 +138,95 @@ class BarbarianService:
 
     @classmethod
     def seed_leaders(cls, side):
-        """确保某方三名首领存在（默认 alive，常驻可玩）。"""
+        """确保某方三名首领存在（默认 alive，常驻可玩）；缺落点时补一次随机刷新。"""
+        created = False
         for cfg in LEADERS_CFG:
-            if not BarbarianLeader.query.filter_by(side=side, key=cfg['key']).first():
-                db.session.add(BarbarianLeader(
+            leader = BarbarianLeader.query.filter_by(side=side, key=cfg['key']).first()
+            if not leader:
+                leader = BarbarianLeader(
                     side=side, key=cfg['key'],
                     name=f"【活】{('南蛮' if side == '南' else '北夷')}{cfg['key']}",
                     level=cfg['level'], tier=cfg['tier'],
-                    monster_id=LEADER_MONSTER[side][cfg['key']], status='alive'))
-        db.session.commit()
+                    monster_id=LEADER_MONSTER[side][cfg['key']], status='alive')
+                db.session.add(leader)
+                created = True
+            if leader.status == 'alive' and not getattr(leader, 'location_id', None):
+                leader.location_id = cls._pick_leader_location(cfg['key'])
+                created = True
+        if created:
+            db.session.commit()
+
+    @classmethod
+    def _city_prefix_of(cls, area_id):
+        """area_id（如 beiping_east）→ 城市前缀 beiping。"""
+        if not area_id:
+            return ''
+        for prefix in CITY_NAMES:
+            if area_id == prefix or area_id.startswith(prefix + '_'):
+                return prefix
+        return area_id.split('_', 1)[0]
+
+    @classmethod
+    def _is_city_area(cls, area_id, city_prefix):
+        return bool(area_id) and (
+            area_id == city_prefix or area_id.startswith(city_prefix + '_'))
+
+    @classmethod
+    def _is_pk_scene(cls, loc):
+        """非安全区：场景/分区 can_pk 为真（与 BattleService.start_pk 一致）。"""
+        return bool(loc and loc.get('can_pk'))
+
+    @classmethod
+    def _is_plaza(cls, loc, location_id=''):
+        scene_id = str((loc or {}).get('scene_id') or '')
+        name = str((loc or {}).get('name') or '')
+        lid = str(location_id or '')
+        return (
+            scene_id.endswith('广场')
+            or '广场' in name
+            or lid.endswith('.广场')
+            or lid.endswith('广场')
+        )
+
+    @classmethod
+    def _pick_leader_location(cls, key):
+        """在首领对应三城中随机选一城，再在该城非安全区（can_pk）随机场景落点（排除广场）。"""
+        from services.data_service import DataService
+        cities = list(LEADER_CITY_PREFIXES.get(key) or [])
+        if not cities:
+            return None
+        random.shuffle(cities)
+        locations = DataService.get_locations()
+        for city_prefix in cities:
+            candidates = [
+                lid for lid, loc in locations.items()
+                if cls._is_city_area(loc.get('area_id'), city_prefix)
+                and cls._is_pk_scene(loc)
+                and not loc.get('is_copy_map')
+                and not cls._is_plaza(loc, lid)
+            ]
+            if candidates:
+                return random.choice(candidates)
+        # 兜底：放开 can_pk 限制但仍排除广场（理论上不应走到）
+        city_prefix = random.choice(cities)
+        fallback = [
+            lid for lid, loc in locations.items()
+            if cls._is_city_area(loc.get('area_id'), city_prefix)
+            and not loc.get('is_copy_map')
+            and not cls._is_plaza(loc, lid)
+        ]
+        return random.choice(fallback) if fallback else None
+
+    @classmethod
+    def _respawn_leaders(cls, side):
+        """某方三名首领全部复活，并各自在对应三城中随机落点一只。"""
+        for cfg in LEADERS_CFG:
+            leader = BarbarianLeader.query.filter_by(side=side, key=cfg['key']).first()
+            if not leader:
+                continue
+            leader.status = 'alive'
+            leader.killed_at = None
+            leader.location_id = cls._pick_leader_location(cfg['key'])
 
     @classmethod
     def _side_available(cls, side, now=None):
@@ -161,12 +255,10 @@ class BarbarianService:
                 for c in BarbarianInvasion.COUNTRIES:
                     state.set_soldier(c, 0)
 
-        # 首领：>=刷新小时 当日未刷新则全部 alive
+        # 首领：>=刷新小时 当日未刷新则全部 alive + 重新随机落点
         if now.hour >= LEADER_REFRESH_HOUR[side]:
             if not state.last_leader_tick or state.last_leader_tick.date() != now.date():
-                for leader in BarbarianLeader.query.filter_by(side=side).all():
-                    leader.status = 'alive'
-                    leader.killed_at = None
+                cls._respawn_leaders(side)
                 state.last_leader_tick = now
 
         db.session.commit()
@@ -180,6 +272,7 @@ class BarbarianService:
         leaders = []
         for cfg in LEADERS_CFG:
             leader = BarbarianLeader.query.filter_by(side=side, key=cfg['key']).first()
+            loc_id = getattr(leader, 'location_id', None) if leader else None
             leaders.append({
                 'key': cfg['key'],
                 'name': leader.name if leader else '',
@@ -187,6 +280,8 @@ class BarbarianService:
                 'status': leader.status if leader else 'alive',
                 'drop_text': LEADER_DROP_TEXT.get(cfg['key'], ''),
                 'monster_id': LEADER_MONSTER[side][cfg['key']],
+                'location_id': loc_id,
+                'location_text': cls._format_location(loc_id) if loc_id else '',
             })
         return {
             'side': side,
@@ -194,6 +289,26 @@ class BarbarianService:
             'soldiers': state.soldier_count(player.country),
             'leaders': leaders,
         }
+
+    @classmethod
+    def _format_location(cls, location_id):
+        """把 location_id 格式化为「城名·分区·场景名」。"""
+        if not location_id:
+            return ''
+        from services.data_service import DataService
+        loc = DataService.get_locations().get(location_id) or {}
+        area_id = loc.get('area_id') or (location_id.split('.', 1)[0] if '.' in location_id else '')
+        city_prefix = cls._city_prefix_of(area_id)
+        city = CITY_NAMES.get(city_prefix) or loc.get('area_name') or area_id
+        area_name = loc.get('area_name') or area_id
+        scene = loc.get('name') or loc.get('scene_id') or (
+            location_id.split('.', 1)[1] if '.' in location_id else location_id)
+        # 分区名与城名不同时带上分区（如 北平东区）
+        if area_name and area_name != city and not area_name.startswith(city):
+            return f"{city}·{area_name}·{scene}"
+        if area_name and area_name != city:
+            return f"{area_name}·{scene}"
+        return f"{city}·{scene}"
 
     @classmethod
     def soldier_window_open(cls, side, now=None):
@@ -311,21 +426,48 @@ class BarbarianService:
             return
         leader.status = 'recovering'
         leader.killed_at = datetime.datetime.now()
+        leader.location_id = None
         db.session.commit()
 
     # ---------- 首领在领地城市的注入 ----------
     @classmethod
     def active_leader_monster_ids_at(cls, location_id):
-        """返回当前城市应注入的存活首领怪物 id 列表（用于场景显示，两方均含）。"""
+        """返回当前场景应注入的存活首领怪物 id 列表（按单点落点匹配，两方均含）。"""
+        if not location_id:
+            return []
         result = []
         for side in SIDES:
             cls.tick(side)
-            for key, cities in LEADER_CITIES.items():
-                if location_id in cities:
-                    leader = BarbarianLeader.query.filter_by(side=side, key=key).first()
-                    if leader and leader.status == 'alive':
-                        result.append(leader.monster_id)
+            for leader in BarbarianLeader.query.filter_by(side=side, status='alive').all():
+                if getattr(leader, 'location_id', None) == location_id:
+                    result.append(leader.monster_id)
         return result
+
+    @classmethod
+    def get_admin_leader_overview(cls, side=None):
+        """管理员查看：各方首领实时落点。"""
+        sides = SIDES if side is None else (side,)
+        overview = []
+        for s in sides:
+            cls.tick(s)
+            cls.seed_leaders(s)
+            for cfg in LEADERS_CFG:
+                leader = BarbarianLeader.query.filter_by(side=s, key=cfg['key']).first()
+                loc_id = getattr(leader, 'location_id', None) if leader else None
+                overview.append({
+                    'side': s,
+                    'side_name': '南蛮' if s == '南' else '北夷',
+                    'key': cfg['key'],
+                    'name': leader.name if leader else f"{'南蛮' if s == '南' else '北夷'}{cfg['key']}",
+                    'level': cfg['level'],
+                    'status': leader.status if leader else 'recovering',
+                    'location_id': loc_id,
+                    'location_text': cls._format_location(loc_id) if loc_id else '—',
+                    'cities': '、'.join(
+                        CITY_NAMES.get(a, a) for a in LEADER_CITY_PREFIXES.get(cfg['key'], [])
+                    ),
+                })
+        return overview
 
     # ---------- 凭证兑奖 ----------
     @classmethod
@@ -501,9 +643,8 @@ class BarbarianService:
             for c in BarbarianInvasion.COUNTRIES:
                 state.set_soldier(c, SOLDIER_POOL)
             state.last_soldier_tick = datetime.datetime.now()
-            for leader in BarbarianLeader.query.filter_by(side=s).all():
-                leader.status = 'alive'
-                leader.killed_at = None
+            cls.seed_leaders(s)
+            cls._respawn_leaders(s)
             state.last_leader_tick = datetime.datetime.now()
             db.session.commit()
         return True
@@ -519,6 +660,7 @@ class BarbarianService:
             for leader in BarbarianLeader.query.filter_by(side=s).all():
                 leader.status = 'recovering'
                 leader.killed_at = now
+                leader.location_id = None
             state.last_leader_tick = now
             db.session.commit()
         return True

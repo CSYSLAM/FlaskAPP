@@ -2,6 +2,7 @@
   "name": "曹丕选妃副本",
   "is_copy_map": true,
   "copy_dungeon_id": "caopi_xuanfei",
+  "can_pk": false,
   "scenes": {
     "caopi_xuanfei_copy_live.铜雀台": {
       "name": "铜雀台",

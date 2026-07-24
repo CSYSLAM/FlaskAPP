@@ -1535,7 +1535,10 @@ class BattleService:
         if player.current_location != target.current_location:
             return False, "需要同一场景才能PK"
         loc = DataService.get_locations().get(player.current_location)
-        if not (loc and loc.get('can_pk')):
+        # 副本禁止 PK；其余场景以 can_pk 为准（安全区无 can_pk / 为假）
+        if not loc or loc.get('is_copy_map') or not loc.get('can_pk'):
+            if loc and loc.get('is_copy_map'):
+                return False, "副本内禁止PK"
             return False, "安全区禁止PK"
         if target.need_revive or target.health <= 0:
             return False, "对方已死亡，无法PK"

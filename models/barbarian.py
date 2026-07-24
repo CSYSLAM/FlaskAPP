@@ -54,6 +54,8 @@ class BarbarianLeader(db.Model):
     monster_id = db.Column(db.String(60), nullable=False)   # monsters.json 中的怪物 id
     status = db.Column(db.String(20), default='alive')      # alive / recovering
     killed_at = db.Column(db.DateTime, nullable=True)
+    # 当前刷新落点（单实例）；空表示未刷新/复苏中
+    location_id = db.Column(db.String(80), nullable=True)
 
     __table_args__ = (
         db.Index('ix_barbarian_leaders_side_key', 'side', 'key'),

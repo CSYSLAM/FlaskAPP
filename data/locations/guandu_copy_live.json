@@ -2,6 +2,7 @@
   "name": "官渡之战副本",
   "is_copy_map": true,
   "copy_dungeon_id": "guandu_battle",
+  "can_pk": false,
   "scenes": {
     "曹军大营": {
       "name": "曹军大营(副本)",

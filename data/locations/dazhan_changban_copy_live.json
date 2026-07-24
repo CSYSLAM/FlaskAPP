@@ -2,6 +2,7 @@
   "name": "大战长坂副本",
   "is_copy_map": true,
   "copy_dungeon_id": "dazhan_changban",
+  "can_pk": false,
   "scenes": {
     "dazhan_changban_copy_live.长坂坡": {
       "name": "长坂坡",

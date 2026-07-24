@@ -33,7 +33,8 @@ a:link { color:#136ec2; text-decoration:none; }
 三、10-29级玩家，在非安全区地图移动，有几率遭遇{{ '南蛮' if side=='南' else '北夷' }}士卒<br/>
 四、30级以上玩家，有几率遭遇{{ '南蛮' if side=='南' else '北夷' }}铁骑<br/>
 五、{{ '南蛮' if side=='南' else '北夷' }}首领定时刷新，活动界面仅显示本国首领状态<br/>
-六、同类活动开始时将清理上个活动首领<br/>
+六、老三在北平/建宁/吴郡、老二在晋阳/永安/柴桑、老大在许昌/成都/建邺的非安全区随机落点（各一只，不刷广场），不分国家自由击杀<br/>
+七、同类活动开始时将清理上个活动首领<br/>
 </small>
 ----------------<br/>
 <a href="{{ url_for('activity.redeem') }}">凭证兑奖</a><br/>
@@ -41,14 +42,16 @@ a:link { color:#136ec2; text-decoration:none; }
 <a href="{{ url_for('activity.barbarian_forge') }}">铁匠铺·菊香神套</a><br/>
 {% if player.is_designer %}
 ----------------<br/>
-<form action="{{ url_for('activity.barbarian_admin_refresh') }}" method="post">
+<span style="color:#c00;">管理员</span><br/>
+<form action="{{ url_for('activity.barbarian_admin_refresh') }}" method="post" style="margin:6px 0;">
 <input type="hidden" name="side" value="{{ side }}">
-<input type="submit" value="管理员刷新">
+<input type="submit" value="管理员刷新" style="font-size:18px;padding:8px 18px;min-width:140px;">
 </form>
-<form action="{{ url_for('activity.barbarian_admin_clear') }}" method="post">
+<form action="{{ url_for('activity.barbarian_admin_clear') }}" method="post" style="margin:6px 0;">
 <input type="hidden" name="side" value="{{ side }}">
-<input type="submit" value="管理员清零">
+<input type="submit" value="管理员清零" style="font-size:18px;padding:8px 18px;min-width:140px;">
 </form>
+<a href="{{ url_for('activity.barbarian_admin_view', side=side) }}" style="font-size:17px;display:inline-block;margin:4px 0;">管理员查看（首领位置）</a><br/>
 {% endif %}
 <br/>
 <a href="{{ url_for('activity.barbarian_index') }}">返回蛮夷入口<br/></a>

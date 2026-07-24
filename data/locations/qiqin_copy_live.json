@@ -2,6 +2,7 @@
   "name": "七擒孟获副本",
   "is_copy_map": true,
   "copy_dungeon_id": "qiqinmenghuo",
+  "can_pk": false,
   "scenes": {
     "孔明寨": {
       "name": "孔明寨(副本)",

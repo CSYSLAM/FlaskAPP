@@ -298,6 +298,13 @@ def create_app():
         for _side in ('南', '北'):
             BarbarianService.get_or_create_state(_side)
             BarbarianService.seed_leaders(_side)
+        # 蛮夷首领落点列（旧库兼容）
+        try:
+            db.session.execute(db.text(
+                "ALTER TABLE barbarian_leaders ADD COLUMN location_id VARCHAR(80)"))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
         # 多窗口 SSO：为旧版 active_session 表补齐 active_sid / tokens 列
         # （旧表只有 player_id/token/updated_at，create_all 不会改已存在的表）
         try:

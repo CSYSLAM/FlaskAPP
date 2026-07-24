@@ -118,7 +118,6 @@
     "洛阳北界": {
       "name": "洛阳北界",
       "exits": {
-        "north": "silk_road.玉门关",
         "west": "luoyang_north.官道",
         "south": "luoyang_north.虎牢关"
       }

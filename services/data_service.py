@@ -117,6 +117,9 @@ class DataService:
                     entry['scene_id'] = scene_key
                     for meta_key, meta_value in area_meta.items():
                         entry.setdefault(meta_key, meta_value)
+                    # 副本地图一律不可 PK（区域/场景即便漏标 can_pk 也强制关闭）
+                    if entry.get('is_copy_map'):
+                        entry['can_pk'] = False
                     if 'monster_type' in entry and 'monsters' not in entry:
                         entry['monsters'] = [entry['monster_type']]
                     # Convert exits dict to directional keys

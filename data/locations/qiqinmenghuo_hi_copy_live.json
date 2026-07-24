@@ -2,6 +2,7 @@
   "name": "七擒孟获副本",
   "is_copy_map": true,
   "copy_dungeon_id": "qiqinmenghuo_hi",
+  "can_pk": false,
   "scenes": {
     "qiqinmenghuo_hi_copy_live.五溪洞": {
       "name": "五溪洞",

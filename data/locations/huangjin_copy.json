@@ -2,6 +2,7 @@
   "name": "黄巾起义副本",
   "is_copy_map": true,
   "copy_dungeon_id": "huangjin_trial",
+  "can_pk": false,
   "scenes": {
     "洛阳皇宫": {
       "name": "洛阳皇宫(副本)",
